@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="system-ui,sans-serif" role="img" aria-label="Komiks: kde doopravdy bydlí cloud">
+  <rect width="800" height="640" rx="14" fill="#FAFAF7" stroke="#E5E7EB"/>
+  <text x="400" y="38" text-anchor="middle" font-size="21" font-weight="700" fill="#1E1B4B">Cloud: nebe plné disků</text>
+
+  <!-- P1 -->
+  <rect x="14" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <circle cx="110" cy="200" r="24" fill="#FEF3C7"/>
+  <text x="110" y="209" text-anchor="middle" font-size="24">👧</text>
+  <path d="M96 232 Q110 224 124 232 L128 274 L92 274 Z" fill="#7C3AED"/>
+  <circle cx="290" cy="204" r="24" fill="#D1FAE5"/>
+  <text x="290" y="213" text-anchor="middle" font-size="24">👦</text>
+  <path d="M276 236 Q290 228 304 236 L308 274 L272 274 Z" fill="#10B981"/>
+  <rect x="60" y="86" width="200" height="62" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M120 148 L112 166 L140 148 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="160" y="112" text-anchor="middle" font-size="13" fill="#1E1B4B">Kam se uložila</text>
+  <text x="160" y="130" text-anchor="middle" font-size="13" fill="#1E1B4B">ta naše fotka?</text>
+  <rect x="240" y="120" width="130" height="40" rx="12" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <path d="M290 160 L286 176 L306 160 Z" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="305" y="145" text-anchor="middle" font-size="13" fill="#1E1B4B">Do cloudu! ☁️</text>
+  <text x="204" y="306" text-anchor="middle" font-size="12" fill="#6B7280">„Do cloudu.“ Aha. A to je… kde?</text>
+
+  <!-- P2 -->
+  <rect x="406" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="426" y="76" width="340" height="180" rx="10" fill="#E0F2FE" opacity="0.5"/>
+  <path d="M500 170 a34 34 0 0 1 36 -32 a44 44 0 0 1 84 10 a30 30 0 0 1 -6 58 h-82 a32 32 0 0 1 -32 -36z" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="3"/>
+  <rect x="576" y="156" width="34 " height="26" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <circle cx="593" cy="166" r="5" fill="#D97706"/>
+  <path d="M580 178 l8 -8 l6 5 l8 -9 l6 6 v6 h-28z" fill="#10B981"/>
+  <text x="530" y="120" font-size="18">😇</text>
+  <text x="640" y="140" font-size="18">😇</text>
+  <text x="480" y="210" font-size="14">🎵</text>
+  <text x="660" y="200" font-size="14">✨</text>
+  <text x="596" y="306" text-anchor="middle" font-size="12" fill="#6B7280">Představa: fotka si poletuje v obláčku s andělíčky.</text>
+
+  <!-- P3 -->
+  <rect x="14" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="34" y="360" width="340" height="34" rx="6" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <text x="204" y="382" text-anchor="middle" font-size="14" font-weight="700" fill="#1E1B4B">DATOVÉ CENTRUM</text>
+  <g stroke="#7C3AED" stroke-width="2">
+    <rect x="44" y="404" width="70" height="150" rx="6" fill="#F5F5F4"/>
+    <rect x="124" y="404" width="70" height="150" rx="6" fill="#F5F5F4"/>
+    <rect x="204" y="404" width="70" height="150" rx="6" fill="#F5F5F4"/>
+    <rect x="284" y="404" width="70" height="150" rx="6" fill="#F5F5F4"/>
+  </g>
+  <g fill="#10B981">
+    <circle cx="56" cy="418" r="3"/><circle cx="56" cy="438" r="3"/><circle cx="136" cy="418" r="3"/><circle cx="136" cy="458" r="3"/>
+    <circle cx="216" cy="418" r="3"/><circle cx="296" cy="418" r="3"/><circle cx="296" cy="438" r="3"/>
+  </g>
+  <g fill="#D97706"><circle cx="70" cy="418" r="3"/><circle cx="150" cy="438" r="3"/><circle cx="230" cy="458" r="3"/></g>
+  <rect x="210" y="470" width="58" height="20" rx="3" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="239" y="484" text-anchor="middle" font-size="9" fill="#1E1B4B">šuplík #48 291</text>
+  <path d="M239 468 C239 440 230 420 216 404" fill="none" stroke="#D97706" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="300" y="478" font-size="12">🖼️</text>
+  <text x="204" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Realita: hala plná serverů. Fotka leží na disku #48 291.</text>
+
+  <!-- P4 -->
+  <rect x="406" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <circle cx="500" cy="480" r="24" fill="#FEF3C7"/>
+  <text x="500" y="489" text-anchor="middle" font-size="24">👧</text>
+  <path d="M486 512 Q500 504 514 512 L518 554 L482 554 Z" fill="#7C3AED"/>
+  <circle cx="690" cy="484" r="24" fill="#D1FAE5"/>
+  <text x="690" y="493" text-anchor="middle" font-size="24">👦</text>
+  <path d="M676 516 Q690 508 704 516 L708 554 L672 554 Z" fill="#10B981"/>
+  <rect x="428" y="366" width="196" height="62" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M490 428 L482 446 L510 428 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="526" y="392" text-anchor="middle" font-size="13" fill="#1E1B4B">Takže cloud je…</text>
+  <text x="526" y="410" text-anchor="middle" font-size="13" fill="#1E1B4B">cizí počítač?!</text>
+  <rect x="612" y="398" width="162" height="44" rx="12" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <path d="M690 442 L686 458 L706 442 Z" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="693" y="416" text-anchor="middle" font-size="13" fill="#1E1B4B">Jo. S dobrou</text>
+  <text x="693" y="432" text-anchor="middle" font-size="13" fill="#1E1B4B">klimatizací. 😎</text>
+  <text x="596" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Bez internetu se k „nebi“ nedostaneš — je to něčí hardware.</text>
+
+  <text x="400" y="626" text-anchor="middle" font-size="13" fill="#6B7280">Cloud = výkonný cizí server v datovém centru, ke kterému se připojuješ přes internet.</text>
+</svg>

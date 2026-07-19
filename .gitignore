@@ -1,0 +1,6 @@
+.env
+.vercel
+node_modules/
+.log-interactions.jsonl
+.DS_Store
+*.log

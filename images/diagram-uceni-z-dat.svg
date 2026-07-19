@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 280" font-family="system-ui, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">AI se učí z příkladů</title>
+  <desc id="d">Hromádka fotek s popisky „kočka“ a „není kočka“ se tréninkem promění v model, který u nové fotky odpoví „kočka (92 %)“. Dole varování: zkreslená data znamenají zkreslený model.</desc>
+  <defs>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#0EA5E9"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="518" height="278" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+
+  <text x="18" y="25" font-size="18" font-weight="700" fill="#1E1B4B">AI se učí z příkladů</text>
+  <text x="18" y="43" font-size="11" fill="#6B7280">Pravidla jí nikdo nepsal — vzorce si našla v tisících popsaných fotek.</text>
+
+  <!-- hromádka trénovacích dat -->
+  <rect x="30" y="64" width="106" height="44" rx="9" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <rect x="24" y="70" width="106" height="44" rx="9" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <rect x="18" y="76" width="106" height="44" rx="9" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <circle cx="40" cy="98" r="13" fill="#D1FAE5"/>
+  <text x="40" y="103" text-anchor="middle" font-size="14">🐱</text>
+  <text x="60" y="102" font-size="12" font-weight="600" fill="#1E1B4B">kočka</text>
+  <rect x="18" y="128" width="106" height="44" rx="9" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <circle cx="40" cy="150" r="13" fill="#FEF3C7"/>
+  <text x="40" y="155" text-anchor="middle" font-size="14">🐕</text>
+  <text x="58" y="154" font-size="11" font-weight="600" fill="#1E1B4B">není kočka</text>
+  <text x="71" y="190" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">Trénovací data</text>
+  <text x="71" y="206" text-anchor="middle" font-size="11" fill="#6B7280">tisíce popsaných fotek</text>
+
+  <!-- šipka trénink -->
+  <text x="172" y="114" text-anchor="middle" font-size="11" font-weight="700" fill="#7C3AED">trénink</text>
+  <path d="M140 124 L202 124" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#arrow-purple)"/>
+
+  <!-- model -->
+  <rect x="210" y="78" width="100" height="96" rx="13" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <circle cx="260" cy="112" r="20" fill="#FFFFFF"/>
+  <text x="260" y="119" text-anchor="middle" font-size="20">🧠</text>
+  <text x="260" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#1E1B4B">Model</text>
+  <text x="260" y="166" text-anchor="middle" font-size="11" fill="#6B7280">hledá vzory</text>
+
+  <!-- šipka použití -->
+  <text x="346" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="#0EA5E9">použití</text>
+  <path d="M314 116 C340 116 352 90 384 90" fill="none" stroke="#0EA5E9" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- nová fotka -->
+  <rect x="390" y="66" width="114" height="48" rx="9" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="412" cy="90" r="13" fill="#E0F2FE"/>
+  <text x="412" y="95" text-anchor="middle" font-size="13">📷</text>
+  <text x="431" y="87" font-size="11" font-weight="700" fill="#1E1B4B">nová fotka</text>
+  <text x="431" y="103" font-size="11" fill="#6B7280">co to je?</text>
+
+  <!-- šipka k odpovědi -->
+  <path d="M447 118 L447 133" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- výstup -->
+  <rect x="390" y="140" width="114" height="46" rx="9" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <text x="447" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="#1E1B4B">kočka (92 %)</text>
+  <text x="447" y="177" text-anchor="middle" font-size="11" fill="#6B7280">odpověď modelu</text>
+
+  <!-- varování -->
+  <rect x="18" y="214" width="486" height="52" rx="9" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+  <circle cx="44" cy="240" r="14" fill="#FFFFFF"/>
+  <text x="44" y="245" text-anchor="middle" font-size="14">⚠️</text>
+  <text x="66" y="236" font-size="12" font-weight="700" fill="#1E1B4B">Zkreslená data → zkreslený model</text>
+  <text x="66" y="252" font-size="11" fill="#6B7280">Model zná jen svět svých trénovacích dat: co do něj vložíš, to z něj vypadne.</text>
+</svg>

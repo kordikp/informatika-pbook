@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="system-ui,sans-serif" role="img" aria-label="Komiks: phishing jako rybaření na lidi">
+  <rect width="800" height="640" rx="14" fill="#FAFAF7" stroke="#E5E7EB"/>
+  <text x="400" y="38" text-anchor="middle" font-size="21" font-weight="700" fill="#1E1B4B">Ryba, která si to ověřila</text>
+
+  <!-- P1: návnada -->
+  <rect x="14" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="130" y="80" width="150" height="200" rx="14" fill="#F5F5F4" stroke="#1E1B4B" stroke-width="2.5"/>
+  <rect x="142" y="96" width="126" height="150" rx="6" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="205" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#EF4444">VYHRÁL JSI</text>
+  <text x="205" y="140" text-anchor="middle" font-size="13" font-weight="700" fill="#EF4444">iPhone!!! 🎁</text>
+  <text x="205" y="166" text-anchor="middle" font-size="10.5" fill="#1E1B4B">Zbývá jen potvrdit</text>
+  <text x="205" y="180" text-anchor="middle" font-size="10.5" fill="#1E1B4B">údaje. Máš 10 minut!</text>
+  <rect x="156" y="196" width="98" height="28" rx="7" fill="#EF4444"/>
+  <text x="205" y="215" text-anchor="middle" font-size="11.5" font-weight="700" fill="#FFFFFF">KLIKNI HNED</text>
+  <text x="310" y="120" font-size="18">📳</text>
+  <text x="90" y="150" font-size="18">❗</text>
+  <text x="204" y="306" text-anchor="middle" font-size="12" fill="#6B7280">Zpráva, co spěchá, křičí a slibuje. Povědomé?</text>
+
+  <!-- P2: za oponou rybář -->
+  <rect x="406" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="426" y="76" width="340" height="130" rx="10" fill="#E0F2FE" opacity="0.55"/>
+  <path d="M426 206 H766" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="700" cy="120" r="22" fill="#FEE2E2"/>
+  <text x="700" y="129" text-anchor="middle" font-size="22">🕵️</text>
+  <path d="M686 152 Q700 144 714 152 L718 190 L682 190 Z" fill="#6B7280"/>
+  <path d="M676 128 C620 118 560 128 520 158" fill="none" stroke="#1E1B4B" stroke-width="1.8"/>
+  <rect x="498" y="158" width="60" height="30" rx="6" fill="#FFFFFF" stroke="#EF4444" stroke-width="2"/>
+  <text x="528" y="178" text-anchor="middle" font-size="10" font-weight="700" fill="#EF4444">🎁 iPhone</text>
+  <rect x="640" y="220" width="120" height="56" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="700" y="242" text-anchor="middle" font-size="11" font-weight="700" fill="#1E1B4B">🪣 kbelík:</text>
+  <text x="700" y="260" text-anchor="middle" font-size="11" fill="#6B7280">ukradená hesla</text>
+  <text x="470" y="248" font-size="20">🐟</text>
+  <text x="596" y="306" text-anchor="middle" font-size="12" fill="#6B7280">Za oponou: na druhém konci vlasce sedí rybář.</text>
+
+  <!-- P3: ověření jinou cestou -->
+  <rect x="14" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <circle cx="110" cy="470" r="24" fill="#D1FAE5"/>
+  <text x="110" y="479" text-anchor="middle" font-size="24">👦</text>
+  <path d="M96 502 Q110 494 124 502 L128 548 L92 548 Z" fill="#10B981"/>
+  <rect x="170" y="400" width="200" height="52" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M210 452 L202 470 L230 452 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="270" y="422" text-anchor="middle" font-size="12.5" fill="#1E1B4B">Hm. Radši se kouknu</text>
+  <text x="270" y="440" text-anchor="middle" font-size="12.5" fill="#1E1B4B">přímo do oficiální appky.</text>
+  <rect x="200" y="480" width="120" height="80" rx="10" fill="#F5F5F4" stroke="#1E1B4B" stroke-width="2"/>
+  <rect x="212" y="492" width="96" height="44" rx="5" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="260" y="512" text-anchor="middle" font-size="10" fill="#10B981" font-weight="700">✓ žádná výhra,</text>
+  <text x="260" y="526" text-anchor="middle" font-size="10" fill="#10B981" font-weight="700">žádný problém</text>
+  <text x="204" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Neklikl. Otevřel si službu sám — jinou cestou.</text>
+
+  <!-- P4: rybář s prázdnou -->
+  <rect x="406" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="426" y="356" width="340" height="130" rx="10" fill="#E0F2FE" opacity="0.55"/>
+  <path d="M426 486 H766" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="700" cy="400" r="22" fill="#FEE2E2"/>
+  <text x="700" y="409" text-anchor="middle" font-size="22">🕵️</text>
+  <path d="M686 432 Q700 424 714 432 L718 470 L682 470 Z" fill="#6B7280"/>
+  <path d="M676 408 C640 404 610 412 596 428" fill="none" stroke="#1E1B4B" stroke-width="1.8"/>
+  <path d="M596 428 q-4 8 2 12" fill="none" stroke="#1E1B4B" stroke-width="1.8"/>
+  <rect x="640" y="500" width="120" height="40" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="700" y="525" text-anchor="middle" font-size="11" fill="#6B7280">🪣 kbelík: prázdný</text>
+  <g>
+    <text x="480" y="530" font-size="22">🐟</text>
+    <text x="516" y="522" font-size="14">🛡</text>
+    <path d="M540 526 L570 526" stroke="#10B981" stroke-width="2" stroke-dasharray="4 3"/>
+  </g>
+  <rect x="426" y="366" width="150" height="40" rx="10" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <text x="501" y="391" text-anchor="middle" font-size="12" fill="#6B7280">„Zase nic…“ 😮‍💨</text>
+  <text x="596" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Ryba, co neskočila po návnadě, plave dál. S 🛡.</text>
+
+  <text x="400" y="626" text-anchor="middle" font-size="13" fill="#6B7280">Phishing útočí na emoce (spěch, výhra, strach) — ověřuj jinou cestou, nikdy přes odkaz ze zprávy.</text>
+</svg>

@@ -1,0 +1,189 @@
+{
+  "title": "Jak funguje digitální svět",
+  "author": "Pavel Kordík & tým AI dětem",
+  "version": "0.1",
+  "chapters": [
+    {
+      "id": "ch1-digitalni-zaklady",
+      "number": 1,
+      "title": "Digitální základy",
+      "subtitle": "Hardware, software, internet a cloud — co se děje pod povrchem appek",
+      "directory": "ch1-digitalni-zaklady",
+      "files": [
+        "01-spine-hardware-a-software.md",
+        "01a-game-hardware-software.md",
+        "02-spine-data-a-informace.md",
+        "03-spine-internet-a-sit.md",
+        "04-spine-cloud-a-server.md",
+        "04b-sidebar-comic-cloud.md",
+        "05-spine-api.md"
+      ]
+    },
+    {
+      "id": "ch2-informaticke-mysleni",
+      "number": 2,
+      "title": "Informatické myšlení a algoritmizace",
+      "subtitle": "Rozlož problém, najdi vzor, popiš postup — myšlení, které funguje i bez počítače",
+      "directory": "ch2-informaticke-mysleni",
+      "files": [
+        "01-spine-dekompozice.md",
+        "02-spine-abstrakce.md",
+        "03-spine-rozpoznavani-vzoru.md",
+        "04-spine-algoritmus.md",
+        "04a-game-algoritmus-caj.md",
+        "05-spine-rizeni-toku.md"
+      ]
+    },
+    {
+      "id": "ch3-programovani",
+      "number": 3,
+      "title": "Programování",
+      "subtitle": "Proměnné, podmínky, cykly a ladění — od bloků k Pythonu",
+      "directory": "ch3-programovani",
+      "files": [
+        "01-spine-promenne-a-datove-typy.md",
+        "02-spine-podminky-v-kodu.md",
+        "03-spine-cykly-v-kodu.md",
+        "03a-game-kod-stavebnice.md",
+        "04-spine-funkce-a-procedury.md",
+        "05-spine-ladeni-a-testovani.md"
+      ]
+    },
+    {
+      "id": "ch4-data-databaze",
+      "number": 4,
+      "title": "Data, databáze a datová gramotnost",
+      "subtitle": "Jak data číst, ukládat a nenechat se jimi oklamat",
+      "directory": "ch4-data-databaze",
+      "files": [
+        "01-spine-datova-gramotnost.md",
+        "02-spine-datovy-cyklus.md",
+        "03-spine-strukturovana-vs-nestrukturovana-data.md",
+        "03a-game-data-tridicka.md",
+        "04-spine-tabulky-a-relacni-model.md",
+        "05-spine-vizualizace-a-volba-grafu.md"
+      ]
+    },
+    {
+      "id": "ch5-umela-inteligence",
+      "number": 5,
+      "title": "Umělá inteligence",
+      "subtitle": "Co AI je a není, jak se učí z dat a proč jí nevěřit všechno",
+      "directory": "ch5-umela-inteligence",
+      "files": [
+        "01-spine-co-je-a-co-neni-ai.md",
+        "01a-game-ai-nebo-ne.md",
+        "02-spine-ai-se-uci-z-dat.md",
+        "03-spine-jak-funguje-generativni-model.md",
+        "03b-sidebar-comic-halucinace.md",
+        "04-spine-doporucovaci-systemy.md",
+        "05-spine-prompt-a-promptova-gramotnost.md",
+        "06-spine-overovani-vystupu.md",
+        "07-spine-vlastni-agency.md",
+        "08-spine-kdy-ai-ne-pouzit-a-disclosure.md",
+        "09-spine-bias-a-ferovost.md",
+        "10-spine-soukromi-pri-praci-s-ai.md"
+      ]
+    },
+    {
+      "id": "ch6-kyberbezpecnost",
+      "number": 6,
+      "title": "Kyberbezpečnost a digitální bezpečí",
+      "subtitle": "Hesla, phishing, zálohy — jak se nenechat nachytat",
+      "directory": "ch6-kyberbezpecnost",
+      "files": [
+        "01-spine-hesla-a-2fa.md",
+        "02-spine-phishing-a-socialni-inzenyrstvi.md",
+        "02a-game-phishing-lovec.md",
+        "02b-sidebar-comic-phishing.md",
+        "03-spine-soukromi-a-digitalni-stopa.md",
+        "04-spine-bezpecne-chovani-na-sitich.md",
+        "05-spine-zakladni-hygiena.md"
+      ]
+    },
+    {
+      "id": "ch7-digitalni-obcanstvi",
+      "number": 7,
+      "title": "Digitální občanství, média a wellbeing",
+      "subtitle": "Algoritmy sítí, dezinformace a tvůj čas — život online s čistou hlavou",
+      "directory": "ch7-digitalni-obcanstvi",
+      "files": [
+        "01-spine-kriticke-mysleni-online.md",
+        "02-spine-jak-funguji-algoritmy-siti.md",
+        "02a-game-bublina.md",
+        "03-spine-dezinformace-a-manipulace.md",
+        "04-spine-digitalni-stopa-a-soukromi.md",
+        "05-spine-digitalni-wellbeing.md"
+      ]
+    },
+    {
+      "id": "ch8-tvorba-webu",
+      "number": 8,
+      "title": "Tvorba webů",
+      "subtitle": "HTML, CSS a JavaScript — postav stránku a pošli ji do světa",
+      "directory": "ch8-tvorba-webu",
+      "files": [
+        "01-spine-jak-funguje-web.md",
+        "02-spine-html.md",
+        "03-spine-css.md",
+        "04-spine-domena-a-hosting.md",
+        "05-spine-interaktivita-javascript.md"
+      ]
+    },
+    {
+      "id": "ch9-tvorba-aplikaci",
+      "number": 9,
+      "title": "Tvorba aplikací a vibecoding",
+      "subtitle": "Od nápadu k appce — dnes i pomocí AI a vibecodingu",
+      "directory": "ch9-tvorba-aplikaci",
+      "files": [
+        "01-spine-co-je-aplikace.md",
+        "02-spine-no-code-low-code.md",
+        "03-spine-logika-aplikace.md",
+        "04-spine-vibecoding.md",
+        "05-spine-ai-nastroje-pro-tvorbu.md"
+      ]
+    },
+    {
+      "id": "ch10-tvorba-obsahu",
+      "number": 10,
+      "title": "Tvorba digitálního obsahu s AI",
+      "subtitle": "Obrázky a média s pomocí AI — tvořivě a fér",
+      "directory": "ch10-tvorba-obsahu",
+      "files": [
+        "01-spine-vizualni-jazyk.md",
+        "02-spine-prompt-pro-media.md",
+        "03-spine-generativni-obraz.md",
+        "04-spine-etika-autorstvi-a-oznacovani.md"
+      ]
+    },
+    {
+      "id": "ch11-herni-vyvoj",
+      "number": 11,
+      "title": "Herní vývoj",
+      "subtitle": "Herní smyčka, kolize a level design — jak se dělají hry",
+      "directory": "ch11-herni-vyvoj",
+      "files": [
+        "01-spine-herni-smycka-scena-a-objekty.md",
+        "01a-game-herni-smycka.md",
+        "02-spine-vstup-hrace-stavy-a-skore.md",
+        "03-spine-kolize-a-jednoducha-fyzika.md",
+        "04-spine-herni-design.md",
+        "05-spine-scratch-jako-vstup.md"
+      ]
+    },
+    {
+      "id": "ch12-fyzicky-computing",
+      "number": 12,
+      "title": "Fyzický computing, robotika a IoT",
+      "subtitle": "Senzory, micro:bit a roboti — když se kód dotkne světa",
+      "directory": "ch12-fyzicky-computing",
+      "files": [
+        "01-spine-vstup-zpracovani-vystup-na-zarizeni.md",
+        "02-spine-senzory-a-aktuatory.md",
+        "03-spine-micro-bit.md",
+        "04-spine-udalosti-a-rizeni-vystupu.md"
+      ]
+    }
+  ]
+}

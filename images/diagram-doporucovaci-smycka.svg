@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 270" role="img" aria-label="Doporučovací smyčka: tvoje chování se stává signály, profilem a novým feedem">
+  <defs>
+    <marker id="sp" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker>
+    <marker id="sg2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker>
+  </defs>
+  <rect x="1" y="1" width="518" height="268" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">Kdo ti plní feed: smyčka doporučování</text>
+  <text x="18" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Každá tvoje akce systém učí, co ti ukázat příště.</text>
+
+  <g font-family="system-ui, sans-serif">
+    <!-- Ty -->
+    <rect x="24" y="100" width="100" height="78" rx="11" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="2"/>
+    <text x="74" y="130" text-anchor="middle" font-size="19">🧑</text>
+    <text x="74" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">Ty</text>
+    <text x="74" y="166" text-anchor="middle" font-size="9.5" fill="#6B7280">sleduješ · swipuješ</text>
+
+    <!-- Signály -->
+    <rect x="152" y="64" width="100" height="64" rx="11" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+    <text x="202" y="88" text-anchor="middle" font-size="14">👣</text>
+    <text x="202" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">Signály</text>
+    <text x="202" y="119" text-anchor="middle" font-size="9.5" fill="#6B7280">kliky, čas, lajky</text>
+
+    <!-- Profil -->
+    <rect x="280" y="64" width="100" height="64" rx="11" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+    <text x="330" y="88" text-anchor="middle" font-size="14">🗂</text>
+    <text x="330" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">Tvůj profil</text>
+    <text x="330" y="119" text-anchor="middle" font-size="9.5" fill="#6B7280">co tě (asi) baví</text>
+
+    <!-- Algoritmus -->
+    <rect x="408" y="64" width="94" height="64" rx="11" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+    <text x="455" y="88" text-anchor="middle" font-size="14">⚙️</text>
+    <text x="455" y="105" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1E1B4B">Algoritmus</text>
+    <text x="455" y="119" text-anchor="middle" font-size="9.5" fill="#6B7280">vybírá kandidáty</text>
+
+    <!-- Feed -->
+    <rect x="280" y="164" width="222" height="72" rx="11" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+    <text x="306" y="196" font-size="15">📱</text>
+    <text x="336" y="192" font-size="12" font-weight="700" fill="#1E1B4B">Tvůj feed</text>
+    <text x="336" y="208" font-size="9.5" fill="#6B7280">u kamaráda vypadá úplně jinak</text>
+    <rect x="334" y="216" width="42" height="10" rx="3" fill="#FEF3C7"/>
+    <rect x="382" y="216" width="42" height="10" rx="3" fill="#FEF3C7"/>
+    <rect x="430" y="216" width="42" height="10" rx="3" fill="#FEF3C7"/>
+  </g>
+
+  <!-- šipky -->
+  <path d="M124 122 C136 116 140 106 150 100" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#sg2)"/>
+  <path d="M252 96 L277 96" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#sp)"/>
+  <path d="M380 96 L405 96" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#sp)"/>
+  <path d="M455 128 C455 142 440 152 420 162" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#sp)"/>
+  <path d="M278 200 C180 200 110 190 92 180" fill="none" stroke="#0EA5E9" stroke-width="2" marker-end="url(#sg2)" stroke-dasharray="5 3"/>
+  <text x="180" y="220" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#0EA5E9" font-weight="600">scrolluješ dál — a učíš ho znovu</text>
+
+  <text x="260" y="256" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B" font-weight="600">Cíl smyčky: udržet tvoji pozornost. Kdo ji zná, může ji řídit — lajky a „nezajímá mě“.</text>
+</svg>

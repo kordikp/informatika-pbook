@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 270" role="img" aria-label="Tři stavební kameny řízení toku: sekvence, větvení a cyklus">
+  <defs>
+    <marker id="rg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker>
+    <marker id="rp" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker>
+    <marker id="ra" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#D97706"/></marker>
+  </defs>
+  <rect x="1" y="1" width="518" height="268" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">Tři kameny každého programu</text>
+  <text x="18" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Z těchhle tří se dá poskládat úplně všechno — od kalkulačky po Minecraft.</text>
+
+  <!-- SEKVENCE -->
+  <rect x="18" y="56" width="152" height="196" rx="11" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <text x="94" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#10B981">SEKVENCE</text>
+  <text x="94" y="93" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">dělej popořadě</text>
+  <rect x="40" y="102" width="108" height="26" rx="6" fill="#D1FAE5"/>
+  <text x="94" y="119" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">vstaň</text>
+  <path d="M94 128 L94 138" stroke="#10B981" stroke-width="2" marker-end="url(#rg)"/>
+  <rect x="40" y="141" width="108" height="26" rx="6" fill="#D1FAE5"/>
+  <text x="94" y="158" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">obleč se</text>
+  <path d="M94 167 L94 177" stroke="#10B981" stroke-width="2" marker-end="url(#rg)"/>
+  <rect x="40" y="180" width="108" height="26" rx="6" fill="#D1FAE5"/>
+  <text x="94" y="197" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">nasnídej se</text>
+  <text x="94" y="238" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">pořadí nejde přehodit</text>
+
+  <!-- VĚTVENÍ -->
+  <rect x="184" y="56" width="152" height="196" rx="11" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="260" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#7C3AED">VĚTVENÍ</text>
+  <text x="260" y="93" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">když…, tak…, jinak…</text>
+  <path d="M260 104 L296 130 L260 156 L224 130 Z" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="260" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#1E1B4B">prší?</text>
+  <path d="M224 130 C210 150 208 160 214 172" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rp)"/>
+  <path d="M296 130 C310 150 312 160 306 172" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rp)"/>
+  <text x="215" y="146" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#10B981" font-weight="700">ano</text>
+  <text x="305" y="146" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#D97706" font-weight="700">ne</text>
+  <rect x="192" y="176" width="64" height="30" rx="6" fill="#EDE9FE"/>
+  <text x="224" y="190" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1E1B4B">vezmi</text>
+  <text x="224" y="201" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1E1B4B">kapuci</text>
+  <rect x="264" y="176" width="64" height="30" rx="6" fill="#EDE9FE"/>
+  <text x="296" y="195" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1E1B4B">jdi tak</text>
+  <text x="260" y="238" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">vždy právě jedna cesta</text>
+
+  <!-- CYKLUS -->
+  <rect x="350" y="56" width="152" height="196" rx="11" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <text x="426" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#D97706">CYKLUS</text>
+  <text x="426" y="93" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">opakuj, dokud platí</text>
+  <rect x="372" y="112" width="108" height="30" rx="6" fill="#FEF3C7"/>
+  <text x="426" y="127" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1E1B4B">dokud nejsi</text>
+  <text x="426" y="138" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1E1B4B">u školy…</text>
+  <rect x="372" y="158" width="108" height="26" rx="6" fill="#FEF3C7"/>
+  <text x="426" y="175" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">udělej krok</text>
+  <path d="M426 142 L426 152" stroke="#D97706" stroke-width="2" marker-end="url(#ra)"/>
+  <path d="M480 171 C500 160 500 130 484 122" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#ra)" stroke-dasharray="4 3"/>
+  <text x="426" y="212" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">krok napíšeš jednou,</text>
+  <text x="426" y="225" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">provede se stokrát</text>
+</svg>

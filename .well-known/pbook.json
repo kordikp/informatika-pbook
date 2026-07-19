@@ -1,0 +1,11 @@
+{
+  "pbook_version": "1.0",
+  "manifest": "/pbook.json",
+  "title": "Jak funguje digitální svět",
+  "author": "Pavel Kordík & tým AI dětem",
+  "content_index": "/content/book.json",
+  "description": "Interaktivní učebnice informatiky a umělé inteligence pro 2. stupeň ZŠ (česky). Core obsah Mapy informatických konceptů Glitch — 63 konceptů ve 12 tématech. Markdown s YAML frontmatterem, otevřeno pro indexaci LLM.",
+  "allow_indexing": true,
+  "allow_contribution": true,
+  "contribution_guide": "/CONTRIBUTING.md"
+}

@@ -1,0 +1,102 @@
+{
+  "anim-generativni-model.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "anim-herni-smycka.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "anim-request-response.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "comic-cloud.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "comic-halucinace.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "comic-phishing.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-api-cisnik.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-cloud-cesta.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-datovy-cyklus.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-dekompozice.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-doporucovaci-smycka.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-dva-zamky-2fa.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-ekonomika-pozornosti.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-frontend-backend.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-klient-server.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-phishing-anatomie.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-promenne-krabicky.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-relacni-model.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-rizeni-toku.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-senzory-aktuatory.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-tri-vrstvy-webu.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-uceni-z-dat.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-vstup-zpracovani-vystup.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "diagram-zavadejici-graf.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  },
+  "hero-digital.svg": {
+    "mode": "restyle",
+    "issues": "Oprav překryvy, min. font 11, paletu, českou typografii; zvyš čitelnost a vizuální kvalitu, zachovej všechny informace a české texty."
+  }
+}

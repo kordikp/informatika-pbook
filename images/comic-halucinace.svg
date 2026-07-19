@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="system-ui,sans-serif" role="img" aria-label="Komiks: AI si sebejistě vymyslí zdroje k referátu">
+  <rect width="800" height="640" rx="14" fill="#FAFAF7" stroke="#E5E7EB"/>
+  <text x="400" y="38" text-anchor="middle" font-size="21" font-weight="700" fill="#1E1B4B">Zněl jsem ale přesvědčivě, že?</text>
+
+  <!-- P1: zadání -->
+  <rect x="14" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <circle cx="100" cy="180" r="24" fill="#FEF3C7"/>
+  <text x="100" y="189" text-anchor="middle" font-size="24">🧑</text>
+  <path d="M86 212 Q100 204 114 212 L118 258 L82 258 Z" fill="#0EA5E9"/>
+  <rect x="160" y="150" width="120" height="86" rx="8" fill="#F5F5F4" stroke="#1E1B4B" stroke-width="2"/>
+  <rect x="170" y="160" width="100" height="56" rx="4" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="220" y="182" text-anchor="middle" font-size="10" fill="#6B7280">chat s AI</text>
+  <text x="220" y="200" text-anchor="middle" font-size="10" fill="#1E1B4B">|</text>
+  <rect x="60" y="80" width="240" height="48" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M110 128 L102 146 L130 128 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="180" y="100" text-anchor="middle" font-size="13" fill="#1E1B4B">Napiš mi zdroje k referátu</text>
+  <text x="180" y="118" text-anchor="middle" font-size="13" fill="#1E1B4B">o Karlu IV. Díky!</text>
+  <text x="204" y="306" text-anchor="middle" font-size="12" fill="#6B7280">Referát na zítra. AI pomůže se zdroji… ne?</text>
+
+  <!-- P2: AI sebejistě vypisuje -->
+  <rect x="406" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="426" y="76" width="340" height="196" rx="10" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <text x="446" y="102" font-size="16">🤖</text>
+  <text x="472" y="102" font-size="12" font-weight="700" fill="#1E1B4B">Jasně! Doporučuji tyto zdroje:</text>
+  <g font-size="11.5" fill="#1E1B4B">
+    <text x="446" y="130">📖 NOVÁK, J.: <tspan font-style="italic">Tajný deník Karla IV.</tspan> (1978)</text>
+    <text x="446" y="156">📖 DVOŘÁKOVÁ, M.: <tspan font-style="italic">Karel a jeho hrady</tspan> (2003)</text>
+    <text x="446" y="182">📖 ČERNÝ, P.: <tspan font-style="italic">Císařova kuchařka</tspan> (1995)</text>
+  </g>
+  <g font-size="10.5" font-weight="700" fill="#10B981">
+    <text x="726" y="130" text-anchor="end">99 %</text>
+    <text x="726" y="156" text-anchor="end">99 %</text>
+    <text x="726" y="182" text-anchor="end">99 %</text>
+  </g>
+  <text x="446" y="216" font-size="11" fill="#6B7280">Všechny najdeš v každé dobré knihovně! ✨</text>
+  <rect x="440" y="232" width="150" height="26" rx="6" fill="#D1FAE5"/>
+  <text x="515" y="249" text-anchor="middle" font-size="11" font-weight="700" fill="#1E1B4B">jistota: maximální</text>
+  <text x="596" y="306" text-anchor="middle" font-size="12" fill="#6B7280">Krásný seznam. Plynulý, sebejistý, s detaily.</text>
+
+  <!-- P3: knihovna -->
+  <rect x="14" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <g stroke="#D97706" stroke-width="2">
+    <rect x="34" y="356" width="150" height="120" rx="6" fill="#FEF3C7"/>
+  </g>
+  <g fill="#7C3AED"><rect x="44" y="366" width="12" height="42" rx="2"/><rect x="60" y="366" width="12" height="42" rx="2"/><rect x="92" y="366" width="12" height="42" rx="2"/></g>
+  <g fill="#10B981"><rect x="76" y="366" width="12" height="42" rx="2"/><rect x="108" y="366" width="12" height="42" rx="2"/></g>
+  <g fill="#0EA5E9"><rect x="44" y="420" width="12" height="42" rx="2"/><rect x="60" y="420" width="12" height="42" rx="2"/><rect x="92" y="420" width="12" height="42" rx="2"/><rect x="124" y="366" width="12" height="42" rx="2"/></g>
+  <g fill="#EF4444"><rect x="76" y="420" width="12" height="42" rx="2"/><rect x="108" y="420" width="12" height="42" rx="2"/></g>
+  <circle cx="120" cy="520" r="22" fill="#EDE9FE"/>
+  <text x="120" y="528" text-anchor="middle" font-size="22">👩‍🏫</text>
+  <circle cx="280" cy="524" r="22" fill="#FEF3C7"/>
+  <text x="280" y="532" text-anchor="middle" font-size="22">🧑</text>
+  <rect x="160" y="404" width="216" height="66" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M190 470 L182 490 L212 470 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="268" y="428" text-anchor="middle" font-size="12.5" fill="#1E1B4B">„Tahle kniha neexistuje.</text>
+  <text x="268" y="446" text-anchor="middle" font-size="12.5" fill="#1E1B4B">Ani tenhle autor.</text>
+  <text x="268" y="462" text-anchor="middle" font-size="12.5" fill="#1E1B4B">Žádná z nich.“</text>
+  <text x="290" y="562" font-size="16">😨</text>
+  <text x="204" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Knihovnice hledala poctivě. Knihy prostě nejsou.</text>
+
+  <!-- P4: pointa -->
+  <rect x="406" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="426" y="366" width="200" height="56" rx="12" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <path d="M470 422 L464 440 L492 422 Z" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="526" y="390" text-anchor="middle" font-size="13" fill="#1E1B4B">Zněl jsem ale</text>
+  <text x="526" y="408" text-anchor="middle" font-size="13" fill="#1E1B4B">přesvědčivě, že? 🤖✨</text>
+  <circle cx="530" cy="500" r="26" fill="#FEF3C7"/>
+  <text x="530" y="509" text-anchor="middle" font-size="26">🤦</text>
+  <rect x="620" y="440" width="150" height="90" rx="10" fill="#D1FAE5" stroke="#10B981" stroke-width="2"/>
+  <text x="695" y="464" text-anchor="middle" font-size="11" font-weight="700" fill="#1E1B4B">ZÁCHRANA:</text>
+  <text x="695" y="484" text-anchor="middle" font-size="10.5" fill="#1E1B4B">ověř každý zdroj</text>
+  <text x="695" y="500" text-anchor="middle" font-size="10.5" fill="#1E1B4B">v katalogu knihovny</text>
+  <text x="695" y="516" text-anchor="middle" font-size="10.5" fill="#1E1B4B">nebo na webu 🛡</text>
+  <text x="596" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Sebejistý tón není důkaz. Ověření zabere dvě minuty.</text>
+
+  <text x="400" y="626" text-anchor="middle" font-size="13" fill="#6B7280">Generativní model předpovídá pravděpodobná slova, ne pravdu — přesné údaje a zdroje vždy ověř.</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" font-family="system-ui, sans-serif" role="img" aria-labelledby="title desc">
+  <title id="title">Proměnná je pojmenovaná krabička</title>
+  <desc id="desc">Tři pojmenované krabičky se štítky: skore = 1250 (číslo), jmeno = "Kuba" (text), hraje = True (pravda/nepravda). U skóre šipka +10 za minci ukazuje novou hodnotu 1260.</desc>
+  <defs>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+
+  <text x="18" y="25" font-size="18" font-weight="700" fill="#1E1B4B">Proměnná je pojmenovaná krabička</text>
+  <text x="18" y="43" font-size="11" fill="#6B7280">Datový typ říká, co je uvnitř — a co s tím jde dělat.</text>
+
+  <!-- krabička 1: skore (číslo, zelená) -->
+  <rect x="18" y="74" width="180" height="116" rx="12" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <rect x="80" y="63" width="56" height="21" rx="6" fill="#10B981"/>
+  <text x="108" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">skore</text>
+  <text x="105" y="107" text-anchor="middle" font-size="11" fill="#6B7280">🪙 +10 za minci</text>
+  <text x="60" y="128" text-anchor="middle" font-size="15" fill="#6B7280">1250</text>
+  <path d="M84 123 L126 123" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="158" y="129" text-anchor="middle" font-size="18" font-weight="700" fill="#1E1B4B">1260</text>
+  <rect x="78" y="146" width="60" height="22" rx="11" fill="#D1FAE5"/>
+  <text x="108" y="161" text-anchor="middle" font-size="11" font-weight="700" fill="#1E1B4B">číslo</text>
+  <text x="108" y="208" text-anchor="middle" font-size="11" fill="#6B7280">sčítat, porovnávat</text>
+
+  <!-- krabička 2: jmeno (text, fialová) -->
+  <rect x="210" y="74" width="140" height="116" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <rect x="252" y="63" width="56" height="21" rx="6" fill="#7C3AED"/>
+  <text x="280" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">jmeno</text>
+  <text x="280" y="129" text-anchor="middle" font-size="18" font-weight="700" fill="#1E1B4B">"Kuba"</text>
+  <rect x="232" y="146" width="95" height="22" rx="11" fill="#EDE9FE"/>
+  <text x="280" y="161" text-anchor="middle" font-size="11" font-weight="700" fill="#1E1B4B">text (řetězec)</text>
+  <text x="280" y="208" text-anchor="middle" font-size="11" fill="#6B7280">spojovat, vypisovat</text>
+
+  <!-- krabička 3: hraje (pravda/nepravda, jantarová) -->
+  <rect x="362" y="74" width="140" height="116" rx="12" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <rect x="404" y="63" width="56" height="21" rx="6" fill="#D97706"/>
+  <text x="432" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">hraje</text>
+  <text x="432" y="129" text-anchor="middle" font-size="18" font-weight="700" fill="#1E1B4B">True</text>
+  <rect x="378" y="146" width="107" height="22" rx="11" fill="#FEF3C7"/>
+  <text x="432" y="161" text-anchor="middle" font-size="11" font-weight="700" fill="#1E1B4B">pravda / nepravda</text>
+  <text x="432" y="208" text-anchor="middle" font-size="11" fill="#6B7280">rozhodovat v podmínkách</text>
+
+  <text x="260" y="236" text-anchor="middle" font-size="12" fill="#6B7280">Hodnota v krabičce se mění — jméno zůstává.</text>
+</svg>

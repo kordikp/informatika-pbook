@@ -1,0 +1,59 @@
+{
+  "type": "sort",
+  "title": "Hardware, nebo software?",
+  "instruction": "Roztřiď: na co si sáhneš (hardware), a co v zařízení jen běží (software)?",
+  "buckets": [
+    "Hardware",
+    "Software"
+  ],
+  "items": [
+    {
+      "text": "Procesor",
+      "answer": 0
+    },
+    {
+      "text": "Minecraft",
+      "answer": 1
+    },
+    {
+      "text": "Displej",
+      "answer": 0
+    },
+    {
+      "text": "Android",
+      "answer": 1
+    },
+    {
+      "text": "Baterie",
+      "answer": 0
+    },
+    {
+      "text": "TikTok",
+      "answer": 1
+    },
+    {
+      "text": "Klávesnice",
+      "answer": 0
+    },
+    {
+      "text": "Prohlížeč",
+      "answer": 1
+    },
+    {
+      "text": "Reproduktor",
+      "answer": 0
+    },
+    {
+      "text": "Windows",
+      "answer": 1
+    },
+    {
+      "text": "Kamera",
+      "answer": 0
+    },
+    {
+      "text": "Kalkulačka (appka)",
+      "answer": 1
+    }
+  ]
+}

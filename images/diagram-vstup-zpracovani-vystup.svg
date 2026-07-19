@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" font-family="system-ui, sans-serif" role="img" aria-labelledby="d1t d1d">
+  <title id="d1t">Vstup → zpracování → výstup</title>
+  <desc id="d1d">Smyčka vstup–zpracování–výstup na příkladu telefonu: klepnutí na displej, procesor počítá, obrazovka a zvuk ukážou výsledek. Dole totéž na kalkulačce: napíšeš 2 + 3, procesor počítá, ukáže 5.</desc>
+  <defs>
+    <marker id="d1-ag" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    </marker>
+    <marker id="d1-ap" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    </marker>
+    <marker id="d1-ab" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#0EA5E9"/>
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="518" height="298" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+
+  <text x="18" y="25" font-size="18" font-weight="700" fill="#1E1B4B">Vstup → zpracování → výstup</text>
+  <text x="18" y="43" font-size="11" fill="#6B7280">Jedna smyčka, ve které pořád dokola jede každé digitální zařízení.</text>
+
+  <!-- VSTUP -->
+  <rect x="22" y="64" width="140" height="88" rx="12" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <circle cx="92" cy="88" r="15" fill="#D1FAE5"/>
+  <text x="92" y="93" text-anchor="middle" font-size="15">👆</text>
+  <text x="92" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#1E1B4B">VSTUP</text>
+  <text x="92" y="138" text-anchor="middle" font-size="11" fill="#6B7280">klepneš na displej</text>
+
+  <!-- ZPRACOVÁNÍ -->
+  <rect x="190" y="64" width="140" height="88" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <circle cx="260" cy="88" r="15" fill="#EDE9FE"/>
+  <path d="M245 82.5 H250 M245 88 H250 M245 93.5 H250 M270 82.5 H275 M270 88 H275 M270 93.5 H275" stroke="#7C3AED" stroke-width="2"/>
+  <rect x="250" y="78" width="20" height="20" rx="3" fill="#7C3AED"/>
+  <rect x="256" y="84" width="8" height="8" rx="1.5" fill="#FFFFFF"/>
+  <text x="260" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#1E1B4B">ZPRACOVÁNÍ</text>
+  <text x="260" y="138" text-anchor="middle" font-size="11" fill="#6B7280">procesor to spočítá</text>
+
+  <!-- VÝSTUP -->
+  <rect x="358" y="64" width="140" height="88" rx="12" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <circle cx="428" cy="88" r="15" fill="#FEF3C7"/>
+  <text x="428" y="93" text-anchor="middle" font-size="15">🔊</text>
+  <text x="428" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#1E1B4B">VÝSTUP</text>
+  <text x="428" y="138" text-anchor="middle" font-size="11" fill="#6B7280">obrazovka a zvuk</text>
+
+  <!-- šipky mezi kartami -->
+  <path d="M166 108 L186 108" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#d1-ag)"/>
+  <path d="M334 108 L354 108" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#d1-ap)"/>
+
+  <!-- smyčka zpět -->
+  <path d="M428 152 L428 168 L92 168 L92 156" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#d1-ab)"/>
+  <text x="260" y="184" text-anchor="middle" font-size="11" fill="#6B7280">…a hned zase znovu, pořád dokola</text>
+
+  <!-- konkrétní příklad -->
+  <rect x="22" y="200" width="476" height="84" rx="10" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <text x="34" y="220" font-size="12" font-weight="700" fill="#1E1B4B">Stejná smyčka na kalkulačce:</text>
+
+  <rect x="40" y="234" width="112" height="32" rx="8" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
+  <text x="96" y="254" text-anchor="middle" font-size="12" fill="#1E1B4B">napíšeš 2 + 3</text>
+  <path d="M158 250 L198 250" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#d1-ag)"/>
+
+  <rect x="204" y="234" width="112" height="32" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="260" y="254" text-anchor="middle" font-size="12" fill="#1E1B4B">procesor počítá</text>
+  <path d="M322 250 L362 250" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#d1-ap)"/>
+
+  <rect x="368" y="234" width="112" height="32" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="1.5"/>
+  <text x="424" y="254" text-anchor="middle" font-size="12" fill="#1E1B4B">ukáže 5</text>
+</svg>

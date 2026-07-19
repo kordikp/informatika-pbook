@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img" aria-label="Generativní model předpovídá další slovo podle pravděpodobnosti">
+  <rect x="1" y="1" width="518" height="298" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">Jak píše generativní model</text>
+  <text x="18" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Slovo po slovu předpovídá, co nejpravděpodobněji následuje.</text>
+
+  <!-- rozepsaná věta -->
+  <rect x="40" y="60" width="440" height="44" rx="9" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="60" y="88" font-family="system-ui, sans-serif" font-size="15" fill="#1E1B4B">Vlk se v pohádce převlékl za</text>
+  <text x="268" y="88" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#7C3AED">babičku
+    <animate attributeName="opacity" values="0;0;0;1;1;0" dur="5s" repeatCount="indefinite"/>
+  </text>
+  <text x="336" y="88" font-family="system-ui, sans-serif" font-size="15" fill="#6B7280">▌<animate attributeName="opacity" values="1;0.2;1;0.2;1;1" dur="5s" repeatCount="indefinite"/></text>
+
+  <!-- model -->
+  <rect x="40" y="120" width="120" height="120" rx="12" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <circle cx="100" cy="158" r="20" fill="#FFFFFF"/>
+  <text x="100" y="166" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20">🧠</text>
+  <text x="100" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1E1B4B">Model</text>
+  <text x="100" y="214" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9.5" fill="#6B7280">počítá pravděpodobnost</text>
+  <text x="100" y="227" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9.5" fill="#6B7280">dalšího slova</text>
+
+  <!-- kandidáti -->
+  <g font-family="system-ui, sans-serif">
+    <text x="200" y="138" font-size="11" font-weight="700" fill="#6B7280">kandidáti dalšího slova:</text>
+
+    <text x="200" y="163" font-size="12.5" fill="#1E1B4B" font-weight="700">babičku</text>
+    <rect x="290" y="152" width="180" height="14" rx="4" fill="#F5F5F4" stroke="#E5E7EB"/>
+    <rect x="290" y="152" width="4" height="14" rx="4" fill="#10B981">
+      <animate attributeName="width" values="4;157;157;157;157;4" dur="5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="478" y="163" font-size="11" font-weight="700" fill="#10B981" text-anchor="end">87 %</text>
+
+    <text x="200" y="191" font-size="12.5" fill="#1E1B4B">myslivce</text>
+    <rect x="290" y="180" width="180" height="14" rx="4" fill="#F5F5F4" stroke="#E5E7EB"/>
+    <rect x="290" y="180" width="4" height="14" rx="4" fill="#D97706">
+      <animate attributeName="width" values="4;16;16;16;16;4" dur="5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="478" y="191" font-size="11" fill="#D97706" text-anchor="end">9 %</text>
+
+    <text x="200" y="219" font-size="12.5" fill="#1E1B4B">pizzu</text>
+    <rect x="290" y="208" width="180" height="14" rx="4" fill="#F5F5F4" stroke="#E5E7EB"/>
+    <rect x="290" y="208" width="4" height="14" rx="4" fill="#EF4444">
+      <animate attributeName="width" values="4;6;6;6;6;4" dur="5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="478" y="219" font-size="11" fill="#EF4444" text-anchor="end">1 %</text>
+
+    <!-- vítěz -->
+    <rect x="192" y="149" width="292" height="20" rx="5" fill="none" stroke="#10B981" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1;0" dur="5s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <text x="260" y="262" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600" fill="#1E1B4B">Model nehledá pravdu v databázi — vybírá pravděpodobné pokračování.</text>
+  <text x="260" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10.5" fill="#6B7280">Proto umí znít sebejistě, i když si zrovna vymýšlí (halucinace) — ověřuj.</text>
+</svg>

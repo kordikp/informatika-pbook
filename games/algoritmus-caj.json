@@ -1,0 +1,13 @@
+{
+  "type": "order",
+  "title": "Algoritmus: uvař čaj",
+  "instruction": "Seřaď kroky tak jednoznačně, aby je zvládl i doslovný robot!",
+  "steps": [
+    "Nalij vodu do konvice",
+    "Zapni konvici a počkej, až voda vře",
+    "Vlož čajový sáček do hrnku",
+    "Zalij sáček vroucí vodou",
+    "Počkej 3 minuty",
+    "Vyndej sáček a čaj podávej"
+  ]
+}

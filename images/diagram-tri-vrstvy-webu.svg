@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 280" role="img" aria-label="Tři vrstvy webové stránky: HTML struktura, CSS vzhled, JavaScript chování">
+  <defs>
+    <marker id="wp" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker>
+  </defs>
+  <rect x="1" y="1" width="518" height="278" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">Tři vrstvy každé webovky</text>
+  <text x="18" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Stejná stránka třikrát: kostra → oblečení → nervy a svaly.</text>
+
+  <!-- HTML -->
+  <g font-family="system-ui, sans-serif">
+    <rect x="22" y="60" width="146" height="172" rx="11" fill="#FFFFFF" stroke="#6B7280" stroke-width="2"/>
+    <text x="95" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#1E1B4B">HTML</text>
+    <text x="95" y="97" text-anchor="middle" font-size="10" fill="#6B7280">struktura (kostra)</text>
+    <rect x="40" y="108" width="110" height="14" rx="3" fill="#E5E7EB"/>
+    <rect x="40" y="130" width="110" height="7" rx="3" fill="#F5F5F4" stroke="#E5E7EB"/>
+    <rect x="40" y="141" width="88" height="7" rx="3" fill="#F5F5F4" stroke="#E5E7EB"/>
+    <rect x="40" y="156" width="50" height="38" rx="4" fill="#F5F5F4" stroke="#E5E7EB" stroke-dasharray="3 2"/>
+    <text x="65" y="179" text-anchor="middle" font-size="10" fill="#6B7280">img</text>
+    <rect x="98" y="156" width="52" height="14" rx="3" fill="#F5F5F4" stroke="#E5E7EB"/>
+    <text x="95" y="218" text-anchor="middle" font-size="10" fill="#6B7280">nadpis · odstavce · odkaz</text>
+  </g>
+
+  <path d="M172 146 L186 146" stroke="#7C3AED" stroke-width="2" marker-end="url(#wp)"/>
+
+  <!-- +CSS -->
+  <g font-family="system-ui, sans-serif">
+    <rect x="190" y="60" width="146" height="172" rx="11" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+    <text x="263" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#7C3AED">+ CSS</text>
+    <text x="263" y="97" text-anchor="middle" font-size="10" fill="#6B7280">vzhled (oblečení)</text>
+    <rect x="208" y="108" width="110" height="16" rx="4" fill="#7C3AED"/>
+    <text x="263" y="120" text-anchor="middle" font-size="9.5" fill="#FFFFFF" font-weight="700">MŮJ WEB O PSECH</text>
+    <rect x="208" y="132" width="110" height="7" rx="3" fill="#EDE9FE"/>
+    <rect x="208" y="143" width="88" height="7" rx="3" fill="#EDE9FE"/>
+    <rect x="208" y="158" width="50" height="38" rx="6" fill="#D1FAE5" stroke="#10B981"/>
+    <text x="233" y="181" text-anchor="middle" font-size="13">🐕</text>
+    <rect x="266" y="158" width="52" height="16" rx="8" fill="#D97706"/>
+    <text x="292" y="170" text-anchor="middle" font-size="9" fill="#FFFFFF" font-weight="700">odkaz</text>
+    <text x="263" y="218" text-anchor="middle" font-size="10" fill="#6B7280">barvy · písma · rozvržení</text>
+  </g>
+
+  <path d="M340 146 L354 146" stroke="#7C3AED" stroke-width="2" marker-end="url(#wp)"/>
+
+  <!-- +JS -->
+  <g font-family="system-ui, sans-serif">
+    <rect x="358" y="60" width="146" height="172" rx="11" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+    <text x="431" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#10B981">+ JavaScript</text>
+    <text x="431" y="97" text-anchor="middle" font-size="10" fill="#6B7280">chování (interaktivita)</text>
+    <rect x="376" y="108" width="110" height="16" rx="4" fill="#7C3AED"/>
+    <text x="431" y="120" text-anchor="middle" font-size="9.5" fill="#FFFFFF" font-weight="700">MŮJ WEB O PSECH</text>
+    <rect x="376" y="134" width="70" height="24" rx="12" fill="#10B981"/>
+    <text x="411" y="150" text-anchor="middle" font-size="10" fill="#FFFFFF" font-weight="700">Klikni! 🐾</text>
+    <text x="466" y="152" font-size="15">🖱️</text>
+    <rect x="376" y="168" width="110" height="28" rx="6" fill="#D1FAE5" stroke="#10B981" stroke-dasharray="3 2"/>
+    <text x="431" y="186" text-anchor="middle" font-size="10" fill="#1E1B4B">HAF! 🐶 (nový obsah)</text>
+    <text x="431" y="218" text-anchor="middle" font-size="10" fill="#6B7280">události · změny DOM</text>
+  </g>
+
+  <text x="260" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B" font-weight="600">Struktura + vzhled + chování = každý web na světě. Všechny tři vrstvy umíš napsat.</text>
+</svg>

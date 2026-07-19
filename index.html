@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#FAFAF7">
+<title>Jak funguje digitální svět — p-book pro 2. stupeň ZŠ</title>
+<meta name="description" content="Bezplatná interaktivní učebnice informatiky pro 8. třídu ZŠ. Hardware, algoritmy, programování, data, umělá inteligence, kyberbezpečnost i tvorba webů a her. S kvízy a misemi. Core obsah Mapy informatických konceptů Glitch (AI dětem).">
+<meta name="author" content="Pavel Kordík &amp; tým AI dětem">
+<meta name="keywords" content="informatika, 2. stupeň ZŠ, umělá inteligence, AI, algoritmy, programování, data, kyberbezpečnost, digitální gramotnost, RVP informatika, vzdělávání, Glitch, AI dětem">
+<!-- Open Graph (doplň absolutní URL po nasazení) -->
+<meta property="og:type" content="book">
+<meta property="og:title" content="Jak funguje digitální svět — živá učebnice informatiky">
+<meta property="og:description" content="Bezplatná interaktivní učebnice informatiky a AI pro 2. stupeň ZŠ. 63 konceptů ve 12 tématech.">
+<meta property="og:site_name" content="p-book: Jak funguje digitální svět">
+<meta property="og:image" content="/images/og-cover.svg">
+<meta property="og:locale" content="cs_CZ">
+<meta property="book:author" content="Pavel Kordík &amp; tým AI dětem">
+<meta property="book:tag" content="informatika">
+<meta property="book:tag" content="umělá inteligence">
+<meta property="book:tag" content="digitální gramotnost">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jak funguje digitální svět — p-book pro 2. stupeň ZŠ">
+<meta name="twitter:description" content="Interaktivní učebnice informatiky a AI pro 8. třídu ZŠ — od hardwaru po umělou inteligenci.">
+<meta name="twitter:image" content="/images/og-cover.svg">
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Jak funguje digitální svět",
+  "alternateName": "p-book: Jak funguje digitální svět",
+  "author": {
+    "@type": "Person",
+    "name": "Pavel Kordík",
+    "jobTitle": "Spoluzakladatel Recombee a AI dětem",
+    "affiliation": { "@type": "Organization", "name": "AI dětem" }
+  },
+  "description": "Bezplatná interaktivní učebnice informatiky a umělé inteligence pro 2. stupeň ZŠ — core obsah Mapy informatických konceptů Glitch.",
+  "inLanguage": "cs",
+  "audience": { "@type": "EducationalAudience", "educationalRole": "student", "typicalAgeRange": "13-15" },
+  "educationalLevel": "základní škola, 2. stupeň",
+  "genre": ["Vzdělávání", "Technologie", "Informatika", "Umělá inteligence"],
+  "numberOfPages": 63,
+  "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+  "isAccessibleForFree": true,
+  "publisher": { "@type": "Organization", "name": "AI dětem", "url": "https://aidetem.cz" }
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="css/style.css?v=3.11.0">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+</head>
+<body>
+
+<!-- ONBOARDING (jen první návštěva) -->
+<div class="overlay" id="onboarding">
+  <div class="onboarding-card">
+
+    <!-- Krok 0: uvítací obrazovka -->
+    <div class="step active" data-step="0">
+      <h1 class="intro-title">Jak funguje digitální svět</h1>
+      <img src="images/hero-digital.svg" alt="Jak funguje digitální svět — od hardwaru po umělou inteligenci" class="intro-hero" style="max-width:480px;border-radius:16px">
+      <p class="intro-tagline">Základy informatiky a umělé inteligence pro 2. stupeň</p>
+
+      <div class="intro-author-visible">
+        <p class="intro-author-name"><a href="https://kordikp.github.io/" target="_blank" rel="noopener">Pavel Kordík</a> a tým <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a></p>
+        <p class="intro-author-role">Obsahová páteř: <a href="https://knowledge-map-glitch.vercel.app/" target="_blank" rel="noopener">Mapa informatických konceptů Glitch</a> · platforma p-book &amp; <a href="https://kam.fit.cvut.cz" target="_blank" rel="noopener">FIT ČVUT</a></p>
+        <p class="intro-author-text">Telefon, appky, AI asistenti — používáš je každý den. Tahle kniha ti ukáže, co se děje pod povrchem: 63 klíčových konceptů informatiky, od hardwaru po umělou inteligenci.</p>
+      </div>
+
+      <button class="btn-primary btn-large" onclick="app.startRandom()">Začít číst &#128640;</button>
+
+      <h3 class="intro-section-title">Udělej si ji svou <span class="toggle-hint">(dva kliky — zbytek se přizpůsobí při čtení)</span></h3>
+      <div class="intro-voices" id="introLens">
+        <button class="intro-voice selected" data-lens="generic" onclick="app.onboardPick('lens','generic',this)">
+          <span>&#127760;</span> Odevšad
+        </button>
+        <button class="intro-voice" data-lens="ecommerce" onclick="app.onboardPick('lens','ecommerce',this)">
+          <span>&#128722;</span> Nakupování
+        </button>
+        <button class="intro-voice" data-lens="media" onclick="app.onboardPick('lens','media',this)">
+          <span>&#127925;</span> Hudba a video
+        </button>
+        <button class="intro-voice" data-lens="social-feeds" onclick="app.onboardPick('lens','social-feeds',this)">
+          <span>&#128241;</span> Sociální sítě
+        </button>
+        <button class="intro-voice" data-lens="education" onclick="app.onboardPick('lens','education',this)">
+          <span>&#127891;</span> Škola
+        </button>
+      </div>
+      <div class="intro-voices" id="introGoal">
+        <button class="intro-voice selected" data-goal="understand" onclick="app.onboardPick('goal','understand',this)">
+          <span>&#128161;</span> Pochopit
+        </button>
+        <button class="intro-voice" data-goal="build" onclick="app.onboardPick('goal','build',this)">
+          <span>&#128295;</span> Tvořit
+        </button>
+        <button class="intro-voice" data-goal="decide" onclick="app.onboardPick('goal','decide',this)">
+          <span>&#9878;&#65039;</span> Rozhodovat se
+        </button>
+        <button class="intro-voice" data-goal="protect" onclick="app.onboardPick('goal','protect',this)">
+          <span>&#128737;&#65039;</span> Chránit se
+        </button>
+      </div>
+      <input type="text" id="introGoalText" maxlength="200" class="gen-wish" style="margin-top:.5em;width:100%"
+        placeholder="…nebo napiš, co se chceš naučit — kniha ti složí osobní misi (nepovinné)">
+      <p class="intro-onboard-hint" id="onboardHint">Vyber si svůj svět a cíl — kniha ti každý koncept podá po tvém.</p>
+
+      <label class="intro-toggle intro-livingbook" id="introLiving">
+        <input type="checkbox" id="optOpenMode" checked>
+        <div><b>&#127793; Živá kniha</b> <span class="toggle-hint">(doporučeno)</span><br>
+        <span class="toggle-desc">Uvidíš podání sdílená ostatními čtenáři a můžeš ✨ remixovat vlastní. Vše zřetelně označené; ověřené jádro knihy zůstává netknuté.</span></div>
+      </label>
+
+      <h3 class="intro-section-title">Nebo si vyber způsob čtení</h3>
+      <div class="home-modes" style="padding:0;margin-bottom:.6em">
+        <div class="home-mode" onclick="app.startWithVoiceAndGo('glossary')">
+          <span class="home-mode-icon">&#127919;</span>
+          <span class="home-mode-label">Mise</span>
+          <span class="home-mode-desc">Příběhové výpravy s finálním bossem</span>
+        </div>
+        <div class="home-mode" onclick="app.startWithVoiceAndGo('home')">
+          <span class="home-mode-icon">&#127916;</span>
+          <span class="home-mode-label">Procházet</span>
+          <span class="home-mode-desc">Netflix styl — vyber si, co tě zajímá</span>
+        </div>
+        <div class="home-mode" onclick="app.startWithVoiceAndGo('read')">
+          <span class="home-mode-icon">&#128214;</span>
+          <span class="home-mode-label">Feed</span>
+          <span class="home-mode-desc">Nekonečný personalizovaný feed</span>
+        </div>
+        <div class="home-mode" onclick="app.startWithVoiceAndGo('map')">
+          <span class="home-mode-icon">&#128506;</span>
+          <span class="home-mode-label">Mapa</span>
+          <span class="home-mode-desc">Ruční výběr z přehledu</span>
+        </div>
+      </div>
+
+      <details class="intro-details" style="margin-top:2em">
+        <summary>Přizpůsobit funkce <span class="toggle-hint">(gamifikace, personalizace, opakování, mise, hry)</span></summary>
+        <div class="intro-toggles">
+          <label class="intro-toggle">
+            <input type="checkbox" id="optGamification" checked>
+            <div><b>Gamifikace</b><br><span class="toggle-desc">XP, úrovně, odznaky a certifikát. Bez ní je kniha obyčejná čtečka.</span></div>
+          </label>
+          <label class="intro-toggle">
+            <input type="checkbox" id="optPersonalization" checked>
+            <div><b>Personalizovaná doporučení</b><br><span class="toggle-desc">Kniha se učí, co tě baví, a podle toho řadí obsah. Bez ní se obsah zobrazí ve výchozím pořadí.</span></div>
+          </label>
+          <label class="intro-toggle">
+            <input type="checkbox" id="optRecall" checked>
+            <div><b>Rozložené opakování</b><br><span class="toggle-desc">Kvízy, díky kterým si to fakt zapamatuješ. Bez něj žádné připomínky.</span></div>
+          </label>
+          <label class="intro-toggle">
+            <input type="checkbox" id="optMissions" checked>
+            <div><b>Mise</b><br><span class="toggle-desc">Příběhové cesty s finálním boss kvízem. Bez nich je záložka Mise skrytá.</span></div>
+          </label>
+          <label class="intro-toggle">
+            <input type="checkbox" id="optGames" checked>
+            <div><b>Minihry</b><br><span class="toggle-desc">Interaktivní hry s 60s časovačem. Bez nich jsou herní bloky skryté.</span></div>
+          </label>
+          <label class="intro-toggle">
+            <input type="checkbox" id="optHighlights" checked>
+            <div><b>Klíčové body</b><br><span class="toggle-desc">Hlavní myšlenky jako poznámky vedle každé sekce. Pomáhají zapamatovat si podstatné.</span></div>
+          </label>
+        </div>
+        <p style="font-size:.68rem;color:var(--text-3);margin-top:.3em">Kniha zpracovává core vrstvu <a href="https://knowledge-map-glitch.vercel.app/" target="_blank" rel="noopener">Mapy informatických konceptů</a> projektu Glitch.</p>
+      </details>
+
+      <div class="intro-credits">
+        <p>Vzniklo ve spolupráci <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a> a <a href="https://recombee.com" target="_blank" rel="noopener">Recombee</a> na platformě p-book</p>
+        <p>Obsahová páteř: <a href="https://knowledge-map-glitch.vercel.app/" target="_blank" rel="noopener">Mapa informatických konceptů Glitch</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-header">
+    <div class="search-input-wrap">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" id="searchInput" placeholder="Hledat v knize…" autocomplete="off" oninput="app.onSearch(this.value)">
+    </div>
+    <button class="btn-ghost" onclick="app.closeSearch()">Zrušit</button>
+  </div>
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<!-- TOP BAR -->
+<header class="topbar" id="topbar">
+  <div class="topbar-left">
+    <span class="topbar-title" onclick="app.showWelcome()">p-book</span>
+  </div>
+  <div class="mission-bar-inline" id="missionBarInline" style="display:none"></div>
+  <button class="topbar-search" onclick="app.openSearch()">
+    <span>&#128269;</span>
+    <span class="search-placeholder">Hledat…</span>
+  </button>
+  <div class="topbar-right">
+    <button class="xp-badge" id="xpBadge" onclick="app.switchView('profile')"></button>
+    <button class="topbar-icon" id="settingsBtn" onclick="app.toggleSettings()">&#9881;</button>
+  </div>
+</header>
+
+<!-- MAIN VIEWS -->
+<main id="appMain">
+
+  <!-- HOME VIEW (Netflix-style) -->
+  <div class="view active" id="view-home">
+    <div class="home-inner" id="homeContent">
+      <!-- Shelves rendered by JS -->
+    </div>
+  </div>
+
+  <!-- READ VIEW (focused reading) -->
+  <div class="view" id="view-read">
+    <div class="read-layout">
+      <div class="read-pane" id="readPane">
+        <!-- Content rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP VIEW (big picture) -->
+  <div class="view" id="view-map">
+    <div class="map-inner" id="mapContent">
+      <!-- Chapter map rendered by JS -->
+    </div>
+  </div>
+
+  <!-- GLOSSARY VIEW -->
+  <div class="view" id="view-glossary">
+    <div class="glossary-inner" id="glossaryContent"></div>
+  </div>
+
+  <!-- PROFILE VIEW -->
+  <div class="view" id="view-profile">
+    <div class="profile-inner" id="profileContent"></div>
+  </div>
+
+  <!-- QUIZ / TEST KNOWLEDGE VIEW -->
+  <div class="view" id="view-quiz">
+    <div class="quiz-inner" id="quizContent"></div>
+  </div>
+
+  <!-- TUTOR VIEW -->
+  <div class="view" id="view-chat">
+    <div class="chat-view-inner">
+      <div class="tutor-header">
+        <span class="tutor-avatar">&#128104;&#8205;&#128187;</span>
+        <div class="tutor-info">
+          <span class="tutor-name">Pavelův AI asistent</span>
+          <span class="tutor-status" id="tutorStatus">Znám knihu skrz naskrz. Zeptej se mě na cokoliv!</span>
+        </div>
+        <button class="tutor-author-btn" onclick="app.escalateToAuthor()" title="Poslat zprávu skutečnému Pavlovi">&#9993; Napsat Pavlovi</button>
+      </div>
+      <div class="chat-messages" id="chatMessagesFull">
+        <div class="chat-msg bot">Ahoj! Jsem Pavelův AI asistent. Znám celou knihu — od hardwaru přes algoritmy a data až po umělou inteligenci a kyberbezpečnost. Zeptej se na cokoliv, nebo klepni nahoře na „Napsat Pavlovi“ a ozve se ti skutečný autor!</div>
+      </div>
+      <div class="tutor-typing" id="tutorTyping" style="display:none"><span></span><span></span><span></span></div>
+      <div class="chat-input-wrap">
+        <input type="text" id="chatInputFull" placeholder="Zeptej se na informatiku…" onkeydown="if(event.key==='Enter')app.sendFullChat()">
+        <button onclick="app.sendFullChat()">&#10148;</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- HIGHLIGHT POPUP (appears on text selection) -->
+<div class="highlight-popup" id="highlightPopup" style="display:none">
+  <button onclick="app.highlightSelection()" title="Zvýraznit">&#127912;</button>
+  <button onclick="app.highlightAndNote()" title="Zvýraznit + poznámka">&#128221;</button>
+  <button onclick="app.remixSelection()" title="Vylepši tuhle část — uprav ji sám, nebo ji nech přepsat AI">&#9999;&#65039;</button>
+</div>
+
+<!-- BOTTOM TAB NAV -->
+<nav class="bottom-nav" id="bottomNav">
+  <button class="tab active" data-view="home" onclick="app.switchView('home')">
+    <span class="tab-icon">&#127916;</span>
+    <span class="tab-label">Procházet</span>
+  </button>
+  <button class="tab" data-view="read" onclick="app.switchView('read')">
+    <span class="tab-icon">&#128214;</span>
+    <span class="tab-label">Číst</span>
+  </button>
+  <button class="tab" data-view="map" onclick="app.switchView('map')">
+    <span class="tab-icon">&#128506;</span>
+    <span class="tab-label">Mapa</span>
+  </button>
+  <button class="tab" data-view="glossary" onclick="app.switchView('glossary')">
+    <span class="tab-icon">&#127919;</span>
+    <span class="tab-label">Mise</span>
+  </button>
+  <button class="tab" data-view="quiz" onclick="app.switchView('quiz')">
+    <span class="tab-icon">&#129504;</span>
+    <span class="tab-label">Kvíz</span>
+  </button>
+  <button class="tab" data-view="profile" onclick="app.switchView('profile')">
+    <span class="tab-icon">&#128100;</span>
+    <span class="tab-label">Ty</span>
+  </button>
+</nav>
+
+<!-- XP Toast (slides in from top-right) -->
+<div class="xp-toast" id="xpToast"></div>
+
+<!-- SETTINGS PANEL -->
+<div class="settings-drawer" id="settingsDrawer">
+  <div class="settings-inner">
+    <div class="settings-head">
+      <h3>Nastavení</h3>
+      <button onclick="app.toggleSettings()">&#10005;</button>
+    </div>
+    <!-- Account -->
+    <div class="sg" id="settingsAccount"></div>
+    <!-- Theme (level-unlocked only) -->
+    <div class="sg"><label>Motiv (odemkneš zvyšováním úrovně)</label>
+      <div id="settingsThemes"></div>
+    </div>
+    <!-- Font size -->
+    <div class="sg"><label>Velikost písma</label>
+      <div class="sg-row">
+        <button class="sg-opt" data-fs="small" onclick="app.setFontSize('small')">Malé</button>
+        <button class="sg-opt active" data-fs="medium" onclick="app.setFontSize('medium')">Střední</button>
+        <button class="sg-opt" data-fs="large" onclick="app.setFontSize('large')">Velké</button>
+      </div>
+    </div>
+    <!-- Features -->
+    <div class="sg"><label>Funkce</label>
+      <div style="display:flex;flex-direction:column;gap:.3em;font-size:.75rem">
+        <label style="display:flex;align-items:center;gap:.4em"><input type="checkbox" id="sGamification" onchange="app.updateSettingsFeature()"> Gamifikace (XP, úrovně, odznaky)</label>
+        <label style="display:flex;align-items:center;gap:.4em"><input type="checkbox" id="sPersonalization" onchange="app.updateSettingsFeature()"> Personalizace</label>
+        <label style="display:flex;align-items:center;gap:.4em"><input type="checkbox" id="sRecall" onchange="app.updateSettingsFeature()"> Rozložené opakování</label>
+        <label style="display:flex;align-items:center;gap:.4em"><input type="checkbox" id="sMissions" onchange="app.updateSettingsFeature()"> Mise</label>
+        <label style="display:flex;align-items:center;gap:.4em"><input type="checkbox" id="sGames" onchange="app.updateSettingsFeature()"> Minihry</label>
+        <label style="display:flex;align-items:center;gap:.4em"><input type="checkbox" id="sHighlights" onchange="app.updateSettingsFeature()"> Klíčové body (boční poznámky)</label>
+      </div>
+    </div>
+    <!-- Data -->
+    <div class="sg"><label>Tvoje data</label>
+      <div style="display:flex;gap:.4em;flex-wrap:wrap">
+        <button class="btn-ghost" style="border:1px solid var(--accent);border-radius:6px;padding:.3em .8em;font-size:.72rem;color:var(--accent)" onclick="app.exportData()">Stáhnout všechna data</button>
+        <button class="btn-ghost" style="border:1px solid var(--accent);border-radius:6px;padding:.3em .8em;font-size:.72rem;color:var(--accent)" onclick="localStorage.removeItem('pbook-tour-done');app.startTour()">Přehrát prohlídku</button>
+        <button class="btn-ghost" style="border:1px solid #dc2626;border-radius:6px;padding:.3em .8em;font-size:.72rem;color:#dc2626" onclick="app.resetAll()">Smazat vše a začít znovu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer></script>
+<script type="module" src="js/app.js?v=5.12.4-cs1"></script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-labelledby="rrTitle rrDesc" font-family="system-ui, sans-serif">
+  <title id="rrTitle">Požadavek a odpověď</title>
+  <desc id="rrDesc">Prohlížeč (klient) pošle přes internet požadavek serveru, server vrátí HTML, CSS a obrázky a prohlížeč z nich poskládá stránku.</desc>
+  <defs>
+    <marker id="rrArrP" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    </marker>
+    <marker id="rrArrG" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+
+  <text x="18" y="25" font-size="18" font-weight="700" fill="#1E1B4B">Požadavek a odpověď</text>
+  <text x="18" y="43" font-size="11" fill="#6B7280">Prohlížeč pošle požadavek, server vrátí soubory a stránka se poskládá u tebe.</text>
+
+  <!-- internet uprostřed -->
+  <rect x="218" y="132" width="84" height="26" rx="13" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="1.5"/>
+  <text x="260" y="149" text-anchor="middle" font-size="11" fill="#1E1B4B">🌐 internet</text>
+
+  <!-- statické šipky + popisky -->
+  <path d="M176 112 C230 92 292 92 344 112" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rrArrP)"/>
+  <text x="260" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#7C3AED">Požadavek (HTTP)</text>
+  <path d="M344 178 C292 198 230 198 176 178" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#rrArrG)"/>
+  <text x="260" y="212" text-anchor="middle" font-size="11" font-weight="700" fill="#10B981">Odpověď</text>
+  <text x="260" y="226" text-anchor="middle" font-size="11" fill="#6B7280">HTML + CSS + obrázky</text>
+
+  <!-- klient (prohlížeč) -->
+  <rect x="22" y="66" width="150" height="158" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <rect x="30" y="74" width="134" height="16" rx="5" fill="#EDE9FE"/>
+  <circle cx="38" cy="82" r="2.2" fill="#7C3AED"/>
+  <circle cx="45" cy="82" r="2.2" fill="#7C3AED"/>
+  <circle cx="52" cy="82" r="2.2" fill="#7C3AED"/>
+  <rect x="60" y="77" width="98" height="10" rx="5" fill="#FFFFFF"/>
+  <rect x="66" y="80.5" width="56" height="3" rx="1.5" fill="#E5E7EB"/>
+  <rect x="30" y="96" width="134" height="100" rx="6" fill="#FAFAF7" stroke="#E5E7EB"/>
+  <!-- mini-stránka: kousky se skládají po příchodu odpovědi -->
+  <g>
+    <rect x="36" y="102" width="122" height="14" rx="3" fill="#7C3AED"/>
+    <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.06;0.74;0.79;1" dur="5s" repeatCount="indefinite"/>
+  </g>
+  <g>
+    <rect x="112" y="124" width="46" height="32" rx="4" fill="#D1FAE5"/>
+    <circle cx="121" cy="132" r="3.5" fill="#10B981"/>
+    <path d="M115 154 L128 141 L136 148 L144 139 L155 154 Z" fill="#10B981"/>
+    <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.06;0.78;0.83;1" dur="5s" repeatCount="indefinite"/>
+  </g>
+  <g>
+    <rect x="36" y="124" width="68" height="6" rx="3" fill="#E5E7EB"/>
+    <rect x="36" y="136" width="56" height="6" rx="3" fill="#E5E7EB"/>
+    <rect x="36" y="148" width="62" height="6" rx="3" fill="#E5E7EB"/>
+    <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.06;0.82;0.87;1" dur="5s" repeatCount="indefinite"/>
+  </g>
+  <g>
+    <rect x="36" y="166" width="122" height="6" rx="3" fill="#E5E7EB"/>
+    <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.06;0.86;0.91;1" dur="5s" repeatCount="indefinite"/>
+  </g>
+  <g>
+    <rect x="36" y="178" width="96" height="6" rx="3" fill="#E5E7EB"/>
+    <animate attributeName="opacity" values="1;0;0;1;1" keyTimes="0;0.06;0.90;0.95;1" dur="5s" repeatCount="indefinite"/>
+  </g>
+  <text x="97" y="213" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">Klient (prohlížeč)</text>
+
+  <!-- server -->
+  <rect x="350" y="66" width="148" height="158" rx="12" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <circle cx="424" cy="130" r="44" fill="#D1FAE5" opacity="0.5">
+    <animate attributeName="r" values="44;44;54;44;44" keyTimes="0;0.28;0.35;0.44;1" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0.5;0.2;0.5;0.5" keyTimes="0;0.28;0.35;0.44;1" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <rect x="394" y="92" width="60" height="76" rx="6" fill="#D1FAE5" stroke="#10B981" stroke-width="2"/>
+  <rect x="400" y="98" width="48" height="16" rx="3" fill="#FFFFFF"/>
+  <rect x="400" y="120" width="48" height="16" rx="3" fill="#FFFFFF"/>
+  <rect x="400" y="142" width="48" height="16" rx="3" fill="#FFFFFF"/>
+  <circle cx="408" cy="106" r="2.5" fill="#10B981"/>
+  <circle cx="408" cy="128" r="2.5" fill="#10B981">
+    <animate attributeName="opacity" values="1;1;0.2;1;0.2;1;1" keyTimes="0;0.30;0.33;0.36;0.39;0.42;1" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="408" cy="150" r="2.5" fill="#10B981"/>
+  <rect x="415" y="104" width="26" height="3.5" rx="1.75" fill="#E5E7EB"/>
+  <rect x="415" y="126" width="26" height="3.5" rx="1.75" fill="#E5E7EB"/>
+  <rect x="415" y="148" width="26" height="3.5" rx="1.75" fill="#E5E7EB"/>
+  <text x="424" y="192" text-anchor="middle" font-size="13" font-weight="700" fill="#1E1B4B">Server</text>
+  <text x="424" y="208" text-anchor="middle" font-size="11" fill="#6B7280">tady stránka „bydlí“</text>
+
+  <!-- letící tečka: požadavek -->
+  <circle cx="176" cy="112" r="6" fill="#7C3AED" stroke="#FFFFFF" stroke-width="1.5">
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.28;0.33;1" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="6;6;10;6;6" keyTimes="0;0.26;0.30;0.33;1" dur="5s" repeatCount="indefinite"/>
+    <animateMotion path="M0 0 C54 -20 116 -20 168 0" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.28;1" dur="5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- letící tečka: odpověď -->
+  <circle cx="344" cy="178" r="6" fill="#10B981" stroke="#FFFFFF" stroke-width="1.5">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.43;0.47;0.72;0.76;1" dur="5s" repeatCount="indefinite"/>
+    <animateMotion path="M0 0 C-52 20 -114 20 -168 0" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.44;0.72;1" dur="5s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="260" y="246" text-anchor="middle" font-size="11" fill="#6B7280">Každé kliknutí na odkaz = nový požadavek.</text>
+</svg>

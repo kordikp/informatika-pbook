@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" role="img" aria-labelledby="title desc">
+  <title id="title">Jak funguje digitální svět</title>
+  <desc id="desc">Žák se skrz základy, informatické myšlení a data dostává k porozumění informatice — a z něj k tvorbě webů, aplikací a her, porozumění AI a bezpečí online.</desc>
+  <defs>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#D97706"/>
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="518" height="218" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+
+  <text x="18" y="25" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1E1B4B">Jak funguje digitální svět</text>
+  <text x="18" y="43" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Od hardwaru přes data a AI až po vlastní tvorbu.</text>
+
+  <!-- šipky: ty → témata -->
+  <path d="M96 123 C105 123 106 79 116 79" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <path d="M96 128 C105 128 106 129 116 129" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <path d="M96 133 C105 133 106 179 116 179" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-amber)"/>
+
+  <!-- šipky: témata → informatika -->
+  <path d="M220 79 C232 79 234 101 246 101" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <path d="M220 129 L246 129" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <path d="M220 179 C232 179 234 157 246 157" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-amber)"/>
+
+  <!-- šipky: informatika → výsledky -->
+  <path d="M334 101 C347 101 350 79 365 79" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <path d="M334 129 L365 129" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <path d="M334 157 C347 157 350 179 365 179" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-amber)"/>
+
+  <!-- Ty (postava s telefonem) -->
+  <rect x="16" y="68" width="80" height="122" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <circle cx="56" cy="99" r="20" fill="#EDE9FE"/>
+  <circle cx="56" cy="96" r="12" fill="#FEF3C7"/>
+  <path d="M44 95 Q44 80 56 80 Q68 80 68 95 Q64 88 56 88 Q48 88 44 95Z" fill="#D97706"/>
+  <circle cx="52" cy="97" r="1.5" fill="#1E1B4B"/>
+  <circle cx="60" cy="97" r="1.5" fill="#1E1B4B"/>
+  <path d="M52 103 Q56 106 60 103" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M43 119 Q56 110 69 119 L73 153 L39 153Z" fill="#7C3AED"/>
+  <path d="M68 123 L76 135" fill="none" stroke="#D97706" stroke-width="4" stroke-linecap="round"/>
+  <rect x="71" y="129" width="13" height="22" rx="3" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2"/>
+  <rect x="74" y="133" width="7" height="11" rx="1" fill="#E0F2FE"/>
+  <text x="56" y="178" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1E1B4B">Ty</text>
+
+  <!-- Vstupní témata -->
+  <rect x="116" y="58" width="104" height="42" rx="9" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <circle cx="137" cy="79" r="12" fill="#D1FAE5"/>
+  <text x="137" y="84" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15">🔌</text>
+  <text x="156" y="84" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1E1B4B">Základy</text>
+
+  <rect x="116" y="108" width="104" height="42" rx="9" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <circle cx="137" cy="129" r="12" fill="#EDE9FE"/>
+  <text x="137" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15">🧩</text>
+  <text x="156" y="134" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1E1B4B">Myšlení</text>
+
+  <rect x="116" y="158" width="104" height="42" rx="9" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <circle cx="137" cy="179" r="12" fill="#FEF3C7"/>
+  <text x="137" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15">📊</text>
+  <text x="156" y="184" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1E1B4B">Data</text>
+
+  <!-- Informatika (střed) -->
+  <rect x="246" y="78" width="88" height="102" rx="13" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <circle cx="290" cy="107" r="18" fill="#FFFFFF"/>
+  <text x="290" y="113" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20">🧠</text>
+  <text x="290" y="139" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1E1B4B">Informatika</text>
+  <text x="290" y="157" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">63 konceptů</text>
+
+  <!-- Rozumíš AI -->
+  <rect x="365" y="58" width="139" height="42" rx="9" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <text x="375" y="76" font-family="system-ui, sans-serif" font-size="13">🤖</text>
+  <text x="394" y="77" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1E1B4B">Rozumíš AI</text>
+  <text x="394" y="92" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">ověřuj, ale využívej</text>
+  <rect x="466" y="66" width="30" height="25" rx="4" fill="#D1FAE5"/>
+  <rect x="473" y="72" width="16" height="13" rx="3" fill="#10B981"/>
+  <circle cx="477.5" cy="78.5" r="2" fill="#FFFFFF"/>
+  <circle cx="484.5" cy="78.5" r="2" fill="#FFFFFF"/>
+  <path d="M481 68 V72" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="481" cy="67" r="1.8" fill="#10B981"/>
+
+  <!-- Tvoříš -->
+  <rect x="365" y="108" width="139" height="42" rx="9" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="375" y="127" font-family="system-ui, sans-serif" font-size="13">🚀</text>
+  <text x="394" y="128" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1E1B4B">Tvoříš</text>
+  <text x="394" y="143" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">web · appka · hra</text>
+  <rect x="466" y="116" width="14" height="26" rx="3" fill="#EDE9FE"/>
+  <rect x="469" y="120" width="8" height="3" rx="1.5" fill="#7C3AED"/>
+  <rect x="469" y="126" width="8" height="3" rx="1.5" fill="#7C3AED"/>
+  <rect x="469" y="132" width="5" height="3" rx="1.5" fill="#C4B5FD"/>
+  <rect x="484" y="116" width="14" height="26" rx="3" fill="#E0F2FE"/>
+  <circle cx="491" cy="126" r="4.5" fill="#0EA5E9"/>
+  <path d="M489.5 123.5 L494 126 L489.5 128.5Z" fill="#FFFFFF"/>
+  <rect x="487.5" y="134" width="7" height="3" rx="1.5" fill="#7DD3FC"/>
+
+  <!-- Chráníš se -->
+  <rect x="365" y="158" width="139" height="42" rx="9" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <text x="375" y="177" font-family="system-ui, sans-serif" font-size="13">🛡️</text>
+  <text x="394" y="178" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1E1B4B">Chráníš se</text>
+  <text x="394" y="193" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">hesla · phishing · stopa</text>
+  <path d="M481 164 L494 168 V177 Q494 187 481 192 Q468 187 468 177 V168Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <path d="M475.5 177 L479.5 181 L487 172.5" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

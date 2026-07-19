@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Datová třídička",
+  "instruction": "Strukturovaná data (pevný řád), nebo nestrukturovaná (bez řádu)?",
+  "buckets": [
+    "Strukturovaná",
+    "Nestrukturovaná"
+  ],
+  "items": [
+    {
+      "text": "Tabulka známek v Bakalářích",
+      "answer": 0
+    },
+    {
+      "text": "Fotky z výletu",
+      "answer": 1
+    },
+    {
+      "text": "Jízdní řád autobusu",
+      "answer": 0
+    },
+    {
+      "text": "Hlasovka od kamaráda",
+      "answer": 1
+    },
+    {
+      "text": "Sklad e-shopu (řádky a sloupce)",
+      "answer": 0
+    },
+    {
+      "text": "Video na TikToku",
+      "answer": 1
+    },
+    {
+      "text": "Herní žebříček (hráč, skóre)",
+      "answer": 0
+    },
+    {
+      "text": "Sloh o prázdninách",
+      "answer": 1
+    }
+  ]
+}

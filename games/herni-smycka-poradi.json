@@ -1,0 +1,12 @@
+{
+  "type": "order",
+  "title": "Postav herní smyčku",
+  "instruction": "Seřaď, co hra dělá 60× za sekundu — pořád dokola!",
+  "steps": [
+    "Načti vstup hráče (klávesy, dotyk)",
+    "Posuň postavy a spočítej nové polohy",
+    "Zkontroluj kolize (dotkly se objekty?)",
+    "Uprav skóre a životy podle pravidel",
+    "Vykresli celou scénu znovu na obrazovku"
+  ]
+}

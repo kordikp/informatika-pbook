@@ -1,0 +1,17 @@
+{
+  "type": "pop",
+  "title": "Praskni bublinu",
+  "instruction": "Algoritmus tě zavřel do bubliny jednoho tématu! Klikej na JINÁ témata a prorač se ven.",
+  "categories": [
+    "Hudba",
+    "Hry",
+    "Sport",
+    "Knihy",
+    "Vaření",
+    "Věda",
+    "Umění",
+    "Cestování",
+    "Příroda",
+    "Historie"
+  ]
+}

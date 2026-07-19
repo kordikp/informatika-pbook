@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 270" role="img" aria-label="Senzory, program a aktuátory: vstup, zpracování a výstup na zařízení">
+  <defs>
+    <marker id="zg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker>
+    <marker id="za" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#D97706"/></marker>
+  </defs>
+  <rect x="1" y="1" width="518" height="268" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">Senzory a aktuátory</text>
+  <text x="18" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Senzory měří svět, program rozhoduje, aktuátory jednají.</text>
+
+  <!-- senzory -->
+  <g font-family="system-ui, sans-serif" font-size="11">
+    <text x="80" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#10B981">SENZORY (vstup)</text>
+    <rect x="26" y="80" width="108" height="30" rx="7" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+    <text x="80" y="100" text-anchor="middle" fill="#1E1B4B">🌡 teplota</text>
+    <rect x="26" y="116" width="108" height="30" rx="7" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+    <text x="80" y="136" text-anchor="middle" fill="#1E1B4B">💡 světlo</text>
+    <rect x="26" y="152" width="108" height="30" rx="7" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+    <text x="80" y="172" text-anchor="middle" fill="#1E1B4B">📳 pohyb</text>
+    <rect x="26" y="188" width="108" height="30" rx="7" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+    <text x="80" y="208" text-anchor="middle" fill="#1E1B4B">🔘 tlačítko</text>
+  </g>
+
+  <!-- deska -->
+  <g font-family="system-ui, sans-serif">
+    <rect x="192" y="86" width="136" height="126" rx="12" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+    <rect x="212" y="104" width="96" height="56" rx="6" fill="#1E1B4B"/>
+    <g fill="#EF4444"><circle cx="228" cy="118" r="3"/><circle cx="244" cy="118" r="3"/><circle cx="260" cy="118" r="3"/><circle cx="276" cy="118" r="3"/><circle cx="292" cy="118" r="3"/>
+    <circle cx="228" cy="134" r="3"/><circle cx="260" cy="134" r="3"/><circle cx="292" cy="134" r="3"/></g>
+    <text x="260" y="155" text-anchor="middle" font-size="8.5" fill="#FFFFFF">LED matice 5×5</text>
+    <text x="260" y="182" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1E1B4B">PROGRAM</text>
+    <text x="260" y="198" text-anchor="middle" font-size="10" fill="#6B7280">micro:bit — rozhoduje</text>
+  </g>
+
+  <!-- aktuátory -->
+  <g font-family="system-ui, sans-serif" font-size="11">
+    <text x="440" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#D97706">AKTUÁTORY (výstup)</text>
+    <rect x="386" y="80" width="108" height="30" rx="7" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+    <text x="440" y="100" text-anchor="middle" fill="#1E1B4B">🔴 LED svítí</text>
+    <rect x="386" y="116" width="108" height="30" rx="7" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+    <text x="440" y="136" text-anchor="middle" fill="#1E1B4B">🔊 bzučák</text>
+    <rect x="386" y="152" width="108" height="30" rx="7" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+    <text x="440" y="172" text-anchor="middle" fill="#1E1B4B">⚙️ motor</text>
+    <rect x="386" y="188" width="108" height="30" rx="7" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+    <text x="440" y="208" text-anchor="middle" fill="#1E1B4B">🖥 displej</text>
+  </g>
+
+  <!-- šipky -->
+  <path d="M136 148 L188 148" fill="none" stroke="#10B981" stroke-width="2.5" marker-end="url(#zg)"/>
+  <text x="162" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9.5" fill="#10B981" font-weight="700">měří</text>
+  <path d="M330 148 L382 148" fill="none" stroke="#D97706" stroke-width="2.5" marker-end="url(#za)"/>
+  <text x="356" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9.5" fill="#D97706" font-weight="700">jedná</text>
+
+  <rect x="80" y="228" width="360" height="26" rx="7" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <text x="260" y="245" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">Příklad: 💡 setmí se → <tspan font-weight="700">když světlo &lt; 30</tspan> → 🔴 rozsviť LED</text>
+</svg>

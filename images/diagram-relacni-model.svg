@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Relační model: tabulky Kamarádi a Půjčky propojené klíčem">
+  <defs>
+    <marker id="kp" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker>
+  </defs>
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">Relační model: tabulky a klíč</text>
+  <text x="18" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Údaj bydlí na jednom místě — jinde se na něj jen ukazuje.</text>
+
+  <!-- Tabulka Kamarádi -->
+  <g font-family="system-ui, sans-serif" font-size="11">
+    <text x="42" y="72" font-size="12" font-weight="700" fill="#1E1B4B">Kamarádi</text>
+    <rect x="30" y="80" width="200" height="24" rx="4" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="52" y="96" font-weight="700" fill="#1E1B4B">id</text>
+    <text x="92" y="96" font-weight="700" fill="#1E1B4B">jméno</text>
+    <text x="162" y="96" font-weight="700" fill="#1E1B4B">telefon</text>
+    <rect x="30" y="104" width="200" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <text x="52" y="120" fill="#1E1B4B" font-weight="700">1</text>
+    <text x="92" y="120" fill="#1E1B4B">Kuba</text>
+    <text x="162" y="120" fill="#6B7280">777 123…</text>
+    <rect x="30" y="128" width="200" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <text x="52" y="144" fill="#1E1B4B">2</text>
+    <text x="92" y="144" fill="#1E1B4B">Eliška</text>
+    <text x="162" y="144" fill="#6B7280">606 987…</text>
+    <line x1="44" y1="80" x2="44" y2="152" stroke="#10B981" stroke-width="2"/>
+    <text x="42" y="170" font-size="10" fill="#10B981" font-weight="700">↑ klíč: jednoznačné id</text>
+  </g>
+
+  <!-- Tabulka Půjčky -->
+  <g font-family="system-ui, sans-serif" font-size="11">
+    <text x="292" y="72" font-size="12" font-weight="700" fill="#1E1B4B">Půjčky</text>
+    <rect x="280" y="80" width="216" height="24" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+    <text x="290" y="96" font-weight="700" fill="#1E1B4B">hra</text>
+    <text x="378" y="96" font-weight="700" fill="#7C3AED">kamarad_id</text>
+    <text x="462" y="96" font-weight="700" fill="#1E1B4B">od</text>
+    <rect x="280" y="104" width="216" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <text x="290" y="120" fill="#1E1B4B">Zelda</text>
+    <text x="404" y="120" fill="#7C3AED" font-weight="700">1</text>
+    <text x="454" y="120" fill="#6B7280">3. 5.</text>
+    <rect x="280" y="128" width="216" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <text x="290" y="144" fill="#1E1B4B">Mario Kart</text>
+    <text x="404" y="144" fill="#7C3AED">2</text>
+    <text x="454" y="144" fill="#6B7280">10. 5.</text>
+  </g>
+
+  <!-- propojení klíčem -->
+  <path d="M400 112 C330 60 120 60 60 106" fill="none" stroke="#7C3AED" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#kp)"/>
+  <text x="235" y="60" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7C3AED" font-weight="700">kamarad_id = 1 → řádek s id 1</text>
+
+  <!-- výhoda -->
+  <rect x="30" y="188" width="466" height="52" rx="9" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <text x="46" y="210" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">📱 Kuba si změní telefon? Opravíš <tspan font-weight="700">jeden řádek</tspan> v tabulce Kamarádi —</text>
+  <text x="46" y="228" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">všechny půjčky na něj dál správně ukazují. Žádné opisování, žádné zapomenuté kopie.</text>
+</svg>

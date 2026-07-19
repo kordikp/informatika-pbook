@@ -1,0 +1,55 @@
+# Jak funguje digitální svět — p-book pro 2. stupeň ZŠ
+
+> Bezplatná interaktivní učebnice informatiky a umělé inteligence pro žáky 2. stupně ZŠ (primárně 8. třída).
+> Autoři: Pavel Kordík (ČVUT v Praze, Recombee) & tým AI dětem.
+> Obsahová páteř: core vrstva Mapy informatických konceptů Glitch (https://knowledge-map-glitch.vercel.app/).
+> Licence: CC BY-NC-SA 4.0
+
+## Co kniha učí
+
+63 klíčových konceptů moderní informatiky ve 12 tématech — od hardwaru a sítí přes informatické myšlení, programování, data a umělou inteligenci po kyberbezpečnost, digitální občanství a tvůrčí témata (weby, aplikace, obsah s AI, hry, robotika). Vychází z revidovaného RVP Informatika (2024) a mezinárodních rámců (CSTA K-12, UNESCO AI Competency Framework, AI4K12, DigComp 2.2). Řídící princip: „ověřuj, ale využívej“ — nástroj vždy v páru s kritikou; rozhoduje člověk, ne AI.
+
+## Kapitoly
+
+### Kapitola 1: Digitální základy
+Hardware, software, internet a cloud — co se děje pod povrchem appek.
+
+### Kapitola 2: Informatické myšlení a algoritmizace
+Rozlož problém, najdi vzor, popiš postup — myšlení, které funguje i bez počítače.
+
+### Kapitola 3: Programování
+Proměnné, podmínky, cykly a ladění — od bloků k Pythonu.
+
+### Kapitola 4: Data, databáze a datová gramotnost
+Jak data číst, ukládat a nenechat se jimi oklamat.
+
+### Kapitola 5: Umělá inteligence
+Co AI je a není, jak se učí z dat a proč jí nevěřit všechno.
+
+### Kapitola 6: Kyberbezpečnost a digitální bezpečí
+Hesla, phishing, zálohy — jak se nenechat nachytat.
+
+### Kapitola 7: Digitální občanství, média a wellbeing
+Algoritmy sítí, dezinformace a tvůj čas — život online s čistou hlavou.
+
+### Kapitola 8: Tvorba webů
+HTML, CSS a JavaScript — postav stránku a pošli ji do světa.
+
+### Kapitola 9: Tvorba aplikací a vibecoding
+Od nápadu k appce — dnes i pomocí AI a vibecodingu.
+
+### Kapitola 10: Tvorba digitálního obsahu s AI
+Obrázky a média s pomocí AI — tvořivě a fér.
+
+### Kapitola 11: Herní vývoj
+Herní smyčka, kolize a level design — jak se dělají hry.
+
+### Kapitola 12: Fyzický computing, robotika a IoT
+Senzory, micro:bit a roboti — když se kód dotkne světa.
+
+## Přístup k obsahu
+
+- /content/book.json — index kapitol a souborů (JSON)
+- /content/{kapitola}/{soubor}.md — sekce (Markdown + YAML frontmatter s recallQ/recallA)
+- /pbook.json — plný manifest
+- /.well-known/pbook.json — objevitelný manifest pro AI agenty

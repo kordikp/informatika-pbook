@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Phishing lovec",
+  "instruction": "Podvod, nebo v pohodě? Rozhodni podle varovných signálů!",
+  "buckets": [
+    "Podvod!",
+    "V pohodě"
+  ],
+  "items": [
+    {
+      "text": "„Účet bude smazán za 24 h, klikni a přihlas se!“",
+      "answer": 0
+    },
+    {
+      "text": "Škola posílá rozvrh přes Bakaláře",
+      "answer": 1
+    },
+    {
+      "text": "„Vyhrál jsi iPhone! Zaplať jen poštovné“",
+      "answer": 0
+    },
+    {
+      "text": "Kamarád píše z cizího čísla a chce kód z SMS",
+      "answer": 0
+    },
+    {
+      "text": "E-shop potvrzuje objednávku, kterou jsi udělal",
+      "answer": 1
+    },
+    {
+      "text": "„Banka“ chce heslo e-mailem",
+      "answer": 0
+    },
+    {
+      "text": "Appka žádá aktualizaci přes oficiální obchod",
+      "answer": 1
+    },
+    {
+      "text": "Odkaz banka-overeni.xyz místo banka.cz",
+      "answer": 0
+    }
+  ]
+}

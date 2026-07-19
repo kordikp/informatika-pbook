@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "AI, nebo ne?",
+  "instruction": "Učí se to z dat a odhaduje? Pak je to AI. Jen to vykonává přesná pravidla? Pak ne.",
+  "buckets": [
+    "Je to AI",
+    "Není to AI"
+  ],
+  "items": [
+    {
+      "text": "Feed TikToku vybírá videa",
+      "answer": 0
+    },
+    {
+      "text": "Budík zazvoní v 7:00",
+      "answer": 1
+    },
+    {
+      "text": "Automatické titulky videa",
+      "answer": 0
+    },
+    {
+      "text": "Kalkulačka sečte 2+3",
+      "answer": 1
+    },
+    {
+      "text": "Telefon odemkneš obličejem",
+      "answer": 0
+    },
+    {
+      "text": "Semafor přepíná po 30 s",
+      "answer": 1
+    },
+    {
+      "text": "Překladač přeloží větu",
+      "answer": 0
+    },
+    {
+      "text": "Výtah jede do zvoleného patra",
+      "answer": 1
+    },
+    {
+      "text": "ChatGPT napíše odpověď",
+      "answer": 0
+    }
+  ]
+}

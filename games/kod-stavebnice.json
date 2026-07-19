@@ -1,0 +1,48 @@
+{
+  "type": "sort",
+  "title": "Poznej stavební kámen",
+  "instruction": "Proměnná, podmínka, nebo cyklus? Roztřiď kousky kódu!",
+  "buckets": [
+    "Proměnná",
+    "Podmínka",
+    "Cyklus"
+  ],
+  "items": [
+    {
+      "text": "skore = 0",
+      "answer": 0
+    },
+    {
+      "text": "if zivoty == 0:",
+      "answer": 1
+    },
+    {
+      "text": "while hra_bezi:",
+      "answer": 2
+    },
+    {
+      "text": "jmeno = \"Kuba\"",
+      "answer": 0
+    },
+    {
+      "text": "opakuj 10×: udělej dřep",
+      "answer": 2
+    },
+    {
+      "text": "když prší → vezmi kapuci",
+      "answer": 1
+    },
+    {
+      "text": "zivoty = zivoty - 1",
+      "answer": 0
+    },
+    {
+      "text": "for cislo in range(100):",
+      "answer": 2
+    },
+    {
+      "text": "if heslo == spravne:",
+      "answer": 1
+    }
+  ]
+}
