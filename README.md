@@ -1,5 +1,7 @@
 # Jak funguje digitální svět — p-book
 
+**Živě: https://informatika-pbook.vercel.app** · [GitHub](https://github.com/kordikp/informatika-pbook)
+
 Bezplatná **interaktivní učebnice informatiky a umělé inteligence** pro 2. stupeň ZŠ (primárně 8. třída). Česky, s kvízy, misemi a personalizovaným čtením ve stylu Netflixu.
 
 **Obsahová páteř:** core vrstva [Mapy informatických konceptů Glitch](https://knowledge-map-glitch.vercel.app/) organizace [AI dětem](https://aidetem.cz) — **63 konceptů ve 12 tématech**, navázaných na revidované RVP Informatika (2024) a mezinárodní rámce (CSTA K-12, UNESCO AI Competency Framework, AI4K12, DigComp 2.2).
@@ -39,10 +41,7 @@ node serve-local.js
 # otevři http://localhost:8000
 ```
 
-Statický web bez build kroku — nasadíš přetažením na Netlify/Vercel/GitHub Pages. Po nasazení:
-
-1. doplň finální URL do `sitemap.xml` (placeholder `REPLACE-WITH-YOUR-DOMAIN`), `robots.txt` a OG metadat v `index.html`,
-2. případně zapni Recombee personalizaci v `js/config.js` (`recombee.enabled`) a doplň token do `.env`.
+Statický web bez build kroku, nasazený na Vercelu (https://informatika-pbook.vercel.app); push do `master` nasadí automaticky. Případně zapni Recombee personalizaci v `js/config.js` (`recombee.enabled`) a doplň token do `.env`.
 
 ## Struktura obsahu
 

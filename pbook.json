@@ -7,7 +7,7 @@
   "audience": "8. třída ZŠ (2. stupeň, 13–14 let)",
   "language": "cs",
   "license": "CC BY-NC-SA 4.0",
-  "repository": null,
+  "repository": "https://github.com/kordikp/informatika-pbook",
 
   "source": {
     "description": "Kniha zpracovává core vrstvu Mapy informatických konceptů Glitch (63 konceptů ve 12 tématech). Mapa staví na revidovaném RVP Informatika (2024) a mezinárodních rámcích (CSTA K-12, UNESCO AI Competency Framework, AI4K12, DigComp 2.2).",
