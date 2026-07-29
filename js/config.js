@@ -32,8 +32,8 @@ export const CONFIG = {
     missions: true,           // příběhové mise
     games: true,              // minihry (zatím žádné herní bloky)
     highlights: true,         // klíčové body vedle sekce
-    steering: false,          // per-blok ovladače (jednodušeji/hlouběji) — zapnout až s více variantami
-    generation: false,        // generování variant na vyžádání — vyžaduje /api/generate + klíč
+    steering: true,           // per-blok ovladače (jednodušeji/hlouběji, panel podání)
+    generation: true,         // generování na vyžádání — bez klíče na serveru se tlačítko samo skryje (probe)
     community: false,         // sdílené čtenářské varianty — vyžaduje backend (Supabase)
   },
 

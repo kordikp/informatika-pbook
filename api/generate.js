@@ -23,6 +23,11 @@ const OPENAI_BASE = (process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1')
 const PROVIDER = ANTHROPIC_KEY ? 'anthropic' : OPENAI_KEY ? 'openai-compatible' : null;
 const MODEL = process.env.GEN_MODEL
   || (PROVIDER === 'anthropic' ? 'claude-opus-4-8' : (process.env.OPENAI_MODEL || 'gpt-5.6-terra'));
+// Model routing: cheap MODEL for small text remixes and proposals; STRONG_MODEL
+// for the demanding modes (full variant generation, SVG drawing/remix), where
+// the small model visibly degrades output. Falls back to MODEL on error.
+const STRONG_MODEL = process.env.GEN_MODEL_STRONG
+  || (PROVIDER === 'anthropic' ? 'claude-opus-4-8' : 'gpt-5.6-terra');
 
 // Structured output schema — shared by both providers
 const BLOCK_SCHEMA = {
@@ -215,6 +220,17 @@ function parseFrontmatterBody(text) {
   return m ? m[1].trim() : text.trim();
 }
 
+// Sister p-book deployments (same account) may use this deployment as their LLM
+// gateway when they have no own key. They pass body.sourceHost so that concept
+// lookups (concepts.json, anchor, correction rules) read THEIR content instead
+// of this book's. Only allowlisted hosts are honored — anything else falls back
+// to this deployment's own host.
+const ALLOWED_SOURCE_HOSTS = ['pbook-internet.vercel.app'];
+function contentHost(req) {
+  const h = req.body && req.body.sourceHost;
+  return (h && ALLOWED_SOURCE_HOSTS.includes(h)) ? h : req.headers.host;
+}
+
 async function selfFetch(host, path) {
   const proto = host.startsWith('localhost') || host.startsWith('127.') ? 'http' : 'https';
   const res = await fetch(`${proto}://${host}${path}`);
@@ -338,7 +354,7 @@ Write the variant now. Use markdown (bold key phrases, like the exemplar). Also 
   return { system, user };
 }
 
-async function callClaude(system, user, schema = BLOCK_SCHEMA, maxTokens = 4000) {
+async function callClaude(system, user, schema = BLOCK_SCHEMA, maxTokens = 4000, model = MODEL) {
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -347,7 +363,7 @@ async function callClaude(system, user, schema = BLOCK_SCHEMA, maxTokens = 4000)
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: MODEL,
+      model,
       max_tokens: maxTokens,
       thinking: { type: 'adaptive' },
       system,
@@ -369,7 +385,7 @@ async function callClaude(system, user, schema = BLOCK_SCHEMA, maxTokens = 4000)
 // OpenAI-compatible fallback (local dev / gateways). Tries strict json_schema
 // response_format first; if the gateway rejects it, falls back to json_object
 // with the schema described in the prompt.
-async function callOpenAI(system, user, schema = BLOCK_SCHEMA, maxTokens = 4000) {
+async function callOpenAI(system, user, schema = BLOCK_SCHEMA, maxTokens = 4000, model = MODEL) {
   const attempt = async body => {
     const res = await fetch(`${OPENAI_BASE}/chat/completions`, {
       method: 'POST',
@@ -379,7 +395,7 @@ async function callOpenAI(system, user, schema = BLOCK_SCHEMA, maxTokens = 4000)
     return { res, text: await res.text() };
   };
   const base = {
-    model: MODEL,
+    model,
     max_completion_tokens: maxTokens,
     messages: [
       { role: 'system', content: system },
@@ -423,8 +439,20 @@ async function callOpenAI(system, user, schema = BLOCK_SCHEMA, maxTokens = 4000)
   return JSON.parse(content);
 }
 
-function callLLM(system, user, schema, maxTokens) {
-  return PROVIDER === 'anthropic' ? callClaude(system, user, schema, maxTokens) : callOpenAI(system, user, schema, maxTokens);
+async function callLLM(system, user, schema, maxTokens, model = MODEL) {
+  const call = m => PROVIDER === 'anthropic'
+    ? callClaude(system, user, schema, maxTokens, m)
+    : callOpenAI(system, user, schema, maxTokens, m);
+  try {
+    return await call(model);
+  } catch (e) {
+    // strong model unavailable/rejected → degrade to the base model rather than fail
+    if (model !== MODEL) {
+      console.warn(`[generate] strong model ${model} failed (${String(e).slice(0, 160)}) — falling back to ${MODEL}`);
+      return call(MODEL);
+    }
+    throw e;
+  }
 }
 
 module.exports = async function handler(req, res) {
@@ -434,7 +462,7 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   // Probe: the client shows the generate button only when this says available
-  if (req.method === 'GET') return res.status(200).json({ available: !!PROVIDER, provider: PROVIDER, model: PROVIDER ? MODEL : null });
+  if (req.method === 'GET') return res.status(200).json({ available: !!PROVIDER, provider: PROVIDER, model: PROVIDER ? MODEL : null, strongModel: PROVIDER ? STRONG_MODEL : null });
   if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
   if (!PROVIDER) return res.status(501).json({ ok: false, error: 'generation not configured (set ANTHROPIC_API_KEY, or OPENAI_API_KEY for the dev fallback)' });
 
@@ -509,7 +537,7 @@ Draft the proposals now.`;
       if (!instruction || typeof instruction !== 'string' || instruction.trim().length < 3) {
         return res.status(400).json({ ok: false, error: 'instruction required' });
       }
-      const host = req.headers.host;
+      const host = contentHost(req);
       let contract = null;
       if (concept && /^[\w-]+$/.test(concept)) {
         try {
@@ -553,7 +581,7 @@ ${out.replacement.trim().slice(0, 2500)}
 Reader's wish: "${instruction.slice(0, 300)}"
 ${contract ? `Concept objective (stay consistent): ${contract.objective}` : ''}
 Draw the supporting ${wantAnim ? 'animated ' : ''}diagram now.`;
-          const v = await callLLM(vsys, vuser, { type: 'object', properties: { svg: { type: 'string' } }, required: ['svg'], additionalProperties: false }, 14000);
+          const v = await callLLM(vsys, vuser, { type: 'object', properties: { svg: { type: 'string' } }, required: ['svg'], additionalProperties: false }, 14000, STRONG_MODEL);
           if (v.svg && /<svg[\s\S]*<\/svg>/.test(v.svg) && v.svg.length < 60000) svgOut = sanitizeSvgServer(v.svg);
         } catch (e) { /* diagram is best-effort — the text remix still succeeds */ }
       }
@@ -591,10 +619,10 @@ Return the complete modified SVG now.`;
         else if (clean.length > Math.max(srcSvg.length * 3, 20000)) p.push('output SVG grew too much');
         return { p, clean };
       };
-      let out = await callLLM(system, user, SVG_SCHEMA, 16000);
+      let out = await callLLM(system, user, SVG_SCHEMA, 16000, STRONG_MODEL);
       let { p: problems, clean } = gate(out);
       if (problems.length) {
-        out = await callLLM(system, `${user}\n\nYour previous attempt had problems — fix ALL of them:\n${problems.map(x => `- ${x}`).join('\n')}`, SVG_SCHEMA, 16000);
+        out = await callLLM(system, `${user}\n\nYour previous attempt had problems — fix ALL of them:\n${problems.map(x => `- ${x}`).join('\n')}`, SVG_SCHEMA, 16000, STRONG_MODEL);
         ({ p: problems, clean } = gate(out));
       }
       if (problems.length) return res.status(502).json({ ok: false, error: 'svg remix failed the validation gate', problems });
@@ -612,7 +640,7 @@ Return the complete modified SVG now.`;
     if (cache.has(id)) return res.status(200).json({ ok: true, block: cache.get(id), cached: true });
 
     // Load contract + exemplar from the deployed content itself (concepts.json is the source of truth)
-    const host = req.headers.host;
+    const host = contentHost(req);
     const conceptsData = await (await selfFetch(host, '/content/concepts.json')).json();
     const record = (conceptsData.concepts || []).find(c => c.id === concept);
     if (!record) return res.status(404).json({ ok: false, error: 'unknown concept' });
@@ -637,7 +665,7 @@ Return the complete modified SVG now.`;
     // Generate → validate → one corrective retry → fail honestly
     const runValidate = (blk) => visualGenre ? validateVisual(blk, record.contract) : validate(blk, facets, record.contract);
     const schema = visualGenre ? SVG_BLOCK_SCHEMA : BLOCK_SCHEMA;
-    let block = await callLLM(system, user, schema, visualGenre ? 16000 : undefined);
+    let block = await callLLM(system, user, schema, visualGenre ? 16000 : undefined, STRONG_MODEL);
     let problems = runValidate(block);
     if (problems.length) {
       const retryUser = `${user}\n\nYour previous attempt had these problems — fix ALL of them:\n${problems.map(p => `- ${p}`).join('\n')}`;

@@ -1,0 +1,501 @@
+{
+ "proposals": [
+  {
+   "slug": "digitalni-zaklady-reprezentace-dat",
+   "title": "Reprezentace dat",
+   "tema": "digitalni-zaklady",
+   "objective": "Počítač uvnitř zná jen nuly a jedničky (bity), takže čísla, písmena, obrázky i zvuk se musí zakódovat do čísel.",
+   "recallQ": "Porovnal bys dva způsoby kódování dat a posoudí, který se hodí pro úsporné uložení a který pro bezchybný přenos?"
+  },
+  {
+   "slug": "digitalni-zaklady-adresy-a-protokoly",
+   "title": "Adresy a protokoly",
+   "tema": "digitalni-zaklady",
+   "objective": "Aby se zařízení na internetu našla a rozuměla si, používají adresy a dohodnutá pravidla komunikace: doména (seznam.cz) se přes DNS přeloží na číselnou IP adresu a data p…",
+   "recallQ": "Rozlišil bys roli domény, IP adresy a protokolu HTTP při načítání stránky?"
+  },
+  {
+   "slug": "digitalni-zaklady-vrstvy-pocitace",
+   "title": "Vrstvy počítače",
+   "tema": "digitalni-zaklady",
+   "objective": "Počítač je poskládaný z vrstev: úplně dole hardware, nad ním operační systém a nahoře aplikace, kterou používáš.",
+   "recallQ": "Vysvětlil bys na příkladu, jak vrstvy hardware – operační systém – aplikace skrývají složitost té pod sebou?"
+  },
+  {
+   "slug": "digitalni-zaklady-operacni-system-a-soubory",
+   "title": "Operační systém a soubory",
+   "tema": "digitalni-zaklady",
+   "objective": "Operační systém (Windows, Android, iOS) je program, který řídí celé zařízení a dává ostatním aplikacím přístup k hardwaru.",
+   "recallQ": "Co je „Operační systém a soubory“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "digitalni-zaklady-kde-jsou-data-fyzicky",
+   "title": "Kde jsou data fyzicky",
+   "tema": "digitalni-zaklady",
+   "objective": "Data z aplikací neleží „někde v internetu\", ale na konkrétních serverech na konkrétním místě na světě.",
+   "recallQ": "Co je „Kde jsou data fyzicky“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "informaticke-mysleni-pseudokod-a-vyvojove-diagramy",
+   "title": "Pseudokód a vývojové diagramy",
+   "tema": "informaticke-mysleni",
+   "objective": "Způsoby, jak zapsat postup srozumitelně pro člověka ještě předtím, než ho napíšeš v konkrétním programovacím jazyce.",
+   "recallQ": "Zapsal bys jednoduchý postup jako pseudokód nebo vývojový diagram?"
+  },
+  {
+   "slug": "informaticke-mysleni-logika-a-booleovske-vyrazy",
+   "title": "Logika a booleovské výrazy",
+   "tema": "informaticke-mysleni",
+   "objective": "Rozhodování v programech stojí na výrocích, které jsou buď pravda, nebo nepravda („má hráč míň než nula životů?\").",
+   "recallQ": "Vysvětlil bys význam spojek A ZÁROVEŇ, NEBO a NE na konkrétní podmínce?"
+  },
+  {
+   "slug": "informaticke-mysleni-modelovani-a-simulace",
+   "title": "Modelování a simulace",
+   "tema": "informaticke-mysleni",
+   "objective": "Model je zjednodušený obraz skutečnosti — třeba graf, schéma nebo tabulka — který zachytí to podstatné a zbytek vynechá.",
+   "recallQ": "Co je „Modelování a simulace“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "informaticke-mysleni-efektivita-reseni",
+   "title": "Efektivita řešení",
+   "tema": "informaticke-mysleni",
+   "objective": "Stejný problém jde vyřešit mnoha způsoby, ale ne všechny stojí stejně — liší se počtem kroků, časem nebo pamětí.",
+   "recallQ": "Porovnal bys dvě řešení stejné úlohy a rozliší, které vyžaduje méně kroků?"
+  },
+  {
+   "slug": "informaticke-mysleni-zakladni-algoritmy",
+   "title": "Základní algoritmy",
+   "tema": "informaticke-mysleni",
+   "objective": "Osvědčené postupy, které se používají pořád dokola, hlavně hledání (najdi prvek v seznamu) a řazení (seřaď podle velikosti).",
+   "recallQ": "Co je „Základní algoritmy“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "informaticke-mysleni-hodnoceni-a-analyza-chyb",
+   "title": "Hodnocení a analýza chyb",
+   "tema": "informaticke-mysleni",
+   "objective": "Umět se na hotové řešení podívat kriticky: funguje?",
+   "recallQ": "Co je „Hodnocení a analýza chyb“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "programovani-blokove-vs-textove-programovani",
+   "title": "Blokové vs. textové programování",
+   "tema": "programovani",
+   "objective": "Na začátku se programuje skládáním barevných bloků (Scratch), kde nejde udělat překlep.",
+   "recallQ": "Porovnal bys blokové a textové programování z hlediska přesnosti zápisu a možností?"
+  },
+  {
+   "slug": "programovani-seznamy-a-kolekce",
+   "title": "Seznamy a kolekce",
+   "tema": "programovani",
+   "objective": "Když nestačí jedna proměnná, uloží se víc hodnot najednou do seznamu (třeba jména všech hráčů).",
+   "recallQ": "Použil bys seznam k uložení více hodnot a projde jeho prvky cyklem?"
+  },
+  {
+   "slug": "programovani-udalosti",
+   "title": "Události",
+   "tema": "programovani",
+   "objective": "Programy často nečekají v jednom sledu, ale reagují na to, co udělá uživatel — klik, stisk klávesy, dotyk.",
+   "recallQ": "Vysvětlil bys princip událostmi řízeného programování ve tvaru „když se stane X, spusť Y“?"
+  },
+  {
+   "slug": "programovani-knihovny-a-volani-api-v-kodu",
+   "title": "Knihovny a volání API v kódu",
+   "tema": "programovani",
+   "objective": "Nemusíš psát všechno od nuly — knihovna je hotový cizí kód, který zavoláš a použiješ (třeba na práci s datem nebo grafy).",
+   "recallQ": "Použil bys funkci z knihovny nebo volání API k vyřešení dílčího úkolu?"
+  },
+  {
+   "slug": "programovani-verzovani-kodu",
+   "title": "Verzování kódu",
+   "tema": "programovani",
+   "objective": "Git a GitHub ukládají historii změn kódu, takže se vždycky můžeš vrátit k funkční verzi a víc lidí může pracovat na jednom projektu, aniž by si přepsali práci.",
+   "recallQ": "Co je „Verzování kódu“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "programovani-cteni-a-hodnoceni-ai-kodu",
+   "title": "Čtení a hodnocení AI kódu",
+   "tema": "programovani",
+   "objective": "Dnes velkou část kódu napíše AI — o to důležitější je umět cizí kód přečíst, pochopit, co dělá, a posoudit, jestli je správný a bezpečný.",
+   "recallQ": "Co je „Čtení a hodnocení AI kódu“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "programovani-zaklady-objektu-oop",
+   "title": "Základy objektů (OOP)",
+   "tema": "programovani",
+   "objective": "Objekt spojuje data a to, co s nimi jde dělat, do jednoho celku (třeba „hráč\" má životy i umí skočit).",
+   "recallQ": "Co je „Základy objektů (OOP)“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "data-databaze-dotazovani-sql",
+   "title": "Dotazování (SQL)",
+   "tema": "data-databaze",
+   "objective": "SQL je jazyk, kterým se databáze ptáš na to, co potřebuješ („vyber všechny žáky z 8.A\").",
+   "recallQ": "Co je „Dotazování (SQL)“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "data-databaze-ucel-informacnich-systemu",
+   "title": "Účel informačních systémů",
+   "tema": "data-databaze",
+   "objective": "Informační systém je software, který eviduje a zpracovává data pro nějakou potřebu — školní matrika, rezervace, e-shop.",
+   "recallQ": "Posoudil bys u informačního systému, který používá, k čemu slouží a zda je pro daný účel opravdu užitečný?"
+  },
+  {
+   "slug": "data-databaze-statisticka-gramotnost",
+   "title": "Statistická gramotnost",
+   "tema": "data-databaze",
+   "objective": "Aby tě čísla nezmátla: korelace (dvě věci jdou spolu) neznamená kauzalitu (jedna způsobuje druhou), malý nebo nereprezentativní vzorek klame a graf jde snadno „natáhnout…",
+   "recallQ": "Posoudil bys u předloženého tvrzení, zda ho nezkresluje malý či nereprezentativní vzorek nebo záměna korelace a kauzality?"
+  },
+  {
+   "slug": "data-databaze-cisteni-realnych-dat",
+   "title": "Čištění reálných dat",
+   "tema": "data-databaze",
+   "objective": "Skutečná data jsou „špinavá\" — chybí hodnoty, opakují se, jsou v různých formátech.",
+   "recallQ": "Co je „Čištění reálných dat“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "data-databaze-nosql-a-dokumentove-databaze",
+   "title": "NoSQL a dokumentové databáze",
+   "tema": "data-databaze",
+   "objective": "Ne všechno se hodí do tabulek — NoSQL databáze ukládají data volněji (třeba jako dokumenty), což se hodí pro obsah, který nemá pevný tvar.",
+   "recallQ": "Co je „NoSQL a dokumentové databáze“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "data-databaze-vektorove-databaze",
+   "title": "Vektorové databáze",
+   "tema": "data-databaze",
+   "objective": "Text nebo obrázek se dá převést na řadu čísel (embedding), která zachycuje jeho význam.",
+   "recallQ": "Co je „Vektorové databáze“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "data-databaze-programova-analyza-dat",
+   "title": "Programová analýza dat",
+   "tema": "data-databaze",
+   "objective": "Když je dat moc na ruční klikání, zpracují se kódem (typicky Python + knihovna pandas).",
+   "recallQ": "Vysvětlil bys výhody zpracování dat kódem (rychlost, opakovatelnost, doložitelnost) oproti ručnímu klikání?"
+  },
+  {
+   "slug": "data-databaze-analyza-dat-pomoci-ai",
+   "title": "Analýza dat pomocí AI",
+   "tema": "data-databaze",
+   "objective": "Dnes stačí data nahrát a zeptat se běžnou řečí („ukaž trend prodejů po měsících\") — AI vygeneruje graf i vysvětlení.",
+   "recallQ": "Ověřil bys u výstupu, který mu AI z dat vygenerovala, zda čísla a závěr odpovídají skutečným datům?"
+  },
+  {
+   "slug": "umela-inteligence-pet-velkych-ideji-ai",
+   "title": "Pět velkých idejí AI",
+   "tema": "umela-inteligence",
+   "objective": "Přehledný rámec, který shrnuje, co AI umí, do pěti oblastí: vnímání (senzory), reprezentace a usuzování, učení z dat, přirozená interakce s lidmi a společenský dopad.",
+   "recallQ": "Popsal bys pět velkých idejí AI (vnímání, reprezentace a usuzování, učení z dat, interakce s lidmi, společenský dopad)?"
+  },
+  {
+   "slug": "umela-inteligence-strojove-uceni-prakticky",
+   "title": "Strojové učení prakticky",
+   "tema": "umela-inteligence",
+   "objective": "AI nejlíp pochopíš, když si sám natrénuješ malý model — třeba v Teachable Machine nebo micro:bit CreateAI ho naučíš rozpoznat gesto či obrázek.",
+   "recallQ": "Zhodnotil bys přesnost svého natrénovaného modelu na nových příkladech?"
+  },
+  {
+   "slug": "umela-inteligence-typy-ai-uloh",
+   "title": "Typy AI úloh",
+   "tema": "umela-inteligence",
+   "objective": "AI úlohy se dělí na pár základních druhů: klasifikace (zařaď do kategorie — spam/ne-spam), predikce (odhadni číslo — třeba cenu) a generování (vytvoř nový obsah — text, …",
+   "recallQ": "Popsal bys rozdíl mezi klasifikací, predikcí a generováním?"
+  },
+  {
+   "slug": "umela-inteligence-jak-funguji-chatboti-llm-rag",
+   "title": "Jak fungují chatboti (LLM, RAG)",
+   "tema": "umela-inteligence",
+   "objective": "Dnešní chatboti stojí na velkých jazykových modelech (LLM) natrénovaných na obrovském množství textu.",
+   "recallQ": "Co je „Jak fungují chatboti (LLM, RAG)“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "umela-inteligence-hlubsi-etika-ai",
+   "title": "Hlubší etika AI",
+   "tema": "umela-inteligence",
+   "objective": "Za používáním AI stojí etické otázky: neškodit, být spravedlivý ke všem skupinám, být průhledný v tom, jak AI rozhoduje, a myslet i na její energetickou náročnost.",
+   "recallQ": "Posoudil bys konkrétní použití AI podle etických kritérií (neškodit, spravedlnost, průhlednost)?"
+  },
+  {
+   "slug": "umela-inteligence-deepfakes-a-synteticka-media",
+   "title": "Deepfakes a syntetická média",
+   "tema": "umela-inteligence",
+   "objective": "AI umí vyrobit falešné, ale realisticky vypadající video, foto nebo hlas.",
+   "recallQ": "Posoudil bys u konkrétního videa nebo obrázku, zda může jít o deepfake, a zdůvodní to?"
+  },
+  {
+   "slug": "umela-inteligence-ai-a-spolecnost",
+   "title": "AI a společnost",
+   "tema": "umela-inteligence",
+   "objective": "AI mění práci, vzdělávání i to, jak vzniká a šíří se informace — přináší příležitosti i rizika (dezinformace, závislost).",
+   "recallQ": "Co je „AI a společnost“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "kyberbezpecnost-sifrovani-a-https",
+   "title": "Šifrování a HTTPS",
+   "tema": "kyberbezpecnost",
+   "objective": "Šifrování promění data v nečitelnou změť pro každého, kdo nemá klíč.",
+   "recallQ": "Co je „Šifrování a HTTPS“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "kyberbezpecnost-typy-utoku",
+   "title": "Typy útoků",
+   "tema": "kyberbezpecnost",
+   "objective": "Přehled hrozeb, se kterými se lze setkat: malware (škodlivý program), ransomware (zašifruje data a žádá výkupné) a další.",
+   "recallQ": "Popsal bys základní typy útoků (malware, ransomware) a způsob jejich šíření?"
+  },
+  {
+   "slug": "kyberbezpecnost-ai-podvody",
+   "title": "AI podvody",
+   "tema": "kyberbezpecnost",
+   "objective": "AI posunula podvody na novou úroveň: deepfake video, naklonovaný hlas známého člověka nebo dokonalý phishing bez chyb.",
+   "recallQ": "Posoudil bys důvěryhodnost podezřelého sdělení a doporučí ověření jinou cestou?"
+  },
+  {
+   "slug": "kyberbezpecnost-sextortion-a-citlivy-obsah",
+   "title": "Sextortion a citlivý obsah",
+   "tema": "kyberbezpecnost",
+   "objective": "Vydírání intimními fotkami — dnes i falešnými, vytvořenými AI.",
+   "recallQ": "Co je „Sextortion a citlivý obsah“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "kyberbezpecnost-overovani-pres-druhy-kanal",
+   "title": "Ověřování přes druhý kanál",
+   "tema": "kyberbezpecnost",
+   "objective": "Když ti „kamarád\" píše o peníze nebo „banka\" chce heslo, ověř si to jinou cestou — zavolej, zeptej se napřímo.",
+   "recallQ": "Zhodnotil bys důvěryhodnost žádosti a zdůvodní potřebu ji ověřit jinou cestou?"
+  },
+  {
+   "slug": "kyberbezpecnost-sitova-bezpecnost-a-ctf",
+   "title": "Síťová bezpečnost a CTF",
+   "tema": "kyberbezpecnost",
+   "objective": "Pro zvídavé: jak se chrání sítě a jak přemýšlí útočník.",
+   "recallQ": "Co je „Síťová bezpečnost a CTF“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "digitalni-obcanstvi-rozumet-ai-halucinace-bias",
+   "title": "Rozumět AI (halucinace, bias)",
+   "tema": "digitalni-obcanstvi",
+   "objective": "Občanské minimum o AI: že jazykové modely předpovídají slova (a proto halucinují), že se učí z dat (a proto mají bias) a že jejich výstup je potřeba ověřovat.",
+   "recallQ": "Ověřil bys výstup AI a posoudí, zda je použitelný, nebo obsahuje chybu?"
+  },
+  {
+   "slug": "digitalni-obcanstvi-rozpoznani-ai-obsahu",
+   "title": "Rozpoznání AI obsahu",
+   "tema": "digitalni-obcanstvi",
+   "objective": "Umět odhadnout, jestli je text, obraz nebo video vytvořené AI — a vědět, že spolehlivý univerzální detektor neexistuje.",
+   "recallQ": "Posoudil bys původ obsahu na základě kontextu a ověření zdroje, ne pouze podle vzhledu?"
+  },
+  {
+   "slug": "digitalni-obcanstvi-etika-ai-ve-skole",
+   "title": "Etika AI ve škole",
+   "tema": "digitalni-obcanstvi",
+   "objective": "Kde je hranice mezi tím, když ti AI pomůže se učit, a když za tebe úkol prostě udělá (a připraví tě o učení).",
+   "recallQ": "Co je „Etika AI ve škole“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "digitalni-obcanstvi-pravo-a-etika",
+   "title": "Právo a etika",
+   "tema": "digitalni-obcanstvi",
+   "objective": "Základní pravidla digitálního světa: autorská práva (čí je co) a ochrana osobních údajů (GDPR), zvlášť u nezletilých.",
+   "recallQ": "Vysvětlil bys základní pravidla autorských práv a ochrany osobních údajů (GDPR) u nezletilých?"
+  },
+  {
+   "slug": "digitalni-obcanstvi-obchodni-modely-platforem",
+   "title": "Obchodní modely platforem",
+   "tema": "digitalni-obcanstvi",
+   "objective": "Když je služba „bezplatná\", obvykle platíš pozorností a daty.",
+   "recallQ": "Co je „Obchodní modely platforem“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "digitalni-obcanstvi-aktivni-digitalni-obcanstvi",
+   "title": "Aktivní digitální občanství",
+   "tema": "digitalni-obcanstvi",
+   "objective": "Být online nejen konzument, ale i tvůrce hodnotného obsahu a slušný účastník diskuse.",
+   "recallQ": "Vytvořil bys vlastní hodnotný příspěvek, kterým pozitivně spoluutváří digitální prostředí?"
+  },
+  {
+   "slug": "tvorba-webu-ai-asistovana-tvorba-webu",
+   "title": "AI-asistovaná tvorba webu",
+   "tema": "tvorba-webu",
+   "objective": "Nástroje jako v0, Lovable nebo Claude Artifacts vytvoří funkční stránku z pouhého popisu za pár vteřin.",
+   "recallQ": "Posoudil bys kvalitu a použitelnost stránky, kterou vytvořila AI, a zdůvodní navržené úpravy?"
+  },
+  {
+   "slug": "tvorba-webu-frameworky",
+   "title": "Frameworky",
+   "tema": "tvorba-webu",
+   "objective": "U větších webů se nepíše všechno od nuly — frameworky (React a spol.) a knihovny stylů (Tailwind) dávají hotové stavební bloky a řád.",
+   "recallQ": "Co je „Frameworky“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "tvorba-webu-nasazeni-webu",
+   "title": "Nasazení webu",
+   "tema": "tvorba-webu",
+   "objective": "Nasazení (deployment) je krok, kdy se web z tvého počítače dostane na internet.",
+   "recallQ": "Co je „Nasazení webu“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "tvorba-webu-pristupnost-a-seo",
+   "title": "Přístupnost a SEO",
+   "tema": "tvorba-webu",
+   "objective": "Přístupnost (a11y) znamená udělat web použitelný i pro lidi s hendikepem (čtečky obrazovky, ovládání klávesnicí); SEO je péče o to, aby web našly vyhledávače.",
+   "recallQ": "Posoudil bys přístupnost stránky pro uživatele s hendikepem a doporučí konkrétní zlepšení?"
+  },
+  {
+   "slug": "tvorba-webu-ux-ui-a-design-webu",
+   "title": "UX/UI a design webu",
+   "tema": "tvorba-webu",
+   "objective": "UI je to, jak web vypadá, UX to, jak se používá.",
+   "recallQ": "Co je „UX/UI a design webu“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "tvorba-aplikaci-prace-s-api-a-backendem",
+   "title": "Práce s API a backendem",
+   "tema": "tvorba-aplikaci",
+   "objective": "Aby appka uměla víc než jen zobrazovat, propojí se přes API s dalšími službami a se serverovou částí, která pracuje s daty.",
+   "recallQ": "Co je „Práce s API a backendem“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "tvorba-aplikaci-databaze-a-autentizace",
+   "title": "Databáze a autentizace",
+   "tema": "tvorba-aplikaci",
+   "objective": "Appky si pamatují data (databáze) a musí poznat, kdo je kdo (autentizace — přihlašování).",
+   "recallQ": "Co je „Databáze a autentizace“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "tvorba-aplikaci-zivotni-cyklus-vyvoje",
+   "title": "Životní cyklus vývoje",
+   "tema": "tvorba-aplikaci",
+   "objective": "Aplikace nevznikne jedním skokem — má cyklus: navrhnout, naprogramovat, otestovat, nasadit a vylepšovat.",
+   "recallQ": "Popsal bys fáze vývoje aplikace: návrh, programování, testování, nasazení a vylepšování?"
+  },
+  {
+   "slug": "tvorba-aplikaci-publikace-do-app-storu",
+   "title": "Publikace do app storů",
+   "tema": "tvorba-aplikaci",
+   "objective": "Aby se hotová appka dostala k lidem, projde publikací — na webu je to nasazení, u mobilů obchody (App Store, Google Play) s jejich pravidly a schvalováním.",
+   "recallQ": "Vysvětlil bys rozdíl mezi zveřejněním webové aplikace a publikací mobilní aplikace přes obchody se schvalováním?"
+  },
+  {
+   "slug": "tvorba-aplikaci-iluze-ze-to-umim",
+   "title": "Iluze, že to umím",
+   "tema": "tvorba-aplikaci",
+   "objective": "Když za tebe appku „poskládá\" AI, snadno vznikne pocit, že to umíš — dokud se něco nerozbije a ty nevíš proč.",
+   "recallQ": "Co je „Iluze, že to umím“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "tvorba-obsahu-generativni-video",
+   "title": "Generativní video",
+   "tema": "tvorba-obsahu",
+   "objective": "AI dnes vytvoří realistické video z textu nebo obrázku (Sora, Veo, Runway) i se zvukem.",
+   "recallQ": "Co je „Generativní video“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "tvorba-obsahu-generativni-hudba-a-hlas",
+   "title": "Generativní hudba a hlas",
+   "tema": "tvorba-obsahu",
+   "objective": "Nástroje jako Suno nebo ElevenLabs složí celou písničku nebo napodobí hlas z krátké ukázky.",
+   "recallQ": "Vytvořil bys krátkou skladbu nebo mluvený výstup v generativním nástroji podle zadání?"
+  },
+  {
+   "slug": "tvorba-obsahu-strih-a-postprodukce-s-ai",
+   "title": "Střih a postprodukce s AI",
+   "tema": "tvorba-obsahu",
+   "objective": "AI dnes zvládne velkou část dokončovacích prací: automatické titulky, čištění zvuku, výběr nejlepších záběrů nebo úpravu videa přepisem textu (CapCut, Descript).",
+   "recallQ": "Co je „Střih a postprodukce s AI“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "tvorba-obsahu-kontrola-nad-vysledkem",
+   "title": "Kontrola nad výsledkem",
+   "tema": "tvorba-obsahu",
+   "objective": "Vygenerovat jeden hezký obrázek je snadné; těžší je udržet stejnou postavu nebo styl napříč více obrázky a mít nad výsledkem skutečnou kontrolu.",
+   "recallQ": "Použil bys referenční obrázek nebo dokreslování (in/out-painting), aby udržel stejný styl či postavu napříč obrázky?"
+  },
+  {
+   "slug": "tvorba-obsahu-puvod-obsahu-a-vodoznaky",
+   "title": "Původ obsahu a vodoznaky",
+   "tema": "tvorba-obsahu",
+   "objective": "Jak poznat, jestli je obsah pravý, nebo vytvořený AI?",
+   "recallQ": "Co je „Původ obsahu a vodoznaky“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "tvorba-obsahu-propojeni-nastroju-obraz-video-zvuk",
+   "title": "Propojení nástrojů (obraz, video, zvuk)",
+   "tema": "tvorba-obsahu",
+   "objective": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
+   "recallQ": "Co je „Propojení nástrojů (obraz, video, zvuk)“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "herni-vyvoj-lehke-enginy",
+   "title": "Lehké enginy",
+   "tema": "herni-vyvoj",
+   "objective": "Mezikrok mezi Scratchem a plnými nástroji: GDevelop (bez kódu, přes logiku událostí) nebo Roblox Studio dají skutečnou hru, kterou jde sdílet.",
+   "recallQ": "Sestavil bys hru v lehkém enginu (GDevelop, Roblox Studio) pomocí logiky událostí a sdílí ji?"
+  },
+  {
+   "slug": "herni-vyvoj-skutecne-enginy",
+   "title": "Skutečné enginy",
+   "tema": "herni-vyvoj",
+   "objective": "Profesionální nástroje s textovým kódem: Godot (jazyk GDScript, blízký Pythonu, zdarma a odlehčený) nebo Unity (C#, silné na mobilech).",
+   "recallQ": "Porovnal bys možnosti a náročnost skutečných enginů (Godot, Unity) s lehkými enginy a Scratchem?"
+  },
+  {
+   "slug": "herni-vyvoj-ai-generovani-assetu",
+   "title": "AI generování assetů",
+   "tema": "herni-vyvoj",
+   "objective": "AI dnes vytvoří herní grafiku a 3D objekty z popisu (Roblox Cube, Meshy) — místo hodin modelování napíšeš, co chceš.",
+   "recallQ": "Vytvořil bys herní grafiku nebo 3D objekt z textového popisu v AI nástroji (Roblox Cube, Meshy) a zasadí jej do hry?"
+  },
+  {
+   "slug": "herni-vyvoj-ai-asistenti-a-kod",
+   "title": "AI asistenti a kód",
+   "tema": "herni-vyvoj",
+   "objective": "Vestavění pomocníci (Roblox Assistant, Unity Muse) i externí AI umí napsat a upravit kód hry.",
+   "recallQ": "Použil bys AI asistenta k vytvoření nebo úpravě části herního kódu podle popsaného záměru?"
+  },
+  {
+   "slug": "herni-vyvoj-publikace-hry",
+   "title": "Publikace hry",
+   "tema": "herni-vyvoj",
+   "objective": "Hotovou hru sdílíš s ostatními — třeba na itch.io nebo přímo v Robloxu.",
+   "recallQ": "Co je „Publikace hry“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "fyzicky-computing-arduino-a-raspberry-pi",
+   "title": "Arduino a Raspberry Pi",
+   "tema": "fyzicky-computing",
+   "objective": "Krok dál za micro:bit: Arduino tě přiblíží skutečné elektronice (nepájivé pole, víc senzorů), Raspberry Pi je plnohodnotný malý počítač s Linuxem pro náročnější projekty.",
+   "recallQ": "Porovnal bys micro:bit, Arduino a Raspberry Pi podle toho, k čemu se která deska hodí?"
+  },
+  {
+   "slug": "fyzicky-computing-roboti-a-vozitka",
+   "title": "Roboti a vozítka",
+   "tema": "fyzicky-computing",
+   "objective": "Když se k desce přidá podvozek a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
+   "recallQ": "Sestavil bys program, který robota rozjede a nechá ho reagovat na senzor, například na čáru nebo překážku?"
+  },
+  {
+   "slug": "fyzicky-computing-iot",
+   "title": "IoT",
+   "tema": "fyzicky-computing",
+   "objective": "Internet věcí (IoT): senzory posílají naměřená data po síti do cloudu, kde se zobrazí na přehledu (dashboardu).",
+   "recallQ": "Co je „IoT“ a k čemu se ti hodí?"
+  },
+  {
+   "slug": "fyzicky-computing-ai-primo-na-zarizeni-tinyml",
+   "title": "AI přímo na zařízení (TinyML)",
+   "tema": "fyzicky-computing",
+   "objective": "Strojové učení, které běží přímo na malém zařízení bez cloudu.",
+   "recallQ": "Popsal bys kroky, kterými na malém zařízení vznikne model strojového učení?"
+  },
+  {
+   "slug": "fyzicky-computing-komunikace-mezi-zarizenimi",
+   "title": "Komunikace mezi zařízeními",
+   "tema": "fyzicky-computing",
+   "objective": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
+   "recallQ": "Vytvořil bys program, ve kterém jedno zařízení pošle data druhému?"
+  }
+ ]
+}

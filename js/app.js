@@ -81,6 +81,7 @@ class PBook {
     this.autoTagBlocks();
     await this.loadConcepts();   // concept index + contracts (graceful if missing)
     await this._loadProposals(); // concept proposals under interest testing (ghost items)
+    await this._loadConceptMap(); // graf konceptů z Mapy znalostí (core + ghost, prereq/souvisí)
     console.info('[pbook] app', APP_VERSION);
     this._loadPrivateBlocks();   // reader's own generated variants (private until shared)
     this._loadOverrides();       // accepted remixes: originalId → your version (persistent)
@@ -655,10 +656,10 @@ class PBook {
     // reader's profile. Clicking only changes the request (no hidden accordions,
     // no silent swaps); serving/generating happens on the buttons below.
     const DIMS = [
-      { dim: 'lens', label: '🌐 World' }, { dim: 'lang', label: '🌍 Language' },
-      { dim: 'genre', label: '✒️ Genre' }, { dim: 'depth', label: '📏 Depth' },
-      { dim: 'visuality', label: '🖼 Form' }, { dim: 'lengthBand', label: '⏱ Délka' },
-      { dim: 'carriers', label: '🧩 Blocks' },
+      { dim: 'lens', label: '🌐 Svět' }, { dim: 'lang', label: '🌍 Jazyk' },
+      { dim: 'genre', label: '✒️ Žánr' }, { dim: 'depth', label: '📏 Hloubka' },
+      { dim: 'visuality', label: '🖼 Forma' }, { dim: 'lengthBand', label: '⏱ Délka' },
+      { dim: 'carriers', label: '🧩 Prvky' },
     ];
     const curMeta = entry.meta;
     const profile = this.user.getTargetFacets();
@@ -677,13 +678,13 @@ class PBook {
       const cfg = [this._facetValues(m, 'lens').join('|'), this._facetValues(m, 'lang').join('|'),
                    g, this._facetValues(m, 'depth').join('–'), this._facetValues(m, 'visuality').join('–'),
                    this._facetValues(m, 'lengthBand').join('–')].join(' · ');
-      const tip = `${(m.title || m.id).replace(/"/g, "'")}\n${state.toUpperCase()} · ${cfg}${isCurrent ? '\n(reading now)' : ''}`;
+      const tip = `${(m.title || m.id).replace(/"/g, "'")}\n${state.toUpperCase()} · ${cfg}${isCurrent ? '\n(právě čteš)' : ''}`;
       return `<button class="tstrip-chip ${isCurrent ? 'tstrip-current' : ''}" style="--sc:${color}"
         title="${this.escHtml(tip)}" ${isCurrent ? '' : `onclick="app.pickTelling('${blockId}','${m.id}')"`}>${GENRE_ICONS[g] || '📄'}</button>`;
-    }).join('')}<span class="tstrip-hint">${pool.length} tellings — hover for details, click to read</span></div>`;
+    }).join('')}<span class="tstrip-hint">${pool.length} podání — najetím detail, kliknutím čteš</span></div>`;
 
     h += `<div class="tellings-compose">
-      <div style="font-size:.72rem;font-weight:700;margin:.6em 0 .15em">🎛 Want it told differently? <span style="font-weight:400;color:var(--text-3)">◉ = this telling · <span class="legend-active">filled</span> = your target · numbers = existing tellings${changed ? ` · <a href="#" onclick="event.preventDefault();app.resetPanelTarget('${blockId}')" style="color:var(--accent)">↺ reset (${changed} changed)</a>` : ''}</span></div>
+      <div style="font-size:.72rem;font-weight:700;margin:.6em 0 .15em">🎛 Chceš to podat jinak? <span style="font-weight:400;color:var(--text-3)">◉ = toto podání · <span class="legend-active">vyplněné</span> = tvoje volba · čísla = existující podání${changed ? ` · <a href="#" onclick="event.preventDefault();app.resetPanelTarget('${blockId}')" style="color:var(--accent)">↺ vrátit (${changed} změn)</a>` : ''}</span></div>
       ${DIMS.map(({ dim, label }) => `<div class="dna-row" style="align-items:flex-start"><span class="dna-label" style="padding-top:.2em">${label}</span>
         <div class="tellings-dimvals" style="margin:0">${this._renderDimValues(blockId, dim, pool, curMeta)}</div></div>`).join('')}
     </div>`;
@@ -697,23 +698,27 @@ class PBook {
     const canGen = this._f('generation') && await this._probeGeneration();
     const wish = this._steerWish?.[conceptId] || '';
     h += `<div class="tellings-gen" id="gen-offer-${blockId}">`;
+    const gapLabel = `<span>Tohle zatím žádné podání nepokrývá${best ? ` — nejblíž je <b>${this.escHtml(best.b.meta.title || best.b.meta.id)}</b> (${Math.round(best.s * 100)} % shody)` : ''}.</span>`;
     if (covered) {
-      h += `<span>✓ Tvoje volba je pokrytá: <b>${this.escHtml(best.b.meta.title || best.b.meta.id)}</b> (${Math.round(best.s * 100)}% shoda)</span>
+      h += `<span>✓ Tvoje volba je pokrytá: <b>${this.escHtml(best.b.meta.title || best.b.meta.id)}</b> (${Math.round(best.s * 100)} % shoda)</span>
         <button class="steer-chip" style="border-color:var(--accent);color:var(--accent)" onclick="app.pickTelling('${blockId}','${best.b.meta.id}')">Přečíst</button>`;
     } else if (canGen && this.user.readerMode === 'open') {
-      h += `<span>Tohle zatím žádné podání nepokrývá${best ? ` (nejblíž: ${Math.round(best.s * 100)}%)` : ''}.</span>
+      h += gapLabel + `
+        ${best ? `<button class="steer-chip" onclick="app.pickTelling('${blockId}','${best.b.meta.id}')">Přečíst nejbližší</button>` : ''}
         <input type="text" id="gen-wish-${blockId}" class="gen-wish" maxlength="300" value="${this.escHtml(wish)}"
           oninput="(app._steerWish=app._steerWish||{})['${conceptId}']=this.value"
           placeholder="Volitelná poznámka: něco konkrétního? (třeba ‚použij příklad se školním obchůdkem‘)">
         <button class="steer-chip steer-gen" onclick="app.generateVariant('${blockId}','${conceptId}')">&#10024; Vygenerovat přesně tohle (~30 s)</button>
-        ${(target.genre === 'comic' || target.genre === 'animation') ? `<span style="font-size:.65rem;color:var(--text-3);flex-basis:100%">${target.genre === 'comic' ? 'Čtyřpanelový komiks' : 'Animované SVG'} will be drawn for this segment (~40 s).</span>` : (target.visuality === 'visual-first' || /diagram|image/.test(target.carriers || '')) ? `<span style="font-size:.65rem;color:var(--text-3);flex-basis:100%">For genre comic/animation the generator draws a real visual; plain text requests deliver prose, tables, formulas and code.</span>` : ''}`;
+        ${(target.genre === 'comic' || target.genre === 'animation') ? `<span style="font-size:.65rem;color:var(--text-3);flex-basis:100%">${target.genre === 'comic' ? 'Čtyřpanelový komiks' : 'Animované SVG'} se nakreslí přímo pro tento úsek (~40 s).</span>` : ''}`;
     } else if (canGen) {
-      h += `<span>Tohle zatím žádné podání nepokrývá — zapni si <b>Otevřený režim</b> v <a href="#" onclick="app.switchView('profile');return false">Profilu</a> a nech si ho vygenerovat.</span>`;
+      h += gapLabel + ` <span>Zapni si <b>Otevřený režim</b> v <a href="#" onclick="app.switchView('profile');return false">Profilu</a> a nech si přesně tohle vygenerovat.</span>`;
     } else {
-      h += `<span>Tohle zatím žádné podání nepokrývá — tvůj zájem se zaznamenal a pomůže redakci rozhodnout, co psát dál. &#128203;</span>`;
+      h += gapLabel + `
+        ${best ? `<button class="steer-chip" onclick="app.pickTelling('${blockId}','${best.b.meta.id}')">Přečíst nejbližší</button>` : ''}
+        <button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" id="wish-btn-${blockId}" onclick="app.tellingWish('${blockId}','${conceptId}')">🌱 Chci tohle podání (+2 XP)</button>`;
     }
     h += '</div>';
-    h += `<div style="font-size:.68rem;color:var(--text-3);margin-top:.35em">Tohle jsou podání jednoho konceptu. Chybí ti celý <i>koncept</i>? <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">🌱 propose it</a> (+10 XP).</div>`;
+    h += `<div style="font-size:.68rem;color:var(--text-3);margin-top:.35em">Tohle jsou podání jednoho konceptu. Chybí ti celý <i>koncept</i>? <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">🌱 navrhni ho</a> (+10 XP).</div>`;
     panel.innerHTML = h;
   }
 
@@ -871,13 +876,15 @@ class PBook {
       if (s > bestScore) { best = b; bestScore = s; }
     }
     const logBase = { blockId, concept: conceptId, action: info.action, facet: info.facet || null, value: info.value || null, target, matchScore: Math.round(bestScore * 100) / 100 };
-    if (best) {
+    if (best && bestScore >= CONFIG.steering.serveThreshold) {
+      // Skutečně pokrývající podání → naservíruj. Nikdy neswapujeme na vzdálené varianty.
       this.rc.logEvent('steer', { ...logBase, result: 'served', servedId: best.meta.id });
       this._swapBlock(blockId, best, target);
     } else {
-      // Honest miss: nothing in the catalog does what was asked → show what exists + generate CTA
+      // Poctivá mezera: nic nepokrývá, co sis vybral → panel s nejbližším + generovat/přát si
       this.rc.logEvent('steer_miss', logBase);
-      this.toggleTellings(blockId, `Podání <b>${info.askLabel}</b> tohoto konceptu zatím není — tady je, co existuje:`, target);
+      const pct = best ? ` (nejblíž: ${Math.round(bestScore * 100)} % shody)` : '';
+      this.toggleTellings(blockId, `Podání <b>${info.askLabel}</b> tohoto konceptu zatím neexistuje${pct}:`, target);
       document.getElementById(`tellings-${blockId}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
@@ -910,15 +917,15 @@ class PBook {
 
     const isGenerated = vMeta.state === 'private' || vMeta.state === 'community';
     const noticeBits = [];
-    if (vMeta.lens && vMeta.lens !== 'generic') noticeBits.push(`${(CONFIG.facets.lens.icons || {})[vMeta.lens] || ''} ${vMeta.lens} examples`);
-    if (vMeta.depth) noticeBits.push(`${vMeta.depth} depth`);
+    if (vMeta.lens && vMeta.lens !== 'generic') noticeBits.push(`${(CONFIG.facets.lens.icons || {})[vMeta.lens] || ''} příklady: ${vMeta.lens}`);
+    if (vMeta.depth) noticeBits.push(`hloubka: ${vMeta.depth}`);
     const provenance = vMeta.state === 'community'
-      ? `<span class="gen-badge">shared by a reader &middot; not yet editor-verified</span>`
+      ? `<span class="gen-badge">sdílel čtenář &middot; zatím bez redakce</span>`
       : vMeta.state === 'private'
-        ? `<span class="gen-badge">&#9889; generated for your settings &middot; not yet editor-verified</span>`
+        ? `<span class="gen-badge">&#9889; vygenerováno podle tvého nastavení &middot; zatím bez redakce</span>`
         : '';
     const notice = `<div class="variant-notice">
-      <span>&#127899;&#65039; Different telling: ${noticeBits.join(' &middot; ') || 'variant'} ${provenance}</span>
+      <span>&#127899;&#65039; Jiné podání: ${noticeBits.join(' &middot; ') || 'varianta'} ${provenance}</span>
       <span>
         <button class="steer-chip" onclick="app.toggleTellings('${vMeta.id}')">&#127899;&#65039; Všechna podání</button>
         <button class="steer-chip" onclick="app.unswapBlock('${vMeta.id}')">&#8617; Originál</button>
@@ -1949,7 +1956,7 @@ class PBook {
       <div class="block-header">
         <h3>${block.title}</h3>
         <div class="block-meta">
-          <span>${block.readingTime || 3} min read</span>
+          <span>${block.readingTime || 3} min čtení</span>
         </div>
       </div>
       ${this._renderTellingsIndicator(block)}
@@ -1961,12 +1968,13 @@ class PBook {
         ${sideHtml}
       </div>
       ${block.keyTakeaway ? `<div class="key-takeaway"><div class="key-takeaway-label">Hlavní myšlenka</div><div class="key-takeaway-text">${block.keyTakeaway}</div></div>` : ''}
+      ${this._renderConceptLinks(block)}
       ${this._renderFeedbackBar(block)}
       <div class="block-footer">
         <div class="block-reactions" data-block="${block.id}">
           <button class="like-btn ${this.user.ratings.get(block.id)>=0.7?'liked':''}" onclick="app.toggleLike('${block.id}')">
             ${this.user.ratings.get(block.id)>=0.7?'&#10084;&#65039;':'&#9825;'}
-            <span>${this.user.ratings.get(block.id)>=0.7?'Liked':'Like'}</span>
+            <span>${this.user.ratings.get(block.id)>=0.7?'Líbí se':'Líbí?'}</span>
           </button>
         </div>
         <div class="block-actions">
@@ -3353,7 +3361,7 @@ class PBook {
     const el = document.getElementById('mapContent');
     const prog = this.user.getProgress(this.allBlocks);
     const visibleVoices = this.user.getVisibleVoices();
-    const mapMode = this._mapMode || 'list';
+    const mapMode = this._mapMode || 'koncepty';
 
     const summary = this.user.getSignalSummary();
 
@@ -3372,6 +3380,7 @@ class PBook {
         ${summary.dwellTotal > 60000 ? `<span>&#9201; ${Math.round(summary.dwellTotal/60000)}m reading</span>` : ''}
       </div>` : ''}
       <div class="map-mode-toggle">
+        <button class="map-mode-btn ${mapMode === 'koncepty' ? 'active' : ''}" onclick="app.setMapMode('koncepty')">🧠 Koncepty</button>
         <button class="map-mode-btn ${mapMode === 'visual' ? 'active' : ''}" onclick="app.setMapMode('visual')">Vizuální</button>
         <button class="map-mode-btn ${mapMode === 'list' ? 'active' : ''}" onclick="app.setMapMode('list')">Podrobný seznam</button>
         ${this._f('steering') ? `<button class="map-mode-btn ${mapMode === 'coverage' ? 'active' : ''}" onclick="app.setMapMode('coverage')">🌱 Živá kniha</button>` : ''}
@@ -3403,7 +3412,9 @@ class PBook {
       return;
     }
 
-    if (mapMode === 'visual') {
+    if (mapMode === 'koncepty') {
+      html += await this.renderConceptsMap();
+    } else if (mapMode === 'visual') {
       html += await this.renderVisualMap(visibleVoices);
       el.innerHTML = html;
       this._vmapInitZoom();
@@ -3599,7 +3610,7 @@ class PBook {
         <div class="tellings-dims" style="margin-bottom:.4em">${Object.entries(DIM_LABELS).map(([d, l]) =>
           `<button class="steer-chip ${d === dim ? 'dim-active' : ''}" onclick="app.setCovDim('${d}')">${l}</button>`).join('')}
         </div>
-        <p style="font-size:.78rem;margin-bottom:.3em">Každý článek živé knihy — <b>${totalArticles}</b> řádků; podle hodnoty:${values.map(v => ` ${icons[v] || v} <b>${coveringCount[v]}</b>`).join(' ·')}. ● označuje the values an article's subspace covers — one article can serve several${myVal && myVal !== this._facetDefault(dim) ? `; your setting <b>${icons[myVal] || ''} ${myVal}</b> is highlighted` : ''}. Click a row to read; to request or generate a missing telling, use the 🎛 panel inside any section. Missing a whole <i>concept</i>? <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">🌱 propose it</a>.</p>
+        <p style="font-size:.78rem;margin-bottom:.3em">Každý článek živé knihy — <b>${totalArticles}</b> řádků; podle hodnoty:${values.map(v => ` ${icons[v] || v} <b>${coveringCount[v]}</b>`).join(' ·')}. ● označuje the values an article's subspace covers — one article can serve several${myVal && myVal !== this._facetDefault(dim) ? `; your setting <b>${icons[myVal] || ''} ${myVal}</b> is highlighted` : ''}. Click a row to read; to request or generate a missing telling, use the 🎛 panel inside any section. Missing a whole <i>concept</i>? <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">🌱 navrhni ho</a>.</p>
         <p style="font-size:.68rem;color:var(--text-3)">● color = state: <span style="color:#7C3AED">■</span> core · <span style="color:#10B981">■</span> edited · <span style="color:#D97706">■</span> reader content (✨ yours / ⚡ shared)</p>
       </div>
       <div id="covInspector"></div>
@@ -3762,83 +3773,101 @@ class PBook {
 
 
   // ===== VISUAL RPG MAP =====
-  async renderVisualMap(visibleVoices) {
-    if (!this._visualMapData) {
-      try {
-        const res = await fetch('/content/visual-map-data.json');
-        this._visualMapData = await res.json();
-      } catch (e) {
-        return '<div style="padding:2em;text-align:center;color:var(--text-3)">Načítám vizuální mapu…</div>';
-      }
-    }
-    const mapData = this._visualMapData;
-    const W = mapData.width || 1400, H = mapData.height || 900;
-    const readSet = this.user.readBlocks;
-    const savedSet = this.user.savedBlocks;
-    const readCount = mapData.items.filter(i => readSet.has(i.id)).length;
-    const coreCount = mapData.items.filter(i => i.core).length;
-    const coreRead = mapData.items.filter(i => i.core && readSet.has(i.id)).length;
+  async renderVisualMap() {
+    await this._loadConceptMap();
+    const cm = this._cmapData;
+    if (!cm) return '<div style="padding:2em;text-align:center;color:var(--text-3)">Mapu konceptů se nepodařilo načíst.</div>';
+    const votes = this._ghostVotes();
+    const byConcept = this._blocksByConcept();
+    const isReadC = (slug) => (byConcept[slug] || []).some(b => this.user.readBlocks.has(b.meta.id));
+    const coreNodes = cm.nodes.filter(n => n.state === 'core');
+    const ghostNodes = cm.nodes.filter(n => n.state === 'ghost');
+    const coreRead = coreNodes.filter(n => isReadC(n.slug)).length;
+    const ghostVoted = ghostNodes.filter(n => n.slug in votes).length;
+    const W = cm.width, H = cm.height;
 
-    // Filter bar
     let html = `<div class="vmap-container">
     <div class="vmap-toolbar" style="display:flex;gap:.4em;padding:.4em;flex-wrap:wrap;align-items:center;font-size:.72rem">
-      <button class="vmap-filter-btn active" data-filter="all" onclick="app._vmapFilter('all',this)">Vše (${mapData.items.length})</button>
-      <button class="vmap-filter-btn" data-filter="core" onclick="app._vmapFilter('core',this)">Core (${coreCount})</button>
-      <button class="vmap-filter-btn" data-filter="unread" onclick="app._vmapFilter('unread',this)">Nepřečtené (${mapData.items.length - readCount})</button>
-      <button class="vmap-filter-btn" data-filter="read" onclick="app._vmapFilter('read',this)">Přečtené (${readCount})</button>
-      <span style="margin-left:auto;color:var(--text-3)">Kolečkem přiblížíš · Tažením posuneš</span>
+      <button class="vmap-filter-btn active" data-filter="all" onclick="app._vmapFilter('all',this)">Vše (${cm.nodes.length})</button>
+      <button class="vmap-filter-btn" data-filter="core" onclick="app._vmapFilter('core',this)">V knize (${coreNodes.length})</button>
+      <button class="vmap-filter-btn" data-filter="ghost" onclick="app._vmapFilter('ghost',this)">🌱 Návrhy (${ghostNodes.length})</button>
+      <button class="vmap-filter-btn" data-filter="read" onclick="app._vmapFilter('read',this)">Přečtené (${coreRead})</button>
+      <span style="margin-left:auto;color:var(--text-3)">Kolečkem přiblížíš · tažením posuneš · plné = v knize, čárkované 🌱 = navrhované</span>
     </div>
     <div class="vmap-canvas" id="vmapCanvas" style="overflow:hidden;position:relative;border:1px solid var(--border);border-radius:8px;touch-action:none;cursor:grab">
       <svg id="vmapSvg" viewBox="0 0 ${W} ${H}" style="width:100%;display:block">
       <rect width="${W}" height="${H}" fill="var(--bg)"/>`;
 
-    // Edges (similarity lines)
-    if (mapData.edges) {
-      mapData.edges.forEach(e => {
-        html += `<line class="vmap-edge" x1="${e.fx}" y1="${e.fy}" x2="${e.tx}" y2="${e.ty}" stroke="var(--border)" stroke-width="0.5" opacity="0.3"/>`;
-      });
-    }
-
-    // Chapter labels
-    mapData.chapters.forEach(ch => {
-      html += `<text x="${ch.cx}" y="${ch.cy - 28}" text-anchor="middle" font-size="13" font-weight="800" fill="${ch.color}" opacity="0.25" letter-spacing="0.5" class="vmap-ch-label">${ch.title.toUpperCase()}</text>`;
-      html += `<text x="${ch.cx}" y="${ch.cy - 15}" text-anchor="middle" font-size="9" fill="${ch.color}" opacity="0.2">${ch.count} sections</text>`;
+    // hrany: prerekvizity (plné) a souvisí (čárkované mosty)
+    cm.edges.forEach(e => {
+      const dash = e.type === 'souvisi' ? ' stroke-dasharray="4 3"' : '';
+      const op = e.type === 'souvisi' ? '0.22' : '0.34';
+      html += `<line class="vmap-edge" x1="${e.ax}" y1="${e.ay}" x2="${e.bx}" y2="${e.by}" stroke="#9CA3AF" stroke-width="${e.type === 'souvisi' ? 0.8 : 1.1}" opacity="${op}"${dash}/>`;
     });
 
-    // Items
-    mapData.items.forEach(item => {
-      const isRead = readSet.has(item.id);
-      const isSaved = savedSet.has(item.id);
-      const isCore = item.core;
-      const color = mapData.colors[item.chapter] || '#666';
-      const r = isCore ? 7 : 4;
-      const opacity = isRead ? '1.0' : isCore ? '0.65' : '0.3';
-      let stroke = '';
-      if (isSaved) stroke = `stroke="#f59e0b" stroke-width="2"`;
-      else if (isRead) stroke = `stroke="#10B981" stroke-width="1.5"`;
-      else if (isCore) stroke = `stroke="rgba(255,255,255,0.6)" stroke-width="1"`;
-      const t = this.escHtml(item.title.length > 35 ? item.title.substring(0, 33) + '…' : item.title);
-      const cls = `vmap-node${isCore ? ' vn-core' : ''}${isRead ? ' vn-read' : ''}${isSaved ? ' vn-saved' : ''}`;
+    // popisky témat
+    cm.temata.forEach(t => {
+      html += `<text x="${t.cx}" y="${t.cy - 158}" text-anchor="middle" font-size="14" font-weight="800" fill="${t.color}" opacity="0.4" letter-spacing="0.5">${this.escHtml(t.nazev.toUpperCase())}</text>`;
+    });
 
-      html += `<g class="${cls}" data-id="${item.id}" data-ch="${item.chapter}" style="cursor:pointer" onclick="window.open('#${item.id}','_blank')">
-        <circle cx="${item.x}" cy="${item.y}" r="${r}" fill="${color}" opacity="${opacity}" ${stroke}/>
-        <text class="vmap-label" x="${item.x}" y="${item.y - r - 3}" text-anchor="middle" font-size="7.5" fill="var(--text-1)" opacity="${isCore ? '0.75' : '0'}" font-weight="${isCore ? '600' : '400'}">${t}</text>
-      </g>`;
+    // uzly
+    const tcolor = Object.fromEntries(cm.temata.map(t => [t.id, t.color]));
+    cm.nodes.forEach(n => {
+      const color = tcolor[n.tema] || '#666';
+      const t = this.escHtml(n.title.length > 30 ? n.title.substring(0, 28) + '…' : n.title);
+      if (n.state === 'core') {
+        const read = isReadC(n.slug);
+        html += `<g class="vmap-node vn-core${read ? ' vn-read' : ''}" data-id="${n.slug}" data-ch="${n.tema}" style="cursor:pointer" onclick="app.openBlock('${n.slug}')">
+          <circle cx="${n.x}" cy="${n.y}" r="9" fill="${color}" opacity="${read ? '1' : '0.72'}" ${read ? 'stroke="#10B981" stroke-width="2.5"' : 'stroke="rgba(255,255,255,0.7)" stroke-width="1"'}/>
+          ${read ? `<text x="${n.x}" y="${n.y + 3.5}" text-anchor="middle" font-size="9" fill="#fff" font-weight="800">✓</text>` : ''}
+          <text class="vmap-label" x="${n.x}" y="${n.y - 13}" text-anchor="middle" font-size="8.5" fill="var(--text-1)" opacity="0.85" font-weight="600">${t}</text>
+        </g>`;
+      } else {
+        const voted = n.slug in votes;
+        const want = votes[n.slug] > 0;
+        html += `<g class="vmap-node vn-ghost${voted ? ' vn-voted' : ''}" data-id="${n.slug}" data-ch="${n.tema}" style="cursor:pointer" onclick="app._vmapGhost('${n.slug}', event)">
+          <circle cx="${n.x}" cy="${n.y}" r="6" fill="var(--bg)" stroke="${color}" stroke-width="1.6" stroke-dasharray="3 2" opacity="0.9"/>
+          <text x="${n.x}" y="${n.y + 2.8}" text-anchor="middle" font-size="7" opacity="0.9">${voted ? (want ? '👍' : '·') : '🌱'}</text>
+          <text class="vmap-label" x="${n.x}" y="${n.y - 10}" text-anchor="middle" font-size="7" fill="var(--text-2)" opacity="0.6">${t}</text>
+        </g>`;
+      }
     });
 
     html += `</svg></div>`;
-
-    // Legend
     html += `<div style="display:flex;flex-wrap:wrap;gap:.3em .5em;padding:.4em .2em;font-size:.65rem;align-items:center">`;
-    mapData.chapters.forEach(ch => {
-      html += `<span class="vmap-ch-pill" data-ch="${ch.id}" onclick="app._vmapHighlightCh('${ch.id}')" style="display:inline-flex;align-items:center;gap:.2em;cursor:pointer;padding:.1em .4em;border-radius:10px;white-space:nowrap;border:1.5px solid transparent"><span style="width:7px;height:7px;border-radius:50%;background:${ch.color};display:inline-block;flex-shrink:0"></span>${ch.title}</span>`;
+    cm.temata.forEach(t => {
+      html += `<span class="vmap-ch-pill" data-ch="${t.id}" onclick="app._vmapHighlightCh('${t.id}')" style="display:inline-flex;align-items:center;gap:.2em;cursor:pointer;padding:.1em .4em;border-radius:10px;white-space:nowrap;border:1.5px solid transparent"><span style="width:7px;height:7px;border-radius:50%;background:${t.color};display:inline-block;flex-shrink:0"></span>${this.escHtml(t.nazev)}</span>`;
     });
     html += `</div>`;
     html += `<div style="font-size:.65rem;color:var(--text-3);padding:0 .3em .3em;display:flex;gap:.8em;flex-wrap:wrap">
-      <span>Progress: ${readCount}/${mapData.items.length} read · ${coreRead}/${coreCount} core</span>
-      <span>◉ core · <span style="color:#10B981">◉</span> read · <span style="color:#f59e0b">◉</span> saved</span>
+      <span>Přečteno ${coreRead}/${coreNodes.length} konceptů v knize · 🌱 hlasováno o ${ghostVoted}/${ghostNodes.length} návrzích</span>
+      <span>plná čára = staví na · čárkovaná = souvisí</span>
     </div></div>`;
     return html;
+  }
+
+  // Klik na 🌱 uzel: mini panel se zájmem přímo v mapě
+  _vmapGhost(slug, ev) {
+    const n = this._cmapNodes?.[slug];
+    const container = document.getElementById('vmapCanvas');
+    if (!n || !container) return;
+    container.querySelector('.vmap-ghost-pop')?.remove();
+    const votes = this._ghostVotes();
+    const rect = container.getBoundingClientRect();
+    const x = Math.min(Math.max((ev?.clientX || rect.left + 40) - rect.left, 10), rect.width - 250);
+    const y = Math.min(Math.max((ev?.clientY || rect.top + 40) - rect.top + 12, 10), rect.height - 130);
+    const pop = document.createElement('div');
+    pop.className = 'vmap-ghost-pop';
+    pop.style.cssText = `position:absolute;left:${x}px;top:${y}px;z-index:3;width:240px;background:var(--surface,#fff);border:1.5px solid #0EA5E9;border-radius:10px;padding:.6em;font-size:.72rem;box-shadow:0 4px 14px rgba(0,0,0,.12)`;
+    pop.innerHTML = `<div style="display:flex;justify-content:space-between;gap:.4em"><b>🌱 ${this.escHtml(n.title)}</b><span style="cursor:pointer;color:var(--text-3)" onclick="this.closest('.vmap-ghost-pop').remove()">✕</span></div>
+      <div style="color:var(--text-2);margin:.3em 0">${this.escHtml(n.teaser || '')}</div>
+      <div style="color:var(--text-3);margin-bottom:.35em">O tomhle zatím kapitola není. Zajímalo by tě to?</div>
+      <div id="ghost-${slug}-vmap" style="display:flex;gap:.4em">${slug in votes
+        ? `<span style="color:#0EA5E9">✓ už jsi hlasoval</span>`
+        : `<button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" onclick="app.ghostVote('${slug}',1,'vmap')">👍 Tohle bych četl</button>
+           <button class="steer-chip" onclick="app.ghostVote('${slug}',-1,'vmap')">Nic pro mě</button>`}</div>`;
+    container.appendChild(pop);
+    this.rc.logEvent('ghost_view', { slug, ctx: 'vmap' });
   }
 
   // Visual map interactions — zoom, pan, pinch (desktop + mobile)
@@ -3955,10 +3984,12 @@ class PBook {
     btn.classList.add('active');
     document.querySelectorAll('.vmap-node').forEach(g => {
       const isCore = g.classList.contains('vn-core');
+      const isGhost = g.classList.contains('vn-ghost');
       const isRead = g.classList.contains('vn-read');
       let show = true;
       if (filter === 'core') show = isCore;
-      else if (filter === 'unread') show = !isRead;
+      else if (filter === 'ghost') show = isGhost;
+      else if (filter === 'unread') show = isCore && !isRead;
       else if (filter === 'read') show = isRead;
       g.style.display = show ? '' : 'none';
     });
@@ -6465,7 +6496,7 @@ class PBook {
     } catch (e) {}
     this.rc.logEvent('concept_wish', { text: text.slice(0, 300) });
     if (this._f('gamification')) { this.user.addXP(10); this.user.save(); this.updateXPBadge(); }
-    this.showXPToast('🌱 +10 XP — concept proposal recorded for the editors', 'achievement');
+    this.showXPToast('🌱 +10 XP — návrh konceptu zaznamenán pro redakci', 'achievement');
   }
 
   // Share helper: native share sheet where available, clipboard elsewhere.
@@ -6506,7 +6537,7 @@ class PBook {
       this.rc.logEvent('ghost_view', { slug: p.slug, ctx });
     }
     return `<div class="card ghost-card" style="flex:0 0 262px;border-top:3px solid #0EA5E9">
-      <div class="card-chapter" style="color:#0EA5E9;font-weight:700">🌱 PROPOSED · not written yet</div>
+      <div class="card-chapter" style="color:#0EA5E9;font-weight:700">🌱 NÁVRH · zatím nenapsáno</div>
       <div class="card-title">${this.escHtml(p.title)}</div>
       <div class="card-teaser" style="font-size:.72rem">${this.escHtml(p.objective)}</div>
       <div style="font-size:.64rem;color:var(--text-3);font-style:italic;margin:.3em 0">Uměl bys odpovědět: ${this.escHtml(p.recallQ)}</div>
@@ -6525,9 +6556,152 @@ class PBook {
     const el = document.getElementById(`ghost-${slug}-${ctx}`);
     if (el) {
       el.innerHTML = v > 0
-        ? `<span style="font-size:.7rem;color:#0EA5E9">✓ +2 XP — demand recorded, editors see the totals. <a href="#" onclick="event.preventDefault();app.proposeConcept('${this.escHtml(slug)}: ')" style="color:var(--accent)">add your angle</a></span>`
-        : `<span style="font-size:.7rem;color:var(--text-3)">✓ noted — you won't see this one again</span>`;
+        ? `<span style="font-size:.7rem;color:#0EA5E9">✓ +2 XP — zájem zaznamenán, redakce vidí součty. <a href="#" onclick="event.preventDefault();app.proposeConcept('${this.escHtml(slug)}: ')" style="color:var(--accent)">přidej svůj pohled</a></span>`
+        : `<span style="font-size:.7rem;color:var(--text-3)">✓ zaznamenáno — tenhle už neuvidíš</span>`;
     }
+  }
+
+  // ===== KONCEPTOVÁ MAPA (graf z Mapy informatických konceptů Glitch) =====
+  async _loadConceptMap() {
+    if (this._cmapData) return;
+    try {
+      const res = await fetch('content/concept-map.json');
+      if (res.ok) {
+        this._cmapData = await res.json();
+        this._cmapNodes = Object.fromEntries(this._cmapData.nodes.map(n => [n.slug, n]));
+      }
+    } catch (e) { /* volitelný soubor */ }
+  }
+
+  _blocksByConcept() {
+    if (this._byConcept) return this._byConcept;
+    const m = {};
+    (this.allBlocks || []).forEach(b => {
+      const c = b.meta?.concept;
+      if (c) (m[c] = m[c] || []).push(b);
+    });
+    this._byConcept = m;
+    return m;
+  }
+
+  // Záložka Koncepty: koncepty seskupené podle témat, u každého jeho podání;
+  // 🌱 navrhované koncepty s hlasováním o zájmu přímo v seznamu.
+  async renderConceptsMap() {
+    await this._loadConceptMap();
+    const cm = this._cmapData;
+    if (!cm) return '<div style="padding:2em;text-align:center;color:var(--text-3)">Mapu konceptů se nepodařilo načíst.</div>';
+    const byConcept = this._blocksByConcept();
+    const votes = this._ghostVotes();
+    const GENRE_ICONS = { explainer: '📄', story: '📖', 'worked-example': '🧮', 'code-walkthrough': '💻', comic: '🎭', animation: '🎞' };
+    const STATE_COLORS = { core: '#7C3AED', edited: '#10B981', community: '#D97706', private: '#9CA3AF' };
+    const TYPE_ICONS = { game: '🎮', question: '❓' };
+    const coreN = cm.nodes.filter(n => n.state === 'core');
+    const readN = coreN.filter(n => (byConcept[n.slug] || []).some(b => this.user.readBlocks.has(b.meta.id))).length;
+
+    let h = `<div class="fade-up" style="max-width:760px;margin:0 auto">
+      <p style="font-size:.78rem;color:var(--text-2);margin:.2em 0 .8em">Kniha podle <b>konceptů</b>, ne kapitol: každý koncept má svá podání (článek, hru, komiks…).
+      Čárkované 🌱 koncepty zatím napsané nejsou — hlasováním říkáš redakci, kam jít do hloubky.
+      Přečteno <b>${readN}/${coreN.length}</b> konceptů.</p>`;
+
+    cm.temata.forEach(t => {
+      const nodes = cm.nodes.filter(n => n.tema === t.id);
+      const cores = nodes.filter(n => n.state === 'core');
+      const ghosts = nodes.filter(n => n.state === 'ghost');
+      const readCount = cores.filter(n => (byConcept[n.slug] || []).some(b => this.user.readBlocks.has(b.meta.id))).length;
+      h += `<details class="covmap-chapter-sec" open>
+        <summary style="display:flex;align-items:center;gap:.5em"><span style="width:10px;height:10px;border-radius:50%;background:${t.color};flex-shrink:0"></span>
+          <b>${this.escHtml(t.nazev)}</b>
+          <span style="color:var(--text-3);font-size:.72rem;margin-left:auto">${readCount}/${cores.length} přečteno · 🌱 ${ghosts.length} návrhů</span></summary>
+        <div style="padding:.4em 0 .6em">`;
+      cores.forEach(n => {
+        const pool = byConcept[n.slug] || [];
+        const anyRead = pool.some(b => this.user.readBlocks.has(b.meta.id));
+        const chips = pool.map(b => {
+          const m = b.meta;
+          const state = m.core ? 'core' : (m.state || 'edited');
+          const icon = TYPE_ICONS[m.type] || GENRE_ICONS[this._facetValues(m, 'genre')[0] || 'explainer'] || '📄';
+          const read = this.user.readBlocks.has(m.id);
+          return `<button class="tstrip-chip" style="--sc:${STATE_COLORS[state] || '#10B981'};${read ? 'box-shadow:0 0 0 1.5px #10B981' : ''}"
+            title="${this.escHtml((m.title || m.id) + (read ? ' · přečteno' : ''))}" onclick="app.openTelling('${m.id}')">${icon}</button>`;
+        }).join('');
+        h += `<div style="display:flex;align-items:center;gap:.5em;padding:.22em 0;border-bottom:1px dashed var(--border-light,#eee)">
+          <span style="font-size:.75rem;width:1.1em;text-align:center">${anyRead ? '✅' : '○'}</span>
+          <a href="#" onclick="event.preventDefault();app.openBlock('${n.slug}')" style="font-size:.8rem;font-weight:600;color:var(--text-1);text-decoration:none;flex:1 1 auto">${this.escHtml(n.title)}</a>
+          <span class="tstrip" style="margin:0">${chips}</span>
+        </div>`;
+      });
+      if (ghosts.length) {
+        h += `<div style="margin-top:.45em;font-size:.68rem;color:#0EA5E9;font-weight:700">🌱 Kam jít do hloubky — zatím nenapsáno, hlasuj:</div>`;
+        ghosts.forEach(n => {
+          const voted = n.slug in votes;
+          h += `<div style="display:flex;align-items:flex-start;gap:.5em;padding:.22em 0">
+            <span style="font-size:.72rem;width:1.1em;text-align:center">🌱</span>
+            <div style="flex:1 1 auto"><span style="font-size:.78rem;font-weight:600;color:var(--text-2)">${this.escHtml(n.title)}</span>
+              <span style="font-size:.68rem;color:var(--text-3)"> — ${this.escHtml(n.teaser || '')}</span></div>
+            <span id="ghost-${n.slug}-cmap" style="flex-shrink:0">${voted
+              ? `<span style="font-size:.68rem;color:#0EA5E9">✓ ${votes[n.slug] > 0 ? 'chci' : 'nezájem'}</span>`
+              : `<button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9;font-size:.62rem;padding:.06em .4em" onclick="app.ghostVote('${n.slug}',1,'cmap')">👍 chci</button>
+                 <button class="steer-chip" style="font-size:.62rem;padding:.06em .4em" onclick="app.ghostVote('${n.slug}',-1,'cmap')">ne</button>`}</span>
+          </div>`;
+        });
+      }
+      h += `</div></details>`;
+    });
+    h += `</div>`;
+    return h;
+  }
+
+  // „Kam dál" pásek pod sekcí: související koncepty z mapy znalostí —
+  // existující jako odkazy, 🌱 nenapsané jako testování zájmu.
+  _renderConceptLinks(block) {
+    const slug = block.concept;
+    const node = this._cmapNodes?.[slug];
+    if (!node || !node.rel?.length) return '';
+    const votes = this._ghostVotes();
+    const rels = node.rel
+      .map(r => this._cmapNodes[r]).filter(Boolean)
+      .sort((a, b) => (a.state === 'core' ? 0 : 1) - (b.state === 'core' ? 0 : 1))
+      .slice(0, 6);
+    if (!rels.length) return '';
+    const chips = rels.map(r => {
+      if (r.state === 'core') {
+        return `<button class="steer-chip" style="font-size:.66rem" title="${this.escHtml(r.teaser || '')}" onclick="app.openBlock('${r.slug}')">${this.escHtml(r.title)}</button>`;
+      }
+      const voted = r.slug in votes;
+      return `<button class="steer-chip" id="clink-${block.id}-${r.slug}" style="font-size:.66rem;border-style:dashed;${voted ? 'color:#0EA5E9;border-color:#0EA5E9' : 'color:var(--text-2)'}"
+        title="${this.escHtml((r.teaser || '') + ' · Zatím nenapsáno — kliknutím dáš hlas, ať to napíšeme.')}"
+        onclick="app.ghostChip('${r.slug}','clink-${block.id}-${r.slug}')">${voted ? '✓' : '🌱'} ${this.escHtml(r.title)}</button>`;
+    }).join('');
+    return `<div class="concept-links" style="display:flex;flex-wrap:wrap;gap:.3em;align-items:center;margin:.5em 0;padding:.45em .55em;border:1px dashed var(--border);border-radius:9px">
+      <span style="font-size:.66rem;font-weight:700;color:var(--text-3)">🧭 Kam dál:</span>${chips}</div>`;
+  }
+
+  // Hlas z „Kam dál" chipu — 🌱 koncept, o kterém zatím nepíšeme
+  ghostChip(slug, elId) {
+    const votes = this._ghostVotes();
+    if (!(slug in votes)) {
+      votes[slug] = 1;
+      localStorage.setItem('pbook-ghost-votes', JSON.stringify(votes));
+      this.rc.logEvent('ghost_want', { slug, ctx: 'inline' });
+      if (this._f('gamification')) { this.user.addXP(2); this.user.save(); this.updateXPBadge(); }
+      this.showXPToast('🌱 +2 XP — zájem zaznamenán, redakce vidí součty', 'achievement');
+    }
+    const el = document.getElementById(elId);
+    if (el) { el.style.color = '#0EA5E9'; el.style.borderColor = '#0EA5E9'; el.innerHTML = '✓ ' + el.innerHTML.replace(/^\S+\s/, ''); el.onclick = null; }
+  }
+
+  // Přání konkrétního podání (když generování není k dispozici) — měří poptávku
+  tellingWish(blockId, conceptId) {
+    const target = this._steerTargets?.[conceptId] || {};
+    this.rc.logEvent('telling_wish', { blockId, concept: conceptId, target });
+    try {
+      const flags = JSON.parse(localStorage.getItem('pbook-flags') || '[]');
+      flags.push({ blockId, type: 'telling-wish', text: JSON.stringify(target), timestamp: new Date().toISOString() });
+      localStorage.setItem('pbook-flags', JSON.stringify(flags));
+    } catch (e) {}
+    if (this._f('gamification')) { this.user.addXP(2); this.user.save(); this.updateXPBadge(); }
+    const btn = document.getElementById(`wish-btn-${blockId}`);
+    if (btn) btn.outerHTML = '<span style="font-size:.7rem;color:#0EA5E9">✓ +2 XP — přání zaznamenáno, redakce vidí, po čem je poptávka</span>';
   }
 
   // ===== EDITOR TRACK =====

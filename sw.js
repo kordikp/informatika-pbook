@@ -1,6 +1,6 @@
 // Service Worker for p-book — full offline support
 // Pre-caches the entire book on first visit
-const CACHE_NAME = 'pbook-informatika-v3';
+const CACHE_NAME = 'pbook-informatika-v4';
 
 const PRECACHE = [
   '/',
@@ -18,6 +18,8 @@ const PRECACHE = [
   // Book index
   '/content/book.json',
   '/content/concepts.json',
+  '/content/concept-map.json',
+  '/content/concept-proposals.json',
   // Games
   '/games/ai-nebo-ne.json',
   '/games/algoritmus-caj.json',
