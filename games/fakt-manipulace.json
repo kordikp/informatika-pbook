@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Fakt, nebo manipulace?",
+  "instruction": "Ověřitelné tvrzení, nebo tah na tvoje emoce? Rozhodni!",
+  "buckets": [
+    "Ověřitelný fakt",
+    "Manipulace"
+  ],
+  "items": [
+    {
+      "text": "„Zápas skončil 2:1“",
+      "answer": 0
+    },
+    {
+      "text": "„SDÍLEJ, než to smažou!!!“",
+      "answer": 1
+    },
+    {
+      "text": "„Voda vře při 100 °C“",
+      "answer": 0
+    },
+    {
+      "text": "„Všichni už vědí, že…“",
+      "answer": 1
+    },
+    {
+      "text": "„Studie vyšla v časopise Nature v roce 2023“",
+      "answer": 0
+    },
+    {
+      "text": "„Probuď se, tohle ti tají!“",
+      "answer": 1
+    },
+    {
+      "text": "„Vlak jede v 8:15 z hlavního nádraží“",
+      "answer": 0
+    },
+    {
+      "text": "„Jen hlupák tomu ještě věří“",
+      "answer": 1
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="system-ui,sans-serif" role="img" aria-label="Komiks: Robot vezme pokyn doslova — proč algoritmus musí být přesný">
+  <rect width="800" height="640" rx="14" fill="#FAFAF7" stroke="#E5E7EB"/>
+  <text x="400" y="38" text-anchor="middle" font-size="21" font-weight="700" fill="#1E1B4B">Rozkaz zněl jasně! (Nezněl.)</text>
+
+  <!-- P1: mlhavý pokyn -->
+  <rect x="14" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="44" y="74" width="260" height="58" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M96 132 L88 154 L122 132 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="174" y="97" text-anchor="middle" font-size="13" fill="#1E1B4B">„Dej tam trochu mouky</text>
+  <text x="174" y="117" text-anchor="middle" font-size="13" fill="#1E1B4B">a peč, až to bude dobré.“</text>
+  <circle cx="92" cy="190" r="22" fill="#FEF3C7"/>
+  <text x="92" y="198" text-anchor="middle" font-size="22">🧒</text>
+  <path d="M78 220 Q92 212 106 220 L110 264 L74 264 Z" fill="#0EA5E9"/>
+  <line x1="304" y1="156" x2="304" y2="142" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="304" cy="138" r="4" fill="#D97706"/>
+  <rect x="272" y="156" width="64" height="48" rx="8" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="292" cy="176" r="5" fill="#1E1B4B"/>
+  <circle cx="316" cy="176" r="5" fill="#1E1B4B"/>
+  <rect x="290" y="190" width="28" height="4" rx="2" fill="#0EA5E9"/>
+  <rect x="264" y="208" width="80" height="56" rx="8" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="284" cy="228" r="4" fill="#10B981"/>
+  <rect x="298" y="222" width="32" height="12" rx="3" fill="#E0F2FE"/>
+  <text x="304" y="284" text-anchor="middle" font-size="11" fill="#6B7280">kuchyňský robot</text>
+  <text x="204" y="306" text-anchor="middle" font-size="12" fill="#6B7280">Pro babičku recept. Pro robota hádanka bez odpovědi.</text>
+
+  <!-- P2: doslovné provedení -->
+  <rect x="406" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="520" y="66" width="246" height="44" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M540 110 L516 130 L566 110 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="643" y="84" text-anchor="middle" font-size="12.5" fill="#1E1B4B">„Trochu“ není číslo.</text>
+  <text x="643" y="102" text-anchor="middle" font-size="12.5" fill="#1E1B4B">Nasypal jsem tedy všechno.</text>
+  <line x1="468" y1="120" x2="468" y2="106" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="468" cy="102" r="4" fill="#D97706"/>
+  <rect x="436" y="120" width="64" height="48" rx="8" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="456" cy="140" r="5" fill="#1E1B4B"/>
+  <circle cx="480" cy="140" r="5" fill="#1E1B4B"/>
+  <rect x="454" y="154" width="28" height="4" rx="2" fill="#0EA5E9"/>
+  <rect x="428" y="172" width="80" height="56" rx="8" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="2"/>
+  <path d="M520 264 Q560 196 610 218 Q660 180 700 234 Q740 250 742 264 Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <g transform="rotate(28 628 158)">
+    <rect x="600" y="120" width="56" height="76" rx="6" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+    <text x="628" y="152" text-anchor="middle" font-size="11" font-weight="700" fill="#1E1B4B">MOUKA</text>
+    <text x="628" y="170" text-anchor="middle" font-size="11" fill="#6B7280">5 kg</text>
+  </g>
+  <circle cx="540" cy="180" r="10" fill="#FEF3C7" stroke="#D97706"/>
+  <circle cx="573" cy="152" r="7" fill="#FEF3C7" stroke="#D97706"/>
+  <circle cx="690" cy="176" r="7" fill="#FEF3C7" stroke="#D97706"/>
+  <circle cx="718" cy="204" r="9" fill="#FEF3C7" stroke="#D97706"/>
+  <circle cx="744" cy="128" r="20" fill="#FEF3C7"/>
+  <text x="744" y="136" text-anchor="middle" font-size="20">😱</text>
+  <text x="596" y="306" text-anchor="middle" font-size="12" fill="#6B7280">Robot nehádá. Udělá přesně to, co je řečeno — nic víc, nic míň.</text>
+
+  <!-- P3: přesný recept -->
+  <rect x="14" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <circle cx="76" cy="430" r="22" fill="#FEF3C7"/>
+  <text x="76" y="438" text-anchor="middle" font-size="22">🧒</text>
+  <path d="M62 460 Q76 452 90 460 L94 508 L58 508 Z" fill="#0EA5E9"/>
+  <text x="106" y="424" font-size="18">✏️</text>
+  <rect x="140" y="356" width="240" height="170" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="260" y="380" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1E1B4B">PŘESNÝ RECEPT</text>
+  <g font-size="11.5" fill="#1E1B4B">
+    <text x="156" y="404">1. Nasyp 250 g mouky</text>
+    <text x="156" y="426">2. Přidej 2 vejce, 150 ml mléka</text>
+    <text x="156" y="448">3. Míchej 2 minuty</text>
+    <text x="156" y="470">4. Peč 25 minut na 180 °C</text>
+  </g>
+  <rect x="156" y="486" width="176" height="24" rx="6" fill="#D1FAE5"/>
+  <text x="244" y="502" text-anchor="middle" font-size="11" font-weight="700" fill="#1E1B4B">každý krok = číslo ✓</text>
+  <text x="76" y="540" text-anchor="middle" font-size="11" fill="#6B7280">žádné „trochu“</text>
+  <text x="204" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Čísla místo odhadu: každý krok jde provést bez domýšlení.</text>
+
+  <!-- P4: klid a stejný výsledek -->
+  <rect x="406" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="520" y="356" width="250" height="58" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M556 414 L530 436 L584 414 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="645" y="378" text-anchor="middle" font-size="12.5" fill="#1E1B4B">Kroky 1–4 hotovy.</text>
+  <text x="645" y="398" text-anchor="middle" font-size="12.5" fill="#1E1B4B">Výsledek: pokaždé stejný.</text>
+  <line x1="468" y1="380" x2="468" y2="366" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="468" cy="362" r="4" fill="#D97706"/>
+  <rect x="436" y="380" width="64" height="48" rx="8" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="456" cy="400" r="5" fill="#1E1B4B"/>
+  <circle cx="480" cy="400" r="5" fill="#1E1B4B"/>
+  <path d="M450 414 Q468 424 486 414" fill="none" stroke="#0EA5E9" stroke-width="2"/>
+  <rect x="428" y="432" width="80" height="56" rx="8" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="448" cy="452" r="4" fill="#10B981"/>
+  <rect x="462" y="446" width="32" height="12" rx="3" fill="#E0F2FE"/>
+  <ellipse cx="600" cy="520" rx="56" ry="10" fill="#EDE9FE" stroke="#7C3AED"/>
+  <text x="600" y="514" text-anchor="middle" font-size="44">🎂</text>
+  <text x="545" y="452" font-size="14">✨</text>
+  <text x="662" y="468" font-size="16">✨</text>
+  <circle cx="730" cy="470" r="22" fill="#FEF3C7"/>
+  <text x="730" y="478" text-anchor="middle" font-size="22">😄</text>
+  <path d="M716 500 Q730 492 744 500 L748 546 L712 546 Z" fill="#10B981"/>
+  <text x="596" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Stejný postup, stejný výsledek — napodesáté i napomilionté.</text>
+
+  <text x="400" y="626" text-anchor="middle" font-size="13" fill="#6B7280">Algoritmus = jednoznačný postup krok za krokem. Počítač udělá přesně to, co napíšeš — nic víc.</text>
+</svg>

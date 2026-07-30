@@ -82,6 +82,7 @@ class PBook {
     await this.loadConcepts();   // concept index + contracts (graceful if missing)
     await this._loadProposals(); // concept proposals under interest testing (ghost items)
     await this._loadConceptMap(); // graf konceptů z Mapy znalostí (core + ghost, prereq/souvisí)
+    this._genReady = this._f('generation') && await this._probeGeneration(); // ✨ tlačítka jen když generování reálně běží
     console.info('[pbook] app', APP_VERSION);
     this._loadPrivateBlocks();   // reader's own generated variants (private until shared)
     this._loadOverrides();       // accepted remixes: originalId → your version (persistent)
@@ -1749,6 +1750,15 @@ class PBook {
             if (el && !el.dataset.observed) { el.dataset.observed = '1'; this._observer?.observe(el); }
           }
         }
+        // Testování zájmu i v nekonečném feedu: každou druhou dávku vlož 🌱 návrh
+        this._feedMoreCount = (this._feedMoreCount || 0) + 1;
+        if (this._feedMoreCount % 2 === 0) {
+          const gp = this._unvotedProposals();
+          if (gp.length) {
+            const pick = gp[this._feedMoreCount % gp.length];
+            pane.insertAdjacentHTML('beforeend', `<div class="fade-up" style="margin:1.2em 0;display:flex;justify-content:center">${this._ghostCardHtml(pick, 'feedmore' + this._feedMoreCount)}</div>`);
+          }
+        }
         this.renderMath();
         this._initLottieAnimations();
       }
@@ -2509,6 +2519,9 @@ class PBook {
       items += `<div class="rn-item rn-rec" onclick="app.previewBlock('${recBlock.meta.id}')"><span class="rn-label">\u2728 Doporučeno</span><span class="rn-title">${recBlock.meta.title}</span><span class="rn-time">Kap. ${recBlock.meta._chapterNum}</span></div>`;
     }
     if (!items) return '';
+
+    // 🌱 Kam dál: související nenapsaný koncept — testování zájmu přímo pod sekcí
+    items += this._rnGhostHtml(block);
 
     // "More like this" — text similarity, dedup with next/recommended
     const excludeIds = new Set([blockId]);
@@ -3865,6 +3878,7 @@ class PBook {
       <div id="ghost-${slug}-vmap" style="display:flex;gap:.4em">${slug in votes
         ? `<span style="color:#0EA5E9">✓ už jsi hlasoval</span>`
         : `<button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" onclick="app.ghostVote('${slug}',1,'vmap')">👍 Tohle bych četl</button>
+           ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" onclick="app.draftGhost('${slug}','vmap')">✨ Rozpracovat</button>` : ''}
            <button class="steer-chip" onclick="app.ghostVote('${slug}',-1,'vmap')">Nic pro mě</button>`}</div>`;
     container.appendChild(pop);
     this.rc.logEvent('ghost_view', { slug, ctx: 'vmap' });
@@ -5639,7 +5653,11 @@ class PBook {
         <div style="font-size:.68rem;color:var(--text-3);margin:.2em 0 .1em">Uprav text přímo…</div>
         <textarea id="edit-src-${blockId}" rows="${Math.min(12, Math.max(3, slice.split('\n').length + 1))}"
           style="width:100%;padding:.45em;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.76rem;font-family:ui-monospace,monospace;line-height:1.45">${this.escHtml(slice)}</textarea>
-        ${canGen ? `<div style="font-size:.68rem;color:var(--text-3);margin:.3em 0 .1em">…or describe the change and let AI write it:</div>
+        ${canGen ? `<div style="font-size:.68rem;color:var(--text-3);margin:.3em 0 .1em">…nebo popiš změnu a nech ji napsat AI — klidně jen klepni na hotový recept:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.25em;margin:.15em 0">
+          ${['Vysvětli jednodušeji', 'Přidej konkrétní příklad', 'Zkrať na polovinu', 'Převeď na odrážky', 'Přidej trochu humoru', 'Udělej to jako příběh'].map(p =>
+            `<button class="steer-chip" style="font-size:.64rem" onclick="const t=document.getElementById('remix-prompt-${blockId}');t.value=t.value?t.value+'; '+'${p}':'${p}';t.focus()">${p}</button>`).join('')}
+        </div>
         <textarea id="remix-prompt-${blockId}" rows="2" placeholder="např. ‚vysvětli na příkladu školního obchůdku‘, ‚jednodušší slova‘, ‚přidej konkrétní číslo‘"
           style="width:100%;padding:.4em;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.78rem"></textarea>` : ''}
         <div style="font-size:.68rem;color:var(--text-3);margin:.25em 0">Originál zůstane v obou případech netknutý — dostaneš vlastní verzi se zvýrazněnou změnou a sám rozhodneš, jestli si ji necháš, nebo ji budeš sdílet.</div>
@@ -6541,8 +6559,9 @@ class PBook {
       <div class="card-title">${this.escHtml(p.title)}</div>
       <div class="card-teaser" style="font-size:.72rem">${this.escHtml(p.objective)}</div>
       <div style="font-size:.64rem;color:var(--text-3);font-style:italic;margin:.3em 0">Uměl bys odpovědět: ${this.escHtml(p.recallQ)}</div>
-      <div id="ghost-${p.slug}-${ctx}" style="display:flex;gap:.4em;margin-top:.35em">
+      <div id="ghost-${p.slug}-${ctx}" style="display:flex;gap:.4em;margin-top:.35em;flex-wrap:wrap">
         <button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" onclick="app.ghostVote('${p.slug}',1,'${ctx}')">👍 Tohle bych četl</button>
+        ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" onclick="app.draftGhost('${p.slug}','${ctx}')">✨ Rozpracovat hned</button>` : ''}
         <button class="steer-chip" onclick="app.ghostVote('${p.slug}',-1,'${ctx}')">Nic pro mě</button>
       </div>
     </div>`;
@@ -6614,7 +6633,7 @@ class PBook {
           <span style="color:var(--text-3);font-size:.72rem;margin-left:auto">${readCount}/${cores.length} přečteno · 🌱 ${ghosts.length} návrhů</span></summary>
         <div style="padding:.4em 0 .6em">`;
       cores.forEach(n => {
-        const pool = byConcept[n.slug] || [];
+        const pool = this._conceptPool(n.slug);
         const anyRead = pool.some(b => this.user.readBlocks.has(b.meta.id));
         const chips = pool.map(b => {
           const m = b.meta;
@@ -6634,13 +6653,17 @@ class PBook {
         h += `<div style="margin-top:.45em;font-size:.68rem;color:#0EA5E9;font-weight:700">🌱 Kam jít do hloubky — zatím nenapsáno, hlasuj:</div>`;
         ghosts.forEach(n => {
           const voted = n.slug in votes;
+          const gpool = this._conceptPool(n.slug);
+          const draftChips = gpool.map(b => `<button class="tstrip-chip" style="--sc:#9CA3AF" title="${this.escHtml((b.meta.title || b.meta.id) + ' · ⚡ tvůj draft')}" onclick="app.openDraft('${b.meta.id}')">⚡</button>`).join('');
           h += `<div style="display:flex;align-items:flex-start;gap:.5em;padding:.22em 0">
             <span style="font-size:.72rem;width:1.1em;text-align:center">🌱</span>
             <div style="flex:1 1 auto"><span style="font-size:.78rem;font-weight:600;color:var(--text-2)">${this.escHtml(n.title)}</span>
               <span style="font-size:.68rem;color:var(--text-3)"> — ${this.escHtml(n.teaser || '')}</span></div>
+            ${draftChips ? `<span class="tstrip" style="margin:0">${draftChips}</span>` : ''}
             <span id="ghost-${n.slug}-cmap" style="flex-shrink:0">${voted
-              ? `<span style="font-size:.68rem;color:#0EA5E9">✓ ${votes[n.slug] > 0 ? 'chci' : 'nezájem'}</span>`
+              ? `<span style="font-size:.68rem;color:#0EA5E9">✓ ${votes[n.slug] > 0 ? 'chci' : 'nezájem'}</span>${this._genReady && this.user.readerMode === 'open' && !gpool.length ? ` <button class="steer-chip steer-gen" style="font-size:.62rem;padding:.06em .4em" onclick="app.draftGhost('${n.slug}','cmap')">✨ rozpracovat</button>` : ''}`
               : `<button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9;font-size:.62rem;padding:.06em .4em" onclick="app.ghostVote('${n.slug}',1,'cmap')">👍 chci</button>
+                 ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" style="font-size:.62rem;padding:.06em .4em" onclick="app.draftGhost('${n.slug}','cmap')">✨ rozpracovat</button>` : ''}
                  <button class="steer-chip" style="font-size:.62rem;padding:.06em .4em" onclick="app.ghostVote('${n.slug}',-1,'cmap')">ne</button>`}</span>
           </div>`;
         });
@@ -6702,6 +6725,93 @@ class PBook {
     if (this._f('gamification')) { this.user.addXP(2); this.user.save(); this.updateXPBadge(); }
     const btn = document.getElementById(`wish-btn-${blockId}`);
     if (btn) btn.outerHTML = '<span style="font-size:.7rem;color:#0EA5E9">✓ +2 XP — přání zaznamenáno, redakce vidí, po čem je poptávka</span>';
+  }
+
+  // 🌱 návrh v read-next: preferuj související nenapsaný koncept, jinak náhodný nehlasovaný
+  _rnGhostHtml(block) {
+    const votes = this._ghostVotes();
+    let pick = null;
+    const rel = this._cmapNodes?.[block.concept]?.rel || [];
+    for (const r of rel) {
+      const n = this._cmapNodes[r];
+      if (n && n.state === 'ghost' && !(n.slug in votes)) { pick = { slug: n.slug, title: n.title, objective: n.teaser }; break; }
+    }
+    if (!pick) {
+      const gp = this._unvotedProposals();
+      if (gp.length) pick = gp[(this.user.readBlocks.size + 3) % gp.length];
+    }
+    if (!pick) return '';
+    if (!this._ghostSeen) this._ghostSeen = new Set();
+    if (!this._ghostSeen.has(pick.slug)) { this._ghostSeen.add(pick.slug); this.rc.logEvent('ghost_view', { slug: pick.slug, ctx: 'rnext' }); }
+    return `<div class="rn-item" style="border:1px dashed #0EA5E9;border-radius:8px">
+      <span class="rn-label" style="color:#0EA5E9">🌱 Kam dál</span>
+      <span class="rn-title">${this.escHtml(pick.title)}</span>
+      <span id="ghost-${pick.slug}-rnext" class="rn-time" style="display:inline-flex;gap:.3em">
+        <button class="steer-chip" style="font-size:.6rem;padding:.04em .35em;border-color:#0EA5E9;color:#0EA5E9" onclick="event.stopPropagation();app.ghostVote('${pick.slug}',1,'rnext')">👍 chci</button>
+        ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" style="font-size:.6rem;padding:.04em .35em" onclick="event.stopPropagation();app.draftGhost('${pick.slug}','rnext')">✨</button>` : ''}
+      </span></div>`;
+  }
+
+  // ✨ Rozpracovat nenapsaný koncept: první podání vznikne na přání čtenáře
+  async draftGhost(slug, ctx) {
+    const node = this._cmapNodes?.[slug];
+    const area = document.getElementById(`ghost-${slug}-${ctx}`);
+    if (area) area.innerHTML = '<span class="gen-spinner">⚡ Píšu první podání konceptu… (~30 s, podle kontraktu z mapy znalostí)</span>';
+    this.rc.logEvent('ghost_draft_request', { slug, ctx });
+    try {
+      const target = { ...this.user.getTargetFacets(), lang: 'cs' };
+      const res = await fetch(CONFIG.steering.generateEndpoint, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ concept: slug, facets: target, existingVariants: [] }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || 'generation failed');
+      const block = {
+        meta: { ...data.block.facets, id: data.block.id, title: data.block.title, type: 'spine',
+                diagramSvg: data.block.svg || undefined, concept: slug, state: 'private', generated: true,
+                readingTime: Math.max(1, Math.round((data.block.body.split(/\s+/).length) / 200)),
+                recallQ: data.block.recallQ || null, recallA: data.block.recallA || null },
+        body: data.block.body,
+      };
+      this._savePrivateBlock(block);
+      const votes = this._ghostVotes();
+      if (!(slug in votes)) { votes[slug] = 1; localStorage.setItem('pbook-ghost-votes', JSON.stringify(votes)); }
+      this.rc.logEvent('ghost_draft_served', { slug, variantId: block.meta.id, cached: !!data.cached });
+      if (this._f('gamification')) { this.user.addXP(5); this.user.save(); this.updateXPBadge(); }
+      if (area) area.innerHTML = '<span style="font-size:.7rem;color:#0EA5E9">✓ +5 XP — draft je tvůj (najdeš ho i v Mapě → Koncepty)</span>';
+      this._showDraftOverlay(block, node);
+    } catch (e) {
+      this.rc.logEvent('ghost_draft_failed', { slug, error: String(e.message).slice(0, 200) });
+      if (area) area.innerHTML = `<span style="font-size:.7rem;color:var(--warn,#D97706)">Generování se nepovedlo (${this.escHtml(String(e.message).slice(0, 80))}) — tvůj zájem je aspoň zaznamenán.</span>`;
+      const votes = this._ghostVotes();
+      if (!(slug in votes)) { votes[slug] = 1; localStorage.setItem('pbook-ghost-votes', JSON.stringify(votes)); this.rc.logEvent('ghost_want', { slug }); }
+    }
+  }
+
+  openDraft(blockId) {
+    const entry = this.privateBlocks?.[blockId] || this._findAnyBlock(blockId);
+    if (entry) this._showDraftOverlay(entry, this._cmapNodes?.[entry.meta.concept]);
+  }
+
+  _showDraftOverlay(entry, node) {
+    document.getElementById('draftOverlay')?.remove();
+    const m = entry.meta;
+    const ov = document.createElement('div');
+    ov.id = 'draftOverlay';
+    ov.className = 'cert-overlay';
+    ov.innerHTML = `<div class="cert-modal" style="max-width:640px;max-height:86vh;overflow:auto;text-align:left">
+      <button class="cert-close" onclick="document.getElementById('draftOverlay').remove()">&times;</button>
+      <div style="font-size:.68rem;color:#0EA5E9;font-weight:700;margin-bottom:.2em">🌱 ${this.escHtml(node?.title || m.concept)} · <span class="gen-badge">⚡ vygenerováno na tvoje přání · zatím bez redakce</span></div>
+      <h3 style="margin:.1em 0 .5em">${this.escHtml(m.title || '')}</h3>
+      <div class="spine-body">${renderMarkdown(entry.body || '')}</div>
+      ${m.recallQ ? `<div class="key-takeaway" style="margin-top:.7em"><div class="key-takeaway-label">Zapamatuj si</div><div class="key-takeaway-text"><b>${this.escHtml(m.recallQ)}</b><br>${this.escHtml(m.recallA || '')}</div></div>` : ''}
+      <div style="display:flex;gap:.5em;margin-top:.8em;flex-wrap:wrap">
+        <button class="btn-primary" style="font-size:.78rem" onclick="document.getElementById('draftOverlay').remove()">Hotovo, díky</button>
+        <span style="font-size:.66rem;color:var(--text-3);align-self:center">Draft zůstává v tvé knize (Mapa → Koncepty). Redakce vidí, že o koncept je zájem.</span>
+      </div></div>`;
+    ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
+    document.body.appendChild(ov);
+    this.renderMath?.();
   }
 
   // ===== EDITOR TRACK =====

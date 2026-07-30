@@ -26,6 +26,8 @@ export const DIAGRAM_FILES = {
   'anim-request-response': 'images/anim-request-response.svg',
   'anim-herni-smycka': 'images/anim-herni-smycka.svg',
   'anim-generativni-model': 'images/anim-generativni-model.svg',
+  'anim-rizeni-toku': 'images/anim-rizeni-toku.svg',
+  'anim-sila-hesla': 'images/anim-sila-hesla.svg',
 };
 
 const diagramCache = {};

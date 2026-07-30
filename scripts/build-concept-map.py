@@ -116,3 +116,33 @@ print(f'concept-map.json: {len(nodes)} uzlů ({sum(1 for n in nodes if n["state"
       f'{sum(1 for n in nodes if n["state"]=="ghost")} ghost), {len(uniq)} hran '
       f'({sum(1 for e in uniq if e["type"]=="prereq")} prereq, {sum(1 for e in uniq if e["type"]=="souvisi")} souvisí)')
 print(f'concept-proposals.json: {len(prop_list)} návrhů')
+
+# ---- ghost kontrakty do concepts.json (pro /api/generate — rozpracování na přání) ----
+import copy
+try:
+    cj = json.load(open('content/concepts.json', encoding='utf-8'))
+except FileNotFoundError:
+    cj = {'concepts': []}
+cj['concepts'] = [c for c in cj['concepts'] if c.get('provenance') != 'ghost']
+FORBIDDEN = ['vymyšlené statistiky nebo čísla', 'vymyšlené citace, URL nebo názvy studií',
+             'tvrzení, že jediná metoda problém zcela řeší']
+gcount = 0
+for c in concepts:
+    if c.get('vrstva') == 'core':
+        continue
+    must = [{'point': cil['text']} for cil in (c.get('cile') or [])][:5]
+    if not must:
+        must = [{'point': first_sentence(c['popis'], 200)}]
+    cj['concepts'].append({
+        'id': c['id'], 'title': c['nazev'], 'chapter': c['tema'],
+        'anchor': None, 'anchorPath': None, 'provenance': 'ghost', 'blocks': [],
+        'contract': {
+            'objective': first_sentence(c['popis'], 220),
+            'mustCover': must,
+            'recallQ': recall_q(c),
+            'recallA': first_sentence(c['popis'], 180),
+            'forbidden': FORBIDDEN,
+        }})
+    gcount += 1
+json.dump(cj, open('content/concepts.json', 'w', encoding='utf-8'), ensure_ascii=False)
+print(f'concepts.json: + {gcount} ghost kontraktů (celkem {len(cj["concepts"])})')

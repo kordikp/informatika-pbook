@@ -12,11 +12,14 @@
       "files": [
         "01-spine-hardware-a-software.md",
         "01a-game-hardware-software.md",
+        "01t-tldr-hardware.md",
         "02-spine-data-a-informace.md",
         "03-spine-internet-a-sit.md",
         "04-spine-cloud-a-server.md",
         "04b-sidebar-comic-cloud.md",
-        "05-spine-api.md"
+        "04s-story-cloud.md",
+        "05-spine-api.md",
+        "05t-tldr-api.md"
       ]
     },
     {
@@ -27,11 +30,15 @@
       "directory": "ch2-informaticke-mysleni",
       "files": [
         "01-spine-dekompozice.md",
+        "01w-worked-dekompozice.md",
         "02-spine-abstrakce.md",
         "03-spine-rozpoznavani-vzoru.md",
         "04-spine-algoritmus.md",
         "04a-game-algoritmus-caj.md",
-        "05-spine-rizeni-toku.md"
+        "04s-story-algoritmus.md",
+        "04x-sidebar-comic-algoritmus.md",
+        "05-spine-rizeni-toku.md",
+        "05a-anim-rizeni-toku.md"
       ]
     },
     {
@@ -42,11 +49,16 @@
       "directory": "ch3-programovani",
       "files": [
         "01-spine-promenne-a-datove-typy.md",
+        "01w-worked-promenne.md",
         "02-spine-podminky-v-kodu.md",
+        "02c-code-podminky.md",
         "03-spine-cykly-v-kodu.md",
         "03a-game-kod-stavebnice.md",
+        "03c-code-cykly.md",
         "04-spine-funkce-a-procedury.md",
-        "05-spine-ladeni-a-testovani.md"
+        "05-spine-ladeni-a-testovani.md",
+        "05q-question-projekt.md",
+        "05x-sidebar-comic-ladeni.md"
       ]
     },
     {
@@ -57,11 +69,16 @@
       "directory": "ch4-data-databaze",
       "files": [
         "01-spine-datova-gramotnost.md",
+        "01s-story-datova-gramotnost.md",
         "02-spine-datovy-cyklus.md",
+        "02t-tldr-datovy-cyklus.md",
         "03-spine-strukturovana-vs-nestrukturovana-data.md",
         "03a-game-data-tridicka.md",
         "04-spine-tabulky-a-relacni-model.md",
-        "05-spine-vizualizace-a-volba-grafu.md"
+        "04w-worked-tabulky.md",
+        "05-spine-vizualizace-a-volba-grafu.md",
+        "05g-game-graf-triky.md",
+        "05w-worked-graf.md"
       ]
     },
     {
@@ -73,14 +90,20 @@
       "files": [
         "01-spine-co-je-a-co-neni-ai.md",
         "01a-game-ai-nebo-ne.md",
+        "01t-tldr-co-je-ai.md",
         "02-spine-ai-se-uci-z-dat.md",
+        "02s-story-uceni-z-dat.md",
         "03-spine-jak-funguje-generativni-model.md",
         "03b-sidebar-comic-halucinace.md",
         "04-spine-doporucovaci-systemy.md",
         "05-spine-prompt-a-promptova-gramotnost.md",
+        "05g-game-prompt-sila.md",
+        "05w-worked-prompt.md",
         "06-spine-overovani-vystupu.md",
+        "06t-tldr-overovani.md",
         "07-spine-vlastni-agency.md",
         "08-spine-kdy-ai-ne-pouzit-a-disclosure.md",
+        "08q-question-ai-postoj.md",
         "09-spine-bias-a-ferovost.md",
         "10-spine-soukromi-pri-praci-s-ai.md"
       ]
@@ -93,9 +116,12 @@
       "directory": "ch6-kyberbezpecnost",
       "files": [
         "01-spine-hesla-a-2fa.md",
+        "01a-anim-sila-hesla.md",
+        "01t-tldr-hesla.md",
         "02-spine-phishing-a-socialni-inzenyrstvi.md",
         "02a-game-phishing-lovec.md",
         "02b-sidebar-comic-phishing.md",
+        "02s-story-phishing.md",
         "03-spine-soukromi-a-digitalni-stopa.md",
         "04-spine-bezpecne-chovani-na-sitich.md",
         "05-spine-zakladni-hygiena.md"
@@ -111,9 +137,13 @@
         "01-spine-kriticke-mysleni-online.md",
         "02-spine-jak-funguji-algoritmy-siti.md",
         "02a-game-bublina.md",
+        "02x-sidebar-comic-bublina.md",
         "03-spine-dezinformace-a-manipulace.md",
+        "03g-game-fakt-manipulace.md",
         "04-spine-digitalni-stopa-a-soukromi.md",
-        "05-spine-digitalni-wellbeing.md"
+        "05-spine-digitalni-wellbeing.md",
+        "05q-question-wellbeing.md",
+        "05s-story-wellbeing.md"
       ]
     },
     {
@@ -125,9 +155,12 @@
       "files": [
         "01-spine-jak-funguje-web.md",
         "02-spine-html.md",
+        "02g-game-web-vrstvy.md",
+        "02t-tldr-html.md",
         "03-spine-css.md",
         "04-spine-domena-a-hosting.md",
-        "05-spine-interaktivita-javascript.md"
+        "05-spine-interaktivita-javascript.md",
+        "05c-code-javascript.md"
       ]
     },
     {
@@ -140,7 +173,9 @@
         "01-spine-co-je-aplikace.md",
         "02-spine-no-code-low-code.md",
         "03-spine-logika-aplikace.md",
+        "03w-worked-logika.md",
         "04-spine-vibecoding.md",
+        "04x-sidebar-comic-vibecoding.md",
         "05-spine-ai-nastroje-pro-tvorbu.md"
       ]
     },
@@ -167,6 +202,7 @@
         "01-spine-herni-smycka-scena-a-objekty.md",
         "01a-game-herni-smycka.md",
         "02-spine-vstup-hrace-stavy-a-skore.md",
+        "02c-code-vstup-hrace.md",
         "03-spine-kolize-a-jednoducha-fyzika.md",
         "04-spine-herni-design.md",
         "05-spine-scratch-jako-vstup.md"
@@ -181,6 +217,7 @@
       "files": [
         "01-spine-vstup-zpracovani-vystup-na-zarizeni.md",
         "02-spine-senzory-a-aktuatory.md",
+        "02t-tldr-senzory.md",
         "03-spine-micro-bit.md",
         "04-spine-udalosti-a-rizeni-vystupu.md"
       ]

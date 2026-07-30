@@ -1,0 +1,48 @@
+{
+  "type": "sort",
+  "title": "HTML, CSS, nebo JavaScript?",
+  "instruction": "Struktura, vzhled, nebo chování? Roztřiď, do které vrstvy webu co patří!",
+  "buckets": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "items": [
+    {
+      "text": "<h1>Nadpis stránky</h1>",
+      "answer": 0
+    },
+    {
+      "text": "color: darkblue;",
+      "answer": 1
+    },
+    {
+      "text": "po kliknutí změň text",
+      "answer": 2
+    },
+    {
+      "text": "<img src=\"pes.jpg\">",
+      "answer": 0
+    },
+    {
+      "text": "font-size: 18px;",
+      "answer": 1
+    },
+    {
+      "text": "počítej skóre kliknutí",
+      "answer": 2
+    },
+    {
+      "text": "<a href=…>odkaz</a>",
+      "answer": 0
+    },
+    {
+      "text": "rozložení do tří sloupců",
+      "answer": 1
+    },
+    {
+      "text": "reaguj na stisk klávesy",
+      "answer": 2
+    }
+  ]
+}

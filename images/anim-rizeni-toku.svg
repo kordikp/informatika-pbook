@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 310" role="img" aria-labelledby="rtTitle rtDesc" font-family="system-ui, sans-serif">
+  <title id="rtTitle">Řízení toku v akci</title>
+  <desc id="rtDesc">Tečka představuje běh programu: projde sekvencí, na větvení Prší? se vydá větví ano, třikrát oběhne cyklus Sejdi schod a skončí. Rozsvícená cesta ukazuje, kudy běh šel.</desc>
+  <defs>
+    <marker id="rtArrP" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    </marker>
+    <marker id="rtArrG" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    </marker>
+    <marker id="rtArrA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#D97706"/>
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="518" height="308" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+
+  <text x="18" y="25" font-size="18" font-weight="700" fill="#1E1B4B">Řízení toku v akci</text>
+  <text x="18" y="43" font-size="11" fill="#6B7280">Sleduj tečku — běh programu: popořadě, přes rozcestí a 3× dokola.</text>
+
+  <!-- stopa: rozsvícená cesta, kudy běh šel -->
+  <path d="M80 99 L204 99" fill="none" stroke="#7C3AED" stroke-width="5" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" values="0;0;0.3;0.3;0" keyTimes="0;0.10;0.12;0.955;1" dur="6s" repeatCount="indefinite"/>
+  </path>
+  <path d="M296 116 L330 146" fill="none" stroke="#10B981" stroke-width="5" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" values="0;0;0.35;0.35;0" keyTimes="0;0.20;0.22;0.955;1" dur="6s" repeatCount="indefinite"/>
+  </path>
+  <path d="M340 188 L298 210" fill="none" stroke="#7C3AED" stroke-width="5" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" values="0;0;0.3;0.3;0" keyTimes="0;0.30;0.32;0.955;1" dur="6s" repeatCount="indefinite"/>
+  </path>
+  <path d="M262 258 C262 284 168 284 162 254 C158 238 172 232 181 232" fill="none" stroke="#10B981" stroke-width="5" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" values="0;0;0.35;0.35;0" keyTimes="0;0.40;0.44;0.955;1" dur="6s" repeatCount="indefinite"/>
+  </path>
+  <path d="M337 236 L398 236" fill="none" stroke="#7C3AED" stroke-width="5" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" values="0;0;0.3;0.3;0" keyTimes="0;0.865;0.885;0.955;1" dur="6s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Start -->
+  <rect x="22" y="85" width="58" height="28" rx="14" fill="#D1FAE5" stroke="#10B981" stroke-width="2"/>
+  <text x="51" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">Start</text>
+  <path d="M80 99 L96 99" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rtArrP)"/>
+
+  <!-- sekvence -->
+  <rect x="100" y="82" width="88" height="40" rx="9" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2">
+    <animate attributeName="fill" values="#FFFFFF;#FFFFFF;#EDE9FE;#EDE9FE;#FFFFFF;#FFFFFF" keyTimes="0;0.015;0.03;0.075;0.095;1" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <text x="144" y="115" text-anchor="middle" font-size="12" fill="#1E1B4B">Obleč se</text>
+  <text x="144" y="137" text-anchor="middle" font-size="11" font-weight="700" fill="#7C3AED">1 · sekvence</text>
+  <path d="M188 99 L200 99" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rtArrP)"/>
+
+  <!-- větvení -->
+  <text x="262" y="62" text-anchor="middle" font-size="14">🌧️<animate attributeName="opacity" values="1;1;0.3;1;0.3;1;1" keyTimes="0;0.105;0.125;0.145;0.165;0.185;1" dur="6s" repeatCount="indefinite"/></text>
+  <path d="M262 70 L318 99 L262 128 L206 99 Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2">
+    <animate attributeName="stroke-width" values="2;2;3.5;3.5;2;2" keyTimes="0;0.105;0.12;0.17;0.19;1" dur="6s" repeatCount="indefinite"/>
+  </path>
+  <text x="262" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">Prší?</text>
+  <text x="262" y="143" text-anchor="middle" font-size="11" font-weight="700" fill="#D97706">2 · větvení</text>
+
+  <text x="336" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="#10B981">ano<animate attributeName="opacity" values="1;1;0.25;1;0.25;1;1" keyTimes="0;0.13;0.145;0.16;0.175;0.19;1" dur="6s" repeatCount="indefinite"/></text>
+  <text x="182" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="#D97706">ne</text>
+  <path d="M296 116 L326 143" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#rtArrG)"/>
+  <path d="M228 116 L194 143" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#rtArrA)"/>
+
+  <!-- větve -->
+  <rect x="130" y="148" width="92" height="40" rx="9" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <text x="176" y="172" text-anchor="middle" font-size="12" fill="#1E1B4B">Jdi tak</text>
+  <rect x="284" y="148" width="112" height="40" rx="9" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="2">
+    <animate attributeName="fill" values="#FFFFFF;#FFFFFF;#E0F2FE;#E0F2FE;#FFFFFF;#FFFFFF" keyTimes="0;0.215;0.225;0.25;0.265;1" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <text x="340" y="172" text-anchor="middle" font-size="12" fill="#1E1B4B">🧥 Vezmi kapuci</text>
+
+  <path d="M176 188 L224 208" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rtArrP)"/>
+  <path d="M340 188 L300 208" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rtArrP)"/>
+
+  <!-- cyklus -->
+  <rect x="187" y="214" width="150" height="44" rx="9" fill="#FFFFFF" stroke="#10B981" stroke-width="2">
+    <animate attributeName="fill" values="#FFFFFF;#FFFFFF;#D1FAE5;#FFFFFF;#D1FAE5;#FFFFFF;#D1FAE5;#FFFFFF;#FFFFFF" keyTimes="0;0.335;0.352;0.40;0.577;0.62;0.801;0.84;1" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <text x="262" y="237" text-anchor="middle" font-size="12" fill="#1E1B4B">Sejdi schod</text>
+  <circle cx="250" cy="249" r="3.2" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5">
+    <animate attributeName="fill" values="#FFFFFF;#FFFFFF;#10B981;#10B981;#FFFFFF" keyTimes="0;0.34;0.36;0.96;1" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="262" cy="249" r="3.2" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5">
+    <animate attributeName="fill" values="#FFFFFF;#FFFFFF;#10B981;#10B981;#FFFFFF" keyTimes="0;0.565;0.585;0.96;1" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="274" cy="249" r="3.2" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5">
+    <animate attributeName="fill" values="#FFFFFF;#FFFFFF;#10B981;#10B981;#FFFFFF" keyTimes="0;0.79;0.81;0.96;1" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <path d="M262 258 C262 284 168 284 162 254 C158 238 172 232 181 232" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#rtArrG)"/>
+  <text x="104" y="251" text-anchor="middle" font-size="11" font-weight="700" fill="#10B981">3 · cyklus</text>
+
+  <!-- Konec -->
+  <path d="M337 236 L398 236" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rtArrP)"/>
+  <rect x="404" y="222" width="78" height="28" rx="14" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2">
+    <animate attributeName="stroke-width" values="2;2;4;4;2" keyTimes="0;0.90;0.925;0.985;1" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <text x="443" y="241" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">Konec</text>
+
+  <!-- tečka = běh programu -->
+  <circle r="6" fill="#7C3AED" stroke="#FFFFFF" stroke-width="1.5">
+    <animateMotion path="M80 99 L262 99 L340 165 C340 196 262 192 262 214 L262 236 L262 258 C262 284 168 284 162 254 C158 238 172 232 185 232 L262 236 L262 258 C262 284 168 284 162 254 C158 238 172 232 185 232 L262 236 L404 236" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.92;1" dur="6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;1;0;0;1;1;0;0;1;1;0;0;1;1;0;0;1;1;0;0;1;1;0;0" keyTimes="0;0.10;0.11;0.18;0.19;0.21;0.22;0.255;0.265;0.325;0.335;0.365;0.375;0.505;0.515;0.59;0.60;0.73;0.74;0.855;0.865;0.91;0.92;1" dur="6s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="260" y="297" text-anchor="middle" font-size="11" fill="#6B7280">Zítra třeba pršet nebude — stejný program, jen běh půjde větví „ne“.</text>
+</svg>

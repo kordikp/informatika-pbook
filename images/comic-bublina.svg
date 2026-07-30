@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="system-ui,sans-serif" role="img" aria-label="Komiks: Dva spolužáci, každý ve své informační bublině">
+  <defs>
+    <marker id="bublArwP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7C3AED"/></marker>
+    <marker id="bublArwA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D97706"/></marker>
+  </defs>
+  <rect width="800" height="640" rx="14" fill="#FAFAF7" stroke="#E5E7EB"/>
+  <text x="400" y="38" text-anchor="middle" font-size="21" font-weight="700" fill="#1E1B4B">Bydlím v bublině. S krásným výhledem na sebe.</text>
+
+  <!-- P1: dva světy vedle sebe -->
+  <rect x="14" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <circle cx="130" cy="178" r="62" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <circle cx="96" cy="136" r="7" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="130" cy="158" r="18" fill="#FEF3C7"/>
+  <text x="130" y="165" text-anchor="middle" font-size="18">🧑</text>
+  <path d="M116 186 Q130 178 144 186 L148 236 L112 236 Z" fill="#7C3AED"/>
+  <rect x="140" y="196" width="20" height="32" rx="4" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2" transform="rotate(-8 150 212)"/>
+  <circle cx="278" cy="178" r="62" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <circle cx="244" cy="136" r="7" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="278" cy="158" r="18" fill="#E0F2FE"/>
+  <text x="278" y="165" text-anchor="middle" font-size="18">👧</text>
+  <path d="M264 186 Q278 178 292 186 L296 236 L260 236 Z" fill="#0EA5E9"/>
+  <rect x="248" y="196" width="20" height="32" rx="4" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2" transform="rotate(8 258 212)"/>
+  <text x="130" y="266" text-anchor="middle" font-size="11" fill="#6B7280">Adam</text>
+  <text x="278" y="266" text-anchor="middle" font-size="11" fill="#6B7280">Bára</text>
+  <text x="204" y="306" text-anchor="middle" font-size="12" fill="#6B7280">Dva spolužáci vedle sebe — a každý v jiném světě.</text>
+
+  <!-- P2: hádka o „všechny“ -->
+  <rect x="406" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="422" y="64" width="170" height="54" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M470 118 L462 138 L494 118 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="507" y="86" text-anchor="middle" font-size="12.5" fill="#1E1B4B">Všichni řeší</text>
+  <text x="507" y="104" text-anchor="middle" font-size="12.5" fill="#1E1B4B">včerejší finále!</text>
+  <rect x="600" y="64" width="172" height="54" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M726 118 L734 138 L702 118 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="686" y="86" text-anchor="middle" font-size="12.5" fill="#1E1B4B">Ne! Všichni řeší</text>
+  <text x="686" y="104" text-anchor="middle" font-size="12.5" fill="#1E1B4B">ten nový muzikál!</text>
+  <circle cx="470" cy="196" r="48" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <circle cx="470" cy="180" r="20" fill="#FEF3C7"/>
+  <text x="470" y="188" text-anchor="middle" font-size="20">😠</text>
+  <path d="M456 208 Q470 200 484 208 L488 236 L452 236 Z" fill="#7C3AED"/>
+  <circle cx="720" cy="196" r="48" fill="none" stroke="#D97706" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <circle cx="720" cy="180" r="20" fill="#E0F2FE"/>
+  <text x="720" y="188" text-anchor="middle" font-size="20">😤</text>
+  <path d="M706 208 Q720 200 734 208 L738 236 L702 236 Z" fill="#0EA5E9"/>
+  <text x="596" y="200" text-anchor="middle" font-size="28" font-weight="700" fill="#D97706">?!</text>
+  <text x="596" y="306" text-anchor="middle" font-size="12" fill="#6B7280">Každý má jiné „všichni“. A oba jsou si naprosto jistí.</text>
+
+  <!-- P3: jak to algoritmus vaří -->
+  <rect x="14" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="44" y="356" width="100" height="180" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="94" y="374" text-anchor="middle" font-size="11" fill="#6B7280">feed Adama</text>
+  <rect x="54" y="384" width="80" height="38" rx="6" fill="#EDE9FE"/>
+  <text x="94" y="410" text-anchor="middle" font-size="18">⚽</text>
+  <rect x="54" y="430" width="80" height="38" rx="6" fill="#EDE9FE"/>
+  <text x="94" y="456" text-anchor="middle" font-size="18">⚽</text>
+  <rect x="54" y="476" width="80" height="38" rx="6" fill="#EDE9FE"/>
+  <text x="94" y="502" text-anchor="middle" font-size="18">⚽</text>
+  <rect x="264" y="356" width="100" height="180" rx="10" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <text x="314" y="374" text-anchor="middle" font-size="11" fill="#6B7280">feed Báry</text>
+  <rect x="274" y="384" width="80" height="38" rx="6" fill="#FEF3C7"/>
+  <text x="314" y="410" text-anchor="middle" font-size="18">🎭</text>
+  <rect x="274" y="430" width="80" height="38" rx="6" fill="#FEF3C7"/>
+  <text x="314" y="456" text-anchor="middle" font-size="18">🎭</text>
+  <rect x="274" y="476" width="80" height="38" rx="6" fill="#FEF3C7"/>
+  <text x="314" y="502" text-anchor="middle" font-size="18">🎭</text>
+  <rect x="160" y="352" width="88" height="64" rx="10" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <text x="204" y="382" text-anchor="middle" font-size="20">🤖</text>
+  <text x="204" y="404" text-anchor="middle" font-size="11" fill="#1E1B4B">algoritmus</text>
+  <line x1="158" y1="388" x2="150" y2="388" stroke="#7C3AED" stroke-width="2" marker-end="url(#bublArwP)"/>
+  <line x1="250" y1="388" x2="258" y2="388" stroke="#D97706" stroke-width="2" marker-end="url(#bublArwA)"/>
+  <text x="204" y="438" text-anchor="middle" font-size="11" fill="#6B7280">lajk ⚽ → další ⚽</text>
+  <text x="204" y="458" text-anchor="middle" font-size="11" fill="#6B7280">lajk 🎭 → další 🎭</text>
+  <text x="204" y="486" text-anchor="middle" font-size="11" fill="#6B7280">co se nepodobá,</text>
+  <text x="204" y="502" text-anchor="middle" font-size="11" fill="#6B7280">to z feedu zmizí:</text>
+  <rect x="178" y="510" width="52" height="22" rx="5" fill="#FFFFFF" stroke="#E5E7EB" stroke-dasharray="4 3"/>
+  <text x="204" y="526" text-anchor="middle" font-size="13">📰</text>
+  <text x="204" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Algoritmus přidává, co se ti líbilo. Ostatní potichu zmizí.</text>
+
+  <!-- P4: výměna feedů -->
+  <rect x="406" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="470" y="344" width="252" height="48" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <path d="M510 392 L500 408 L534 392 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <path d="M660 392 L690 408 L636 392 Z" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="596" y="364" text-anchor="middle" font-size="12.5" fill="#1E1B4B">Ukaž… U tebe je svět</text>
+  <text x="596" y="382" text-anchor="middle" font-size="12.5" fill="#1E1B4B">úplně jinde než u mě!</text>
+  <text x="452" y="380" text-anchor="middle" font-size="12" font-weight="700" fill="#7C3AED">pop!</text>
+  <text x="740" y="380" text-anchor="middle" font-size="12" font-weight="700" fill="#D97706">pop!</text>
+  <circle cx="500" cy="456" r="46" fill="none" stroke="#7C3AED" stroke-width="1.5" stroke-dasharray="10 14"/>
+  <circle cx="500" cy="436" r="20" fill="#FEF3C7"/>
+  <text x="500" y="444" text-anchor="middle" font-size="20">😯</text>
+  <path d="M486 464 Q500 456 514 464 L518 496 L482 496 Z" fill="#7C3AED"/>
+  <circle cx="690" cy="456" r="46" fill="none" stroke="#D97706" stroke-width="1.5" stroke-dasharray="10 14"/>
+  <circle cx="690" cy="436" r="20" fill="#E0F2FE"/>
+  <text x="690" y="444" text-anchor="middle" font-size="20">😄</text>
+  <path d="M676 464 Q690 456 704 464 L708 496 L672 496 Z" fill="#0EA5E9"/>
+  <text x="595" y="445" text-anchor="middle" font-size="11" fill="#6B7280">výměna feedů</text>
+  <line x1="552" y1="458" x2="638" y2="458" stroke="#7C3AED" stroke-width="2" marker-end="url(#bublArwP)"/>
+  <line x1="638" y1="482" x2="552" y2="482" stroke="#D97706" stroke-width="2" marker-end="url(#bublArwA)"/>
+  <rect x="520" y="516" width="152" height="42" rx="8" fill="#D1FAE5" stroke="#10B981" stroke-width="2"/>
+  <text x="596" y="533" text-anchor="middle" font-size="11" font-weight="700" fill="#1E1B4B">pohled ven z bubliny:</text>
+  <text x="596" y="550" text-anchor="middle" font-size="11" fill="#1E1B4B">sleduj i jiné účty</text>
+  <text x="596" y="586" text-anchor="middle" font-size="12" fill="#6B7280">Nejrychlejší cesta z bubliny: podívej se do cizí.</text>
+
+  <text x="400" y="626" text-anchor="middle" font-size="13" fill="#6B7280">Algoritmus servíruje hlavně to, u čeho ses zdržel. „Všichni ve feedu“ jsou jen tvoje bublina.</text>
+</svg>

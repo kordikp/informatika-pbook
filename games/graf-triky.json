@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Poctivý graf, nebo trik?",
+  "instruction": "Co je v pořádku a co má graf, který tě chce oklamat?",
+  "buckets": [
+    "Poctivé",
+    "Trik!"
+  ],
+  "items": [
+    {
+      "text": "Osa Y začíná na nule",
+      "answer": 0
+    },
+    {
+      "text": "Osa Y začíná na 99",
+      "answer": 1
+    },
+    {
+      "text": "Popsané osy s jednotkami",
+      "answer": 0
+    },
+    {
+      "text": "Graf začíná zrovna rokem, kdy to vypadá dobře",
+      "answer": 1
+    },
+    {
+      "text": "Sloupcový graf pro porovnání tříd",
+      "answer": 0
+    },
+    {
+      "text": "Dvakrát vyšší panáček = „dvojnásobek“",
+      "answer": 1
+    },
+    {
+      "text": "Spojnicový graf pro teplotu během týdne",
+      "answer": 0
+    },
+    {
+      "text": "Koláč s 15 dílky bez popisků",
+      "answer": 1
+    }
+  ]
+}

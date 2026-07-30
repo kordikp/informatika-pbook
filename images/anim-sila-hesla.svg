@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 290" role="img" aria-labelledby="shTitle shDesc" font-family="system-ui, sans-serif">
+  <title id="shTitle">Síla hesla: vteřiny, nebo věčnost</title>
+  <desc id="shDesc">Útočníkův program zkouší hesla. Krátké heslo pes123 prolomí za vteřinu — ukazatel doběhne a zámek povolí. U dlouhé fráze ModryVelbloudZpivaOpere se ukazatel skoro nehne, počítadlo let roste a zámek drží.</desc>
+  <defs>
+    <marker id="shArrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#EF4444"/>
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="518" height="288" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+
+  <text x="18" y="25" font-size="18" font-weight="700" fill="#1E1B4B">Síla hesla: vteřiny, nebo věčnost</text>
+  <text x="18" y="43" font-size="11" fill="#6B7280">Útočníkův program zkouší kombinace strojově. Rozhoduje hlavně délka.</text>
+
+  <!-- útočník -->
+  <circle cx="52" cy="100" r="22" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+  <text x="52" y="108" text-anchor="middle" font-size="20">🤖</text>
+  <text x="52" y="140" text-anchor="middle" font-size="11" fill="#6B7280">útočníkův</text>
+  <text x="52" y="154" text-anchor="middle" font-size="11" fill="#6B7280">program</text>
+
+  <path d="M76 92 C118 78 138 84 162 94" fill="none" stroke="#EF4444" stroke-width="2" marker-end="url(#shArrR)"/>
+  <path d="M76 108 C118 138 138 172 162 196" fill="none" stroke="#EF4444" stroke-width="2" marker-end="url(#shArrR)"/>
+
+  <!-- proud pokusů -->
+  <circle r="2.5" fill="#EF4444">
+    <animateMotion path="M76 92 C118 78 138 84 162 94" dur="0.7s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="2.5" fill="#EF4444">
+    <animateMotion path="M76 108 C118 138 138 172 162 196" dur="0.85s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- krátké heslo -->
+  <rect x="168" y="64" width="330" height="88" rx="10" fill="#FFFFFF" stroke="#EF4444" stroke-width="2"/>
+  <rect x="182" y="76" width="90" height="22" rx="6" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="227" y="91" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">pes123</text>
+  <text x="286" y="91" font-size="11" fill="#6B7280">krátké heslo</text>
+  <rect x="182" y="104" width="240" height="12" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <rect x="183" y="105" width="2" height="10" rx="5" fill="#EF4444">
+    <animate attributeName="width" values="2;2;238;238" keyTimes="0;0.06;0.20;1" dur="7s" repeatCount="indefinite"/>
+  </rect>
+  <text x="182" y="140" font-size="11" fill="#6B7280">slovníkový útok — hotovo za pár vteřin</text>
+  <text x="462" y="124" text-anchor="middle" font-size="18">🔒<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.20;0.22;0.97;1" dur="7s" repeatCount="indefinite"/></text>
+  <text x="462" y="124" text-anchor="middle" font-size="18" opacity="0">🔓<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.20;0.22;0.97;1" dur="7s" repeatCount="indefinite"/></text>
+  <text x="460" y="144" text-anchor="middle" font-size="11" font-weight="700" fill="#EF4444" opacity="0">Prolomeno!<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.20;0.23;0.97;1" dur="7s" repeatCount="indefinite"/></text>
+
+  <!-- dlouhá fráze -->
+  <rect x="168" y="168" width="330" height="88" rx="10" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <rect x="182" y="180" width="192" height="22" rx="6" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+  <text x="278" y="195" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">ModryVelbloudZpivaOpere</text>
+  <text x="384" y="195" font-size="11" fill="#6B7280">dlouhá fráze</text>
+  <rect x="182" y="208" width="240" height="12" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <rect x="183" y="209" width="1" height="10" rx="2" fill="#10B981">
+    <animate attributeName="width" values="1;1;3;5;7;7" keyTimes="0;0.06;0.35;0.65;0.95;1" dur="7s" repeatCount="indefinite"/>
+  </rect>
+  <text x="182" y="244" font-size="11" font-weight="700" fill="#10B981">zkouší a zkouší…<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.20;0.22;0.97;1" dur="7s" repeatCount="indefinite"/></text>
+  <text x="182" y="244" font-size="11" font-weight="700" fill="#10B981" opacity="0">uplynul rok — nic<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.20;0.22;0.45;0.47;1" dur="7s" repeatCount="indefinite"/></text>
+  <text x="182" y="244" font-size="11" font-weight="700" fill="#10B981" opacity="0">uplynulo 1 000 let — nic<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.45;0.47;0.70;0.72;1" dur="7s" repeatCount="indefinite"/></text>
+  <text x="182" y="244" font-size="11" font-weight="700" fill="#10B981" opacity="0">uplynulo 1 000 000 let — pořád nic<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.70;0.72;0.97;1" dur="7s" repeatCount="indefinite"/></text>
+  <text x="462" y="228" text-anchor="middle" font-size="18">🔒<animateTransform attributeName="transform" type="translate" values="0 0;1.6 0;-1.6 0;0 0" keyTimes="0;0.3;0.7;1" dur="0.5s" repeatCount="indefinite"/></text>
+  <text x="462" y="248" text-anchor="middle" font-size="11" font-weight="700" fill="#10B981">Drží.</text>
+
+  <text x="260" y="277" text-anchor="middle" font-size="11" fill="#6B7280">Každý znak navíc násobí počet kombinací — délka porazí složitost.</text>
+</svg>
