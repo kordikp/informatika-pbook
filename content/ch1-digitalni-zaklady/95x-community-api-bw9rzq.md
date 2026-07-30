@@ -19,7 +19,8 @@ formalism: none
 lengthBand: tldr
 genre: explainer
 concept: ch1-api
-state: community
+state: edited
+adoptedAt: 2026-07-30T07:21:25.511Z
 sharedAs: "e2e-test"
 sharedAt: 2026-07-30T07:21:19.611Z
 status: accepted
