@@ -85,6 +85,7 @@ class PBook {
     this._genReady = this._f('generation') && await this._probeGeneration(); // ✨ tlačítka jen když generování reálně běží
     console.info('[pbook] app', APP_VERSION);
     this._loadPrivateBlocks();   // reader's own generated variants (private until shared)
+    this._hydrateGhostDrafts();  // rozpracované 🌱 koncepty = plnohodnotné bloky knihy (kapitola, feed, hledání)
     this._loadOverrides();       // accepted remixes: originalId → your version (persistent)
     this._checkAdoptions();      // shared telling merged into the book? → +100 XP, editor track
     this.rc.setAllBlocks(this.allBlocks);
@@ -1969,6 +1970,7 @@ class PBook {
           <span>${block.readingTime || 3} min čtení</span>
         </div>
       </div>
+      ${block.state === 'private' ? `<div style="font-size:.68rem;margin:.2em 0"><span class="gen-badge">⚡ vygenerováno na tvoje přání · zatím bez redakce</span> <span style="color:var(--text-3)">Koncept z Mapy znalostí — hlasy čtenářů rozhodnou, jestli dostane redakční verzi.</span></div>` : block.state === 'community' ? `<div style="font-size:.68rem;margin:.2em 0"><span class="gen-badge">🌱 sdílel čtenář · zatím bez redakce</span></div>` : ''}
       ${this._renderTellingsIndicator(block)}
       <div class="block-with-side">
         <div class="block-main">
@@ -3838,11 +3840,20 @@ class PBook {
       } else {
         const voted = n.slug in votes;
         const want = votes[n.slug] > 0;
-        html += `<g class="vmap-node vn-ghost${voted ? ' vn-voted' : ''}" data-id="${n.slug}" data-ch="${n.tema}" style="cursor:pointer" onclick="app._vmapGhost('${n.slug}', event)">
-          <circle cx="${n.x}" cy="${n.y}" r="6" fill="var(--bg)" stroke="${color}" stroke-width="1.6" stroke-dasharray="3 2" opacity="0.9"/>
-          <text x="${n.x}" y="${n.y + 2.8}" text-anchor="middle" font-size="7" opacity="0.9">${voted ? (want ? '👍' : '·') : '🌱'}</text>
-          <text class="vmap-label" x="${n.x}" y="${n.y - 10}" text-anchor="middle" font-size="7" fill="var(--text-2)" opacity="0.6">${t}</text>
-        </g>`;
+        const draft = (byConcept[n.slug] || this._conceptPool(n.slug) || []).find(b => b.meta);
+        if (draft) {
+          html += `<g class="vmap-node vn-ghost vn-drafted" data-id="${n.slug}" data-ch="${n.tema}" style="cursor:pointer" onclick="app.openBlock('${draft.meta.id}')">
+            <circle cx="${n.x}" cy="${n.y}" r="7" fill="${color}" fill-opacity="0.3" stroke="${color}" stroke-width="1.8" stroke-dasharray="3 2"/>
+            <text x="${n.x}" y="${n.y + 3}" text-anchor="middle" font-size="7.5">⚡</text>
+            <text class="vmap-label" x="${n.x}" y="${n.y - 11}" text-anchor="middle" font-size="7.5" fill="var(--text-1)" opacity="0.8" font-weight="600">${t}</text>
+          </g>`;
+        } else {
+          html += `<g class="vmap-node vn-ghost${voted ? ' vn-voted' : ''}" data-id="${n.slug}" data-ch="${n.tema}" style="cursor:pointer" onclick="app._vmapGhost('${n.slug}', event)">
+            <circle cx="${n.x}" cy="${n.y}" r="6" fill="var(--bg)" stroke="${color}" stroke-width="1.6" stroke-dasharray="3 2" opacity="0.9"/>
+            <text x="${n.x}" y="${n.y + 2.8}" text-anchor="middle" font-size="7" opacity="0.9">${voted ? (want ? '👍' : '·') : '🌱'}</text>
+            <text class="vmap-label" x="${n.x}" y="${n.y - 10}" text-anchor="middle" font-size="7" fill="var(--text-2)" opacity="0.6">${t}</text>
+          </g>`;
+        }
       }
     });
 
@@ -6654,7 +6665,7 @@ class PBook {
         ghosts.forEach(n => {
           const voted = n.slug in votes;
           const gpool = this._conceptPool(n.slug);
-          const draftChips = gpool.map(b => `<button class="tstrip-chip" style="--sc:#9CA3AF" title="${this.escHtml((b.meta.title || b.meta.id) + ' · ⚡ tvůj draft')}" onclick="app.openDraft('${b.meta.id}')">⚡</button>`).join('');
+          const draftChips = gpool.map(b => `<button class="tstrip-chip" style="--sc:#9CA3AF" title="${this.escHtml((b.meta.title || b.meta.id) + ' · ⚡ tvůj draft — čti v knize')}" onclick="app.openBlock('${b.meta.id}')">⚡</button>`).join('');
           h += `<div style="display:flex;align-items:flex-start;gap:.5em;padding:.22em 0">
             <span style="font-size:.72rem;width:1.1em;text-align:center">🌱</span>
             <div style="flex:1 1 auto"><span style="font-size:.78rem;font-weight:600;color:var(--text-2)">${this.escHtml(n.title)}</span>
@@ -6689,6 +6700,10 @@ class PBook {
     const chips = rels.map(r => {
       if (r.state === 'core') {
         return `<button class="steer-chip" style="font-size:.66rem" title="${this.escHtml(r.teaser || '')}" onclick="app.openBlock('${r.slug}')">${this.escHtml(r.title)}</button>`;
+      }
+      const draft = (this._conceptPool(r.slug) || []).find(b => b.meta);
+      if (draft) {
+        return `<button class="steer-chip" style="font-size:.66rem;border-style:dashed;color:var(--accent)" title="${this.escHtml((r.teaser || '') + ' · ⚡ tvůj draft — čti v knize')}" onclick="app.openBlock('${draft.meta.id}')">⚡ ${this.escHtml(r.title)}</button>`;
       }
       const voted = r.slug in votes;
       return `<button class="steer-chip" id="clink-${block.id}-${r.slug}" style="font-size:.66rem;border-style:dashed;${voted ? 'color:#0EA5E9;border-color:#0EA5E9' : 'color:var(--text-2)'}"
@@ -6778,7 +6793,9 @@ class PBook {
       if (!(slug in votes)) { votes[slug] = 1; localStorage.setItem('pbook-ghost-votes', JSON.stringify(votes)); }
       this.rc.logEvent('ghost_draft_served', { slug, variantId: block.meta.id, cached: !!data.cached });
       if (this._f('gamification')) { this.user.addXP(5); this.user.save(); this.updateXPBadge(); }
-      if (area) area.innerHTML = '<span style="font-size:.7rem;color:#0EA5E9">✓ +5 XP — draft je tvůj (najdeš ho i v Mapě → Koncepty)</span>';
+      this._hydrateGhostDrafts();
+      const chNum = this._findAnyBlock(block.meta.id)?.meta?._chapterNum;
+      if (area) area.innerHTML = `<span style="font-size:.7rem;color:#0EA5E9">✓ +5 XP — koncept je rozpracovaný a zařazený${chNum ? ` do kapitoly ${chNum}` : ''} tvé knihy</span>`;
       this._showDraftOverlay(block, node);
     } catch (e) {
       this.rc.logEvent('ghost_draft_failed', { slug, error: String(e.message).slice(0, 200) });
@@ -6806,12 +6823,41 @@ class PBook {
       <div class="spine-body">${renderMarkdown(entry.body || '')}</div>
       ${m.recallQ ? `<div class="key-takeaway" style="margin-top:.7em"><div class="key-takeaway-label">Zapamatuj si</div><div class="key-takeaway-text"><b>${this.escHtml(m.recallQ)}</b><br>${this.escHtml(m.recallA || '')}</div></div>` : ''}
       <div style="display:flex;gap:.5em;margin-top:.8em;flex-wrap:wrap">
-        <button class="btn-primary" style="font-size:.78rem" onclick="document.getElementById('draftOverlay').remove()">Hotovo, díky</button>
-        <span style="font-size:.66rem;color:var(--text-3);align-self:center">Draft zůstává v tvé knize (Mapa → Koncepty). Redakce vidí, že o koncept je zájem.</span>
+        <button class="btn-primary" style="font-size:.78rem" onclick="document.getElementById('draftOverlay').remove();app.openBlock('${m.id}')">📖 Otevřít v knize</button>
+        <button class="btn-ghost" style="font-size:.78rem;border:1px solid var(--border);border-radius:8px;padding:.4em .8em" onclick="document.getElementById('draftOverlay').remove()">Zavřít</button>
+        <span style="font-size:.66rem;color:var(--text-3);align-self:center">Blok je teď součástí tvé knihy — v kapitole, ve feedu i v hledání. Redakce vidí, že o koncept je zájem.</span>
       </div></div>`;
     ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
     document.body.appendChild(ov);
     this.renderMath?.();
+  }
+
+  // Rozpracovaný 🌱 koncept není druhá liga: zařadí se do kapitoly svého tématu
+  // jako běžný blok — čte se ve feedu, najde se v hledání, sype kartičky do kvízu.
+  _hydrateGhostDrafts() {
+    if (!this._cmapNodes || !this.chapters) return;
+    let added = 0;
+    for (const pb of Object.values(this.privateBlocks || {})) {
+      const slug = pb.meta?.concept;
+      const node = this._cmapNodes[slug];
+      if (!node || node.state !== 'ghost') continue;
+      if (this.allBlocks.some(b => b.meta.id === pb.meta.id)) continue;
+      const chIdx = Object.keys(this.chapters).map(Number)
+        .find(i => (this.chapters[i].directory || '').endsWith('-' + node.tema));
+      if (chIdx === undefined) continue;
+      const ch = this.chapters[chIdx];
+      const flat = { ...pb.meta, body: pb.body, sequence: 9000 + added, type: 'spine',
+        standalone: true, core: false, status: 'accepted', title: pb.meta.title || node.title,
+        _chapter: ch.id, _chapterNum: ch.number, _chapterTitle: ch.title, _chapterIdx: chIdx,
+        meta: { ...pb.meta, chapter: ch.id } };
+      ch.blocks.push(flat);
+      this.allBlocks.push({ meta: flat, body: pb.body, _chapter: ch.id });
+      if (!this.conceptBlocks[slug]) this.conceptBlocks[slug] = [];
+      if (!this.conceptBlocks[slug].some(b => b.meta.id === flat.id)) this.conceptBlocks[slug].push({ meta: flat, body: pb.body });
+      added++;
+    }
+    if (added) { this._byConcept = null; this.rc?.setAllBlocks?.(this.allBlocks); }
+    return added;
   }
 
   // ===== EDITOR TRACK =====

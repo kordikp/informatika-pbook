@@ -1,6 +1,6 @@
 // Service Worker for p-book — full offline support
 // Pre-caches the entire book on first visit
-const CACHE_NAME = 'pbook-informatika-v6';
+const CACHE_NAME = 'pbook-informatika-v7';
 
 const PRECACHE = [
   '/',
