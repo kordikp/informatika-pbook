@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0 — 2026-07-30
+
+- **Diverzita podání**: 33 konceptů má 2+ podání různých žánrů — 6 příběhů, 6 řešených příkladů, 4 kódové průchody (Python/JS/Scratch, ověřeno spuštěním), 8 tl;dr, 4 nové komiksy, 2 animovaná podání (SMIL), 3 otázkové bloky, 4 nové minihry. Kniha: 111 bloků, 12 her, 32 SVG.
+- **Rozpracování 🌱 konceptů na přání čtenáře**: ghost kontrakty (mustCover z cílů mapy znalostí) v concepts.json; „✨ Rozpracovat hned“ na kartách, v mapě, v Konceptech i read-next → AI napíše první podání podle kontraktu, otevře v čtečce, uloží jako ⚡ soukromé podání a zaloguje poptávku (aktivní po nastavení ANTHROPIC_API_KEY na Vercelu; bez klíče zůstává hlasování).
+- **Zájem ve všech plochách**: 🌱 karty i v nekonečném feedu a v panelu „co číst dál“ (preferuje související nenapsaný koncept).
+- **Editace**: recepty jedním klepnutím ve formuláři ✏️ Vylepšit (jednodušeji, příklad, zkrátit, odrážky, humor, příběh).
+
 ## 0.3.0 — 2026-07-19
 
 - **Vizuální vrstva**: 18 statických diagramů + 3 SMIL animace (klient–server, herní smyčka, generativní model) v design systemu enginu, napojené přes `diagram:` frontmatter a registr v `js/diagrams.js`.
