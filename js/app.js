@@ -3889,7 +3889,7 @@ class PBook {
       <div id="ghost-${slug}-vmap" style="display:flex;gap:.4em">${slug in votes
         ? `<span style="color:#0EA5E9">✓ už jsi hlasoval</span>`
         : `<button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" onclick="app.ghostVote('${slug}',1,'vmap')">👍 Tohle bych četl</button>
-           ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" onclick="app.draftGhost('${slug}','vmap')">✨ Rozpracovat</button>` : ''}
+           ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" onclick="app.openGenComposer('${slug}','vmap')">✨ Rozpracovat</button>` : ''}
            <button class="steer-chip" onclick="app.ghostVote('${slug}',-1,'vmap')">Nic pro mě</button>`}</div>`;
     container.appendChild(pop);
     this.rc.logEvent('ghost_view', { slug, ctx: 'vmap' });
@@ -6573,7 +6573,7 @@ class PBook {
       <div style="font-size:.64rem;color:var(--text-3);font-style:italic;margin:.3em 0">Uměl bys odpovědět: ${this.escHtml(p.recallQ)}</div>
       <div id="ghost-${p.slug}-${ctx}" style="display:flex;gap:.4em;margin-top:.35em;flex-wrap:wrap">
         <button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" onclick="app.ghostVote('${p.slug}',1,'${ctx}')">👍 Tohle bych četl</button>
-        ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" onclick="app.draftGhost('${p.slug}','${ctx}')">✨ Rozpracovat hned</button>` : ''}
+        ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" onclick="app.openGenComposer('${p.slug}','${ctx}')">✨ Rozpracovat hned</button>` : ''}
         <button class="steer-chip" onclick="app.ghostVote('${p.slug}',-1,'${ctx}')">Nic pro mě</button>
       </div>
     </div>`;
@@ -6673,9 +6673,9 @@ class PBook {
               <span style="font-size:.68rem;color:var(--text-3)"> — ${this.escHtml(n.teaser || '')}</span></div>
             ${draftChips ? `<span class="tstrip" style="margin:0">${draftChips}</span>` : ''}
             <span id="ghost-${n.slug}-cmap" style="flex-shrink:0">${voted
-              ? `<span style="font-size:.68rem;color:#0EA5E9">✓ ${votes[n.slug] > 0 ? 'chci' : 'nezájem'}</span>${this._genReady && this.user.readerMode === 'open' && !gpool.length ? ` <button class="steer-chip steer-gen" style="font-size:.62rem;padding:.06em .4em" onclick="app.draftGhost('${n.slug}','cmap')">✨ rozpracovat</button>` : ''}`
+              ? `<span style="font-size:.68rem;color:#0EA5E9">✓ ${votes[n.slug] > 0 ? 'chci' : 'nezájem'}</span>${this._genReady && this.user.readerMode === 'open' && !gpool.length ? ` <button class="steer-chip steer-gen" style="font-size:.62rem;padding:.06em .4em" onclick="app.openGenComposer('${n.slug}','cmap')">✨ rozpracovat</button>` : ''}`
               : `<button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9;font-size:.62rem;padding:.06em .4em" onclick="app.ghostVote('${n.slug}',1,'cmap')">👍 chci</button>
-                 ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" style="font-size:.62rem;padding:.06em .4em" onclick="app.draftGhost('${n.slug}','cmap')">✨ rozpracovat</button>` : ''}
+                 ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" style="font-size:.62rem;padding:.06em .4em" onclick="app.openGenComposer('${n.slug}','cmap')">✨ rozpracovat</button>` : ''}
                  <button class="steer-chip" style="font-size:.62rem;padding:.06em .4em" onclick="app.ghostVote('${n.slug}',-1,'cmap')">ne</button>`}</span>
           </div>`;
         });
@@ -6764,21 +6764,21 @@ class PBook {
       <span class="rn-title">${this.escHtml(pick.title)}</span>
       <span id="ghost-${pick.slug}-rnext" class="rn-time" style="display:inline-flex;gap:.3em">
         <button class="steer-chip" style="font-size:.6rem;padding:.04em .35em;border-color:#0EA5E9;color:#0EA5E9" onclick="event.stopPropagation();app.ghostVote('${pick.slug}',1,'rnext')">👍 chci</button>
-        ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" style="font-size:.6rem;padding:.04em .35em" onclick="event.stopPropagation();app.draftGhost('${pick.slug}','rnext')">✨</button>` : ''}
+        ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" style="font-size:.6rem;padding:.04em .35em" onclick="event.stopPropagation();app.openGenComposer('${pick.slug}','rnext')">✨</button>` : ''}
       </span></div>`;
   }
 
   // ✨ Rozpracovat nenapsaný koncept: první podání vznikne na přání čtenáře
-  async draftGhost(slug, ctx) {
+  async draftGhost(slug, ctx, targetOverride, wish) {
     const node = this._cmapNodes?.[slug];
     const area = document.getElementById(`ghost-${slug}-${ctx}`);
-    if (area) area.innerHTML = '<span class="gen-spinner">⚡ Píšu první podání konceptu… (~30 s, podle kontraktu z mapy znalostí)</span>';
-    this.rc.logEvent('ghost_draft_request', { slug, ctx });
+    if (area) area.innerHTML = '<span class="gen-spinner">⚡ Píšu podání na míru… (~30 s, podle kontraktu z mapy znalostí)</span>';
+    this.rc.logEvent('ghost_draft_request', { slug, ctx, target: targetOverride || null });
     try {
-      const target = { ...this.user.getTargetFacets(), lang: 'cs' };
+      const target = targetOverride || { ...this.user.getTargetFacets(), lang: 'cs' };
       const res = await fetch(CONFIG.steering.generateEndpoint, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ concept: slug, facets: target, existingVariants: [] }),
+        body: JSON.stringify({ concept: slug, facets: target, existingVariants: [], instructions: wish || undefined }),
       });
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || 'generation failed');
@@ -6905,6 +6905,83 @@ class PBook {
     </div>`;
     ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
     document.body.appendChild(ov);
+  }
+
+  // ===== SKLADATEL PODÁNÍ — parametry generování na míru, předvyplněné z DNA =====
+  _COMPOSE_DIMS() {
+    return [
+      { dim: 'genre', label: '✒️ Žánr', vals: { explainer: '📄 výklad', story: '📖 příběh', 'worked-example': '🧮 řešený příklad', 'code-walkthrough': '💻 kód', comic: '🎭 komiks', animation: '🎞 animace' } },
+      { dim: 'depth', label: '📏 Hloubka', vals: { intro: 'úvodní', standard: 'standardní', technical: 'technická' } },
+      { dim: 'lengthBand', label: '⏱ Délka', vals: { tldr: '⚡ krátce', standard: 'akorát', deep: 'do hloubky' } },
+      { dim: 'lens', label: '🌐 Svět příkladů', vals: { generic: '🌐 odevšad', ecommerce: '🛒 nakupování', media: '🎵 hudba a video', 'social-feeds': '📱 sítě', education: '🎓 škola' } },
+      { dim: 'visuality', label: '🖼 Forma', vals: { 'text-first': 'text', balanced: 'text + vizuál', 'visual-first': 'hlavně vizuál' } },
+    ];
+  }
+
+  openGenComposer(slug, ctx) {
+    const title = this._cmapNodes?.[slug]?.title || this.concepts?.[slug]?.title || slug;
+    const profile = this.user.getTargetFacets();
+    this._composeTarget = { lang: 'cs', lens: 'generic', depth: 'intro', lengthBand: 'standard', genre: 'explainer', visuality: 'text-first', formalism: 'none',
+      ...Object.fromEntries(Object.entries(profile).filter(([k, v]) => v && String(v).indexOf('..') === -1 && String(v).indexOf('|') === -1)),
+      ...(this._steerTargets?.[slug] || {}) };
+    this._composeSlug = slug; this._composeCtx = ctx;
+    this.rc.logEvent('composer_open', { slug, ctx });
+    document.getElementById('genComposer')?.remove();
+    const ov = document.createElement('div');
+    ov.id = 'genComposer';
+    ov.className = 'cert-overlay';
+    ov.innerHTML = `<div class="cert-modal" style="max-width:560px;max-height:88vh;overflow:auto;text-align:left">
+      <button class="cert-close" onclick="document.getElementById('genComposer').remove()">&times;</button>
+      <div style="font-size:.68rem;color:#0EA5E9;font-weight:700">🌱 ${this.escHtml(title)}</div>
+      <h3 style="margin:.15em 0 .1em">Podání na míru</h3>
+      <p style="font-size:.72rem;color:var(--text-3);margin:0 0 .6em">Předvyplněno podle tvé čtenářské DNA — uprav si to a teprve pak se generuje. Obsah hlídá kontrakt konceptu z Mapy znalostí.</p>
+      <div id="genComposerBody"></div>
+      <div style="font-size:.68rem;color:var(--text-3);margin:.45em 0 .15em">Něco konkrétního? (nepovinné)</div>
+      <input type="text" id="compose-wish" class="gen-wish" maxlength="300" style="width:100%"
+        value="${this.escHtml(this._steerWish?.[slug] || '')}"
+        placeholder="např. ‚na příkladu školního turnaje‘, ‚hodně jednoduše‘, ‚přidej tabulku‘">
+      <div style="display:flex;gap:.5em;margin-top:.75em;align-items:center;flex-wrap:wrap">
+        <button class="btn-primary" style="font-size:.82rem" onclick="app._composeGo()">✨ Generovat (~30 s)</button>
+        <button class="btn-ghost" style="font-size:.78rem;border:1px solid var(--border);border-radius:8px;padding:.4em .8em" onclick="document.getElementById('genComposer').remove()">Zrušit</button>
+        <span id="compose-note" style="font-size:.66rem;color:var(--text-3)"></span>
+      </div></div>`;
+    ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
+    document.body.appendChild(ov);
+    this._composeRender();
+  }
+
+  _composeRender() {
+    const box = document.getElementById('genComposerBody');
+    if (!box) return;
+    const t = this._composeTarget;
+    box.innerHTML = this._COMPOSE_DIMS().map(({ dim, label, vals }) => `
+      <div class="dna-row" style="align-items:flex-start;margin:.3em 0"><span class="dna-label" style="padding-top:.2em">${label}</span>
+        <div style="display:flex;flex-wrap:wrap;gap:.25em">${Object.entries(vals).map(([v, cap]) =>
+          `<button class="steer-chip ${t[dim] === v ? 'dim-active' : ''}" style="font-size:.68rem" onclick="app._composePick('${dim}','${v}')">${cap}</button>`).join('')}
+        </div></div>`).join('');
+    const note = document.getElementById('compose-note');
+    if (note) note.textContent = (t.genre === 'comic' || t.genre === 'animation')
+      ? (t.genre === 'comic' ? 'Nakreslí se čtyřpanelový komiks (~40 s).' : 'Nakreslí se animované SVG (~40 s).')
+      : '';
+  }
+
+  _composePick(dim, value) {
+    this._composeTarget[dim] = value;
+    if (dim === 'genre' && (value === 'comic' || value === 'animation')) this._composeTarget.visuality = 'visual-first';
+    if (dim === 'depth' && value === 'intro') this._composeTarget.formalism = 'none';
+    this._composeRender();
+  }
+
+  _composeGo() {
+    const slug = this._composeSlug, ctx = this._composeCtx;
+    const wish = document.getElementById('compose-wish')?.value?.trim().slice(0, 300) || '';
+    if (!this._steerTargets) this._steerTargets = {};
+    this._steerTargets[slug] = { ...this._composeTarget };
+    if (!this._steerWish) this._steerWish = {};
+    this._steerWish[slug] = wish;
+    this.user.updateFacetAffinity(this._composeTarget, 2);
+    document.getElementById('genComposer')?.remove();
+    this.draftGhost(slug, ctx, { ...this._composeTarget }, wish);
   }
 
   // ===== EDITOR TRACK =====
