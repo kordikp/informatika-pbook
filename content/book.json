@@ -19,6 +19,7 @@
         "04b-sidebar-comic-cloud.md",
         "04s-story-cloud.md",
         "05-spine-api.md",
+        "05x-sidebar-comic-ch1-api.md",
         "05t-tldr-api.md"
       ]
     },
@@ -69,6 +70,7 @@
       "directory": "ch4-data-databaze",
       "files": [
         "01-spine-datova-gramotnost.md",
+        "01x-sidebar-comic-ch4-datova-gramotnost.md",
         "01s-story-datova-gramotnost.md",
         "02-spine-datovy-cyklus.md",
         "02t-tldr-datovy-cyklus.md",
@@ -96,6 +98,7 @@
         "03-spine-jak-funguje-generativni-model.md",
         "03b-sidebar-comic-halucinace.md",
         "04-spine-doporucovaci-systemy.md",
+        "04x-sidebar-comic-ch5-doporucovaci-systemy.md",
         "05-spine-prompt-a-promptova-gramotnost.md",
         "05g-game-prompt-sila.md",
         "05w-worked-prompt.md",
@@ -124,6 +127,7 @@
         "02s-story-phishing.md",
         "03-spine-soukromi-a-digitalni-stopa.md",
         "04-spine-bezpecne-chovani-na-sitich.md",
+        "04x-sidebar-comic-ch6-bezpecne-chovani-na-sitich.md",
         "05-spine-zakladni-hygiena.md"
       ]
     },
@@ -205,6 +209,7 @@
         "02c-code-vstup-hrace.md",
         "03-spine-kolize-a-jednoducha-fyzika.md",
         "04-spine-herni-design.md",
+        "04x-sidebar-comic-ch11-herni-design.md",
         "05-spine-scratch-jako-vstup.md"
       ]
     },
@@ -219,6 +224,7 @@
         "02-spine-senzory-a-aktuatory.md",
         "02t-tldr-senzory.md",
         "03-spine-micro-bit.md",
+        "03x-sidebar-comic-ch12-micro-bit.md",
         "04-spine-udalosti-a-rizeni-vystupu.md"
       ]
     }

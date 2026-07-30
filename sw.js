@@ -1,6 +1,6 @@
 // Service Worker for p-book — full offline support
 // Pre-caches the entire book on first visit
-const CACHE_NAME = 'pbook-informatika-v5';
+const CACHE_NAME = 'pbook-informatika-v6';
 
 const PRECACHE = [
   '/',
@@ -41,6 +41,12 @@ const PRECACHE = [
   '/images/anim-sila-hesla.svg',
   '/images/comic-brouk.svg',
   '/images/comic-bublina.svg',
+  '/images/comic-ch1-api.svg',
+  '/images/comic-ch11-herni-design.svg',
+  '/images/comic-ch12-micro-bit.svg',
+  '/images/comic-ch4-datova-gramotnost.svg',
+  '/images/comic-ch5-doporucovaci-systemy.svg',
+  '/images/comic-ch6-bezpecne-chovani-na-sitich.svg',
   '/images/comic-cloud.svg',
   '/images/comic-doslovny-robot.svg',
   '/images/comic-halucinace.svg',
@@ -76,6 +82,7 @@ const PRECACHE = [
   '/content/ch1-digitalni-zaklady/04b-sidebar-comic-cloud.md',
   '/content/ch1-digitalni-zaklady/04s-story-cloud.md',
   '/content/ch1-digitalni-zaklady/05-spine-api.md',
+  '/content/ch1-digitalni-zaklady/05x-sidebar-comic-ch1-api.md',
   '/content/ch1-digitalni-zaklady/05t-tldr-api.md',
   '/content/ch2-informaticke-mysleni/01-spine-dekompozice.md',
   '/content/ch2-informaticke-mysleni/01w-worked-dekompozice.md',
@@ -99,6 +106,7 @@ const PRECACHE = [
   '/content/ch3-programovani/05q-question-projekt.md',
   '/content/ch3-programovani/05x-sidebar-comic-ladeni.md',
   '/content/ch4-data-databaze/01-spine-datova-gramotnost.md',
+  '/content/ch4-data-databaze/01x-sidebar-comic-ch4-datova-gramotnost.md',
   '/content/ch4-data-databaze/01s-story-datova-gramotnost.md',
   '/content/ch4-data-databaze/02-spine-datovy-cyklus.md',
   '/content/ch4-data-databaze/02t-tldr-datovy-cyklus.md',
@@ -117,6 +125,7 @@ const PRECACHE = [
   '/content/ch5-umela-inteligence/03-spine-jak-funguje-generativni-model.md',
   '/content/ch5-umela-inteligence/03b-sidebar-comic-halucinace.md',
   '/content/ch5-umela-inteligence/04-spine-doporucovaci-systemy.md',
+  '/content/ch5-umela-inteligence/04x-sidebar-comic-ch5-doporucovaci-systemy.md',
   '/content/ch5-umela-inteligence/05-spine-prompt-a-promptova-gramotnost.md',
   '/content/ch5-umela-inteligence/05g-game-prompt-sila.md',
   '/content/ch5-umela-inteligence/05w-worked-prompt.md',
@@ -136,6 +145,7 @@ const PRECACHE = [
   '/content/ch6-kyberbezpecnost/02s-story-phishing.md',
   '/content/ch6-kyberbezpecnost/03-spine-soukromi-a-digitalni-stopa.md',
   '/content/ch6-kyberbezpecnost/04-spine-bezpecne-chovani-na-sitich.md',
+  '/content/ch6-kyberbezpecnost/04x-sidebar-comic-ch6-bezpecne-chovani-na-sitich.md',
   '/content/ch6-kyberbezpecnost/05-spine-zakladni-hygiena.md',
   '/content/ch7-digitalni-obcanstvi/01-spine-kriticke-mysleni-online.md',
   '/content/ch7-digitalni-obcanstvi/02-spine-jak-funguji-algoritmy-siti.md',
@@ -172,11 +182,13 @@ const PRECACHE = [
   '/content/ch11-herni-vyvoj/02c-code-vstup-hrace.md',
   '/content/ch11-herni-vyvoj/03-spine-kolize-a-jednoducha-fyzika.md',
   '/content/ch11-herni-vyvoj/04-spine-herni-design.md',
+  '/content/ch11-herni-vyvoj/04x-sidebar-comic-ch11-herni-design.md',
   '/content/ch11-herni-vyvoj/05-spine-scratch-jako-vstup.md',
   '/content/ch12-fyzicky-computing/01-spine-vstup-zpracovani-vystup-na-zarizeni.md',
   '/content/ch12-fyzicky-computing/02-spine-senzory-a-aktuatory.md',
   '/content/ch12-fyzicky-computing/02t-tldr-senzory.md',
   '/content/ch12-fyzicky-computing/03-spine-micro-bit.md',
+  '/content/ch12-fyzicky-computing/03x-sidebar-comic-ch12-micro-bit.md',
   '/content/ch12-fyzicky-computing/04-spine-udalosti-a-rizeni-vystupu.md',
 ];
 

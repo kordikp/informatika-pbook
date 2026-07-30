@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="system-ui,sans-serif">
+  <rect width="800" height="640" rx="14" fill="#FAFAF7" stroke="#E5E7EB"/>
+  <text x="400" y="38" font-size="21" font-weight="700" fill="#1E1B4B" text-anchor="middle">Koš, který tě nepustí</text>
+
+  <rect x="14" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="406" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="14" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="406" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+
+  <!-- Panel 1 -->
+  <g>
+    <rect x="30" y="72" width="190" height="48" rx="9" fill="#EDE9FE" stroke="#7C3AED"/>
+    <text x="44" y="91" font-size="12.5" fill="#1E1B4B">
+      <tspan x="44" dy="0">Všechno funguje přesně.</tspan>
+      <tspan x="44" dy="16">Takže to musí být zábava.</tspan>
+    </text>
+
+    <circle cx="63" cy="161" r="10" fill="#7C3AED"/>
+    <path d="M63 172 L63 216 M63 183 L45 198 M63 183 L82 194 M63 216 L50 238 M63 216 L77 238" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+    <circle cx="106" cy="169" r="10" fill="#10B981"/>
+    <path d="M106 180 L106 221 M106 190 L91 204 M106 190 L121 204 M106 221 L96 240 M106 221 L116 240" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+    <rect x="145" y="137" width="216" height="29" rx="7" fill="#E0F2FE" stroke="#0EA5E9"/>
+    <text x="253" y="156" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">CÍL: trefit koš</text>
+
+    <rect x="145" y="174" width="216" height="29" rx="7" fill="#FEF3C7" stroke="#D97706"/>
+    <text x="253" y="193" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">PRAVIDLO: házej za čárou</text>
+
+    <rect x="145" y="211" width="216" height="29" rx="7" fill="#D1FAE5" stroke="#10B981"/>
+    <text x="253" y="230" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">ZPĚTNÁ VAZBA: cink!</text>
+
+    <circle cx="282" cy="254" r="7" fill="#FEF3C7" stroke="#D97706"/>
+    <path d="M311 247 L355 247 L350 270 L316 270 Z" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2"/>
+    <text x="204" y="306" font-size="12" fill="#6B7280" text-anchor="middle">Cíl, pravidla a zpětná vazba dávají hře kostru.</text>
+  </g>
+
+  <!-- Panel 2 -->
+  <g>
+    <rect x="430" y="74" width="172" height="43" rx="9" fill="#D1FAE5" stroke="#10B981"/>
+    <text x="444" y="100" font-size="12.5" fill="#1E1B4B">Tři ze tří. A co dál?</text>
+
+    <circle cx="502" cy="166" r="10" fill="#10B981"/>
+    <path d="M502 177 L502 219 M502 188 L484 202 M502 188 L531 181 M502 219 L489 242 M502 219 L516 242" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+    <line x1="535" y1="244" x2="583" y2="244" stroke="#D97706" stroke-width="4" stroke-linecap="round"/>
+    <path d="M536 181 Q615 145 686 187" fill="none" stroke="#6B7280" stroke-width="2" stroke-dasharray="5 5"/>
+    <circle cx="686" cy="187" r="7" fill="#FEF3C7" stroke="#D97706"/>
+
+    <path d="M688 207 L735 207 L729 239 L694 239 Z" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2"/>
+    <line x1="684" y1="207" x2="739" y2="207" stroke="#1E1B4B" stroke-width="3" stroke-linecap="round"/>
+
+    <circle cx="757" cy="171" r="10" fill="#7C3AED"/>
+    <path d="M757 182 L757 220 M757 192 L743 204 M757 192 L771 204 M757 220 L748 241 M757 220 L768 241" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+    <text x="596" y="306" font-size="12" fill="#6B7280" text-anchor="middle">Příliš snadná výzva rychle zevšední.</text>
+  </g>
+
+  <!-- Panel 3 -->
+  <g>
+    <rect x="30" y="354" width="194" height="44" rx="9" fill="#D1FAE5" stroke="#10B981"/>
+    <text x="44" y="381" font-size="12.5" fill="#1E1B4B">Můžu házet až z chodby?</text>
+
+    <circle cx="76" cy="450" r="10" fill="#10B981"/>
+    <path d="M76 461 L76 505 M76 472 L58 486 M76 472 L96 468 M76 505 L63 527 M76 505 L89 527" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+    <line x1="111" y1="530" x2="160" y2="530" stroke="#D97706" stroke-width="4" stroke-linecap="round"/>
+    <line x1="251" y1="530" x2="300" y2="530" stroke="#E5E7EB" stroke-width="4" stroke-dasharray="6 5"/>
+
+    <circle cx="226" cy="455" r="10" fill="#7C3AED"/>
+    <path d="M226 466 L226 509 M226 477 L207 492 M226 477 L250 494 M226 509 L214 531 M226 509 L239 531" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+    <rect x="248" y="482" width="54" height="39" rx="4" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+    <line x1="258" y1="494" x2="292" y2="494" stroke="#6B7280" stroke-width="2"/>
+    <line x1="258" y1="505" x2="284" y2="505" stroke="#6B7280" stroke-width="2"/>
+
+    <path d="M318 487 L366 487 L360 522 L324 522 Z" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2"/>
+    <text x="204" y="586" font-size="12" fill="#6B7280" text-anchor="middle">Playtesting: dej hru někomu jinému, pozoruj a mlč.</text>
+  </g>
+
+  <!-- Panel 4 -->
+  <g>
+    <rect x="430" y="354" width="126" height="43" rx="9" fill="#D1FAE5" stroke="#10B981"/>
+    <text x="447" y="380" font-size="12.5" font-weight="700" fill="#1E1B4B">Ještě jeden!</text>
+
+    <path d="M509 469 Q610 373 714 462" fill="none" stroke="#0EA5E9" stroke-width="2.5" stroke-dasharray="6 5"/>
+    <circle cx="714" cy="462" r="7" fill="#FEF3C7" stroke="#D97706"/>
+
+    <circle cx="478" cy="470" r="10" fill="#10B981"/>
+    <path d="M478 481 L478 524 M478 492 L460 506 M478 492 L510 474 M478 524 L464 548 M478 524 L492 548" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="510" y1="550" x2="558" y2="550" stroke="#D97706" stroke-width="4" stroke-linecap="round"/>
+
+    <circle cx="626" cy="477" r="10" fill="#7C3AED"/>
+    <path d="M626 488 L626 527 M626 499 L611 511 M626 499 L641 511 M626 527 L615 549 M626 527 L638 549" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+    <path d="M704 487 L753 487 L747 523 L710 523 Z" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2"/>
+    <line x1="700" y1="487" x2="757" y2="487" stroke="#1E1B4B" stroke-width="3" stroke-linecap="round"/>
+
+    <path d="M727 378 Q742 378 742 394 L742 407 L748 414 L706 414 L712 407 L712 394 Q712 378 727 378 Z" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+    <text x="727" y="432" font-size="12.5" fill="#D97706" font-weight="700" text-anchor="middle">Crrrr!</text>
+
+    <text x="596" y="586" font-size="12" fill="#6B7280" text-anchor="middle">Zvoní. Matěj nikam nejde.</text>
+  </g>
+
+  <text x="400" y="626" font-size="13" fill="#6B7280" text-anchor="middle">Flow drží výzva odpovídající dovednostem; designér navrhuje cíle, pravidla a zpětnou vazbu.</text>
+</svg>

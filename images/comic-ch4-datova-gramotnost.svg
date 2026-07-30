@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="system-ui,sans-serif">
+  <rect width="800" height="640" rx="14" fill="#FAFAF7" stroke="#E5E7EB"/>
+  <text x="400" y="38" font-size="21" font-weight="700" fill="#1E1B4B" text-anchor="middle">Průzkum, který si vystál svou frontu</text>
+
+  <rect x="14" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="406" y="56" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="14" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="406" y="336" width="380" height="264" rx="10" fill="#FFFFFF" stroke="#E5E7EB"/>
+
+  <!-- Panel 1 -->
+  <rect x="32" y="76" width="214" height="56" rx="9" fill="#EDE9FE" stroke="#7C3AED"/>
+  <text x="45" y="98" font-size="12.5" fill="#1E1B4B">
+    <tspan x="45" dy="0">Mám jasná data:</tspan>
+    <tspan x="45" dy="18">třída chce na výletě pizzu!</tspan>
+  </text>
+
+  <circle cx="76" cy="188" r="10" fill="#7C3AED"/>
+  <path d="M76 199 L76 248 M76 214 L55 229 M76 214 L96 226 M76 248 L62 268 M76 248 L90 268" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+  <rect x="121" y="153" width="174" height="76" rx="8" fill="#FFFFFF" stroke="#7C3AED"/>
+  <text x="208" y="178" font-size="16" font-weight="700" fill="#7C3AED" text-anchor="middle">90 % TŘÍDY</text>
+  <text x="208" y="198" font-size="12.5" fill="#1E1B4B" text-anchor="middle">CHCE PIZZU</text>
+  <rect x="145" y="208" width="126" height="8" rx="4" fill="#E5E7EB"/>
+  <rect x="145" y="208" width="113" height="8" rx="4" fill="#10B981"/>
+
+  <circle cx="333" cy="188" r="10" fill="#10B981"/>
+  <path d="M333 199 L333 248 M333 214 L315 225 M333 214 L350 225 M333 248 L320 268 M333 248 L346 268" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+  <text x="204" y="306" font-size="12" fill="#6B7280" text-anchor="middle">Číslo v titulku umí znít jistěji než jeho původ.</text>
+
+  <!-- Panel 2 -->
+  <rect x="424" y="76" width="166" height="56" rx="9" fill="#D1FAE5" stroke="#10B981"/>
+  <text x="437" y="98" font-size="12.5" fill="#1E1B4B">
+    <tspan x="437" dy="0">Odkud jsou ta data</tspan>
+    <tspan x="437" dy="18">a kdo je sbíral?</tspan>
+  </text>
+
+  <rect x="604" y="76" width="164" height="56" rx="9" fill="#EDE9FE" stroke="#7C3AED"/>
+  <text x="617" y="98" font-size="12.5" fill="#1E1B4B">
+    <tspan x="617" dy="0">Z mojí ankety.</tspan>
+    <tspan x="617" dy="18">Sbíral jsem je já.</tspan>
+  </text>
+
+  <circle cx="476" cy="196" r="10" fill="#10B981"/>
+  <path d="M476 207 L476 252 M476 220 L458 232 M476 220 L493 232 M476 252 L464 272 M476 252 L488 272" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+  <rect x="551" y="164" width="90" height="94" rx="7" fill="#FEF3C7" stroke="#D97706"/>
+  <rect x="578" y="158" width="36" height="12" rx="4" fill="#D97706"/>
+  <text x="596" y="190" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">ANKETA</text>
+  <text x="596" y="216" font-size="14" fill="#10B981" text-anchor="middle">9× ANO</text>
+  <text x="596" y="238" font-size="14" fill="#EF4444" text-anchor="middle">1× NE</text>
+
+  <circle cx="720" cy="196" r="10" fill="#7C3AED"/>
+  <path d="M720 207 L720 252 M720 220 L702 232 M720 220 L738 230 M720 252 L708 272 M720 252 L732 272" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+  <text x="596" y="306" font-size="12" fill="#6B7280" text-anchor="middle">Nejdřív zjisti zdroj dat a kdo je sbíral.</text>
+
+  <!-- Panel 3 -->
+  <rect x="30" y="356" width="168" height="56" rx="9" fill="#D1FAE5" stroke="#10B981"/>
+  <text x="43" y="378" font-size="12.5" fill="#1E1B4B">
+    <tspan x="43" dy="0">Kterých deseti</tspan>
+    <tspan x="43" dy="18">ses ptal?</tspan>
+  </text>
+
+  <rect x="208" y="356" width="168" height="56" rx="9" fill="#EDE9FE" stroke="#7C3AED"/>
+  <text x="221" y="378" font-size="12.5" fill="#1E1B4B">
+    <tspan x="221" dy="0">Těch ve frontě</tspan>
+    <tspan x="221" dy="18">na pizzu.</tspan>
+  </text>
+
+  <circle cx="77" cy="468" r="10" fill="#10B981"/>
+  <path d="M77 479 L77 528 M77 493 L60 504 M77 493 L94 504 M77 528 L64 548 M77 528 L90 548" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+  <rect x="130" y="449" width="139" height="76" rx="7" fill="#FEF3C7" stroke="#D97706"/>
+  <text x="199.5" y="473" font-size="14" font-weight="700" fill="#D97706" text-anchor="middle">PIZZA</text>
+  <path d="M173 510 L198 480 L224 510 Z" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+  <circle cx="194" cy="497" r="3" fill="#EF4444"/>
+  <circle cx="207" cy="502" r="3" fill="#EF4444"/>
+
+  <circle cx="320" cy="468" r="10" fill="#7C3AED"/>
+  <path d="M320 479 L320 528 M320 493 L302 504 M320 493 L338 504 M320 528 L307 548 M320 528 L333 548" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+  <text x="204" y="586" font-size="12" fill="#6B7280" text-anchor="middle">Výběr dotázaných může výsledek naklonit.</text>
+
+  <!-- Panel 4 -->
+  <rect x="424" y="356" width="174" height="56" rx="9" fill="#D1FAE5" stroke="#10B981"/>
+  <text x="437" y="378" font-size="12.5" fill="#1E1B4B">
+    <tspan x="437" dy="0">Plyne z toho něco</tspan>
+    <tspan x="437" dy="18">o celé třídě?</tspan>
+  </text>
+
+  <rect x="612" y="356" width="156" height="56" rx="9" fill="#EDE9FE" stroke="#7C3AED"/>
+  <text x="625" y="378" font-size="12.5" fill="#1E1B4B">
+    <tspan x="625" dy="0">Upravil jsem</tspan>
+    <tspan x="625" dy="18">titulek.</tspan>
+  </text>
+
+  <circle cx="459" cy="468" r="10" fill="#10B981"/>
+  <path d="M459 479 L459 528 M459 493 L444 504 M459 493 L475 504 M459 528 L447 548 M459 528 L471 548" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+  <rect x="500" y="440" width="202" height="88" rx="8" fill="#FFFFFF" stroke="#7C3AED"/>
+  <text x="601" y="463" font-size="12.5" font-weight="700" fill="#7C3AED" text-anchor="middle">
+    <tspan x="601" dy="0">90 % LIDÍ VE FRONTĚ</tspan>
+    <tspan x="601" dy="19">NA PIZZU CHCE PIZZU</tspan>
+  </text>
+  <text x="601" y="511" font-size="11.5" fill="#6B7280" text-anchor="middle">Průlomový objev.</text>
+
+  <circle cx="743" cy="468" r="10" fill="#7C3AED"/>
+  <path d="M743 479 L743 528 M743 493 L727 504 M743 493 L758 504 M743 528 L731 548 M743 528 L755 548" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+
+  <text x="596" y="586" font-size="12" fill="#6B7280" text-anchor="middle">Stejné číslo může podpírat poctivější závěr.</text>
+
+  <text x="400" y="626" font-size="13" fill="#6B7280" text-anchor="middle">Ptej se: odkud data jsou, kdo a jak je sbíral a zda z nich tvrzený závěr opravdu plyne.</text>
+</svg>
