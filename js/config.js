@@ -34,7 +34,7 @@ export const CONFIG = {
     highlights: true,         // klíčové body vedle sekce
     steering: true,           // per-blok ovladače (jednodušeji/hlouběji, panel podání)
     generation: true,         // generování na vyžádání — bez klíče na serveru se tlačítko samo skryje (probe)
-    community: false,         // sdílené čtenářské varianty — vyžaduje backend (Supabase)
+    community: true,          // sdílené čtenářské varianty — git-backed (/api/community)
   },
 
   tutor: {

@@ -1,6 +1,6 @@
 // Service Worker for p-book — full offline support
 // Pre-caches the entire book on first visit
-const CACHE_NAME = 'pbook-informatika-v7';
+const CACHE_NAME = 'pbook-informatika-v8';
 
 const PRECACHE = [
   '/',
@@ -225,6 +225,8 @@ self.addEventListener('fetch', event => {
   }
   // Only same-scheme GETs are cacheable — browser extensions (chrome-extension://)
   // and other schemes throw on cache.put and just pollute the console.
+  const _p = new URL(event.request.url).pathname;
+  if (_p.startsWith('/api/') || _p.startsWith('/community/')) return;   // vždy ze sítě (čerstvá komunita)
   if (event.request.method !== 'GET' || !event.request.url.startsWith('http')) {
     return;
   }

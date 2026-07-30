@@ -1970,7 +1970,7 @@ class PBook {
           <span>${block.readingTime || 3} min čtení</span>
         </div>
       </div>
-      ${block.state === 'private' ? `<div style="font-size:.68rem;margin:.2em 0"><span class="gen-badge">⚡ vygenerováno na tvoje přání · zatím bez redakce</span> <span style="color:var(--text-3)">Koncept z Mapy znalostí — hlasy čtenářů rozhodnou, jestli dostane redakční verzi.</span></div>` : block.state === 'community' ? `<div style="font-size:.68rem;margin:.2em 0"><span class="gen-badge">🌱 sdílel čtenář · zatím bez redakce</span></div>` : ''}
+      ${block.state === 'private' ? `<div style="font-size:.68rem;margin:.2em 0"><span class="gen-badge">⚡ vygenerováno na tvoje přání · zatím bez redakce</span> <span style="color:var(--text-3)">Koncept z Mapy znalostí — hlasy čtenářů rozhodnou, jestli dostane redakční verzi.</span></div>` : block.state === 'community' ? `<div style="font-size:.68rem;margin:.2em 0;display:flex;gap:.5em;align-items:center;flex-wrap:wrap"><span class="gen-badge">🌱 sdílel čtenář${block.sharedAs && block.sharedAs !== 'anonym' ? ' ' + this.escHtml(block.sharedAs) : ''} · zatím bez redakce</span>${localStorage.getItem('pbook-role') === 'editor' ? `<button class="steer-chip" style="border-color:var(--product);color:var(--product);font-size:.66rem" onclick="app.adoptBlock('${block.id}')">📥 Převzít do core knihy</button>` : ''}</div>` : ''}
       ${this._renderTellingsIndicator(block)}
       <div class="block-with-side">
         <div class="block-main">
@@ -5993,7 +5993,7 @@ class PBook {
       block.meta.state = 'community';
       this._savePrivateBlock(block, 'shared');
       if (this._communityCache?.[meta.concept]) delete this._communityCache[meta.concept];
-      this.showXPToast('+10 XP 📖 You enriched the book!', 'achievement');
+      this.showXPToast('+10 XP 📖 Sdíleno — ostatním se ukáže po nasazení (~1 min)', 'achievement');
       if (this._f('gamification')) { this.user.addXP(10); this.user.save(); this.updateXPBadge(); }
     } else {
       this.showXPToast('Sdílení selhalo — zůstává soukromé, požadavek zaznamenán', 'xp');
@@ -6858,6 +6858,32 @@ class PBook {
     }
     if (added) { this._byConcept = null; this.rc?.setAllBlocks?.(this.allBlocks); }
     return added;
+  }
+
+  // Redakční adopce: komunitní podání → commit do content/ + book.json (git)
+  async adoptBlock(blockId) {
+    let key = localStorage.getItem('pbook-editor-key') || '';
+    if (!key) {
+      key = (window.prompt('Redakční klíč (EDITOR_TOKEN):') || '').trim();
+      if (!key) return;
+      localStorage.setItem('pbook-editor-key', key);
+    }
+    this.showXPToast('📥 Přebírám do knihy…', 'info');
+    try {
+      const res = await fetch('/api/community', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'adopt', id: blockId, editorKey: key }),
+      });
+      const d = await res.json();
+      if (!d.ok) {
+        if (res.status === 403) localStorage.removeItem('pbook-editor-key');
+        throw new Error(d.error || res.status);
+      }
+      this.rc.logEvent('community_adopted', { blockId, path: d.path });
+      this.showXPToast('✅ Převzato — commit ' + (d.commit || '') + ', v knize bude po nasazení (~1 min)', 'achievement');
+    } catch (e) {
+      this.showXPToast('Převzetí selhalo: ' + String(e.message).slice(0, 60), 'info');
+    }
   }
 
   // ===== EDITOR TRACK =====

@@ -317,7 +317,17 @@ export class RecombeeClient {
   // readers immediately, body carried as an item property. Requires properties to exist
   // in the DB (created by /api/sync-recombee ensure step).
   async shareCommunityBlock(props) {
-    if (!this.enabled) return false;
+    if (!this.enabled) {
+      // Git-backed komunita: sdílení = commit do repa přes /api/community
+      try {
+        const res = await fetch('/api/community', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'share', block: props }),
+        });
+        const d = await res.json();
+        return !!d.ok;
+      } catch (e) { return false; }
+    }
     const { itemId, ...values } = props;
     const res = await this.api('POST', `/items/${encodeURIComponent(itemId)}`, {
       ...values,
@@ -331,7 +341,14 @@ export class RecombeeClient {
   // Community blocks live in the Recombee catalog (state == "community") — the book's
   // shared layer needs no extra storage and is immediately recommendable. Graceful [].
   async listCommunityBlocks(conceptId, count = 10, states = ['community']) {
-    if (!this.enabled) return [];
+    if (!this.enabled) {
+      // Git-backed komunita: čerstvý výpis z masteru přes /api/community
+      try {
+        const res = await fetch('/api/community?concept=' + encodeURIComponent(conceptId || ''));
+        const d = await res.json();
+        return (d.blocks || []).filter(b => states.includes(b.meta?.state || 'community'));
+      } catch (e) { return []; }
+    }
     // newer Recombee clusters reject GET — list via POST recomms with a filter
     // (personalized order is a bonus; returnProperties gives us the bodies)
     const stateExpr = '(' + states.map(s => `'state' == "${s}"`).join(' OR ') + ')';
