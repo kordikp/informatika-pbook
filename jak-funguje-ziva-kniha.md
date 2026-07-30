@@ -15,7 +15,7 @@ Ověřené jádro se tvými experimenty nikdy nerozbije — originál každé se
 ## Co všechno můžeš dělat
 
 - **Číst po svém.** Každý koncept může mít víc podání: výklad, příběh, komiks, řešený příklad, kód, animaci… Panel **🎛 podání** u sekce ukazuje, co existuje, a přepínáš v něm žánr, hloubku i délku.
-- **Hlasovat, co napsat dál.** Čárkované 🌱 koncepty (v mapě, ve feedu, v „🧭 Kam dál") zatím napsané nejsou. Tlačítkem **👍 Tohle bych četl** říkáš redakci, kam jít do hloubky — hlasy se sčítají za všechny čtenáře.
+- **Hlasovat, co napsat dál.** Čárkované 🌱 koncepty (<a href="#" onclick="document.getElementById('howOverlay')?.remove();app.setMapMode('visual');app.switchView('map');return false">v mapě</a>, ve feedu, v „🧭 Kam dál") zatím napsané nejsou. Tlačítkem **👍 Tohle bych četl** říkáš redakci, kam jít do hloubky — hlasy se sčítají za všechny čtenáře.
 - **Nechat koncept rozpracovat.** Tlačítko **✨ Rozpracovat hned** nechá AI napsat první verzi podle „kontraktu" z Mapy znalostí (co musí obsah pokrýt, co je zakázáno). Draft se zařadí do tvé knihy jako běžná sekce — do kapitoly, feedu, hledání i kvízu.
 - **Vylepšit cokoli.** Tlačítko **✏️ Vylepšit** u každé sekce: text upravíš přímo, nebo popíšeš změnu (případně klepneš na hotový recept — „vysvětli jednodušeji", „přidej příklad") a přepíše ji AI. Změna se zvýrazní a je jen tvoje, dokud nerozhodneš jinak.
 - **Nahlásit chybu.** Vlaječka ⚑ pošle autorům soukromou zprávu (překlep, nejasnost, věcná chyba).
@@ -25,7 +25,7 @@ Ověřené jádro se tvými experimenty nikdy nerozbije — originál každé se
 1. **Vznikne u tebe.** Vygenerované i upravené podání je nejdřív **soukromé** — uložené ve tvém prohlížeči, nikdo jiný ho nevidí.
 2. **Můžeš ho sdílet.** Když se ti povede, tlačítko **📣 Sdílet do knihy** ho zveřejní — pod přezdívkou, nebo anonymně (vybíráš při sdílení). Technicky se příspěvek uloží přímo do repozitáře knihy, takže je dohledatelné, co, kdy a od koho (pod zvolenou přezdívkou) přišlo. Ostatním se ukáže do minuty, vždy s odznakem *🌱 zatím bez redakce*.
 3. **Redakce ho může převzít.** Editoři procházejí sdílené příspěvky a ty nejlepší jedním klikem **převezmou do core knihy** — stanou se běžnou součástí učebnice pro všechny.
-4. **Dostaneš uznání.** Za sdílení je +10 XP. Když redakce tvůj příspěvek převezme, přijde ti **+100 XP** a odznak — a tvoje podání čte celá škola.
+4. **Dostaneš uznání** (<a href="#" onclick="document.getElementById('howOverlay')?.remove();app.switchView('profile');return false">Profil → Redakční dráha</a>). Za sdílení je +10 XP. Když redakce tvůj příspěvek převezme, přijde ti **+100 XP** a odznak — a tvoje podání čte celá škola.
 
 Nic se ti nemaže: i po sdílení zůstává tvoje verze ve tvé knize a sdílení je vždy tvoje vědomé rozhodnutí.
 
@@ -47,6 +47,6 @@ Redaktoři pak vidí u komunitních příspěvků tlačítko 📥 Převzít a sp
 
 ## Kde co najdu
 
-**Mapa → 🧠 Koncepty** — všechny koncepty a jejich podání pohromadě, včetně 🌱 návrhů a tvých ⚡ draftů. **Mapa → Vizuální** — celá krajina znalostí s vazbami „staví na" a „souvisí". **Kvíz** — kartičky ze všeho, co sis přečetl. **Profil** — tvoje čtenářská DNA, XP, redakční dráha.
+<a href="#" onclick="document.getElementById('howOverlay')?.remove();app.setMapMode('koncepty');app.switchView('map');return false"><b>Mapa → 🧠 Koncepty</b></a> — všechny koncepty a jejich podání pohromadě, včetně 🌱 návrhů a tvých ⚡ draftů. <a href="#" onclick="document.getElementById('howOverlay')?.remove();app.setMapMode('visual');app.switchView('map');return false"><b>Mapa → Vizuální</b></a> — celá krajina znalostí s vazbami „staví na" a „souvisí". <a href="#" onclick="document.getElementById('howOverlay')?.remove();app.switchView('quiz');return false"><b>Kvíz</b></a> — kartičky ze všeho, co sis přečetl. <a href="#" onclick="document.getElementById('howOverlay')?.remove();app.switchView('glossary');return false"><b>Mise</b></a> — příběhové výpravy s boss kvízem. <a href="#" onclick="document.getElementById('howOverlay')?.remove();app.switchView('profile');return false"><b>Profil</b></a> — tvoje čtenářská DNA, XP, redakční dráha.
 
 *Dobrou plavbu! Každé tvoje kliknutí — přečtení, hlas, sdílení — dělá knihu lepší pro dalšího čtenáře.*

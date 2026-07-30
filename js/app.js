@@ -903,11 +903,14 @@ class PBook {
   }
 
   // Swap the rendered article for a variant of the same concept, with undo
-  async _swapBlock(originalId, variantEntry, target, offerGenerate = false) {
+  async _swapBlock(originalId, variantEntry, target, opts = {}) {
     if (!this._slotDom) this._slotDom = {};
     const el = document.getElementById(`b-${originalId}`)
       || (this._slotDom[originalId] && document.getElementById(`b-${this._slotDom[originalId]}`));
     if (!el) return;
+    // starou lištu nad slotem VŽDY ukliď — jinak se při řetězení swapů vrství
+    const prevNotice = el.previousElementSibling;
+    if (prevNotice?.classList?.contains('variant-notice')) prevNotice.remove();
     const vMeta = variantEntry.meta;
     const vBlock = { ...vMeta, body: variantEntry.body, _chapterNum: vMeta._chapterNum || this._findAnyBlock(originalId)?.meta?._chapterNum, _chapterTitle: vMeta._chapterTitle || '' };
     const html = await this.renderSpine(vBlock);
@@ -926,11 +929,15 @@ class PBook {
       : vMeta.state === 'private'
         ? `<span class="gen-badge">&#9889; vygenerováno podle tvého nastavení &middot; zatím bez redakce</span>`
         : '';
+    const cidNow = this._conceptIds(vMeta)[0];
+    const isDefault = cidNow && this._tellingChoices()[cidNow] === vMeta.id;
     const notice = `<div class="variant-notice">
-      <span>&#127899;&#65039; Jiné podání: ${noticeBits.join(' &middot; ') || 'varianta'} ${provenance}</span>
-      <span>
-        <button class="steer-chip" onclick="app.toggleTellings('${vMeta.id}')">&#127899;&#65039; Všechna podání</button>
-        <button class="steer-chip" onclick="app.unswapBlock('${vMeta.id}')">&#8617; Originál</button>
+      <span>&#127899;&#65039; ${noticeBits.join(' &middot; ') || 'Jiné podání'} ${provenance}</span>
+      <span id="vn-act-${vMeta.id}">
+        ${opts.ask && !isDefault ? `<button class="steer-chip" style="border-color:var(--product);color:var(--product)" onclick="app.chooseVariant('${vMeta.id}')">✔ Používat místo originálu</button>` : ''}
+        ${isDefault ? `<span style="font-size:.68rem;color:var(--product)">✓ tvoje výchozí podání</span>` : ''}
+        <button class="steer-chip" onclick="app.toggleTellings('${vMeta.id}')">&#127899;&#65039; Podání</button>
+        <button class="steer-chip" onclick="app.unswapBlock('${vMeta.id}')" title="Vrátí originál; tohle podání zůstane jako alternativa v 🎛">&#8617; Originál</button>
       </span>
     </div>`;
 
@@ -1013,9 +1020,9 @@ class PBook {
       };
       this._savePrivateBlock(block);
       if (offer) offer.remove();
-      this._swapBlock(blockId, block, target);
+      this._swapBlock(blockId, block, target, { ask: true });
       this.rc.logEvent('generate_served', { concept: conceptId, variantId: block.meta.id, cached: !!data.cached });
-      this._setTellingChoice(conceptId, block.meta.id);
+      this.showXPToast('⚡ Hotovo — dole v liště zvol: nahradit originál, nebo nechat jako alternativu', 'info');
       if (this._f('gamification')) { this.user.addXP(2); this.user.save(); this.updateXPBadge(); }
     } catch (e) {
       if (offer) offer.innerHTML = `<span>Generování se nepovedlo (${this.escHtml(e.message)}). Tvůj požadavek se zaznamenal pro redakci.</span>`;
@@ -6823,6 +6830,7 @@ class PBook {
       <h3 style="margin:.1em 0 .5em">${this.escHtml(m.title || '')}</h3>
       <div class="spine-body">${renderMarkdown(entry.body || '')}</div>
       ${m.recallQ ? `<div class="key-takeaway" style="margin-top:.7em"><div class="key-takeaway-label">Zapamatuj si</div><div class="key-takeaway-text"><b>${this.escHtml(m.recallQ)}</b><br>${this.escHtml(m.recallA || '')}</div></div>` : ''}
+      ${this._renderConceptLinks({ id: m.id, concept: m.concept })}
       <div style="display:flex;gap:.5em;margin-top:.8em;flex-wrap:wrap">
         <button class="btn-primary" style="font-size:.78rem" onclick="document.getElementById('draftOverlay').remove();app.openBlock('${m.id}')">📖 Otevřít v knize</button>
         <button class="btn-ghost" style="font-size:.78rem;border:1px solid var(--border);border-radius:8px;padding:.4em .8em" onclick="document.getElementById('draftOverlay').remove()">Zavřít</button>
@@ -6982,6 +6990,20 @@ class PBook {
     this.user.updateFacetAffinity(this._composeTarget, 2);
     document.getElementById('genComposer')?.remove();
     this.draftGhost(slug, ctx, { ...this._composeTarget }, wish);
+  }
+
+  // Rozhodnutí po vygenerování: nastavit variantu jako výchozí podání konceptu
+  chooseVariant(variantId) {
+    const entry = this._findAnyBlock(variantId);
+    if (!entry) return;
+    const cid = this._conceptIds(entry.meta)[0];
+    this._setTellingChoice(cid, variantId);
+    this.rc.logEvent('telling_choice_set', { concept: cid, variantId });
+    const act = document.getElementById(`vn-act-${variantId}`);
+    if (act) act.innerHTML = `<span style="font-size:.68rem;color:var(--product)">✓ tvoje výchozí podání</span>
+      <button class="steer-chip" onclick="app.toggleTellings('${variantId}')">&#127899;&#65039; Podání</button>
+      <button class="steer-chip" onclick="app.unswapBlock('${variantId}')" title="Vrátí originál; tohle podání zůstane jako alternativa v 🎛">&#8617; Originál</button>`;
+    this.showXPToast('✓ Tohle podání teď v knize uvidíš místo originálu (vrátíš přes ↩)', 'achievement');
   }
 
   // ===== EDITOR TRACK =====
