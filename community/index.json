@@ -1,1 +1,14 @@
-{"blocks": []}
+{
+ "blocks": [
+  {
+   "id": "gen--ch1-api--test-e2e-smoke",
+   "concept": "ch1-api",
+   "title": "API testovací podání (E2E)",
+   "file": "community/ch1-api/gen--ch1-api--test-e2e-smoke.md",
+   "sharedAs": "e2e-test",
+   "sharedAt": "2026-07-30T07:21:19.742Z",
+   "genre": "explainer",
+   "lengthBand": "tldr"
+  }
+ ]
+}
