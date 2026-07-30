@@ -720,7 +720,7 @@ class PBook {
         <button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" id="wish-btn-${blockId}" onclick="app.tellingWish('${blockId}','${conceptId}')">🌱 Chci tohle podání (+2 XP)</button>`;
     }
     h += '</div>';
-    h += `<div style="font-size:.68rem;color:var(--text-3);margin-top:.35em">Tohle jsou podání jednoho konceptu. Chybí ti celý <i>koncept</i>? <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">🌱 navrhni ho</a> (+10 XP).</div>`;
+    h += `<div style="font-size:.68rem;color:var(--text-3);margin-top:.35em">Tohle jsou podání jednoho konceptu. Chybí ti celý <i>koncept</i>? <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">🌱 navrhni ho</a> (+10 XP) · <a href="#" onclick="event.preventDefault();app.showHowItWorks('tellings')" style="color:var(--text-3)">Jak tohle celé funguje?</a></div>`;
     panel.innerHTML = h;
   }
 
@@ -4080,6 +4080,7 @@ class PBook {
     }
 
     h += '<div class="profile-section"><h3>&#129516; Tvoje čtenářská DNA</h3>';
+    h += `<p style="font-size:.7rem;margin:-.2em 0 .5em"><a href="#" onclick="event.preventDefault();app.showHowItWorks('profile')" style="color:var(--accent)">📖 Jak funguje živá kniha — číst, přispívat, sdílet →</a></p>`;
     h += '<p style="font-size:.78rem;color:var(--text-2);margin-bottom:.6em">Model preferencí, který se o tobě kniha naučila — stejný, jaký si staví každý doporučovací systém. Kdykoli ho oprav; tvoje opravy mají vždy přednost.</p>';
 
     // Visual affinity bars (top values per primary facet)
@@ -4412,7 +4413,7 @@ class PBook {
     h += `<div class="profile-section"><h3>🛠 Redakční dráha</h3>
       <div style="font-size:.8rem;margin-bottom:.4em">${
         et.tier === 'editor'
-          ? `<span class="editor-badge">🛠 EDITOR</span> ${et.invited ? 'Pozván do redakčního týmu — vítej.' : 'Redaktorství sis vysloužil — tvoje příspěvky utvářejí knihu.'} <a href="admin.html" style="color:var(--accent)">Otevřít redakční konzoli</a> · <a href="HUMANS.md" style="color:var(--accent)">povinnosti</a>`
+          ? `<span class="editor-badge">🛠 EDITOR</span> ${et.invited ? 'Pozván do redakčního týmu — vítej.' : 'Redaktorství sis vysloužil — tvoje příspěvky utvářejí knihu.'} <a href="admin.html" style="color:var(--accent)">Otevřít redakční konzoli</a> · <a href="#" onclick="event.preventDefault();app.showHowItWorks('editor')" style="color:var(--accent)">jak to funguje</a>`
           : et.tier === 'contributor'
             ? `<b>Přispěvatel.</b> Jen tak dál — redaktorství se získává, nejmenuje:`
             : `<b>Čtenář.</b> Redaktorství se získává, nejmenuje — hlas chyby, sdílej podání:`}</div>
@@ -5955,7 +5956,7 @@ class PBook {
     box.className = 'share-consent remix-float share-consent-float';
     box.innerHTML = `
       <b>Super, že se ti líbí!</b> Sdílet tohle podání do knihy, aby ho objevili i čtenáři s podobným nastavením?
-      <div style="font-size:.7rem;color:var(--text-3);margin:.3em 0">Sdílí se anonymně. Dokud ho neprojde redakce, zůstane označené jako čtenářské. Můžeš si ho nechat i soukromé — tvoje je tak i tak.</div>
+      <div style="font-size:.7rem;color:var(--text-3);margin:.3em 0">Sdílí se anonymně. Dokud ho neprojde redakce, zůstane označené jako čtenářské. Můžeš si ho nechat i soukromé — tvoje je tak i tak. <a href="#" onclick="event.preventDefault();app.showHowItWorks('share')" style="color:var(--accent)">Co se s příspěvkem stane?</a></div>
       <input type="text" id="share-nick-${blockId}" placeholder="Volitelná přezdívka (prázdné = anonymně)" maxlength="40"
         style="width:100%;padding:.4em;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.75rem;margin:.2em 0">
       <div class="note-actions">
@@ -6566,7 +6567,7 @@ class PBook {
       this.rc.logEvent('ghost_view', { slug: p.slug, ctx });
     }
     return `<div class="card ghost-card" style="flex:0 0 262px;border-top:3px solid #0EA5E9">
-      <div class="card-chapter" style="color:#0EA5E9;font-weight:700">🌱 NÁVRH · zatím nenapsáno</div>
+      <div class="card-chapter" style="color:#0EA5E9;font-weight:700">🌱 NÁVRH · zatím nenapsáno <a href="#" onclick="event.preventDefault();app.showHowItWorks('ghost')" style="float:right;font-weight:400;color:var(--text-3)">?</a></div>
       <div class="card-title">${this.escHtml(p.title)}</div>
       <div class="card-teaser" style="font-size:.72rem">${this.escHtml(p.objective)}</div>
       <div style="font-size:.64rem;color:var(--text-3);font-style:italic;margin:.3em 0">Uměl bys odpovědět: ${this.escHtml(p.recallQ)}</div>
@@ -6825,7 +6826,7 @@ class PBook {
       <div style="display:flex;gap:.5em;margin-top:.8em;flex-wrap:wrap">
         <button class="btn-primary" style="font-size:.78rem" onclick="document.getElementById('draftOverlay').remove();app.openBlock('${m.id}')">📖 Otevřít v knize</button>
         <button class="btn-ghost" style="font-size:.78rem;border:1px solid var(--border);border-radius:8px;padding:.4em .8em" onclick="document.getElementById('draftOverlay').remove()">Zavřít</button>
-        <span style="font-size:.66rem;color:var(--text-3);align-self:center">Blok je teď součástí tvé knihy — v kapitole, ve feedu i v hledání. Redakce vidí, že o koncept je zájem.</span>
+        <span style="font-size:.66rem;color:var(--text-3);align-self:center">Blok je teď součástí tvé knihy — v kapitole, ve feedu i v hledání. <a href="#" onclick="event.preventDefault();app.showHowItWorks('draft')" style="color:var(--accent)">Jak to funguje?</a></span>
       </div></div>`;
     ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
     document.body.appendChild(ov);
@@ -6884,6 +6885,26 @@ class PBook {
     } catch (e) {
       this.showXPToast('Převzetí selhalo: ' + String(e.message).slice(0, 60), 'info');
     }
+  }
+
+  // Průvodce živou knihou — jak přispívat a co se s příspěvkem děje
+  async showHowItWorks(anchor) {
+    this.rc.logEvent('howitworks_open', { anchor: anchor || null });
+    if (!this._howMd) {
+      try { this._howMd = await (await fetch('/jak-funguje-ziva-kniha.md')).text(); }
+      catch (e) { this._howMd = '# Jak funguje živá kniha\n\nPrůvodce se nepodařilo načíst.'; }
+    }
+    document.getElementById('howOverlay')?.remove();
+    const ov = document.createElement('div');
+    ov.id = 'howOverlay';
+    ov.className = 'cert-overlay';
+    ov.innerHTML = `<div class="cert-modal" style="max-width:680px;max-height:88vh;overflow:auto;text-align:left">
+      <button class="cert-close" onclick="document.getElementById('howOverlay').remove()">&times;</button>
+      <div class="spine-body">${renderMarkdown(this._howMd)}</div>
+      <div style="text-align:center;margin-top:.8em"><button class="btn-primary" style="font-size:.8rem" onclick="document.getElementById('howOverlay').remove()">Jasné, jdu na to</button></div>
+    </div>`;
+    ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
+    document.body.appendChild(ov);
   }
 
   // ===== EDITOR TRACK =====
