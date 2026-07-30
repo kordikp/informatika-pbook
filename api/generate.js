@@ -5,7 +5,7 @@
 // POST /api/generate {concept, facets, userId} → { ok, block: {id,title,body,recallQ,recallA,facets}, cached }
 //
 // Hard rules implemented here:
-//  - anchored concepts only (contract = human-reviewed anchor; P1 scope)
+//  - anchored + ghost concepts only (contract = human-reviewed anchor / curated knowledge map)
 //  - facet values are whitelisted (no free text reaches the prompt from the client)
 //  - segment-scoped: writes for everyone with these settings, never for one reader
 //  - validation gate before returning: mustCover coverage, formalism lint, length band
@@ -644,7 +644,9 @@ Return the complete modified SVG now.`;
     const conceptsData = await (await selfFetch(host, '/content/concepts.json')).json();
     const record = (conceptsData.concepts || []).find(c => c.id === concept);
     if (!record) return res.status(404).json({ ok: false, error: 'unknown concept' });
-    if (record.provenance !== 'anchored') return res.status(403).json({ ok: false, error: 'generation allowed for anchored concepts only' });
+    // 'anchored' = lidsky posvěcená kotva v knize; 'ghost' = koncept z kurátorované
+    // Mapy znalostí Glitch (kontrakt z jejích cílů) — čtenář si smí nechat napsat draft.
+    if (record.provenance !== 'anchored' && record.provenance !== 'ghost') return res.status(403).json({ ok: false, error: 'generation allowed for anchored or ghost concepts only' });
 
     let exemplar = '';
     if (record.anchorPath) {
