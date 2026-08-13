@@ -21,7 +21,7 @@ genre: explainer
 concept: ch1-hardware-a-software
 state: community
 sharedAs: "anonymous"
-sharedAt: 2026-08-13T07:53:17.731Z
+sharedAt: 2026-08-13T07:53:19.579Z
 remixOf: ch1-tldr-hardware
 status: accepted
 ---
