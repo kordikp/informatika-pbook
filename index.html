@@ -53,18 +53,18 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <script>/* (before the stylesheet: an inline script after one waits for it to load)
    start what the book needs at once: app.js asks for its modules, they for the language pack, and only then
-   does the book fetch its content — one round trip after another on a phone. Mirrors js/i18n.js pickLang and the
-   imports of js/app.js (keep the ?v= in step with app.js; a mismatch only downloads a module twice). */
+   does the book fetch its content — one round trip after another on a phone. Mirrors js/i18n.js pickLang,
+   js/app.js _prefetch (book.json + content/bundle.<lang>.json) and the imports of js/app.js
+   (scripts/build-bundle.mjs warns when this list drifts; a mismatch only downloads a module twice). */
 (function () {
   var L = ['cs', 'en', 'sk', 'hu'], q = null, s = null;
   try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
   try { s = localStorage.getItem('pbook-lang'); } catch (e) {}
   var lang = L.indexOf(q) >= 0 ? q : L.indexOf(s) >= 0 ? s : L[0];
   function add(rel, href, as) { var l = document.createElement('link'); l.rel = rel; l.href = href; if (as) { l.as = as; l.crossOrigin = 'anonymous'; } document.head.appendChild(l); }
-  ['config.js', 'i18n.js', 'markdown.js?v=2', 'recombee.js?v=12', 'diagrams.js?v=6', 'tutor.js?v=2', 'games.js?v=1', 'ux.js?v=1']
-    .concat(lang === 'en' ? [] : ['i18n/' + lang + '.js']).forEach(function (m) { add('modulepreload', 'js/' + m); });
-  ['book.json', 'bundle.' + lang + '.json', 'concepts.json', 'missions.json', 'concept-proposals.json', 'id-aliases.json', 'concept-map.json']
-    .forEach(function (f) { add('preload', 'content/' + f, 'fetch'); });
+  var M = ['config.js', 'i18n.js', 'markdown.js?v=2', 'recombee.js?v=12', 'diagrams.js?v=6', 'tutor.js?v=2', 'games.js?v=1', 'ux.js?v=1'];
+  M.concat(lang === 'en' ? [] : ['i18n/' + lang + '.js']).forEach(function (m) { add('modulepreload', 'js/' + m); });
+  ['book.json', 'bundle.' + lang + '.json'].forEach(function (f) { add('preload', 'content/' + f, 'fetch'); });
 })();</script>
 <link rel="stylesheet" href="css/style.css?v=7.0.0">
 <script>/* theme before first paint: saved choice, else the system preference (no white flash in dark mode) */
@@ -81,7 +81,7 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
       <h1 class="intro-title">Jak funguje digitální svět</h1>
       <p class="intro-tagline">Základy informatiky a umělé inteligence pro 2. stupeň: 24 klíčových konceptů v 6 kapitolách.</p>
       <p class="intro-author-name" data-i18n="author-line"><a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a></p>
-      <img src="images/hero-digital.svg" alt="" class="intro-hero door-hero">
+      <img src="images/hero-digital.svg" data-i18n-src alt="" class="intro-hero door-hero">
 
       <div class="door-picks">
         <div class="door-label" id="doorGoalLabel">I want to</div>
@@ -350,7 +350,7 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
   </div>
 </div>
 
-<script type="module" src="js/app.js?v=7.2.0"></script>
+<script type="module" src="js/app.js?v=7.3.0"></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});</script>
 <!-- Vercel Web Analytics: visitors and page views, no cookies (project setting enabled 2026-10-05) -->
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
