@@ -4,3 +4,5 @@ node_modules/
 .log-interactions.jsonl
 .DS_Store
 *.log
+# build output of scripts/build-bundle.mjs (Vercel buildCommand), never committed
+content/bundle.*.json

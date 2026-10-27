@@ -75,8 +75,9 @@ class PBook {
         setTimeout(() => this.showXPToast(tr('🎁 +25 XP — a friend invited you. Welcome!'), 'achievement'), 1500);
       }
     }
+    this._prefetch();
     try {
-      this.book = locDeep(await (await fetch(CONFIG.book.bookIndex)).json());
+      this.book = locDeep(await (await this._get(CONFIG.book.bookIndex)).json());
     } catch (e) {
       document.body.innerHTML = ('<div style="padding:3em;text-align:center;font-family:sans-serif;color:#888">' + tr(`Could not load book. Run <code>./serve.sh</code> first.`) + '</div>');
       return;
@@ -242,6 +243,8 @@ class PBook {
     // Customize welcome screen for returning users
     this._customizeWelcome();
     this._resumeOrWelcome();   // first visit → the door; returning → where you left off (js/ux.js)
+    performance.mark?.('pbook-ready');   // book loaded and on screen (load-time tests read this)
+    this._offlineCopy();
 
     if (this._getAuth()) this.refreshAiBalance(true);
     // Auto-sync for logged-in users: save every 2 minutes
@@ -261,28 +264,71 @@ class PBook {
     });
   }
 
+  // Everything the start-up reads, requested at once: book.json, the content bundle and the book
+  // JSON used to wait for each other (book → content → concepts → proposals → missions → aliases,
+  // a second of round trips on a phone). _get(url) hands a loader the response already in flight
+  // (once), else fetches. A failed request resolves to null; every loader treats that as missing.
+  _prefetch() {
+    const d = CONFIG.book.contentDir;
+    this._bundleUrl = LANG === 'qps' ? null : `${d}/bundle.${LANG}.json`;   // scripts/build-bundle.mjs
+    const urls = [CONFIG.book.bookIndex, this._bundleUrl, `${d}/concepts.json`, 'content/concept-proposals.json',
+      `${d}/missions.json`, `${d}/id-aliases.json`, 'content/concept-map.json'].filter(Boolean);
+    this._inflight = new Map(urls.map(u => [u, window.fetch(u).catch(() => null)]));
+    this._startupUrls = urls;
+  }
+  _get(url) {
+    const p = this._inflight?.get(url);
+    if (!p) return window.fetch(url);
+    this._inflight.delete(url);
+    return p;
+  }
+
+  // The service worker keeps an offline copy of what this reader's book is made of: the files the
+  // start-up loaded (the bundle, or every content file without one), the games and the interface
+  // pack. Its install no longer downloads the book a second time while the first visit is loading.
+  _offlineCopy() {
+    if (!navigator.serviceWorker) return;
+    const games = new Set(this.allBlocks.map(b => b.meta.game).filter(g => typeof g === 'string'));
+    const urls = [...(this._startupUrls || []).filter(u => u !== this._bundleUrl), ...(this._contentUrls || []),
+      ...[...games].map(g => `games/${g}.json`), ...(LANG === 'en' || LANG === 'qps' ? [] : [`js/i18n/${LANG}.js`])];
+    const send = () => navigator.serviceWorker.ready
+      .then(reg => reg.active?.postMessage({ type: 'precache', urls }))
+      .catch(() => {});
+    if (document.readyState === 'complete') setTimeout(send, 2000); else window.addEventListener('load', () => setTimeout(send, 2000), { once: true });
+  }
+
   async loadAllContent() {
     // Every id that exists in git (any status) — the progress-pruning check must
     // not mistake a hidden draft or a failed fetch for a deleted block.
     this._knownIds = new Set();
     this._contentFetchFailed = false;
-    // Start EVERY file download at once (the loop below used to wait chapter by
-    // chapter: ~5 s for 307 files on a slow link). The loop is unchanged — its
-    // `fetch` just picks up the request that is already in flight.
+    // The deploy packs the reader's language into one file (content/bundle.<LANG>.json, see
+    // scripts/build-bundle.mjs); a file the bundle lacks — or every file, without a bundle —
+    // is fetched on its own, all of them at once (chapter by chapter took ~5 s for 307 files).
+    let bundle = {};
+    try {
+      const r = this._bundleUrl && await this._get(this._bundleUrl);
+      if (r && r.ok) bundle = (await r.json()).files || {};
+    } catch (e) { bundle = {}; }
     const inflight = new Map();
+    this._contentUrls = Object.keys(bundle).length ? [this._bundleUrl] : [];
     for (const c of this.book.chapters) for (const f of c.files) {
+      if (typeof bundle[`${c.directory}/${f}`] === 'string') continue;
       const url = `${CONFIG.book.contentDir}/${c.directory}/${f}`;
       inflight.set(url, window.fetch(url).catch(() => null));
+      this._contentUrls.push(url);
     }
-    const fetch = url => inflight.get(url) || window.fetch(url);
+    const read = async (dir, f) => {
+      if (typeof bundle[`${dir}/${f}`] === 'string') return bundle[`${dir}/${f}`];
+      const res = await inflight.get(`${CONFIG.book.contentDir}/${dir}/${f}`);
+      if (!res || !res.ok) throw new Error(`HTTP ${res?.status}`);
+      return res.text();
+    };
     for (let i = 0; i < this.book.chapters.length; i++) {
       const ch = this.book.chapters[i];
-      const dir = `${CONFIG.book.contentDir}/${ch.directory}`;
       const blocks = await Promise.all(ch.files.map(async (f, fileIdx) => {
         try {
-          const res = await fetch(`${dir}/${f}`);
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          const text = await res.text();
+          const text = await read(ch.directory, f);
           const { meta, body } = parseFrontmatter(text);
           if (!meta.id) throw new Error('no frontmatter id');
           this._knownIds.add(meta.id);
@@ -411,7 +457,7 @@ class PBook {
     this.concepts = {};        // conceptId → concept record (with contract)
     this.conceptBlocks = {};   // conceptId → [block refs from allBlocks]
     try {
-      const data = this._bookData(await (await fetch(`${CONFIG.book.contentDir}/concepts.json`)).json(), false);
+      const data = this._bookData(await (await this._get(`${CONFIG.book.contentDir}/concepts.json`)).json(), false);
       (data.concepts || []).forEach(c => { this.concepts[c.id] = c; });
     } catch (e) { /* concepts.json missing — steering degrades gracefully */ }
     this.allBlocks.forEach(b => {
@@ -446,8 +492,8 @@ class PBook {
   // content/id-aliases.json: { "aliases": { "<retired block id>": "<block id | concept slug>" } }
   async _loadIdAliases() {
     try {
-      const r = await fetch(`${CONFIG.book.contentDir}/id-aliases.json`);
-      if (!r.ok) return {};
+      const r = await this._get(`${CONFIG.book.contentDir}/id-aliases.json`);
+      if (!r || !r.ok) return {};
       const d = await r.json();
       return (d && d.aliases && typeof d.aliases === 'object') ? d.aliases : {};
     } catch (e) { return {}; }
@@ -2736,8 +2782,27 @@ class PBook {
   // a string that sits inside a single-quoted JS argument inside an HTML attribute
   _jsAttr(s) { return this.escHtml(String(s ?? '').replace(/\\/g, '\\\\').replace(/'/g, "\\'")); }
 
+  // KaTeX and Lottie load on demand: the first section with math or an animation brings them in
+  // (once). A book whose index.html still includes them just waits for its own <script>.
+  _lib(name, js, css) {
+    if (window[name]) return Promise.resolve(window[name]);
+    this._libs = this._libs || {};
+    return (this._libs[name] = this._libs[name] || new Promise(resolve => {
+      let el = [...document.scripts].find(x => x.src === js);
+      if (!el) {
+        if (css) document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="${css}">`);
+        el = Object.assign(document.createElement('script'), { src: js });
+        document.head.appendChild(el);
+      }
+      el.addEventListener('load', () => resolve(window[name] || null));
+      el.addEventListener('error', () => resolve(null));
+      if (window[name]) resolve(window[name]);
+    }));
+  }
+
   // Initialize Lottie animations in rendered content
   _initLottieAnimations() {
+    if (!document.querySelector('.lottie-anim:not([data-loaded])')) return;
     const init = () => {
       document.querySelectorAll('.lottie-anim:not([data-loaded])').forEach(el => {
         el.dataset.loaded = '1';
@@ -2750,12 +2815,7 @@ class PBook {
         });
       });
     };
-    if (typeof lottie !== 'undefined') { init(); return; }
-    // Lottie not loaded yet (defer) — wait for it
-    const check = setInterval(() => {
-      if (typeof lottie !== 'undefined') { clearInterval(check); init(); }
-    }, 200);
-    setTimeout(() => clearInterval(check), 10000); // give up after 10s
+    this._lib('lottie', 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js').then(l => l && init());
   }
 
   // ===== TEXT HIGHLIGHT & NOTE =====
@@ -3665,10 +3725,6 @@ class PBook {
     const target = el || document.getElementById('readPane');
     if (!target) return;
     const doRender = () => {
-      if (typeof katex === 'undefined') {
-        setTimeout(() => this.renderMath(target), 200);
-        return;
-      }
       // Render display math
       target.querySelectorAll('.math-display').forEach(span => {
         if (span.dataset.rendered) return;
@@ -3686,7 +3742,11 @@ class PBook {
         span.dataset.rendered = '1';
       });
     };
-    setTimeout(doRender, 50);
+    setTimeout(() => {
+      if (!target.querySelector('.math-display:not([data-rendered]), .math-inline:not([data-rendered])')) return;
+      this._lib('katex', 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js',
+        'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css').then(k => k && doRender());
+    }, 50);
   }
 
   // ===== MAP VIEW =====
@@ -3694,8 +3754,8 @@ class PBook {
   async _loadConceptMap() {
     if (this._cmapData !== undefined) return this._cmapData;
     try {
-      const r = await fetch('content/concept-map.json');
-      this._cmapData = r.ok ? this._bookData(await r.json()) : null;
+      const r = await this._get('content/concept-map.json');
+      this._cmapData = r && r.ok ? this._bookData(await r.json()) : null;
     } catch (e) { this._cmapData = null; }
     // No exported map (content/concept-map.json): one theme per chapter, and every concept
     // joins below as a node of its chapter — the journey board and the feed mini-map work anyway.
@@ -4067,6 +4127,7 @@ class PBook {
     const el = document.getElementById('mapContent');
     const prog = this.user.getProgress(this.allBlocks);
     const visibleVoices = this.user.getVisibleVoices();
+    if (this._vmapAvailable === undefined && CONFIG.features?.visualMap === false) this._vmapAvailable = false;   // book has none: no 404 probe
     if (this._vmapAvailable === undefined) {
       this._vmapAvailable = null;   // probe in flight
       fetch('content/visual-map-data.json', { method: 'HEAD' }).then(r => {
@@ -5435,8 +5496,8 @@ class PBook {
     if (this._bookMissions !== undefined) return this._bookMissions;
     this._bookMissions = null;
     try {
-      const r = await fetch(`${CONFIG.book.contentDir}/missions.json`);   // optional file
-      if (r.ok) { const j = this._bookData(await r.json()); this._bookMissions = Array.isArray(j) ? j : (j.missions || null); }
+      const r = await this._get(`${CONFIG.book.contentDir}/missions.json`);   // optional file
+      if (r && r.ok) { const j = this._bookData(await r.json()); this._bookMissions = Array.isArray(j) ? j : (j.missions || null); }
     } catch (e) {}
     return this._bookMissions;
   }
@@ -9833,24 +9894,20 @@ class PBook {
   async __loadProposalsInner() {
     this.proposals = [];
     try {
-      const res = await fetch('content/concept-proposals.json');
-      if (res.ok) this.proposals = this._bookData(await res.json()).proposals || [];
+      const res = await this._get('content/concept-proposals.json');
+      if (res && res.ok) this.proposals = this._bookData(await res.json()).proposals || [];
     } catch (e) { /* optional file */ }
     // Server-saved proposals (admin creates/edits them live; event-sourced in
     // Supabase). Server state wins on slug collisions; a server-side delete
-    // hides a git-shipped proposal too.
-    try {
-      const r = await fetch('/api/proposals');
-      if (r.ok) {
-        const d = await r.json();
-        if (d && d.ok) {
-          const bySlug = new Map(this.proposals.map(p => [p.slug, p]));
-          (d.proposals || []).forEach(p => bySlug.set(p.slug, p));
-          (d.deleted || []).forEach(slug => bySlug.delete(slug));
-          this.proposals = [...bySlug.values()];
-        }
-      }
-    } catch (e) { /* offline → git file only */ }
+    // hides a git-shipped proposal too. Merged whenever they arrive: a cold
+    // serverless start must not hold up the first screen.
+    fetch('/api/proposals').then(r => (r.ok ? r.json() : null)).then(d => {
+      if (!d || !d.ok) return;
+      const bySlug = new Map(this.proposals.map(p => [p.slug, p]));
+      (d.proposals || []).forEach(p => bySlug.set(p.slug, p));
+      (d.deleted || []).forEach(slug => bySlug.delete(slug));
+      this.proposals = [...bySlug.values()];
+    }).catch(() => { /* offline → git file only */ });
   }
   // Compact, anonymous reader profile for demand analytics: top facet
   // preferences only — no names, no ids beyond the existing pseudonymous uid.

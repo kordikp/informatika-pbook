@@ -1,7 +1,7 @@
 # Jak funguje digitální svět — p-book informatiky pro 2. stupeň ZŠ
 
 > Bezplatná interaktivní učebnice informatiky a umělé inteligence pro žáky 2. stupně ZŠ, česky, anglicky, slovensky a maďarsky.
-> Autoři: Pavel Kordík (ČVUT v Praze, Recombee) & tým AI dětem.
+> Autor: AI dětem (https://aidetem.cz).
 > Obsahová páteř: upravená Mapa informatických konceptů (https://github.com/kordikp/koncepty-pbook).
 > Licence: CC BY-NC-SA 4.0
 
@@ -122,6 +122,6 @@ Kniha mluví česky, anglicky, slovensky a maďarsky. Jazyk se volí přepínač
 
 ## Jak citovat
 
-Kordík, P., & tým AI dětem (2026). Jak funguje digitální svět: živá učebnice informatiky. https://informatika-pbook.vercel.app (uveď datum čtení, kniha se mění). Jeden koncept cituj odkazem na jeho stránku: https://informatika-pbook.vercel.app/#c/{koncept}.
+AI dětem (2026). Jak funguje digitální svět: živá učebnice informatiky. https://informatika-pbook.vercel.app (uveď datum čtení, kniha se mění). Jeden koncept cituj odkazem na jeho stránku: https://informatika-pbook.vercel.app/#c/{koncept}.
 
 Licence: texty, hry a obrázky CC BY-NC-SA 4.0; kód MIT (viz /LICENSE).

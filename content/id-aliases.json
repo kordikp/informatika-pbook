@@ -1,0 +1,17 @@
+{
+ "aliases": {
+  "ch1-game-hardware-software": "uvnitr-zarizeni-hra",
+  "ch2-game-algoritmus-caj": "algoritmus-hra",
+  "ch2-comic-algoritmus": "algoritmus",
+  "ch2-anim-rizeni-toku": "program",
+  "ch3-game-kod-stavebnice": "promenna-hra",
+  "ch3-comic-ladeni": "over-a-oprav",
+  "ch4-game-data-tridicka": "tabulka-a-evidence-hra",
+  "ch4-game-graf-triky": "z-dat-informace-hra",
+  "ch5-game-ai-nebo-ne": "ai-se-uci-z-dat-hra",
+  "ch5-game-prompt-sila": "generativni-model-hra",
+  "ch6-anim-sila-hesla": "ucet-a-autentizace",
+  "ch7-game-bublina": "doporucovac-hra",
+  "ch7-game-fakt-manipulace": "rozhodujes-ty-hra"
+ }
+}

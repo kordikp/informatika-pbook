@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#FAFAF7">
 <title>Jak funguje digitální svět — informatika pro 2. stupeň</title>
 <meta name="description" content="Bezplatná interaktivní kniha informatiky a umělé inteligence pro 2. stupeň ZŠ: 24 klíčových konceptů v 6 kapitolách, hry, mise s bossem a certifikát od AI dětem. Česky, anglicky, slovensky a maďarsky.">
-<meta name="author" content="Pavel Kordík &amp; tým AI dětem">
+<meta name="author" content="AI dětem">
 <meta name="keywords" content="informatika, 2. stupeň ZŠ, umělá inteligence, AI, algoritmy, programování, data, sítě, kyberbezpečnost, digitální gramotnost, RVP informatika, AI dětem, computing, informatika pre základné školy, informatika általános iskola">
 <link rel="canonical" href="https://informatika-pbook.vercel.app/">
 <!-- Open Graph -->
@@ -21,7 +21,7 @@
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:locale:alternate" content="sk_SK">
 <meta property="og:locale:alternate" content="hu_HU">
-<meta property="book:author" content="Pavel Kordík">
+<meta property="book:author" content="AI dětem">
 <meta property="book:tag" content="informatika">
 <meta property="book:tag" content="umělá inteligence">
 <meta property="book:tag" content="digitální gramotnost">
@@ -37,10 +37,7 @@
   "@type": "Book",
   "name": "Jak funguje digitální svět",
   "alternateName": ["How the Digital World Works", "Ako funguje digitálny svet", "Hogyan működik a digitális világ"],
-  "author": [
-    { "@type": "Person", "name": "Pavel Kordík", "url": "https://kordikp.github.io/",
-      "affiliation": [{ "@type": "Organization", "name": "AI dětem", "url": "https://aidetem.cz" }, { "@type": "Organization", "name": "Czech Technical University in Prague" }] }
-  ],
+  "author": { "@type": "Organization", "name": "AI dětem", "url": "https://aidetem.cz" },
   "description": "Bezplatná interaktivní kniha informatiky a umělé inteligence pro 2. stupeň ZŠ: 24 klíčových konceptů v 6 kapitolách, s výlety do hloubky, hrami, misemi a certifikátem.",
   "url": "https://informatika-pbook.vercel.app/",
   "inLanguage": ["cs", "en", "sk", "hu"],
@@ -54,9 +51,22 @@
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script>/* (before the stylesheet: an inline script after one waits for it to load)
+   start what the book needs at once: app.js asks for its modules, they for the language pack, and only then
+   does the book fetch its content — one round trip after another on a phone. Mirrors js/i18n.js pickLang and the
+   imports of js/app.js (keep the ?v= in step with app.js; a mismatch only downloads a module twice). */
+(function () {
+  var L = ['cs', 'en', 'sk', 'hu'], q = null, s = null;
+  try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+  try { s = localStorage.getItem('pbook-lang'); } catch (e) {}
+  var lang = L.indexOf(q) >= 0 ? q : L.indexOf(s) >= 0 ? s : L[0];
+  function add(rel, href, as) { var l = document.createElement('link'); l.rel = rel; l.href = href; if (as) { l.as = as; l.crossOrigin = 'anonymous'; } document.head.appendChild(l); }
+  ['config.js', 'i18n.js', 'markdown.js?v=2', 'recombee.js?v=12', 'diagrams.js?v=6', 'tutor.js?v=2', 'games.js?v=1', 'ux.js?v=1']
+    .concat(lang === 'en' ? [] : ['i18n/' + lang + '.js']).forEach(function (m) { add('modulepreload', 'js/' + m); });
+  ['book.json', 'bundle.' + lang + '.json', 'concepts.json', 'missions.json', 'concept-proposals.json', 'id-aliases.json', 'concept-map.json']
+    .forEach(function (f) { add('preload', 'content/' + f, 'fetch'); });
+})();</script>
 <link rel="stylesheet" href="css/style.css?v=7.0.0">
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script>/* theme before first paint: saved choice, else the system preference (no white flash in dark mode) */
 try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}</script>
 </head>
@@ -70,7 +80,7 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
     <div class="step active" data-step="0">
       <h1 class="intro-title">Jak funguje digitální svět</h1>
       <p class="intro-tagline">Základy informatiky a umělé inteligence pro 2. stupeň: 24 klíčových konceptů v 6 kapitolách.</p>
-      <p class="intro-author-name" data-i18n="author-line"><a href="https://kordikp.github.io/" target="_blank" rel="noopener">Pavel Kordík</a> a tým <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a></p>
+      <p class="intro-author-name" data-i18n="author-line"><a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a></p>
       <img src="images/hero-digital.svg" alt="" class="intro-hero door-hero">
 
       <div class="door-picks">
@@ -323,7 +333,7 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
     <!-- About & contact -->
     <div class="sg"><label>About &amp; contact</label>
       <div style="font-size:.75rem;line-height:1.5;color:var(--text-2)">
-        <span data-i18n="about-line"><a href="https://kordikp.github.io/" target="_blank" rel="noopener">Pavel Kordík</a> a tým <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a></span> &middot;
+        <span data-i18n="about-line"><a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a></span> &middot;
         <a href="https://github.com/kordikp/informatika-pbook" target="_blank" rel="noopener">GitHub</a> &middot;
         sister project <a href="https://kordikp.github.io/slaidy/" target="_blank" rel="noopener">SlAIdy</a>
       </div>
@@ -340,8 +350,7 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer></script>
-<script type="module" src="js/app.js?v=7.1.0"></script>
+<script type="module" src="js/app.js?v=7.2.0"></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});</script>
 <!-- Vercel Web Analytics: visitors and page views, no cookies (project setting enabled 2026-10-05) -->
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>

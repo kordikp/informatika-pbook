@@ -3,7 +3,7 @@
 // Kniha je česká a mluví i anglicky, slovensky a maďarsky: rozhraní z js/i18n/<lang>.js,
 // vlastní texty knihy (česky v index.html) přeložené v `strings` níže, obsah v blocích s translationOf.
 
-const AUTHOR = { cs: 'Pavel Kordík a tým AI dětem', en: 'Pavel Kordík and the AI dětem team', sk: 'Pavel Kordík a tím AI dětem', hu: 'Pavel Kordík és az AI dětem csapata' };
+const AUTHOR = 'AI dětem';
 
 export const CONFIG = {
   book: {
@@ -13,8 +13,8 @@ export const CONFIG = {
     lang: 'cs',                              // jazyk, ve kterém je kniha napsaná (originály bloků)
     languages: ['cs', 'en', 'sk', 'hu'],     // přepínač na úvodní obrazovce a v Nastavení; ?lang=en otevře knihu anglicky
     untranslatedTellings: 'hide',            // česká podání ze staré knihy (-podani-) se v jiných jazycích nezobrazí
-    signature: 'Pavel Kordík',
-    signatureRole: { cs: 'za AI dětem, vydavatele certifikátu', en: 'for AI dětem, issuer of the certificate', sk: 'za AI dětem, vydavateľa certifikátu', hu: 'az AI dětem, a tanúsítvány kiadója nevében' },
+    signature: 'AI dětem',
+    signatureRole: { cs: 'vydavatel certifikátu', en: 'issuer of the certificate', sk: 'vydavateľ certifikátu', hu: 'a tanúsítvány kiadója' },
     contactName: AUTHOR,
     inviteText: { cs: 'Čtu živou knihu o tom, jak funguje digitální svět — přidej se:', en: 'I’m reading a living book about how the digital world works — join me:', sk: 'Čítam živú knihu o tom, ako funguje digitálny svet — pridaj sa:', hu: 'Egy élő könyvet olvasok arról, hogyan működik a digitális világ — csatlakozz:' },
     issuesUrl: 'https://github.com/kordikp/informatika-pbook/issues',
@@ -49,6 +49,7 @@ export const CONFIG = {
     steering: true,           // jednodušeji / hlouběji, panel podání
     generation: true,         // generování na vyžádání (bez klíče se tlačítko skryje)
     community: true,          // sdílená čtenářská podání (otevřený režim)
+    visualMap: false,         // kniha nemá content/visual-map-data.json: mapa se na ni ani neptá
   },
 
   tutor: {
@@ -121,11 +122,11 @@ export const CONFIG = {
       foundations: { title: { cs: 'Průzkumník', en: 'Explorer', sk: 'Prieskumník', hu: 'Felfedező' },
                      subtitle: { cs: 'Rozumí 24 jádrům informatiky', en: 'Understands the 24 core concepts of computing', sk: 'Rozumie 24 jadrám informatiky', hu: 'Érti az informatika 24 alapfogalmát' } },
       practitioner: { title: { cs: 'Řešitel', en: 'Solver', sk: 'Riešiteľ', hu: 'Megoldó' },
-                      subtitle: { cs: 'Porazil bosse ve dvou misích', en: 'Beat the boss in two missions', sk: 'Porazil bossa v dvoch misiách', hu: 'Két küldetésben legyőzte a főellenséget' } },
+                      subtitle: { cs: 'Bossové poraženi ve dvou misích', en: 'Beat the boss in two missions', sk: 'Bossovia porazení v dvoch misiách', hu: 'Két küldetésben legyőzte a főellenséget' } },
       guru: { title: { cs: 'Mistr', en: 'Master', sk: 'Majster', hu: 'Mester' },
-              subtitle: { cs: 'Dotáhl vlastní projekt a opakováním si jádra drží', en: 'Finished an own project and keeps the cores by recall', sk: 'Dotiahol vlastný projekt a opakovaním si jadrá drží', hu: 'Befejezte a saját projektjét, és ismétléssel megtartja a tudást' } },
+              subtitle: { cs: 'Vlastní projekt hotový, jádra udržovaná opakováním', en: 'Finished an own project and keeps the cores by recall', sk: 'Vlastný projekt hotový, jadrá udržiavané opakovaním', hu: 'Befejezte a saját projektjét, és ismétléssel megtartja a tudást' } },
     },
-    completed: { cs: 'prošel jádrem informatiky: od algoritmu po umělou inteligenci a bezpečí na síti', en: 'went through the core of computing: from algorithms to AI and online safety', sk: 'prešiel jadrom informatiky: od algoritmu po umelú inteligenciu a bezpečie na sieti', hu: 'végigment az informatika magján: az algoritmustól a mesterséges intelligenciáig és a netes biztonságig' },
+    completed: { cs: 'má za sebou jádro informatiky: od algoritmu po umělou inteligenci a bezpečí na síti', en: 'went through the core of computing: from algorithms to AI and online safety', sk: 'má za sebou jadro informatiky: od algoritmu po umelú inteligenciu a bezpečie na sieti', hu: 'végigment az informatika magján: az algoritmustól a mesterséges intelligenciáig és a netes biztonságig' },
     topic: { cs: 'Informatika a AI', en: 'Computing and AI', sk: 'Informatika a AI', hu: 'Informatika és AI' },
   },
 
@@ -136,7 +137,6 @@ export const CONFIG = {
       'Jak funguje digitální svět — informatika pro 2. stupeň': 'How the Digital World Works — computing for ages 11–15',
       'Jak funguje digitální svět': 'How the Digital World Works',
       'Základy informatiky a umělé inteligence pro 2. stupeň: 24 klíčových konceptů v 6 kapitolách.': 'Computing and AI basics for ages 11–15: 24 key concepts in 6 chapters.',
-      'author-line': '<a href="https://kordikp.github.io/" target="_blank" rel="noopener">Pavel Kordík</a> and the <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a> team',
       'Pochopit, jak to funguje': 'Understand how it works',
       'Něco vytvořit': 'Make something',
       'Rozumět AI': 'Understand AI',
@@ -145,7 +145,6 @@ export const CONFIG = {
       'credits-map': 'Content backbone: the <a href="https://knowledge-map-glitch.vercel.app/" target="_blank" rel="noopener">Glitch map of computing concepts</a>, reworked into 24 cores. The p-book platform comes from <a href="https://kam.fit.cvut.cz" target="_blank" rel="noopener">FIT CTU</a> and <a href="https://recombee.com" target="_blank" rel="noopener">Recombee</a>.',
       'credits-made': 'Published by <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a>, who also issue the certificate at the end of the book.',
       'chat-intro': 'Ask in your own words, for example <i>“what is an algorithm?”</i>. I find the concept that answers it, give you the book’s short answer and the section to read. If the book does not cover it, I say so, and you can send the question to the authors with the ✉ button above.',
-      'about-line': '<a href="https://kordikp.github.io/" target="_blank" rel="noopener">Pavel Kordík</a> and the <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a> team',
       'Algoritmy': 'Algorithms', 'Programování': 'Programming', 'Data a kódování': 'Data and encoding',
       'Sítě a internet': 'Networks and the internet', 'Umělá inteligence': 'Artificial intelligence', 'Bezpečí': 'Safety',
       'Mistr informatiky': 'Computing master',
@@ -154,7 +153,6 @@ export const CONFIG = {
       'Jak funguje digitální svět — informatika pro 2. stupeň': 'Ako funguje digitálny svet — informatika pre 2. stupeň ZŠ',
       'Jak funguje digitální svět': 'Ako funguje digitálny svet',
       'Základy informatiky a umělé inteligence pro 2. stupeň: 24 klíčových konceptů v 6 kapitolách.': 'Základy informatiky a umelej inteligencie pre 2. stupeň: 24 kľúčových konceptov v 6 kapitolách.',
-      'author-line': '<a href="https://kordikp.github.io/" target="_blank" rel="noopener">Pavel Kordík</a> a tím <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a>',
       'Pochopit, jak to funguje': 'Pochopiť, ako to funguje',
       'Něco vytvořit': 'Niečo vytvoriť',
       'Rozumět AI': 'Rozumieť AI',
@@ -163,7 +161,6 @@ export const CONFIG = {
       'credits-map': 'Obsahová chrbtica: <a href="https://knowledge-map-glitch.vercel.app/" target="_blank" rel="noopener">Mapa informatických konceptov Glitch</a>, upravená na 24 jadier. Platforma p-book z <a href="https://kam.fit.cvut.cz" target="_blank" rel="noopener">FIT ČVUT</a> a <a href="https://recombee.com" target="_blank" rel="noopener">Recombee</a>.',
       'credits-made': 'Knihu aj certifikát vydáva <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a>.',
       'chat-intro': 'Opýtaj sa vlastnými slovami, napríklad <i>„čo je algoritmus?“</i>. Nájdem koncept, ktorý na to odpovedá, dám ti krátku odpoveď z knihy a sekciu na čítanie. Keď to kniha nepokrýva, poviem to a otázku môžeš poslať autorom tlačidlom ✉ hore.',
-      'about-line': '<a href="https://kordikp.github.io/" target="_blank" rel="noopener">Pavel Kordík</a> a tím <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a>',
       'Algoritmy': 'Algoritmy', 'Programování': 'Programovanie', 'Data a kódování': 'Dáta a kódovanie',
       'Sítě a internet': 'Siete a internet', 'Umělá inteligence': 'Umelá inteligencia', 'Bezpečí': 'Bezpečie',
       'Mistr informatiky': 'Majster informatiky',
@@ -172,7 +169,6 @@ export const CONFIG = {
       'Jak funguje digitální svět — informatika pro 2. stupeň': 'Hogyan működik a digitális világ — informatika felső tagozatosoknak',
       'Jak funguje digitální svět': 'Hogyan működik a digitális világ',
       'Základy informatiky a umělé inteligence pro 2. stupeň: 24 klíčových konceptů v 6 kapitolách.': 'Az informatika és a mesterséges intelligencia alapjai felső tagozatosoknak: 24 kulcsfogalom 6 fejezetben.',
-      'author-line': '<a href="https://kordikp.github.io/" target="_blank" rel="noopener">Pavel Kordík</a> és az <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a> csapata',
       'Pochopit, jak to funguje': 'Megérteni, hogyan működik',
       'Něco vytvořit': 'Valamit alkotni',
       'Rozumět AI': 'Érteni az AI-t',
@@ -181,7 +177,6 @@ export const CONFIG = {
       'credits-map': 'A tartalom gerince: a <a href="https://knowledge-map-glitch.vercel.app/" target="_blank" rel="noopener">Glitch informatikai fogalomtérkép</a>, 24 alapfogalomra átdolgozva. A p-book platformot a <a href="https://kam.fit.cvut.cz" target="_blank" rel="noopener">FIT ČVUT</a> és a <a href="https://recombee.com" target="_blank" rel="noopener">Recombee</a> készítette.',
       'credits-made': 'A könyvet és a tanúsítványt az <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a> adja ki.',
       'chat-intro': 'Kérdezz a saját szavaiddal, például: <i>„mi az az algoritmus?”</i> Megkeresem a választ adó fogalmat, megadom a könyv rövid válaszát és az elolvasandó szakaszt. Ha a könyv nem foglalkozik vele, megmondom, és a kérdést a fenti ✉ gombbal elküldheted a szerzőknek.',
-      'about-line': '<a href="https://kordikp.github.io/" target="_blank" rel="noopener">Pavel Kordík</a> és az <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a> csapata',
       'Algoritmy': 'Algoritmusok', 'Programování': 'Programozás', 'Data a kódování': 'Adatok és kódolás',
       'Sítě a internet': 'Hálózatok és internet', 'Umělá inteligence': 'Mesterséges intelligencia', 'Bezpečí': 'Biztonság',
       'Mistr informatiky': 'Az informatika mestere',
