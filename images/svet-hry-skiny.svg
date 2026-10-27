@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Zpráva se skiny zdarma a její varovné znaky">
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker></defs>
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif">
+  <text x="18" y="26" font-size="17" font-weight="700" fill="#1E1B4B">Skiny zdarma? Varovné znaky</text>
+  <text x="18" y="44" font-size="11" fill="#6B7280">Zpráva může být bez chyby a znít jako kamarád. Prozradí ji, co po tobě chce.</text>
+  <rect x="24" y="58" width="262" height="172" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="40" y="80" font-size="11" font-weight="600" fill="#6B7280">💬 Kuba_2011</text>
+  <rect x="40" y="90" width="230" height="128" rx="12" fill="#EEF2FF"/>
+  <text x="52" y="112" font-size="11" font-weight="700" fill="#1E1B4B">🎁 SKINY ZDARMA pro prvních 100!</text>
+  <text x="52" y="136" font-size="11" fill="#1E1B4B">⏰ Jen dnes do 20:00</text>
+  <text x="52" y="160" font-size="11" fill="#1E1B4B">Přihlas se svým účtem tady:</text>
+  <text x="52" y="180" font-size="11" fill="#2563EB" text-decoration="underline">hra-skiny-free.xyz/login</text>
+  <text x="52" y="204" font-size="11" fill="#1E1B4B">a pošli mi kód z SMS 😉</text>
+  <line x1="304" y1="104" x2="280" y2="104" stroke="#D97706" stroke-width="2"/>
+  <rect x="306" y="91" width="190" height="26" rx="13" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="318" y="108" font-size="11" font-weight="700" fill="#1E1B4B">⚠ odměna</text>
+  <line x1="304" y1="128" x2="280" y2="128" stroke="#D97706" stroke-width="2"/>
+  <rect x="306" y="115" width="190" height="26" rx="13" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="318" y="132" font-size="11" font-weight="700" fill="#1E1B4B">⚠ spěch</text>
+  <line x1="304" y1="172" x2="280" y2="172" stroke="#EF4444" stroke-width="2"/>
+  <rect x="306" y="159" width="190" height="26" rx="13" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+  <text x="318" y="176" font-size="11" font-weight="700" fill="#1E1B4B">⚠ cizí adresa</text>
+  <line x1="304" y1="196" x2="280" y2="196" stroke="#EF4444" stroke-width="2"/>
+  <rect x="306" y="183" width="190" height="26" rx="13" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+  <text x="318" y="200" font-size="11" font-weight="700" fill="#1E1B4B">⚠ chce heslo a kód</text>
+  <text x="260" y="248" font-size="10" font-weight="600" fill="#1E1B4B" text-anchor="middle">Zastav se · ověř to jinou cestou · heslo ani kód nikdy nesděluj</text>
+
+  </g>
+</svg>

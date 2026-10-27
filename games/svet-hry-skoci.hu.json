@@ -1,0 +1,37 @@
+{
+  "type": "sort",
+  "title": "Ugrik a figura?",
+  "instruction": "A szabály: ugorj, ha a szóköz le van nyomva, ÉS a figura a földön áll.",
+  "buckets": [
+    "Ugrik",
+    "Nem ugrik"
+  ],
+  "items": [
+    {
+      "text": "Szóköz lenyomva, a figura a földön áll",
+      "answer": 0,
+      "why": "A feltétel mindkét része igaz."
+    },
+    {
+      "text": "Szóköz lenyomva, a figura a levegőben van",
+      "answer": 1,
+      "why": "A második rész nem igaz. Az „és” esetén mindkettőnek igaznak kell lennie."
+    },
+    {
+      "text": "Szóköz nincs lenyomva, a figura a földön áll",
+      "answer": 1,
+      "why": "Az első rész nem igaz, így nincs ugrás."
+    },
+    {
+      "text": "Szóköz nincs lenyomva, a figura a levegőben van",
+      "answer": 1,
+      "why": "Egyik rész sem igaz."
+    },
+    {
+      "text": "A játékos nyomva tartja a szóközt, és a figura épp földet ért",
+      "answer": 0,
+      "why": "Most már a földön áll, és a szóköz le van nyomva, így újra ugrik."
+    }
+  ],
+  "debrief": "ÉS esetén mindkét résznek igaznak kell lennie. Egy nem elég, ezért nem ugrik a figura a levegőben."
+}

@@ -1,0 +1,37 @@
+{
+  "type": "sort",
+  "title": "Will the character jump?",
+  "instruction": "The rule: jump when the space bar is pressed AND the character is standing on the ground.",
+  "buckets": [
+    "Jumps",
+    "Doesn’t jump"
+  ],
+  "items": [
+    {
+      "text": "Space bar pressed, character standing on the ground",
+      "answer": 0,
+      "why": "Both parts of the condition are true."
+    },
+    {
+      "text": "Space bar pressed, character in the air",
+      "answer": 1,
+      "why": "The second part isn’t true. With “and”, both must be true."
+    },
+    {
+      "text": "Space bar not pressed, character standing on the ground",
+      "answer": 1,
+      "why": "The first part isn’t true, so there’s no jump."
+    },
+    {
+      "text": "Space bar not pressed, character in the air",
+      "answer": 1,
+      "why": "Neither part is true."
+    },
+    {
+      "text": "The player holds the space bar and the character has just landed",
+      "answer": 0,
+      "why": "Now it is standing on the ground and the space bar is pressed, so it jumps again."
+    }
+  ],
+  "debrief": "With AND, both parts must be true. One is not enough, and that’s why the character doesn’t jump in the air."
+}

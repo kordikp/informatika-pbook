@@ -1,0 +1,34 @@
+{
+  "type": "pairs",
+  "title": "What is on the display?",
+  "instruction": "The rows of the 5 × 5 display from top to bottom (1 = on). Which picture do they encode?",
+  "debrief": "Whoever knows the encoding rule can rebuild the same picture from the numbers. A number on its own means nothing.",
+  "choices": 4,
+  "pairs": [
+    {
+      "a": "arrow up",
+      "b": "00100 · 01110 · 10101 · 00100 · 00100",
+      "why": "One LED at the top, below it the arrow widens, and a shaft runs down."
+    },
+    {
+      "a": "smiley",
+      "b": "00000 · 01010 · 00000 · 10001 · 01110",
+      "why": "Two eyes in the second row and a mouth that curves up into a smile at the bottom."
+    },
+    {
+      "a": "cross",
+      "b": "10001 · 01010 · 00100 · 01010 · 10001",
+      "why": "Two diagonals that meet in the middle."
+    },
+    {
+      "a": "heart",
+      "b": "01010 · 11111 · 11111 · 01110 · 00100",
+      "why": "Two arches at the top and a point at the bottom."
+    },
+    {
+      "a": "exclamation mark",
+      "b": "00100 · 00100 · 00100 · 00000 · 00100",
+      "why": "A vertical line, a gap and a dot."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Build the game in the right order",
+  "instruction": "Put the parts of Catch the Apples in order, so that each one comes after what it depends on.",
+  "steps": [
+    "The basket moves with the arrow keys",
+    "The apple falls from top to bottom",
+    "The game recognises that the apple landed in the basket",
+    "A catch adds a point, a miss takes away a life",
+    "At zero lives the game ends and shows the score"
+  ],
+  "why": [
+    "Without a moving basket you can’t test anything: the player couldn’t catch a thing.",
+    "You need the falling apple so that there is something to catch.",
+    "A catch can only be recognised once the basket moves and the apple falls.",
+    "Points and lives change when you catch or miss, so they need the catch check.",
+    "Game over watches the lives, and they have to go down first."
+  ],
+  "debrief": "You build a big game out of small parts. Each one stands on the ones before it, and that’s why the order matters."
+}

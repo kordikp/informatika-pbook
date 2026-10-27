@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "What makes the game file bigger?",
+  "instruction": "Does the change make the game data bigger, or does it stay the same size?",
+  "buckets": [
+    "Bigger file",
+    "Same size"
+  ],
+  "items": [
+    {
+      "text": "A 16 × 16 sprite instead of 8 × 8",
+      "answer": 0,
+      "why": "Four times as many pixels, four times as many numbers."
+    },
+    {
+      "text": "A palette with 256 colours instead of 4",
+      "answer": 0,
+      "why": "Each pixel needs 8 bits instead of 2."
+    },
+    {
+      "text": "You rename the file from hero.png to knight.png",
+      "answer": 1,
+      "why": "The name doesn’t change the numbers inside."
+    },
+    {
+      "text": "A 4096 × 4096 texture instead of 1024 × 1024",
+      "answer": 0,
+      "why": "Sixteen times as many pixels."
+    },
+    {
+      "text": "You move the file to another folder",
+      "answer": 1,
+      "why": "The data is still the same, just somewhere else."
+    },
+    {
+      "text": "Longer background music",
+      "answer": 0,
+      "why": "Sound is numbers too; every second adds thousands of them."
+    }
+  ],
+  "debrief": "More pixels, colours and frames mean more numbers, and so a bigger file. A different number in the same place doesn’t change the size."
+}

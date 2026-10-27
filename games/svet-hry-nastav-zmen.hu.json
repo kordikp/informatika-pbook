@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Állítsd vagy változtasd?",
+  "instruction": "A játék minden pillanatához válaszd ki az odaillő blokkot.",
+  "buckets": [
+    "állítsd …-ra",
+    "változtasd …-val"
+  ],
+  "items": [
+    {
+      "text": "A játék eleje: a pontszám nulláról indul",
+      "answer": 0,
+      "why": "Bármi volt benne, 0-nak kell lennie. Ez a beállítás."
+    },
+    {
+      "text": "A játékos felvett egy érmét",
+      "answer": 1,
+      "why": "A meglévő pontjaihoz egy hozzájön."
+    },
+    {
+      "text": "A figura nekiment egy ellenségnek",
+      "answer": 1,
+      "why": "A meglévő életeiből egy elvész: változtasd -1-gyel."
+    },
+    {
+      "text": "Az új szint ismét három élettel indul",
+      "answer": 0,
+      "why": "Az érték 3-ra íródik felül, függetlenül attól, mennyi maradt."
+    },
+    {
+      "text": "Kombó: minden sorozatban felvett érméért eggyel több pont",
+      "answer": 1,
+      "why": "A pontok hozzáadódnak ahhoz, ami már megvan."
+    },
+    {
+      "text": "A játékos megnyomta az „Új játék” gombot, és a mód ismét „játék”",
+      "answer": 0,
+      "why": "A mód új értékre íródik felül."
+    }
+  ],
+  "debrief": "Az állítsd felülírja az értéket, a változtasd hozzáad ahhoz, ami benne van. A játék elejére az állítsd való, az érme elkapásához a változtasd."
+}

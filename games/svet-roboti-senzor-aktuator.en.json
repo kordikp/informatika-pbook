@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Sensor or actuator?",
+  "instruction": "Does it measure (sensor) or does it act (actuator)?",
+  "buckets": [
+    "Sensor (measures)",
+    "Actuator (acts)"
+  ],
+  "items": [
+    {
+      "text": "thermometer",
+      "answer": 0,
+      "why": "It measures temperature and reports a number."
+    },
+    {
+      "text": "motor",
+      "answer": 1,
+      "why": "It spins a wheel, so it acts."
+    },
+    {
+      "text": "microphone",
+      "answer": 0,
+      "why": "It measures how loud a sound is."
+    },
+    {
+      "text": "LED display",
+      "answer": 1,
+      "why": "It lights up and shows the output."
+    },
+    {
+      "text": "accelerometer (motion sensor)",
+      "answer": 0,
+      "why": "It measures how the device moves and tilts."
+    },
+    {
+      "text": "speaker",
+      "answer": 1,
+      "why": "It makes a sound."
+    },
+    {
+      "text": "button",
+      "answer": 0,
+      "why": "It reports whether someone pressed it. That is input too."
+    },
+    {
+      "text": "vibration motor",
+      "answer": 1,
+      "why": "It shakes the phone, so it acts."
+    }
+  ],
+  "debrief": "A sensor measures the world and gives the program input. An actuator changes the world and is the program’s output."
+}

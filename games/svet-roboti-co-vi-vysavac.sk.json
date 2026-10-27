@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "Čo potrebuje vedieť vysávač?",
+  "instruction": "Robotický vysávač má upratať byt. Označ, čo musí jeho model obsahovať.",
+  "debrief": "Model obsahuje len to, čo potrebuje účel. Vysávaču stačí voľno, prekážky a miestnosti. Farba gauča nie.",
+  "hitLabel": "patrí do modelu",
+  "missLabel": "vynechá sa",
+  "items": [
+    {
+      "text": "Kde je prekážka",
+      "hit": true,
+      "why": "Inak by do všetkého narážal."
+    },
+    {
+      "text": "Kadiaľ sa ide do ďalšej miestnosti",
+      "hit": true,
+      "why": "Dvere sú hrany grafu bytu."
+    },
+    {
+      "text": "Farba koberca",
+      "hit": false,
+      "why": "Na vysávanie ju nepotrebuje."
+    },
+    {
+      "text": "Či je pod ním schod",
+      "hit": true,
+      "why": "Bez toho by spadol zo schodov."
+    },
+    {
+      "text": "Ako sa volá mačka",
+      "hit": false,
+      "why": "Pre vysávač je mačka len prekážka."
+    },
+    {
+      "text": "Koľko zostáva batérie",
+      "hit": true,
+      "why": "Musí stihnúť dôjsť späť k nabíjačke."
+    },
+    {
+      "text": "Aký obraz visí na stene",
+      "hit": false,
+      "why": "Obraz je pre vysávanie úplne jedno."
+    }
+  ]
+}

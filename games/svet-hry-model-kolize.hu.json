@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Mi kerül az ütközési modellbe?",
+  "instruction": "A játék hitboxokkal számolja az ütközéseket. Jelöld meg, mit kell ehhez tudnia.",
+  "debrief": "Az ütközéshez elég az alak és a helyzet. A színeket, hangokat és a figura nevét a modell kihagyja, pedig a játékos látja őket.",
+  "hitLabel": "a modellbe kerül",
+  "missLabel": "kimarad",
+  "items": [
+    {
+      "text": "A figura helyzete (x, y)",
+      "hit": true,
+      "why": "A helyzet nélkül a játék nem tudja, hol van a hitbox."
+    },
+    {
+      "text": "A hitbox szélessége és magassága",
+      "hit": true,
+      "why": "A méretből tudja meg a játék, hogy átfedik-e egymást a téglalapok."
+    },
+    {
+      "text": "A köpeny színe",
+      "hit": false,
+      "why": "A szín a kirajzoláshoz kell, nem az ütközéshez."
+    },
+    {
+      "text": "A tüskék alakja és helyzete",
+      "hit": true,
+      "why": "A tüskéknek is van hitboxa, különben nem lehetne beléjük ütközni."
+    },
+    {
+      "text": "A háttérzene",
+      "hit": false,
+      "why": "A zenének semmi köze az érintésekhez."
+    },
+    {
+      "text": "A játékos neve",
+      "hit": false,
+      "why": "A név a ranglistán hasznos, az ütközéseknek mindegy."
+    }
+  ]
+}

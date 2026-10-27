@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Safe or risky?",
+  "instruction": "Sort what is safe with games and what is risky.",
+  "buckets": [
+    "Safe",
+    "Risky"
+  ],
+  "items": [
+    {
+      "text": "You download the game from the official store",
+      "answer": 0,
+      "why": "The store checks apps. The risk is smaller, though not zero."
+    },
+    {
+      "text": "A cheat from a link in a comment under a video",
+      "answer": 1,
+      "why": "An untrusted source, a classic Trojan horse."
+    },
+    {
+      "text": "A mod wants to run as the computer’s administrator",
+      "answer": 1,
+      "why": "With administrator rights a program can do anything on the computer."
+    },
+    {
+      "text": "You install a game update as soon as it comes out",
+      "answer": 0,
+      "why": "An update closes holes that attackers know about."
+    },
+    {
+      "text": "A torch game wants access to your contacts",
+      "answer": 1,
+      "why": "It doesn’t need contacts to shine a light. So why would it want them?"
+    },
+    {
+      "text": "Your saves are in the game’s cloud too",
+      "answer": 0,
+      "why": "A copy somewhere else: it survives a lost or broken phone."
+    },
+    {
+      "text": "You turn off your antivirus because the cheat “doesn’t like it”",
+      "answer": 1,
+      "why": "That is exactly what malware needs."
+    }
+  ],
+  "debrief": "An antivirus alone doesn’t keep you safe. Your choices do: a trusted source, updates and permissions that make sense."
+}

@@ -1,0 +1,37 @@
+{
+  "type": "sort",
+  "title": "Skočí postava?",
+  "instruction": "Pravidlo: skoč, keď je stlačený medzerník A postava stojí na zemi.",
+  "buckets": [
+    "Skočí",
+    "Neskočí"
+  ],
+  "items": [
+    {
+      "text": "Medzerník stlačený, postava stojí na zemi",
+      "answer": 0,
+      "why": "Platia obe časti podmienky."
+    },
+    {
+      "text": "Medzerník stlačený, postava je vo vzduchu",
+      "answer": 1,
+      "why": "Druhá časť neplatí. Pri spojení „a“ musia platiť obe."
+    },
+    {
+      "text": "Medzerník nestlačený, postava stojí na zemi",
+      "answer": 1,
+      "why": "Neplatí prvá časť, tak sa neskáče."
+    },
+    {
+      "text": "Medzerník nestlačený, postava je vo vzduchu",
+      "answer": 1,
+      "why": "Neplatí ani jedna časť."
+    },
+    {
+      "text": "Hráč drží medzerník a postava práve dopadla na zem",
+      "answer": 0,
+      "why": "Teraz už stojí na zemi a medzerník je stlačený, takže skočí znova."
+    }
+  ],
+  "debrief": "Pri spojke A musia platiť obe časti. Jedna nestačí, a preto postava vo vzduchu neskočí."
+}

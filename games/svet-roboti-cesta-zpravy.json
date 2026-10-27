@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Cesta rádiové zprávy",
+  "instruction": "Seřaď, co se stane od stisku tlačítka po srdce na druhém micro:bitu.",
+  "steps": [
+    "Zmáčkneš tlačítko A",
+    "micro:bit zabalí číslo 1 do balíčku se skupinou 7",
+    "Rádio vyšle balíček do okolí",
+    "micro:bity ve skupině 7 ho přijmou, ostatní ho zahodí",
+    "Přijímající micro:bit zobrazí srdce"
+  ],
+  "debrief": "Rádiová zpráva je malý balíček se skupinou. Přijmou ji jen micro:bity ve stejné skupině a v dosahu.",
+  "why": [
+    "Událost: stisk tlačítka spustí odeslání.",
+    "Zpráva cestuje jako balíček a skupina je jeho adresa.",
+    "Rádio vysílá všem v dosahu, žádný router mezi nimi není.",
+    "Podle skupiny se pozná, komu balíček patří.",
+    "Až po přijetí se spustí obsluha „při přijetí čísla“."
+  ]
+}

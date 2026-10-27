@@ -233,24 +233,24 @@
     },
     "creator": {
      "label": {
-      "cs": "Svět her: první hra ve Scratchi",
-      "en": "World of games: your first game in Scratch",
-      "sk": "Svet hier: prvá hra v Scratchi",
-      "hu": "A játékok világa: az első játékod Scratchben"
+      "cs": "Svět her: postav vlastní hru",
+      "en": "World of games: build your own game",
+      "sk": "Svet hier: postav vlastnú hru",
+      "hu": "A játékok világa: építsd meg a saját játékodat"
      },
      "blocks": [
-      "ch11-scratch-jako-vstup"
+      "svet-hry"
      ]
     },
     "thinker": {
      "label": {
-      "cs": "Svět her: hotová hra řádek po řádku",
-      "en": "World of games: a finished game, line by line",
-      "sk": "Svet hier: hotová hra riadok po riadku",
-      "hu": "A játékok világa: egy kész játék soronként"
+      "cs": "Svět robotů: senzor, program, světlo",
+      "en": "World of robots: sensor, program, light",
+      "sk": "Svet robotov: senzor, program, svetlo",
+      "hu": "A robotok világa: érzékelő, program, fény"
      },
      "blocks": [
-      "ch11-code-vstup-hrace"
+      "svet-roboti-program"
      ]
     }
    }
@@ -499,13 +499,13 @@
     },
     "thinker": {
      "label": {
-      "cs": "Svět robotů: vstup a výstup na zařízení",
-      "en": "World of robots: input and output on a device",
-      "sk": "Svet robotov: vstup a výstup na zariadení",
-      "hu": "A robotok világa: bemenet és kimenet egy eszközön"
+      "cs": "Svět robotů: rádio mezi micro:bity",
+      "en": "World of robots: radio between micro:bits",
+      "sk": "Svet robotov: rádio medzi micro:bitmi",
+      "hu": "A robotok világa: rádió a micro:bitek között"
      },
      "blocks": [
-      "ch12-vstup-zpracovani-vystup-na-zarizeni"
+      "svet-roboti-cesta-dat"
      ]
     }
    }
@@ -766,6 +766,319 @@
    }
   },
   {
+   "id": "svet-hry",
+   "title": {
+    "cs": "Postav hru",
+    "en": "Build a game",
+    "sk": "Postav hru",
+    "hu": "Építs játékot"
+   },
+   "icon": "🕹️",
+   "difficulty": "Intermediate",
+   "story": {
+    "cs": "Spolužáci chtějí na školní akci hru, kterou si zahrají na tabletu. Přihlásil ses, že ji postavíš. Projdi svět her od rozkladu na části až po bezpečí a navrhni hru, která bude bavit i fungovat.",
+    "en": "Your classmates want a game for a school event that they can play on a tablet. You volunteered to build it. Go through the world of games, from breaking it into parts all the way to safety, and design a game that is fun and works.",
+    "sk": "Spolužiaci chcú na školskú akciu hru, ktorú si zahrajú na tablete. Prihlásil si sa, že ju postavíš. Prejdi svet hier od rozkladu na časti až po bezpečie a navrhni hru, ktorá bude baviť aj fungovať.",
+    "hu": "Az osztálytársaid egy iskolai rendezvényre szeretnének egy játékot, amelyet tableten játszhatnak. Jelentkeztél, hogy megépíted. Járd be a játékok világát a részekre bontástól egészen a biztonságig, és tervezz olyan játékot, amely szórakoztató is, és működik is."
+   },
+   "goal": {
+    "cs": "Navrhnout vlastní hru se smyčkou, podmínkami, proměnnými a otestovanými kolizemi",
+    "en": "Design your own game with a loop, conditions, variables and tested collisions",
+    "sk": "Navrhnúť vlastnú hru so slučkou, podmienkami, premennými a otestovanými kolíziami",
+    "hu": "Saját játék tervezése ciklussal, feltételekkel, változókkal és tesztelt ütközésekkel"
+   },
+   "reward": {
+    "title": {
+     "cs": "Herní tvůrce",
+     "en": "Game maker",
+     "sk": "Herný tvorca",
+     "hu": "Játékkészítő"
+    },
+    "xp": 30
+   },
+   "core": [
+    "svet-hry-dekompozice",
+    "svet-hry-abstrakce-a-model",
+    "svet-hry-over-a-oprav",
+    "svet-hry-opakovani",
+    "svet-hry-rozhodovani",
+    "svet-hry-promenna",
+    "svet-hry-kodovani",
+    "svet-hry-cesta-dat",
+    "svet-hry-podvod-cili-na-cloveka",
+    "svet-hry-ochrana-zarizeni"
+   ],
+   "intros": [
+    {
+     "cs": "Rozlož problém. Chceš udělat hru, kde košík chytá padající jablka. Prázdná obrazovka mlčí. Kde vůbec začít?",
+     "en": "Break the problem down. You want to make a game where a basket catches falling apples. The empty screen says nothing. Where do you even start?",
+     "sk": "Rozlož problém. Chceš urobiť hru, kde košík chytá padajúce jablká. Prázdna obrazovka mlčí. Kde vôbec začať?",
+     "hu": "Bontsd részekre a problémát. Olyan játékot szeretnél, amelyben egy kosár elkapja a lehulló almákat. Az üres képernyő hallgat. Hol is kezdd?"
+    },
+    {
+     "cs": "Model: užitečné zjednodušení. Rytíř ve hře má plášť, meč a vlající vlasy. Pro kolize je to ale obyčejný obdélník. A je to tak dobře.",
+     "en": "Model: a useful simplification. The knight in the game has a cloak, a sword and flowing hair. For collisions, though, he is a plain rectangle. And that’s a good thing.",
+     "sk": "Model: užitočné zjednodušenie. Rytier v hre má plášť, meč a viate vlasy. Pre kolízie je to však obyčajný obdĺžnik. A je to tak dobre.",
+     "hu": "Modell: hasznos egyszerűsítés. A játékban a lovagnak köpenye, kardja és lobogó haja van. Az ütközések szempontjából viszont egy egyszerű téglalap. És ez így van jól."
+    },
+    {
+     "cs": "Ověř a oprav. Tvůj Pong funguje. Pak míček zrychlíš a on najednou proletí pálkou, jako by tam nebyla. Chyba? Ano. A dá se chytit.",
+     "en": "Test and fix. Your Pong works. Then you speed up the ball and suddenly it flies through the paddle as if it weren’t there. A bug? Yes. And it can be caught.",
+     "sk": "Over a oprav. Tvoj Pong funguje. Potom loptičku zrýchliš a ona zrazu preletí pálkou, akoby tam nebola. Chyba? Áno. A dá sa chytiť.",
+     "hu": "Ellenőrizd és javítsd. A Pong játékod működik. Aztán felgyorsítod a labdát, és az hirtelen átrepül az ütőn, mintha ott sem lenne. Hiba? Igen. És el lehet kapni."
+    },
+    {
+     "cs": "Opakování (cyklus). Ve hře se ve skutečnosti nic nehýbe. Obrázek se jen šedesátkrát za sekundu nakreslí o kousek vedle.",
+     "en": "Repetition (loop). Nothing in a game actually moves. The picture is just drawn sixty times a second, a little further along each time.",
+     "sk": "Opakovanie (cyklus). V hre sa v skutočnosti nič nehýbe. Obrázok sa len šesťdesiatkrát za sekundu nakreslí o kúsok vedľa.",
+     "hu": "Ismétlés (ciklus). Egy játékban valójában semmi sem mozog. A képet csak másodpercenként hatvanszor rajzolja ki, mindig egy kicsit arrébb."
+    },
+    {
+     "cs": "Rozhodování (podmínka). Postava skočí, jen když stojí na zemi. Ve vzduchu mezerník nedělá nic. Za tím je jediná otázka s odpovědí ano, nebo ne.",
+     "en": "Decisions (conditions). The character only jumps when it is standing on the ground. In the air the space bar does nothing. Behind that is a single question with the answer yes or no.",
+     "sk": "Rozhodovanie (podmienka). Postava skočí, len keď stojí na zemi. Vo vzduchu medzerník nerobí nič. Za tým je jediná otázka s odpoveďou áno, alebo nie.",
+     "hu": "Döntés (feltétel). A figura csak akkor ugrik, ha a földön áll. A levegőben a szóköz semmit sem csinál. Mögötte egyetlen kérdés van, amelyre a válasz igen vagy nem."
+    },
+    {
+     "cs": "Proměnná: paměť programu. Hra si pamatuje, kolik máš bodů, i když na ně zrovna nemyslíš. Kde je drží?",
+     "en": "Variable: a program's memory. The game remembers how many points you have, even when you aren’t thinking about them. Where does it keep them?",
+     "sk": "Premenná: pamäť programu. Hra si pamätá, koľko máš bodov, aj keď na ne práve nemyslíš. Kde ich drží?",
+     "hu": "Változó: a program memóriája. A játék emlékszik, hány pontod van, akkor is, amikor éppen nem gondolsz rájuk. Hol tárolja őket?"
+    },
+    {
+     "cs": "Všechno jsou čísla. Postavička v pixelové hře je pro počítač tabulka čísel. Doslova.",
+     "en": "Everything is numbers. To a computer, a character in a pixel game is a table of numbers. Literally.",
+     "sk": "Všetko sú čísla. Postavička v pixelovej hre je pre počítač tabuľka čísel. Doslova.",
+     "hu": "Minden szám. Egy pixeles játék figurája a számítógép számára egy számtáblázat. Szó szerint."
+    },
+    {
+     "cs": "Jak data cestují. Vystřelíš první, ale padneš ty. Hra tě nepodvedla. Tvoje data byla jen ještě na cestě.",
+     "en": "How data travels. You fire first, but you’re the one who goes down. The game didn’t cheat you. Your data was simply still on its way.",
+     "sk": "Ako dáta cestujú. Vystrelíš prvý, ale padneš ty. Hra ťa nepodviedla. Tvoje dáta boli len ešte na ceste.",
+     "hu": "Hogyan utaznak az adatok. Te lősz elsőként, mégis te esel el. A játék nem csapott be. Az adataid egyszerűen még úton voltak."
+    },
+    {
+     "cs": "Podvod cílí na člověka. „Ahoj, rozdávám skiny zdarma, stačí se přihlásit přes tenhle odkaz.“ Píše kamarád. Nebo někdo, kdo má jeho účet.",
+     "en": "Scams target people. “Hi, I’m giving away free skins, just log in through this link.” It’s from a friend. Or from someone who has their account.",
+     "sk": "Podvod mieri na človeka. „Ahoj, rozdávam skiny zadarmo, stačí sa prihlásiť cez tento odkaz.“ Píše kamarát. Alebo niekto, kto má jeho účet.",
+     "hu": "A csalás az embert célozza. „Szia, ingyen osztok skineket, csak lépj be ezen a linken keresztül.” Egy barátod írja. Vagy valaki, akinél a fiókja van."
+    },
+    {
+     "cs": "Ochrana zařízení. Cheat na nekonečné peníze, zdarma ke stažení. Nainstaluješ ho a peníze opravdu máš. Jenže on toho dělá víc.",
+     "en": "Protecting your devices. A cheat for unlimited money, free to download. You install it and you really do have the money. But it does more than that.",
+     "sk": "Ochrana zariadení. Cheat na nekonečné peniaze, zadarmo na stiahnutie. Nainštaluješ ho a peniaze naozaj máš. Lenže on toho robí viac.",
+     "hu": "Az eszközök védelme. Csalóprogram végtelen pénzhez, ingyen letölthető. Telepíted, és tényleg lesz pénzed. Csakhogy ennél többet is csinál."
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Popiš hru, kterou postavíš. Z jakých částí se skládá a v jakém pořadí je postavíš? Co dělá její herní smyčka, jaké podmínky a proměnné hra má? Jak otestuješ kolize, včetně okrajových případů? A na co si dáš pozor, až ji budeš sdílet?",
+     "en": "Describe the game you will build. What parts is it made of and in what order will you build them? What does its game loop do, and what conditions and variables does the game have? How will you test the collisions, including edge cases? And what will you watch out for when you share it?",
+     "sk": "Opíš hru, ktorú postavíš. Z akých častí sa skladá a v akom poradí ich postavíš? Čo robí jej herná slučka, aké podmienky a premenné hra má? Ako otestuješ kolízie vrátane okrajových prípadov? A na čo si dáš pozor, keď ju budeš zdieľať?",
+     "hu": "Írd le a játékot, amelyet megépítesz. Milyen részekből áll, és milyen sorrendben építed meg őket? Mit csinál a játékciklusa, milyen feltételek és változók vannak a játékban? Hogyan teszteled az ütközéseket, a szélső eseteket is beleértve? És mire figyelsz majd, amikor megosztod?"
+    },
+    "hints": [
+     {
+      "cs": "rozklad na části",
+      "en": "breaking into parts",
+      "sk": "rozklad na časti",
+      "hu": "részekre bontás"
+     },
+     {
+      "cs": "herní smyčka",
+      "en": "game loop",
+      "sk": "herná slučka",
+      "hu": "játékciklus"
+     },
+     {
+      "cs": "podmínka",
+      "en": "condition",
+      "sk": "podmienka",
+      "hu": "feltétel"
+     },
+     {
+      "cs": "proměnná",
+      "en": "variable",
+      "sk": "premenná",
+      "hu": "változó"
+     },
+     {
+      "cs": "test okrajového případu",
+      "en": "edge case test",
+      "sk": "test okrajového prípadu",
+      "hu": "szélső eset tesztje"
+     },
+     {
+      "cs": "bezpečné sdílení",
+      "en": "sharing safely",
+      "sk": "bezpečné zdieľanie",
+      "hu": "biztonságos megosztás"
+     }
+    ]
+   },
+   "branches": {}
+  },
+  {
+   "id": "svet-roboti",
+   "title": {
+    "cs": "Postav gadget",
+    "en": "Build a gadget",
+    "sk": "Postav gadget",
+    "hu": "Építs kütyüt"
+   },
+   "icon": "🤖",
+   "difficulty": "Intermediate",
+   "story": {
+    "cs": "Třída chce do školní dílny chytrý gadget: hlídá, jestli se větrá, a varuje, když je moc hluk. Máš micro:bit a pár dní. Projdi svět robotů a navrhni zařízení, které měří, rozhoduje a reaguje.",
+    "en": "Your class wants a smart gadget for the school workshop: it keeps an eye on whether the room is aired and warns when it is too noisy. You have a micro:bit and a few days. Go through the world of robots and design a device that measures, decides and reacts.",
+    "sk": "Trieda chce do školskej dielne chytrý gadget: stráži, či sa vetrá, a varuje, keď je príliš hluk. Máš micro:bit a pár dní. Prejdi svet robotov a navrhni zariadenie, ktoré meria, rozhoduje a reaguje.",
+    "hu": "Az osztály egy okos kütyüt szeretne az iskolai műhelybe: figyeli, hogy szellőztetnek-e, és figyelmeztet, ha túl nagy a zaj. Van egy micro:bited és néhány napod. Járd be a robotok világát, és tervezz olyan eszközt, amely mér, dönt és reagál."
+   },
+   "goal": {
+    "cs": "Navrhnout micro:bit gadget: senzor → rozhodnutí → výstup, s proměnnou, smyčkou a testy",
+    "en": "Design a micro:bit gadget: sensor → decision → output, with a variable, a loop and tests",
+    "sk": "Navrhnúť micro:bit gadget: senzor → rozhodnutie → výstup, s premennou, slučkou a testami",
+    "hu": "Egy micro:bit-kütyü tervezése: érzékelő → döntés → kimenet, változóval, ciklussal és tesztekkel"
+   },
+   "reward": {
+    "title": {
+     "cs": "Tvůrce gadgetů",
+     "en": "Gadget maker",
+     "sk": "Tvorca gadgetov",
+     "hu": "Kütyükészítő"
+    },
+    "xp": 30
+   },
+   "core": [
+    "svet-roboti-algoritmus",
+    "svet-roboti-dekompozice",
+    "svet-roboti-abstrakce-a-model",
+    "svet-roboti-over-a-oprav",
+    "svet-roboti-program",
+    "svet-roboti-opakovani",
+    "svet-roboti-rozhodovani",
+    "svet-roboti-promenna",
+    "svet-roboti-kodovani",
+    "svet-roboti-cesta-dat",
+    "svet-roboti-ai-se-uci-z-dat"
+   ],
+   "intros": [
+    {
+     "cs": "Algoritmus: přesný návod. Řekneš robotovi „dojeď k nabíječce“. Nepohne se. Neví, kde je, kudy jet, ani co znamená „dojeď“.",
+     "en": "Algorithm: exact instructions. You tell the robot “go to the charger”. It doesn’t move. It doesn’t know where it is, which way to go, or what “go to” means.",
+     "sk": "Algoritmus: presný návod. Povieš robotovi „dojdi k nabíjačke“. Nepohne sa. Nevie, kde je, kadiaľ ísť, ani čo znamená „dojdi“.",
+     "hu": "Algoritmus: pontos utasítás. Azt mondod a robotnak: „menj a töltőhöz”. Meg sem mozdul. Nem tudja, hol van, merre menjen, és azt sem, mit jelent a „menj”."
+    },
+    {
+     "cs": "Rozlož problém. Robotické vozítko jede po černé čáře na podlaze, i v zatáčkách. Vypadá to jako jeden chytrý trik. Ve skutečnosti jsou to tři malé úlohy.",
+     "en": "Break the problem down. A robot buggy drives along a black line on the floor, even round the bends. It looks like one clever trick. In fact it’s three small tasks.",
+     "sk": "Rozlož problém. Robotické vozidlo ide po čiernej čiare na podlahe, aj v zákrutách. Vyzerá to ako jeden chytrý trik. V skutočnosti sú to tri malé úlohy.",
+     "hu": "Bontsd részekre a problémát. Egy robot kisautó végigmegy a padlón lévő fekete vonalon, a kanyarokban is. Egyetlen okos trükknek tűnik. Valójában három kis feladat."
+    },
+    {
+     "cs": "Model: užitečné zjednodušení. Ty vidíš kočku, koberec a gauč. Robotický vysavač vidí tři čísla.",
+     "en": "Model: a useful simplification. You see a cat, a carpet and a sofa. A robot vacuum sees three numbers.",
+     "sk": "Model: užitočné zjednodušenie. Ty vidíš mačku, koberec a gauč. Robotický vysávač vidí tri čísla.",
+     "hu": "Modell: hasznos egyszerűsítés. Te egy macskát, egy szőnyeget és egy kanapét látsz. A robotporszívó három számot lát."
+    },
+    {
+     "cs": "Ověř a oprav. Vozítko se má vyhýbat zdem. U rovné zdi to funguje skvěle. Pak dojede do rohu a točí se tam dokola, dokud mu nedojde baterie.",
+     "en": "Test and fix. The buggy is supposed to avoid walls. Along a straight wall it works brilliantly. Then it reaches a corner and spins there until its battery runs out.",
+     "sk": "Over a oprav. Vozidlo sa má vyhýbať stenám. Pri rovnej stene to funguje skvele. Potom dôjde do rohu a točí sa tam dookola, kým mu nedôjde batéria.",
+     "hu": "Ellenőrizd és javítsd. A kisautónak ki kell kerülnie a falakat. Egyenes fal mellett remekül működik. Aztán beér egy sarokba, és ott forog körbe-körbe, amíg le nem merül az elem."
+    },
+    {
+     "cs": "Program: vstup → kroky → výstup. Projdeš chodbou a světlo se samo rozsvítí. Uvnitř běží program ze tří částí. Stejných jako u každého programu na světě.",
+     "en": "Program: input → steps → output. You walk down a corridor and the light switches on by itself. Inside runs a program with three parts. The same as every program in the world.",
+     "sk": "Program: vstup → kroky → výstup. Prejdeš chodbou a svetlo sa samo rozsvieti. Vnútri beží program z troch častí. Rovnakých ako pri každom programe na svete.",
+     "hu": "Program: bemenet → lépések → kimenet. Végigmész a folyosón, és a lámpa magától felkapcsol. Belül egy háromrészes program fut. Ugyanolyan részekből, mint a világ bármely programja."
+    },
+    {
+     "cs": "Opakování (cyklus). micro:bit hlídá teplotu v pokoji celý den. Nikdo mu nemusí stokrát napsat „změř teplotu“. Stačí jednou.",
+     "en": "Repetition (loop). A micro:bit watches the temperature in a room all day. Nobody has to write “measure the temperature” a hundred times. Once is enough.",
+     "sk": "Opakovanie (cyklus). micro:bit stráži teplotu v izbe celý deň. Nikto mu nemusí stokrát napísať „zmeraj teplotu“. Stačí raz.",
+     "hu": "Ismétlés (ciklus). Egy micro:bit egész nap figyeli a szoba hőmérsékletét. Senkinek sem kell százszor leírnia neki, hogy „mérd meg a hőmérsékletet”. Elég egyszer."
+    },
+    {
+     "cs": "Rozhodování (podmínka). Noční lampička z micro:bitu se rozsvítí, když se setmí, a zhasne, když je světlo. Za tím je jediná otázka: je tma?",
+     "en": "Decisions (conditions). A micro:bit night light switches on when it gets dark and off when it is light. Behind that is a single question: is it dark?",
+     "sk": "Rozhodovanie (podmienka). Nočná lampička z micro:bitu sa rozsvieti, keď sa zotmie, a zhasne, keď je svetlo. Za tým je jediná otázka: je tma?",
+     "hu": "Döntés (feltétel). A micro:bitből készült éjszakai lámpa felkapcsol, amikor besötétedik, és lekapcsol, amikor világos van. Mögötte egyetlen kérdés áll: sötét van?"
+    },
+    {
+     "cs": "Proměnná: paměť programu. Připevníš micro:bit na botu a on počítá kroky. Kde si to číslo drží mezi dvěma kroky?",
+     "en": "Variable: a program's memory. You strap a micro:bit to your shoe and it counts your steps. Where does it keep that number between two steps?",
+     "sk": "Premenná: pamäť programu. Pripevníš micro:bit na topánku a on počíta kroky. Kde si to číslo drží medzi dvoma krokmi?",
+     "hu": "Változó: a program memóriája. A micro:bitet a cipődre erősíted, és számolja a lépéseidet. Hol tárolja ezt a számot két lépés között?"
+    },
+    {
+     "cs": "Všechno jsou čísla. Srdíčko na displeji micro:bitu vypadá jako obrázek. Pro destičku je to 25 čísel.",
+     "en": "Everything is numbers. The little heart on the micro:bit display looks like a picture. To the board it is 25 numbers.",
+     "sk": "Všetko sú čísla. Srdiečko na displeji micro:bitu vyzerá ako obrázok. Pre doštičku je to 25 čísel.",
+     "hu": "Minden szám. A micro:bit kijelzőjén a kis szív képnek tűnik. A panel számára 25 szám."
+    },
+    {
+     "cs": "Jak data cestují. Dva micro:bity na opačných koncích třídy. Zmáčkneš A na jednom a na druhém se rozsvítí srdce. Bez kabelu, bez Wi-Fi, bez internetu.",
+     "en": "How data travels. Two micro:bits at opposite ends of the classroom. You press A on one, and a heart lights up on the other. No cable, no Wi-Fi, no internet.",
+     "sk": "Ako dáta cestujú. Dva micro:bity na opačných koncoch triedy. Stlačíš A na jednom a na druhom sa rozsvieti srdce. Bez kábla, bez Wi-Fi, bez internetu.",
+     "hu": "Hogyan utaznak az adatok. Két micro:bit az osztályterem két végén. Az egyiken megnyomod az A-t, a másikon kigyullad egy szív. Kábel, Wi-Fi és internet nélkül."
+    },
+    {
+     "cs": "AI se učí z příkladů. Nikdo micro:bitu nenapsal pravidlo „tohle je mávání“. Naučí se ho sám, z tvých příkladů.",
+     "en": "AI learns from examples. Nobody wrote the micro:bit a rule saying “this is waving”. It learns it by itself, from your examples.",
+     "sk": "AI sa učí z príkladov. Nikto micro:bitu nenapísal pravidlo „toto je mávanie“. Naučí sa ho sám, z tvojich príkladov.",
+     "hu": "Az MI példákból tanul. Senki sem írt a micro:bitnek olyan szabályt, hogy „ez az integetés”. Magától tanulja meg, a te példáidból."
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Popiš svůj gadget. Jaké senzory a aktuátory použije? Jakou smyčku a jaké podmínky jeho program má a co si pamatuje v proměnných? Jak ho otestuješ, včetně okrajových případů? A co by se mohl naučit z příkladů a proč by se u jiných lidí mohl plést?",
+     "en": "Describe your gadget. Which sensors and actuators will it use? What loop and what conditions does its program have, and what does it remember in variables? How will you test it, including edge cases? And what could it learn from examples, and why might it get confused with other people?",
+     "sk": "Opíš svoj gadget. Aké senzory a aktuátory použije? Akú slučku a aké podmienky má jeho program a čo si pamätá v premenných? Ako ho otestuješ vrátane okrajových prípadov? A čo by sa mohol naučiť z príkladov a prečo by sa pri iných ľuďoch mohol mýliť?",
+     "hu": "Írd le a kütyüdet. Milyen érzékelőket és aktuátorokat használ? Milyen ciklus és milyen feltételek vannak a programjában, és mit tárol változókban? Hogyan teszteled, a szélső eseteket is beleértve? És mit tanulhatna meg példákból, és miért tévedhetne más embereknél?"
+    },
+    "hints": [
+     {
+      "cs": "senzor a aktuátor",
+      "en": "sensor and actuator",
+      "sk": "senzor a aktuátor",
+      "hu": "érzékelő és aktuátor"
+     },
+     {
+      "cs": "smyčka",
+      "en": "loop",
+      "sk": "slučka",
+      "hu": "ciklus"
+     },
+     {
+      "cs": "podmínka",
+      "en": "condition",
+      "sk": "podmienka",
+      "hu": "feltétel"
+     },
+     {
+      "cs": "proměnná",
+      "en": "variable",
+      "sk": "premenná",
+      "hu": "változó"
+     },
+     {
+      "cs": "okrajový případ",
+      "en": "edge case",
+      "sk": "okrajový prípad",
+      "hu": "szélső eset"
+     },
+     {
+      "cs": "trénovací data",
+      "en": "training data",
+      "sk": "trénovacie dáta",
+      "hu": "tanítóadatok"
+     }
+    ]
+   },
+   "branches": {}
+  },
+  {
    "id": "tvurce",
    "title": {
     "cs": "Postav a sdílej",
@@ -905,7 +1218,7 @@
      },
      "blocks": [
       "ch8-interaktivita-javascript",
-      "ch11-scratch-jako-vstup"
+      "svet-hry"
      ]
     },
     "thinker": {

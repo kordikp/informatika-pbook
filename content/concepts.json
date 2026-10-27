@@ -19,6 +19,14 @@
         "algoritmus-hra-en",
         "algoritmus-hra-sk",
         "algoritmus-hra-hu",
+        "svet-roboti-algoritmus",
+        "svet-roboti-algoritmus-en",
+        "svet-roboti-algoritmus-sk",
+        "svet-roboti-algoritmus-hu",
+        "svet-roboti-algoritmus-hra",
+        "svet-roboti-algoritmus-hra-en",
+        "svet-roboti-algoritmus-hra-sk",
+        "svet-roboti-algoritmus-hra-hu",
         "ch2-algoritmus",
         "ch2-story-algoritmus"
       ],
@@ -65,6 +73,18 @@
         "dekompozice-hra-en",
         "dekompozice-hra-sk",
         "dekompozice-hra-hu",
+        "svet-hry-dekompozice",
+        "svet-hry-dekompozice-en",
+        "svet-hry-dekompozice-sk",
+        "svet-hry-dekompozice-hu",
+        "svet-hry-dekompozice-hra",
+        "svet-hry-dekompozice-hra-en",
+        "svet-hry-dekompozice-hra-sk",
+        "svet-hry-dekompozice-hra-hu",
+        "svet-roboti-dekompozice",
+        "svet-roboti-dekompozice-en",
+        "svet-roboti-dekompozice-sk",
+        "svet-roboti-dekompozice-hu",
         "ch2-dekompozice",
         "ch2-worked-dekompozice",
         "ch3-funkce-a-procedury"
@@ -112,6 +132,22 @@
         "abstrakce-a-model-hra-en",
         "abstrakce-a-model-hra-sk",
         "abstrakce-a-model-hra-hu",
+        "svet-hry-abstrakce-a-model",
+        "svet-hry-abstrakce-a-model-en",
+        "svet-hry-abstrakce-a-model-sk",
+        "svet-hry-abstrakce-a-model-hu",
+        "svet-hry-abstrakce-a-model-hra",
+        "svet-hry-abstrakce-a-model-hra-en",
+        "svet-hry-abstrakce-a-model-hra-sk",
+        "svet-hry-abstrakce-a-model-hra-hu",
+        "svet-roboti-abstrakce-a-model",
+        "svet-roboti-abstrakce-a-model-en",
+        "svet-roboti-abstrakce-a-model-sk",
+        "svet-roboti-abstrakce-a-model-hu",
+        "svet-roboti-abstrakce-a-model-hra",
+        "svet-roboti-abstrakce-a-model-hra-en",
+        "svet-roboti-abstrakce-a-model-hra-sk",
+        "svet-roboti-abstrakce-a-model-hra-hu",
         "ch2-abstrakce",
         "ch2-rozpoznavani-vzoru"
       ],
@@ -154,6 +190,18 @@
         "over-a-oprav-en",
         "over-a-oprav-sk",
         "over-a-oprav-hu",
+        "svet-hry-over-a-oprav",
+        "svet-hry-over-a-oprav-en",
+        "svet-hry-over-a-oprav-sk",
+        "svet-hry-over-a-oprav-hu",
+        "svet-hry-over-a-oprav-hra",
+        "svet-hry-over-a-oprav-hra-en",
+        "svet-hry-over-a-oprav-hra-sk",
+        "svet-hry-over-a-oprav-hra-hu",
+        "svet-roboti-over-a-oprav",
+        "svet-roboti-over-a-oprav-en",
+        "svet-roboti-over-a-oprav-sk",
+        "svet-roboti-over-a-oprav-hu",
         "ch3-ladeni-a-testovani",
         "ch3-q-projekt"
       ],
@@ -200,6 +248,14 @@
         "program-hra-en",
         "program-hra-sk",
         "program-hra-hu",
+        "svet-roboti-program",
+        "svet-roboti-program-en",
+        "svet-roboti-program-sk",
+        "svet-roboti-program-hu",
+        "svet-roboti-program-hra",
+        "svet-roboti-program-hra-en",
+        "svet-roboti-program-hra-sk",
+        "svet-roboti-program-hra-hu",
         "ch2-rizeni-toku"
       ],
       "contract": {
@@ -241,6 +297,22 @@
         "opakovani-en",
         "opakovani-sk",
         "opakovani-hu",
+        "svet-hry-opakovani",
+        "svet-hry-opakovani-en",
+        "svet-hry-opakovani-sk",
+        "svet-hry-opakovani-hu",
+        "svet-hry-opakovani-hra",
+        "svet-hry-opakovani-hra-en",
+        "svet-hry-opakovani-hra-sk",
+        "svet-hry-opakovani-hra-hu",
+        "svet-roboti-opakovani",
+        "svet-roboti-opakovani-en",
+        "svet-roboti-opakovani-sk",
+        "svet-roboti-opakovani-hu",
+        "svet-roboti-opakovani-hra",
+        "svet-roboti-opakovani-hra-en",
+        "svet-roboti-opakovani-hra-sk",
+        "svet-roboti-opakovani-hra-hu",
         "ch3-cykly-v-kodu",
         "ch3-code-cykly"
       ],
@@ -287,6 +359,22 @@
         "rozhodovani-hra-en",
         "rozhodovani-hra-sk",
         "rozhodovani-hra-hu",
+        "svet-hry-rozhodovani",
+        "svet-hry-rozhodovani-en",
+        "svet-hry-rozhodovani-sk",
+        "svet-hry-rozhodovani-hu",
+        "svet-hry-rozhodovani-hra",
+        "svet-hry-rozhodovani-hra-en",
+        "svet-hry-rozhodovani-hra-sk",
+        "svet-hry-rozhodovani-hra-hu",
+        "svet-roboti-rozhodovani",
+        "svet-roboti-rozhodovani-en",
+        "svet-roboti-rozhodovani-sk",
+        "svet-roboti-rozhodovani-hu",
+        "svet-roboti-rozhodovani-hra",
+        "svet-roboti-rozhodovani-hra-en",
+        "svet-roboti-rozhodovani-hra-sk",
+        "svet-roboti-rozhodovani-hra-hu",
         "ch3-podminky-v-kodu",
         "ch3-code-podminky"
       ],
@@ -333,6 +421,18 @@
         "promenna-hra-en",
         "promenna-hra-sk",
         "promenna-hra-hu",
+        "svet-hry-promenna",
+        "svet-hry-promenna-en",
+        "svet-hry-promenna-sk",
+        "svet-hry-promenna-hu",
+        "svet-hry-promenna-hra",
+        "svet-hry-promenna-hra-en",
+        "svet-hry-promenna-hra-sk",
+        "svet-hry-promenna-hra-hu",
+        "svet-roboti-promenna",
+        "svet-roboti-promenna-en",
+        "svet-roboti-promenna-sk",
+        "svet-roboti-promenna-hu",
         "ch3-promenne-a-datove-typy",
         "ch3-worked-promenne"
       ],
@@ -379,6 +479,22 @@
         "kodovani-hra-en",
         "kodovani-hra-sk",
         "kodovani-hra-hu",
+        "svet-hry-kodovani",
+        "svet-hry-kodovani-en",
+        "svet-hry-kodovani-sk",
+        "svet-hry-kodovani-hu",
+        "svet-hry-kodovani-hra",
+        "svet-hry-kodovani-hra-en",
+        "svet-hry-kodovani-hra-sk",
+        "svet-hry-kodovani-hra-hu",
+        "svet-roboti-kodovani",
+        "svet-roboti-kodovani-en",
+        "svet-roboti-kodovani-sk",
+        "svet-roboti-kodovani-hu",
+        "svet-roboti-kodovani-hra",
+        "svet-roboti-kodovani-hra-en",
+        "svet-roboti-kodovani-hra-sk",
+        "svet-roboti-kodovani-hra-hu",
         "ch1-data-a-informace"
       ],
       "contract": {
@@ -612,6 +728,22 @@
         "cesta-dat-hra-en",
         "cesta-dat-hra-sk",
         "cesta-dat-hra-hu",
+        "svet-hry-cesta-dat",
+        "svet-hry-cesta-dat-en",
+        "svet-hry-cesta-dat-sk",
+        "svet-hry-cesta-dat-hu",
+        "svet-hry-cesta-dat-hra",
+        "svet-hry-cesta-dat-hra-en",
+        "svet-hry-cesta-dat-hra-sk",
+        "svet-hry-cesta-dat-hra-hu",
+        "svet-roboti-cesta-dat",
+        "svet-roboti-cesta-dat-en",
+        "svet-roboti-cesta-dat-sk",
+        "svet-roboti-cesta-dat-hu",
+        "svet-roboti-cesta-dat-hra",
+        "svet-roboti-cesta-dat-hra-en",
+        "svet-roboti-cesta-dat-hra-sk",
+        "svet-roboti-cesta-dat-hra-hu",
         "ch1-internet-a-sit"
       ],
       "contract": {
@@ -747,6 +879,14 @@
         "ai-se-uci-z-dat-hra-en",
         "ai-se-uci-z-dat-hra-sk",
         "ai-se-uci-z-dat-hra-hu",
+        "svet-roboti-ai-se-uci-z-dat",
+        "svet-roboti-ai-se-uci-z-dat-en",
+        "svet-roboti-ai-se-uci-z-dat-sk",
+        "svet-roboti-ai-se-uci-z-dat-hu",
+        "svet-roboti-ai-se-uci-z-dat-hra",
+        "svet-roboti-ai-se-uci-z-dat-hra-en",
+        "svet-roboti-ai-se-uci-z-dat-hra-sk",
+        "svet-roboti-ai-se-uci-z-dat-hra-hu",
         "ch5-co-je-a-co-neni-ai",
         "ch5-tldr-co-je-ai",
         "ch5-ai-se-uci-z-dat",
@@ -993,6 +1133,14 @@
         "podvod-cili-na-cloveka-hra-en",
         "podvod-cili-na-cloveka-hra-sk",
         "podvod-cili-na-cloveka-hra-hu",
+        "svet-hry-podvod-cili-na-cloveka",
+        "svet-hry-podvod-cili-na-cloveka-en",
+        "svet-hry-podvod-cili-na-cloveka-sk",
+        "svet-hry-podvod-cili-na-cloveka-hu",
+        "svet-hry-podvod-cili-na-cloveka-hra",
+        "svet-hry-podvod-cili-na-cloveka-hra-en",
+        "svet-hry-podvod-cili-na-cloveka-hra-sk",
+        "svet-hry-podvod-cili-na-cloveka-hra-hu",
         "ch6-phishing-a-socialni-inzenyrstvi",
         "ch6-comic-phishing",
         "ch6-story-phishing"
@@ -1040,6 +1188,14 @@
         "ochrana-zarizeni-hra-en",
         "ochrana-zarizeni-hra-sk",
         "ochrana-zarizeni-hra-hu",
+        "svet-hry-ochrana-zarizeni",
+        "svet-hry-ochrana-zarizeni-en",
+        "svet-hry-ochrana-zarizeni-sk",
+        "svet-hry-ochrana-zarizeni-hu",
+        "svet-hry-ochrana-zarizeni-hra",
+        "svet-hry-ochrana-zarizeni-hra-en",
+        "svet-hry-ochrana-zarizeni-hra-sk",
+        "svet-hry-ochrana-zarizeni-hra-hu",
         "ch6-zakladni-hygiena"
       ],
       "contract": {
@@ -1245,6 +1401,60 @@
         ],
         "recallQ": "Proč je sociální síť zdarma?",
         "recallA": "Platí ji inzerenti za tvoji pozornost a za cílení podle dat o tobě. Ano. Produktem je tvoje pozornost.",
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "svet-hry",
+      "title": "Svět her: od smyčky po vlastní hru",
+      "chapter": "ch8-svety",
+      "anchor": "svet-hry",
+      "anchorPath": "ch8-svety/01-spine-svet-hry.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "svet-hry",
+        "svet-hry-en",
+        "svet-hry-sk",
+        "svet-hry-hu"
+      ],
+      "contract": {
+        "objective": "Každá hra, kterou hraješ, je postavená z jader téhle knihy. Tady je potkáš přímo ve hrách.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": "Ze kterých jader knihy se skládá každá hra?",
+        "recallA": "Z rozkladu na části, herní smyčky (cyklus), podmínek a kolizí, proměnných (skóre, životy), kódování obrázků a z cesty dat po síti. A z testování, protože chyby najdou hráči jako první.",
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "svet-roboti",
+      "title": "Svět robotů a micro:bitu",
+      "chapter": "ch8-svety",
+      "anchor": "svet-roboti",
+      "anchorPath": "ch8-svety/02-spine-svet-roboti.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "svet-roboti",
+        "svet-roboti-en",
+        "svet-roboti-sk",
+        "svet-roboti-hu"
+      ],
+      "contract": {
+        "objective": "Tady kód opouští obrazovku. Co naprogramuješ, to se ve skutečném světě rozsvítí, pípne nebo rozjede.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": "Ze kterých tří částí se skládá každé chytré zařízení a co mezi nimi dělá program?",
+        "recallA": "Ze vstupu (senzor něco změří), zpracování (program hodnotu vyhodnotí) a výstupu (aktuátor něco udělá). Program mezi nimi rozhoduje, pamatuje si v proměnných a opakuje to pořád dokola.",
         "forbidden": [
           "invented statistics or benchmark numbers",
           "invented citations, URLs, or paper titles",
@@ -1752,312 +1962,6 @@
         ],
         "recallQ": "Jaké tři otázky řeší etika generovaného obsahu a proč se AI obsah označuje?",
         "recallA": "Na čích dílech se model učil, komu patří výsledek a jak dát najevo, že obsah tvořila AI. Označení chrání důvěru publika — lidé mají právo vědět, s čím se dívají — a u některých typů obsahu ho vyžaduje i zákon.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch11-herni-smycka-scena-a-objekty",
-      "title": "Herní smyčka, scéna a objekty",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": "ch11-herni-smycka-scena-a-objekty",
-      "anchorPath": "ch11-herni-vyvoj/01-spine-herni-smycka-scena-a-objekty.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch11-herni-smycka-scena-a-objekty",
-        "ch11-game-herni-smycka"
-      ],
-      "contract": {
-        "objective": "Hra se nehýbe. Jen se ti 60× za vteřinu překresluje před očima. Vážně.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "ve hře se ve skutečnosti nic nehýbe.",
-            "modality": "prose"
-          },
-          {
-            "point": "Herní smyčka je cyklus, který se opakuje mnohokrát za vteřinu, a má tři fáze",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co dělá herní smyčka a co jsou objekty ve scéně?",
-        "recallA": "Smyčka mnohokrát za vteřinu opakuje: načti vstup → přepočítej svět → vykresli obraz. Ve scéně přitom žijí objekty (sprity) — postavy, překážky, předměty — každý se svou polohou a chováním.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch11-vstup-hrace-stavy-a-skore",
-      "title": "Vstup hráče, stavy a skóre",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": "ch11-vstup-hrace-stavy-a-skore",
-      "anchorPath": "ch11-herni-vyvoj/02-spine-vstup-hrace-stavy-a-skore.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch11-vstup-hrace-stavy-a-skore",
-        "ch11-code-vstup-hrace"
-      ],
-      "contract": {
-        "objective": "Scéna s objekty ještě není hra. Hra začíná, když si pamatuje, jak si vedeš.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "smyčka čte vstup → podmínky podle stavu mění proměnné → proměnné rozhodují o stavu → scéna se vykreslí.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co dělá ze scény skutečnou hru?",
-        "recallA": "Reakce na vstup hráče (klávesy, dotyk) a paměť: proměnné pro skóre a životy a stav hry (menu, hraje se, konec). Větvení podle stavu rozhoduje, co se právě děje a kdy hra končí.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch11-kolize-a-jednoducha-fyzika",
-      "title": "Kolize a jednoduchá fyzika",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": "ch11-kolize-a-jednoducha-fyzika",
-      "anchorPath": "ch11-herni-vyvoj/03-spine-kolize-a-jednoducha-fyzika.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch11-kolize-a-jednoducha-fyzika"
-      ],
-      "contract": {
-        "objective": "Jak hra pozná, že jsi sebral minci? Nepozná „dotyk“ — počítá překrývání obdélníků.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "jak hra pozná, že se dvě věci dotkly?",
-            "modality": "prose"
-          },
-          {
-            "point": "Kolize je zjištění, že se dva objekty dotýkají, a reakce na to.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co je kolize a jaké tři prvky tvoří jednoduchou herní fyziku?",
-        "recallA": "Kolize je detekce dotyku dvou objektů (typicky překryv jejich obrysů) a reakce na něj. Základní fyziku tvoří rychlost (posun za snímek), gravitace (rychlost dolů stále roste) a odraz (obrácení směru).",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch11-herni-design",
-      "title": "Herní design: proč hra baví",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": "ch11-herni-design",
-      "anchorPath": "ch11-herni-vyvoj/04-spine-herni-design.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch11-herni-design",
-        "comic-ch11-herni-design"
-      ],
-      "contract": {
-        "objective": "Technicky dokonalá hra může nudit. Zábava se nedá naprogramovat — dá se navrhnout.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "výzva zhruba odpovídá tvým schopnostem.",
-            "modality": "prose"
-          },
-          {
-            "point": "playtesting — dej hru hrát někomu jinému a mlč.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co drží hráče ve flow a jaké tři věci navrhuje herní designér?",
-        "recallA": "Pravidla (co jde a nejde), obtížnost (výzva rostoucí se schopnostmi hráče) a zpětnou vazbu (hra okamžitě reaguje na akce). Flow vzniká, když výzva zhruba odpovídá dovednosti — ani nuda, ani frustrace.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch11-scratch-jako-vstup",
-      "title": "Scratch: první hra z bloků",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": "ch11-scratch-jako-vstup",
-      "anchorPath": "ch11-herni-vyvoj/05-spine-scratch-jako-vstup.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch11-scratch-jako-vstup"
-      ],
-      "contract": {
-        "objective": "Žádné překlepy, žádné chybové hlášky. Barevné bloky, kočka — a za hodinu hratelná hra.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "Proč bloky, a ne „opravdový“ kód?",
-            "modality": "prose"
-          },
-          {
-            "point": "skládáš barevné bloky, které do sebe zapadnou jen tehdy, když dávají smysl",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Proč je Scratch dobrá vstupní brána do programování her?",
-        "recallA": "Program skládáš z bloků, které do sebe zapadnou jen správně — odpadají překlepy a syntaktické chyby. Přitom obsahuje skutečné koncepty: události, cykly, podmínky i proměnné, které pak přeneseš do textových jazyků.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch12-vstup-zpracovani-vystup-na-zarizeni",
-      "title": "Vstup–zpracování–výstup na zařízení",
-      "chapter": "ch12-fyzicky-computing",
-      "anchor": "ch12-vstup-zpracovani-vystup-na-zarizeni",
-      "anchorPath": "ch12-fyzicky-computing/01-spine-vstup-zpracovani-vystup-na-zarizeni.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch12-vstup-zpracovani-vystup-na-zarizeni"
-      ],
-      "contract": {
-        "objective": "Dveře v obchoďáku, topení i robotický vysavač jedou pořád stejné tři kroky. Poznáš je?",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "vstup → zpracování → výstup",
-            "modality": "prose"
-          },
-          {
-            "point": "Ve fyzickém computingu má kód okamžitý hmatatelný efekt.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Jaké tři kroky se opakují ve smyčce každého fyzického zařízení?",
-        "recallA": "Vstup (senzor něco změří), zpracování (program hodnotu vyhodnotí) a výstup (zařízení něco vykoná — rozsvítí LED, roztočí motor).",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch12-senzory-a-aktuatory",
-      "title": "Senzory a aktuátory: smysly a svaly",
-      "chapter": "ch12-fyzicky-computing",
-      "anchor": "ch12-senzory-a-aktuatory",
-      "anchorPath": "ch12-fyzicky-computing/02-spine-senzory-a-aktuatory.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch12-senzory-a-aktuatory",
-        "ch12-tldr-senzory"
-      ],
-      "contract": {
-        "objective": "Zařízení mají smysly i svaly. Tvůj mobil jich v sobě schovává víc, než tušíš.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "Senzory jsou smysly zařízení.",
-            "modality": "prose"
-          },
-          {
-            "point": "Aktuátory jsou svaly zařízení.",
-            "modality": "prose"
-          },
-          {
-            "point": "Senzor bez aktuátoru je jen tichý pozorovatel. Aktuátor bez senzoru je slepá síla.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Jaký je rozdíl mezi senzorem a aktuátorem?",
-        "recallA": "Senzor je smysl zařízení — vnímá prostředí a měří světlo, teplo nebo pohyb. Aktuátor je sval — v prostředí jedná: rozsvítí, zapípá, roztočí motor.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch12-micro-bit",
-      "title": "micro:bit: počítač do dlaně",
-      "chapter": "ch12-fyzicky-computing",
-      "anchor": "ch12-micro-bit",
-      "anchorPath": "ch12-fyzicky-computing/03-spine-micro-bit.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch12-micro-bit",
-        "comic-ch12-micro-bit"
-      ],
-      "contract": {
-        "objective": "Počítač menší než krabička žvýkaček. Postavíš na něm kostku, krokoměr i vlastní mini-AI.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "micro:bit je školní destička stvořená pro první kroky ve fyzickém computingu.",
-            "modality": "prose"
-          },
-          {
-            "point": "Programuje se blokově i textově, takže roste s tebou.",
-            "modality": "prose"
-          },
-          {
-            "point": "MakeCode má přímo v prohlížeči simulátor",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Proč je micro:bit ideální na první kroky ve fyzickém computingu?",
-        "recallA": "Senzory, displej i tlačítka má přímo na destičce a programuje se blokově v MakeCode i textově v MicroPythonu. Bez hardwaru poslouží simulátor v prohlížeči.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch12-udalosti-a-rizeni-vystupu",
-      "title": "Události a řízení výstupu",
-      "chapter": "ch12-fyzicky-computing",
-      "anchor": "ch12-udalosti-a-rizeni-vystupu",
-      "anchorPath": "ch12-fyzicky-computing/04-spine-udalosti-a-rizeni-vystupu.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch12-udalosti-a-rizeni-vystupu"
-      ],
-      "contract": {
-        "objective": "Stisk, zatřesení, tma. Zařízení celý den trpělivě čeká na svůj podnět — a pak jedná.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "Fyzické zařízení nereaguje pořád — reaguje na události.",
-            "modality": "prose"
-          },
-          {
-            "point": "Je to událostmi řízené programování — stejné jako v appkách, jen s hmatatelným výsledkem.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Jak funguje událostmi řízený program na fyzickém zařízení?",
-        "recallA": "Program čeká, a když nastane podnět (stisk tlačítka, zatřesení, změna světla), spustí se obsluha události a ovládne výstup — LED, pin nebo motor.",
         "forbidden": [
           "invented statistics or benchmark numbers",
           "invented citations, URLs, or paper titles",
@@ -2858,6 +2762,258 @@
       }
     },
     {
+      "id": "herni-vyvoj-lehke-enginy",
+      "title": "Lehké enginy",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Mezikrok mezi Scratchem a plnými nástroji: GDevelop (bez kódu, přes logiku událostí) nebo Roblox Studio dají skutečnou hru, kterou jde sdílet.",
+        "mustCover": [
+          {
+            "point": "Žák sestaví hru v lehkém enginu (GDevelop, Roblox Studio) pomocí logiky událostí a sdílí ji."
+          }
+        ],
+        "recallQ": "Sestavil bys hru v lehkém enginu (GDevelop, Roblox Studio) pomocí logiky událostí a sdílí ji?",
+        "recallA": "Mezikrok mezi Scratchem a plnými nástroji: GDevelop (bez kódu, přes logiku událostí) nebo Roblox Studio dají skutečnou hru, kterou jde sdílet.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "herni-vyvoj-skutecne-enginy",
+      "title": "Skutečné enginy",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Profesionální nástroje s textovým kódem: Godot (jazyk GDScript, blízký Pythonu, zdarma a odlehčený) nebo Unity (C#, silné na mobilech).",
+        "mustCover": [
+          {
+            "point": "Žák porovná možnosti a náročnost skutečných enginů (Godot, Unity) s lehkými enginy a Scratchem."
+          }
+        ],
+        "recallQ": "Porovnal bys možnosti a náročnost skutečných enginů (Godot, Unity) s lehkými enginy a Scratchem?",
+        "recallA": "Profesionální nástroje s textovým kódem: Godot (jazyk GDScript, blízký Pythonu, zdarma a odlehčený) nebo Unity (C#, silné na mobilech).",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "herni-vyvoj-ai-generovani-assetu",
+      "title": "AI generování assetů",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "AI dnes vytvoří herní grafiku a 3D objekty z popisu (Roblox Cube, Meshy) — místo hodin modelování napíšeš, co chceš.",
+        "mustCover": [
+          {
+            "point": "Žák vytvoří herní grafiku nebo 3D objekt z textového popisu v AI nástroji (Roblox Cube, Meshy) a zasadí jej do hry."
+          },
+          {
+            "point": "Žák posoudí kvalitu a vhodnost vygenerovaného assetu pro svou hru a zdůvodní, zda jej použije."
+          }
+        ],
+        "recallQ": "Vytvořil bys herní grafiku nebo 3D objekt z textového popisu v AI nástroji (Roblox Cube, Meshy) a zasadí jej do hry?",
+        "recallA": "AI dnes vytvoří herní grafiku a 3D objekty z popisu (Roblox Cube, Meshy) — místo hodin modelování napíšeš, co chceš.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "herni-vyvoj-ai-asistenti-a-kod",
+      "title": "AI asistenti a kód",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Vestavění pomocníci (Roblox Assistant, Unity Muse) i externí AI umí napsat a upravit kód hry.",
+        "mustCover": [
+          {
+            "point": "Žák použije AI asistenta k vytvoření nebo úpravě části herního kódu podle popsaného záměru."
+          },
+          {
+            "point": "Žák prozkoumá kód vytvořený AI, ověří, zda dělá zamýšlenou věc, a najde v něm chybu."
+          }
+        ],
+        "recallQ": "Použil bys AI asistenta k vytvoření nebo úpravě části herního kódu podle popsaného záměru?",
+        "recallA": "Vestavění pomocníci (Roblox Assistant, Unity Muse) i externí AI umí napsat a upravit kód hry.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "herni-vyvoj-publikace-hry",
+      "title": "Publikace hry",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Hotovou hru sdílíš s ostatními — třeba na itch.io nebo přímo v Robloxu.",
+        "mustCover": [
+          {
+            "point": "Žák zveřejní hotovou hru na platformě (itch.io, Roblox) tak, aby si ji ostatní mohli zahrát."
+          }
+        ],
+        "recallQ": "Co je „Publikace hry“ a k čemu se ti hodí?",
+        "recallA": "Hotovou hru sdílíš s ostatními — třeba na itch.io nebo přímo v Robloxu.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "fyzicky-computing-arduino-a-raspberry-pi",
+      "title": "Arduino a Raspberry Pi",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Krok dál za micro:bit: Arduino tě přiblíží skutečné elektronice (nepájivé pole, víc senzorů), Raspberry Pi je plnohodnotný malý počítač s Linuxem pro náročnější projekty.",
+        "mustCover": [
+          {
+            "point": "Žák porovná micro:bit, Arduino a Raspberry Pi podle toho, k čemu se která deska hodí."
+          }
+        ],
+        "recallQ": "Porovnal bys micro:bit, Arduino a Raspberry Pi podle toho, k čemu se která deska hodí?",
+        "recallA": "Krok dál za micro:bit: Arduino tě přiblíží skutečné elektronice (nepájivé pole, víc senzorů), Raspberry Pi je plnohodnotný malý počítač s Linuxem pro náročnějš…",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "fyzicky-computing-roboti-a-vozitka",
+      "title": "Roboti a vozítka",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Když se k desce přidá podvozek a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
+        "mustCover": [
+          {
+            "point": "Žák sestaví program, který robota rozjede a nechá ho reagovat na senzor, například na čáru nebo překážku."
+          }
+        ],
+        "recallQ": "Sestavil bys program, který robota rozjede a nechá ho reagovat na senzor, například na čáru nebo překážku?",
+        "recallA": "Když se k desce přidá podvozek a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "fyzicky-computing-iot",
+      "title": "IoT",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Internet věcí (IoT): senzory posílají naměřená data po síti do cloudu, kde se zobrazí na přehledu (dashboardu).",
+        "mustCover": [
+          {
+            "point": "Žák vysvětlí, jak v internetu věcí putují data ze senzoru přes síť do cloudu na dashboard."
+          }
+        ],
+        "recallQ": "Co je „IoT“ a k čemu se ti hodí?",
+        "recallA": "Internet věcí (IoT): senzory posílají naměřená data po síti do cloudu, kde se zobrazí na přehledu (dashboardu).",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "fyzicky-computing-ai-primo-na-zarizeni-tinyml",
+      "title": "AI přímo na zařízení (TinyML)",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Strojové učení, které běží přímo na malém zařízení bez cloudu.",
+        "mustCover": [
+          {
+            "point": "Žák popíše kroky, kterými na malém zařízení vznikne model strojového učení."
+          },
+          {
+            "point": "Žák natrénuje v nástroji micro:bit CreateAI jednoduchý model a nahraje ho do desky."
+          }
+        ],
+        "recallQ": "Popsal bys kroky, kterými na malém zařízení vznikne model strojového učení?",
+        "recallA": "Strojové učení, které běží přímo na malém zařízení bez cloudu.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "fyzicky-computing-komunikace-mezi-zarizenimi",
+      "title": "Komunikace mezi zařízeními",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
+        "mustCover": [
+          {
+            "point": "Žák vysvětlí, jak si dvě zařízení posílají data bezdrátově přes rádio nebo Bluetooth."
+          },
+          {
+            "point": "Žák vytvoří program, ve kterém jedno zařízení pošle data druhému."
+          }
+        ],
+        "recallQ": "Vytvořil bys program, ve kterém jedno zařízení pošle data druhému?",
+        "recallA": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
       "id": "tvorba-webu-ai-asistovana-tvorba-webu",
       "title": "AI-asistovaná tvorba webu",
       "chapter": "ch8-tvorba-webu",
@@ -3210,258 +3366,6 @@
         ],
         "recallQ": "Co je „Propojení nástrojů (obraz, video, zvuk)“ a k čemu se ti hodí?",
         "recallA": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "herni-vyvoj-lehke-enginy",
-      "title": "Lehké enginy",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Mezikrok mezi Scratchem a plnými nástroji: GDevelop (bez kódu, přes logiku událostí) nebo Roblox Studio dají skutečnou hru, kterou jde sdílet.",
-        "mustCover": [
-          {
-            "point": "Žák sestaví hru v lehkém enginu (GDevelop, Roblox Studio) pomocí logiky událostí a sdílí ji."
-          }
-        ],
-        "recallQ": "Sestavil bys hru v lehkém enginu (GDevelop, Roblox Studio) pomocí logiky událostí a sdílí ji?",
-        "recallA": "Mezikrok mezi Scratchem a plnými nástroji: GDevelop (bez kódu, přes logiku událostí) nebo Roblox Studio dají skutečnou hru, kterou jde sdílet.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "herni-vyvoj-skutecne-enginy",
-      "title": "Skutečné enginy",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Profesionální nástroje s textovým kódem: Godot (jazyk GDScript, blízký Pythonu, zdarma a odlehčený) nebo Unity (C#, silné na mobilech).",
-        "mustCover": [
-          {
-            "point": "Žák porovná možnosti a náročnost skutečných enginů (Godot, Unity) s lehkými enginy a Scratchem."
-          }
-        ],
-        "recallQ": "Porovnal bys možnosti a náročnost skutečných enginů (Godot, Unity) s lehkými enginy a Scratchem?",
-        "recallA": "Profesionální nástroje s textovým kódem: Godot (jazyk GDScript, blízký Pythonu, zdarma a odlehčený) nebo Unity (C#, silné na mobilech).",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "herni-vyvoj-ai-generovani-assetu",
-      "title": "AI generování assetů",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "AI dnes vytvoří herní grafiku a 3D objekty z popisu (Roblox Cube, Meshy) — místo hodin modelování napíšeš, co chceš.",
-        "mustCover": [
-          {
-            "point": "Žák vytvoří herní grafiku nebo 3D objekt z textového popisu v AI nástroji (Roblox Cube, Meshy) a zasadí jej do hry."
-          },
-          {
-            "point": "Žák posoudí kvalitu a vhodnost vygenerovaného assetu pro svou hru a zdůvodní, zda jej použije."
-          }
-        ],
-        "recallQ": "Vytvořil bys herní grafiku nebo 3D objekt z textového popisu v AI nástroji (Roblox Cube, Meshy) a zasadí jej do hry?",
-        "recallA": "AI dnes vytvoří herní grafiku a 3D objekty z popisu (Roblox Cube, Meshy) — místo hodin modelování napíšeš, co chceš.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "herni-vyvoj-ai-asistenti-a-kod",
-      "title": "AI asistenti a kód",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Vestavění pomocníci (Roblox Assistant, Unity Muse) i externí AI umí napsat a upravit kód hry.",
-        "mustCover": [
-          {
-            "point": "Žák použije AI asistenta k vytvoření nebo úpravě části herního kódu podle popsaného záměru."
-          },
-          {
-            "point": "Žák prozkoumá kód vytvořený AI, ověří, zda dělá zamýšlenou věc, a najde v něm chybu."
-          }
-        ],
-        "recallQ": "Použil bys AI asistenta k vytvoření nebo úpravě části herního kódu podle popsaného záměru?",
-        "recallA": "Vestavění pomocníci (Roblox Assistant, Unity Muse) i externí AI umí napsat a upravit kód hry.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "herni-vyvoj-publikace-hry",
-      "title": "Publikace hry",
-      "chapter": "ch11-herni-vyvoj",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Hotovou hru sdílíš s ostatními — třeba na itch.io nebo přímo v Robloxu.",
-        "mustCover": [
-          {
-            "point": "Žák zveřejní hotovou hru na platformě (itch.io, Roblox) tak, aby si ji ostatní mohli zahrát."
-          }
-        ],
-        "recallQ": "Co je „Publikace hry“ a k čemu se ti hodí?",
-        "recallA": "Hotovou hru sdílíš s ostatními — třeba na itch.io nebo přímo v Robloxu.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "fyzicky-computing-arduino-a-raspberry-pi",
-      "title": "Arduino a Raspberry Pi",
-      "chapter": "ch12-fyzicky-computing",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Krok dál za micro:bit: Arduino tě přiblíží skutečné elektronice (nepájivé pole, víc senzorů), Raspberry Pi je plnohodnotný malý počítač s Linuxem pro náročnější projekty.",
-        "mustCover": [
-          {
-            "point": "Žák porovná micro:bit, Arduino a Raspberry Pi podle toho, k čemu se která deska hodí."
-          }
-        ],
-        "recallQ": "Porovnal bys micro:bit, Arduino a Raspberry Pi podle toho, k čemu se která deska hodí?",
-        "recallA": "Krok dál za micro:bit: Arduino tě přiblíží skutečné elektronice (nepájivé pole, víc senzorů), Raspberry Pi je plnohodnotný malý počítač s Linuxem pro náročnějš…",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "fyzicky-computing-roboti-a-vozitka",
-      "title": "Roboti a vozítka",
-      "chapter": "ch12-fyzicky-computing",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Když se k desce přidá podvozek a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
-        "mustCover": [
-          {
-            "point": "Žák sestaví program, který robota rozjede a nechá ho reagovat na senzor, například na čáru nebo překážku."
-          }
-        ],
-        "recallQ": "Sestavil bys program, který robota rozjede a nechá ho reagovat na senzor, například na čáru nebo překážku?",
-        "recallA": "Když se k desce přidá podvozek a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "fyzicky-computing-iot",
-      "title": "IoT",
-      "chapter": "ch12-fyzicky-computing",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Internet věcí (IoT): senzory posílají naměřená data po síti do cloudu, kde se zobrazí na přehledu (dashboardu).",
-        "mustCover": [
-          {
-            "point": "Žák vysvětlí, jak v internetu věcí putují data ze senzoru přes síť do cloudu na dashboard."
-          }
-        ],
-        "recallQ": "Co je „IoT“ a k čemu se ti hodí?",
-        "recallA": "Internet věcí (IoT): senzory posílají naměřená data po síti do cloudu, kde se zobrazí na přehledu (dashboardu).",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "fyzicky-computing-ai-primo-na-zarizeni-tinyml",
-      "title": "AI přímo na zařízení (TinyML)",
-      "chapter": "ch12-fyzicky-computing",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Strojové učení, které běží přímo na malém zařízení bez cloudu.",
-        "mustCover": [
-          {
-            "point": "Žák popíše kroky, kterými na malém zařízení vznikne model strojového učení."
-          },
-          {
-            "point": "Žák natrénuje v nástroji micro:bit CreateAI jednoduchý model a nahraje ho do desky."
-          }
-        ],
-        "recallQ": "Popsal bys kroky, kterými na malém zařízení vznikne model strojového učení?",
-        "recallA": "Strojové učení, které běží přímo na malém zařízení bez cloudu.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "fyzicky-computing-komunikace-mezi-zarizenimi",
-      "title": "Komunikace mezi zařízeními",
-      "chapter": "ch12-fyzicky-computing",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
-        "mustCover": [
-          {
-            "point": "Žák vysvětlí, jak si dvě zařízení posílají data bezdrátově přes rádio nebo Bluetooth."
-          },
-          {
-            "point": "Žák vytvoří program, ve kterém jedno zařízení pošle data druhému."
-          }
-        ],
-        "recallQ": "Vytvořil bys program, ve kterém jedno zařízení pošle data druhému?",
-        "recallA": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
         "forbidden": [
           "vymyšlené statistiky nebo čísla",
           "vymyšlené citace, URL nebo názvy studií",

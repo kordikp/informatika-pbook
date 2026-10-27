@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Biztonságos vagy kockázatos?",
+  "instruction": "Válogasd szét, mi biztonságos a játékoknál, és mi kockázatos.",
+  "buckets": [
+    "Biztonságos",
+    "Kockázatos"
+  ],
+  "items": [
+    {
+      "text": "A játékot a hivatalos áruházból töltöd le",
+      "answer": 0,
+      "why": "Az áruház ellenőrzi az alkalmazásokat. A kockázat kisebb, bár nem nulla."
+    },
+    {
+      "text": "Csalóprogram egy videó alatti hozzászólás linkjéről",
+      "answer": 1,
+      "why": "Nem megbízható forrás, klasszikus trójai."
+    },
+    {
+      "text": "Egy mod rendszergazdaként akar futni",
+      "answer": 1,
+      "why": "Rendszergazdai jogokkal egy program bármit megtehet a számítógépen."
+    },
+    {
+      "text": "A játék frissítését azonnal telepíted, amint megjelenik",
+      "answer": 0,
+      "why": "A frissítés befoltozza azokat a lyukakat, amelyekről a támadók tudnak."
+    },
+    {
+      "text": "Egy zseblámpás játék hozzáférést kér a névjegyeidhez",
+      "answer": 1,
+      "why": "A világításhoz nincs szüksége névjegyekre. Akkor miért kérné őket?"
+    },
+    {
+      "text": "A mentéseid a játék felhőjében is megvannak",
+      "answer": 0,
+      "why": "Másolat máshol: túléli a telefon elvesztését és tönkremenését is."
+    },
+    {
+      "text": "Kikapcsolod a vírusirtót, mert a csalóprogram „nem szereti”",
+      "answer": 1,
+      "why": "Pontosan erre van szüksége a kártevőnek."
+    }
+  ],
+  "debrief": "A biztonságot nem a vírusirtó teremti meg egyedül. A te döntéseid: megbízható forrás, frissítések és értelmes engedélyek."
+}

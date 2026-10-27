@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Csalás vagy rendben van?",
+  "instruction": "Ezek az üzenetek jöttek. Melyik csalás?",
+  "buckets": [
+    "Csalás",
+    "Rendben van"
+  ],
+  "items": [
+    {
+      "text": "Egy barátod a Discordon: „Skineket osztok, lépj be itt: jatek-skinek-free.net”",
+      "answer": 0,
+      "why": "Egy idegen oldal akarja a belépési adataidat. És lehet, hogy a barátod fiókját ellopták."
+    },
+    {
+      "text": "A játék hivatalos alkalmazása: „A teljesített hétért jutalom vár a tárgyaid között.”",
+      "answer": 1,
+      "why": "Semmit sem kér tőled. A jutalmat magad találod meg közvetlenül a játékban."
+    },
+    {
+      "text": "Egy „moderátor”: „Küldd el az SMS-kódot, ellenőrizzük a fiókodat.”",
+      "answer": 0,
+      "why": "Az SMS-kódot soha senkinek. Egyetlen moderátornak sincs rá szüksége."
+    },
+    {
+      "text": "Egy ismeretlen játékos: „Eladok neked egy ritka kardot, a pénzt előre küldd.”",
+      "answer": 0,
+      "why": "Pénz előre egy idegennek, a játék boltján kívül. A kard valószínűleg sosem érkezik meg."
+    },
+    {
+      "text": "E-mail: „A fiókodat egy órán belül töröljük, kattints és erősítsd meg a jelszavad.”",
+      "answer": 0,
+      "why": "Félelem és sietség egyszerre. Lépj be magad az alkalmazáson keresztül, és nézd meg, történik-e valami."
+    },
+    {
+      "text": "Egy osztálytársad az iskolában megmutat egy skint, amelyet a játék boltjában vett",
+      "answer": 1,
+      "why": "Senki sem kér tőled semmit, és a játék boltja hivatalos."
+    }
+  ],
+  "debrief": "A csalást elárulja, mit akar tőled: jelszót, kódot vagy pénzt, és azonnal. Ellenőrizd más úton."
+}

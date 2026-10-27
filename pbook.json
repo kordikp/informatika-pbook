@@ -17,18 +17,22 @@
   "license": "CC BY-NC-SA 4.0",
   "repository": "https://github.com/kordikp/informatika-pbook",
   "source": {
-    "description": "Kniha stojí na upravené Mapě informatických konceptů Glitch: z 202 uzlů 24 jader v 6 kapitolách, výlety do hloubky a 5 světů. Mapa vychází z revidovaného RVP Informatika (2024) a rámců CSTA K-12, UNESCO AI Competency Framework, AI4K12 a DigComp 2.2.",
+    "description": "Kniha stojí na upravené Mapě informatických konceptů Glitch: z 202 uzlů 24 jader v 6 kapitolách, výlety do hloubky a světy (hry, roboti a další), ve kterých se jádra vyprávějí znovu. Mapa vychází z revidovaného RVP Informatika (2024) a rámců CSTA K-12, UNESCO AI Competency Framework, AI4K12 a DigComp 2.2.",
     "knowledge_map": "https://knowledge-map-glitch.vercel.app/",
     "maintainer": "AI dětem",
     "generator": "https://github.com/kordikp/koncepty-pbook (scripts/do-pbooku.py)"
   },
   "facets": {
     "lens": [
-      "generic"
+      "generic",
+      "hry",
+      "roboti"
     ]
   },
   "lensWorlds": {
-    "generic": "examples from school, phones, games and apps that pupils aged 11-15 know"
+    "generic": "examples from school, phones, games and apps that pupils aged 11-15 know",
+    "hry": "the world of games: making a game in Scratch or a game engine, game loops, collisions, scores, sprites, online play and gaming accounts",
+    "roboti": "the world of robots and the BBC micro:bit: sensors and actuators, MakeCode blocks, line-following cars, LED display, radio and CreateAI gesture models"
   },
   "content_index": "content/book.json",
   "content_dir": "content/",

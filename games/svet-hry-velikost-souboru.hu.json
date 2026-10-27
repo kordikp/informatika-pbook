@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Mitől lesz nagyobb a játék fájlja?",
+  "instruction": "A változtatástól nagyobbak lesznek a játék adatai, vagy ugyanakkorák maradnak?",
+  "buckets": [
+    "Nagyobb fájl",
+    "Ugyanakkora"
+  ],
+  "items": [
+    {
+      "text": "16 × 16-os sprite 8 × 8-as helyett",
+      "answer": 0,
+      "why": "Négyszer annyi képpont, négyszer annyi szám."
+    },
+    {
+      "text": "256 színű paletta 4 helyett",
+      "answer": 0,
+      "why": "Képpontonként 8 bit kell 2 helyett."
+    },
+    {
+      "text": "A fájlt átnevezed hos.png-ről lovag.png-re",
+      "answer": 1,
+      "why": "A név nem változtatja meg a benne lévő számokat."
+    },
+    {
+      "text": "4096 × 4096-os textúra 1024 × 1024-es helyett",
+      "answer": 0,
+      "why": "Tizenhatszor annyi képpont."
+    },
+    {
+      "text": "A fájlt áthelyezed egy másik mappába",
+      "answer": 1,
+      "why": "Az adatok ugyanazok, csak máshol vannak."
+    },
+    {
+      "text": "Hosszabb háttérzene",
+      "answer": 0,
+      "why": "A hang is számokból áll, minden másodperc ezreket ad hozzá."
+    }
+  ],
+  "debrief": "Több képpont, szín és képkocka több számot jelent, vagyis nagyobb fájlt. Egy másik szám ugyanazon a helyen nem változtat a méreten."
+}

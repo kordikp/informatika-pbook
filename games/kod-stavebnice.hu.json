@@ -9,9 +9,9 @@
   ],
   "items": [
     {
-      "text": "pontszam = 0",
+      "text": "pont = 0",
       "answer": 0,
-      "why": "A pontszam változóba 0 kerül."
+      "why": "A pont változóba 0 kerül."
     },
     {
       "text": "if eletek == 0:",

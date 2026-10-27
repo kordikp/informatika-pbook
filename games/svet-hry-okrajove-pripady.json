@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Běžný test, nebo okrajový případ?",
+  "instruction": "Testuješ Pong. Roztřiď testy: běžná situace, nebo záludný okraj?",
+  "buckets": [
+    "Běžný test",
+    "Okrajový případ"
+  ],
+  "items": [
+    {
+      "text": "Míček letí střední rychlostí do pálky",
+      "answer": 0,
+      "why": "Takhle se hraje pořád. Musí fungovat, ale chyby se tu schovávají málokdy."
+    },
+    {
+      "text": "Míček stojí na místě (rychlost 0)",
+      "answer": 1,
+      "why": "Nula je klasický okraj: nezasekne se hra?"
+    },
+    {
+      "text": "Míček letí nejvyšší možnou rychlostí",
+      "answer": 1,
+      "why": "Maximum: tady míček pálku přeskočí."
+    },
+    {
+      "text": "Hráč má tři životy a jeden ztratí",
+      "answer": 0,
+      "why": "Běžné kolo hry."
+    },
+    {
+      "text": "Hráč ztratí poslední život",
+      "answer": 1,
+      "why": "Přechod na konec hry. Ukáže se skóre, nebo hra spadne?"
+    },
+    {
+      "text": "Míček narazí přesně do rohu hřiště",
+      "answer": 1,
+      "why": "V rohu se potkají dvě zdi naráz, tam pravidla odrazu často selžou."
+    },
+    {
+      "text": "Žebříček skóre je ještě prázdný",
+      "answer": 1,
+      "why": "Prázdno je okraj: co hra ukáže, když tam nikdo není?"
+    }
+  ],
+  "debrief": "Běžné testy projdou skoro vždycky. Chyby se schovávají na okrajích: nula, maximum, roh a nečekaný vstup."
+}

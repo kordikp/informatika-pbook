@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Érzékelő vagy aktuátor?",
+  "instruction": "Mér (érzékelő), vagy cselekszik (aktuátor)?",
+  "buckets": [
+    "Érzékelő (mér)",
+    "Aktuátor (cselekszik)"
+  ],
+  "items": [
+    {
+      "text": "hőmérő",
+      "answer": 0,
+      "why": "Méri a hőmérsékletet, és egy számot jelez."
+    },
+    {
+      "text": "motor",
+      "answer": 1,
+      "why": "Megforgatja a kereket, vagyis cselekszik."
+    },
+    {
+      "text": "mikrofon",
+      "answer": 0,
+      "why": "A hang erősségét méri."
+    },
+    {
+      "text": "LED-kijelző",
+      "answer": 1,
+      "why": "Világít, a kimenetet mutatja."
+    },
+    {
+      "text": "gyorsulásmérő (mozgásérzékelő)",
+      "answer": 0,
+      "why": "Méri, hogyan mozog és dől az eszköz."
+    },
+    {
+      "text": "hangszóró",
+      "answer": 1,
+      "why": "Hangot ad ki."
+    },
+    {
+      "text": "gomb",
+      "answer": 0,
+      "why": "Jelzi, hogy megnyomta-e valaki. Ez is bemenet."
+    },
+    {
+      "text": "rezgőmotor",
+      "answer": 1,
+      "why": "Megrázza a telefont, cselekszik."
+    }
+  ],
+  "debrief": "Az érzékelő méri a világot, és bemenetet ad a programnak. Az aktuátor megváltoztatja a világot, és a program kimenete."
+}

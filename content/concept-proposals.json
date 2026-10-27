@@ -661,6 +661,221 @@
    }
   },
   {
+   "slug": "herni-vyvoj-lehke-enginy",
+   "title": {
+    "cs": "Lehké enginy",
+    "en": "Lightweight engines",
+    "sk": "Ľahké enginy",
+    "hu": "Könnyű motorok"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Mezikrok mezi Scratchem a plnými nástroji: GDevelop (bez kódu, přes logiku událostí) nebo Roblox Studio dají skutečnou hru, kterou jde sdílet.",
+    "en": "A step between Scratch and full tools: GDevelop (no code, using event logic) or Roblox Studio give you a real game you can share.",
+    "sk": "Medzikrok medzi Scratchom a plnými nástrojmi: GDevelop (bez kódu, cez logiku udalostí) alebo Roblox Studio dajú skutočnú hru, ktorú sa dá zdieľať.",
+    "hu": "Köztes lépés a Scratch és a teljes eszközök között: a GDevelop (kód nélkül, eseménylogikával) vagy a Roblox Studio valódi, megosztható játékot ad."
+   },
+   "recallQ": {
+    "cs": "Sestavil bys hru v lehkém enginu (GDevelop, Roblox Studio) pomocí logiky událostí a sdílí ji?",
+    "en": "What is “Lightweight engines”, and what is it good for?",
+    "sk": "Čo je „Ľahké enginy“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Könnyű motorok”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "herni-vyvoj-skutecne-enginy",
+   "title": {
+    "cs": "Skutečné enginy",
+    "en": "Real engines",
+    "sk": "Skutočné enginy",
+    "hu": "Igazi játékmotorok"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Profesionální nástroje s textovým kódem: Godot (jazyk GDScript, blízký Pythonu, zdarma a odlehčený) nebo Unity (C#, silné na mobilech).",
+    "en": "Professional tools with text code: Godot (the GDScript language, close to Python, free and lightweight) or Unity (C#, strong on mobile).",
+    "sk": "Profesionálne nástroje s textovým kódom: Godot (jazyk GDScript, blízky Pythonu, zadarmo a odľahčený) alebo Unity (C#, silné na mobiloch).",
+    "hu": "Professzionális eszközök szöveges kóddal: Godot (GDScript nyelv, a Pythonhoz közeli, ingyenes és könnyű) vagy Unity (C#, erős mobilon)."
+   },
+   "recallQ": {
+    "cs": "Porovnal bys možnosti a náročnost skutečných enginů (Godot, Unity) s lehkými enginy a Scratchem?",
+    "en": "What is “Real engines”, and what is it good for?",
+    "sk": "Čo je „Skutočné enginy“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Igazi játékmotorok”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "herni-vyvoj-ai-generovani-assetu",
+   "title": {
+    "cs": "AI generování assetů",
+    "en": "Generating assets with AI",
+    "sk": "Generovanie assetov pomocou AI",
+    "hu": "Játékelemek generálása MI-vel"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "AI dnes vytvoří herní grafiku a 3D objekty z popisu (Roblox Cube, Meshy) — místo hodin modelování napíšeš, co chceš.",
+    "en": "Today AI creates game graphics and 3D objects from a description (Roblox Cube, Meshy): instead of hours of modelling, you write what you want.",
+    "sk": "AI dnes vytvorí hernú grafiku a 3D objekty z opisu (Roblox Cube, Meshy): namiesto hodín modelovania napíšeš, čo chceš.",
+    "hu": "Az MI ma leírásból készít játékgrafikát és 3D-objektumokat (Roblox Cube, Meshy): órákig tartó modellezés helyett leírod, mit szeretnél."
+   },
+   "recallQ": {
+    "cs": "Vytvořil bys herní grafiku nebo 3D objekt z textového popisu v AI nástroji (Roblox Cube, Meshy) a zasadí jej do hry?",
+    "en": "What is “Generating assets with AI”, and what is it good for?",
+    "sk": "Čo je „Generovanie assetov pomocou AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Játékelemek generálása MI-vel”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "herni-vyvoj-ai-asistenti-a-kod",
+   "title": {
+    "cs": "AI asistenti a kód",
+    "en": "AI assistants and code",
+    "sk": "AI asistenti a kód",
+    "hu": "MI-asszisztensek és kód"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Vestavění pomocníci (Roblox Assistant, Unity Muse) i externí AI umí napsat a upravit kód hry.",
+    "en": "Built-in helpers (Roblox Assistant, Unity Muse) and external AI can write and change a game's code.",
+    "sk": "Vstavaní pomocníci (Roblox Assistant, Unity Muse) aj externá AI vedia napísať a upraviť kód hry.",
+    "hu": "A beépített segítők (Roblox Assistant, Unity Muse) és a külső MI is meg tudja írni és át tudja alakítani a játék kódját."
+   },
+   "recallQ": {
+    "cs": "Použil bys AI asistenta k vytvoření nebo úpravě části herního kódu podle popsaného záměru?",
+    "en": "What is “AI assistants and code”, and what is it good for?",
+    "sk": "Čo je „AI asistenti a kód“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „MI-asszisztensek és kód”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "herni-vyvoj-publikace-hry",
+   "title": {
+    "cs": "Publikace hry",
+    "en": "Publishing a game",
+    "sk": "Publikovanie hry",
+    "hu": "Egy játék közzététele"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Hotovou hru sdílíš s ostatními — třeba na itch.io nebo přímo v Robloxu.",
+    "en": "You share your finished game with others, for example on itch.io or right inside Roblox.",
+    "sk": "Hotovú hru zdieľaš s ostatnými, napríklad na itch.io alebo priamo v Robloxe.",
+    "hu": "A kész játékot megosztod másokkal, például az itch.io-n vagy közvetlenül a Robloxban."
+   },
+   "recallQ": {
+    "cs": "Co je „Publikace hry“ a k čemu se ti hodí?",
+    "en": "What is “Publishing a game”, and what is it good for?",
+    "sk": "Čo je „Publikovanie hry“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Egy játék közzététele”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "fyzicky-computing-arduino-a-raspberry-pi",
+   "title": {
+    "cs": "Arduino a Raspberry Pi",
+    "en": "Arduino and Raspberry Pi",
+    "sk": "Arduino a Raspberry Pi",
+    "hu": "Arduino és Raspberry Pi"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Krok dál za micro:bit: Arduino tě přiblíží skutečné elektronice (nepájivé pole, víc senzorů), Raspberry Pi je plnohodnotný malý počítač s Linuxem pro náročnější projekty.",
+    "en": "A step beyond the micro:bit: Arduino brings you closer to real electronics (a breadboard, more sensors), Raspberry Pi is a full small computer running Linux for more demanding…",
+    "sk": "Krok ďalej za micro:bit: Arduino ťa priblíži skutočnej elektronike (nepájivé pole, viac senzorov), Raspberry Pi je plnohodnotný malý počítač s Linuxom pre náročnejš…",
+    "hu": "Egy lépés a micro:biten túl: az Arduino közelebb visz a valódi elektronikához (dugaszolós próbapanel, több szenzor), a Raspberry Pi pedig teljes értékű kis számítógép Linuxszal az igényesebb…"
+   },
+   "recallQ": {
+    "cs": "Porovnal bys micro:bit, Arduino a Raspberry Pi podle toho, k čemu se která deska hodí?",
+    "en": "What is “Arduino and Raspberry Pi”, and what is it good for?",
+    "sk": "Čo je „Arduino a Raspberry Pi“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Arduino és Raspberry Pi”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "fyzicky-computing-roboti-a-vozitka",
+   "title": {
+    "cs": "Roboti a vozítka",
+    "en": "Robots and rovers",
+    "sk": "Roboty a vozidlá",
+    "hu": "Robotok és járművek"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Když se k desce přidá podvozek a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
+    "en": "When you add a chassis and motors to the board (micro:bit + Maqueen, Lego Spike), you get a robot that moves.",
+    "sk": "Keď sa k doske pridá podvozok a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
+    "hu": "Ha a panelhez alvázat és motorokat adsz (micro:bit + Maqueen, Lego Spike), mozgó robot lesz belőle."
+   },
+   "recallQ": {
+    "cs": "Sestavil bys program, který robota rozjede a nechá ho reagovat na senzor, například na čáru nebo překážku?",
+    "en": "What is “Robots and rovers”, and what is it good for?",
+    "sk": "Čo je „Roboty a vozidlá“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Robotok és járművek”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "fyzicky-computing-iot",
+   "title": "IoT",
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Internet věcí (IoT): senzory posílají naměřená data po síti do cloudu, kde se zobrazí na přehledu (dashboardu).",
+    "en": "The Internet of Things (IoT): sensors send measured data over the network to the cloud, where it is shown on an overview (a dashboard).",
+    "sk": "Internet vecí (IoT): senzory posielajú namerané dáta po sieti do cloudu, kde sa zobrazia na prehľade (dashboarde).",
+    "hu": "A dolgok internete (IoT): a szenzorok a hálózaton át a felhőbe küldik a mért adatokat, ahol egy áttekintő felületen (műszerfalon) jelennek meg."
+   },
+   "recallQ": {
+    "cs": "Co je „IoT“ a k čemu se ti hodí?",
+    "en": "What is “IoT”, and what is it good for?",
+    "sk": "Čo je „IoT“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „IoT”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "fyzicky-computing-ai-primo-na-zarizeni-tinyml",
+   "title": {
+    "cs": "AI přímo na zařízení (TinyML)",
+    "en": "AI right on the device (TinyML)",
+    "sk": "AI priamo v zariadení (TinyML)",
+    "hu": "MI közvetlenül az eszközön (TinyML)"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Strojové učení, které běží přímo na malém zařízení bez cloudu.",
+    "en": "Machine learning that runs right on a small device, without the cloud.",
+    "sk": "Strojové učenie, ktoré beží priamo na malom zariadení bez cloudu.",
+    "hu": "Gépi tanulás, amely közvetlenül egy kis eszközön fut, felhő nélkül."
+   },
+   "recallQ": {
+    "cs": "Popsal bys kroky, kterými na malém zařízení vznikne model strojového učení?",
+    "en": "What is “AI right on the device (TinyML)”, and what is it good for?",
+    "sk": "Čo je „AI priamo v zariadení (TinyML)“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „MI közvetlenül az eszközön (TinyML)”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "fyzicky-computing-komunikace-mezi-zarizenimi",
+   "title": {
+    "cs": "Komunikace mezi zařízeními",
+    "en": "Communication between devices",
+    "sk": "Komunikácia medzi zariadeniami",
+    "hu": "Kommunikáció az eszközök között"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
+    "en": "Devices can send each other data wirelessly, by radio or Bluetooth.",
+    "sk": "Zariadenia si môžu posielať dáta bezdrôtovo, cez rádio alebo Bluetooth.",
+    "hu": "Az eszközök vezeték nélkül küldhetnek egymásnak adatokat, rádión vagy Bluetoothon."
+   },
+   "recallQ": {
+    "cs": "Vytvořil bys program, ve kterém jedno zařízení pošle data druhému?",
+    "en": "What is “Communication between devices”, and what is it good for?",
+    "sk": "Čo je „Komunikácia medzi zariadeniami“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Kommunikáció az eszközök között”, és mire jó neked?"
+   }
+  },
+  {
    "slug": "tvorba-webu-ai-asistovana-tvorba-webu",
    "title": {
     "cs": "AI-asistovaná tvorba webu",
@@ -966,221 +1181,6 @@
     "en": "What is “Combining tools (image, video, sound)”, and what is it good for?",
     "sk": "Čo je „Prepojenie nástrojov (obraz, video, zvuk)“ a na čo sa ti hodí?",
     "hu": "Mi az, hogy „Eszközök összekapcsolása (kép, videó, hang)”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "herni-vyvoj-lehke-enginy",
-   "title": {
-    "cs": "Lehké enginy",
-    "en": "Lightweight engines",
-    "sk": "Ľahké enginy",
-    "hu": "Könnyű motorok"
-   },
-   "tema": "ch11-herni-vyvoj",
-   "objective": {
-    "cs": "Mezikrok mezi Scratchem a plnými nástroji: GDevelop (bez kódu, přes logiku událostí) nebo Roblox Studio dají skutečnou hru, kterou jde sdílet.",
-    "en": "A step between Scratch and full tools: GDevelop (no code, using event logic) or Roblox Studio give you a real game you can share.",
-    "sk": "Medzikrok medzi Scratchom a plnými nástrojmi: GDevelop (bez kódu, cez logiku udalostí) alebo Roblox Studio dajú skutočnú hru, ktorú sa dá zdieľať.",
-    "hu": "Köztes lépés a Scratch és a teljes eszközök között: a GDevelop (kód nélkül, eseménylogikával) vagy a Roblox Studio valódi, megosztható játékot ad."
-   },
-   "recallQ": {
-    "cs": "Sestavil bys hru v lehkém enginu (GDevelop, Roblox Studio) pomocí logiky událostí a sdílí ji?",
-    "en": "What is “Lightweight engines”, and what is it good for?",
-    "sk": "Čo je „Ľahké enginy“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Könnyű motorok”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "herni-vyvoj-skutecne-enginy",
-   "title": {
-    "cs": "Skutečné enginy",
-    "en": "Real engines",
-    "sk": "Skutočné enginy",
-    "hu": "Igazi játékmotorok"
-   },
-   "tema": "ch11-herni-vyvoj",
-   "objective": {
-    "cs": "Profesionální nástroje s textovým kódem: Godot (jazyk GDScript, blízký Pythonu, zdarma a odlehčený) nebo Unity (C#, silné na mobilech).",
-    "en": "Professional tools with text code: Godot (the GDScript language, close to Python, free and lightweight) or Unity (C#, strong on mobile).",
-    "sk": "Profesionálne nástroje s textovým kódom: Godot (jazyk GDScript, blízky Pythonu, zadarmo a odľahčený) alebo Unity (C#, silné na mobiloch).",
-    "hu": "Professzionális eszközök szöveges kóddal: Godot (GDScript nyelv, a Pythonhoz közeli, ingyenes és könnyű) vagy Unity (C#, erős mobilon)."
-   },
-   "recallQ": {
-    "cs": "Porovnal bys možnosti a náročnost skutečných enginů (Godot, Unity) s lehkými enginy a Scratchem?",
-    "en": "What is “Real engines”, and what is it good for?",
-    "sk": "Čo je „Skutočné enginy“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Igazi játékmotorok”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "herni-vyvoj-ai-generovani-assetu",
-   "title": {
-    "cs": "AI generování assetů",
-    "en": "Generating assets with AI",
-    "sk": "Generovanie assetov pomocou AI",
-    "hu": "Játékelemek generálása MI-vel"
-   },
-   "tema": "ch11-herni-vyvoj",
-   "objective": {
-    "cs": "AI dnes vytvoří herní grafiku a 3D objekty z popisu (Roblox Cube, Meshy) — místo hodin modelování napíšeš, co chceš.",
-    "en": "Today AI creates game graphics and 3D objects from a description (Roblox Cube, Meshy): instead of hours of modelling, you write what you want.",
-    "sk": "AI dnes vytvorí hernú grafiku a 3D objekty z opisu (Roblox Cube, Meshy): namiesto hodín modelovania napíšeš, čo chceš.",
-    "hu": "Az MI ma leírásból készít játékgrafikát és 3D-objektumokat (Roblox Cube, Meshy): órákig tartó modellezés helyett leírod, mit szeretnél."
-   },
-   "recallQ": {
-    "cs": "Vytvořil bys herní grafiku nebo 3D objekt z textového popisu v AI nástroji (Roblox Cube, Meshy) a zasadí jej do hry?",
-    "en": "What is “Generating assets with AI”, and what is it good for?",
-    "sk": "Čo je „Generovanie assetov pomocou AI“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Játékelemek generálása MI-vel”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "herni-vyvoj-ai-asistenti-a-kod",
-   "title": {
-    "cs": "AI asistenti a kód",
-    "en": "AI assistants and code",
-    "sk": "AI asistenti a kód",
-    "hu": "MI-asszisztensek és kód"
-   },
-   "tema": "ch11-herni-vyvoj",
-   "objective": {
-    "cs": "Vestavění pomocníci (Roblox Assistant, Unity Muse) i externí AI umí napsat a upravit kód hry.",
-    "en": "Built-in helpers (Roblox Assistant, Unity Muse) and external AI can write and change a game's code.",
-    "sk": "Vstavaní pomocníci (Roblox Assistant, Unity Muse) aj externá AI vedia napísať a upraviť kód hry.",
-    "hu": "A beépített segítők (Roblox Assistant, Unity Muse) és a külső MI is meg tudja írni és át tudja alakítani a játék kódját."
-   },
-   "recallQ": {
-    "cs": "Použil bys AI asistenta k vytvoření nebo úpravě části herního kódu podle popsaného záměru?",
-    "en": "What is “AI assistants and code”, and what is it good for?",
-    "sk": "Čo je „AI asistenti a kód“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „MI-asszisztensek és kód”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "herni-vyvoj-publikace-hry",
-   "title": {
-    "cs": "Publikace hry",
-    "en": "Publishing a game",
-    "sk": "Publikovanie hry",
-    "hu": "Egy játék közzététele"
-   },
-   "tema": "ch11-herni-vyvoj",
-   "objective": {
-    "cs": "Hotovou hru sdílíš s ostatními — třeba na itch.io nebo přímo v Robloxu.",
-    "en": "You share your finished game with others, for example on itch.io or right inside Roblox.",
-    "sk": "Hotovú hru zdieľaš s ostatnými, napríklad na itch.io alebo priamo v Robloxe.",
-    "hu": "A kész játékot megosztod másokkal, például az itch.io-n vagy közvetlenül a Robloxban."
-   },
-   "recallQ": {
-    "cs": "Co je „Publikace hry“ a k čemu se ti hodí?",
-    "en": "What is “Publishing a game”, and what is it good for?",
-    "sk": "Čo je „Publikovanie hry“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Egy játék közzététele”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "fyzicky-computing-arduino-a-raspberry-pi",
-   "title": {
-    "cs": "Arduino a Raspberry Pi",
-    "en": "Arduino and Raspberry Pi",
-    "sk": "Arduino a Raspberry Pi",
-    "hu": "Arduino és Raspberry Pi"
-   },
-   "tema": "ch12-fyzicky-computing",
-   "objective": {
-    "cs": "Krok dál za micro:bit: Arduino tě přiblíží skutečné elektronice (nepájivé pole, víc senzorů), Raspberry Pi je plnohodnotný malý počítač s Linuxem pro náročnější projekty.",
-    "en": "A step beyond the micro:bit: Arduino brings you closer to real electronics (a breadboard, more sensors), Raspberry Pi is a full small computer running Linux for more demanding…",
-    "sk": "Krok ďalej za micro:bit: Arduino ťa priblíži skutočnej elektronike (nepájivé pole, viac senzorov), Raspberry Pi je plnohodnotný malý počítač s Linuxom pre náročnejš…",
-    "hu": "Egy lépés a micro:biten túl: az Arduino közelebb visz a valódi elektronikához (dugaszolós próbapanel, több szenzor), a Raspberry Pi pedig teljes értékű kis számítógép Linuxszal az igényesebb…"
-   },
-   "recallQ": {
-    "cs": "Porovnal bys micro:bit, Arduino a Raspberry Pi podle toho, k čemu se která deska hodí?",
-    "en": "What is “Arduino and Raspberry Pi”, and what is it good for?",
-    "sk": "Čo je „Arduino a Raspberry Pi“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Arduino és Raspberry Pi”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "fyzicky-computing-roboti-a-vozitka",
-   "title": {
-    "cs": "Roboti a vozítka",
-    "en": "Robots and rovers",
-    "sk": "Roboty a vozidlá",
-    "hu": "Robotok és járművek"
-   },
-   "tema": "ch12-fyzicky-computing",
-   "objective": {
-    "cs": "Když se k desce přidá podvozek a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
-    "en": "When you add a chassis and motors to the board (micro:bit + Maqueen, Lego Spike), you get a robot that moves.",
-    "sk": "Keď sa k doske pridá podvozok a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
-    "hu": "Ha a panelhez alvázat és motorokat adsz (micro:bit + Maqueen, Lego Spike), mozgó robot lesz belőle."
-   },
-   "recallQ": {
-    "cs": "Sestavil bys program, který robota rozjede a nechá ho reagovat na senzor, například na čáru nebo překážku?",
-    "en": "What is “Robots and rovers”, and what is it good for?",
-    "sk": "Čo je „Roboty a vozidlá“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Robotok és járművek”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "fyzicky-computing-iot",
-   "title": "IoT",
-   "tema": "ch12-fyzicky-computing",
-   "objective": {
-    "cs": "Internet věcí (IoT): senzory posílají naměřená data po síti do cloudu, kde se zobrazí na přehledu (dashboardu).",
-    "en": "The Internet of Things (IoT): sensors send measured data over the network to the cloud, where it is shown on an overview (a dashboard).",
-    "sk": "Internet vecí (IoT): senzory posielajú namerané dáta po sieti do cloudu, kde sa zobrazia na prehľade (dashboarde).",
-    "hu": "A dolgok internete (IoT): a szenzorok a hálózaton át a felhőbe küldik a mért adatokat, ahol egy áttekintő felületen (műszerfalon) jelennek meg."
-   },
-   "recallQ": {
-    "cs": "Co je „IoT“ a k čemu se ti hodí?",
-    "en": "What is “IoT”, and what is it good for?",
-    "sk": "Čo je „IoT“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „IoT”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "fyzicky-computing-ai-primo-na-zarizeni-tinyml",
-   "title": {
-    "cs": "AI přímo na zařízení (TinyML)",
-    "en": "AI right on the device (TinyML)",
-    "sk": "AI priamo v zariadení (TinyML)",
-    "hu": "MI közvetlenül az eszközön (TinyML)"
-   },
-   "tema": "ch12-fyzicky-computing",
-   "objective": {
-    "cs": "Strojové učení, které běží přímo na malém zařízení bez cloudu.",
-    "en": "Machine learning that runs right on a small device, without the cloud.",
-    "sk": "Strojové učenie, ktoré beží priamo na malom zariadení bez cloudu.",
-    "hu": "Gépi tanulás, amely közvetlenül egy kis eszközön fut, felhő nélkül."
-   },
-   "recallQ": {
-    "cs": "Popsal bys kroky, kterými na malém zařízení vznikne model strojového učení?",
-    "en": "What is “AI right on the device (TinyML)”, and what is it good for?",
-    "sk": "Čo je „AI priamo v zariadení (TinyML)“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „MI közvetlenül az eszközön (TinyML)”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "fyzicky-computing-komunikace-mezi-zarizenimi",
-   "title": {
-    "cs": "Komunikace mezi zařízeními",
-    "en": "Communication between devices",
-    "sk": "Komunikácia medzi zariadeniami",
-    "hu": "Kommunikáció az eszközök között"
-   },
-   "tema": "ch12-fyzicky-computing",
-   "objective": {
-    "cs": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
-    "en": "Devices can send each other data wirelessly, by radio or Bluetooth.",
-    "sk": "Zariadenia si môžu posielať dáta bezdrôtovo, cez rádio alebo Bluetooth.",
-    "hu": "Az eszközök vezeték nélkül küldhetnek egymásnak adatokat, rádión vagy Bluetoothon."
-   },
-   "recallQ": {
-    "cs": "Vytvořil bys program, ve kterém jedno zařízení pošle data druhému?",
-    "en": "What is “Communication between devices”, and what is it good for?",
-    "sk": "Čo je „Komunikácia medzi zariadeniami“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Kommunikáció az eszközök között”, és mire jó neked?"
    }
   }
  ]

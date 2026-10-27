@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Stále, n×, alebo kým?",
+  "instruction": "Ktorú slučku použije micro:bit?",
+  "buckets": [
+    "opakuj n×",
+    "opakuj, kým…",
+    "stále"
+  ],
+  "items": [
+    {
+      "text": "Srdce blikne presne trikrát",
+      "answer": 0,
+      "why": "Vopred vieš koľkokrát."
+    },
+    {
+      "text": "Melódia hrá, kým niekto nestlačí tlačidlo",
+      "answer": 1,
+      "why": "Koniec závisí od toho, čo sa stane."
+    },
+    {
+      "text": "Teplota sa ukazuje celý deň",
+      "answer": 2,
+      "why": "Zariadenie má bežať, kým ho nevypneš."
+    },
+    {
+      "text": "Bzučiak pípne päťkrát za sebou",
+      "answer": 0,
+      "why": "Pevný počet: päť."
+    },
+    {
+      "text": "Vozidlo ide vpred, kým nenarazí",
+      "answer": 1,
+      "why": "Ako ďaleko pôjde, závisí od toho, kde je prekážka."
+    },
+    {
+      "text": "Krokomer počíta kroky celý čas, čo je zapnutý",
+      "answer": 2,
+      "why": "Stráži stále, slučka nemá kedy skončiť."
+    }
+  ],
+  "debrief": "Stále pre zariadenie, ktoré má bežať. N× pre presný počet. Kým pre koniec, ktorý závisí od toho, čo sa stane."
+}

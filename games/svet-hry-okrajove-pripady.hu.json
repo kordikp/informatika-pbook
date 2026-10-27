@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Szokásos teszt vagy szélső eset?",
+  "instruction": "A Pongot teszteled. Válogasd szét a teszteket: szokásos helyzet vagy trükkös szélső eset?",
+  "buckets": [
+    "Szokásos teszt",
+    "Szélső eset"
+  ],
+  "items": [
+    {
+      "text": "A labda közepes sebességgel repül az ütőbe",
+      "answer": 0,
+      "why": "Így játszanak folyton. Működnie kell, de a hibák ritkán bújnak meg itt."
+    },
+    {
+      "text": "A labda egy helyben áll (sebesség 0)",
+      "answer": 1,
+      "why": "A nulla klasszikus szélső eset: nem ragad be a játék?"
+    },
+    {
+      "text": "A labda a lehető legnagyobb sebességgel repül",
+      "answer": 1,
+      "why": "A maximum: itt ugorja át a labda az ütőt."
+    },
+    {
+      "text": "A játékosnak három élete van, és egyet elveszít",
+      "answer": 0,
+      "why": "A játék egy szokásos köre."
+    },
+    {
+      "text": "A játékos elveszíti az utolsó életét",
+      "answer": 1,
+      "why": "Átmenet a játék végére. Megjelenik a pontszám, vagy lefagy a játék?"
+    },
+    {
+      "text": "A labda pontosan a pálya sarkába csapódik",
+      "answer": 1,
+      "why": "A sarokban egyszerre két fal találkozik, ott gyakran felmondják a szolgálatot a visszapattanás szabályai."
+    },
+    {
+      "text": "A ranglista még üres",
+      "answer": 1,
+      "why": "Az üresség szélső eset: mit mutat a játék, ha még senki sincs ott?"
+    }
+  ],
+  "debrief": "A szokásos tesztek szinte mindig átmennek. A hibák a szélekre bújnak: nulla, maximum, sarok és váratlan bemenet."
+}

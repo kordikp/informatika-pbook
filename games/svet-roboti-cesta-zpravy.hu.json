@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Egy rádióüzenet útja",
+  "instruction": "Rendezd sorba, mi történik a gomb megnyomásától a szívig a másik micro:biten.",
+  "steps": [
+    "Megnyomod az A gombot",
+    "A micro:bit az 1-es számot a 7-es csoporttal ellátott csomagba teszi",
+    "A rádió kisugározza a csomagot a környezetébe",
+    "A 7-es csoport micro:bitjei fogadják, a többiek eldobják",
+    "A fogadó micro:bit szívet jelenít meg"
+  ],
+  "debrief": "A rádióüzenet egy kis csomag egy csoporttal. Csak az azonos csoportban és hatótávolságon belül lévő micro:bitek kapják meg.",
+  "why": [
+    "Esemény: a gomb megnyomása indítja a küldést.",
+    "Az üzenet csomagként utazik, és a csoport a címe.",
+    "A rádió mindenkinek sugároz, aki hatótávolságon belül van, nincs köztük router.",
+    "A csoportból derül ki, kié a csomag.",
+    "Csak a fogadás után indul el a „szám fogadásakor” kezelő."
+  ]
+}

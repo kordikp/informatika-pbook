@@ -1,0 +1,34 @@
+{
+  "type": "pairs",
+  "title": "Co je na displeji?",
+  "instruction": "Řádky displeje 5 × 5 shora dolů (1 = svítí). Který obrázek kódují?",
+  "debrief": "Kdo zná pravidlo kódování, složí z čísel zpátky stejný obrázek. Číslo samo o sobě nic neznamená.",
+  "choices": 4,
+  "pairs": [
+    {
+      "a": "šipka nahoru",
+      "b": "00100 · 01110 · 10101 · 00100 · 00100",
+      "why": "Nahoře jedna LED, pod ní se šipka rozšiřuje a dolů vede tyč."
+    },
+    {
+      "a": "smajlík",
+      "b": "00000 · 01010 · 00000 · 10001 · 01110",
+      "why": "Dvě oči ve druhém řádku a pusa, která se dole zvedá do úsměvu."
+    },
+    {
+      "a": "křížek",
+      "b": "10001 · 01010 · 00100 · 01010 · 10001",
+      "why": "Dvě úhlopříčky, které se potkají uprostřed."
+    },
+    {
+      "a": "srdce",
+      "b": "01010 · 11111 · 11111 · 01110 · 00100",
+      "why": "Dva oblouky nahoře a špička dole."
+    },
+    {
+      "a": "vykřičník",
+      "b": "00100 · 00100 · 00100 · 00000 · 00100",
+      "why": "Svislá čárka, mezera a tečka."
+    }
+  ]
+}

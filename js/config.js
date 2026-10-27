@@ -65,10 +65,16 @@ export const CONFIG = {
     thinker: { label: 'Thinker', icon: '\u{1F9E0}', description: 'Why does it work that way?' }
   },
 
-  // Fazety: JAK je koncept vyprávěný, nikdy CO se učí. Jádra jsou pro všechny (lens generic).
+  // Fazety: JAK je koncept vyprávěný, nikdy CO se učí. Jádra jsou pro všechny (lens generic);
+  // světy (svety/*.yaml v koncepty-pbook) vyprávějí stejná jádra znovu, s příklady ze svého světa.
   facets: {
-    lens:      { label: 'Example world', values: ['generic'], icons: { generic: '\u{1F310}' },
-                 genericHint: { cs: 'Příklady ze školy, z mobilu i z her', en: 'Examples from school, phones and games', sk: 'Príklady zo školy, z mobilu aj z hier', hu: 'Példák az iskolából, a telefonról és a játékokból' } },
+    lens:      { label: 'Example world', values: ['generic', 'hry', 'roboti'],
+                 icons: { generic: '\u{1F310}', hry: '\u{1F579}\u{FE0F}', roboti: '\u{1F916}' },
+                 genericHint: { cs: 'Příklady ze školy, z mobilu i z her', en: 'Examples from school, phones and games', sk: 'Príklady zo školy, z mobilu aj z hier', hu: 'Példák az iskolából, a telefonról és a játékokból' },
+                 // štítek podání v pruhu „další podání“ a mise každého světa (mapa konceptů ji nabídne)
+                 worldLabels: { hry: { cs: '🕹️ ve světě her', en: '🕹️ in the world of games', sk: '🕹️ vo svete hier', hu: '🕹️ a játékok világában' },
+                                roboti: { cs: '🤖 ve světě robotů', en: '🤖 in the world of robots', sk: '🤖 vo svete robotov', hu: '🤖 a robotok világában' } },
+                 missions: { hry: 'svet-hry', roboti: 'svet-roboti' } },
     visuality: { label: 'Visual style', values: ['text-first', 'balanced', 'visual-first'], ordered: true },
     depth:     { label: 'Depth', values: ['intro', 'standard', 'technical', 'research'], ordered: true },
     formalism: { label: 'Formulas', values: ['none', 'light', 'full'], ordered: true },
@@ -81,8 +87,12 @@ export const CONFIG = {
 
   // Čtenářská slova pro fazety (anglicky; rozhraní je překládá přes js/i18n/<lang>.js). Jazyky jmenuje Intl.
   facetWords: {
-    lens:       { generic: 'examples from everywhere' },
-    lensShort:  { generic: 'Everywhere' },
+    lens:       { generic: 'examples from everywhere',
+                  hry: { cs: 'příklady ze světa her', en: 'examples from games', sk: 'príklady zo sveta hier', hu: 'példák a játékok világából' },
+                  roboti: { cs: 'příklady z robotů a micro:bitu', en: 'examples from robots and the micro:bit', sk: 'príklady z robotov a micro:bitu', hu: 'példák a robotok és a micro:bit világából' } },
+    lensShort:  { generic: 'Everywhere',
+                  hry: { cs: 'Hry', en: 'Games', sk: 'Hry', hu: 'Játékok' },
+                  roboti: { cs: 'Roboti a micro:bit', en: 'Robots and micro:bit', sk: 'Roboty a micro:bit', hu: 'Robotok és micro:bit' } },
     depth:      { intro: 'gentle introduction', standard: 'standard depth', technical: 'technical depth', research: 'research depth' },
     visuality:  { 'text-first': 'mostly text', balanced: 'text and pictures', 'visual-first': 'mostly visual' },
     formalism:  { none: 'no formulas', light: 'a few formulas', full: 'full math' },
@@ -97,7 +107,8 @@ export const CONFIG = {
   goals: {
     understand: { mission: 'postup', label: { cs: 'Pochopit, jak to funguje', en: 'Understand how it works', sk: 'Pochopiť, ako to funguje', hu: 'Megérteni, hogyan működik' },
                   hint: { cs: 'nejdřív srozumitelné vysvětlení', en: 'clear explanations first', sk: 'najprv zrozumiteľné vysvetlenie', hu: 'előbb érthető magyarázat' } },
-    create: { mission: 'program', label: { cs: 'Něco vytvořit', en: 'Make something', sk: 'Niečo vytvoriť', hu: 'Valamit alkotni' },
+    create: { mission: 'program', missions: { hry: 'svet-hry', roboti: 'svet-roboti' },   // se světem jeho mise
+              label: { cs: 'Něco vytvořit', en: 'Make something', sk: 'Niečo vytvoriť', hu: 'Valamit alkotni' },
               hint: { cs: 'mise Program: od prvního příkazu k vlastní hře', en: 'the Program mission: from a first command to your own game', sk: 'misia Program: od prvého príkazu k vlastnej hre', hu: 'a Program küldetés: az első utasítástól a saját játékig' } },
     ai: { mission: 'ai', label: { cs: 'Rozumět AI', en: 'Understand AI', sk: 'Rozumieť AI', hu: 'Érteni az AI-t' },
           hint: { cs: 'mise AI: jak se stroj učí a kdy mu nevěřit', en: 'the AI mission: how a machine learns and when not to trust it', sk: 'misia AI: ako sa stroj učí a kedy mu neveriť', hu: 'az AI küldetés: hogyan tanul a gép, és mikor ne higgy neki' } },
@@ -133,6 +144,9 @@ export const CONFIG = {
   // Vlastní texty knihy v ostatních jazycích. Klíč = český text z index.html (bez okrajových mezer),
   // nebo jméno z data-i18n="…" u vět s odkazy. Rozhraní enginu sem nepatří (to je v js/i18n/).
   strings: {
+    cs: {
+      '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': { one: '<b>{0}</b>, kde je kniha má: dnes {1} jádro', few: '<b>{0}</b>, kde je kniha má: dnes {1} jádra', other: '<b>{0}</b>, kde je kniha má: dnes {1} jader' },
+    },
     en: {
       'Jak funguje digitální svět — informatika pro 2. stupeň': 'How the Digital World Works — computing for ages 11–15',
       'Jak funguje digitální svět': 'How the Digital World Works',
@@ -148,6 +162,8 @@ export const CONFIG = {
       'Algoritmy': 'Algorithms', 'Programování': 'Programming', 'Data a kódování': 'Data and encoding',
       'Sítě a internet': 'Networks and the internet', 'Umělá inteligence': 'Artificial intelligence', 'Bezpečí': 'Safety',
       'Mistr informatiky': 'Computing master',
+      'Svět příkladů': 'Example world', 'nepovinné': 'optional', 'Odevšad': 'Everywhere', 'Hry': 'Games', 'Roboti a micro:bit': 'Robots and micro:bit',
+      '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': { one: '<b>{0}</b> where the book has them: {1} core concept today', other: '<b>{0}</b> where the book has them: {1} core concepts today' },
     },
     sk: {
       'Jak funguje digitální svět — informatika pro 2. stupeň': 'Ako funguje digitálny svet — informatika pre 2. stupeň ZŠ',
@@ -164,6 +180,8 @@ export const CONFIG = {
       'Algoritmy': 'Algoritmy', 'Programování': 'Programovanie', 'Data a kódování': 'Dáta a kódovanie',
       'Sítě a internet': 'Siete a internet', 'Umělá inteligence': 'Umelá inteligencia', 'Bezpečí': 'Bezpečie',
       'Mistr informatiky': 'Majster informatiky',
+      'Svět příkladů': 'Svet príkladov', 'nepovinné': 'nepovinné', 'Odevšad': 'Odvšadiaľ', 'Hry': 'Hry', 'Roboti a micro:bit': 'Roboty a micro:bit',
+      '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': { one: '<b>{0}</b> tam, kde ich kniha má: dnes {1} jadro', few: '<b>{0}</b> tam, kde ich kniha má: dnes {1} jadrá', other: '<b>{0}</b> tam, kde ich kniha má: dnes {1} jadier' },
     },
     hu: {
       'Jak funguje digitální svět — informatika pro 2. stupeň': 'Hogyan működik a digitális világ — informatika felső tagozatosoknak',
@@ -180,6 +198,8 @@ export const CONFIG = {
       'Algoritmy': 'Algoritmusok', 'Programování': 'Programozás', 'Data a kódování': 'Adatok és kódolás',
       'Sítě a internet': 'Hálózatok és internet', 'Umělá inteligence': 'Mesterséges intelligencia', 'Bezpečí': 'Biztonság',
       'Mistr informatiky': 'Az informatika mestere',
+      'Svět příkladů': 'A példák világa', 'nepovinné': 'nem kötelező', 'Odevšad': 'Bárhonnan', 'Hry': 'Játékok', 'Roboti a micro:bit': 'Robotok és micro:bit',
+      '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': '<b>{0}</b> ott, ahol a könyvben van ilyen: ma {1} alapfogalom',
     },
   },
 

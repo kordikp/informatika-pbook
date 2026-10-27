@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Set or change?",
+  "instruction": "For each moment in the game, pick the block that fits.",
+  "buckets": [
+    "set to …",
+    "change by …"
+  ],
+  "items": [
+    {
+      "text": "Start of the game: the score starts from zero",
+      "answer": 0,
+      "why": "Whatever was there, it should be 0. That’s setting."
+    },
+    {
+      "text": "The player picked up a coin",
+      "answer": 1,
+      "why": "One more point is added to the ones they already have."
+    },
+    {
+      "text": "The character ran into an enemy",
+      "answer": 1,
+      "why": "One life is taken from the ones it has: change by -1."
+    },
+    {
+      "text": "A new level starts again with three lives",
+      "answer": 0,
+      "why": "The value is overwritten with 3, no matter how many were left."
+    },
+    {
+      "text": "Combo: one point more for each coin in a row",
+      "answer": 1,
+      "why": "The points are added to what is already there."
+    },
+    {
+      "text": "The player pressed “Play again” and the mode is “playing” again",
+      "answer": 0,
+      "why": "The mode is overwritten with a new value."
+    }
+  ],
+  "debrief": "Set overwrites the value, change adds to what is there. Set belongs at the start of the game, change belongs to catching a coin."
+}

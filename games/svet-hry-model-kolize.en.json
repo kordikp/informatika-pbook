@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "What belongs in the collision model?",
+  "instruction": "The game works out collisions with hitboxes. Mark what it needs to know for that.",
+  "debrief": "For collisions, shape and position are enough. The model leaves out colours, sounds and the character’s name, even though the player sees them.",
+  "hitLabel": "belongs in the model",
+  "missLabel": "left out",
+  "items": [
+    {
+      "text": "The character’s position (x, y)",
+      "hit": true,
+      "why": "Without the position the game doesn’t know where the hitbox is."
+    },
+    {
+      "text": "The width and height of the hitbox",
+      "hit": true,
+      "why": "From the size the game can tell whether the rectangles overlap."
+    },
+    {
+      "text": "The colour of the cloak",
+      "hit": false,
+      "why": "Colour is needed for drawing, not for collisions."
+    },
+    {
+      "text": "The shape and position of the spikes",
+      "hit": true,
+      "why": "Spikes have a hitbox too, otherwise you couldn’t run into them."
+    },
+    {
+      "text": "The background music",
+      "hit": false,
+      "why": "Music has nothing to do with touching."
+    },
+    {
+      "text": "The player’s name",
+      "hit": false,
+      "why": "The name is useful on the leaderboard; collisions don’t care."
+    }
+  ]
+}

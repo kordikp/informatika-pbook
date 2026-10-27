@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Co model gest zlepší?",
+  "instruction": "Model gest se u kamarádů plete. Označ všechno, co pomůže.",
+  "debrief": "Model se učí jen z toho, co viděl. Pestřejší a vyrovnaná trénovací data a test na nových lidech ho zlepší.",
+  "hitLabel": "pomůže",
+  "missLabel": "nepomůže",
+  "items": [
+    {
+      "text": "Přidat příklady od víc lidí",
+      "hit": true,
+      "why": "Model uvidí, že lidé mávají různě."
+    },
+    {
+      "text": "Přidat příklady levou i pravou rukou",
+      "hit": true,
+      "why": "Co v datech chybí, to model neumí."
+    },
+    {
+      "text": "Trénovat déle na stejných deseti příkladech",
+      "hit": false,
+      "why": "Pořád vidí jen tebe. Nové vzory se z nich nenaučí."
+    },
+    {
+      "text": "Přidat rychlá i pomalá mávnutí",
+      "hit": true,
+      "why": "Pestřejší data, model se nenaučí jen tvoje tempo."
+    },
+    {
+      "text": "Přejmenovat gesto na „mávání 2“",
+      "hit": false,
+      "why": "Jméno modelu nic nového neukáže."
+    },
+    {
+      "text": "Testovat na lidech, které model nikdy neviděl",
+      "hit": true,
+      "why": "Teprve test na nových datech ukáže, jestli model opravdu funguje."
+    }
+  ]
+}

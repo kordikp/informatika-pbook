@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Čo patrí do modelu pre kolízie?",
+  "instruction": "Hra počíta kolízie s hitboxmi. Označ, čo na to potrebuje vedieť.",
+  "debrief": "Pre kolízie stačí tvar a poloha. Farby, zvuky a meno postavy model vynechá, aj keď ich hráč vidí.",
+  "hitLabel": "patrí do modelu",
+  "missLabel": "vynechá sa",
+  "items": [
+    {
+      "text": "Poloha postavy (x, y)",
+      "hit": true,
+      "why": "Bez polohy hra nevie, kde hitbox je."
+    },
+    {
+      "text": "Šírka a výška hitboxu",
+      "hit": true,
+      "why": "Z veľkosti hra spozná, či sa obdĺžniky prekrývajú."
+    },
+    {
+      "text": "Farba plášťa",
+      "hit": false,
+      "why": "Farba je potrebná na kreslenie, nie na kolízie."
+    },
+    {
+      "text": "Tvar a poloha ostňov",
+      "hit": true,
+      "why": "Aj ostne majú hitbox, inak by sa do nich nedalo naraziť."
+    },
+    {
+      "text": "Hudba v pozadí",
+      "hit": false,
+      "why": "S dotykmi nemá hudba nič spoločné."
+    },
+    {
+      "text": "Meno hráča",
+      "hit": false,
+      "why": "Meno sa hodí do rebríčka, kolíziám je jedno."
+    }
+  ]
+}

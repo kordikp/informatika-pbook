@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Mindig, n-szer vagy amíg?",
+  "instruction": "Melyik ciklust használja a micro:bit?",
+  "buckets": [
+    "ismételd n-szer",
+    "ismételd, amíg…",
+    "mindig"
+  ],
+  "items": [
+    {
+      "text": "A szív pontosan háromszor villan fel",
+      "answer": 0,
+      "why": "Előre tudod, hányszor."
+    },
+    {
+      "text": "A dallam addig szól, amíg valaki meg nem nyom egy gombot",
+      "answer": 1,
+      "why": "A vége attól függ, mi történik."
+    },
+    {
+      "text": "A hőmérséklet egész nap látszik",
+      "answer": 2,
+      "why": "Az eszköznek addig kell futnia, amíg ki nem kapcsolod."
+    },
+    {
+      "text": "A zümmer ötször sípol egymás után",
+      "answer": 0,
+      "why": "Rögzített szám: öt."
+    },
+    {
+      "text": "A kisautó addig megy előre, amíg neki nem ütközik valaminek",
+      "answer": 1,
+      "why": "Hogy meddig megy, attól függ, hol van az akadály."
+    },
+    {
+      "text": "A lépésszámláló egész idő alatt számolja a lépéseket, amíg be van kapcsolva",
+      "answer": 2,
+      "why": "Folyamatosan figyel, a ciklusnak nincs oka véget érni."
+    }
+  ],
+  "debrief": "Mindig: olyan eszköznek, amelynek folyamatosan futnia kell. N-szer: pontos számhoz. Amíg: olyan véghez, amely attól függ, mi történik."
+}

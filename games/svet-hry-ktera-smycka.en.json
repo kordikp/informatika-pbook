@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Which loop will you use?",
+  "instruction": "For each situation in the game, pick the loop that fits.",
+  "buckets": [
+    "repeat n",
+    "repeat until…",
+    "forever"
+  ],
+  "items": [
+    {
+      "text": "The character flashes three times when hit",
+      "answer": 0,
+      "why": "You know in advance how many times: three."
+    },
+    {
+      "text": "The game runs until the player runs out of lives",
+      "answer": 1,
+      "why": "The end depends on what happens, not on the number of rounds."
+    },
+    {
+      "text": "The background music plays round and round until you close the game",
+      "answer": 2,
+      "why": "Here an endless loop is fine; it’s intentional."
+    },
+    {
+      "text": "A countdown 3, 2, 1 before the start",
+      "answer": 0,
+      "why": "Exactly three steps, known in advance."
+    },
+    {
+      "text": "The character falls until it lands on the ground",
+      "answer": 1,
+      "why": "How long it falls depends on how high it was."
+    },
+    {
+      "text": "Clouds keep slowly drifting across the sky",
+      "answer": 2,
+      "why": "Decoration that runs the whole time. It has no reason to end."
+    }
+  ],
+  "debrief": "You pick a loop by what you know in advance: an exact count, a condition for the end, or nothing, because the game is meant to keep running."
+}

@@ -62,11 +62,11 @@
   try { s = localStorage.getItem('pbook-lang'); } catch (e) {}
   var lang = L.indexOf(q) >= 0 ? q : L.indexOf(s) >= 0 ? s : L[0];
   function add(rel, href, as) { var l = document.createElement('link'); l.rel = rel; l.href = href; if (as) { l.as = as; l.crossOrigin = 'anonymous'; } document.head.appendChild(l); }
-  var M = ['config.js', 'i18n.js', 'markdown.js?v=2', 'recombee.js?v=12', 'diagrams.js?v=6', 'tutor.js?v=2', 'games.js?v=1', 'ux.js?v=1'];
+  var M = ['config.js', 'i18n.js', 'markdown.js?v=2', 'recombee.js?v=12', 'diagrams.js?v=7', 'tutor.js?v=2', 'games.js?v=2', 'ux.js?v=2'];
   M.concat(lang === 'en' ? [] : ['i18n/' + lang + '.js']).forEach(function (m) { add('modulepreload', 'js/' + m); });
   ['book.json', 'bundle.' + lang + '.json'].forEach(function (f) { add('preload', 'content/' + f, 'fetch'); });
 })();</script>
-<link rel="stylesheet" href="css/style.css?v=7.0.0">
+<link rel="stylesheet" href="css/style.css?v=7.0.1">
 <script>/* theme before first paint: saved choice, else the system preference (no white flash in dark mode) */
 try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}</script>
 </head>
@@ -84,6 +84,12 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
       <img src="images/hero-digital.svg" data-i18n-src alt="" class="intro-hero door-hero">
 
       <div class="door-picks">
+        <div class="door-label" id="doorLensLabel">Svět příkladů <span class="toggle-hint">nepovinné</span></div>
+        <div class="intro-voices door-chips" id="introLens" role="group" aria-labelledby="doorLensLabel">
+          <button class="intro-voice selected" data-lens="generic" onclick="app.onboardPick('lens','generic',this)"><span aria-hidden="true">&#127760;</span> Odevšad</button>
+          <button class="intro-voice" data-lens="hry" onclick="app.onboardPick('lens','hry',this)"><span aria-hidden="true">&#128377;&#65039;</span> Hry</button>
+          <button class="intro-voice" data-lens="roboti" onclick="app.onboardPick('lens','roboti',this)"><span aria-hidden="true">&#129302;</span> Roboti a micro:bit</button>
+        </div>
         <div class="door-label" id="doorGoalLabel">I want to</div>
         <div class="intro-voices door-chips" id="introGoal" role="group" aria-labelledby="doorGoalLabel">
           <button class="intro-voice selected" data-goal="understand" onclick="app.onboardPick('goal','understand',this)"><span aria-hidden="true">&#128161;</span> Pochopit, jak to funguje</button>
@@ -350,7 +356,7 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
   </div>
 </div>
 
-<script type="module" src="js/app.js?v=7.3.0"></script>
+<script type="module" src="js/app.js?v=7.4.0"></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});</script>
 <!-- Vercel Web Analytics: visitors and page views, no cookies (project setting enabled 2026-10-05) -->
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>

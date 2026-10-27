@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Postav hru v správnom poradí",
+  "instruction": "Zoraď časti hry Chytanie jabĺk tak, aby každá prišla až po tom, od čoho závisí.",
+  "steps": [
+    "Košík jazdí šípkami",
+    "Jablko padá zhora nadol",
+    "Hra spozná, že jablko dopadlo do košíka",
+    "Za chytenie pribudne bod, za minutie ubudne život",
+    "Pri nule životov hra skončí a ukáže skóre"
+  ],
+  "why": [
+    "Bez pohybu košíka sa nedá nič vyskúšať: hráč by nemohol nič chytiť.",
+    "Padanie jablka potrebuješ, aby si mal čo chytať.",
+    "Chytenie sa dá spoznať, až keď sa košík hýbe a jablko padá.",
+    "Body a životy sa menia pri chytení a minutí, takže potrebujú kontrolu chytenia.",
+    "Koniec hry stráži životy a tie musia najprv ubúdať."
+  ],
+  "debrief": "Veľkú hru postavíš z malých častí. Každá stojí na tých predchádzajúcich, preto na poradí záleží."
+}

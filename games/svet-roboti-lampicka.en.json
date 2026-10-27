@@ -1,0 +1,37 @@
+{
+  "type": "sort",
+  "title": "Will the lamp switch on?",
+  "instruction": "The rule: switch on when it is dark AND the motion sensor detects something.",
+  "buckets": [
+    "On",
+    "Off"
+  ],
+  "items": [
+    {
+      "text": "Dark, someone is walking around the room",
+      "answer": 0,
+      "why": "Both parts are true."
+    },
+    {
+      "text": "Dark, nobody in the room",
+      "answer": 1,
+      "why": "There is no movement. With “and”, both parts must be true."
+    },
+    {
+      "text": "Light, someone is walking around",
+      "answer": 1,
+      "why": "It isn’t dark; the first part is not true."
+    },
+    {
+      "text": "Light, nobody in the room",
+      "answer": 1,
+      "why": "Neither part is true."
+    },
+    {
+      "text": "Dark, a cat ran past the sensor",
+      "answer": 0,
+      "why": "A motion sensor can’t tell a cat from a person. To the program it is movement."
+    }
+  ],
+  "debrief": "With AND, the lamp switches on only when both conditions are true. Otherwise it saves its battery."
+}

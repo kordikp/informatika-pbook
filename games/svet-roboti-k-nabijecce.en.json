@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Get the robot to the charger",
+  "instruction": "The robot stands bottom left, facing up. The charger is 2 squares higher and 3 squares to the right. Put the steps in order.",
+  "steps": [
+    "The battery reports less than 20 %, set off",
+    "Move forward 2 squares",
+    "Turn right 90°",
+    "Move forward 3 squares",
+    "Stop and connect to the charger"
+  ],
+  "why": [
+    "The program waits until there is something to do: it sets off when the battery is running low.",
+    "The robot is facing up, so first it moves up 2.",
+    "Now it has to turn towards the charger. Without turning it would keep going up.",
+    "After the turn it faces right, and the charger is 3 squares away.",
+    "The process has to end: the robot stops at the goal."
+  ],
+  "debrief": "A robot fills in nothing by itself. Every step must be unambiguous and the order exact, or it ends up somewhere else."
+}

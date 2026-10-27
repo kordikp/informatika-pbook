@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Forever, n times, or until?",
+  "instruction": "Which loop will the micro:bit use?",
+  "buckets": [
+    "repeat n",
+    "repeat until…",
+    "forever"
+  ],
+  "items": [
+    {
+      "text": "The heart flashes exactly three times",
+      "answer": 0,
+      "why": "You know in advance how many times."
+    },
+    {
+      "text": "A tune plays until someone presses a button",
+      "answer": 1,
+      "why": "The end depends on what happens."
+    },
+    {
+      "text": "The temperature is shown all day",
+      "answer": 2,
+      "why": "The device is meant to run until you switch it off."
+    },
+    {
+      "text": "The buzzer beeps five times in a row",
+      "answer": 0,
+      "why": "A fixed count: five."
+    },
+    {
+      "text": "The buggy drives forward until it bumps into something",
+      "answer": 1,
+      "why": "How far it goes depends on where the obstacle is."
+    },
+    {
+      "text": "The step counter counts steps the whole time it is on",
+      "answer": 2,
+      "why": "It is always watching; the loop has no reason to end."
+    }
+  ],
+  "debrief": "Forever for a device that is meant to keep running. N times for an exact count. Until for an end that depends on what happens."
+}

@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Čo zväčší súbor hry?",
+  "instruction": "Zväčší tá zmena dáta hry, alebo zostanú rovnako veľké?",
+  "buckets": [
+    "Väčší súbor",
+    "Rovnako veľký"
+  ],
+  "items": [
+    {
+      "text": "Sprite 16 × 16 namiesto 8 × 8",
+      "answer": 0,
+      "why": "Štyrikrát viac pixelov, štyrikrát viac čísel."
+    },
+    {
+      "text": "Paleta s 256 farbami namiesto 4",
+      "answer": 0,
+      "why": "Na pixel treba 8 bitov namiesto 2."
+    },
+    {
+      "text": "Súbor premenuješ z hrdina.png na rytier.png",
+      "answer": 1,
+      "why": "Meno nezmení čísla vnútri."
+    },
+    {
+      "text": "Textúra 4096 × 4096 namiesto 1024 × 1024",
+      "answer": 0,
+      "why": "Šestnásťkrát viac pixelov."
+    },
+    {
+      "text": "Presunieš súbor do iného priečinka",
+      "answer": 1,
+      "why": "Dáta sú stále rovnaké, len inde."
+    },
+    {
+      "text": "Dlhšia hudba v pozadí",
+      "answer": 0,
+      "why": "Zvuk sú tiež čísla, každá sekunda ich pridá tisíce."
+    }
+  ],
+  "debrief": "Viac pixelov, farieb a snímok znamená viac čísel, a teda väčší súbor. Iné číslo na rovnakom mieste veľkosť nezmení."
+}

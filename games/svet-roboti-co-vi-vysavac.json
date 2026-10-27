@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "Co potřebuje vědět vysavač?",
+  "instruction": "Robotický vysavač má uklidit byt. Označ, co musí jeho model obsahovat.",
+  "debrief": "Model obsahuje jen to, co potřebuje účel. Vysavači stačí volno, překážky a místnosti. Barva gauče ne.",
+  "hitLabel": "patří do modelu",
+  "missLabel": "vynechá se",
+  "items": [
+    {
+      "text": "Kde je překážka",
+      "hit": true,
+      "why": "Jinak by do všeho narážel."
+    },
+    {
+      "text": "Kudy se jde do další místnosti",
+      "hit": true,
+      "why": "Dveře jsou hrany grafu bytu."
+    },
+    {
+      "text": "Barva koberce",
+      "hit": false,
+      "why": "K vysávání ji nepotřebuje."
+    },
+    {
+      "text": "Jestli je pod ním schod",
+      "hit": true,
+      "why": "Bez toho by spadl ze schodů."
+    },
+    {
+      "text": "Jak se jmenuje kočka",
+      "hit": false,
+      "why": "Pro vysavač je kočka jen překážka."
+    },
+    {
+      "text": "Kolik zbývá baterie",
+      "hit": true,
+      "why": "Musí stihnout dojet zpátky k nabíječce."
+    },
+    {
+      "text": "Jaký obraz visí na zdi",
+      "hit": false,
+      "why": "Obraz je pro vysávání úplně jedno."
+    }
+  ]
+}

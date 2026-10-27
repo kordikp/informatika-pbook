@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Mitől lesz jobb a mozdulatmodell?",
+  "instruction": "A mozdulatmodell a barátaidnál téved. Jelölj meg mindent, ami segít.",
+  "debrief": "A modell csak abból tanul, amit látott. A változatosabb, kiegyensúlyozott tanítóadatok és az új embereken végzett teszt jobbá teszik.",
+  "hitLabel": "segít",
+  "missLabel": "nem segít",
+  "items": [
+    {
+      "text": "Példák hozzáadása több embertől",
+      "hit": true,
+      "why": "A modell látni fogja, hogy az emberek különbözőképpen integetnek."
+    },
+    {
+      "text": "Példák hozzáadása bal és jobb kézzel is",
+      "hit": true,
+      "why": "Ami hiányzik az adatokból, azt a modell nem tudja."
+    },
+    {
+      "text": "Hosszabb tanítás ugyanazon a tíz példán",
+      "hit": false,
+      "why": "Még mindig csak téged lát. Új mintázatokat nem tanul meg belőlük."
+    },
+    {
+      "text": "Gyors és lassú integetések hozzáadása",
+      "hit": true,
+      "why": "Változatosabb adatok, a modell nem csak a te tempódat tanulja meg."
+    },
+    {
+      "text": "A mozdulat átnevezése „integetés 2”-re",
+      "hit": false,
+      "why": "A név semmi újat nem mutat a modellnek."
+    },
+    {
+      "text": "Tesztelés olyan embereken, akiket a modell soha nem látott",
+      "hit": true,
+      "why": "Csak az új adatokon végzett teszt mutatja meg, hogy a modell tényleg működik-e."
+    }
+  ]
+}

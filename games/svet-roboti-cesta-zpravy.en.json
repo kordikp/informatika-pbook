@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "The trip of a radio message",
+  "instruction": "Put in order what happens from pressing the button to the heart on the other micro:bit.",
+  "steps": [
+    "You press button A",
+    "The micro:bit wraps the number 1 in a packet with group 7",
+    "The radio sends the packet out around it",
+    "micro:bits in group 7 receive it, the others throw it away",
+    "The receiving micro:bit shows a heart"
+  ],
+  "debrief": "A radio message is a small packet with a group. Only micro:bits in the same group and in range receive it.",
+  "why": [
+    "An event: pressing the button starts the sending.",
+    "The message travels as a packet, and the group is its address.",
+    "The radio broadcasts to everyone in range; there is no router in between.",
+    "The group tells who the packet belongs to.",
+    "Only after receiving it does the “on radio received number” handler run."
+  ]
+}

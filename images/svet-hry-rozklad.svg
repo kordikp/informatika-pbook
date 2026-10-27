@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Hra Chytání jablek rozložená na pět částí, stavěných odspodu">
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker></defs>
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif">
+  <text x="18" y="26" font-size="17" font-weight="700" fill="#1E1B4B">Chytání jablek rozložené na kousky</text>
+  <text x="18" y="44" font-size="11" fill="#6B7280">Každou část vyzkoušíš zvlášť. Chycení nevyzkoušíš, dokud se košík nehýbe a jablko nepadá.</text>
+  <rect x="24" y="60" width="176" height="170" rx="10" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+  <text x="34" y="78" font-size="10" font-weight="600" fill="#1E1B4B">skóre 3 · ❤❤❤</text>
+  <text x="118" y="118" font-size="26" fill="#1E1B4B" text-anchor="middle">🍎</text>
+  <line x1="112" y1="126" x2="112" y2="168" stroke="#0EA5E9" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="112" y="214" font-size="32" fill="#1E1B4B" text-anchor="middle">🧺</text>
+  <line x1="214" y1="226" x2="214" y2="70" stroke="#7C3AED" stroke-width="2" marker-end="url(#a)"/>
+  <text x="214" y="244" font-size="10" fill="#6B7280" text-anchor="middle">stavíš odspodu</text>
+  <rect x="230" y="64" width="266" height="30" rx="7" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+  <text x="242" y="83" font-size="12" font-weight="700" fill="#1E1B4B">5 · Konec hry</text>
+  <text x="486" y="83" font-size="10" fill="#6B7280" text-anchor="end">tři minutí, životy = 0</text>
+  <rect x="230" y="98" width="266" height="30" rx="7" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="242" y="117" font-size="12" font-weight="700" fill="#1E1B4B">4 · Skóre a životy</text>
+  <text x="486" y="117" font-size="10" fill="#6B7280" text-anchor="end">proměnné</text>
+  <rect x="230" y="132" width="266" height="30" rx="7" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/>
+  <text x="242" y="151" font-size="12" font-weight="700" fill="#1E1B4B">3 · Chycení</text>
+  <text x="486" y="151" font-size="10" fill="#6B7280" text-anchor="end">dotýká se jablko košíku?</text>
+  <rect x="230" y="166" width="266" height="30" rx="7" fill="#DCFCE7" stroke="#10B981" stroke-width="2"/>
+  <text x="242" y="185" font-size="12" font-weight="700" fill="#1E1B4B">2 · Padání jablka</text>
+  <text x="486" y="185" font-size="10" fill="#6B7280" text-anchor="end">y jablka o −5</text>
+  <rect x="230" y="200" width="266" height="30" rx="7" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+  <text x="242" y="219" font-size="12" font-weight="700" fill="#1E1B4B">1 · Pohyb košíku</text>
+  <text x="486" y="219" font-size="10" fill="#6B7280" text-anchor="end">šipky ← →</text>
+
+  </g>
+</svg>

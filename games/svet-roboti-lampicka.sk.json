@@ -1,0 +1,37 @@
+{
+  "type": "sort",
+  "title": "Rozsvieti sa lampička?",
+  "instruction": "Pravidlo: rozsvieť, keď je tma A senzor pohybu niečo zachytí.",
+  "buckets": [
+    "Svieti",
+    "Nesvieti"
+  ],
+  "items": [
+    {
+      "text": "Tma, v izbe niekto chodí",
+      "answer": 0,
+      "why": "Platia obe časti."
+    },
+    {
+      "text": "Tma, v izbe nikto nie je",
+      "answer": 1,
+      "why": "Chýba pohyb. Pri „a“ musia platiť obe časti."
+    },
+    {
+      "text": "Svetlo, niekto chodí",
+      "answer": 1,
+      "why": "Nie je tma, prvá časť neplatí."
+    },
+    {
+      "text": "Svetlo, v izbe nikto nie je",
+      "answer": 1,
+      "why": "Neplatí ani jedna časť."
+    },
+    {
+      "text": "Tma, okolo senzora prebehla mačka",
+      "answer": 0,
+      "why": "Senzor pohybu mačku od človeka nerozlíši. Pre program je to pohyb."
+    }
+  ],
+  "debrief": "So spojkou A sa lampička rozsvieti, len keď platia obe podmienky. Inak šetrí batériu."
+}

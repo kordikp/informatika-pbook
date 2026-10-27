@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Építsd meg a játékot a helyes sorrendben",
+  "instruction": "Rendezd sorba az Almaelkapó részeit úgy, hogy mindegyik csak az után jöjjön, amitől függ.",
+  "steps": [
+    "A kosár a nyilakkal mozog",
+    "Az alma fentről lefelé esik",
+    "A játék felismeri, hogy az alma a kosárba esett",
+    "Elkapásért pont jár, elszalasztásért egy élet elvész",
+    "Nulla életnél a játék véget ér, és kiírja a pontszámot"
+  ],
+  "why": [
+    "A kosár mozgása nélkül semmit sem lehet kipróbálni: a játékos semmit sem tudna elkapni.",
+    "Az alma esésére azért van szükség, hogy legyen mit elkapni.",
+    "Az elkapást csak akkor lehet felismerni, ha a kosár mozog és az alma esik.",
+    "A pontok és az életek elkapáskor és elszalasztáskor változnak, ezért kell hozzájuk az elkapás ellenőrzése.",
+    "A játék vége az életeket figyeli, azoknak pedig előbb fogyniuk kell."
+  ],
+  "debrief": "Egy nagy játékot kis részekből építesz fel. Mindegyik az előzőekre épül, ezért számít a sorrend."
+}

@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "Mit kell tudnia a porszívónak?",
+  "instruction": "A robotporszívónak ki kell takarítania a lakást. Jelöld meg, minek kell benne lennie a modelljében.",
+  "debrief": "A modell csak azt tartalmazza, amire a célnak szüksége van. A porszívónak elég a szabad hely, az akadályok és a szobák. A kanapé színe nem.",
+  "hitLabel": "a modellbe kerül",
+  "missLabel": "kimarad",
+  "items": [
+    {
+      "text": "Hol van akadály",
+      "hit": true,
+      "why": "Különben mindennek nekimenne."
+    },
+    {
+      "text": "Merre lehet átjutni a következő szobába",
+      "hit": true,
+      "why": "Az ajtók a lakás gráfjának élei."
+    },
+    {
+      "text": "A szőnyeg színe",
+      "hit": false,
+      "why": "A porszívózáshoz nincs rá szüksége."
+    },
+    {
+      "text": "Van-e alatta lépcső",
+      "hit": true,
+      "why": "Enélkül leesne a lépcsőn."
+    },
+    {
+      "text": "Hogy hívják a macskát",
+      "hit": false,
+      "why": "A porszívónak a macska csak akadály."
+    },
+    {
+      "text": "Mennyi töltés maradt az elemben",
+      "hit": true,
+      "why": "Vissza kell érnie a töltőhöz."
+    },
+    {
+      "text": "Milyen kép lóg a falon",
+      "hit": false,
+      "why": "A kép a porszívózás szempontjából teljesen mindegy."
+    }
+  ]
+}

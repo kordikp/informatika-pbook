@@ -43,7 +43,7 @@ A doboz **csak az utolsó értéket** tárolja. Ha az **állítsd be** parancsot
 
 Az összes változó értékét egy adott pillanatban a **program állapotának** nevezzük. 11 pont és egy élet: ez most a játékod állapota.
 
-A programokban ilyet fogsz látni: **pontszam = pontszam + 1**. Ez nem matekos egyenlet. Azt jelenti: vedd, ami a dobozban van, adj hozzá 1-et, és az eredményt tedd vissza a dobozba.
+A programokban ilyet fogsz látni: **pont = pont + 1**. Ez nem matekos egyenlet. Azt jelenti: vedd, ami a dobozban van, adj hozzá 1-et, és az eredményt tedd vissza a dobozba.
 
 **Próbáld ki!** Gondold ki, milyen változók kellenének egy egyszerű „találd ki a számot” játékhoz. Mit kell a programnak megjegyeznie? (Legalább a titkos számot, a játékos utolsó tippjét és a próbálkozások számát.) Melyik változik a legtöbbször játék közben, és melyik egyáltalán nem?
 

@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Dovez robota k nabíjačke",
+  "instruction": "Robot stojí vľavo dole a pozerá sa hore. Nabíjačka je o 2 políčka vyššie a 3 políčka vpravo. Zoraď kroky.",
+  "steps": [
+    "Batéria hlási menej ako 20 %, vyraz",
+    "Choď dopredu o 2 políčka",
+    "Otoč sa vpravo o 90°",
+    "Choď dopredu o 3 políčka",
+    "Zastav a pripoj sa k nabíjačke"
+  ],
+  "why": [
+    "Program čaká, kým je čo robiť: vyrazí, keď batéria dochádza.",
+    "Robot sa pozerá hore, takže najprv ide hore o 2.",
+    "Teraz sa musí natočiť k nabíjačke. Bez otočenia by išiel ďalej hore.",
+    "Po otočení mieri doprava a nabíjačka je 3 políčka ďaleko.",
+    "Postup musí skončiť: robot zastaví v cieli."
+  ],
+  "debrief": "Robot nič nedomýšľa. Každý krok musí byť jednoznačný a poradie presné, inak skončí inde."
+}

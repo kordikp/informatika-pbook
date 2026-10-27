@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Ktorú slučku použiješ?",
+  "instruction": "Ku každej situácii v hre vyber slučku, ktorá sa hodí.",
+  "buckets": [
+    "opakuj n×",
+    "opakuj, kým…",
+    "opakuj stále"
+  ],
+  "items": [
+    {
+      "text": "Postava pri zásahu trikrát blikne",
+      "answer": 0,
+      "why": "Vopred vieš koľkokrát: trikrát."
+    },
+    {
+      "text": "Hra beží, kým hráčovi nedôjdu životy",
+      "answer": 1,
+      "why": "Koniec závisí od toho, čo sa stane, nie od počtu kôl."
+    },
+    {
+      "text": "Hudba v pozadí hrá dookola, kým hru nezavrieš",
+      "answer": 2,
+      "why": "Tu nekonečná slučka nevadí, je to zámer."
+    },
+    {
+      "text": "Odpočítavanie 3, 2, 1 pred štartom",
+      "answer": 0,
+      "why": "Presne tri kroky, známe vopred."
+    },
+    {
+      "text": "Postava padá, kým nedopadne na zem",
+      "answer": 1,
+      "why": "Ako dlho padá, závisí od toho, ako vysoko bola."
+    },
+    {
+      "text": "Mraky na oblohe stále pomaly plávajú",
+      "answer": 2,
+      "why": "Dekorácia, ktorá beží celý čas. Nemá kedy skončiť."
+    }
+  ],
+  "debrief": "Slučku vyberáš podľa toho, čo vieš vopred: presný počet, podmienku konca, alebo nič, pretože hra má bežať stále."
+}

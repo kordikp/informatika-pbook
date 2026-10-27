@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Ordinary test or edge case?",
+  "instruction": "You are testing Pong. Sort the tests: an ordinary situation, or a tricky edge?",
+  "buckets": [
+    "Ordinary test",
+    "Edge case"
+  ],
+  "items": [
+    {
+      "text": "The ball flies into the paddle at medium speed",
+      "answer": 0,
+      "why": "This is how the game is played all the time. It must work, but bugs rarely hide here."
+    },
+    {
+      "text": "The ball stands still (speed 0)",
+      "answer": 1,
+      "why": "Zero is a classic edge: does the game get stuck?"
+    },
+    {
+      "text": "The ball flies at the highest possible speed",
+      "answer": 1,
+      "why": "The maximum: this is where the ball skips the paddle."
+    },
+    {
+      "text": "The player has three lives and loses one",
+      "answer": 0,
+      "why": "An ordinary round of the game."
+    },
+    {
+      "text": "The player loses their last life",
+      "answer": 1,
+      "why": "The switch to game over. Does the score appear, or does the game crash?"
+    },
+    {
+      "text": "The ball hits exactly the corner of the court",
+      "answer": 1,
+      "why": "In the corner two walls meet at once, and that’s where bounce rules often fail."
+    },
+    {
+      "text": "The leaderboard is still empty",
+      "answer": 1,
+      "why": "Empty is an edge: what does the game show when nobody is there?"
+    }
+  ],
+  "debrief": "Ordinary tests pass almost every time. Bugs hide at the edges: zero, the maximum, the corner and unexpected input."
+}

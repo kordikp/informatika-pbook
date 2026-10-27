@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Pořád, n×, nebo dokud?",
+  "instruction": "Kterou smyčku použije micro:bit?",
+  "buckets": [
+    "opakuj n×",
+    "opakuj, dokud…",
+    "pořád"
+  ],
+  "items": [
+    {
+      "text": "Srdce blikne přesně třikrát",
+      "answer": 0,
+      "why": "Předem víš kolikrát."
+    },
+    {
+      "text": "Melodie hraje, dokud někdo nezmáčkne tlačítko",
+      "answer": 1,
+      "why": "Konec záleží na tom, co se stane."
+    },
+    {
+      "text": "Teplota se ukazuje celý den",
+      "answer": 2,
+      "why": "Zařízení má běžet, dokud ho nevypneš."
+    },
+    {
+      "text": "Bzučák pípne pětkrát po sobě",
+      "answer": 0,
+      "why": "Pevný počet: pět."
+    },
+    {
+      "text": "Vozítko jede vpřed, dokud nenarazí",
+      "answer": 1,
+      "why": "Jak daleko pojede, záleží na tom, kde je překážka."
+    },
+    {
+      "text": "Krokoměr počítá kroky celou dobu, co je zapnutý",
+      "answer": 2,
+      "why": "Hlídá pořád, smyčka nemá kdy skončit."
+    }
+  ],
+  "debrief": "Pořád pro zařízení, které má běžet. N× pro přesný počet. Dokud pro konec, který závisí na tom, co se stane."
+}

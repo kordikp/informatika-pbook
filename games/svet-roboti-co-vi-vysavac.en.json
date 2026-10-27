@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "What does the vacuum need to know?",
+  "instruction": "A robot vacuum is supposed to clean the flat. Mark what its model must contain.",
+  "debrief": "A model contains only what the purpose needs. For a vacuum, free space, obstacles and rooms are enough. The colour of the sofa isn’t.",
+  "hitLabel": "belongs in the model",
+  "missLabel": "left out",
+  "items": [
+    {
+      "text": "Where there is an obstacle",
+      "hit": true,
+      "why": "Otherwise it would bump into everything."
+    },
+    {
+      "text": "How to get into the next room",
+      "hit": true,
+      "why": "Doors are the edges of the flat’s graph."
+    },
+    {
+      "text": "The colour of the carpet",
+      "hit": false,
+      "why": "It doesn’t need it for vacuuming."
+    },
+    {
+      "text": "Whether there is a step below it",
+      "hit": true,
+      "why": "Without that it would fall down the stairs."
+    },
+    {
+      "text": "What the cat is called",
+      "hit": false,
+      "why": "To a vacuum, the cat is just an obstacle."
+    },
+    {
+      "text": "How much battery is left",
+      "hit": true,
+      "why": "It has to make it back to the charger."
+    },
+    {
+      "text": "Which picture hangs on the wall",
+      "hit": false,
+      "why": "The picture makes no difference at all to vacuuming."
+    }
+  ]
+}

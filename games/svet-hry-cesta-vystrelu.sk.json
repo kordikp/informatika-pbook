@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Cesta jedného výstrelu",
+  "instruction": "Zoraď, čo sa stane od stlačenia tlačidla po zásah na obrazovke.",
+  "steps": [
+    "Stlačíš tlačidlo streľby",
+    "Mobil zabalí akciu do balíčka s adresou servera",
+    "Routery posielajú balíček ďalej, až k serveru",
+    "Server vypočíta, koho si zasiahol",
+    "Odpoveď putuje späť ku všetkým hráčom",
+    "Tvoj mobil vykreslí zásah"
+  ],
+  "debrief": "Každý výstrel v online hre cestuje tam a späť cez routery. Čím dlhšia cesta, tým vyšší ping a tým neskôr vidíš zásah.",
+  "why": [
+    "Všetko začína vstupom od hráča.",
+    "Aby akcia mohla cestovať sieťou, musí byť v balíčku s adresou.",
+    "Balíček putuje cez niekoľko routerov, každý ho pošle o kus bližšie.",
+    "O zásahu rozhoduje server, nie tvoj mobil. Inak by sa dalo podvádzať.",
+    "Výsledok musia vedieť všetci, ktorí hrajú.",
+    "Až teraz uvidíš zásah. Celá cesta trvá toľko, koľko je tvoj ping."
+  ]
+}

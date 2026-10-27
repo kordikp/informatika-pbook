@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "What will improve the gesture model?",
+  "instruction": "The gesture model gets confused with your friends. Mark everything that will help.",
+  "debrief": "A model learns only from what it has seen. More varied, balanced training data and a test on new people make it better.",
+  "hitLabel": "helps",
+  "missLabel": "doesn’t help",
+  "items": [
+    {
+      "text": "Add examples from more people",
+      "hit": true,
+      "why": "The model will see that people wave in different ways."
+    },
+    {
+      "text": "Add examples with both the left and the right hand",
+      "hit": true,
+      "why": "What is missing from the data, the model can’t do."
+    },
+    {
+      "text": "Train longer on the same ten examples",
+      "hit": false,
+      "why": "It still sees only you. It won’t learn new patterns from them."
+    },
+    {
+      "text": "Add fast and slow waves",
+      "hit": true,
+      "why": "More varied data, so the model doesn’t learn only your pace."
+    },
+    {
+      "text": "Rename the gesture to “waving 2”",
+      "hit": false,
+      "why": "A name shows the model nothing new."
+    },
+    {
+      "text": "Test on people the model has never seen",
+      "hit": true,
+      "why": "Only a test on new data shows whether the model really works."
+    }
+  ]
+}

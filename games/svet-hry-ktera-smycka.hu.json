@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Melyik ciklust használod?",
+  "instruction": "A játék minden helyzetéhez válaszd ki az illő ciklust.",
+  "buckets": [
+    "ismételd n-szer",
+    "ismételd, amíg…",
+    "mindig"
+  ],
+  "items": [
+    {
+      "text": "A figura találatkor háromszor felvillan",
+      "answer": 0,
+      "why": "Előre tudod, hányszor: háromszor."
+    },
+    {
+      "text": "A játék addig fut, amíg el nem fogynak a játékos életei",
+      "answer": 1,
+      "why": "A vége attól függ, mi történik, nem a körök számától."
+    },
+    {
+      "text": "A háttérzene körbe-körbe szól, amíg be nem zárod a játékot",
+      "answer": 2,
+      "why": "Itt a végtelen ciklus nem baj, szándékos."
+    },
+    {
+      "text": "Visszaszámlálás 3, 2, 1 a rajt előtt",
+      "answer": 0,
+      "why": "Pontosan három lépés, előre ismert."
+    },
+    {
+      "text": "A figura addig esik, amíg földet nem ér",
+      "answer": 1,
+      "why": "Hogy meddig esik, attól függ, milyen magasan volt."
+    },
+    {
+      "text": "A felhők folyton lassan úsznak az égen",
+      "answer": 2,
+      "why": "Díszlet, amely egész idő alatt fut. Nincs oka véget érni."
+    }
+  ],
+  "debrief": "A ciklust aszerint választod, mit tudsz előre: pontos számot, a vége feltételét, vagy semmit, mert a játéknak folyamatosan futnia kell."
+}

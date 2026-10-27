@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Kterou smyčku použiješ?",
+  "instruction": "Ke každé situaci ve hře vyber smyčku, která se hodí.",
+  "buckets": [
+    "opakuj n×",
+    "opakuj, dokud…",
+    "opakuj stále"
+  ],
+  "items": [
+    {
+      "text": "Postava při zásahu třikrát blikne",
+      "answer": 0,
+      "why": "Předem víš kolikrát: třikrát."
+    },
+    {
+      "text": "Hra běží, dokud hráči nedojdou životy",
+      "answer": 1,
+      "why": "Konec záleží na tom, co se stane, ne na počtu kol."
+    },
+    {
+      "text": "Hudba v pozadí hraje dokola, dokud hru nezavřeš",
+      "answer": 2,
+      "why": "Tady nekonečná smyčka nevadí, je to záměr."
+    },
+    {
+      "text": "Odpočet 3, 2, 1 před startem",
+      "answer": 0,
+      "why": "Přesně tři kroky, známé předem."
+    },
+    {
+      "text": "Postava padá, dokud nedopadne na zem",
+      "answer": 1,
+      "why": "Jak dlouho padá, záleží na tom, jak vysoko byla."
+    },
+    {
+      "text": "Mraky na obloze pořád pomalu plují",
+      "answer": 2,
+      "why": "Dekorace, která běží celou dobu. Nemá kdy skončit."
+    }
+  ],
+  "debrief": "Smyčku vybíráš podle toho, co víš předem: přesný počet, podmínku konce, nebo nic, protože hra má běžet pořád."
+}

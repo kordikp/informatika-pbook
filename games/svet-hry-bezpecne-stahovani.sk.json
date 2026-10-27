@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Bezpečné, alebo riskantné?",
+  "instruction": "Roztrieď, čo je pri hrách bezpečné a čo riskantné.",
+  "buckets": [
+    "Bezpečné",
+    "Riskantné"
+  ],
+  "items": [
+    {
+      "text": "Hru stiahneš z oficiálneho obchodu",
+      "answer": 0,
+      "why": "Obchod aplikácie kontroluje. Riziko je menšie, aj keď nie nulové."
+    },
+    {
+      "text": "Cheat z odkazu v komentári pod videom",
+      "answer": 1,
+      "why": "Neoverený zdroj, klasický trójsky kôň."
+    },
+    {
+      "text": "Mód chce spustiť ako správca počítača",
+      "answer": 1,
+      "why": "So správcovskými právami môže program v počítači čokoľvek."
+    },
+    {
+      "text": "Aktualizáciu hry nainštaluješ hneď, ako vyjde",
+      "answer": 0,
+      "why": "Aktualizácia zatvára diery, o ktorých útočníci vedia."
+    },
+    {
+      "text": "Hra-baterka chce prístup ku kontaktom",
+      "answer": 1,
+      "why": "Kontakty na svietenie nepotrebuje. Prečo by ich teda chcela?"
+    },
+    {
+      "text": "Uložené pozície máš aj v cloude hry",
+      "answer": 0,
+      "why": "Kópia inde: prežije stratu aj rozbitie mobilu."
+    },
+    {
+      "text": "Vypneš antivírus, pretože ho cheat „neznáša“",
+      "answer": 1,
+      "why": "Presne to malvér potrebuje."
+    }
+  ],
+  "debrief": "Bezpečie nerobí antivírus sám. Robia ho tvoje voľby: overený zdroj, aktualizácie a oprávnenia, ktoré dávajú zmysel."
+}

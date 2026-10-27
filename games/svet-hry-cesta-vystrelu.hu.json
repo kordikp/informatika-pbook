@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Egyetlen lövés útja",
+  "instruction": "Rendezd sorba, mi történik a gomb megnyomásától a találatig a képernyőn.",
+  "steps": [
+    "Megnyomod a lövés gombját",
+    "A telefon a műveletet a szerver címével ellátott csomagba teszi",
+    "A routerek továbbküldik a csomagot egészen a szerverig",
+    "A szerver kiszámolja, kit találtál el",
+    "A válasz visszautazik minden játékoshoz",
+    "A telefonod kirajzolja a találatot"
+  ],
+  "debrief": "Egy online játékban minden lövés oda-vissza utazik a routereken át. Minél hosszabb az út, annál nagyobb a ping, és annál később látod a találatot.",
+  "why": [
+    "Minden a játékos bemenetével kezdődik.",
+    "Ahhoz, hogy a művelet a hálózaton utazhasson, címmel ellátott csomagba kell kerülnie.",
+    "A csomag több routeren halad át, mindegyik egy kicsit közelebb küldi.",
+    "A találatról a szerver dönt, nem a telefonod. Különben csalni lehetne.",
+    "Az eredményt mindenkinek tudnia kell, aki játszik.",
+    "Csak most látod a találatot. Az egész út annyi ideig tart, amennyi a pinged."
+  ]
+}

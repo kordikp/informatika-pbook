@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Scam or fine?",
+  "instruction": "You got these messages. Which ones are scams?",
+  "buckets": [
+    "Scam",
+    "Fine"
+  ],
+  "items": [
+    {
+      "text": "A friend on Discord: “I’m giving away skins, log in here: game-skins-free.net”",
+      "answer": 0,
+      "why": "A strange page wants your login. And your friend’s account may have been stolen."
+    },
+    {
+      "text": "The game’s official app: “You have a reward in your inventory for finishing the week.”",
+      "answer": 1,
+      "why": "It doesn’t want anything from you. You find the reward yourself, right in the game."
+    },
+    {
+      "text": "A “moderator”: “Send me the code from your SMS, we’ll verify your account.”",
+      "answer": 0,
+      "why": "Never give an SMS code to anyone. No moderator needs it."
+    },
+    {
+      "text": "An unknown player: “I’ll sell you a rare sword, send the money first.”",
+      "answer": 0,
+      "why": "Money in advance to a stranger, outside the game’s shop. The sword will most likely never arrive."
+    },
+    {
+      "text": "An e-mail: “Your account will be deleted within an hour, click and confirm your password.”",
+      "answer": 0,
+      "why": "Fear and hurry at once. Log in yourself through the app and see whether anything is going on."
+    },
+    {
+      "text": "A classmate at school shows you a skin they bought in the game’s shop",
+      "answer": 1,
+      "why": "Nobody wants anything from you, and the game’s shop is official."
+    }
+  ],
+  "debrief": "A scam gives itself away by what it wants from you: a password, a code or money, and right now. Check it another way."
+}

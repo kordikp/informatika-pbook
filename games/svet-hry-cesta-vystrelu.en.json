@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "The trip of a single shot",
+  "instruction": "Put in order what happens from pressing the button to the hit on the screen.",
+  "steps": [
+    "You press the fire button",
+    "The phone wraps the action in a packet with the server’s address",
+    "Routers pass the packet on, all the way to the server",
+    "The server works out whom you hit",
+    "The response travels back to all the players",
+    "Your phone draws the hit"
+  ],
+  "debrief": "Every shot in an online game travels there and back through routers. The longer the trip, the higher the ping and the later you see the hit.",
+  "why": [
+    "Everything starts with input from the player.",
+    "To travel over the network, the action has to be in a packet with an address.",
+    "The packet travels through several routers; each one sends it a bit closer.",
+    "The server decides about the hit, not your phone. Otherwise you could cheat.",
+    "Everyone who is playing has to know the result.",
+    "Only now do you see the hit. The whole trip takes as long as your ping."
+  ]
+}

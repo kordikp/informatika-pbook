@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Podvod, alebo v poriadku?",
+  "instruction": "Prišli ti tieto správy. Ktoré sú podvod?",
+  "buckets": [
+    "Podvod",
+    "V poriadku"
+  ],
+  "items": [
+    {
+      "text": "Kamarát na Discorde: „Rozdávam skiny, prihlás sa tu: hra-skiny-free.net“",
+      "answer": 0,
+      "why": "Cudzia stránka chce tvoje prihlásenie. A kamarátov účet môže byť ukradnutý."
+    },
+    {
+      "text": "Oficiálna appka hry: „Za dokončený týždeň máš odmenu v inventári.“",
+      "answer": 1,
+      "why": "Nič od teba nechce. Odmenu nájdeš sám priamo v hre."
+    },
+    {
+      "text": "„Moderátor“: „Pošli mi kód z SMS, overíme tvoj účet.“",
+      "answer": 0,
+      "why": "Kód z SMS nikdy nikomu. Žiadny moderátor ho nepotrebuje."
+    },
+    {
+      "text": "Neznámy hráč: „Predám ti vzácny meč, peniaze pošli vopred.“",
+      "answer": 0,
+      "why": "Peniaze vopred neznámemu a mimo obchodu hry. Meč najskôr nikdy nepríde."
+    },
+    {
+      "text": "E-mail: „Tvoj účet bude do hodiny zmazaný, klikni a potvrď heslo.“",
+      "answer": 0,
+      "why": "Strach a zhon zároveň. Prihlás sa sám cez appku a pozri sa, či sa niečo deje."
+    },
+    {
+      "text": "Spolužiak ti v škole ukáže skin, ktorý si kúpil v obchode hry",
+      "answer": 1,
+      "why": "Nikto od teba nič nechce a obchod hry je oficiálny."
+    }
+  ],
+  "debrief": "Podvod prezradí, čo od teba chce: heslo, kód alebo peniaze, a to hneď. Over si to inou cestou."
+}

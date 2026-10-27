@@ -1,0 +1,34 @@
+{
+  "type": "pairs",
+  "title": "Mi van a kijelzőn?",
+  "instruction": "Az 5 × 5-ös kijelző sorai fentről lefelé (1 = világít). Melyik képet kódolják?",
+  "debrief": "Aki ismeri a kódolás szabályát, a számokból ugyanazt a képet rakja vissza. Egy szám önmagában semmit sem jelent.",
+  "choices": 4,
+  "pairs": [
+    {
+      "a": "felfelé mutató nyíl",
+      "b": "00100 · 01110 · 10101 · 00100 · 00100",
+      "why": "Fent egy LED, alatta kiszélesedik a nyíl, lefelé pedig egy szár vezet."
+    },
+    {
+      "a": "mosolygós arc",
+      "b": "00000 · 01010 · 00000 · 10001 · 01110",
+      "why": "Két szem a második sorban, és egy száj, amely lent mosolyra görbül."
+    },
+    {
+      "a": "x jel",
+      "b": "10001 · 01010 · 00100 · 01010 · 10001",
+      "why": "Két átló, amelyek középen találkoznak."
+    },
+    {
+      "a": "szív",
+      "b": "01010 · 11111 · 11111 · 01110 · 00100",
+      "why": "Két ív fent és egy csúcs lent."
+    },
+    {
+      "a": "felkiáltójel",
+      "b": "00100 · 00100 · 00100 · 00000 · 00100",
+      "why": "Egy függőleges vonal, egy hézag és egy pont."
+    }
+  ]
+}

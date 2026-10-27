@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Nastav, nebo změň?",
+  "instruction": "Ke každé chvíli ve hře vyber blok, který se tam hodí.",
+  "buckets": [
+    "nastav na …",
+    "změň o …"
+  ],
+  "items": [
+    {
+      "text": "Začátek hry: skóre začíná od nuly",
+      "answer": 0,
+      "why": "Ať tam bylo cokoli, má tam být 0. To je nastavení."
+    },
+    {
+      "text": "Hráč sebral minci",
+      "answer": 1,
+      "why": "K bodům, které už má, jeden přibude."
+    },
+    {
+      "text": "Postava narazila do nepřítele",
+      "answer": 1,
+      "why": "Z životů, které má, jeden ubude: změň o -1."
+    },
+    {
+      "text": "Nový level začíná zase se třemi životy",
+      "answer": 0,
+      "why": "Hodnota se přepíše na 3 bez ohledu na to, kolik jich zbylo."
+    },
+    {
+      "text": "Combo: za každou minci v řadě o bod víc",
+      "answer": 1,
+      "why": "Body se přičítají k tomu, co už je."
+    },
+    {
+      "text": "Hráč zmáčkl „Hrát znovu“ a režim je zase „hraje se“",
+      "answer": 0,
+      "why": "Režim se přepíše na novou hodnotu."
+    }
+  ],
+  "debrief": "Nastav přepíše hodnotu, změň přičte k té, co tam je. Na začátek hry patří nastav, k chycení mince změň."
+}

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Krokoměr ukazuje hodnotu proměnné kroky">
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker></defs>
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif">
+  <text x="18" y="26" font-size="17" font-weight="700" fill="#1E1B4B">Krokoměr: proměnná kroky</text>
+  <text x="18" y="44" font-size="11" fill="#6B7280">Jedno jméno, v jednu chvíli právě jedna hodnota. Zatřesení k ní přičte 1.</text>
+  <rect x="28" y="74" width="144" height="112" rx="12" fill="#1E1B4B"/>
+  <rect x="64" y="92" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="79" y="92" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="94" y="92" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="109" y="92" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="124" y="92" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="64" y="107" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="79" y="107" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="94" y="107" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="109" y="107" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="124" y="107" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="64" y="122" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="79" y="122" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="94" y="122" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="109" y="122" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="124" y="122" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="64" y="137" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="79" y="137" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="94" y="137" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="109" y="137" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="124" y="137" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="64" y="152" width="10" height="10" rx="2" fill="#374151"/>
+  <rect x="79" y="152" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="94" y="152" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="109" y="152" width="10" height="10" rx="2" fill="#EF4444"/>
+  <rect x="124" y="152" width="10" height="10" rx="2" fill="#374151"/>
+  <circle cx="44" cy="130" r="9" fill="#9CA3AF"/><circle cx="156" cy="130" r="9" fill="#9CA3AF"/>
+  <text x="44" y="134" font-size="10" font-weight="700" fill="#1E1B4B" text-anchor="middle">A</text>
+  <text x="156" y="134" font-size="10" font-weight="700" fill="#1E1B4B" text-anchor="middle">B</text>
+  <text x="100" y="206" font-size="10" fill="#6B7280" text-anchor="middle">displej ukazuje 249</text>
+  <text x="196" y="82" font-size="11" font-weight="700" fill="#1E1B4B">při spuštění</text>
+  <text x="278" y="82" font-size="11" font-weight="600" fill="#7C3AED">nastav kroky na 0</text>
+  <rect x="410" y="64" width="48" height="26" rx="6" fill="#7C3AED"/>
+  <text x="434" y="81" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">kroky</text>
+  <rect x="458" y="64" width="38" height="26" rx="6" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="477" y="82" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">0</text>
+  <text x="196" y="116" font-size="11" font-weight="700" fill="#1E1B4B">zatřesení</text>
+  <text x="278" y="116" font-size="11" font-weight="600" fill="#7C3AED">změň kroky o 1</text>
+  <rect x="410" y="98" width="48" height="26" rx="6" fill="#7C3AED"/>
+  <text x="434" y="115" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">kroky</text>
+  <rect x="458" y="98" width="38" height="26" rx="6" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="477" y="116" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">1</text>
+  <text x="196" y="150" font-size="11" font-weight="700" fill="#1E1B4B">…</text>
+  <text x="278" y="150" font-size="11" font-weight="600" fill="#7C3AED"></text>
+  <rect x="410" y="132" width="48" height="26" rx="6" fill="#7C3AED"/>
+  <text x="434" y="149" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">kroky</text>
+  <rect x="458" y="132" width="38" height="26" rx="6" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="477" y="150" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">248</text>
+  <text x="196" y="184" font-size="11" font-weight="700" fill="#1E1B4B">zatřesení</text>
+  <text x="278" y="184" font-size="11" font-weight="600" fill="#7C3AED">změň kroky o 1</text>
+  <rect x="410" y="166" width="48" height="26" rx="6" fill="#7C3AED"/>
+  <text x="434" y="183" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">kroky</text>
+  <rect x="458" y="166" width="38" height="26" rx="6" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="477" y="184" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">249</text>
+  <text x="196" y="218" font-size="11" font-weight="700" fill="#1E1B4B">tlačítko B</text>
+  <text x="278" y="218" font-size="11" font-weight="600" fill="#7C3AED">nastav kroky na 0</text>
+  <rect x="410" y="200" width="48" height="26" rx="6" fill="#7C3AED"/>
+  <text x="434" y="217" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">kroky</text>
+  <rect x="458" y="200" width="38" height="26" rx="6" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="477" y="218" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">0</text>
+  <text x="346" y="246" font-size="11" fill="#6B7280" text-anchor="middle">nastav na = přepíše · změň o = přičte</text>
+
+  </g>
+</svg>

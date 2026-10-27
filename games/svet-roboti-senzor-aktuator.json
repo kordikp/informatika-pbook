@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Senzor, nebo aktuátor?",
+  "instruction": "Měří to (senzor), nebo to koná (aktuátor)?",
+  "buckets": [
+    "Senzor (měří)",
+    "Aktuátor (koná)"
+  ],
+  "items": [
+    {
+      "text": "teploměr",
+      "answer": 0,
+      "why": "Měří teplotu a hlásí číslo."
+    },
+    {
+      "text": "motor",
+      "answer": 1,
+      "why": "Roztočí kolo, tedy koná."
+    },
+    {
+      "text": "mikrofon",
+      "answer": 0,
+      "why": "Měří hlasitost zvuku."
+    },
+    {
+      "text": "LED displej",
+      "answer": 1,
+      "why": "Svítí, ukazuje výstup."
+    },
+    {
+      "text": "akcelerometr (čidlo pohybu)",
+      "answer": 0,
+      "why": "Měří, jak se zařízení hýbe a naklání."
+    },
+    {
+      "text": "reproduktor",
+      "answer": 1,
+      "why": "Vydává zvuk."
+    },
+    {
+      "text": "tlačítko",
+      "answer": 0,
+      "why": "Hlásí, jestli ho někdo stiskl. I to je vstup."
+    },
+    {
+      "text": "vibrační motorek",
+      "answer": 1,
+      "why": "Zatřese mobilem, koná."
+    }
+  ],
+  "debrief": "Senzor svět měří a dává programu vstup. Aktuátor svět mění a je výstupem programu."
+}
