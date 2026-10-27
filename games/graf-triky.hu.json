@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Becsületes diagram vagy trükk?",
+  "instruction": "Mi rendben van, és mi jellemző arra a diagramra, amely meg akar téveszteni?",
+  "buckets": [
+    "Becsületes",
+    "Trükk!"
+  ],
+  "items": [
+    {
+      "text": "Az Y tengely nulláról indul",
+      "answer": 0,
+      "why": "Az oszlopok magassága megfelel a valódi értékeknek."
+    },
+    {
+      "text": "Az Y tengely 99-ről indul",
+      "answer": 1,
+      "why": "Így egy kis különbség óriásinak látszik."
+    },
+    {
+      "text": "Feliratozott tengelyek mértékegységgel",
+      "answer": 0,
+      "why": "Tudod, mit és miben mér a diagram."
+    },
+    {
+      "text": "A diagram éppen azzal az évvel kezdődik, amikor jól néz ki",
+      "answer": 1,
+      "why": "A kiválasztott időszak elrejti, milyen volt előtte."
+    },
+    {
+      "text": "Oszlopdiagram az osztályok összehasonlítására",
+      "answer": 0,
+      "why": "Az egymás melletti oszlopokat könnyű összehasonlítani."
+    },
+    {
+      "text": "Kétszer magasabb emberke = „kétszeres”",
+      "answer": 1,
+      "why": "A kétszer magasabb emberke kétszer szélesebb is, így négyszeresnek látszik."
+    },
+    {
+      "text": "Vonaldiagram a hét közbeni hőmérsékletről",
+      "answer": 0,
+      "why": "A vonal megmutatja, hogyan változik egy érték az időben."
+    },
+    {
+      "text": "Kördiagram 15 szelettel, felirat nélkül",
+      "answer": 1,
+      "why": "Ennyi feliratlan szeletet nem lehet összehasonlítani. Nem tudod, melyik mi."
+    }
+  ],
+  "debrief": "A becsületes diagramnak feliratozott tengelyei, ésszerű léptéke és megfelelő típusa van. A trükkök a benyomást változtatják meg, nem az adatokat: levágott tengely, kiválasztott időszak, oszlopok helyett képek."
+}

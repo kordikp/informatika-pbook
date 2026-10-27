@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Natoč třídní video",
+  "instruction": "Seřaď úkoly tak, aby každý přišel až po tom, na čem závisí.",
+  "steps": [
+    "Vybrat téma",
+    "Napsat scénář",
+    "Natočit záběry",
+    "Sestříhat záběry",
+    "Přidat titulky a hudbu",
+    "Pustit video třídě"
+  ],
+  "debrief": "Každý úkol závisí na tom předchozím: bez tématu není scénář, bez záběrů není co stříhat. Kdo najde závislosti, ví, v jakém pořadí práci rozdělit.",
+  "why": [
+    "Bez tématu nevíš, o čem psát.",
+    "Scénář říká, co natočit.",
+    "Natáčíš podle scénáře.",
+    "Stříhat jde až natočené záběry.",
+    "Titulky a hudba se přidávají k sestříhanému videu.",
+    "Pustit jde až hotové video."
+  ]
+}

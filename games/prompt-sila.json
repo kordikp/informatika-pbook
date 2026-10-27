@@ -9,35 +9,44 @@
   "items": [
     {
       "text": "„Napiš mi něco o vesmíru“",
-      "answer": 1
+      "answer": 1,
+      "why": "Co přesně, pro koho a jak dlouhé? AI musí hádat."
     },
     {
       "text": "„Vysvětli osmákovi černé díry v 5 odrážkách s příkladem“",
-      "answer": 0
+      "answer": 0,
+      "why": "Téma, čtenář, rozsah i forma jsou jasné."
     },
     {
       "text": "„Udělej referát“",
-      "answer": 1
+      "answer": 1,
+      "why": "Chybí téma, rozsah i to, pro koho je."
     },
     {
       "text": "„Shrň tento text do 3 vět pro spolužáka, česky“",
-      "answer": 0
+      "answer": 0,
+      "why": "Úkol, délka, čtenář i jazyk jsou dané."
     },
     {
       "text": "„Pomoc s matikou“",
-      "answer": 1
+      "answer": 1,
+      "why": "S čím přesně? AI neví, kde začít."
     },
     {
       "text": "„Vyzkoušej mě z 5 otázek na zlomky, po jedné, s vysvětlením chyb“",
-      "answer": 0
+      "answer": 0,
+      "why": "Přesně říká, co a jak má AI dělat."
     },
     {
       "text": "„Oprav v textu pravopis, změny vyznač tučně“",
-      "answer": 0
+      "answer": 0,
+      "why": "Jasný úkol i podoba výsledku."
     },
     {
       "text": "„Napiš to líp“",
-      "answer": 1
+      "answer": 1,
+      "why": "Co znamená líp? Kratší, vtipnější, bez chyb?"
     }
-  ]
+  ],
+  "debrief": "Silný prompt říká, co přesně chceš, pro koho, v jaké podobě a jak dlouhé. Slabý prompt nechá AI hádat a ta pak odpoví obecně."
 }

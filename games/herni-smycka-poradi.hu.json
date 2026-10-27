@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Építs játékciklust",
+  "instruction": "Rakd sorba, mit csinál egy játék másodpercenként 60×, újra és újra!",
+  "steps": [
+    "Olvasd be a játékos bemenetét (billentyűk, érintés)",
+    "Mozdítsd tovább a szereplőket, és számold ki az új helyzetüket",
+    "Ellenőrizd az ütközéseket (összeértek a tárgyak?)",
+    "Frissítsd a pontszámot és az életeket a szabályok szerint",
+    "Rajzold ki újra az egész jelenetet a képernyőre"
+  ],
+  "debrief": "A játék másodpercenként több tucatszor ismétli ugyanazt a ciklust: bemenet, mozgás, ütközések, szabályok, kirajzolás. Ezért tűnik úgy, hogy minden gördülékenyen fut.",
+  "why": [
+    "A játéknak először tudnia kell, mit nyomott meg a játékos.",
+    "A bemenet alapján számolják ki a szereplők új helyzetét.",
+    "Hogy a tárgyak összeértek-e, csak az új helyzetekből derül ki.",
+    "Az ütközésekből tudod, hogy nő-e a pontszám, vagy elveszik egy élet.",
+    "Végül kirajzolják a jelenetet mindazzal, ami ebben a körben megváltozott."
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Dátová triedička",
+  "instruction": "Štruktúrované dáta (pevný poriadok), alebo neštruktúrované (bez poriadku)?",
+  "buckets": [
+    "Štruktúrované",
+    "Neštruktúrované"
+  ],
+  "items": [
+    {
+      "text": "Tabuľka známok v EduPage",
+      "answer": 0,
+      "why": "Každý riadok je žiak, každý stĺpec predmet alebo dátum."
+    },
+    {
+      "text": "Fotky z výletu",
+      "answer": 1,
+      "why": "Obrázok nemá riadky a stĺpce s údajmi. Čo na ňom je, musí niekto spoznať."
+    },
+    {
+      "text": "Cestovný poriadok autobusu",
+      "answer": 0,
+      "why": "Pevná tabuľka: zastávka, čas, linka."
+    },
+    {
+      "text": "Hlasovka od kamaráta",
+      "answer": 1,
+      "why": "Zvuk bez pevného poriadku. Čo v ňom je, sa musí vypočuť."
+    },
+    {
+      "text": "Sklad e-shopu (riadky a stĺpce)",
+      "answer": 0,
+      "why": "Každý výrobok má rovnaké údaje: názov, cenu, počet kusov."
+    },
+    {
+      "text": "Video na TikToku",
+      "answer": 1,
+      "why": "Obraz a zvuk bez tabuľky. Pevné sú len údaje okolo, napríklad počet lajkov."
+    },
+    {
+      "text": "Herný rebríček (hráč, skóre)",
+      "answer": 0,
+      "why": "Každý riadok má rovnaké polia: hráč a skóre. Dá sa zoradiť."
+    },
+    {
+      "text": "Sloh o prázdninách",
+      "answer": 1,
+      "why": "Voľný text. Každý ho napíše inak."
+    }
+  ],
+  "debrief": "Štruktúrované dáta majú pevné riadky a stĺpce, takže sa v nich dá hľadať a triediť. Fotka, hlasovka alebo sloh nesú informácie tiež, len bez pevného poriadku."
+}

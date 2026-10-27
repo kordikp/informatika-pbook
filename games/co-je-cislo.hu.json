@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Kódolás vagy titkosítás?",
+  "instruction": "Olyan szabály, amelyet minden program ismer, vagy olyan zár, amelynek a kulcsa csak valakinél van?",
+  "buckets": [
+    "Kódolás (nyilvános szabály)",
+    "Titkosítás (titkos kulcs)"
+  ],
+  "items": [
+    {
+      "text": "Az A betű 65-ként tárolódik",
+      "answer": 0,
+      "why": "A karaktertáblát minden számítógép ismeri. Semmi sem titkos."
+    },
+    {
+      "text": ".png formátumban mentett fotó",
+      "answer": 0,
+      "why": "A PNG formátum nyilvános. Bármelyik képnézegető megnyitja."
+    },
+    {
+      "text": "Csetüzenet, amelyet csak a címzett olvashat el",
+      "answer": 1,
+      "why": "Az üzenetet olyan kulcs zárja, amely csak a címzettnél van. Ez titkosítás."
+    },
+    {
+      "text": "A pixel mint három szám: vörös, zöld, kék",
+      "answer": 0,
+      "why": "Nyilvános szabály arról, hogyan írjunk le egy színt számokkal."
+    },
+    {
+      "text": "A lakat és a https a böngészőben",
+      "answer": 1,
+      "why": "A kapcsolat a weboldallal titkosított, útközben senki sem olvassa el."
+    },
+    {
+      "text": ".mp3 formátumban mentett dal",
+      "answer": 0,
+      "why": "Az MP3 nyilvános formátum. Bármelyik lejátszó lejátssza."
+    },
+    {
+      "text": "Caesar-titkosírás 3-as kulccsal",
+      "answer": 1,
+      "why": "Kulcs (3-mal való eltolás) nélkül nem olvashatod el az üzenetet. Ez titkosírás, még ha gyenge is."
+    }
+  ],
+  "debrief": "A kódolás nyilvános szabály arról, hogyan írjuk le az adatokat számokkal. Minden program ismeri. A titkosítás bezárja az adatokat, és csak az olvashatja el őket, akinél a kulcs van."
+}

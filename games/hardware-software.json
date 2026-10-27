@@ -9,51 +9,64 @@
   "items": [
     {
       "text": "Procesor",
-      "answer": 0
+      "answer": 0,
+      "why": "Čip, který vykonává instrukce programů."
     },
     {
       "text": "Minecraft",
-      "answer": 1
+      "answer": 1,
+      "why": "Hra je program. Nainstaluješ ji a zase smažeš."
     },
     {
       "text": "Displej",
-      "answer": 0
+      "answer": 0,
+      "why": "Fyzická obrazovka, na kterou si sáhneš."
     },
     {
       "text": "Android",
-      "answer": 1
+      "answer": 1,
+      "why": "Operační systém je program, který řídí celý mobil."
     },
     {
       "text": "Baterie",
-      "answer": 0
+      "answer": 0,
+      "why": "Součástka, která dodává energii."
     },
     {
       "text": "TikTok",
-      "answer": 1
+      "answer": 1,
+      "why": "Aplikace je program, i když ji máš pořád po ruce."
     },
     {
       "text": "Klávesnice",
-      "answer": 0
+      "answer": 0,
+      "why": "Fyzické zařízení pro vstup. Klávesnice na displeji je ale software."
     },
     {
       "text": "Prohlížeč",
-      "answer": 1
+      "answer": 1,
+      "why": "Program, kterým otevíráš weby."
     },
     {
       "text": "Reproduktor",
-      "answer": 0
+      "answer": 0,
+      "why": "Součástka, která z elektrického signálu udělá zvuk."
     },
     {
       "text": "Windows",
-      "answer": 1
+      "answer": 1,
+      "why": "Operační systém počítače, tedy program."
     },
     {
       "text": "Kamera",
-      "answer": 0
+      "answer": 0,
+      "why": "Fyzický senzor, který zachytí světlo."
     },
     {
       "text": "Kalkulačka (appka)",
-      "answer": 1
+      "answer": 1,
+      "why": "Appka je program. Kalkulačka s tlačítky by byla hardware."
     }
-  ]
+  ],
+  "debrief": "Hardware si můžeš osahat. Software jsou programy, které na hardwaru běží. Mobil potřebuje obojí: bez programů je to jen kus skla a kovu."
 }

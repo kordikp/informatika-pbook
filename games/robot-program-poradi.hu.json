@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Program egy robotnak",
+  "instruction": "Rakd sorba a blokkokat: bemenet, feldolgozás és kimenet. A robot egyenesen megy, balra fordul, és a célban világít.",
+  "steps": [
+    "▶ amikor megnyomják az A gombot",
+    "menj előre 3-at",
+    "fordulj balra",
+    "menj előre 2-t",
+    "kapcsold fel a lámpát"
+  ],
+  "debrief": "A robot programjának van bemenete (a gomb), feldolgozása (mozgások pontos sorrendben) és kimenete (a lámpa). Cserélj fel két mozgást, és a robot máshol köt ki.",
+  "why": [
+    "A program a bemenetre vár: csak az A gomb megnyomása után indul.",
+    "Először 3 mezőt megy egyenesen.",
+    "Aztán fordul. Ha korábban fordulna, más úton menne.",
+    "A fordulás után 2 mezőt megy a célig.",
+    "A kimenet: a lámpa csak akkor gyullad fel, amikor a robot a célban van."
+  ]
+}

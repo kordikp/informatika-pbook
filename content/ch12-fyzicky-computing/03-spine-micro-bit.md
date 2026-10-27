@@ -8,7 +8,7 @@ teaser: "Počítač menší než krabička žvýkaček. Postavíš na něm kostk
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Proč je micro:bit ideální na první kroky ve fyzickém computingu?"
 recallA: "Senzory, displej i tlačítka má přímo na destičce a programuje se blokově v MakeCode i textově v MicroPythonu. Bez hardwaru poslouží simulátor v prohlížeči."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch12-micro-bit
-state: core
+state: edited
 carriers: prose
 ---
 

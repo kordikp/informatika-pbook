@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Silné, nebo slabé heslo?",
+  "instruction": "Útočník zkouší nejdřív známá hesla a jejich obměny. Co vydrží?",
+  "buckets": [
+    "Vydrží",
+    "Padne rychle"
+  ],
+  "items": [
+    {
+      "text": "heslo123",
+      "answer": 1,
+      "why": "Patří mezi nejčastější hesla na světě. Útočník ho zkusí hned."
+    },
+    {
+      "text": "P@ss1",
+      "answer": 1,
+      "why": "Krátké, a záměna písmen za znaky je známý trik. Programy ji zkoušejí samy."
+    },
+    {
+      "text": "Tr4mvaj!",
+      "answer": 1,
+      "why": "Jedno slovo s obvyklými záměnami. Na to mají útočníci slovníky."
+    },
+    {
+      "text": "žirafa jí knedlíky na Měsíci",
+      "answer": 0,
+      "why": "Dlouhé a z nečekaných slov. To se uhodnout nedá."
+    },
+    {
+      "text": "minecraft2012",
+      "answer": 1,
+      "why": "Oblíbená hra a rok. Obojí útočník zkouší mezi prvními."
+    },
+    {
+      "text": "modrý vlak jede pozpátku do Brna",
+      "answer": 0,
+      "why": "Dlouhá věta, kterou si zapamatuješ, ale nikdo ji neuhodne."
+    },
+    {
+      "text": "Stejné dlouhé heslo pro hru i e-mail",
+      "answer": 1,
+      "why": "Když unikne ze hry, útočník ho zkusí i na e-mail."
+    },
+    {
+      "text": "Dlouhé heslo ze správce hesel + 2FA",
+      "answer": 0,
+      "why": "Náhodné heslo a druhý krok navíc. Ani s heslem se útočník nepřihlásí."
+    }
+  ],
+  "debrief": "Útočník zkouší nejdřív známá hesla, slova a jejich obměny. Vydrží dlouhé heslo z několika nečekaných slov nebo heslo ze správce hesel, pro každý účet jiné a nejlépe s 2FA."
+}

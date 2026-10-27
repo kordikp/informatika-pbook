@@ -8,7 +8,7 @@ teaser: "Hra se nehýbe. Jen se ti 60× za vteřinu překresluje před očima. V
 voice: universal
 parent: null
 diagram: anim-herni-smycka
-core: true
+core: false
 recallQ: "Co dělá herní smyčka a co jsou objekty ve scéně?"
 recallA: "Smyčka mnohokrát za vteřinu opakuje: načti vstup → přepočítej svět → vykresli obraz. Ve scéně přitom žijí objekty (sprity) — postavy, překážky, předměty — každý se svou polohou a chováním."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch11-herni-smycka-scena-a-objekty
-state: core
+state: edited
 carriers: prose|animation
 ---
 

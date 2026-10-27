@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Make a class video",
+  "instruction": "Put the tasks in order so that each one comes after what it depends on.",
+  "steps": [
+    "Choose a topic",
+    "Write the script",
+    "Shoot the footage",
+    "Edit the footage",
+    "Add subtitles and music",
+    "Show the video to the class"
+  ],
+  "debrief": "Each task depends on the one before: no topic, no script; no footage, nothing to edit. If you can spot the dependencies, you know in what order to share out the work.",
+  "why": [
+    "Without a topic you don't know what to write about.",
+    "The script says what to film.",
+    "You film according to the script.",
+    "You can only edit footage you have shot.",
+    "Subtitles and music are added to the edited video.",
+    "You can only show a finished video."
+  ]
+}

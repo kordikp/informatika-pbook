@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Sleva, nebo plné vstupné?",
+  "instruction": "Slevu mají děti mladší 15 let a lidé od 65 let.",
+  "buckets": [
+    "Sleva",
+    "Plné vstupné"
+  ],
+  "items": [
+    {
+      "text": "Ema, 9 let",
+      "answer": 0,
+      "why": "9 je méně než 15, sleva platí."
+    },
+    {
+      "text": "Tomáš, 15 let",
+      "answer": 1,
+      "why": "Pozor na hranici: 15 není méně než 15. Plné vstupné."
+    },
+    {
+      "text": "Věra, 71 let",
+      "answer": 0,
+      "why": "71 je víc než 65, sleva platí."
+    },
+    {
+      "text": "Jan, 34 let",
+      "answer": 1,
+      "why": "34 není méně než 15, ani to není 65 a víc."
+    },
+    {
+      "text": "Petra, 14 let",
+      "answer": 0,
+      "why": "14 je méně než 15, sleva platí."
+    },
+    {
+      "text": "Karel, 65 let",
+      "answer": 0,
+      "why": "Pozor na hranici: „od 65“ znamená i přesně 65. Sleva platí."
+    },
+    {
+      "text": "Ondřej, 40 let",
+      "answer": 1,
+      "why": "40 není méně než 15, ani to není 65 a víc."
+    },
+    {
+      "text": "Lucie, 64 let",
+      "answer": 1,
+      "why": "64 je pořád méně než 65. Plné vstupné."
+    }
+  ],
+  "debrief": "Podmínka „mladší 15 nebo od 65“ rozhoduje přesně, i na hranici. Patnáctiletý už slevu nemá, pětašedesátiletý ji má. Hranice je u podmínek nejčastější místo chyby."
+}

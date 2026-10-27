@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Kam to uložíš?",
+  "instruction": "Len v zariadení, alebo v cloude? Rozhodni podľa toho, čo potrebuješ.",
+  "buckets": [
+    "Musí byť v zariadení",
+    "Hodí sa cloud"
+  ],
+  "items": [
+    {
+      "text": "Hra, ktorú chceš hrať v lietadle bez internetu",
+      "answer": 0,
+      "why": "V lietadle sa ku cloudu nepripojíš."
+    },
+    {
+      "text": "Referát, na ktorom pracuješ doma aj v škole",
+      "answer": 1,
+      "why": "Otvoríš ho z akéhokoľvek počítača."
+    },
+    {
+      "text": "Mapa na výlet do hôr, kde nie je signál",
+      "answer": 0,
+      "why": "Bez signálu sa mapa z cloudu nenačíta. Stiahni si ju vopred."
+    },
+    {
+      "text": "Fotky, ktoré chceš mať aj po výmene mobilu",
+      "answer": 1,
+      "why": "V cloude zostanú, aj keď mobil vymeníš alebo stratíš."
+    },
+    {
+      "text": "Dokument, ktorý píšeš so spolužiakmi naraz",
+      "answer": 1,
+      "why": "Všetci pracujete na rovnakej kópii na serveri."
+    },
+    {
+      "text": "Lístok, ktorý ukážeš v metre pod zemou",
+      "answer": 0,
+      "why": "Pod zemou často nie je signál. Lístok maj uložený v mobile."
+    }
+  ],
+  "debrief": "Cloud sa hodí, keď chceš dáta na viacerých zariadeniach alebo s viacerými ľuďmi. Kde nie je internet, musia byť dáta priamo v zariadení."
+}

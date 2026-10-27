@@ -1,0 +1,72 @@
+{
+  "type": "sort",
+  "title": "Hardvér, alebo softvér?",
+  "instruction": "Roztrieď: na čo si siahneš (hardvér) a čo v zariadení len beží (softvér)?",
+  "buckets": [
+    "Hardvér",
+    "Softvér"
+  ],
+  "items": [
+    {
+      "text": "Procesor",
+      "answer": 0,
+      "why": "Čip, ktorý vykonáva inštrukcie programov."
+    },
+    {
+      "text": "Minecraft",
+      "answer": 1,
+      "why": "Hra je program. Nainštaluješ ju a znova zmažeš."
+    },
+    {
+      "text": "Displej",
+      "answer": 0,
+      "why": "Fyzická obrazovka, na ktorú si siahneš."
+    },
+    {
+      "text": "Android",
+      "answer": 1,
+      "why": "Operačný systém je program, ktorý riadi celý mobil."
+    },
+    {
+      "text": "Batéria",
+      "answer": 0,
+      "why": "Súčiastka, ktorá dodáva energiu."
+    },
+    {
+      "text": "TikTok",
+      "answer": 1,
+      "why": "Aplikácia je program, aj keď ju máš stále po ruke."
+    },
+    {
+      "text": "Klávesnica",
+      "answer": 0,
+      "why": "Fyzické zariadenie na vstup. Klávesnica na displeji je však softvér."
+    },
+    {
+      "text": "Prehliadač",
+      "answer": 1,
+      "why": "Program, ktorým otváraš weby."
+    },
+    {
+      "text": "Reproduktor",
+      "answer": 0,
+      "why": "Súčiastka, ktorá z elektrického signálu urobí zvuk."
+    },
+    {
+      "text": "Windows",
+      "answer": 1,
+      "why": "Operačný systém počítača, teda program."
+    },
+    {
+      "text": "Kamera",
+      "answer": 0,
+      "why": "Fyzický senzor, ktorý zachytí svetlo."
+    },
+    {
+      "text": "Kalkulačka (apka)",
+      "answer": 1,
+      "why": "Apka je program. Kalkulačka s tlačidlami by bola hardvér."
+    }
+  ],
+  "debrief": "Hardvér si môžeš ohmatať. Softvér sú programy, ktoré na hardvéri bežia. Mobil potrebuje oboje: bez programov je to len kus skla a kovu."
+}

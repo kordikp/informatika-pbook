@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Kódování, nebo šifrování?",
+  "instruction": "Pravidlo, které zná každý program, nebo zámek, ke kterému má klíč jen někdo?",
+  "buckets": [
+    "Kódování (veřejné pravidlo)",
+    "Šifrování (tajný klíč)"
+  ],
+  "items": [
+    {
+      "text": "Písmeno A se uloží jako 65",
+      "answer": 0,
+      "why": "Tabulku znaků zná každý počítač. Nic se netají."
+    },
+    {
+      "text": "Fotka uložená jako .png",
+      "answer": 0,
+      "why": "Formát PNG je veřejný. Otevře ho každý prohlížeč obrázků."
+    },
+    {
+      "text": "Zpráva v chatu, kterou přečte jen adresát",
+      "answer": 1,
+      "why": "Zprávu zamyká klíč, který má jen adresát. To je šifrování."
+    },
+    {
+      "text": "Pixel jako tři čísla: červená, zelená, modrá",
+      "answer": 0,
+      "why": "Veřejné pravidlo, jak zapsat barvu čísly."
+    },
+    {
+      "text": "Zámeček a https v prohlížeči",
+      "answer": 1,
+      "why": "Spojení s webem je zašifrované, cestou ho nikdo nepřečte."
+    },
+    {
+      "text": "Písnička uložená jako .mp3",
+      "answer": 0,
+      "why": "MP3 je veřejný formát. Přehraje ho každý přehrávač."
+    },
+    {
+      "text": "Caesarova šifra s klíčem 3",
+      "answer": 1,
+      "why": "Bez klíče (posun o 3) zprávu nepřečteš. Je to šifra, i když slabá."
+    }
+  ],
+  "debrief": "Kódování je veřejné pravidlo, jak data zapsat čísly. Zná ho každý program. Šifrování data zamkne a přečte je jen ten, kdo má klíč."
+}

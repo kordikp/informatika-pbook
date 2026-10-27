@@ -8,7 +8,7 @@ teaser: "Stejná kostra, tisíc převleků. CSS rozhoduje, jestli web vypadá ja
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Co dělá CSS a co znamená responzivita?"
 recallA: "CSS dává HTML kostře vzhled: barvy, písma, rozvržení (dnes hlavně Flexboxem a Gridem). Responzivita znamená, že se stránka přizpůsobí mobilu i velké obrazovce — dnes povinnost, většina lidí přichází z mobilu."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch8-css
-state: core
+state: edited
 carriers: prose|code
 ---
 

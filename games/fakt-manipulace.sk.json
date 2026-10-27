@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Fakt, alebo manipulácia?",
+  "instruction": "Overiteľné tvrdenie, alebo ťah na tvoje emócie? Rozhodni!",
+  "buckets": [
+    "Overiteľný fakt",
+    "Manipulácia"
+  ],
+  "items": [
+    {
+      "text": "„Zápas skončil 2:1“",
+      "answer": 0,
+      "why": "Výsledok si overíš na webe súťaže alebo v zostrihu."
+    },
+    {
+      "text": "„ZDIEĽAJ, kým to zmažú!!!“",
+      "answer": 1,
+      "why": "Tlačí na zhon a strach. Nič konkrétne, čo by sa dalo overiť."
+    },
+    {
+      "text": "„Voda vrie pri 100 °C“",
+      "answer": 0,
+      "why": "Dá sa to zmerať. Presne to platí pri hladine mora."
+    },
+    {
+      "text": "„Všetci už vedia, že…“",
+      "answer": 1,
+      "why": "Odvoláva sa na dav namiesto dôkazu."
+    },
+    {
+      "text": "„Štúdia vyšla v časopise Nature v roku 2023“",
+      "answer": 0,
+      "why": "Časopis a rok sú údaje, ktoré sa dajú dohľadať."
+    },
+    {
+      "text": "„Zobuď sa, toto ti tajia!“",
+      "answer": 1,
+      "why": "Vyvoláva pocit sprisahania a nedáva nič na overenie."
+    },
+    {
+      "text": "„Vlak ide o 8:15 z hlavnej stanice“",
+      "answer": 0,
+      "why": "Overíš v cestovnom poriadku."
+    },
+    {
+      "text": "„Len hlupák tomu ešte verí“",
+      "answer": 1,
+      "why": "Útočí na teba namiesto argumentu. Chce, aby si sa hanbil nesúhlasiť."
+    }
+  ],
+  "debrief": "Fakt sa dá overiť: výsledok, čas, zdroj. Manipulácia tlačí na emócie a zhon a overeniu sa vyhýba. Keď ťa niečo núti konať hneď, spomaľ."
+}

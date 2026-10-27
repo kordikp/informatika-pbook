@@ -10,39 +10,49 @@
   "items": [
     {
       "text": "skore = 0",
-      "answer": 0
+      "answer": 0,
+      "why": "Do proměnné skore se uloží 0."
     },
     {
       "text": "if zivoty == 0:",
-      "answer": 1
+      "answer": 1,
+      "why": "Další část se provede, jen když jsou životy 0. To je podmínka."
     },
     {
       "text": "while hra_bezi:",
-      "answer": 2
+      "answer": 2,
+      "why": "Opakuje se, dokud hra běží. To je cyklus."
     },
     {
       "text": "jmeno = \"Kuba\"",
-      "answer": 0
+      "answer": 0,
+      "why": "Proměnná jmeno si pamatuje text Kuba."
     },
     {
       "text": "opakuj 10×: udělej dřep",
-      "answer": 2
+      "answer": 2,
+      "why": "Stejný krok desetkrát za sebou."
     },
     {
       "text": "když prší → vezmi kapuci",
-      "answer": 1
+      "answer": 1,
+      "why": "Kapuci bereš, jen když prší."
     },
     {
       "text": "zivoty = zivoty - 1",
-      "answer": 0
+      "answer": 0,
+      "why": "Proměnná se změní: nová hodnota je o 1 menší."
     },
     {
       "text": "for cislo in range(100):",
-      "answer": 2
+      "answer": 2,
+      "why": "Projde čísla 0 až 99, jedno po druhém."
     },
     {
       "text": "if heslo == spravne:",
-      "answer": 1
+      "answer": 1,
+      "why": "Pustí tě dál, jen když heslo sedí."
     }
-  ]
+  ],
+  "debrief": "Proměnná si něco pamatuje, podmínka vybírá, co se stane, a cyklus opakuje. Z těchhle tří kamenů se staví skoro každý program."
 }

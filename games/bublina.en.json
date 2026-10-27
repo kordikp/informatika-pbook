@@ -1,0 +1,100 @@
+{
+  "type": "loop",
+  "mode": "user",
+  "title": "Burst the bubble",
+  "minutes": 3,
+  "instruction": "This is your video feed. Each day, open one video you would watch. Keep an eye on how many topics are left in the feed.",
+  "instruction2": "Within 5 days, bring the feed back to at least 5 topics. Open something different, search for a topic, click “Not interested” or switch on the setting that mixes other topics into the feed.",
+  "feedSize": 6,
+  "phase1Days": 8,
+  "phase2Days": 5,
+  "goalTopics": 5,
+  "exploreSlots": 2,
+  "gamma": 2,
+  "rate": 0.2,
+  "topics": [
+    {
+      "name": "Football",
+      "items": [
+        "Goal of the week",
+        "The best goalkeeper saves",
+        "Training: dribble like a pro",
+        "Derby highlights",
+        "Transfers nobody expected"
+      ]
+    },
+    {
+      "name": "Cooking",
+      "items": [
+        "Pancakes in 10 minutes",
+        "Frying-pan pizza",
+        "How to chop like a chef",
+        "A no-bake cake",
+        "Breakfast to take to school"
+      ]
+    },
+    {
+      "name": "Science",
+      "items": [
+        "Why the sky is blue",
+        "A baking soda volcano",
+        "How a bee sees",
+        "The biggest star in the universe",
+        "An experiment with a magnet"
+      ]
+    },
+    {
+      "name": "Music",
+      "items": [
+        "Guitar chords for beginners",
+        "How a hit is made",
+        "Beatbox in 5 minutes",
+        "A singer without autotune",
+        "Drums made of kitchen pots"
+      ]
+    },
+    {
+      "name": "Animals",
+      "items": [
+        "A cat that opens doors",
+        "How dolphins sleep",
+        "A dog learns a new trick",
+        "The world's smallest monkey",
+        "Ants build a bridge"
+      ]
+    },
+    {
+      "name": "Games",
+      "items": [
+        "The hardest level ever",
+        "Build a castle in Minecraft",
+        "A 3-minute speedrun",
+        "A secret place in the game",
+        "How a game character is made"
+      ]
+    },
+    {
+      "name": "Drawing",
+      "items": [
+        "Draw a dragon step by step",
+        "Shading with a pencil",
+        "A one-page comic",
+        "A portrait in 60 seconds",
+        "Watercolour for beginners"
+      ]
+    },
+    {
+      "name": "Nature",
+      "items": [
+        "A thunderstorm in slow motion",
+        "How a seed grows",
+        "The world's tallest tree",
+        "Animal tracks in the forest",
+        "Why leaves fall"
+      ]
+    }
+  ],
+  "reveal": "The feed narrowed without anyone deciding it: each click nudged your profile a little, and the feed is picked from the profile. From the inside nothing is missing. That's why the bubble is invisible.",
+  "reveal2": "When you open something different, the profile only shifts slowly. What helps fastest is “Not interested” and mixing in other topics. That also shows you topics you would never have asked for yourself.",
+  "debrief": "A bubble forms from ordinary clicks that feed back into the feed. You can't see it, because you can't see what the feed didn't show you. What helps burst it is deliberately looking for other topics and letting the feed mix in something new."
+}

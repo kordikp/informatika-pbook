@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Mi kerüljön a metrótérképre?",
+  "instruction": "Modell a metrós utazáshoz. Mit hagysz meg benne, és mit hagysz ki?",
+  "buckets": [
+    "A modellbe való",
+    "Kihagyni"
+  ],
+  "items": [
+    {
+      "text": "Állomások",
+      "answer": 0,
+      "why": "Állomások nélkül nem tudod, hol szállj fel és le."
+    },
+    {
+      "text": "Melyik vonal melyik állomásokat köti össze",
+      "answer": 0,
+      "why": "Ebből tudod, hová visz a vonal."
+    },
+    {
+      "text": "Hol lehet átszállni",
+      "answer": 0,
+      "why": "Átszállások nélkül nem tervezhetsz utat két vonalon."
+    },
+    {
+      "text": "Az állomások sorrendje a vonalon",
+      "answer": 0,
+      "why": "Tudod, hány megállót mész, és hol szállj le."
+    },
+    {
+      "text": "Az alagút fölötti utcák",
+      "answer": 1,
+      "why": "A föld alatt semmi hasznukat nem veszed."
+    },
+    {
+      "text": "Az alagút pontos hossza méterben",
+      "answer": 1,
+      "why": "Az utazáshoz elég az állomások sorrendje."
+    },
+    {
+      "text": "A házak homlokzatának színe",
+      "answer": 1,
+      "why": "A metróból nem látod őket."
+    },
+    {
+      "text": "A kijárat melletti üzletek neve",
+      "answer": 1,
+      "why": "A metrózáshoz nincs rájuk szükséged. Inkább a környék térképére valók."
+    }
+  ],
+  "debrief": "A jó modell csak azt tartja meg, ami a feladathoz kell. A metrós utazáshoz elég az állomások, a vonalak és az átszállások. Az utcák, a hosszak és az üzletek csak zsúfolttá tennék a térképet."
+}

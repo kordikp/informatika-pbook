@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Čo patrí do mapy metra?",
+  "instruction": "Model na cestovanie metrom. Čo v ňom nechaj a čo vynechaj?",
+  "buckets": [
+    "Patrí do modelu",
+    "Vynechaj"
+  ],
+  "items": [
+    {
+      "text": "Stanice",
+      "answer": 0,
+      "why": "Bez staníc nevieš, kde nastúpiť a vystúpiť."
+    },
+    {
+      "text": "Ktoré stanice spája ktorá linka",
+      "answer": 0,
+      "why": "Podľa toho spoznáš, kam ťa linka dovezie."
+    },
+    {
+      "text": "Kde sa dá prestúpiť",
+      "answer": 0,
+      "why": "Bez prestupov nenaplánuješ cestu cez dve linky."
+    },
+    {
+      "text": "Poradie staníc na linke",
+      "answer": 0,
+      "why": "Vieš, koľko staníc pôjdeš a kde vystúpiť."
+    },
+    {
+      "text": "Ulice nad tunelom",
+      "answer": 1,
+      "why": "Pod zemou ti nie sú na nič."
+    },
+    {
+      "text": "Presná dĺžka tunela v metroch",
+      "answer": 1,
+      "why": "Na cestu stačí poradie staníc."
+    },
+    {
+      "text": "Farba fasád domov",
+      "answer": 1,
+      "why": "Z metra ich neuvidíš."
+    },
+    {
+      "text": "Mená obchodov pri výstupe",
+      "answer": 1,
+      "why": "Na cestu metrom ich nepotrebuješ. Patria skôr do mapy okolia."
+    }
+  ],
+  "debrief": "Dobrý model nechá len to, čo potrebuješ na úlohu. Na cestu metrom stačia stanice, linky a prestupy. Ulice, dĺžky a obchody by mapu len zahltili."
+}

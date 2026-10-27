@@ -3,6 +3,7 @@
 // Falls back to local simulation when API unavailable
 
 import { CONFIG } from './config.js';
+import { tr } from './i18n.js';
 
 export class RecombeeClient {
   constructor() {
@@ -30,10 +31,24 @@ export class RecombeeClient {
 
   setAllBlocks(blocks) { this.allBlocks = blocks; }
 
+  // Several books share one Recombee database. Every recommendation and search
+  // call is limited to THIS book: git blocks by chapter, reader-shared tellings
+  // (no chapter) by concept. Without it Home served another book's Czech cards.
+  setBookScope(chapterIds, conceptIds) {
+    const q = a => a.map(x => JSON.stringify(String(x))).join(',');
+    const parts = [];
+    if (chapterIds && chapterIds.length) parts.push(`'chapter' in {${q(chapterIds)}}`);
+    if (conceptIds && conceptIds.length) parts.push(`'concept' in {${q(conceptIds)}}`);
+    this.scopeFilter = parts.length ? '(' + parts.join(' OR ') + ')' : null;
+  }
+
 
   // --- API call via server-side proxy (avoids CORS) ---
   async api(method, endpoint, body, _retry) {
     if (!this.enabled) return null;
+    if (!_retry && this.scopeFilter && body && /^\/(recomms\/(users|items)|search\/users)\//.test(endpoint)) {
+      body = { ...body, filter: body.filter ? `(${body.filter}) AND ${this.scopeFilter}` : this.scopeFilter };
+    }
     try {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 2500);
@@ -130,7 +145,10 @@ export class RecombeeClient {
     this._saveInteractions();
     const body = { userId: this.userId, itemId, cascadeCreate: true, timestamp: new Date().toISOString() };
     if (duration) body.duration = duration;
-    if (this._lastRecommId) body.recommId = this._lastRecommId;
+    // Attribution: the recommId of THE recommendation this item came from (per-item
+    // map; global _lastRecommId only as a last resort) — per the Recombee guide.
+    const rid = (this._recommSources || {})[itemId] || this._lastRecommId;
+    if (rid) body.recommId = rid;
     if (this.enabled) return this.api('POST', '/detailviews/', body);
   }
 
@@ -290,11 +308,27 @@ export class RecombeeClient {
         result = await this.api('POST', `/recomms/users/${this.userId}/items/`, { count, cascadeCreate: true });
       }
       if (result) {
-        if (result.recommId) this._lastRecommId = result.recommId;
+        this._trackRecomms(result);
         return result;
       }
     }
     return this._localRecsForUser(scenario, count);
+  }
+
+  _trackRecomms(result) {
+    if (!result || !result.recommId) return;
+    this._lastRecommId = result.recommId;
+    this._recommSources = this._recommSources || {};
+    (result.recomms || []).forEach(r => { if (r && r.id) this._recommSources[r.id] = result.recommId; });
+  }
+
+  // Recommendation pagination per the guide: the next batch of the same
+  // recommendation chains via Recommend Next Items (recommId), not a fresh query.
+  async getNextRecs(prevRecommId, count) {
+    if (!this.enabled || !prevRecommId) return null;
+    const result = await this.api('POST', `/recomms/next/items/${prevRecommId}`, { count });
+    if (result) this._trackRecomms(result);
+    return result;
   }
 
   async getRecsForItem(itemId, count, filter, scenario) {
@@ -305,7 +339,7 @@ export class RecombeeClient {
       let result = await this.api('POST', `/recomms/items/${itemId}/items/`, body);
       if (!result && scenario) { delete body.scenario; result = await this.api('POST', `/recomms/items/${itemId}/items/`, body); }
       if (result) {
-        if (result.recommId) this._lastRecommId = result.recommId;
+        this._trackRecomms(result);
         return result;
       }
     }
@@ -317,17 +351,7 @@ export class RecombeeClient {
   // readers immediately, body carried as an item property. Requires properties to exist
   // in the DB (created by /api/sync-recombee ensure step).
   async shareCommunityBlock(props) {
-    if (!this.enabled) {
-      // Git-backed komunita: sdílení = commit do repa přes /api/community
-      try {
-        const res = await fetch('/api/community', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'share', block: props }),
-        });
-        const d = await res.json();
-        return !!d.ok;
-      } catch (e) { return false; }
-    }
+    if (!this.enabled) return false;
     const { itemId, ...values } = props;
     const res = await this.api('POST', `/items/${encodeURIComponent(itemId)}`, {
       ...values,
@@ -340,27 +364,25 @@ export class RecombeeClient {
 
   // Community blocks live in the Recombee catalog (state == "community") — the book's
   // shared layer needs no extra storage and is immediately recommendable. Graceful [].
-  async listCommunityBlocks(conceptId, count = 10, states = ['community']) {
-    if (!this.enabled) {
-      // Git-backed komunita: čerstvý výpis z masteru přes /api/community
-      try {
-        const res = await fetch('/api/community?concept=' + encodeURIComponent(conceptId || ''));
-        const d = await res.json();
-        return (d.blocks || []).filter(b => states.includes(b.meta?.state || 'community'));
-      } catch (e) { return []; }
-    }
+  async listCommunityBlocks(conceptId, count = 10, states = ['community'], opts = {}) {
+    if (!this.enabled) return [];
     // newer Recombee clusters reject GET — list via POST recomms with a filter
     // (personalized order is a bonus; returnProperties gives us the bodies)
     const stateExpr = '(' + states.map(s => `'state' == "${s}"`).join(' OR ') + ')';
     // 'sharedAs' != null keeps GIT-synced blocks (also edited/core) out of the
     // candidate set — recomms then reliably returns the few runtime tellings
-    const filter = stateExpr + ` AND 'sharedAs' != null` + (conceptId ? ` AND 'concept' == "${conceptId}"` : '');
+    // Class isolation: items carrying classGroup are visible only to readers of
+    // the same class (opts.classGroup); opts.onlyGroup lists ONE class's items.
+    const cls = opts.onlyGroup
+      ? ` AND 'classGroup' == "${opts.onlyGroup}"`
+      : ` AND ('classGroup' == null${opts.classGroup ? ` OR 'classGroup' == "${opts.classGroup}"` : ''})`;
+    const filter = stateExpr + ` AND 'sharedAs' != null` + cls + (conceptId ? ` AND 'concept' == "${conceptId}"` : '');
     const rec = await this.api('POST', `/recomms/users/${this.userId}/items/`, {
       filter, count, cascadeCreate: true, returnProperties: true,
     });
     const res = (rec?.recomms || []).map(r => ({ itemId: r.id, ...(r.values || {}) }));
     if (!Array.isArray(res)) return [];
-    return res.filter(it => it.body && /^(gen--|remix--)/.test(it.itemId)).map(it => {
+    return res.filter(it => it.body && /^(gen--|autor--|remix--)/.test(it.itemId)).map(it => {
       const meta = { ...it, id: it.itemId, type: 'spine', state: it.state || 'community', generated: true };
       // honest visuality for reader-shared items (mirrors api/generate.js clamp)
       const words = (it.body || '').split(/\s+/).filter(Boolean).length;
@@ -455,7 +477,7 @@ export class UserModel {
     this.preferredVoice = null;
     this.firstVisit = null;
     this.sessionCount = 0;
-    // Gamification (no streaks — safe for kids)
+    // Gamification (no streaks — no pressure mechanics)
     this.xp = 0;
     this.level = 1;
     this.achievements = [];
@@ -614,7 +636,8 @@ export class UserModel {
     // Drift facet affinities from actual reading behaviour (weight 1)
     if (facets) this.updateFacetAffinity(facets, 1);
     if (CONFIG.features.gamification !== false) { this.addXP(10); this.checkAchievements(); }
-    if (CONFIG.features.spaceRepetition !== false) this.scheduleRecall(blockId);
+    // one card per CONCEPT (the app maps a telling to its concept's card key)
+    if (CONFIG.features.spaceRepetition !== false) this.scheduleRecall(this.recallKeyFor ? this.recallKeyFor(blockId) : blockId);
     this.save();
   }
 
@@ -695,7 +718,7 @@ export class UserModel {
       card.ease = Math.min(3.0, card.ease + 0.15);
     }
 
-    // Cap at 30 days for kids
+    // Cap the review interval at 30 days
     card.interval = Math.min(30, card.interval);
     // Forgot (interval=0) → 4 hours. Everything else → interval in days.
     card.nextReview = card.interval === 0
@@ -728,6 +751,8 @@ export class UserModel {
   // --- Gamification ---
   addXP(amount) {
     this.xp += amount;
+    // serverová AI peněženka zrcadlí výdělky (stropy řeší server)
+    try { if (typeof window !== 'undefined') window.app?._walletEarnQueue?.(amount); } catch (e) {}
     const newLevel = Math.floor(this.xp / 50) + 1;
     if (newLevel > this.level) { this.level = newLevel; this._pendingLevelUp = newLevel; }
   }
@@ -735,21 +760,21 @@ export class UserModel {
   checkAchievements() {
     const earned = new Set(this.achievements.map(a => a.id));
     const checks = [
-      { id: 'first_read', name: 'První krůčky', icon: '👣', desc: 'Přečti svou první sekci', test: () => this.readBlocks.size >= 1 },
-      { id: 'reader_5', name: 'Knihomol', icon: '📚', desc: 'Přečti 5 sekcí', test: () => this.readBlocks.size >= 5 },
-      { id: 'reader_15', name: 'Rychločtenář', icon: '⚡', desc: 'Přečti 15 sekcí', test: () => this.readBlocks.size >= 15 },
-      { id: 'reader_30', name: 'Stroj na znalosti', icon: '🤖', desc: 'Přečti 30 sekcí', test: () => this.readBlocks.size >= 30 },
-      { id: 'first_like', name: 'Palec nahoru', icon: '❤️', desc: 'Dej první lajk', test: () => [...this.ratings.values()].some(r => r >= 0.7) },
-      { id: 'like_10', name: 'Superfanoušek', icon: '🌟', desc: 'Lajkni 10 sekcí', test: () => [...this.ratings.values()].filter(r => r >= 0.7).length >= 10 },
-      { id: 'first_note', name: 'Zapisovatel', icon: '📝', desc: 'Napiš první poznámku', test: () => this.notes.size >= 1 },
-      { id: 'voice_all', name: 'Trojitá hrozba', icon: '🎭', desc: 'Vyzkoušej všechny 3 styly', test: () => Object.values(this.voiceScores).every(v => v > 0) },
-      { id: 'curious_cat', name: 'Zvědavá kočka', icon: '🐱', desc: 'Čti ze 3 různých kapitol', test: () => { const chs = new Set(); this.readBlocks.forEach(id => { for (const [k,v] of Object.entries(this.signals)) { if (k === id) chs.add(v.chapter || ''); }}); return chs.size >= 3 || this.readBlocks.size >= 12; }},
-      { id: 'quiz_master', name: 'Mistr kvízů', icon: '🧩', desc: 'Odpověz na 3 otázky', test: () => this.totalInteractions >= 15 },
-      { id: 'level_5', name: 'Úroveň 5!', icon: '🏆', desc: 'Dosáhni úrovně 5', test: () => this.level >= 5 },
-      { id: 'save_5', name: 'Sběratel', icon: '🔖', desc: 'Ulož si 5 sekcí', test: () => this.savedBlocks.size >= 5 },
-      { id: 'xp_200', name: 'Lovec XP', icon: '💎', desc: 'Získej 200 XP', test: () => this.xp >= 200 },
-      { id: 'deep_diver', name: 'Potápěč', icon: '🤿', desc: 'Rozbal 10 hloubkových karet', test: () => Object.values(this.voiceScores).reduce((s,v) => s+v, 0) >= 10 },
-      { id: 'recall_5', name: 'Paměťový profík', icon: '🧠', desc: 'Dokonči 5 opakování', test: () => Object.values(this.recall).reduce((s, c) => s + c.reps, 0) >= 5 },
+      { id: 'first_read', name: 'First section', icon: '👣', desc: 'Read your first section', test: () => this.readBlocks.size >= 1 },
+      { id: 'reader_5', name: 'Five sections', icon: '📚', desc: 'Read 5 sections', test: () => this.readBlocks.size >= 5 },
+      { id: 'reader_15', name: 'Fifteen sections', icon: '📖', desc: 'Read 15 sections', test: () => this.readBlocks.size >= 15 },
+      { id: 'reader_30', name: 'Thirty sections', icon: '🗂️', desc: 'Read 30 sections', test: () => this.readBlocks.size >= 30 },
+      { id: 'first_like', name: 'First favourite', icon: '❤️', desc: 'Like your first section', test: () => [...this.ratings.values()].some(r => r >= 0.7) },
+      { id: 'like_10', name: 'Ten favourites', icon: '🌟', desc: 'Like 10 sections', test: () => [...this.ratings.values()].filter(r => r >= 0.7).length >= 10 },
+      { id: 'first_note', name: 'Note taker', icon: '📝', desc: 'Write your first note', test: () => this.notes.size >= 1 },
+      { id: 'voice_all', name: 'Every kind of section', icon: '🎭', desc: 'Read every kind of section', test: () => Object.values(this.voiceScores).every(v => v > 0) },
+      { id: 'curious_cat', name: 'Wide reader', icon: '🧭', desc: 'Read sections from 3 different chapters', test: () => { const chs = new Set(); this.readBlocks.forEach(id => { for (const [k,v] of Object.entries(this.signals)) { if (k === id) chs.add(v.chapter || ''); }}); return chs.size >= 3 || this.readBlocks.size >= 12; }},
+      { id: 'quiz_master', name: 'Active reader', icon: '🧩', desc: 'Answer 3 questions', test: () => this.totalInteractions >= 15 },
+      { id: 'level_5', name: 'Level 5', icon: '🏆', desc: 'Reach level 5', test: () => this.level >= 5 },
+      { id: 'save_5', name: 'Collector', icon: '🔖', desc: 'Save 5 sections', test: () => this.savedBlocks.size >= 5 },
+      { id: 'xp_200', name: '200 XP', icon: '💎', desc: 'Earn 200 XP', test: () => this.xp >= 200 },
+      { id: 'deep_diver', name: 'Deep diver', icon: '🤿', desc: 'Expand 10 depth cards', test: () => Object.values(this.voiceScores).reduce((s,v) => s+v, 0) >= 10 },
+      { id: 'recall_5', name: 'Five reviews', icon: '🧠', desc: 'Complete 5 recall reviews', test: () => Object.values(this.recall).reduce((s, c) => s + c.reps, 0) >= 5 },
     ];
     checks.forEach(a => {
       if (!earned.has(a.id) && a.test()) {
@@ -760,8 +785,9 @@ export class UserModel {
   }
 
   getLevelTitle() {
-    const titles = ['Nováček', 'Zvědavec', 'Učeň', 'Průzkumník', 'Student', 'Expert', 'Kouzelník', 'Legenda', 'Velmistr', 'Digitální guru'];
-    return titles[Math.min(this.level - 1, titles.length - 1)];
+    // Fewer, meaningful steps (level numbers still come from XP)
+    const l = this.level;
+    return tr(l >= 9 ? (CONFIG.levelTitles?.[3] || 'Recommender architect') : l >= 6 ? 'Expert' : l >= 3 ? 'Practitioner' : 'Reader');
   }
 
   getXPForNextLevel() { return this.level * 50; }

@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "Která část hradu útok zastaví?",
+  "instruction": "Ke každému útoku najdi obranu, která ho zastaví.",
+  "buckets": [
+    "Hradby = aktualizace",
+    "Brána = oprávnění aplikací",
+    "Stráž = jen ověřené zdroje",
+    "Druhý hrad = záloha jinde"
+  ],
+  "items": [
+    {
+      "text": "Útočníci znají chybu ve staré verzi prohlížeče a zneužívají ji.",
+      "answer": 0,
+      "why": "Aktualizace je záplata. Opraví díru, o které útočníci vědí."
+    },
+    {
+      "text": "Aplikace na svítilnu chce přístup ke kontaktům, poloze a mikrofonu.",
+      "answer": 1,
+      "why": "Svítilna potřebuje jen světlo. Ostatní oprávnění zamítni."
+    },
+    {
+      "text": "Na webu nabízejí „cheat na neomezené mince“ ke stažení. Uvnitř je trojský kůň.",
+      "answer": 2,
+      "why": "Instaluj jen z oficiálního obchodu. Stráž cizince s dárkem nepustí."
+    },
+    {
+      "text": "Ransomware ti zašifruje všechny fotky a chce výkupné.",
+      "answer": 3,
+      "why": "Kopie na jiném místě přežije. Fotky obnovíš a platit nemusíš."
+    },
+    {
+      "text": "Systém hlásí aktualizaci zabezpečení",
+      "answer": 0,
+      "why": "Aktualizace zalepí díru dřív, než ji někdo zneužije. Nainstaluj ji."
+    },
+    {
+      "text": "Kvíz o horoskopu chce přístup k tvým SMS",
+      "answer": 1,
+      "why": "Kvíz tvoje SMS nepotřebuje. Oprávnění nepovol."
+    },
+    {
+      "text": "Kamarád posílá „novou verzi hry“ ke stažení mimo obchod",
+      "answer": 2,
+      "why": "I od kamaráda může přijít podvržený soubor. Stahuj jen z oficiálního obchodu."
+    },
+    {
+      "text": "Mobil ti spadne do vody a nezapne se",
+      "answer": 3,
+      "why": "Tady pomůže jen záloha, kterou máš jinde než v mobilu."
+    }
+  ],
+  "debrief": "Každá obrana zastaví jiný útok. Aktualizace zalepí díry, oprávnění hlídají, co appka smí, ověřené zdroje nepustí dovnitř podvržené programy a záloha zachrání data, když selže všechno ostatní."
+}

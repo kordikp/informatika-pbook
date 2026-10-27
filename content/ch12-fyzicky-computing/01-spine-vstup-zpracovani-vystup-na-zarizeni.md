@@ -8,7 +8,7 @@ teaser: "Dveře v obchoďáku, topení i robotický vysavač jedou pořád stejn
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Jaké tři kroky se opakují ve smyčce každého fyzického zařízení?"
 recallA: "Vstup (senzor něco změří), zpracování (program hodnotu vyhodnotí) a výstup (zařízení něco vykoná — rozsvítí LED, roztočí motor)."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch12-vstup-zpracovani-vystup-na-zarizeni
-state: core
+state: edited
 carriers: prose
 ---
 

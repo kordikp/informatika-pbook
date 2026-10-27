@@ -8,7 +8,7 @@ teaser: "AI ti vygeneruje deset obrázků za minutu. Ale který z nich je dobrý
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Proč potřebuješ vizuální jazyk, když obrázek umí vygenerovat AI?"
 recallA: "AI vytvoří spoustu návrhů, ale posoudit, který funguje a proč, je na tobě — podle kompozice, barvy, kontrastu a typografie."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch10-vizualni-jazyk
-state: core
+state: edited
 carriers: prose
 ---
 

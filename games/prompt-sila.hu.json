@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Erős vagy gyenge prompt?",
+  "instruction": "Melyik prompttal kapsz jó eredményt az MI-től? Válogasd szét a kéréseket!",
+  "buckets": [
+    "Erős prompt",
+    "Gyenge prompt"
+  ],
+  "items": [
+    {
+      "text": "„Írj nekem valamit az űrről”",
+      "answer": 1,
+      "why": "Pontosan mit, kinek és milyen hosszút? Az MI-nek találgatnia kell."
+    },
+    {
+      "text": "„Magyarázd el egy nyolcadikosnak a fekete lyukakat 5 pontban, egy példával”",
+      "answer": 0,
+      "why": "A téma, az olvasó, a terjedelem és a forma is világos."
+    },
+    {
+      "text": "„Csinálj kiselőadást”",
+      "answer": 1,
+      "why": "Hiányzik a téma, a terjedelem, és az is, hogy kinek szól."
+    },
+    {
+      "text": "„Foglald össze ezt a szöveget 3 mondatban egy osztálytársnak, magyarul”",
+      "answer": 0,
+      "why": "A feladat, a hossz, az olvasó és a nyelv is adott."
+    },
+    {
+      "text": "„Segíts matekból”",
+      "answer": 1,
+      "why": "Pontosan miben? Az MI nem tudja, hol kezdje."
+    },
+    {
+      "text": "„Kérdezz ki 5 kérdéssel a törtekből, egyenként, a hibáim magyarázatával”",
+      "answer": 0,
+      "why": "Pontosan megmondja, mit és hogyan csináljon az MI."
+    },
+    {
+      "text": "„Javítsd ki a helyesírást a szövegben, a változtatásokat jelöld félkövérrel”",
+      "answer": 0,
+      "why": "Világos feladat és az eredmény formája is."
+    },
+    {
+      "text": "„Írd meg jobban”",
+      "answer": 1,
+      "why": "Mit jelent a jobban? Rövidebben, viccesebben, hibák nélkül?"
+    }
+  ],
+  "debrief": "Az erős prompt megmondja, pontosan mit akarsz, kinek, milyen formában és milyen hosszan. A gyenge prompt találgatásra kényszeríti az MI-t, és az aztán általánosságokat válaszol."
+}

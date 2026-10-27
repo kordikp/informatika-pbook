@@ -8,7 +8,7 @@ teaser: "Scéna s objekty ještě není hra. Hra začíná, když si pamatuje, j
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Co dělá ze scény skutečnou hru?"
 recallA: "Reakce na vstup hráče (klávesy, dotyk) a paměť: proměnné pro skóre a životy a stav hry (menu, hraje se, konec). Větvení podle stavu rozhoduje, co se právě děje a kdy hra končí."
 highlights:
@@ -22,7 +22,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch11-vstup-hrace-stavy-a-skore
-state: core
+state: edited
 carriers: prose
 ---
 

@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Program pro robota",
+  "instruction": "Seřaď bloky: vstup, zpracování a výstup. Robot jede rovně, zatočí vlevo a v cíli svítí.",
+  "steps": [
+    "▶ po stisku tlačítka A",
+    "jdi dopředu 3",
+    "otoč se vlevo",
+    "jdi dopředu 2",
+    "rozsviť světlo"
+  ],
+  "debrief": "Program robota má vstup (tlačítko), zpracování (pohyby v přesném pořadí) a výstup (světlo). Prohoď dva pohyby a robot skončí jinde.",
+  "why": [
+    "Program čeká na vstup: začne až po stisku tlačítka A.",
+    "Nejdřív jede rovně 3 políčka.",
+    "Pak zatočí. Kdyby zatočil dřív, jel by jinou cestou.",
+    "Po zatočení dojede 2 políčka do cíle.",
+    "Výstup: světlo se rozsvítí, až když je robot v cíli."
+  ]
+}

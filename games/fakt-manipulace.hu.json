@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Tény vagy manipuláció?",
+  "instruction": "Ellenőrizhető állítás, vagy az érzelmeidre hat? Dönts!",
+  "buckets": [
+    "Ellenőrizhető tény",
+    "Manipuláció"
+  ],
+  "items": [
+    {
+      "text": "„A meccs 2:1-re végződött”",
+      "answer": 0,
+      "why": "Az eredményt ellenőrizheted a bajnokság weboldalán vagy az összefoglalóban."
+    },
+    {
+      "text": "„OSZD MEG, mielőtt törlik!!!”",
+      "answer": 1,
+      "why": "Sürgetésre és félelemre épít. Semmi konkrét, amit ellenőrizni lehetne."
+    },
+    {
+      "text": "„A víz 100 °C-on forr”",
+      "answer": 0,
+      "why": "Meg lehet mérni. Pontosan tengerszinten érvényes."
+    },
+    {
+      "text": "„Már mindenki tudja, hogy…”",
+      "answer": 1,
+      "why": "Bizonyíték helyett a tömegre hivatkozik."
+    },
+    {
+      "text": "„A tanulmány 2023-ban jelent meg a Nature folyóiratban”",
+      "answer": 0,
+      "why": "A folyóirat és az év olyan adatok, amelyeknek utána lehet nézni."
+    },
+    {
+      "text": "„Ébredj fel, ezt eltitkolják előled!”",
+      "answer": 1,
+      "why": "Összeesküvés érzését kelti, és semmit sem ad, amit ellenőrizni lehetne."
+    },
+    {
+      "text": "„A vonat 8:15-kor indul a főpályaudvarról”",
+      "answer": 0,
+      "why": "Ellenőrizheted a menetrendben."
+    },
+    {
+      "text": "„Ezt már csak egy hülye hiszi el”",
+      "answer": 1,
+      "why": "Érv helyett téged támad. Azt akarja, hogy szégyellj nem egyetérteni."
+    }
+  ],
+  "debrief": "A tényt ellenőrizni lehet: eredmény, időpont, forrás. A manipuláció érzelmekre és sürgetésre épít, és kerüli az ellenőrzést. Ha valami arra sürget, hogy azonnal cselekedj, lassíts."
+}

@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Data sorter",
+  "instruction": "Structured data (a fixed order) or unstructured data (no order)?",
+  "buckets": [
+    "Structured",
+    "Unstructured"
+  ],
+  "items": [
+    {
+      "text": "A table of marks in the school system",
+      "answer": 0,
+      "why": "Each row is a pupil, each column a subject or a date."
+    },
+    {
+      "text": "Photos from a trip",
+      "answer": 1,
+      "why": "A picture has no rows and columns of data. Someone has to recognise what's in it."
+    },
+    {
+      "text": "A bus timetable",
+      "answer": 0,
+      "why": "A fixed table: stop, time, route."
+    },
+    {
+      "text": "A voice message from a friend",
+      "answer": 1,
+      "why": "Sound with no fixed order. You have to listen to find out what's in it."
+    },
+    {
+      "text": "An online shop's stock (rows and columns)",
+      "answer": 0,
+      "why": "Every product has the same details: name, price, number in stock."
+    },
+    {
+      "text": "A video on TikTok",
+      "answer": 1,
+      "why": "Picture and sound without a table. Only the details around it are fixed, such as the number of likes."
+    },
+    {
+      "text": "A game leaderboard (player, score)",
+      "answer": 0,
+      "why": "Each row has the same fields: player and score. It can be sorted."
+    },
+    {
+      "text": "An essay about the holidays",
+      "answer": 1,
+      "why": "Free text. Everyone writes it differently."
+    }
+  ],
+  "debrief": "Structured data has fixed rows and columns, so you can search and sort it. A photo, a voice message or an essay carry information too, just without a fixed order."
+}

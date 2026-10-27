@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Fact or manipulation?",
+  "instruction": "A claim you can check, or a pull at your emotions? Decide!",
+  "buckets": [
+    "A fact you can check",
+    "Manipulation"
+  ],
+  "items": [
+    {
+      "text": "“The match ended 2–1”",
+      "answer": 0,
+      "why": "You can check the result on the league's website or in the highlights."
+    },
+    {
+      "text": "“SHARE before they delete it!!!”",
+      "answer": 1,
+      "why": "It pushes on hurry and fear. Nothing specific that could be checked."
+    },
+    {
+      "text": "“Water boils at 100 °C”",
+      "answer": 0,
+      "why": "It can be measured. It holds exactly at sea level."
+    },
+    {
+      "text": "“Everybody already knows that…”",
+      "answer": 1,
+      "why": "It appeals to the crowd instead of to evidence."
+    },
+    {
+      "text": "“The study was published in the journal Nature in 2023”",
+      "answer": 0,
+      "why": "The journal and the year are details you can look up."
+    },
+    {
+      "text": "“Wake up, they're hiding this from you!”",
+      "answer": 1,
+      "why": "It stirs up a feeling of conspiracy and gives you nothing to check."
+    },
+    {
+      "text": "“The train leaves the main station at 8:15”",
+      "answer": 0,
+      "why": "You can check it in the timetable."
+    },
+    {
+      "text": "“Only an idiot still believes that”",
+      "answer": 1,
+      "why": "It attacks you instead of making an argument. It wants you to be ashamed to disagree."
+    }
+  ],
+  "debrief": "A fact can be checked: a result, a time, a source. Manipulation pushes on emotions and hurry and avoids being checked. When something urges you to act right now, slow down."
+}

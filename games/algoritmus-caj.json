@@ -9,5 +9,14 @@
     "Zalij sáček vroucí vodou",
     "Počkej 3 minuty",
     "Vyndej sáček a čaj podávej"
+  ],
+  "debrief": "V algoritmu záleží na pořadí. Každý krok staví na tom předchozím: zalít jde až vroucí vodou a sáček vyndáš, až se čaj vyluhuje.",
+  "why": [
+    "Bez vody v konvici není co ohřát.",
+    "Voda musí vřít dřív, než ji naliješ.",
+    "Sáček musí být v hrnku, než ho zaliješ.",
+    "Teď je v konvici vroucí voda a v hrnku sáček.",
+    "Čaj se louhuje až po zalití.",
+    "Sáček vyndáš, až čaj vyluhoval."
   ]
 }

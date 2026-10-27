@@ -8,7 +8,7 @@ teaser: "Appka je divadlo: jeviště vidíš, ale představení drží zákulis�
 voice: universal
 parent: null
 diagram: frontend-backend
-core: true
+core: false
 recallQ: "Z jakých dvou částí se skládá aplikace a co která dělá?"
 recallA: "Frontend je část, kterou vidíš a ovládáš (obrazovky, tlačítka). Backend běží na pozadí — obvykle na serveru — a stará se o data, účty a logiku. Frontend se ptá, backend odpovídá."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch9-co-je-aplikace
-state: core
+state: edited
 carriers: prose|diagram
 ---
 

@@ -1,0 +1,100 @@
+{
+  "type": "loop",
+  "mode": "user",
+  "title": "Prasknúť bublinu",
+  "minutes": 3,
+  "instruction": "Toto je tvoj feed s videami. Každý deň otvor jedno video, ktoré by si si pustil. Sleduj, koľko tém vo feede zostáva.",
+  "instruction2": "Do 5 dní vráť feed aspoň na 5 tém. Otvor niečo iné, vyhľadaj si tému, klikni na „Nezaujíma ma“ alebo zapni nastavenie, ktoré do feedu primieša iné témy.",
+  "feedSize": 6,
+  "phase1Days": 8,
+  "phase2Days": 5,
+  "goalTopics": 5,
+  "exploreSlots": 2,
+  "gamma": 2,
+  "rate": 0.2,
+  "topics": [
+    {
+      "name": "Futbal",
+      "items": [
+        "Gól týždňa",
+        "Najlepšie zákroky brankárov",
+        "Tréning: kľučky ako profík",
+        "Zostrih derby",
+        "Prestupy, ktoré nikto nečakal"
+      ]
+    },
+    {
+      "name": "Varenie",
+      "items": [
+        "Palacinky za 10 minút",
+        "Pizza z panvice",
+        "Ako krájať ako kuchár",
+        "Torta bez pečenia",
+        "Raňajky do školy"
+      ]
+    },
+    {
+      "name": "Veda",
+      "items": [
+        "Prečo je obloha modrá",
+        "Sopka zo sódy bikarbóny",
+        "Ako vidí včela",
+        "Najväčšia hviezda vesmíru",
+        "Pokus s magnetom"
+      ]
+    },
+    {
+      "name": "Hudba",
+      "items": [
+        "Akordy na gitaru pre začiatočníkov",
+        "Ako vzniká hit",
+        "Beatbox za 5 minút",
+        "Spevák bez autotunu",
+        "Bicie z kuchynských hrncov"
+      ]
+    },
+    {
+      "name": "Zvieratá",
+      "items": [
+        "Mačka, ktorá otvára dvere",
+        "Ako spia delfíny",
+        "Pes sa učí nový trik",
+        "Najmenšia opica sveta",
+        "Mravce stavajú most"
+      ]
+    },
+    {
+      "name": "Hry",
+      "items": [
+        "Najťažší level všetkých čias",
+        "Postav si hrad v Minecrafte",
+        "Speedrun za 3 minúty",
+        "Tajné miesto v hre",
+        "Ako vzniká herná postava"
+      ]
+    },
+    {
+      "name": "Kreslenie",
+      "items": [
+        "Nakresli draka krok za krokom",
+        "Tieňovanie ceruzkou",
+        "Komiks na jednej strane",
+        "Portrét za 60 sekúnd",
+        "Akvarel pre začiatočníkov"
+      ]
+    },
+    {
+      "name": "Príroda",
+      "items": [
+        "Búrka spomalene",
+        "Ako rastie semienko",
+        "Najvyšší strom sveta",
+        "Stopy zvierat v lese",
+        "Prečo padá lístie"
+      ]
+    }
+  ],
+  "reveal": "Feed sa zúžil bez toho, aby to niekto rozhodol: každý klik trochu posunul tvoj profil a feed sa z profilu vyberá. Zvnútra nič nechýba. Preto je bublina neviditeľná.",
+  "reveal2": "Keď otvoríš niečo iné, profil sa posúva len pomaly. Najrýchlejšie pomôže „Nezaujíma ma“ a primiešanie iných tém. To ti ukáže aj témy, na ktoré by si sa sám neopýtal.",
+  "debrief": "Bublina vzniká z obyčajných klikov, ktoré sa vracajú do feedu. Nevidíš ju, pretože nevidíš, čo ti feed neukázal. Prasknúť ju pomôže schválne hľadať iné témy a nechať si do feedu primiešať niečo nové."
+}

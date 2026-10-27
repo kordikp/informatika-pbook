@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Strong or weak prompt?",
+  "instruction": "Which prompt gets a good result out of AI? Sort the requests!",
+  "buckets": [
+    "Strong prompt",
+    "Weak prompt"
+  ],
+  "items": [
+    {
+      "text": "“Write me something about space”",
+      "answer": 1,
+      "why": "What exactly, for whom and how long? The AI has to guess."
+    },
+    {
+      "text": "“Explain black holes to an eighth-grader in 5 bullet points with an example”",
+      "answer": 0,
+      "why": "The topic, the reader, the length and the form are all clear."
+    },
+    {
+      "text": "“Do a report”",
+      "answer": 1,
+      "why": "The topic, the length and who it's for are all missing."
+    },
+    {
+      "text": "“Summarise this text in 3 sentences for a classmate, in English”",
+      "answer": 0,
+      "why": "The task, the length, the reader and the language are all given."
+    },
+    {
+      "text": "“Help with maths”",
+      "answer": 1,
+      "why": "With what exactly? The AI doesn't know where to start."
+    },
+    {
+      "text": "“Test me with 5 questions on fractions, one at a time, explaining my mistakes”",
+      "answer": 0,
+      "why": "It says exactly what the AI should do and how."
+    },
+    {
+      "text": "“Correct the spelling in the text and mark the changes in bold”",
+      "answer": 0,
+      "why": "A clear task and a clear form for the result."
+    },
+    {
+      "text": "“Write it better”",
+      "answer": 1,
+      "why": "What does better mean? Shorter, funnier, without mistakes?"
+    }
+  ],
+  "debrief": "A strong prompt says exactly what you want, for whom, in what form and how long. A weak prompt leaves the AI guessing, and then it gives a general answer."
+}

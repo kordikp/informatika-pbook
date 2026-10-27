@@ -8,7 +8,7 @@ teaser: "Žádné překlepy, žádné chybové hlášky. Barevné bloky, kočka 
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Proč je Scratch dobrá vstupní brána do programování her?"
 recallA: "Program skládáš z bloků, které do sebe zapadnou jen správně — odpadají překlepy a syntaktické chyby. Přitom obsahuje skutečné koncepty: události, cykly, podmínky i proměnné, které pak přeneseš do textových jazyků."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch11-scratch-jako-vstup
-state: core
+state: edited
 carriers: prose|code
 ---
 

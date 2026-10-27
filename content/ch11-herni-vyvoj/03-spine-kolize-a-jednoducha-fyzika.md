@@ -8,7 +8,7 @@ teaser: "Jak hra pozná, že jsi sebral minci? Nepozná „dotyk“ — počít�
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Co je kolize a jaké tři prvky tvoří jednoduchou herní fyziku?"
 recallA: "Kolize je detekce dotyku dvou objektů (typicky překryv jejich obrysů) a reakce na něj. Základní fyziku tvoří rychlost (posun za snímek), gravitace (rychlost dolů stále roste) a odraz (obrácení směru)."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch11-kolize-a-jednoducha-fyzika
-state: core
+state: edited
 carriers: prose
 ---
 

@@ -8,7 +8,7 @@ teaser: "Neumíš kreslit? Popiš obrázek větou a za pár vteřin ho máš. Je
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Jaký je hlavní přínos a hlavní riziko generativního obrazu?"
 recallA: "Přínos: tvořit může i ten, kdo neumí kreslit — rychle a levně. Riziko: modely se učily na cizích dílech bez souhlasu a realistické výstupy umí klamat."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch10-generativni-obraz
-state: core
+state: edited
 carriers: prose
 ---
 

@@ -8,7 +8,7 @@ teaser: "Stejný nástroj, dva prompty — jednou nuda, podruhé paráda. Rozdí
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Co má obsahovat dobrý prompt pro obrázek, video nebo hudbu?"
 recallA: "Konkrétní parametry: styl, náladu, světlo a záběr, u hudby žánr a tempo. Změnou jednoho parametru pak zjistíš, které slovo ovládá kterou část výsledku."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch10-prompt-pro-media
-state: core
+state: edited
 carriers: prose|table
 ---
 

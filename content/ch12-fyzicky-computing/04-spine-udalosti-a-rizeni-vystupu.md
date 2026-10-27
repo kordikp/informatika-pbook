@@ -8,7 +8,7 @@ teaser: "Stisk, zatřesení, tma. Zařízení celý den trpělivě čeká na sv�
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Jak funguje událostmi řízený program na fyzickém zařízení?"
 recallA: "Program čeká, a když nastane podnět (stisk tlačítka, zatřesení, změna světla), spustí se obsluha události a ovládne výstup — LED, pin nebo motor."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch12-udalosti-a-rizeni-vystupu
-state: core
+state: edited
 carriers: prose
 ---
 

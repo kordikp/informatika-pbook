@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Adatválogató",
+  "instruction": "Strukturált adatok (rögzített rend) vagy strukturálatlanok (rend nélkül)?",
+  "buckets": [
+    "Strukturált",
+    "Strukturálatlan"
+  ],
+  "items": [
+    {
+      "text": "Jegyek táblázata a KRÉTÁ-ban",
+      "answer": 0,
+      "why": "Minden sor egy tanuló, minden oszlop egy tantárgy vagy dátum."
+    },
+    {
+      "text": "Fotók a kirándulásról",
+      "answer": 1,
+      "why": "A képnek nincsenek adatsorai és -oszlopai. Hogy mi van rajta, azt valakinek fel kell ismernie."
+    },
+    {
+      "text": "Buszmenetrend",
+      "answer": 0,
+      "why": "Rögzített táblázat: megálló, időpont, járat."
+    },
+    {
+      "text": "Hangüzenet egy barátodtól",
+      "answer": 1,
+      "why": "Hang rögzített rend nélkül. Hogy mi van benne, azt meg kell hallgatni."
+    },
+    {
+      "text": "Egy webáruház raktára (sorok és oszlopok)",
+      "answer": 0,
+      "why": "Minden terméknek ugyanazok az adatai: név, ár, darabszám."
+    },
+    {
+      "text": "Videó a TikTokon",
+      "answer": 1,
+      "why": "Kép és hang táblázat nélkül. Csak a körülötte lévő adatok rögzítettek, például a lájkok száma."
+    },
+    {
+      "text": "Játék ranglistája (játékos, pontszám)",
+      "answer": 0,
+      "why": "Minden sornak ugyanazok a mezői: játékos és pontszám. Rendezni lehet."
+    },
+    {
+      "text": "Fogalmazás a szünidőről",
+      "answer": 1,
+      "why": "Szabad szöveg. Mindenki másképp írja meg."
+    }
+  ],
+  "debrief": "A strukturált adatoknak rögzített sorai és oszlopai vannak, így keresni és rendezni lehet bennük. A fotó, a hangüzenet vagy a fogalmazás is hordoz információt, csak rögzített rend nélkül."
+}

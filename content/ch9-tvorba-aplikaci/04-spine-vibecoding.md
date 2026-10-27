@@ -8,7 +8,7 @@ teaser: "Popíšeš appku větou, AI napíše kód. Zní to jako podvod? Je to d
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Co je vibecoding a jaké má riziko?"
 recallA: "Tvorba aplikace popisováním záměru AI: ty řídíš a hodnotíš, AI píše kód. Riziko je „iluze, že to umím“ — bez porozumění základům uvízneš, jakmile se něco rozbije, a neodhalíš chyby, které AI udělala."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch9-vibecoding
-state: core
+state: edited
 carriers: prose
 ---
 

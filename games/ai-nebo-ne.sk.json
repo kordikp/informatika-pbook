@@ -1,0 +1,57 @@
+{
+  "type": "sort",
+  "title": "AI, alebo nie?",
+  "instruction": "Učí sa to z dát a odhaduje? Potom je to AI. Len to vykonáva presné pravidlá? Potom nie.",
+  "buckets": [
+    "Je to AI",
+    "Nie je to AI"
+  ],
+  "items": [
+    {
+      "text": "Feed TikToku vyberá videá",
+      "answer": 0,
+      "why": "Učí sa z toho, na čo pozeráš, a odhaduje, čo ťa udrží."
+    },
+    {
+      "text": "Budík zazvoní o 7:00",
+      "answer": 1,
+      "why": "Pevné pravidlo: o 7:00 zazvoň. Nič sa neučí."
+    },
+    {
+      "text": "Automatické titulky videa",
+      "answer": 0,
+      "why": "Model sa naučil prevádzať reč na text z obrovského množstva nahrávok."
+    },
+    {
+      "text": "Kalkulačka sčíta 2+3",
+      "answer": 1,
+      "why": "Sčítanie je presný postup. Výsledok sa neodhaduje, počíta sa."
+    },
+    {
+      "text": "Telefón odomkneš tvárou",
+      "answer": 0,
+      "why": "Model sa naučil spoznať tvoju tvár aj pri inom svetle alebo s okuliarmi."
+    },
+    {
+      "text": "Semafor sa prepína po 30 s",
+      "answer": 1,
+      "why": "Časovač s pevným pravidlom. Semafor, ktorý sa učí z premávky, by už AI bol."
+    },
+    {
+      "text": "Prekladač preloží vetu",
+      "answer": 0,
+      "why": "Naučil sa z miliónov preložených viet, ako vetu najskôr preložiť."
+    },
+    {
+      "text": "Výťah ide na zvolené poschodie",
+      "answer": 1,
+      "why": "Stlačíš 3 a ide na 3. poschodie. Presné pravidlo, žiadne učenie."
+    },
+    {
+      "text": "ChatGPT napíše odpoveď",
+      "answer": 0,
+      "why": "Jazykový model odhaduje ďalšie slová podľa toho, čo sa naučil z textov."
+    }
+  ],
+  "debrief": "AI spoznáš podľa toho, že sa naučila z príkladov a odhaduje. Program s pevnými pravidlami robí len to, čo mu niekto presne napísal, aj keď vyzerá múdro."
+}

@@ -8,5 +8,13 @@
     "Zkontroluj kolize (dotkly se objekty?)",
     "Uprav skóre a životy podle pravidel",
     "Vykresli celou scénu znovu na obrazovku"
+  ],
+  "debrief": "Hra opakuje stejnou smyčku desítkykrát za sekundu: vstup, pohyb, kolize, pravidla, vykreslení. Proto se zdá, že všechno běží plynule.",
+  "why": [
+    "Nejdřív musí hra vědět, co hráč zmáčkl.",
+    "Podle vstupu se spočítají nové polohy postav.",
+    "Jestli se objekty dotkly, jde poznat až z nových poloh.",
+    "Podle kolizí víš, jestli přibude skóre, nebo ubude život.",
+    "Nakonec se vykreslí scéna se vším, co se v tomhle kole změnilo."
   ]
 }

@@ -8,7 +8,7 @@ teaser: "Pár značek v obyčejném textáku — a máš svou první webovku. Do
 voice: universal
 parent: null
 diagram: tri-vrstvy-webu
-core: true
+core: false
 recallQ: "Co určuje HTML a proč jde o význam, ne o vzhled?"
 recallA: "HTML značkami určuje strukturu a význam obsahu: co je nadpis, odstavec, obrázek, odkaz. Vzhled řeší až CSS — sémantika (význam) slouží prohlížečům, vyhledávačům i čtečkám pro nevidomé."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch8-html
-state: core
+state: edited
 carriers: prose|diagram|code
 ---
 

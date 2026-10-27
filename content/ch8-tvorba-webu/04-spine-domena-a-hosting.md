@@ -8,7 +8,7 @@ teaser: "Web v počítači vidíš jen ty. Dvě věci ho pustí ven: bydliště 
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Jaký je rozdíl mezi doménou a hostingem?"
 recallA: "Hosting je místo, kde web běží — server, na který nahraješ soubory. Doména je zapamatovatelná adresa (mujweb.cz), přes kterou lidé web najdou. Publikovat dnes jde zdarma a za pár minut."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch8-domena-a-hosting
-state: core
+state: edited
 carriers: prose|table
 ---
 

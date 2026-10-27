@@ -8,7 +8,7 @@ teaser: "Postavit appku jako Lego: bez kódu, z hotových bloků. Kde to stačí
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Co jsou no-code platformy a kde jsou jejich hranice?"
 recallA: "Nástroje, kde appku poskládáš vizuálně z hotových bloků bez psaní kódu. Skvělé na rychlý start a pochopení logiky; narazíš, když potřebuješ něco, co v nabídce bloků není — pak přichází kód nebo AI."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch9-no-code-low-code
-state: core
+state: edited
 carriers: prose
 ---
 

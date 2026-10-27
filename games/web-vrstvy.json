@@ -10,39 +10,49 @@
   "items": [
     {
       "text": "<h1>Nadpis stránky</h1>",
-      "answer": 0
+      "answer": 0,
+      "why": "Značka říká, že je to nadpis. To je struktura."
     },
     {
       "text": "color: darkblue;",
-      "answer": 1
+      "answer": 1,
+      "why": "Barva textu je vzhled."
     },
     {
       "text": "po kliknutí změň text",
-      "answer": 2
+      "answer": 2,
+      "why": "Reakce na klik je chování."
     },
     {
       "text": "<img src=\"pes.jpg\">",
-      "answer": 0
+      "answer": 0,
+      "why": "Vloží do stránky obrázek. To je struktura."
     },
     {
       "text": "font-size: 18px;",
-      "answer": 1
+      "answer": 1,
+      "why": "Velikost písma je vzhled."
     },
     {
       "text": "počítej skóre kliknutí",
-      "answer": 2
+      "answer": 2,
+      "why": "Počítání při klikání je chování."
     },
     {
       "text": "<a href=…>odkaz</a>",
-      "answer": 0
+      "answer": 0,
+      "why": "Odkaz je součást struktury stránky."
     },
     {
       "text": "rozložení do tří sloupců",
-      "answer": 1
+      "answer": 1,
+      "why": "Kde co na stránce stojí, určuje CSS."
     },
     {
       "text": "reaguj na stisk klávesy",
-      "answer": 2
+      "answer": 2,
+      "why": "Reakce na klávesu je chování."
     }
-  ]
+  ],
+  "debrief": "Web má tři vrstvy: HTML říká, co na stránce je, CSS, jak to vypadá, a JavaScript, co stránka udělá, když klikneš nebo píšeš."
 }

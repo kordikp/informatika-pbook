@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Forgass osztályvideót",
+  "instruction": "Rakd sorba a feladatokat úgy, hogy mindegyik csak azután jöjjön, amitől függ.",
+  "steps": [
+    "Témát választani",
+    "Megírni a forgatókönyvet",
+    "Felvenni a jeleneteket",
+    "Megvágni a felvételeket",
+    "Feliratot és zenét adni hozzá",
+    "Levetíteni a videót az osztálynak"
+  ],
+  "debrief": "Minden feladat az előzőtől függ: téma nélkül nincs forgatókönyv, felvételek nélkül nincs mit vágni. Aki megtalálja a függőségeket, tudja, milyen sorrendben ossza el a munkát.",
+  "why": [
+    "Téma nélkül nem tudod, miről írj.",
+    "A forgatókönyv mondja meg, mit kell felvenni.",
+    "A forgatókönyv szerint forgatsz.",
+    "Csak a már felvett jeleneteket lehet megvágni.",
+    "A felirat és a zene a megvágott videóhoz kerül.",
+    "Csak a kész videót lehet levetíteni."
+  ]
+}

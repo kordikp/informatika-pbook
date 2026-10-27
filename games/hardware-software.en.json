@@ -1,0 +1,72 @@
+{
+  "type": "sort",
+  "title": "Hardware or software?",
+  "instruction": "Sort them: what can you touch (hardware), and what just runs on the device (software)?",
+  "buckets": [
+    "Hardware",
+    "Software"
+  ],
+  "items": [
+    {
+      "text": "Processor",
+      "answer": 0,
+      "why": "A chip that carries out the instructions of programs."
+    },
+    {
+      "text": "Minecraft",
+      "answer": 1,
+      "why": "A game is a program. You install it and delete it again."
+    },
+    {
+      "text": "Display",
+      "answer": 0,
+      "why": "A physical screen you can touch."
+    },
+    {
+      "text": "Android",
+      "answer": 1,
+      "why": "An operating system is a program that runs the whole phone."
+    },
+    {
+      "text": "Battery",
+      "answer": 0,
+      "why": "A component that supplies energy."
+    },
+    {
+      "text": "TikTok",
+      "answer": 1,
+      "why": "An app is a program, even if you always have it to hand."
+    },
+    {
+      "text": "Keyboard",
+      "answer": 0,
+      "why": "A physical input device. A keyboard on the screen, though, is software."
+    },
+    {
+      "text": "Browser",
+      "answer": 1,
+      "why": "A program you open websites with."
+    },
+    {
+      "text": "Speaker",
+      "answer": 0,
+      "why": "A component that turns an electrical signal into sound."
+    },
+    {
+      "text": "Windows",
+      "answer": 1,
+      "why": "A computer's operating system, so a program."
+    },
+    {
+      "text": "Camera",
+      "answer": 0,
+      "why": "A physical sensor that captures light."
+    },
+    {
+      "text": "Calculator (app)",
+      "answer": 1,
+      "why": "An app is a program. A calculator with buttons would be hardware."
+    }
+  ],
+  "debrief": "You can touch hardware. Software is the programs that run on the hardware. A phone needs both: without programs it is just a piece of glass and metal."
+}

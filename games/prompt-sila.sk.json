@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Silný, alebo slabý prompt?",
+  "instruction": "Ktorý prompt dostane z AI dobrý výsledok? Roztrieď zadania!",
+  "buckets": [
+    "Silný prompt",
+    "Slabý prompt"
+  ],
+  "items": [
+    {
+      "text": "„Napíš mi niečo o vesmíre“",
+      "answer": 1,
+      "why": "Čo presne, pre koho a aké dlhé? AI musí hádať."
+    },
+    {
+      "text": "„Vysvetli ôsmakovi čierne diery v 5 odrážkach s príkladom“",
+      "answer": 0,
+      "why": "Téma, čitateľ, rozsah aj forma sú jasné."
+    },
+    {
+      "text": "„Urob referát“",
+      "answer": 1,
+      "why": "Chýba téma, rozsah aj to, pre koho je."
+    },
+    {
+      "text": "„Zhrň tento text do 3 viet pre spolužiaka, po slovensky“",
+      "answer": 0,
+      "why": "Úloha, dĺžka, čitateľ aj jazyk sú dané."
+    },
+    {
+      "text": "„Pomoc s matikou“",
+      "answer": 1,
+      "why": "S čím presne? AI nevie, kde začať."
+    },
+    {
+      "text": "„Vyskúšaj ma z 5 otázok na zlomky, po jednej, s vysvetlením chýb“",
+      "answer": 0,
+      "why": "Presne hovorí, čo a ako má AI robiť."
+    },
+    {
+      "text": "„Oprav v texte pravopis, zmeny vyznač tučne“",
+      "answer": 0,
+      "why": "Jasná úloha aj podoba výsledku."
+    },
+    {
+      "text": "„Napíš to lepšie“",
+      "answer": 1,
+      "why": "Čo znamená lepšie? Kratšie, vtipnejšie, bez chýb?"
+    }
+  ],
+  "debrief": "Silný prompt hovorí, čo presne chceš, pre koho, v akej podobe a aké dlhé. Slabý prompt nechá AI hádať a tá potom odpovie všeobecne."
+}

@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "Kinek milyen jogot?",
+  "instruction": "Most te vagy az adminisztrátor. Megosztasz egy dokumentumot egy csoportos projekthez. Kinek milyen jogot adsz?",
+  "buckets": [
+    "Szerkesztés",
+    "Hozzászólás",
+    "Csak olvasás",
+    "Nem osztom meg"
+  ],
+  "items": [
+    {
+      "text": "A csoportodban lévő osztálytársak, akik veled írják a projektet.",
+      "answer": 0,
+      "why": "Veled írnak, módosítaniuk kell a szöveget."
+    },
+    {
+      "text": "Az egész osztály, hogy a beadás után elolvashassa a projekteket.",
+      "answer": 2,
+      "why": "Elolvassák, és semmit sem rontanak el."
+    },
+    {
+      "text": "Bárki az interneten, akihez eljut a link.",
+      "answer": 3,
+      "why": "Név szerint osztasz meg, és csak annyit, amennyi kell."
+    },
+    {
+      "text": "Egy új csoporttag, aki veletek együtt írja meg a befejezést.",
+      "answer": 0,
+      "why": "Veletek ír, módosítania kell a szöveget."
+    },
+    {
+      "text": "Egy barátod, aki csak átnézi a szöveget, és helyesírási megjegyzéseket ír hozzá.",
+      "answer": 1,
+      "why": "A megjegyzéseit hozzászólásba írja, a szöveget nem kell módosítania."
+    },
+    {
+      "text": "A szüleid, akik meg akarják nézni, min dolgozol.",
+      "answer": 2,
+      "why": "Csak meg akarják nézni, elég nekik az olvasás."
+    },
+    {
+      "text": "Egy másik osztályba járó diák, aki le akarja másolni a projektet.",
+      "answer": 3,
+      "why": "Ne segítsd a másolást. Ne oszd meg."
+    },
+    {
+      "text": "Egy ismeretlen fiók, amely hozzáférést kér a dokumentumhoz.",
+      "answer": 3,
+      "why": "Nem tudod, ki az. Ne adj hozzáférést."
+    }
+  ],
+  "debrief": "Mindenkinek csak olyan jogot adj, amilyenre tényleg szüksége van. Aki ír, szerkeszt. Aki tanácsot ad, hozzászól. Aki csak néz, olvas. Aki pedig nem tartozik a dokumentumhoz, semmit sem kap."
+}

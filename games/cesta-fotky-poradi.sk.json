@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Cesta fotky do chatu",
+  "instruction": "Zoraď, čo sa stane, keď pošleš fotku kamarátovi.",
+  "steps": [
+    "Mobil sa opýta DNS na adresu servera chatu",
+    "Fotka sa rozdelí na balíčky s IP adresou servera",
+    "Routery posielajú balíčky ďalej, každý možno inou cestou",
+    "Server balíčky poskladá späť do fotky",
+    "Server pošle fotku do mobilu kamaráta"
+  ],
+  "debrief": "Fotka necestuje vcelku. Najprv sa zistí adresa servera, potom sa fotka rozdelí na balíčky, tie idú cez routery možno rôznymi cestami a server ich znova poskladá.",
+  "why": [
+    "Mobil pozná meno servera, ale potrebuje jeho IP adresu. Tú mu povie DNS.",
+    "S adresou môže fotku rozdeliť na balíčky a na každý napísať, kam ide.",
+    "Každý router pošle balíček o kúsok bližšie k cieľu.",
+    "Balíčky dorazia možno v inom poradí. Server ich podľa čísel poskladá späť.",
+    "Keď má server celú fotku, pošle ju kamarátovi rovnakým spôsobom."
+  ]
+}

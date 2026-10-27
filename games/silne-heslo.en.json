@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Strong or weak password?",
+  "instruction": "An attacker first tries well-known passwords and their variations. What holds out?",
+  "buckets": [
+    "Holds out",
+    "Falls quickly"
+  ],
+  "items": [
+    {
+      "text": "password123",
+      "answer": 1,
+      "why": "It's one of the most common passwords in the world. The attacker tries it straight away."
+    },
+    {
+      "text": "P@ss1",
+      "answer": 1,
+      "why": "Short, and swapping letters for symbols is a well-known trick. Programs try it by themselves."
+    },
+    {
+      "text": "Tr4ctor!",
+      "answer": 1,
+      "why": "One word with the usual swaps. Attackers have dictionaries for that."
+    },
+    {
+      "text": "giraffe eats dumplings on the Moon",
+      "answer": 0,
+      "why": "Long and made of unexpected words. That can't be guessed."
+    },
+    {
+      "text": "minecraft2012",
+      "answer": 1,
+      "why": "A popular game and a year. The attacker tries both among the very first."
+    },
+    {
+      "text": "the blue train rides backwards to Brno",
+      "answer": 0,
+      "why": "A long sentence that you'll remember but nobody will guess."
+    },
+    {
+      "text": "The same long password for a game and for e-mail",
+      "answer": 1,
+      "why": "When it leaks from the game, the attacker tries it on your e-mail too."
+    },
+    {
+      "text": "A long password from a password manager + 2FA",
+      "answer": 0,
+      "why": "A random password and an extra second step. Even with the password, the attacker can't log in."
+    }
+  ],
+  "debrief": "An attacker first tries well-known passwords, words and their variations. What holds out is a long password made of several unexpected words, or a password from a password manager, different for every account and ideally with 2FA."
+}

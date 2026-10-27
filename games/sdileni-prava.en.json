@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "Who gets which right?",
+  "instruction": "Now you're the administrator. You're sharing a document for a group project. Who gets which right?",
+  "buckets": [
+    "Edit",
+    "Comment",
+    "View only",
+    "Don't share"
+  ],
+  "items": [
+    {
+      "text": "Classmates in your group who are writing the project with you.",
+      "answer": 0,
+      "why": "They write with you, so they need to change the text."
+    },
+    {
+      "text": "The whole class, so they can read the projects after they're handed in.",
+      "answer": 2,
+      "why": "They'll read it and won't break anything."
+    },
+    {
+      "text": "Anyone on the internet who gets the link.",
+      "answer": 3,
+      "why": "You share with named people, and only as much as is needed."
+    },
+    {
+      "text": "A new group member who will finish the conclusion with you.",
+      "answer": 0,
+      "why": "They're writing with you, so they need to change the text."
+    },
+    {
+      "text": "A friend who will just read through the text and add spelling notes.",
+      "answer": 1,
+      "why": "They'll put the notes in comments; they don't need to change the text."
+    },
+    {
+      "text": "Your parents, who want to see what you're working on.",
+      "answer": 2,
+      "why": "They just want to look, so viewing is enough."
+    },
+    {
+      "text": "A pupil from another class who wants to copy the project.",
+      "answer": 3,
+      "why": "Don't help with copying. Don't share."
+    },
+    {
+      "text": "An unknown account asking for access to the document.",
+      "answer": 3,
+      "why": "You don't know who it is. Don't give access."
+    }
+  ],
+  "debrief": "Give everyone only the right they really need. Whoever writes, edits. Whoever advises, comments. Whoever only looks, views. And whoever doesn't belong to the document gets nothing."
+}

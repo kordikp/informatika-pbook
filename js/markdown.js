@@ -1,4 +1,5 @@
 // Markdown to HTML converter with table, math, and diagram support
+import { LANG } from './i18n.js';
 
 export function renderMarkdown(text) {
   if (!text || !text.trim()) return '';
@@ -10,6 +11,17 @@ export function renderMarkdown(text) {
   // Inline math $...$ — only match if content has LaTeX chars (\, ^, _, {, })
   // This prevents matching currency like "$15 billion"
   text = text.replace(/\$([^\$\n]*?[\\^_{}][^\$\n]*?)\$/g, (m) => { mathStore.push(m); return `%%MATH${mathStore.length - 1}%%`; });
+  // Reader-added diagrams live INSIDE the body (⟦svg⟧…⟦/svg⟧) so they sit exactly
+  // where the reader put them, travel with sharing, and never overwrite the
+  // section's own diagram. Sanitized here — bodies can come from other readers.
+  const svgStore = [];
+  text = text.replace(/⟦svg⟧([\s\S]*?)⟦\/svg⟧/g, (_, svg) => {
+    const clean = sanitizeSvgBlock(svg);
+    if (!clean) return '';
+    svgStore.push(clean);
+    return `%%SVGB${svgStore.length - 1}%%`;
+  });
+
   // Code blocks ```...```
   const codeStore = [];
   text = text.replace(/```(\w*)\n([\s\S]*?)```/g, (m, lang, code) => {
@@ -31,6 +43,14 @@ export function renderMarkdown(text) {
       if (inList) { result.push(closeList(listType)); inList = false; }
       const { lang, code } = codeStore[parseInt(codeMatch[1])];
       result.push(`<pre><code class="language-${lang || 'text'}">${escapeHtml(code)}</code></pre>`);
+      continue;
+    }
+
+    // Reader-added diagram placeholder
+    const svgMatch = line.match(/^%%SVGB(\d+)%%$/);
+    if (svgMatch) {
+      if (inList) { result.push(closeList(listType)); inList = false; }
+      result.push(`<figure class="md-figure diagram-inline">${svgStore[parseInt(svgMatch[1])]}</figure>`);
       continue;
     }
 
@@ -120,6 +140,17 @@ export function renderMarkdown(text) {
       continue;
     }
 
+    // Changed-region markers (⟦rx⟧ / ⟦/rx⟧ on their own line)
+    if (line.trim() === '⟦rx⟧' || line.trim() === '⟦/rx⟧') {
+      if (inList) { result.push(closeList(listType)); inList = false; }
+      result.push(line.trim() === '⟦rx⟧' ? '<div class="rx-region">' : '</div>');
+      continue;
+    }
+
+    // Standalone HTML comment = interop mark (slAIdy: <!-- col -->, <!-- gap -->,
+    // <!-- slide -->) — the book hides them, but they survive in the text.
+    if (/^<!--[\s\S]*?-->\s*$/.test(line.trim())) continue;
+
     // Empty line
     if (line.trim() === '') continue;
 
@@ -153,7 +184,30 @@ function isBlockStart(line) {
   return /^#{1,6}\s/.test(line) || /^[-*]\s/.test(line) || /^\d+[.)]\s/.test(line) ||
     /^---+\s*$/.test(line) || /^\*\*\*+\s*$/.test(line) || /^\|/.test(line) || /^%%/.test(line) ||
     /^!\[/.test(line) || // standalone image
+    /^⟦\/?(rx|svg)⟧$/.test(line.trim()) || // changed-region / reader diagram markers
+    /^<!--/.test(line.trim()) || // interop comment marks (slAIdy)
     /^>\s?/.test(line); // blockquote
+}
+
+// Minimal SVG sanitizer for body-embedded diagrams: keep the drawing, drop
+// anything executable or network-reaching.
+function sanitizeSvgBlock(svg) {
+  if (!svg || typeof svg !== 'string') return null;
+  let t = svg.trim();
+  const start = t.indexOf('<svg');
+  if (start === -1) return null;
+  t = t.slice(start);
+  const end = t.lastIndexOf('</svg>');
+  if (end === -1) return null;
+  t = t.slice(0, end + 6);
+  // a figure from SlAIdy may carry a picture inside it; a drawing alone is far smaller
+  if (t.length > (/data:image\//.test(t) ? 3000000 : 80000)) return null;
+  return t.replace(/<script[\s\S]*?<\/script>/gi, '')
+          .replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, '')
+          .replace(/\son\w+\s*=\s*"[^"]*"/gi, '')
+          .replace(/\son\w+\s*=\s*'[^']*'/gi, '')
+          .replace(/javascript:/gi, '')
+          .replace(/(xlink:href|href)\s*=\s*"(?!#|data:image\/(?:png|jpeg|webp|gif);base64,)[^"]*"/gi, '');
 }
 
 function escapeHtml(s) {
@@ -209,6 +263,25 @@ function parseCells(line) {
 }
 
 // --- Inline formatting ---
+// Smart punctuation for text outside HTML tags: ' -- ' → ' – ', '...' → '…',
+// straight quotes → curly. Attribute values (hrefs, classes) are never touched.
+// Quotation marks of the reader's language: “English”, „české“, „magyar”.
+const QUOTES = { cs: '„“‚‘', sk: '„“‚‘', de: '„“‚‘', hu: '„”»«', pl: '„”‚’' };
+const Q = QUOTES[LANG] || '“”‘’';
+export function smartPunct(html) {
+  return String(html ?? '').split(/(<[^>]*>)/).map((seg, i) => {
+    if (i % 2) return seg;                       // a tag
+    return seg
+      .replace(/(^|\s)--(?=\s|$)/g, '$1–')
+      .replace(/(\w)--(\w)/g, '$1–$2')
+      .replace(/\.\.\./g, '…')
+      .replace(/(^|[\s(\[{\u2013\u2014/])"(?=\S)/g, '$1' + Q[0])
+      .replace(/"/g, Q[1])
+      .replace(/(^|[\s(\[{\u2013\u2014/])'(?=\S)/g, '$1' + Q[2])
+      .replace(/'/g, '’');
+  }).join('');
+}
+
 function inlineFmt(text) {
   // Protect math from inline processing
   const mathBlocks = [];
@@ -235,6 +308,9 @@ function inlineFmt(text) {
   text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   // Italic (careful with LaTeX subscripts)
   text = text.replace(/(?<![\\*\w])\*([^*\n]+?)\*(?!\*)/g, '<em>$1</em>');
+
+  // Typography on prose only (tags, code and math are placeholders or skipped)
+  text = smartPunct(text);
 
   // Restore code
   text = text.replace(/%%IC(\d+)%%IC/g, (_, idx) => codeBlocks[parseInt(idx)]);

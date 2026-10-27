@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Erős vagy gyenge jelszó?",
+  "instruction": "A támadó először az ismert jelszavakat és változataikat próbálja. Mi áll ellen?",
+  "buckets": [
+    "Ellenáll",
+    "Gyorsan elesik"
+  ],
+  "items": [
+    {
+      "text": "jelszo123",
+      "answer": 1,
+      "why": "A világ leggyakoribb jelszavai közé tartozik. A támadó azonnal kipróbálja."
+    },
+    {
+      "text": "P@ss1",
+      "answer": 1,
+      "why": "Rövid, és a betűk jelekre cserélése ismert trükk. A programok maguktól kipróbálják."
+    },
+    {
+      "text": "Tr4ktor!",
+      "answer": 1,
+      "why": "Egyetlen szó a szokásos cserékkel. Erre a támadóknak szótáraik vannak."
+    },
+    {
+      "text": "a zsiráf gombócot eszik a Holdon",
+      "answer": 0,
+      "why": "Hosszú, és váratlan szavakból áll. Ezt nem lehet kitalálni."
+    },
+    {
+      "text": "minecraft2012",
+      "answer": 1,
+      "why": "Egy népszerű játék és egy évszám. A támadó mindkettőt az elsők között próbálja ki."
+    },
+    {
+      "text": "a kék vonat tolatva megy Debrecenbe",
+      "answer": 0,
+      "why": "Hosszú mondat, amelyet megjegyzel, de senki sem találja ki."
+    },
+    {
+      "text": "Ugyanaz a hosszú jelszó a játékhoz és az e-mailhez",
+      "answer": 1,
+      "why": "Ha a játékból kiszivárog, a támadó az e-mailen is kipróbálja."
+    },
+    {
+      "text": "Hosszú jelszó a jelszókezelőből + 2FA",
+      "answer": 0,
+      "why": "Véletlenszerű jelszó és egy plusz második lépés. A támadó még a jelszóval sem tud bejelentkezni."
+    }
+  ],
+  "debrief": "A támadó először az ismert jelszavakat, a szavakat és változataikat próbálja ki. Ellenáll a több váratlan szóból álló hosszú jelszó vagy a jelszókezelőből származó jelszó, minden fiókhoz más, és lehetőleg 2FA-val."
+}

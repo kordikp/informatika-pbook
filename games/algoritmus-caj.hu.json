@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Algoritmus: főzz teát",
+  "instruction": "Rakd sorba a lépéseket olyan egyértelműen, hogy egy szó szerint gondolkodó robot is meg tudja csinálni!",
+  "steps": [
+    "Tölts vizet a vízforralóba",
+    "Kapcsold be a vízforralót, és várd meg, míg a víz felforr",
+    "Tedd a teafiltert a bögrébe",
+    "Öntsd le a filtert forró vízzel",
+    "Várj 3 percet",
+    "Vedd ki a filtert, és kínáld a teát"
+  ],
+  "debrief": "Az algoritmusban számít a sorrend. Minden lépés az előzőre épül: csak forró vízzel lehet leönteni, és a filtert akkor veszed ki, amikor a tea már kiázott.",
+  "why": [
+    "Ha nincs víz a forralóban, nincs mit felmelegíteni.",
+    "A víznek fel kell forrnia, mielőtt kiöntöd.",
+    "A filternek a bögrében kell lennie, mielőtt leöntöd.",
+    "Most forró víz van a forralóban és filter a bögrében.",
+    "A tea csak a leöntés után ázik.",
+    "A filtert akkor veszed ki, amikor a tea már kiázott."
+  ]
+}

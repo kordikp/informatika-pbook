@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Poctivý graf, alebo trik?",
+  "instruction": "Čo je v poriadku a čo má graf, ktorý ťa chce oklamať?",
+  "buckets": [
+    "Poctivé",
+    "Trik!"
+  ],
+  "items": [
+    {
+      "text": "Os Y začína na nule",
+      "answer": 0,
+      "why": "Výšky stĺpcov zodpovedajú skutočným hodnotám."
+    },
+    {
+      "text": "Os Y začína na 99",
+      "answer": 1,
+      "why": "Malý rozdiel potom vyzerá obrovsky."
+    },
+    {
+      "text": "Popísané osi s jednotkami",
+      "answer": 0,
+      "why": "Vieš, čo a v čom graf meria."
+    },
+    {
+      "text": "Graf začína práve rokom, keď to vyzerá dobre",
+      "answer": 1,
+      "why": "Vybrané obdobie schová, ako to bolo predtým."
+    },
+    {
+      "text": "Stĺpcový graf na porovnanie tried",
+      "answer": 0,
+      "why": "Stĺpce vedľa seba sa dobre porovnávajú."
+    },
+    {
+      "text": "Dvakrát vyšší panáčik = „dvojnásobok“",
+      "answer": 1,
+      "why": "Dvakrát vyšší panáčik je aj dvakrát širší, takže vyzerá ako štvornásobok."
+    },
+    {
+      "text": "Čiarový graf pre teplotu počas týždňa",
+      "answer": 0,
+      "why": "Čiara ukazuje, ako sa hodnota mení v čase."
+    },
+    {
+      "text": "Koláč s 15 dielikmi bez popisov",
+      "answer": 1,
+      "why": "Toľko dielikov bez popisov sa nedá porovnať. Nevieš, čo je čo."
+    }
+  ],
+  "debrief": "Poctivý graf má popísané osi, rozumnú mierku a vhodný typ. Triky menia dojem, nie dáta: odseknutá os, vybrané obdobie, obrázky namiesto stĺpcov."
+}

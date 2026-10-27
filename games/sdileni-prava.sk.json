@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "Komu aké právo?",
+  "instruction": "Teraz si správca ty. Zdieľaš dokument ku skupinovému projektu. Komu dáš aké právo?",
+  "buckets": [
+    "Upravovať",
+    "Komentovať",
+    "Len čítať",
+    "Nezdieľať"
+  ],
+  "items": [
+    {
+      "text": "Spolužiaci zo skupiny, ktorí projekt píšu s tebou.",
+      "answer": 0,
+      "why": "Píšu s tebou, potrebujú text meniť."
+    },
+    {
+      "text": "Celá trieda, aby si projekty po odovzdaní prečítala.",
+      "answer": 2,
+      "why": "Prečítajú si ho a nič nepokazia."
+    },
+    {
+      "text": "Ktokoľvek na internete, kto dostane odkaz.",
+      "answer": 3,
+      "why": "Zdieľaš menovite a len toľko, koľko treba."
+    },
+    {
+      "text": "Nový člen skupiny, ktorý s vami dopíše záver.",
+      "answer": 0,
+      "why": "Píše s vami, potrebuje text meniť."
+    },
+    {
+      "text": "Kamarát, ktorý ti text len prejde a pripíše poznámky k pravopisu.",
+      "answer": 1,
+      "why": "Poznámky napíše do komentárov, text meniť nemusí."
+    },
+    {
+      "text": "Rodičia, ktorí sa chcú pozrieť, na čom pracuješ.",
+      "answer": 2,
+      "why": "Chcú sa len pozrieť, stačí im čítanie."
+    },
+    {
+      "text": "Spolužiak z inej triedy, ktorý chce projekt odpísať.",
+      "answer": 3,
+      "why": "Odpisovanie nepodporuj. Nezdieľaj."
+    },
+    {
+      "text": "Neznámy účet, ktorý žiada o prístup k dokumentu.",
+      "answer": 3,
+      "why": "Nevieš, kto to je. Prístup nedávaj."
+    }
+  ],
+  "debrief": "Daj každému len také právo, aké naozaj potrebuje. Kto píše, upravuje. Kto radí, komentuje. Kto sa len pozerá, číta. A kto k dokumentu nepatrí, nedostane nič."
+}

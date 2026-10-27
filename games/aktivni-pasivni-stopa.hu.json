@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Aktív vagy passzív lábnyom?",
+  "instruction": "Tudatosan hagytad, vagy úgy keletkezett, hogy nem láttad?",
+  "buckets": [
+    "Aktív (tudatosan)",
+    "Passzív (nem látod)"
+  ],
+  "items": [
+    {
+      "text": "Egy fotó, amelyet közzéteszel",
+      "answer": 0,
+      "why": "Úgy döntöttél, hogy megosztod, ez aktív lábnyom."
+    },
+    {
+      "text": "A fotóban tárolt GPS-helyadat",
+      "answer": 1,
+      "why": "A telefon magától írja bele a fotóba. A képen nem látod."
+    },
+    {
+      "text": "Hozzászólás egy videó alatt",
+      "answer": 0,
+      "why": "Tudatosan írtad, és mások is látják."
+    },
+    {
+      "text": "Sütik egy meglátogatott weboldalról",
+      "answer": 1,
+      "why": "A weboldal a böngésződbe menti őket, akkor is, ha semmire sem kattintasz."
+    },
+    {
+      "text": "Az előzmények arról, mit keresel",
+      "answer": 1,
+      "why": "Magától mentődik, és kiderül belőle, mi érdekel."
+    },
+    {
+      "text": "Bejegyzés a nyaralásodról",
+      "answer": 0,
+      "why": "Te magad osztottad meg. Vigyázz, azt is elárulja, hogy nem vagy otthon."
+    },
+    {
+      "text": "Hogy melyik videót mennyi ideig nézed",
+      "answer": 1,
+      "why": "Az alkalmazás csendben méri, és ez alapján választja ki a következő videóidat."
+    }
+  ],
+  "debrief": "Az aktív lábnyomot látod, mert te magad hozod létre. A passzív csendben keletkezik: helyadat, sütik, előzmények és a videóknál töltött idő. Gyakran többet árul el rólad, mint amit megosztasz."
+}

@@ -8,7 +8,7 @@ teaser: "Copilot, Cursor, Replit, Lovable… džungle jmen. Ve skutečnosti tři
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Jaké druhy AI nástrojů pro tvorbu existují a co rozhoduje o přijetí jejich návrhu?"
 recallA: "Našeptávače v editoru (Copilot), AI editory a agenti (Cursor, Claude Code) a „appka z popisu“ nástroje (Replit, Lovable). Návrh přijímáš, až když ověříš, že dělá, co potřebuješ — rozhoduje tvůj cíl, ne ochota AI."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch9-ai-nastroje-pro-tvorbu
-state: core
+state: edited
 carriers: prose|table
 ---
 

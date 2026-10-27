@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Scam or OK?",
+  "instruction": "Scam or OK?",
+  "buckets": [
+    "Scam",
+    "OK"
+  ],
+  "items": [
+    {
+      "text": "Text (unknown number): Your parcel is waiting for a customs payment of €1.29. Without payment it will be returned today. Pay here: parcel-payment.example",
+      "answer": 0,
+      "why": "It aims at hurry (“today”) and a small amount that doesn't look suspicious."
+    },
+    {
+      "text": "E-mail (Class teacher · school address): Hello, on Friday we're going on a school trip. Meet at 8:00 in front of the school, bring a snack and a drink. You'll find the details in the school system.",
+      "answer": 1,
+      "why": "It doesn't want anything: no link, no details, no hurry."
+    },
+    {
+      "text": "E-mail (Game team): Congratulations! You've won 2,000 gems in the contest. Collect your prize within 24 hours by logging in with your game account: game-rewards.example",
+      "answer": 0,
+      "why": "It aims at reward and hurry. The text doesn't have a single mistake. AI wrote it."
+    },
+    {
+      "text": "Call (Mum · unknown number): “Hi, it's me. My phone broke, I'm calling from someone else's. You'll get a text with a code, read it out to me, quickly. I'll explain at home.”",
+      "answer": 0,
+      "why": "It aims at trust and fear for someone close. The voice may be cloned by AI."
+    },
+    {
+      "text": "Text (Game): (You are logging in to the game right now.) Login code: 482913. Don't give it to anyone, not even support.",
+      "answer": 1,
+      "why": "The code came because you are the one logging in right now. It belongs only in the login window."
+    },
+    {
+      "text": "Chat (Your friend Tomáš): Hey, please vote for me in a contest! Just log in with your account here: contest-vote.example 🙏",
+      "answer": 0,
+      "why": "It aims at friendship. Tomáš's account may already be controlled by a scammer."
+    }
+  ],
+  "debrief": "You can spot a scam by hurry, an unfamiliar link and a request for a code, a password or a payment. When you're not sure, check it another way: in the app, with a teacher or on a number you know."
+}

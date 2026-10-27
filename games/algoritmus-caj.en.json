@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Algorithm: make a cup of tea",
+  "instruction": "Put the steps in order so clearly that even a literal robot could do them!",
+  "steps": [
+    "Pour water into the kettle",
+    "Switch the kettle on and wait until the water boils",
+    "Put a tea bag in the mug",
+    "Pour boiling water over the tea bag",
+    "Wait 3 minutes",
+    "Take the tea bag out and serve the tea"
+  ],
+  "debrief": "In an algorithm the order matters. Each step builds on the one before: you can only pour once the water is boiling, and you take the bag out once the tea has brewed.",
+  "why": [
+    "Without water in the kettle there is nothing to heat.",
+    "The water must boil before you pour it.",
+    "The bag has to be in the mug before you pour water on it.",
+    "Now there is boiling water in the kettle and a bag in the mug.",
+    "The tea brews only after you pour the water.",
+    "You take the bag out once the tea has brewed."
+  ]
+}

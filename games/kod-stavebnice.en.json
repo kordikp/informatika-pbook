@@ -1,0 +1,58 @@
+{
+  "type": "sort",
+  "title": "Spot the building block",
+  "instruction": "Variable, condition or loop? Sort the pieces of code!",
+  "buckets": [
+    "Variable",
+    "Condition",
+    "Loop"
+  ],
+  "items": [
+    {
+      "text": "score = 0",
+      "answer": 0,
+      "why": "0 is stored in the variable score."
+    },
+    {
+      "text": "if lives == 0:",
+      "answer": 1,
+      "why": "The next part runs only when lives are 0. That's a condition."
+    },
+    {
+      "text": "while game_running:",
+      "answer": 2,
+      "why": "It repeats while the game is running. That's a loop."
+    },
+    {
+      "text": "name = \"Kuba\"",
+      "answer": 0,
+      "why": "The variable name remembers the text Kuba."
+    },
+    {
+      "text": "repeat 10×: do a squat",
+      "answer": 2,
+      "why": "The same step ten times in a row."
+    },
+    {
+      "text": "if it's raining → put your hood up",
+      "answer": 1,
+      "why": "You put your hood up only when it's raining."
+    },
+    {
+      "text": "lives = lives - 1",
+      "answer": 0,
+      "why": "The variable changes: the new value is 1 less."
+    },
+    {
+      "text": "for number in range(100):",
+      "answer": 2,
+      "why": "It goes through the numbers 0 to 99, one after another."
+    },
+    {
+      "text": "if password == correct:",
+      "answer": 1,
+      "why": "It lets you in only if the password matches."
+    }
+  ],
+  "debrief": "A variable remembers something, a condition chooses what happens and a loop repeats. Almost every program is built from these three blocks."
+}

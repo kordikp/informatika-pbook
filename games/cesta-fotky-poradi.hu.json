@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Egy fotó útja a csetbe",
+  "instruction": "Rakd sorba, mi történik, amikor fotót küldesz egy barátodnak.",
+  "steps": [
+    "A telefon megkérdezi a DNS-t a cset szerverének címéről",
+    "A fotó csomagokra bomlik, rajtuk a szerver IP-címével",
+    "A routerek továbbküldik a csomagokat, mindegyiket talán más úton",
+    "A szerver a csomagokat újra fotóvá rakja össze",
+    "A szerver elküldi a fotót a barátod telefonjára"
+  ],
+  "debrief": "A fotó nem egyben utazik. Először kiderül a szerver címe, aztán a fotó csomagokra bomlik, ezek routereken át mennek, talán különböző utakon, és a szerver újra összerakja őket.",
+  "why": [
+    "A telefon ismeri a szerver nevét, de az IP-címére van szüksége. Ezt a DNS mondja meg.",
+    "A címmel már csomagokra bonthatja a fotót, és mindegyikre ráírhatja, hová megy.",
+    "Minden router egy kicsit közelebb küldi a csomagot a célhoz.",
+    "A csomagok talán más sorrendben érkeznek. A szerver a számuk alapján rakja össze őket.",
+    "Amikor a szervernél megvan az egész fotó, ugyanígy elküldi a barátodnak."
+  ]
+}

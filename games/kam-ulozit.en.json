@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Where will you save it?",
+  "instruction": "Only on the device, or in the cloud? Decide by what you need.",
+  "buckets": [
+    "Must be on the device",
+    "The cloud works well"
+  ],
+  "items": [
+    {
+      "text": "A game you want to play on a plane without internet",
+      "answer": 0,
+      "why": "On a plane you can't connect to the cloud."
+    },
+    {
+      "text": "A report you work on both at home and at school",
+      "answer": 1,
+      "why": "You can open it from any computer."
+    },
+    {
+      "text": "A map for a trip to the mountains where there's no signal",
+      "answer": 0,
+      "why": "Without signal the map won't load from the cloud. Download it beforehand."
+    },
+    {
+      "text": "Photos you want to keep after changing phones",
+      "answer": 1,
+      "why": "They stay in the cloud even if you change or lose your phone."
+    },
+    {
+      "text": "A document you're writing with classmates at the same time",
+      "answer": 1,
+      "why": "You all work on the same copy on the server."
+    },
+    {
+      "text": "A ticket you show on the underground",
+      "answer": 0,
+      "why": "Underground there's often no signal. Keep the ticket saved on your phone."
+    }
+  ],
+  "debrief": "The cloud is handy when you want your data on several devices or shared with several people. Where there's no internet, the data has to be right on the device."
+}

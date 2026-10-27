@@ -8,7 +8,7 @@ teaser: "Zařízení mají smysly i svaly. Tvůj mobil jich v sobě schovává v
 voice: universal
 parent: null
 diagram: senzory-aktuatory
-core: true
+core: false
 recallQ: "Jaký je rozdíl mezi senzorem a aktuátorem?"
 recallA: "Senzor je smysl zařízení — vnímá prostředí a měří světlo, teplo nebo pohyb. Aktuátor je sval — v prostředí jedná: rozsvítí, zapípá, roztočí motor."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch12-senzory-a-aktuatory
-state: core
+state: edited
 carriers: prose|table|diagram
 ---
 

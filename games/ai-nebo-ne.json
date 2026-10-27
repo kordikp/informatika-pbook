@@ -9,39 +9,49 @@
   "items": [
     {
       "text": "Feed TikToku vybírá videa",
-      "answer": 0
+      "answer": 0,
+      "why": "Učí se z toho, na co koukáš, a odhaduje, co tě udrží."
     },
     {
       "text": "Budík zazvoní v 7:00",
-      "answer": 1
+      "answer": 1,
+      "why": "Pevné pravidlo: v 7:00 zazvoň. Nic se neučí."
     },
     {
       "text": "Automatické titulky videa",
-      "answer": 0
+      "answer": 0,
+      "why": "Model se naučil převádět řeč na text z obrovského množství nahrávek."
     },
     {
       "text": "Kalkulačka sečte 2+3",
-      "answer": 1
+      "answer": 1,
+      "why": "Sčítání je přesný postup. Výsledek se neodhaduje, počítá se."
     },
     {
       "text": "Telefon odemkneš obličejem",
-      "answer": 0
+      "answer": 0,
+      "why": "Model se naučil poznat tvůj obličej i při jiném světle nebo s brýlemi."
     },
     {
       "text": "Semafor přepíná po 30 s",
-      "answer": 1
+      "answer": 1,
+      "why": "Časovač s pevným pravidlem. Semafor, který se učí z provozu, by už AI byl."
     },
     {
       "text": "Překladač přeloží větu",
-      "answer": 0
+      "answer": 0,
+      "why": "Naučil se z milionů přeložených vět, jak větu nejspíš přeložit."
     },
     {
       "text": "Výtah jede do zvoleného patra",
-      "answer": 1
+      "answer": 1,
+      "why": "Zmáčkneš 3 a jede do 3. Přesné pravidlo, žádné učení."
     },
     {
       "text": "ChatGPT napíše odpověď",
-      "answer": 0
+      "answer": 0,
+      "why": "Jazykový model odhaduje další slova podle toho, co se naučil z textů."
     }
-  ]
+  ],
+  "debrief": "AI poznáš podle toho, že se naučila z příkladů a odhaduje. Program s pevnými pravidly dělá jen to, co mu někdo přesně napsal, i když vypadá chytře."
 }

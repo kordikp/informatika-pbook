@@ -1,0 +1,57 @@
+{
+  "type": "sort",
+  "title": "MI vagy nem?",
+  "instruction": "Adatokból tanul és becsül? Akkor MI. Csak pontos szabályokat hajt végre? Akkor nem.",
+  "buckets": [
+    "Ez MI",
+    "Ez nem MI"
+  ],
+  "items": [
+    {
+      "text": "A TikTok hírfolyama videókat választ",
+      "answer": 0,
+      "why": "Abból tanul, amit nézel, és megbecsüli, mi tart ott."
+    },
+    {
+      "text": "Az ébresztőóra 7:00-kor csörög",
+      "answer": 1,
+      "why": "Rögzített szabály: 7:00-kor csörögj. Semmit sem tanul."
+    },
+    {
+      "text": "Automatikus feliratok egy videóhoz",
+      "answer": 0,
+      "why": "Egy modell óriási mennyiségű felvételből tanulta meg a beszédet szöveggé alakítani."
+    },
+    {
+      "text": "A számológép összeadja: 2+3",
+      "answer": 1,
+      "why": "Az összeadás pontos eljárás. Az eredményt nem becsülik, hanem kiszámolják."
+    },
+    {
+      "text": "Az arcoddal oldod fel a telefonodat",
+      "answer": 0,
+      "why": "Egy modell megtanulta felismerni az arcodat más fényben vagy szemüvegben is."
+    },
+    {
+      "text": "A közlekedési lámpa 30 másodpercenként vált",
+      "answer": 1,
+      "why": "Időzítő rögzített szabállyal. Egy olyan lámpa, amely a forgalomból tanul, már MI lenne."
+    },
+    {
+      "text": "A fordító lefordít egy mondatot",
+      "answer": 0,
+      "why": "Milliónyi lefordított mondatból tanulta meg, hogyan fordítsa le a legvalószínűbben a mondatot."
+    },
+    {
+      "text": "A lift a kiválasztott emeletre megy",
+      "answer": 1,
+      "why": "Megnyomod a 3-ast, és a 3. emeletre megy. Pontos szabály, semmi tanulás."
+    },
+    {
+      "text": "A ChatGPT választ ír",
+      "answer": 0,
+      "why": "A nyelvi modell aszerint becsüli meg a következő szavakat, amit a szövegekből tanult."
+    }
+  ],
+  "debrief": "Az MI-t arról ismered fel, hogy példákból tanult, és becsül. A rögzített szabályú program csak azt csinálja, amit valaki pontosan megírt neki, még ha okosnak is látszik."
+}

@@ -8,7 +8,7 @@ teaser: "Enter. A za zlomek vteřiny stránka. Co všechno se mezitím stihlo st
 voice: universal
 parent: null
 diagram: anim-request-response
-core: true
+core: false
 recallQ: "Co se děje mezi prohlížečem a serverem při načtení stránky?"
 recallA: "Prohlížeč (klient) pošle přes protokol HTTP požadavek serveru, kde stránka „bydlí“; server vrátí obsah (HTML, CSS, obrázky) a prohlížeč z něj stránku vykreslí. Web je nekonečná výměna požadavek–odpověď."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch8-jak-funguje-web
-state: core
+state: edited
 carriers: prose|animation
 ---
 

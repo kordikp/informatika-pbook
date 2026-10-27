@@ -1,0 +1,72 @@
+{
+  "type": "sort",
+  "title": "Hardver vagy szoftver?",
+  "instruction": "Válogasd szét: mit tudsz megérinteni (hardver), és mi fut csak az eszközön (szoftver)?",
+  "buckets": [
+    "Hardver",
+    "Szoftver"
+  ],
+  "items": [
+    {
+      "text": "Processzor",
+      "answer": 0,
+      "why": "Chip, amely végrehajtja a programok utasításait."
+    },
+    {
+      "text": "Minecraft",
+      "answer": 1,
+      "why": "A játék program. Telepíted, aztán törlöd."
+    },
+    {
+      "text": "Kijelző",
+      "answer": 0,
+      "why": "Fizikai képernyő, amelyet megérinthetsz."
+    },
+    {
+      "text": "Android",
+      "answer": 1,
+      "why": "Az operációs rendszer olyan program, amely az egész telefont irányítja."
+    },
+    {
+      "text": "Akkumulátor",
+      "answer": 0,
+      "why": "Alkatrész, amely energiát ad."
+    },
+    {
+      "text": "TikTok",
+      "answer": 1,
+      "why": "Az alkalmazás program, még ha mindig kéznél is van."
+    },
+    {
+      "text": "Billentyűzet",
+      "answer": 0,
+      "why": "Fizikai beviteli eszköz. A képernyőn lévő billentyűzet viszont szoftver."
+    },
+    {
+      "text": "Böngésző",
+      "answer": 1,
+      "why": "Program, amellyel weboldalakat nyitsz meg."
+    },
+    {
+      "text": "Hangszóró",
+      "answer": 0,
+      "why": "Alkatrész, amely az elektromos jelből hangot csinál."
+    },
+    {
+      "text": "Windows",
+      "answer": 1,
+      "why": "A számítógép operációs rendszere, vagyis program."
+    },
+    {
+      "text": "Kamera",
+      "answer": 0,
+      "why": "Fizikai érzékelő, amely a fényt rögzíti."
+    },
+    {
+      "text": "Számológép (app)",
+      "answer": 1,
+      "why": "Az app program. Egy gombos számológép hardver lenne."
+    }
+  ],
+  "debrief": "A hardvert meg lehet tapogatni. A szoftver a hardveren futó programok összessége. A telefonnak mindkettő kell: programok nélkül csak egy darab üveg és fém."
+}

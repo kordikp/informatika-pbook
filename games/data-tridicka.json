@@ -9,35 +9,44 @@
   "items": [
     {
       "text": "Tabulka známek v Bakalářích",
-      "answer": 0
+      "answer": 0,
+      "why": "Každý řádek je žák, každý sloupec předmět nebo datum."
     },
     {
       "text": "Fotky z výletu",
-      "answer": 1
+      "answer": 1,
+      "why": "Obrázek nemá řádky a sloupce s údaji. Co na něm je, musí někdo poznat."
     },
     {
       "text": "Jízdní řád autobusu",
-      "answer": 0
+      "answer": 0,
+      "why": "Pevná tabulka: zastávka, čas, linka."
     },
     {
       "text": "Hlasovka od kamaráda",
-      "answer": 1
+      "answer": 1,
+      "why": "Zvuk bez pevného řádu. Co v něm je, se musí poslechnout."
     },
     {
       "text": "Sklad e-shopu (řádky a sloupce)",
-      "answer": 0
+      "answer": 0,
+      "why": "Každý výrobek má stejné údaje: název, cenu, počet kusů."
     },
     {
       "text": "Video na TikToku",
-      "answer": 1
+      "answer": 1,
+      "why": "Obraz a zvuk bez tabulky. Pevné jsou jen údaje okolo, třeba počet lajků."
     },
     {
       "text": "Herní žebříček (hráč, skóre)",
-      "answer": 0
+      "answer": 0,
+      "why": "Každý řádek má stejná pole: hráč a skóre. Dá se seřadit."
     },
     {
       "text": "Sloh o prázdninách",
-      "answer": 1
+      "answer": 1,
+      "why": "Volný text. Každý ho napíše jinak."
     }
-  ]
+  ],
+  "debrief": "Strukturovaná data mají pevné řádky a sloupce, takže se v nich dá hledat a třídit. Fotka, hlasovka nebo sloh nesou informace taky, jen bez pevného řádu."
 }

@@ -8,7 +8,7 @@ teaser: "Klikneš — a stránka odpoví. Třetí vrstva webu dělá z plakátu 
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Jak JavaScript oživuje stránku?"
 recallA: "Reaguje na události (kliknutí, psaní) a za běhu upravuje strukturu stránky — DOM. Prohlížeč změny hned překreslí, takže se web chová jako aplikace, ne statický dokument."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch8-interaktivita-javascript
-state: core
+state: edited
 carriers: prose|code
 ---
 

@@ -8,7 +8,7 @@ teaser: "Technicky dokonalá hra může nudit. Zábava se nedá naprogramovat �
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Co drží hráče ve flow a jaké tři věci navrhuje herní designér?"
 recallA: "Pravidla (co jde a nejde), obtížnost (výzva rostoucí se schopnostmi hráče) a zpětnou vazbu (hra okamžitě reaguje na akce). Flow vzniká, když výzva zhruba odpovídá dovednosti — ani nuda, ani frustrace."
 highlights:
@@ -23,7 +23,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch11-herni-design
-state: core
+state: edited
 carriers: prose
 ---
 

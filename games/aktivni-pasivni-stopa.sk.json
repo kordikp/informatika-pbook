@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Aktívna, alebo pasívna stopa?",
+  "instruction": "Zanechal si ju vedome, alebo vznikla bez toho, aby si to videl?",
+  "buckets": [
+    "Aktívna (vedome)",
+    "Pasívna (nevidíš ju)"
+  ],
+  "items": [
+    {
+      "text": "Fotka, ktorú zverejníš",
+      "answer": 0,
+      "why": "Rozhodol si sa ju zdieľať, je to aktívna stopa."
+    },
+    {
+      "text": "GPS poloha uložená vo fotke",
+      "answer": 1,
+      "why": "Mobil ju do fotky zapíše sám. Na fotke ju nevidíš."
+    },
+    {
+      "text": "Komentár pod videom",
+      "answer": 0,
+      "why": "Napísal si ho vedome a vidia ho ostatní."
+    },
+    {
+      "text": "Cookies z navštíveného webu",
+      "answer": 1,
+      "why": "Web si ich uloží do prehliadača, aj keď na nič neklikneš."
+    },
+    {
+      "text": "História toho, čo hľadáš",
+      "answer": 1,
+      "why": "Ukladá sa sama a dá sa z nej spoznať, čo ťa zaujíma."
+    },
+    {
+      "text": "Príspevok o dovolenke",
+      "answer": 0,
+      "why": "Zdieľal si ho sám. Pozor, prezradí aj to, že nie si doma."
+    },
+    {
+      "text": "Ako dlho sa pozeráš na ktoré video",
+      "answer": 1,
+      "why": "Aplikácia to potichu meria a podľa toho ti vyberá ďalšie videá."
+    }
+  ],
+  "debrief": "Aktívnu stopu vidíš, pretože ju vytváraš sám. Pasívna vzniká potichu: poloha, cookies, história a čas pri videách. Často o tebe prezradí viac než to, čo zdieľaš."
+}

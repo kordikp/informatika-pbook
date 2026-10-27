@@ -24,4 +24,4 @@ lengthBand: tldr
 carriers: prose
 ---
 
-Klikací minihra s 60vteřinovým časovačem. Zvládneš to bez chyby?
+Krátká hra na pár minut. Zvládneš ji bez chyby?

@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "Which part of the castle stops the attack?",
+  "instruction": "For each attack, find the defence that stops it.",
+  "buckets": [
+    "Walls = updates",
+    "Gate = app permissions",
+    "Guard = trusted sources only",
+    "Second castle = a backup somewhere else"
+  ],
+  "items": [
+    {
+      "text": "Attackers know about a bug in an old version of the browser and exploit it.",
+      "answer": 0,
+      "why": "An update is a patch. It fixes a hole the attackers know about."
+    },
+    {
+      "text": "A torch app wants access to your contacts, location and microphone.",
+      "answer": 1,
+      "why": "A torch only needs the light. Refuse the other permissions."
+    },
+    {
+      "text": "A website offers an “unlimited coins cheat” to download. Inside is a Trojan horse.",
+      "answer": 2,
+      "why": "Install only from the official store. The guard doesn't let in strangers bearing gifts."
+    },
+    {
+      "text": "Ransomware encrypts all your photos and demands a ransom.",
+      "answer": 3,
+      "why": "A copy in another place survives. You restore the photos and don't have to pay."
+    },
+    {
+      "text": "The system announces a security update",
+      "answer": 0,
+      "why": "The update patches the hole before someone exploits it. Install it."
+    },
+    {
+      "text": "A horoscope quiz wants access to your text messages",
+      "answer": 1,
+      "why": "The quiz doesn't need your messages. Don't allow the permission."
+    },
+    {
+      "text": "A friend sends a “new version of the game” to download outside the store",
+      "answer": 2,
+      "why": "A fake file can come from a friend too. Download only from the official store."
+    },
+    {
+      "text": "Your phone falls into water and won't switch on",
+      "answer": 3,
+      "why": "Only a backup that you keep somewhere other than your phone helps here."
+    }
+  ],
+  "debrief": "Each defence stops a different attack. Updates patch the holes, permissions watch what an app may do, trusted sources keep fake programs out and a backup saves your data when everything else fails."
+}

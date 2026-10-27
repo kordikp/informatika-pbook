@@ -1,0 +1,925 @@
+{
+ "missions": [
+  {
+   "id": "postup",
+   "title": {
+    "cs": "Robot-uklízeč třídy",
+    "en": "The classroom cleaning robot",
+    "sk": "Robot-upratovač triedy",
+    "hu": "Az osztályt takarító robot"
+   },
+   "icon": "🧭",
+   "difficulty": "Beginner",
+   "story": {
+    "cs": "Navrhuješ postup pro robota, který po vyučování uklidí třídu.",
+    "en": "You are designing the steps for a robot that tidies the classroom after lessons.",
+    "sk": "Navrhuješ postup pre robota, ktorý po vyučovaní uprace triedu.",
+    "hu": "Lépéseket tervezel egy robotnak, amely tanítás után kitakarítja az osztálytermet."
+   },
+   "goal": {
+    "cs": "Jak z problému udělat návod, který zvládne i stroj?",
+    "en": "How do you turn a problem into instructions that even a machine can follow?",
+    "sk": "Ako z problému urobiť návod, ktorý zvládne aj stroj?",
+    "hu": "Hogyan lesz egy problémából olyan utasítás, amelyet egy gép is végre tud hajtani?"
+   },
+   "reward": {
+    "title": {
+     "cs": "Odznak Postup",
+     "en": "Method badge",
+     "sk": "Odznak Postup",
+     "hu": "Eljárás jelvény"
+    },
+    "xp": 20
+   },
+   "core": [
+    "algoritmus",
+    "dekompozice",
+    "abstrakce-a-model",
+    "over-a-oprav"
+   ],
+   "intros": [
+    {
+     "cs": "Algoritmus: přesný návod. Který pokyn robot provede bez domýšlení?",
+     "en": "Algorithm: exact instructions. Which instruction can the robot carry out without guessing?",
+     "sk": "Algoritmus: presný návod. Ktorý pokyn robot vykoná bez domýšľania?",
+     "hu": "Algoritmus: pontos utasítás. Melyik utasítást tudja a robot gondolkodás nélkül végrehajtani?"
+    },
+    {
+     "cs": "Rozlož problém. Chystáš oslavu narozenin. Který úkol musí být hotový jako první?",
+     "en": "Break the problem down. You are planning a birthday party. Which task has to be done first?",
+     "sk": "Rozlož problém. Chystáš oslavu narodenín. Ktorá úloha musí byť hotová ako prvá?",
+     "hu": "Bontsd részekre a problémát. Születésnapi bulit szervezel. Melyik feladatnak kell elsőként elkészülnie?"
+    },
+    {
+     "cs": "Model: užitečné zjednodušení. Chceš najít nejkratší cestu mezi učebnami ve škole. Co v modelu klidně vynecháš?",
+     "en": "Model: a useful simplification. You want to find the shortest way between classrooms at school. What can you safely leave out of the model?",
+     "sk": "Model: užitočné zjednodušenie. Chceš nájsť najkratšiu cestu medzi učebňami v škole. Čo v modeli pokojne vynecháš?",
+     "hu": "Modell: hasznos egyszerűsítés. Meg akarod találni a legrövidebb utat két tanterem között az iskolában. Mit hagyhatsz ki nyugodtan a modellből?"
+    },
+    {
+     "cs": "Ověř a oprav. Program počítá průměr známek. Který test je nejzáludnější?",
+     "en": "Test and fix. A program works out the average of your marks. Which test is the trickiest?",
+     "sk": "Over a oprav. Program počíta priemer známok. Ktorý test je najzáludnejší?",
+     "hu": "Ellenőrizd és javítsd. Egy program a jegyeid átlagát számolja ki. Melyik teszt a legtrükkösebb?"
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Robot uklízel skvěle, ale v jedné třídě se zasekl o batoh na zemi. Vysvětli ve dvou až třech větách, proč na to testy nepřišly a jak to opravíš.",
+     "en": "The robot cleaned brilliantly, but in one classroom it got stuck on a schoolbag on the floor. Explain in two or three sentences why the tests didn't catch this and how you will fix it.",
+     "sk": "Robot upratoval skvele, ale v jednej triede sa zasekol o ruksak na zemi. Vysvetli v dvoch až troch vetách, prečo na to testy neprišli a ako to opravíš.",
+     "hu": "A robot remekül takarított, de az egyik teremben elakadt egy földön heverő iskolatáskában. Magyarázd el két-három mondatban, miért nem derült ki ez a teszteknél, és hogyan javítod ki."
+    },
+    "hints": [
+     {
+      "cs": "testy nepokryly situaci s batohem (záludný případ)",
+      "en": "the tests didn't cover the situation with the schoolbag (a tricky case)",
+      "sk": "testy nepokryli situáciu s ruksakom (záludný prípad)",
+      "hu": "a tesztek nem fedték le a táskás helyzetet (trükkös eset)"
+     },
+     {
+      "cs": "testovat se má na různých a záludných situacích",
+      "en": "testing should use different and tricky situations",
+      "sk": "testovať sa má na rôznych a záludných situáciách",
+      "hu": "különböző és trükkös helyzeteken kell tesztelni"
+     },
+     {
+      "cs": "oprava, třeba pravidlo pro překážku na zemi",
+      "en": "a fix, for example a rule for an obstacle on the floor",
+      "sk": "oprava, napríklad pravidlo pre prekážku na zemi",
+      "hu": "javítás, például szabály a földön lévő akadályra"
+     },
+     {
+      "cs": "po opravě znovu otestovat",
+      "en": "test again after the fix",
+      "sk": "po oprave znova otestovať",
+      "hu": "a javítás után újra tesztelni"
+     }
+    ]
+   },
+   "branches": {
+    "explorer": {
+     "label": {
+      "cs": "Svět aplikací: automat se schovanou chybou",
+      "en": "World of apps: a machine with a hidden bug",
+      "sk": "Svet aplikácií: automat so skrytou chybou",
+      "hu": "Az alkalmazások világa: automata rejtett hibával"
+     },
+     "blocks": [
+      "ch9-worked-logika"
+     ]
+    },
+    "creator": {
+     "label": {
+      "cs": "Svět aplikací: logika appky",
+      "en": "World of apps: the logic of an app",
+      "sk": "Svet aplikácií: logika apky",
+      "hu": "Az alkalmazások világa: egy app logikája"
+     },
+     "blocks": [
+      "ch9-logika-aplikace"
+     ]
+    }
+   }
+  },
+  {
+   "id": "program",
+   "title": {
+    "cs": "Rozbitá minihra",
+    "en": "The broken mini-game",
+    "sk": "Pokazená minihra",
+    "hu": "Az elromlott minijáték"
+   },
+   "icon": "💻",
+   "difficulty": "Beginner",
+   "story": {
+    "cs": "Kamarád napsal minihru. Postava sbírá mince, hra počítá body a při nule životů skončí. Jenže hráč má pořád jen 1 bod: po každé minci se provede „nastav skóre na 1“. Ty to opravíš na „změň skóre o 1“.",
+    "en": "Your friend wrote a mini-game. The character collects coins, the game counts points and ends when lives reach zero. But the player always has just 1 point: after every coin the game runs “set score to 1”. You will fix it to “change score by 1”.",
+    "sk": "Kamarát napísal minihru. Postava zbiera mince, hra počíta body a pri nule životov skončí. Lenže hráč má stále len 1 bod: po každej minci sa vykoná „nastav skóre na 1“. Ty to opravíš na „zmeň skóre o 1“.",
+    "hu": "A barátod írt egy minijátékot. A szereplő érméket gyűjt, a játék pontokat számol, és nulla életnél véget ér. Csakhogy a játékosnak mindig csak 1 pontja van: minden érme után lefut az „állítsd a pontszámot 1-re”. Te kijavítod erre: „változtasd meg a pontszámot 1-gyel”."
+   },
+   "goal": {
+    "cs": "Jak se z návodu stane kód, který počítač vykoná doslova?",
+    "en": "How do instructions become code that a computer carries out word for word?",
+    "sk": "Ako sa z návodu stane kód, ktorý počítač vykoná doslova?",
+    "hu": "Hogyan lesz az utasításból kód, amelyet a számítógép szó szerint végrehajt?"
+   },
+   "reward": {
+    "title": {
+     "cs": "Odznak Program",
+     "en": "Program badge",
+     "sk": "Odznak Program",
+     "hu": "Program jelvény"
+    },
+    "xp": 20
+   },
+   "core": [
+    "program",
+    "opakovani",
+    "rozhodovani",
+    "promenna"
+   ],
+   "intros": [
+    {
+     "cs": "Program: vstup → kroky → výstup. Co z toho je v robotově programu výstup?",
+     "en": "Program: input → steps → output. Which of these is an output in the robot's program?",
+     "sk": "Program: vstup → kroky → výstup. Čo z toho je v robotovom programe výstup?",
+     "hu": "Program: bemenet → lépések → kimenet. Mi ezek közül a kimenet a robot programjában?"
+    },
+    {
+     "cs": "Opakování (cyklus). Kdy použiješ „opakuj 10×“?",
+     "en": "Repetition (loop). When do you use “repeat 10×”?",
+     "sk": "Opakovanie (cyklus). Kedy použiješ „opakuj 10×“?",
+     "hu": "Ismétlés (ciklus). Mikor használod azt, hogy „ismételd 10×”?"
+    },
+    {
+     "cs": "Rozhodování (podmínka). Pravidlo zní: „Když je skóre větší než 10, ukaž hvězdu.“ Hráč má skóre přesně 10. Uvidí hvězdu?",
+     "en": "Decisions (conditions). The rule says: “If the score is greater than 10, show a star.” A player has a score of exactly 10. Will they see the star?",
+     "sk": "Rozhodovanie (podmienka). Pravidlo znie: „Ak je skóre väčšie ako 10, ukáž hviezdu.“ Hráč má skóre presne 10. Uvidí hviezdu?",
+     "hu": "Döntés (feltétel). A szabály így szól: „Ha a pontszám nagyobb 10-nél, mutass egy csillagot.” A játékos pontszáma pontosan 10. Látni fogja a csillagot?"
+    },
+    {
+     "cs": "Proměnná: paměť programu. Životy jsou 3. Program dvakrát provede „změň životy o −1“. Kolik je životů?",
+     "en": "Variable: a program's memory. You have 3 lives. The program runs “change lives by −1” twice. How many lives are there?",
+     "sk": "Premenná: pamäť programu. Životy sú 3. Program dvakrát vykoná „zmeň životy o −1“. Koľko je životov?",
+     "hu": "Változó: a program memóriája. 3 életed van. A program kétszer hajtja végre: „változtasd meg az életeket −1-gyel”. Hány életed van?"
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Vysvětli kamarádovi ve dvou až třech větách, proč skóre po každé minci zůstávalo 1 a proč oprava funguje.",
+     "en": "Explain to your friend in two or three sentences why the score stayed at 1 after every coin, and why the fix works.",
+     "sk": "Vysvetli kamarátovi v dvoch až troch vetách, prečo skóre po každej minci zostávalo 1 a prečo oprava funguje.",
+     "hu": "Magyarázd el a barátodnak két-három mondatban, miért maradt a pontszám minden érme után 1, és miért működik a javítás."
+    },
+    "hints": [
+     {
+      "cs": "nastav přepíše starou hodnotu",
+      "en": "set overwrites the old value",
+      "sk": "nastav prepíše starú hodnotu",
+      "hu": "a beállítás felülírja a régi értéket"
+     },
+     {
+      "cs": "změň o přičte k tomu, co v proměnné už je",
+      "en": "change by adds to what is already in the variable",
+      "sk": "zmeň o pripočíta k tomu, čo v premennej už je",
+      "hu": "a változtasd meg hozzáad ahhoz, ami már a változóban van"
+     },
+     {
+      "cs": "proměnná drží jen poslední hodnotu",
+      "en": "a variable holds only its latest value",
+      "sk": "premenná drží len poslednú hodnotu",
+      "hu": "a változó csak az utolsó értéket tárolja"
+     },
+     {
+      "cs": "otestovat třeba tři mince = skóre 3",
+      "en": "test it, for example three coins = score 3",
+      "sk": "otestovať napríklad tri mince = skóre 3",
+      "hu": "tesztelni, például három érme = 3 pont"
+     }
+    ]
+   },
+   "branches": {
+    "explorer": {
+     "label": {
+      "cs": "Výlet: Jedna smyčka, čtyři světy",
+      "en": "Trip: One loop, four worlds",
+      "sk": "Výlet: Jedna slučka, štyri svety",
+      "hu": "Kirándulás: Egy ciklus, négy világ"
+     },
+     "blocks": [
+      "vylet-smycka-ctyri-svety"
+     ]
+    },
+    "creator": {
+     "label": {
+      "cs": "Svět her: první hra ve Scratchi",
+      "en": "World of games: your first game in Scratch",
+      "sk": "Svet hier: prvá hra v Scratchi",
+      "hu": "A játékok világa: az első játékod Scratchben"
+     },
+     "blocks": [
+      "ch11-scratch-jako-vstup"
+     ]
+    },
+    "thinker": {
+     "label": {
+      "cs": "Svět her: hotová hra řádek po řádku",
+      "en": "World of games: a finished game, line by line",
+      "sk": "Svet hier: hotová hra riadok po riadku",
+      "hu": "A játékok világa: egy kész játék soronként"
+     },
+     "blocks": [
+      "ch11-code-vstup-hrace"
+     ]
+    }
+   }
+  },
+  {
+   "id": "data",
+   "title": {
+    "cs": "Třídní anketa o svačinách",
+    "en": "The class snack survey",
+    "sk": "Triedna anketa o desiatach",
+    "hu": "Osztálykérdőív a tízórairól"
+   },
+   "icon": "📊",
+   "difficulty": "Beginner",
+   "story": {
+    "cs": "Třída zjišťuje, jaké svačiny chce v bufetu. Výsledek pak dostane paní ředitelka.",
+    "en": "Your class is finding out which snacks people want in the school canteen. The head teacher will then get the result.",
+    "sk": "Trieda zisťuje, aké desiaty chce v bufete. Výsledok potom dostane pani riaditeľka.",
+    "hu": "Az osztály azt méri fel, milyen tízóraikat szeretnének a büfében. Az eredményt aztán megkapja az igazgatónő."
+   },
+   "goal": {
+    "cs": "Jak se svět mění v čísla a čísla zase v informace?",
+    "en": "How does the world turn into numbers, and numbers back into information?",
+    "sk": "Ako sa svet mení na čísla a čísla zase na informácie?",
+    "hu": "Hogyan változik a világ számokká, és a számok újra információvá?"
+   },
+   "reward": {
+    "title": {
+     "cs": "Odznak Data",
+     "en": "Data badge",
+     "sk": "Odznak Dáta",
+     "hu": "Adatok jelvény"
+    },
+    "xp": 20
+   },
+   "core": [
+    "kodovani",
+    "tabulka-a-evidence",
+    "informacni-system",
+    "z-dat-informace"
+   ],
+   "intros": [
+    {
+     "cs": "Všechno jsou čísla. Obrázek má 10 × 10 pixelů a každý pixel zabere 1 bit. Kolik bitů zabere celý obrázek?",
+     "en": "Everything is numbers. A picture is 10 × 10 pixels and each pixel takes 1 bit. How many bits does the whole picture take?",
+     "sk": "Všetko sú čísla. Obrázok má 10 × 10 pixelov a každý pixel zaberie 1 bit. Koľko bitov zaberie celý obrázok?",
+     "hu": "Minden szám. Egy kép 10 × 10 pixeles, és minden pixel 1 bitet foglal. Hány bitet foglal az egész kép?"
+    },
+    {
+     "cs": "Tabulka: data s řádem. V tabulce výpůjček chceš zjistit, kolik knih má půjčených Ema. Jak?",
+     "en": "Table: data in order. In the loans table you want to find out how many books Ema has borrowed. How?",
+     "sk": "Tabuľka: dáta s poriadkom. V tabuľke výpožičiek chceš zistiť, koľko kníh má požičaných Ema. Ako?",
+     "hu": "Táblázat: rendezett adatok. A kölcsönzési táblázatban meg akarod tudni, hány könyvet kölcsönzött ki Ema. Hogyan?"
+    },
+    {
+     "cs": "Informační systém: kdo smí co. Ve školním systému nevidíš známky spolužáků. Proč?",
+     "en": "Information system: who may do what. You can't see your classmates' marks in the school system. Why?",
+     "sk": "Informačný systém: kto smie čo. V školskom systéme nevidíš známky spolužiakov. Prečo?",
+     "hu": "Információs rendszer: ki mit tehet. Az iskolai rendszerben nem látod az osztálytársaid jegyeit. Miért?"
+    },
+    {
+     "cs": "Z dat informace. Chceš ukázat, jak se během týdne měnila teplota z micro:bitu. Jaký graf vybereš?",
+     "en": "From data to information. You want to show how the temperature from a micro:bit changed during the week. Which chart do you choose?",
+     "sk": "Z dát informácia. Chceš ukázať, ako sa počas týždňa menila teplota z micro:bitu. Aký graf vyberieš?",
+     "hu": "Adatokból információ. Meg akarod mutatni, hogyan változott a hét során a micro:bit által mért hőmérséklet. Milyen diagramot választasz?"
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Paní ředitelka chce podle vaší ankety objednat svačiny pro celou školu. Napiš jí ve dvou až třech větách, na co si má dát pozor.",
+     "en": "The head teacher wants to order snacks for the whole school based on your survey. Write to her in two or three sentences about what she should watch out for.",
+     "sk": "Pani riaditeľka chce podľa vašej ankety objednať desiaty pre celú školu. Napíš jej v dvoch až troch vetách, na čo si má dať pozor.",
+     "hu": "Az igazgatónő a kérdőívetek alapján szeretne tízórait rendelni az egész iskolának. Írd meg neki két-három mondatban, mire figyeljen."
+    },
+    "hints": [
+     {
+      "cs": "anketa je jen z jedné třídy nebo odpovědělo málo lidí",
+      "en": "the survey is from just one class or too few people answered",
+      "sk": "anketa je len z jednej triedy alebo odpovedalo málo ľudí",
+      "hu": "a kérdőív csak egy osztályból való, vagy kevesen válaszoltak"
+     },
+     {
+      "cs": "graf s osou od nuly, aby rozdíly nebyly zkreslené",
+      "en": "a chart with the axis starting at zero, so the differences aren't distorted",
+      "sk": "graf s osou od nuly, aby rozdiely neboli skreslené",
+      "hu": "nulláról induló tengelyű diagram, hogy a különbségek ne torzuljanak"
+     },
+     {
+      "cs": "jednotný zápis odpovědí, nikdo nehlasoval dvakrát",
+      "en": "answers written in one format, nobody voted twice",
+      "sk": "jednotný zápis odpovedí, nikto nehlasoval dvakrát",
+      "hu": "a válaszok egységes rögzítése, senki sem szavazott kétszer"
+     },
+     {
+      "cs": "souvislost není příčina, výsledek opatrně vyložit",
+      "en": "a link is not a cause, interpret the result carefully",
+      "sk": "súvislosť nie je príčina, výsledok opatrne vyložiť",
+      "hu": "az összefüggés nem ok, az eredményt óvatosan kell értelmezni"
+     }
+    ]
+   },
+   "branches": {
+    "explorer": {
+     "label": {
+      "cs": "Svět aplikací: kde appka drží data",
+      "en": "World of apps: where an app keeps its data",
+      "sk": "Svet aplikácií: kde apka drží dáta",
+      "hu": "Az alkalmazások világa: hol tartja az app az adatokat"
+     },
+     "blocks": [
+      "ch9-co-je-aplikace"
+     ]
+    },
+    "creator": {
+     "label": {
+      "cs": "Svět aplikací: appka bez programování",
+      "en": "World of apps: an app without programming",
+      "sk": "Svet aplikácií: apka bez programovania",
+      "hu": "Az alkalmazások világa: app programozás nélkül"
+     },
+     "blocks": [
+      "ch9-no-code-low-code"
+     ]
+    }
+   }
+  },
+  {
+   "id": "stroje-a-site",
+   "title": {
+    "cs": "Cesta jedné fotky",
+    "en": "The journey of one photo",
+    "sk": "Cesta jednej fotky",
+    "hu": "Egy fotó útja"
+   },
+   "icon": "🌐",
+   "difficulty": "Beginner",
+   "story": {
+    "cs": "Vyfotíš na výletě západ slunce a pošleš ho babičce přes chat.",
+    "en": "On a trip you take a photo of the sunset and send it to your gran through a chat.",
+    "sk": "Na výlete odfotíš západ slnka a pošleš ho babke cez chat.",
+    "hu": "Egy kiránduláson lefotózod a naplementét, és elküldöd a nagymamádnak egy csetben."
+   },
+   "goal": {
+    "cs": "Co je uvnitř zařízení a jak data cestují světem?",
+    "en": "What is inside a device and how does data travel around the world?",
+    "sk": "Čo je vnútri zariadenia a ako dáta cestujú svetom?",
+    "hu": "Mi van egy eszköz belsejében, és hogyan utaznak az adatok a világban?"
+   },
+   "reward": {
+    "title": {
+     "cs": "Odznak Stroje a sítě",
+     "en": "Machines and networks badge",
+     "sk": "Odznak Stroje a siete",
+     "hu": "Gépek és hálózatok jelvény"
+    },
+    "xp": 20
+   },
+   "core": [
+    "uvnitr-zarizeni",
+    "cesta-dat",
+    "cloud-a-server",
+    "sifrovani"
+   ],
+   "intros": [
+    {
+     "cs": "Uvnitř zařízení. Píšeš referát a vypadne proud. Co zůstane?",
+     "en": "Inside a device. You're writing a report and the power goes off. What is left?",
+     "sk": "Vnútri zariadenia. Píšeš referát a vypadne prúd. Čo zostane?",
+     "hu": "Egy eszköz belsejében. Kiselőadást írsz, és elmegy az áram. Mi marad meg?"
+    },
+    {
+     "cs": "Jak data cestují. Co udělá DNS?",
+     "en": "How data travels. What does DNS do?",
+     "sk": "Ako dáta cestujú. Čo urobí DNS?",
+     "hu": "Hogyan utaznak az adatok. Mit csinál a DNS?"
+    },
+    {
+     "cs": "Cloud je cizí počítač. Máš fotky jen v cloudu a zapomeneš heslo k účtu. Co se stane?",
+     "en": "The cloud is someone else's computer. Your photos are only in the cloud and you forget your account password. What happens?",
+     "sk": "Cloud je cudzí počítač. Máš fotky len v cloude a zabudneš heslo k účtu. Čo sa stane?",
+     "hu": "A felhő valaki más számítógépe. A fotóid csak a felhőben vannak, és elfelejted a fiókod jelszavát. Mi történik?"
+    },
+    {
+     "cs": "Šifrování: obálka místo pohlednice. Slovo AHOJ zašifruješ Caesarem s klíčem 1. Jak bude vypadat?",
+     "en": "Encryption: an envelope instead of a postcard. You encrypt the word HELLO with a Caesar cipher with key 1. What will it look like?",
+     "sk": "Šifrovanie: obálka namiesto pohľadnice. Slovo AHOJ zašifruješ Caesarom s kľúčom 1. Ako bude vyzerať?",
+     "hu": "Titkosítás: boríték képeslap helyett. A SZIA szót Caesar-titkosírással titkosítod, 1-es kulccsal. Hogyan fog kinézni?"
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Babička se ptá: „Když jsi mi poslal fotku, kudy letěla a kdo ji cestou mohl vidět?“ Vysvětli jí to ve dvou až třech větách.",
+     "en": "Your gran asks: “When you sent me the photo, which way did it go and who could see it on the way?” Explain it to her in two or three sentences.",
+     "sk": "Babka sa pýta: „Keď si mi poslal fotku, kade letela a kto ju cestou mohol vidieť?“ Vysvetli jej to v dvoch až troch vetách.",
+     "hu": "A nagymamád megkérdezi: „Amikor elküldted a fotót, merre repült, és ki láthatta útközben?” Magyarázd el neki két-három mondatban."
+    },
+    "hints": [
+     {
+      "cs": "fotka se rozdělí na balíčky a jde přes routery",
+      "en": "the photo is split into packets and goes through routers",
+      "sk": "fotka sa rozdelí na balíčky a ide cez routery",
+      "hu": "a fotó csomagokra bomlik, és routereken át megy"
+     },
+     {
+      "cs": "jde přes server firmy v datacentru, ne přímo",
+      "en": "it goes through a company's server in a data centre, not directly",
+      "sk": "ide cez server firmy v dátovom centre, nie priamo",
+      "hu": "egy cég szerverén megy át egy adatközpontban, nem közvetlenül"
+     },
+     {
+      "cs": "šifrování, takže ji po cestě bez klíče nikdo nepřečte",
+      "en": "encryption, so nobody on the way can read it without the key",
+      "sk": "šifrovanie, takže ju po ceste bez kľúča nikto neprečíta",
+      "hu": "titkosítás, így útközben kulcs nélkül senki sem olvassa el"
+     },
+     {
+      "cs": "DNS najde adresu serveru",
+      "en": "DNS finds the server's address",
+      "sk": "DNS nájde adresu servera",
+      "hu": "a DNS megtalálja a szerver címét"
+     }
+    ]
+   },
+   "branches": {
+    "explorer": {
+     "label": {
+      "cs": "Svět webů: jak funguje web",
+      "en": "World of websites: how the web works",
+      "sk": "Svet webov: ako funguje web",
+      "hu": "A weboldalak világa: hogyan működik a web"
+     },
+     "blocks": [
+      "ch8-jak-funguje-web"
+     ]
+    },
+    "creator": {
+     "label": {
+      "cs": "Svět webů: web jde do světa",
+      "en": "World of websites: your site goes live",
+      "sk": "Svet webov: web ide do sveta",
+      "hu": "A weboldalak világa: a weboldal kimegy a világba"
+     },
+     "blocks": [
+      "ch8-domena-a-hosting"
+     ]
+    },
+    "thinker": {
+     "label": {
+      "cs": "Svět robotů: vstup a výstup na zařízení",
+      "en": "World of robots: input and output on a device",
+      "sk": "Svet robotov: vstup a výstup na zariadení",
+      "hu": "A robotok világa: bemenet és kimenet egy eszközön"
+     },
+     "blocks": [
+      "ch12-vstup-zpracovani-vystup-na-zarizeni"
+     ]
+    }
+   }
+  },
+  {
+   "id": "ai",
+   "title": {
+    "cs": "Referát o řece",
+    "en": "A report about a river",
+    "sk": "Referát o rieke",
+    "hu": "Kiselőadás egy patakról"
+   },
+   "icon": "🤖",
+   "difficulty": "Intermediate",
+   "story": {
+    "cs": "Píšeš s pomocí AI referát o řece Mlýnce.",
+    "en": "With the help of AI, you're writing a report about the river Mlýnka.",
+    "sk": "S pomocou AI píšeš referát o rieke Mlynka.",
+    "hu": "MI segítségével kiselőadást írsz a Malom-patakról."
+   },
+   "goal": {
+    "cs": "Jak se stroje učí z dat a proč rozhoduješ pořád ty?",
+    "en": "How do machines learn from data, and why is it still you who decides?",
+    "sk": "Ako sa stroje učia z dát a prečo stále rozhoduješ ty?",
+    "hu": "Hogyan tanulnak a gépek az adatokból, és miért mégis te döntesz?"
+   },
+   "reward": {
+    "title": {
+     "cs": "Odznak Umělá inteligence",
+     "en": "Artificial intelligence badge",
+     "sk": "Odznak Umelá inteligencia",
+     "hu": "Mesterséges intelligencia jelvény"
+    },
+    "xp": 20
+   },
+   "core": [
+    "ai-se-uci-z-dat",
+    "generativni-model",
+    "doporucovac",
+    "rozhodujes-ty"
+   ],
+   "intros": [
+    {
+     "cs": "AI se učí z příkladů. Model se učil poznávat psy jen na fotkách za denního světla. Teď má poznat psa na fotce z noci. Co se stane?",
+     "en": "AI learns from examples. A model learned to recognise dogs only from photos taken in daylight. Now it has to recognise a dog in a photo taken at night. What happens?",
+     "sk": "AI sa učí z príkladov. Model sa učil poznávať psy len na fotkách za denného svetla. Teraz má spoznať psa na fotke z noci. Čo sa stane?",
+     "hu": "Az MI példákból tanul. Egy modell csak nappali fényben készült fotókon tanulta meg felismerni a kutyákat. Most egy éjszaka készült fotón kell felismernie egy kutyát. Mi történik?"
+    },
+    {
+     "cs": "Generativní AI předpovídá. Na kterou otázku ti chatbot nejspíš odpoví správně i bez ověřování?",
+     "en": "Generative AI predicts. Which question is a chatbot most likely to answer correctly even without checking?",
+     "sk": "Generatívna AI predpovedá. Na ktorú otázku ti chatbot najskôr odpovie správne aj bez overovania?",
+     "hu": "A generatív MI előre jelez. Melyik kérdésre válaszol a chatbot a legvalószínűbben helyesen ellenőrzés nélkül is?"
+    },
+    {
+     "cs": "Doporučovač a tvůj feed. Který signál o tobě síť získá u každého videa, i když nic nezmáčkneš?",
+     "en": "The recommender and your feed. Which signal about you does the network get from every video, even if you don't press anything?",
+     "sk": "Odporúčač a tvoj feed. Ktorý signál o tebe sieť získa pri každom videu, aj keď nič nestlačíš?",
+     "hu": "Az ajánlórendszer és a hírfolyamod. Melyik jelet kapja meg rólad az oldal minden videónál, még akkor is, ha semmit sem nyomsz meg?"
+    },
+    {
+     "cs": "Ověřuj a rozhoduj ty. Řetězová zpráva tvrdí, že se zítra kvůli výpadku proudu neučí. Kde to ověříš?",
+     "en": "Check it, and you decide. A chain message claims there's no school tomorrow because of a power cut. Where do you check it?",
+     "sk": "Overuj a rozhoduj ty. Reťazová správa tvrdí, že sa zajtra pre výpadok prúdu neučí. Kde to overíš?",
+     "hu": "Ellenőrizz, és te dönts. Egy láncüzenet azt állítja, hogy holnap áramszünet miatt nincs tanítás. Hol ellenőrzöd?"
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Vysvětli mladšímu sourozenci ve dvou až třech větách, proč chatbot může sebejistě napsat nesmysl a co má udělat, když ho chce použít do úkolu.",
+     "en": "Explain to your younger brother or sister in two or three sentences why a chatbot can confidently write nonsense and what they should do if they want to use it for homework.",
+     "sk": "Vysvetli mladšiemu súrodencovi v dvoch až troch vetách, prečo chatbot môže sebaisto napísať nezmysel a čo má urobiť, keď ho chce použiť na úlohu.",
+     "hu": "Magyarázd el a kisebb testvérednek két-három mondatban, miért írhat a chatbot magabiztosan butaságot, és mit tegyen, ha házi feladathoz akarja használni."
+    },
+    "hints": [
+     {
+      "cs": "chatbot předpovídá pravděpodobná slova",
+      "en": "a chatbot predicts likely words",
+      "sk": "chatbot predpovedá pravdepodobné slová",
+      "hu": "a chatbot valószínű szavakat jelez előre"
+     },
+     {
+      "cs": "fakta sám neověřuje, umí si vymýšlet",
+      "en": "it doesn't check facts by itself and can make things up",
+      "sk": "fakty sám neoveruje, vie si vymýšľať",
+      "hu": "a tényeket magától nem ellenőrzi, ki tud találni dolgokat"
+     },
+     {
+      "cs": "důležité věci ověřit v jiném zdroji",
+      "en": "check important things in another source",
+      "sk": "dôležité veci overiť v inom zdroji",
+      "hu": "a fontos dolgokat egy másik forrásban kell ellenőrizni"
+     },
+     {
+      "cs": "přiznat, s čím AI pomohla",
+      "en": "say what the AI helped with",
+      "sk": "priznať, s čím AI pomohla",
+      "hu": "be kell vallani, miben segített az MI"
+     }
+    ]
+   },
+   "branches": {
+    "explorer": {
+     "label": {
+      "cs": "Výlet: Uvnitř chatbota",
+      "en": "Trip: Inside a chatbot",
+      "sk": "Výlet: Vnútri chatbota",
+      "hu": "Kirándulás: Egy chatbot belsejében"
+     },
+     "blocks": [
+      "vylet-uvnitr-chatbota"
+     ]
+    },
+    "creator": {
+     "label": {
+      "cs": "Svět tvorby: generativní obraz",
+      "en": "World of creating: generative images",
+      "sk": "Svet tvorby: generatívny obraz",
+      "hu": "Az alkotás világa: generatív kép"
+     },
+     "blocks": [
+      "ch10-generativni-obraz"
+     ]
+    },
+    "thinker": {
+     "label": {
+      "cs": "Výlet: Kdo platí tvůj feed",
+      "en": "Trip: Who pays for your feed",
+      "sk": "Výlet: Kto platí tvoj feed",
+      "hu": "Kirándulás: Ki fizeti a hírfolyamodat"
+     },
+     "blocks": [
+      "vylet-kdo-plati-feed"
+     ]
+    }
+   }
+  },
+  {
+   "id": "bezpeci",
+   "title": {
+    "cs": "Ukradený herní účet",
+    "en": "The stolen game account",
+    "sk": "Ukradnutý herný účet",
+    "hu": "Az ellopott játékfiók"
+   },
+   "icon": "🛡",
+   "difficulty": "Beginner",
+   "story": {
+    "cs": "Kamarádovi Ondrovi ukradli herní účet. Pomůžeš mu zjistit, co se stalo, a zařídit, aby se to neopakovalo.",
+    "en": "Your friend Ondra's game account has been stolen. You'll help him find out what happened and make sure it doesn't happen again.",
+    "sk": "Kamarátovi Ondrovi ukradli herný účet. Pomôžeš mu zistiť, čo sa stalo, a zariadiť, aby sa to neopakovalo.",
+    "hu": "A barátodtól, Ondrától ellopták a játékfiókját. Segítesz neki kideríteni, mi történt, és elérni, hogy ne ismétlődjön meg."
+   },
+   "goal": {
+    "cs": "Jak ochránit sebe, své účty a svá data?",
+    "en": "How do you protect yourself, your accounts and your data?",
+    "sk": "Ako ochrániť seba, svoje účty a svoje dáta?",
+    "hu": "Hogyan véded meg magadat, a fiókjaidat és az adataidat?"
+   },
+   "reward": {
+    "title": {
+     "cs": "Odznak Bezpečí a ty",
+     "en": "Safety and you badge",
+     "sk": "Odznak Bezpečie a ty",
+     "hu": "A biztonság és te jelvény"
+    },
+    "xp": 20
+   },
+   "core": [
+    "ucet-a-autentizace",
+    "podvod-cili-na-cloveka",
+    "ochrana-zarizeni",
+    "digitalni-stopa"
+   ],
+   "intros": [
+    {
+     "cs": "Účet a heslo. Které heslo je nejsilnější?",
+     "en": "Account and password. Which password is the strongest?",
+     "sk": "Účet a heslo. Ktoré heslo je najsilnejšie?",
+     "hu": "Fiók és jelszó. Melyik jelszó a legerősebb?"
+    },
+    {
+     "cs": "Podvod cílí na člověka. Která známka podvodu platí i u zprávy, kterou AI napsala bez jediné chyby?",
+     "en": "Scams target people. Which sign of a scam still works with a message that AI wrote without a single mistake?",
+     "sk": "Podvod mieri na človeka. Ktorý znak podvodu platí aj pri správe, ktorú AI napísala bez jedinej chyby?",
+     "hu": "A csalás az embert célozza. A csalás melyik jele érvényes akkor is, ha az üzenetet az MI egyetlen hiba nélkül írta?"
+    },
+    {
+     "cs": "Ochrana zařízení. Aplikace na kreslení chce přístup k poloze. Co uděláš?",
+     "en": "Protecting your devices. A drawing app wants access to your location. What do you do?",
+     "sk": "Ochrana zariadení. Aplikácia na kreslenie chce prístup k polohe. Čo urobíš?",
+     "hu": "Az eszközök védelme. Egy rajzolóalkalmazás hozzáférést kér a helyadataidhoz. Mit teszel?"
+    },
+    {
+     "cs": "Digitální stopa. Chceš sdílet fotku z výletu. Co uděláš nejdřív?",
+     "en": "Digital footprint. You want to share a photo from a trip. What do you do first?",
+     "sk": "Digitálna stopa. Chceš zdieľať fotku z výletu. Čo urobíš najprv?",
+     "hu": "Digitális lábnyom. Meg akarsz osztani egy fotót egy kirándulásról. Mit teszel először?"
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Ondra se ptá, co má teď udělat, aby se mu to nestalo znovu. Napiš mu ve dvou až třech větách, co udělat a proč.",
+     "en": "Ondra asks what he should do now so that it doesn't happen to him again. Write to him in two or three sentences what to do and why.",
+     "sk": "Ondro sa pýta, čo má teraz urobiť, aby sa mu to nestalo znova. Napíš mu v dvoch až troch vetách, čo urobiť a prečo.",
+     "hu": "Ondra azt kérdezi, mit tegyen most, hogy ez ne történjen meg vele újra. Írd meg neki két-három mondatban, mit tegyen és miért."
+    },
+    "hints": [
+     {
+      "cs": "nové dlouhé heslo, ke každé službě jiné, ve správci hesel",
+      "en": "a new long password, different for every service, in a password manager",
+      "sk": "nové dlhé heslo, ku každej službe iné, v správcovi hesiel",
+      "hu": "új, hosszú jelszó, minden szolgáltatáshoz más, egy jelszókezelőben"
+     },
+     {
+      "cs": "zapnout dvoufázové ověření",
+      "en": "switch on two-factor authentication",
+      "sk": "zapnúť dvojfázové overenie",
+      "hu": "bekapcsolni a kétlépcsős azonosítást"
+     },
+     {
+      "cs": "nepřihlašovat se přes odkaz ze zprávy, ověřit jinou cestou",
+      "en": "don't log in through a link from a message, check another way",
+      "sk": "neprihlasovať sa cez odkaz zo správy, overiť inou cestou",
+      "hu": "nem bejelentkezni üzenetben kapott linken keresztül, más úton ellenőrizni"
+     },
+     {
+      "cs": "nahlásit to podpoře hry a varovat kamarády",
+      "en": "report it to the game's support and warn friends",
+      "sk": "nahlásiť to podpore hry a varovať kamarátov",
+      "hu": "jelenteni a játék ügyfélszolgálatának, és figyelmeztetni a barátokat"
+     }
+    ]
+   },
+   "branches": {
+    "explorer": {
+     "label": {
+      "cs": "Výlet: Kdo platí tvůj feed",
+      "en": "Trip: Who pays for your feed",
+      "sk": "Výlet: Kto platí tvoj feed",
+      "hu": "Kirándulás: Ki fizeti a hírfolyamodat"
+     },
+     "blocks": [
+      "vylet-kdo-plati-feed"
+     ]
+    },
+    "thinker": {
+     "label": {
+      "cs": "Svět tvorby: autorství a označování",
+      "en": "World of creating: authorship and labelling",
+      "sk": "Svet tvorby: autorstvo a označovanie",
+      "hu": "Az alkotás világa: szerzőség és jelölés"
+     },
+     "blocks": [
+      "ch10-etika-autorstvi-a-oznacovani"
+     ]
+    }
+   }
+  },
+  {
+   "id": "tvurce",
+   "title": {
+    "cs": "Postav a sdílej",
+    "en": "Build and share",
+    "sk": "Postav a zdieľaj",
+    "hu": "Építsd meg és oszd meg"
+   },
+   "icon": "🚀",
+   "difficulty": "Advanced",
+   "story": {
+    "cs": "Třída potřebuje web pro školní projekt a ty ses přihlásil, že ho vytvoříš. Máš nápad, prázdný editor a AI asistenta k ruce. Zvládneš to dotáhnout až k publikované stránce?",
+    "en": "Your class needs a website for a school project and you volunteered to make it. You have an idea, an empty editor and an AI assistant at hand. Can you see it through all the way to a published page?",
+    "sk": "Trieda potrebuje web na školský projekt a ty si sa prihlásil, že ho vytvoríš. Máš nápad, prázdny editor a AI asistenta po ruke. Zvládneš to dotiahnuť až k zverejnenej stránke?",
+    "hu": "Az osztálynak weboldal kell egy iskolai projekthez, és te jelentkeztél, hogy megcsinálod. Van egy ötleted, egy üres szerkesztőd és egy MI-asszisztensed. Végig tudod vinni egészen a közzétett oldalig?"
+   },
+   "goal": {
+    "cs": "Projít celou cestu tvůrce: od nápadu přes kód a AI po publikování",
+    "en": "Walk the whole creator's path: from the idea through code and AI to publishing",
+    "sk": "Prejsť celú cestu tvorcu: od nápadu cez kód a AI po zverejnenie",
+    "hu": "Végigjárni az alkotó teljes útját: az ötlettől a kódon és az MI-n át a közzétételig"
+   },
+   "reward": {
+    "title": {
+     "cs": "Digitální tvůrce",
+     "en": "Digital creator",
+     "sk": "Digitálny tvorca",
+     "hu": "Digitális alkotó"
+    },
+    "xp": 40
+   },
+   "prerequisite": 2,
+   "core": [
+    "ch8-jak-funguje-web",
+    "ch8-html",
+    "ch8-css",
+    "ch9-vibecoding",
+    "ch9-ai-nastroje-pro-tvorbu",
+    "ch10-etika-autorstvi-a-oznacovani"
+   ],
+   "intros": [
+    {
+     "cs": "Než něco postavíš, pochop, jak to funguje: co se stane, když někdo zadá adresu tvého webu?",
+     "en": "Before you build something, understand how it works: what happens when someone types in the address of your website?",
+     "sk": "Skôr než niečo postavíš, pochop, ako to funguje: čo sa stane, keď niekto zadá adresu tvojho webu?",
+     "hu": "Mielőtt bármit építesz, értsd meg, hogyan működik: mi történik, amikor valaki beírja a weboldalad címét?"
+    },
+    {
+     "cs": "HTML je kostra stránky: nadpisy, odstavce, obrázky, odkazy.",
+     "en": "HTML is the skeleton of a page: headings, paragraphs, images, links.",
+     "sk": "HTML je kostra stránky: nadpisy, odseky, obrázky, odkazy.",
+     "hu": "A HTML az oldal váza: címsorok, bekezdések, képek, hivatkozások."
+    },
+    {
+     "cs": "CSS je styl: barvy, písma, rozložení. Stejná kostra, tisíc podob.",
+     "en": "CSS is the style: colours, fonts, layout. The same skeleton, a thousand looks.",
+     "sk": "CSS je štýl: farby, písma, rozloženie. Rovnaká kostra, tisíc podôb.",
+     "hu": "A CSS a stílus: színek, betűk, elrendezés. Ugyanaz a váz, ezerféle kinézet."
+    },
+    {
+     "cs": "Teď zrychlíme: popiš AI, co chceš, a pozorně čti, co ti vrátila. Vibecoding.",
+     "en": "Now let's speed up: tell the AI what you want and read carefully what it gives you back. Vibecoding.",
+     "sk": "Teraz zrýchlime: opíš AI, čo chceš, a pozorne čítaj, čo ti vrátila. Vibecoding.",
+     "hu": "Most gyorsítunk: írd le az MI-nek, mit szeretnél, és figyelmesen olvasd el, mit adott vissza. Vibecoding."
+    },
+    {
+     "cs": "AI nástrojů pro tvorbu je spousta. Který se hodí na co?",
+     "en": "There are lots of AI tools for creating. Which one is good for what?",
+     "sk": "AI nástrojov na tvorbu je veľa. Ktorý sa hodí na čo?",
+     "hu": "Rengeteg MI-eszköz van az alkotáshoz. Melyik mire jó?"
+    },
+    {
+     "cs": "A než web pustíš do světa: čí je to dílo? Co přiznáš a jak?",
+     "en": "And before you send your site out into the world: whose work is it? What do you own up to, and how?",
+     "sk": "A skôr než web pustíš do sveta: čie je to dielo? Čo priznáš a ako?",
+     "hu": "És mielőtt kiengednéd a weboldalt a világba: kié a mű? Mit vállalsz fel, és hogyan?"
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Popiš cestu školního webu od nápadu k publikované stránce: co tvoří HTML a co CSS, s čím pomůže AI, jak její výstup ověříš a co uvedeš o použití AI. Zmiň i to, jak se stránka dostane na internet.",
+     "en": "Describe the journey of a school website from the idea to a published page: what HTML does and what CSS does, what AI helps with, how you check its output and what you say about using AI. Also mention how the page gets onto the internet.",
+     "sk": "Opíš cestu školského webu od nápadu k zverejnenej stránke: čo tvorí HTML a čo CSS, s čím pomôže AI, ako jej výstup overíš a čo uvedieš o použití AI. Spomeň aj to, ako sa stránka dostane na internet.",
+     "hu": "Írd le egy iskolai weboldal útját az ötlettől a közzétett oldalig: mit csinál a HTML és mit a CSS, miben segít az MI, hogyan ellenőrzöd a kimenetét, és mit írsz az MI használatáról. Azt is említsd meg, hogyan kerül fel az oldal az internetre."
+    },
+    "hints": [
+     {
+      "cs": "struktura",
+      "en": "structure",
+      "sk": "štruktúra",
+      "hu": "szerkezet"
+     },
+     {
+      "cs": "styl",
+      "en": "style",
+      "sk": "štýl",
+      "hu": "stílus"
+     },
+     "prompt",
+     {
+      "cs": "kontrola výstupu",
+      "en": "checking the output",
+      "sk": "kontrola výstupu",
+      "hu": "a kimenet ellenőrzése"
+     },
+     {
+      "cs": "hosting",
+      "en": "hosting",
+      "sk": "hosting",
+      "hu": "tárhely"
+     },
+     {
+      "cs": "přiznání AI",
+      "en": "saying you used AI",
+      "sk": "priznanie AI",
+      "hu": "az MI használatának jelzése"
+     }
+    ]
+   },
+   "branches": {
+    "explorer": {
+     "label": {
+      "cs": "Doména a hosting",
+      "en": "Domain and hosting",
+      "sk": "Doména a hosting",
+      "hu": "Domain és tárhely"
+     },
+     "blocks": [
+      "ch8-domena-a-hosting"
+     ]
+    },
+    "creator": {
+     "label": {
+      "cs": "Přidej interaktivitu",
+      "en": "Add interactivity",
+      "sk": "Pridaj interaktivitu",
+      "hu": "Adj hozzá interaktivitást"
+     },
+     "blocks": [
+      "ch8-interaktivita-javascript",
+      "ch11-scratch-jako-vstup"
+     ]
+    },
+    "thinker": {
+     "label": {
+      "cs": "Logika aplikace",
+      "en": "App logic",
+      "sk": "Logika aplikácie",
+      "hu": "Az alkalmazás logikája"
+     },
+     "blocks": [
+      "ch9-logika-aplikace"
+     ]
+    }
+   }
+  }
+ ]
+}

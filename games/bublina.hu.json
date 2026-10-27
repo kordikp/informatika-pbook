@@ -1,0 +1,100 @@
+{
+  "type": "loop",
+  "mode": "user",
+  "title": "Pukaszd ki a buborékot",
+  "minutes": 3,
+  "instruction": "Ez a videós hírfolyamod. Minden nap nyiss meg egy videót, amelyet megnéznél. Figyeld, hány téma marad a hírfolyamban.",
+  "instruction2": "5 napon belül hozd vissza a hírfolyamot legalább 5 témára. Nyiss meg valami mást, keress rá egy témára, kattints a „Nem érdekel” gombra, vagy kapcsold be azt a beállítást, amely más témákat kever a hírfolyamba.",
+  "feedSize": 6,
+  "phase1Days": 8,
+  "phase2Days": 5,
+  "goalTopics": 5,
+  "exploreSlots": 2,
+  "gamma": 2,
+  "rate": 0.2,
+  "topics": [
+    {
+      "name": "Foci",
+      "items": [
+        "A hét gólja",
+        "A kapusok legjobb védései",
+        "Edzés: cselezz, mint egy profi",
+        "Összefoglaló a rangadóról",
+        "Átigazolások, amelyekre senki sem számított"
+      ]
+    },
+    {
+      "name": "Főzés",
+      "items": [
+        "Palacsinta 10 perc alatt",
+        "Serpenyős pizza",
+        "Hogyan szeletelj, mint egy szakács",
+        "Sütés nélküli torta",
+        "Reggeli az iskolába"
+      ]
+    },
+    {
+      "name": "Tudomány",
+      "items": [
+        "Miért kék az ég",
+        "Szódabikarbóna-vulkán",
+        "Hogyan lát a méh",
+        "A világegyetem legnagyobb csillaga",
+        "Kísérlet mágnessel"
+      ]
+    },
+    {
+      "name": "Zene",
+      "items": [
+        "Gitárakkordok kezdőknek",
+        "Hogyan születik egy sláger",
+        "Beatbox 5 perc alatt",
+        "Énekes autotune nélkül",
+        "Dob konyhai fazekakból"
+      ]
+    },
+    {
+      "name": "Állatok",
+      "items": [
+        "A macska, amely ajtót nyit",
+        "Hogyan alszanak a delfinek",
+        "Egy kutya új trükköt tanul",
+        "A világ legkisebb majma",
+        "Hangyák hidat építenek"
+      ]
+    },
+    {
+      "name": "Játékok",
+      "items": [
+        "Minden idők legnehezebb pályája",
+        "Építs várat a Minecraftban",
+        "Speedrun 3 perc alatt",
+        "Titkos hely a játékban",
+        "Hogyan készül egy játékkarakter"
+      ]
+    },
+    {
+      "name": "Rajzolás",
+      "items": [
+        "Rajzolj sárkányt lépésről lépésre",
+        "Árnyékolás ceruzával",
+        "Képregény egy oldalon",
+        "Portré 60 másodperc alatt",
+        "Akvarell kezdőknek"
+      ]
+    },
+    {
+      "name": "Természet",
+      "items": [
+        "Vihar lassítva",
+        "Hogyan nő ki egy mag",
+        "A világ legmagasabb fája",
+        "Állatnyomok az erdőben",
+        "Miért hullanak le a levelek"
+      ]
+    }
+  ],
+  "reveal": "A hírfolyam beszűkült, anélkül hogy bárki így döntött volna: minden kattintás kicsit elmozdította a profilodat, a hírfolyamot pedig a profilból választják. Belülről semmi sem hiányzik. Ezért láthatatlan a buborék.",
+  "reveal2": "Ha valami mást nyitsz meg, a profil csak lassan mozdul el. A leggyorsabban a „Nem érdekel” és más témák bekeverése segít. Így olyan témákat is látsz, amelyekre magadtól rá sem kérdeznél.",
+  "debrief": "A buborék hétköznapi kattintásokból alakul ki, amelyek visszakerülnek a hírfolyamba. Nem látod, mert nem látod, mit nem mutatott meg a hírfolyam. A kipukkasztásában az segít, ha szándékosan más témákat keresel, és hagyod, hogy a hírfolyam valami újat keverjen be."
+}

@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Discount or full price?",
+  "instruction": "Children under 15 and people aged 65 and over get a discount.",
+  "buckets": [
+    "Discount",
+    "Full price"
+  ],
+  "items": [
+    {
+      "text": "Ema, 9",
+      "answer": 0,
+      "why": "9 is less than 15, so the discount applies."
+    },
+    {
+      "text": "Tomáš, 15",
+      "answer": 1,
+      "why": "Watch the edge: 15 is not less than 15. Full price."
+    },
+    {
+      "text": "Věra, 71",
+      "answer": 0,
+      "why": "71 is more than 65, so the discount applies."
+    },
+    {
+      "text": "Jan, 34",
+      "answer": 1,
+      "why": "34 is not less than 15, and it isn't 65 or more either."
+    },
+    {
+      "text": "Petra, 14",
+      "answer": 0,
+      "why": "14 is less than 15, so the discount applies."
+    },
+    {
+      "text": "Karel, 65",
+      "answer": 0,
+      "why": "Watch the edge: “65 and over” includes exactly 65. The discount applies."
+    },
+    {
+      "text": "Ondřej, 40",
+      "answer": 1,
+      "why": "40 is not less than 15, and it isn't 65 or more either."
+    },
+    {
+      "text": "Lucie, 64",
+      "answer": 1,
+      "why": "64 is still less than 65. Full price."
+    }
+  ],
+  "debrief": "The condition “under 15 or 65 and over” decides exactly, even at the edge. A 15-year-old no longer gets the discount, a 65-year-old does. The edge is where conditions most often go wrong."
+}

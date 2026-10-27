@@ -1,12 +1,15 @@
 // p-book v3: Adaptive UX with Netflix home, map, search, feedback, Recombee-powered
 
 import { CONFIG } from './config.js';
-import { renderMarkdown, parseFrontmatter } from './markdown.js';
-import { RecombeeClient, UserModel } from './recombee.js?v=11';
-import { getDiagram, DIAGRAM_FILES } from './diagrams.js?v=3';
+import { tr, trn, loc, locDeep, LANG, LANGS, LANG_NAMES, langLabel, locale, translateStatic } from './i18n.js';
+import { renderMarkdown, parseFrontmatter, smartPunct } from './markdown.js?v=2';
+import { RecombeeClient, UserModel } from './recombee.js?v=12';
+import { getDiagram, DIAGRAM_FILES } from './diagrams.js?v=6';
 
 const APP_VERSION = '5.12.4';
-import { MockTutorEngine, ConversationManager } from './tutor.js';
+import { AskTheBook, ConversationManager } from './tutor.js?v=2';
+import { installGames } from './games.js?v=1';
+import { installUx, BRANCH_WORDS, ACHIEVEMENT_NAMES } from './ux.js?v=1';
 
 class PBook {
   constructor() {
@@ -19,7 +22,7 @@ class PBook {
     this.feedbackTimeout = null;
     this.topicIndex = {};  // topic → [blockIds]
     this.blockTopics = {}; // blockId → [topics]
-    this.tutor = new MockTutorEngine();
+    this.tutor = new AskTheBook(this);   // answers from concepts.json only — see js/tutor.js
     this.convManager = new ConversationManager();
     this._activeConvId = null;
   }
@@ -30,6 +33,8 @@ class PBook {
 
   // ===== INIT =====
   async init() {
+    translateStatic();          // index.html's own text, in the reader's language
+    this._mountLangSwitch();
     // Demo seeding for screenshots/booth mode: ?seed=demo populates a plausible
     // reading history once (12 read blocks, recall cards due, XP) — never in normal use.
     if (location.search.includes('seed=demo') && !localStorage.getItem('pbook-demo-seeded')) {
@@ -43,7 +48,7 @@ class PBook {
         signals: {}, totalInteractions: 40, currentChapter: 1, xp: 175, level: 4,
         achievements: [{ id: 'first_read' }, { id: 'reader_5' }], recall,
         completedMissions: ['m1'], missionTitles: { m1: 'The Curious Beginning' },
-        facetAffinity: { lens: { ecommerce: 4 }, depth: { standard: 3 } }, steerPrefs: {}, goal: 'understand', readerMode: 'open',
+        facetAffinity: CONFIG.defaultAffinity ? JSON.parse(JSON.stringify(CONFIG.defaultAffinity)) : { lens: { ecommerce: 4 }, depth: { standard: 3 } }, steerPrefs: {}, goal: 'understand', readerMode: 'open',
       }));
       this.user.load();   // UserModel was constructed before init — re-read the seeded state
     }
@@ -63,29 +68,28 @@ class PBook {
       if (/^E-/i.test(code)) {
         localStorage.setItem('pbook-role', 'editor');
         this.rc.logEvent('editor_invite_accepted', { code });
-        setTimeout(() => this.showXPToast('🛠 Vítej v redakčním týmu — svou konzoli najdeš v Profilu', 'achievement'), 1500);
+        setTimeout(() => this.showXPToast(tr('🛠 Welcome to the editorial team — your console is in Profile'), 'achievement'), 1500);
       } else {
         this.rc.logEvent('invite_accepted', { code });
         if (this._f('gamification')) { this.user.addXP(25); this.user.save(); }
-        setTimeout(() => this.showXPToast('🎁 +25 XP — pozval tě kamarád. Vítej!', 'achievement'), 1500);
+        setTimeout(() => this.showXPToast(tr('🎁 +25 XP — a friend invited you. Welcome!'), 'achievement'), 1500);
       }
     }
     try {
-      this.book = await (await fetch(CONFIG.book.bookIndex)).json();
+      this.book = locDeep(await (await fetch(CONFIG.book.bookIndex)).json());
     } catch (e) {
-      document.body.innerHTML = '<div style="padding:3em;text-align:center;font-family:sans-serif;color:#888">Knihu se nepodařilo načíst. Spusť nejdřív <code>./serve.sh</code>.</div>';
+      document.body.innerHTML = ('<div style="padding:3em;text-align:center;font-family:sans-serif;color:#888">' + tr(`Could not load book. Run <code>./serve.sh</code> first.`) + '</div>');
       return;
     }
     // Preload all content for search and map
     await this.loadAllContent();
     this.autoTagBlocks();
     await this.loadConcepts();   // concept index + contracts (graceful if missing)
+    this.rc.setBookScope((this.book?.chapters || []).map(c => c.id), Object.keys(this.concepts || {}));
     await this._loadProposals(); // concept proposals under interest testing (ghost items)
-    await this._loadConceptMap(); // graf konceptů z Mapy znalostí (core + ghost, prereq/souvisí)
-    this._genReady = this._f('generation') && await this._probeGeneration(); // ✨ tlačítka jen když generování reálně běží
-    console.info('[pbook] app', APP_VERSION);
+    await this._loadBookMissions();   // per-book missions (content/missions.json; built-ins only as fallback)
+    console.info('[pbook] app', this._appVersion());
     this._loadPrivateBlocks();   // reader's own generated variants (private until shared)
-    this._hydrateGhostDrafts();  // rozpracované 🌱 koncepty = plnohodnotné bloky knihy (kapitola, feed, hledání)
     this._loadOverrides();       // accepted remixes: originalId → your version (persistent)
     this._checkAdoptions();      // shared telling merged into the book? → +100 XP, editor track
     this.rc.setAllBlocks(this.allBlocks);
@@ -119,15 +123,10 @@ class PBook {
       });
     }
 
-    // Detect stale data: if readBlocks has IDs that don't exist in allBlocks, reset
-    if (this.user.readBlocks.size > 0) {
-      const validIds = new Set(this.allBlocks.map(b => b.meta.id));
-      const stale = [...this.user.readBlocks].filter(id => !validIds.has(id));
-      if (stale.length > this.user.readBlocks.size * 0.3) {
-        // More than 30% of read IDs are invalid — data is from old version
-        this.user.reset();
-      }
-    }
+    // Returning readers keep their progress across content releases: renamed or
+    // merged ids transfer through content/id-aliases.json, and only ids that are
+    // gone for good are pruned. Never a wipe, and never while any fetch failed.
+    await this._reconcileProgress();
 
     // Check for deep link: #blockId or #mission-missionId
     const hash = window.location.hash?.substring(1);
@@ -139,6 +138,19 @@ class PBook {
         this.updateXPBadge();
         this.switchView('glossary');
         this.showMission(missionId);
+      } else if (hash.startsWith('mise-')) {
+        document.getElementById('onboarding').classList.add('hidden');
+        this.updateXPBadge();
+        if (this.loadCustomMission(hash.slice(5))) { this.switchView('glossary'); this.showMission(this._customMission.id); }
+      } else if (hash.startsWith('autor-')) {
+        document.getElementById('onboarding').classList.add('hidden');
+        this.updateXPBadge();
+        // #autor-<slug>~<form>: the teacher can send a suggested telling form
+        {
+          const [aslug, agenre] = hash.slice(6).split('~');
+          if (agenre) { const all = this._authorState(); const st = (all[aslug] = all[aslug] || {}); if (!st.genre) { st.genre = decodeURIComponent(agenre); this._authorSave(all); } }
+          this.startAuthoring(aslug);
+        }
       } else if (hash === 'quiz') {
         document.getElementById('onboarding').classList.add('hidden');
         this.updateXPBadge();
@@ -148,6 +160,36 @@ class PBook {
         document.getElementById('onboarding').classList.add('hidden');
         this.updateXPBadge();
         this.switchView(hash.slice(5));
+      } else if (hash.startsWith('trida-')) {
+        document.getElementById('onboarding').classList.add('hidden');
+        this.updateXPBadge();
+        this.openClassGallery(hash.slice(6));
+      } else if (hash.startsWith('ohlas-')) {
+        // anonymous post-presentation reactions (QR on the screen): #ohlas-<code>~<id>
+        document.getElementById('onboarding').classList.add('hidden');
+        this.updateXPBadge();
+        {
+          const [og, oid] = hash.slice(6).split('~');
+          this.openReactionPage(og, oid);
+        }
+      } else if (hash.startsWith('zpetna-vazba-')) {
+        document.getElementById('onboarding').classList.add('hidden');
+        this.updateXPBadge();
+        this.openDraftFeedback(hash.slice(13));
+      } else if (hash.startsWith('dilna-')) {
+        document.getElementById('onboarding').classList.add('hidden');
+        this.updateXPBadge();
+        {
+          const [wslug, wgenre] = hash.slice(6).split('~');
+          if (wgenre) { const all = this._authorState(); const st = (all[wslug] = all[wslug] || {}); if (!st.genre) { st.genre = decodeURIComponent(wgenre); this._authorSave(all); } }
+          this.startWorkshop(wslug);
+        }
+      } else if (hash === 'cesta') {
+        // deep link to the Journey game board (teacher sharing, screenshots)
+        document.getElementById('onboarding').classList.add('hidden');
+        this.updateXPBadge();
+        this._mapMode = 'cesta';
+        this.switchView('map');
       } else if (hash === 'coverage') {
         // deep link to the living-book coverage map (also used for paper screenshots)
         document.getElementById('onboarding').classList.add('hidden');
@@ -155,6 +197,12 @@ class PBook {
         this._mapMode = 'coverage';
         this.switchView('map');
         setTimeout(() => document.querySelectorAll('.covmap-chapter-sec').forEach((d, i) => { if (i < 2) d.open = true; }), 1500);
+      } else if (hash === 'play' || hash.startsWith('play/')) {
+        // Playground deep link: #play (all games) or #play/<game block id>
+        document.getElementById('onboarding').classList.add('hidden');
+        this.updateXPBadge();
+        this.switchView('home');
+        this.openPlayground(hash.slice(5) || undefined);
       } else if (hash.startsWith('quiz-')) {
         // Single quiz card deep link — show in quiz view
         const blockId = hash.replace('quiz-', '');
@@ -193,7 +241,9 @@ class PBook {
 
     // Customize welcome screen for returning users
     this._customizeWelcome();
+    this._resumeOrWelcome();   // first visit → the door; returning → where you left off (js/ux.js)
 
+    if (this._getAuth()) this.refreshAiBalance(true);
     // Auto-sync for logged-in users: save every 2 minutes
     setInterval(() => {
       if (this._getAuth()) this.syncProfile().catch(() => {});
@@ -212,27 +262,109 @@ class PBook {
   }
 
   async loadAllContent() {
+    // Every id that exists in git (any status) — the progress-pruning check must
+    // not mistake a hidden draft or a failed fetch for a deleted block.
+    this._knownIds = new Set();
+    this._contentFetchFailed = false;
+    // Start EVERY file download at once (the loop below used to wait chapter by
+    // chapter: ~5 s for 307 files on a slow link). The loop is unchanged — its
+    // `fetch` just picks up the request that is already in flight.
+    const inflight = new Map();
+    for (const c of this.book.chapters) for (const f of c.files) {
+      const url = `${CONFIG.book.contentDir}/${c.directory}/${f}`;
+      inflight.set(url, window.fetch(url).catch(() => null));
+    }
+    const fetch = url => inflight.get(url) || window.fetch(url);
     for (let i = 0; i < this.book.chapters.length; i++) {
       const ch = this.book.chapters[i];
       const dir = `${CONFIG.book.contentDir}/${ch.directory}`;
-      const blocks = await Promise.all(ch.files.map(async f => {
+      const blocks = await Promise.all(ch.files.map(async (f, fileIdx) => {
         try {
-          const text = await (await fetch(`${dir}/${f}`)).text();
+          const res = await fetch(`${dir}/${f}`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const text = await res.text();
           const { meta, body } = parseFrontmatter(text);
-          const seq = f.match(/^(\d+)([a-z]?)/);
-          const sequence = seq ? parseInt(seq[1]) * 10 + (seq[2] ? seq[2].charCodeAt(0) - 96 : 0) : 999;
+          if (!meta.id) throw new Error('no frontmatter id');
+          this._knownIds.add(meta.id);
+          // Reading order = book.json order. Filename prefixes are labels only
+          // (the arbiter reorders by editing book.json, never by renaming files).
+          const sequence = fileIdx;
           return { ...meta, body, sequence, _chapter: ch.id, _chapterNum: ch.number, _chapterTitle: ch.title, meta: { ...meta, chapter: ch.id } };
-        } catch (e) { return null; }
+        } catch (e) { this._contentFetchFailed = true; return null; }
       }));
       const isAdmin = localStorage.getItem('pbook-admin') === '1';
       const valid = blocks.filter(b => b && (!b.status || b.status === 'accepted' || isAdmin)).sort((a, b) => a.sequence - b.sequence);
       this.chapters[i] = { ...ch, blocks: valid };
       valid.forEach(b => { b._chapterIdx = i; this.allBlocks.push({ meta: b, body: b.body, _chapter: ch.id }); });
     }
+    this._filterLanguage();
+  }
+
+  // ===== LANGUAGES (js/i18n.js) =====
+  // A book in several languages (CONFIG.book.languages) serves the reader one of them. A
+  // translated block names its original (translationOf: <id>) and its lang; in the reader's
+  // language the translation replaces the original, other languages' translations leave the
+  // book, and blocks nobody translated stay in the book's own language. Dropped ids alias to
+  // the block that replaced them, so links, missions, recall cards and reading progress follow
+  // the reader from one language to another.
+  _filterLanguage() {
+    this._langAlias = {};
+    if (!CONFIG.book.languages || LANG === 'qps') return;
+    const all = Object.values(this.chapters).flatMap(ch => ch.blocks);   // chapters: index → chapter
+    const mine = new Map();   // original id → its translation in the reader's language
+    for (const b of all) if (b.translationOf && this._covers(b, 'lang', LANG)) mine.set(b.translationOf, b);
+    const drop = new Set();
+    for (const b of all) {
+      if (!b.translationOf) continue;
+      if (mine.get(b.translationOf) === b) { drop.add(b.translationOf); this._langAlias[b.translationOf] = b.id; }
+      else { drop.add(b.id); this._langAlias[b.id] = mine.get(b.translationOf)?.id || b.translationOf; }
+    }
+    // CONFIG.book.untranslatedTellings: 'hide' — a concept that speaks the reader's language leaves
+    // out its other tellings nobody translated (a story in the book's language would break the
+    // switch); links to them land on the concept's translated anchor. Untranslated concepts stay whole.
+    if (CONFIG.book.untranslatedTellings === 'hide' && LANG !== (CONFIG.book.lang || 'en')) {
+      const spoken = new Map();   // concept → its translated anchor (or any translated telling)
+      for (const t of mine.values()) if (t.concept && (t.core || !spoken.has(t.concept))) spoken.set(t.concept, t.id);
+      for (const b of all) {
+        if (b.translationOf || drop.has(b.id) || !spoken.has(b.concept)) continue;
+        drop.add(b.id); this._langAlias[b.id] = spoken.get(b.concept);
+      }
+    }
+    if (!drop.size) return;
+    for (const ch of Object.values(this.chapters)) ch.blocks = ch.blocks.filter(b => !drop.has(b.id));
+    this.allBlocks = this.allBlocks.filter(b => !drop.has(b.meta.id));
+    const read = this.user.readBlocks;   // a telling read in another language counts here too
+    for (const [from, to] of Object.entries(this._langAlias)) if (read.has(from) && !read.has(to)) read.add(to);
+  }
+  // Book JSON (missions, concept map, proposals, concepts): {cs, en, …} fields resolved to the
+  // reader's language, block ids of dropped originals pointed at their translations.
+  // Only block-reference fields are re-pointed: a mission may share its id with a block ("program").
+  _bookData(j, ids = true) {
+    const alias = (ids && this._langAlias) || {};
+    const REF = new Set(['core', 'blocks', 'block', 'anchor', 'blockId']);
+    const walk = (v, ref) => typeof v === 'string' ? (ref && alias[v] || v) : Array.isArray(v) ? v.map(x => walk(x, ref))
+      : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x, REF.has(k))])) : v;
+    return walk(locDeep(j), false);
+  }
+  // A concept whose anchor was translated is anchored by the translation; its recall card
+  // keeps the original id (anchorKey), so the card is the same in every language. The
+  // contract speaks the book's language; the translation brings the reader's wording
+  // (conceptTitle, objective, recallQ, recallA in its frontmatter).
+  _localizeConcepts() {
+    for (const c of Object.values(this.concepts || {})) {
+      const to = c.anchor && this._langAlias?.[c.anchor];
+      const t = to && this.findBlock(to)?.meta;
+      if (!t || t.translationOf !== c.anchor) continue;
+      c.anchorKey = c.anchor;
+      c.anchor = to;
+      if (t.conceptTitle) c.title = t.conceptTitle;
+      c.contract = { ...(c.contract || {}) };
+      for (const k of ['objective', 'recallQ', 'recallA']) if (t[k]) c.contract[k] = t[k];
+    }
   }
 
   autoTagBlocks() {
-    const TOPICS = {
+    const TOPICS = CONFIG.topics || {
       'Collaborative Filtering': ['collaborative filter', 'user-based cf', 'item-based cf'],
       'Matrix Factorization': ['matrix factor', 'svd', 'als ', 'latent factor', 'bpr'],
       'Deep Learning': ['deep learn', 'neural', 'transformer', 'attention mechanism', 'gru4rec', 'sasrec'],
@@ -249,11 +381,22 @@ class PBook {
       'Data & Signals': ['interaction data', 'item catalog', 'user catalog', 'feedback loop', 'implicit'],
       'Privacy & Ethics': ['privacy', 'gdpr', 'ethical', 'transparency', 'consent'],
     };
+    // Word-start matching: 'search' must not fire on "research", 'als ' (trailing
+    // space = whole word) not on "signals" — substring matching tagged Ch1 intro
+    // cards as Matrix Factorization · Search & Retrieval.
+    // A passing mention is not a topic (one "you didn't search for it" tagged the
+    // opening section Search & Retrieval): a topic needs a hit in the title or
+    // teaser, or at least two hits in the body.
+    const rx = kw => new RegExp('\\b' + kw.trim().replace(/[.*+?^${}()|[\]\\/]/g, '\\$&') + (kw.endsWith(' ') ? '\\b' : ''), 'g');
+    const MATCHERS = Object.fromEntries(Object.entries(TOPICS).map(([t, kws]) => [t, kws.map(rx)]));
     this.allBlocks.forEach(b => {
-      const text = ((b.meta.title || '') + ' ' + (b.body || '')).toLowerCase();
+      const head = ((b.meta.title || '') + ' ' + (b.meta.teaser || '')).toLowerCase();
+      const body = String(b.body || '').toLowerCase();
       const tags = [];
-      for (const [topic, keywords] of Object.entries(TOPICS)) {
-        if (keywords.some(kw => text.includes(kw))) tags.push(topic);
+      for (const [topic, keywords] of Object.entries(MATCHERS)) {
+        const inHead = keywords.some(re => { re.lastIndex = 0; return re.test(head); });
+        const hits = inHead ? 0 : keywords.reduce((n, re) => n + (body.match(re) || []).length, 0);
+        if (inHead || hits >= 2) tags.push(topic);
       }
       this.blockTopics[b.meta.id] = tags;
       tags.forEach(t => {
@@ -268,7 +411,7 @@ class PBook {
     this.concepts = {};        // conceptId → concept record (with contract)
     this.conceptBlocks = {};   // conceptId → [block refs from allBlocks]
     try {
-      const data = await (await fetch(`${CONFIG.book.contentDir}/concepts.json`)).json();
+      const data = this._bookData(await (await fetch(`${CONFIG.book.contentDir}/concepts.json`)).json(), false);
       (data.concepts || []).forEach(c => { this.concepts[c.id] = c; });
     } catch (e) { /* concepts.json missing — steering degrades gracefully */ }
     this.allBlocks.forEach(b => {
@@ -277,6 +420,87 @@ class PBook {
         this.conceptBlocks[cid].push(b);      // multi-concept blocks appear in every pool
       }
     });
+    // A concept with no visible telling (all its blocks are drafts and this is
+    // not an admin view) does not exist for this reader: otherwise the topbar
+    // said 0/89 where only 71 can be read, and a chapter holding a draft
+    // concept could never count as complete.
+    if (this.allBlocks.length) {
+      for (const cid of Object.keys(this.concepts)) if (!this.conceptBlocks[cid]) delete this.concepts[cid];
+    }
+    // Recall is per CONCEPT: reading any telling schedules one card, keyed by
+    // the concept's anchor id (resolves like any block id everywhere else).
+    this.user.recallKeyFor = id => this._recallKey(id);
+    this._localizeConcepts();
+  }
+
+  // The recall-card key for a block: its primary concept's anchor id (or the id itself)
+  _recallKey(id) {
+    const b = this._findAnyBlock(id);
+    const cid = b && this._conceptIds(b.meta)[0];
+    const c = cid && this.concepts?.[cid];
+    const anchor = c && (c.anchorKey || c.anchor);
+    return anchor && this.findBlock(anchor) ? anchor : id;
+  }
+
+  // ===== PROGRESS RECONCILIATION (release safety) =====
+  // content/id-aliases.json: { "aliases": { "<retired block id>": "<block id | concept slug>" } }
+  async _loadIdAliases() {
+    try {
+      const r = await fetch(`${CONFIG.book.contentDir}/id-aliases.json`);
+      if (!r.ok) return {};
+      const d = await r.json();
+      return (d && d.aliases && typeof d.aliases === 'object') ? d.aliases : {};
+    } catch (e) { return {}; }
+  }
+  _aliasTarget(target) {
+    if (!target) return null;
+    const t = String(target).replace(/^#?c\//, '');
+    if (this.findBlock(t)) return t;
+    const a = this.concepts?.[t]?.anchor;
+    return a && this.findBlock(a) ? a : null;
+  }
+  _isRuntimeId(id) { return /^(gen--|autor--|remix--)/.test(id) || !!this.privateBlocks?.[id]; }
+
+  // Runs once at startup, after content, concepts and private blocks are loaded.
+  // 1) ids retired in a release move to their successor (alias map);
+  // 2) per-block recall cards fold into their concept's card (keeps the more practised one);
+  // 3) ids that are gone for good are dropped — XP, badges, notes, missions stay.
+  // Pruning is skipped entirely when any content file failed to load (offline,
+  // partial deploy): an unknown id then means "not fetched", not "deleted".
+  async _reconcileProgress() {
+    const u = this.user;
+    const aliases = await this._loadIdAliases();
+    let renamed = 0, folded = 0, pruned = 0;
+    const live = id => !!this.findBlock(id) || this._isRuntimeId(id);
+    const mapId = id => (live(id) ? id : (this._aliasTarget(aliases[id]) || id));
+    const remap = set => {
+      const out = new Set();
+      for (const id of set) { const n = mapId(id); if (n !== id) renamed++; out.add(n); }
+      return out;
+    };
+    u.readBlocks = remap(u.readBlocks);
+    u.seenBlocks = remap(u.seenBlocks);
+    u.savedBlocks = remap(u.savedBlocks);
+    const recall = {};
+    for (const [id, card] of Object.entries(u.recall || {})) {
+      const moved = mapId(id);
+      const key = this._recallKey(moved);
+      if (moved !== id) renamed++; else if (key !== id) folded++;
+      const prev = recall[key];
+      recall[key] = !prev || (card.reps || 0) > (prev.reps || 0) ? card : prev;
+    }
+    u.recall = recall;
+    if (!this._contentFetchFailed && this.allBlocks.length) {
+      const known = id => this._knownIds?.has(id) || this._isRuntimeId(id);
+      for (const set of [u.readBlocks, u.seenBlocks, u.savedBlocks]) {
+        for (const id of [...set]) if (!known(id)) { set.delete(id); pruned++; }
+      }
+      for (const id of Object.keys(u.recall)) if (!known(id)) { delete u.recall[id]; pruned++; }
+    }
+    if (renamed || folded || pruned) {
+      u.save();
+      this.rc.logEvent('progress_reconciled', { renamed, folded, pruned });
+    }
   }
 
   // Floating decision sheet — fixed to the viewport bottom so it CANNOT be missed,
@@ -290,14 +514,21 @@ class PBook {
     el.id = 'rxfloat';
     el.className = 'remix-float';
     el.innerHTML = `
-      <div style="font-weight:700">✨ ${isDiagram ? 'Nový diagram je hotový' : 'Přepis je hotový'} — je to náhled, dokud nerozhodneš.</div>
+      <div style="font-weight:700">${tr(`✨ {0} — it's a preview until you decide.`, isDiagram ? tr('New diagram ready') : tr('Rewrite ready'))}</div>
       ${diff}
       <div style="display:flex;gap:.45em;flex-wrap:wrap;margin-top:.35em">
-        <button class="steer-chip" style="border-color:#10B981;color:#065F46;font-weight:700" onclick="app._decideRemix('${originalId}','${remixId}','accept')">✓ Přijmout</button>
-        <button class="steer-chip" style="border-color:var(--accent);color:var(--accent);font-weight:700" onclick="app._decideRemix('${originalId}','${remixId}','share')">✓ Přijmout a sdílet</button>
-        <button class="steer-chip" style="opacity:.85" onclick="app._decideRemix('${originalId}','${remixId}','discard')">✗ Zahodit</button>
+        <button class="steer-chip" style="border-color:#10B981;color:#065F46;font-weight:700" onclick="app._decideRemix('${originalId}','${remixId}','accept')">${tr(`✓ Accept`)}</button>
+        <button class="steer-chip" style="border-color:var(--accent);color:var(--accent);font-weight:700" onclick="app._decideRemix('${originalId}','${remixId}','share')">${tr(`✓ Accept &amp; share`)}</button>
+        <button class="steer-chip" style="opacity:.85" onclick="app._decideRemix('${originalId}','${remixId}','discard')">${tr(`✗ Discard`)}</button>
       </div>`;
     document.body.appendChild(el);
+    // Show the reader WHAT changed: scroll the remixed passage/diagram into
+    // view — deciding about an edit you cannot see is a coin flip.
+    setTimeout(() => {
+      const blockEl = document.getElementById('b-' + remixId) || document.getElementById('b-' + originalId);
+      const target = (blockEl && (blockEl.querySelector('.remix-mark') || (isDiagram && blockEl.querySelector('.diagram-wrap, svg')))) || blockEl;
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 180);
   }
   _decideRemix(originalId, remixId, what) {
     document.getElementById('rxfloat')?.remove();
@@ -336,9 +567,9 @@ class PBook {
     if (this._f('gamification')) { this.user.addXP(5); this.user.save(); this.updateXPBadge(); }
     if (share) {
       this._showShareConsent(remixId);
-      this.showXPToast('+5 XP ✨ Přijato — vyber si přezdívku (nebo zůstaň anonymní) a sdílej', 'achievement');
+      this.showXPToast(tr('+5 XP ✨ Accepted — pick a name (or stay anonymous) to share it'), 'achievement');
     } else {
-      this.showXPToast('+5 XP ✨ Tvoje verze je teď součástí tvé knihy (kdykoli vrátíš)', 'achievement');
+      this.showXPToast(tr('+5 XP ✨ Your version is now part of your book (revert anytime)'), 'achievement');
     }
   }
 
@@ -365,7 +596,7 @@ class PBook {
   }
   // Permanent discard — the only irreversible action, and it says so.
   discardOverride(originalId) {
-    if (!window.confirm('Opravdu trvale zahodit tvoji upravenou verzi této sekce? Nejde to vrátit.')) return;
+    if (!window.confirm(tr('Permanently discard your edited version of this section? This cannot be undone.'))) return;
     const rid = this._overrides?.[originalId];
     if (rid && this.privateBlocks?.[rid]) {
       delete this.privateBlocks[rid];
@@ -410,7 +641,7 @@ class PBook {
   }
 
   _facetDefault(dim) {
-    return { lens: 'generic', lang: 'en', visuality: 'text-first', depth: 'standard', formalism: 'none', lengthBand: 'standard', genre: 'explainer' }[dim] || null;
+    return { lens: 'generic', lang: CONFIG.book.lang || 'en', visuality: 'text-first', depth: 'standard', formalism: 'none', lengthBand: 'standard', genre: 'explainer' }[dim] || null;
   }
 
   // SUBSPACE COVERAGE (spec: dimensions are not orthogonal; a telling covers a
@@ -519,7 +750,8 @@ class PBook {
 
   // The variant pool for a concept: git blocks + own private + community (open mode, cached)
   _conceptPool(conceptId) {
-    const pool = [...(this.conceptBlocks[conceptId] || [])];
+    // render smí předběhnout loadConcepts (deep link) — bez guardu padal celý renderSpine
+    const pool = [...(this.conceptBlocks?.[conceptId] || [])];
     for (const pb of Object.values(this.privateBlocks || {})) {
       if (this._conceptIds(pb.meta).includes(conceptId)) pool.push(pb);
     }
@@ -529,7 +761,35 @@ class PBook {
     return pool;
   }
 
+  // A mission step counts once its IDEA is read in any verified telling: the
+  // feed serves one telling per concept (maybe the tl;dr or a comic), and a
+  // reader who met the idea there should not have to re-read the anchor.
+  _stepRead(id) {
+    if (this.user.readBlocks.has(id)) return true;
+    const b = this.findBlock(id);
+    const cid = b && this._conceptIds(b.meta)[0];
+    return !!cid && this._tellingPool(cid).some(t => t.meta?.state !== 'private' && t.meta?.state !== 'community' && this.user.readBlocks.has(t.meta?.id || t.id));
+  }
+
+  // Only tellings (spines, private/community texts): a concept's question and
+  // game blocks share its pool but are not "ways to read" it — counting them
+  // made the chip say 4 where the strip said 3, and steering could serve a quiz.
+  _tellingPool(conceptId) {
+    return this._conceptPool(conceptId).filter(b => { const t = b.meta?.type || b.type; return !t || t === 'spine'; });
+  }
+
   // Lazily fetch community variants for a concept (open mode only; graceful empty)
+  // The reader's class code — one source of truth for drafts, decks, submissions
+  // Who shares under a code: a class by default; a book can name it a consortium or a
+  // team through CONFIG.community.words in its own js/config.js
+  _groupWords() {
+    return Object.assign({ gallery: tr('Class gallery'), group: 'class', members: 'pupils', mates: 'classmates',
+      lead: tr('the teacher'), code: tr('Class code') }, CONFIG.community?.words || {});
+  }
+  _classCode() {
+    const c = (localStorage.getItem('pbook-deck-group') || localStorage.getItem('sk-class-code') || '').toLowerCase();
+    return /^[a-z0-9-]{4,16}$/.test(c) ? c : '';
+  }
   async _fetchCommunity(conceptId) {
     if (!this._f('community')) return [];
     if (!this._communityCache) this._communityCache = {};
@@ -537,7 +797,7 @@ class PBook {
     // Adopted runtime tellings (edited/core) serve to EVERYONE — an editor
     // verified them; raw community stays behind open mode.
     const states = this.user.readerMode === 'open' ? ['community', 'edited', 'core'] : ['edited', 'core'];
-    const items = await this.rc.listCommunityBlocks(conceptId, 10, states);
+    const items = await this.rc.listCommunityBlocks(conceptId, 10, states, { classGroup: this._classCode() });
     this._communityCache[conceptId] = items;
     return items;
   }
@@ -545,9 +805,10 @@ class PBook {
   // Slim indicator at the top of a block: how many other tellings exist, click to see them
   _renderTellingsIndicator(block) {
     if (!this._f('steering') || !block.concept || block.type !== 'spine') return '';
-    const others = this._conceptPool(block.concept).filter(b => (b.meta?.id || b.id) !== block.id).length;
+    // primary concept, not the raw "a|b" string (multi-concept blocks counted 0 and the label flipped)
+    const others = this._tellingPool(this._conceptIds(block)[0]).filter(b => (b.meta?.id || b.id) !== block.id).length;
     return `<div class="tellings-indicator">
-      <button class="steer-chip" onclick="app.toggleTellings('${block.id}')" title="Další podání tohoto konceptu">&#127899;&#65039; ${others ? `${others} další podání` : 'podání'} &#9662;</button>
+      <button class="steer-chip" onclick="app.toggleTellings('${block.id}')" title="${tr(`Other ways this idea is told`)}" aria-expanded="false">&#127899;&#65039; ${others ? `${tr(`{0} other way{1} to read this`, others, others > 1 ? 's' : '')}` : tr('Tell it differently')} &#9662;</button>
       <div class="tellings-panel" id="tellings-${block.id}" style="display:none"></div>
     </div>`;
   }
@@ -559,27 +820,34 @@ class PBook {
     if (!this._f('steering') || !block.concept || block.type !== 'spine') return '';
     const lensVals = CONFIG.facets.lens.values;
     const lensIcons = CONFIG.facets.lens.icons || {};
-    const canSimpler = (block.depth || 'standard') !== 'intro';
-    const canDeeper = (block.depth || 'standard') !== 'research';
-    return `<div class="steer-bar feedback-bar" id="steer-${block.id}" onpointerdown="app._pinFeedbackBar('${block.id}')">
-      <button class="fb-close" onclick="app._dismissFeedbackBar('${block.id}')" title="Skrýt">&times;</button>
-      <span class="steer-label">Jak ti tohle podání sedlo?</span>
-      <button class="steer-chip" onclick="app.steerBlock('${block.id}','praise')" title="Tohle podání mi sedlo">&#128077; Super</button>
-      ${canSimpler ? `<button class="steer-chip" onclick="app.steerBlock('${block.id}','simpler')" title="Stejná myšlenka, jednodušší podání">&#128315; Jednodušeji</button>` : ''}
-      ${canDeeper ? `<button class="steer-chip" onclick="app.steerBlock('${block.id}','deeper')" title="Stejná myšlenka, víc do hloubky">&#128316; Hlouběji</button>` : ''}
-      ${block.visuality !== 'visual-first' ? `<button class="steer-chip" onclick="app.steerBlock('${block.id}','visual')" title="Stejná myšlenka, vizuálněji">&#128444;&#65039; Vizuálněji</button>` : ''}
-      <select class="steer-chip steer-lens" onchange="if(this.value){app.steerBlock('${block.id}','lens',this.value);this.value=''}" title="Příklady z tvého světa">
-        <option value="">&#127758; my world&hellip;</option>
-        ${lensVals.filter(l => l !== (block.lens || 'generic')).map(l => `<option value="${l}">${lensIcons[l] || ''} ${l}</option>`).join('')}
+    const depths = this._facetValues(block, 'depth');
+    const canSimpler = !depths.includes('intro');
+    const canDeeper = !depths.includes('research');
+    return `<div class="steer-bar telling-feedback fb-waiting" id="steer-${block.id}" onpointerdown="app._pinFeedbackBar('${block.id}')">
+      <button class="fb-close" onclick="app._dismissFeedbackBar('${block.id}')" title="Dismiss" aria-label="Dismiss">&times;</button>
+      <span class="steer-label">${tr(`How did this land?`)}</span>
+      <button class="steer-chip" onclick="app.steerBlock('${block.id}','praise')" title="${tr(`This telling worked for me`)}">${tr(`&#128077; Worked for me`)}</button>
+      ${canSimpler ? `<button class="steer-chip" onclick="app.steerBlock('${block.id}','simpler')" title="${tr(`Same idea, gentler telling`)}">${tr(`Simpler`)}</button>` : ''}
+      ${canDeeper ? `<button class="steer-chip" onclick="app.steerBlock('${block.id}','deeper')" title="${tr(`Same idea, more depth`)}">${tr(`Deeper`)}</button>` : ''}
+      ${!this._facetValues(block, 'visuality').includes('visual-first') ? `<button class="steer-chip" onclick="app.steerBlock('${block.id}','visual')" title="${tr(`Same idea, more visual`)}">${tr(`More visual`)}</button>` : ''}
+      <select class="steer-chip steer-lens" aria-label="${tr(`Examples from another world`)}" onchange="if(this.value){app.steerBlock('${block.id}','lens',this.value);this.value=''}" title="${tr(`Examples from your world`)}">
+        <option value="">${tr(`&#127758; Examples from&hellip;`)}</option>
+        ${lensVals.filter(l => !this._facetValues(block, 'lens').includes(l)).map(l => `<option value="${l}">${lensIcons[l] || ''} ${this._fw('lensShort', l)}</option>`).join('')}
       </select>
     </div>`;
   }
 
   // Feedback-bar lifecycle: arm a 25 s fade when it first becomes visible (called
   // from the dwell observer), pin on any interaction, dismiss on ✕.
+  _revealFeedbackBar(blockId) {
+    const bar = document.getElementById(`steer-${blockId}`);
+    if (!bar || !bar.classList.contains('fb-waiting')) return;
+    bar.classList.remove('fb-waiting');
+    this._armFeedbackBar(blockId);
+  }
   _armFeedbackBar(blockId) {
     const bar = document.getElementById(`steer-${blockId}`);
-    if (!bar || !bar.classList.contains('feedback-bar') || bar.dataset.armed) return;
+    if (!bar || !bar.classList.contains('telling-feedback') || bar.dataset.armed) return;
     bar.dataset.armed = '1';
     if (!this._fbTimers) this._fbTimers = {};
     this._fbTimers[blockId] = setTimeout(() => {
@@ -604,7 +872,7 @@ class PBook {
       const def = this._facetDefault(dim);
       if (!always && set.length === 1 && set[0] === def) return null;
       const ordered = CONFIG.facets[dim]?.ordered;
-      const label = ordered && set.length > 1 ? `${set[0]}–${set[set.length - 1]}` : set.join(' · ');
+      const label = dim === 'depth' ? this._depthPhrase(set) : ordered && set.length > 1 ? `${this._fw(dim, set[0])} to ${this._fw(dim, set[set.length - 1])}` : set.map(v => this._fw(dim === 'lens' ? 'lensShort' : dim, v)).join(' · ');
       const icon = dim === 'lens' ? (set.length === 1 ? lensIcons[set[0]] || '' : '🌐') : dim === 'lang' ? '🌍' : '';
       return `<span class="telling-chip">${icon ? icon + ' ' : ''}${label}</span>`;
     };
@@ -616,13 +884,13 @@ class PBook {
     const s = meta.state || 'edited';
     if (meta.remixOf) {
       return s === 'community'
-        ? '<span class="telling-badge" style="color:#D97706;border-color:#D97706">✨ reader remix</span>'
-        : '<span class="telling-badge" style="color:#D97706;border-color:#D97706">✨ your remix</span>';
+        ? ('<span class="telling-badge" style="color:#D97706;border-color:#D97706">' + tr(`✨ reader remix`) + '</span>')
+        : ('<span class="telling-badge" style="color:#D97706;border-color:#D97706">' + tr(`✨ your remix`) + '</span>');
     }
-    if (s === 'core') return '<span class="telling-badge" style="color:#7C3AED;border-color:#7C3AED">CORE</span>';
-    if (s === 'community') return '<span class="telling-badge" style="color:#D97706;border-color:#D97706">⚡ reader-shared</span>';
-    if (s === 'private') return '<span class="telling-badge" style="color:#D97706;border-color:#D97706">⚡ yours</span>';
-    return '<span class="telling-badge" style="color:#10B981;border-color:#10B981">edited</span>';
+    if (s === 'core') return ('<span class="telling-badge" style="color:#7C3AED;border-color:#7C3AED" title="' + tr(`Essential and verified by the authors`) + '">' + tr(`ESSENTIAL`) + '</span>');
+    if (s === 'community') return ('<span class="telling-badge" style="color:#D97706;border-color:#D97706">' + tr(`⚡ reader-shared`) + '</span>');
+    if (s === 'private') return ('<span class="telling-badge" style="color:#D97706;border-color:#D97706">' + tr(`⚡ yours`) + '</span>');
+    return ('<span class="telling-badge" style="color:#10B981;border-color:#10B981">' + tr(`edited`) + '</span>');
   }
 
   // The tellings panel: SEE what exists before generating anything.
@@ -636,11 +904,11 @@ class PBook {
     const conceptId = this._conceptIds(entry?.meta)[0];
     if (!conceptId) return;
     panel.style.display = 'block';
-    panel.innerHTML = '<div style="padding:.5em;color:var(--text-3);font-size:.75rem">Načítám podání…</div>';
+    panel.innerHTML = ('<div style="padding:.5em;color:var(--text-3);font-size:.75rem">' + tr(`Loading tellings…`) + '</div>');
     await this._fetchCommunity(conceptId);
 
     const concept = this.concepts?.[conceptId];
-    const pool = this._conceptPool(conceptId);
+    const pool = this._tellingPool(conceptId);
     // COMPOSED REQUEST: the profile only seeds the target once; after that every
     // dimension the reader picks in this panel sticks until the panel is reset.
     if (!this._steerTargets) this._steerTargets = {};
@@ -651,17 +919,17 @@ class PBook {
       : (this._steerTargets[conceptId] || { ...this.user.getTargetFacets() });
     this._steerTargets[conceptId] = target;
 
-    let h = `<div class="tellings-title">Podání konceptu &bdquo;${this.escHtml(concept?.title || conceptId)}&ldquo;</div>`;
+    let h = `<div class="tellings-title">${tr(`Tellings of &ldquo;{0}&rdquo;`, this.escHtml(concept?.title || conceptId))}</div>`;
     if (missMsg && missMsg.trim()) h += `<div class="tellings-miss">${missMsg}</div>`;
 
     // COMPOSE FORM — the whole telling space on one screen, pre-filled from the
     // reader's profile. Clicking only changes the request (no hidden accordions,
     // no silent swaps); serving/generating happens on the buttons below.
     const DIMS = [
-      { dim: 'lens', label: '🌐 Svět' }, { dim: 'lang', label: '🌍 Jazyk' },
-      { dim: 'genre', label: '✒️ Žánr' }, { dim: 'depth', label: '📏 Hloubka' },
-      { dim: 'visuality', label: '🖼 Forma' }, { dim: 'lengthBand', label: '⏱ Délka' },
-      { dim: 'carriers', label: '🧩 Prvky' },
+      { dim: 'lens', label: tr('🌐 World') }, { dim: 'lang', label: tr('🌍 Language') },
+      { dim: 'genre', label: tr('✒️ Genre') }, { dim: 'depth', label: tr('📏 Depth') },
+      { dim: 'visuality', label: tr('🖼 Form') }, { dim: 'lengthBand', label: tr('⏱ Length') },
+      { dim: 'carriers', label: tr('🧩 Blocks') },
     ];
     const curMeta = entry.meta;
     const profile = this.user.getTargetFacets();
@@ -680,13 +948,13 @@ class PBook {
       const cfg = [this._facetValues(m, 'lens').join('|'), this._facetValues(m, 'lang').join('|'),
                    g, this._facetValues(m, 'depth').join('–'), this._facetValues(m, 'visuality').join('–'),
                    this._facetValues(m, 'lengthBand').join('–')].join(' · ');
-      const tip = `${(m.title || m.id).replace(/"/g, "'")}\n${state.toUpperCase()} · ${cfg}${isCurrent ? '\n(právě čteš)' : ''}`;
+      const tip = `${(m.title || m.id).replace(/"/g, "'")}\n${this._tellingWords(m, ['genre', 'lens', 'depth', 'lengthBand']) || cfg}${isCurrent ? tr('\n(reading now)') : ''}`;
       return `<button class="tstrip-chip ${isCurrent ? 'tstrip-current' : ''}" style="--sc:${color}"
         title="${this.escHtml(tip)}" ${isCurrent ? '' : `onclick="app.pickTelling('${blockId}','${m.id}')"`}>${GENRE_ICONS[g] || '📄'}</button>`;
-    }).join('')}<span class="tstrip-hint">${pool.length} podání — najetím detail, kliknutím čteš</span></div>`;
+    }).join('')}<span class="tstrip-hint">${tr(`{0} ways to read this idea — tap one to switch`, pool.length)}</span><button class="tstrip-chip" style="--sc:#EC4899" title="${tr(`Write your own telling (coach)`)}" onclick="app.startAuthoring('${conceptId}')">✍️</button></div>`;
 
     h += `<div class="tellings-compose">
-      <div style="font-size:.72rem;font-weight:700;margin:.6em 0 .15em">🎛 Chceš to podat jinak? <span style="font-weight:400;color:var(--text-3)">◉ = toto podání · <span class="legend-active">vyplněné</span> = tvoje volba · čísla = existující podání${changed ? ` · <a href="#" onclick="event.preventDefault();app.resetPanelTarget('${blockId}')" style="color:var(--accent)">↺ vrátit (${changed} změn)</a>` : ''}</span></div>
+      <div style="font-size:.72rem;font-weight:700;margin:.6em 0 .15em">${tr(`🎛 Want it told differently?`)} <span style="font-weight:400;color:var(--text-3)">${tr(`◉ = what you are reading ·`)} <span class="legend-active">${tr(`highlighted`)}</span> ${tr(`= what you asked for · number = how many versions exist{0}`, changed ? ` · <a href="#" onclick="event.preventDefault();app.resetPanelTarget('${blockId}')" style="color:var(--accent)">${tr(`↺ reset ({0} changed)`, changed)}</a>` : '')}</span></div>
       ${DIMS.map(({ dim, label }) => `<div class="dna-row" style="align-items:flex-start"><span class="dna-label" style="padding-top:.2em">${label}</span>
         <div class="tellings-dimvals" style="margin:0">${this._renderDimValues(blockId, dim, pool, curMeta)}</div></div>`).join('')}
     </div>`;
@@ -700,27 +968,23 @@ class PBook {
     const canGen = this._f('generation') && await this._probeGeneration();
     const wish = this._steerWish?.[conceptId] || '';
     h += `<div class="tellings-gen" id="gen-offer-${blockId}">`;
-    const gapLabel = `<span>Tohle zatím žádné podání nepokrývá${best ? ` — nejblíž je <b>${this.escHtml(best.b.meta.title || best.b.meta.id)}</b> (${Math.round(best.s * 100)} % shody)` : ''}.</span>`;
     if (covered) {
-      h += `<span>✓ Tvoje volba je pokrytá: <b>${this.escHtml(best.b.meta.title || best.b.meta.id)}</b> (${Math.round(best.s * 100)} % shoda)</span>
-        <button class="steer-chip" style="border-color:var(--accent);color:var(--accent)" onclick="app.pickTelling('${blockId}','${best.b.meta.id}')">Přečíst</button>`;
+      h += `<span>${tr(`✓ Your target is covered: <b>{0}</b> ({1}% match)`, this.escHtml(best.b.meta.title || best.b.meta.id), Math.round(best.s * 100))}</span>
+        <button class="steer-chip" style="border-color:var(--accent);color:var(--accent)" onclick="app.pickTelling('${blockId}','${best.b.meta.id}')">${tr(`Read it`)}</button>`;
     } else if (canGen && this.user.readerMode === 'open') {
-      h += gapLabel + `
-        ${best ? `<button class="steer-chip" onclick="app.pickTelling('${blockId}','${best.b.meta.id}')">Přečíst nejbližší</button>` : ''}
+      h += `<span>${tr(`No telling covers this yet{0}.`, best ? ` ${tr(`(closest: {0}%)`, Math.round(best.s * 100))}` : '')}</span>
         <input type="text" id="gen-wish-${blockId}" class="gen-wish" maxlength="300" value="${this.escHtml(wish)}"
           oninput="(app._steerWish=app._steerWish||{})['${conceptId}']=this.value"
-          placeholder="Volitelná poznámka: něco konkrétního? (třeba ‚použij příklad se školním obchůdkem‘)">
-        <button class="steer-chip steer-gen" onclick="app.generateVariant('${blockId}','${conceptId}')">&#10024; Vygenerovat přesně tohle (~30 s)</button>
-        ${(target.genre === 'comic' || target.genre === 'animation') ? `<span style="font-size:.65rem;color:var(--text-3);flex-basis:100%">${target.genre === 'comic' ? 'Čtyřpanelový komiks' : 'Animované SVG'} se nakreslí přímo pro tento úsek (~40 s).</span>` : ''}`;
+          placeholder="${tr(`Optional note: anything specific? (e.g. 'use a running-shop example')`)}">
+        <button class="steer-chip steer-gen" onclick="app.generateVariant('${blockId}','${conceptId}')">${tr(`&#10024; Generate exactly this (~30 s) · {0} ⚡`, CONFIG.aiEconomy?.prices.advanced || 0)}</button>
+        ${(target.genre === 'comic' || target.genre === 'animation') ? `<span style="font-size:.7rem;color:var(--text-3);flex-basis:100%">${tr(`{0} will be drawn for this segment (~40 s).`, target.genre === 'comic' ? tr('A four-panel comic') : tr('An animated SVG'))}</span>` : (target.visuality === 'visual-first' || /diagram|image/.test(target.carriers || '')) ? `<span style="font-size:.7rem;color:var(--text-3);flex-basis:100%">${tr(`For genre comic/animation the generator draws a real visual; plain text requests deliver prose, tables, formulas and code.`)}</span>` : ''}`;
     } else if (canGen) {
-      h += gapLabel + ` <span>Zapni si <b>Otevřený režim</b> v <a href="#" onclick="app.switchView('profile');return false">Profilu</a> a nech si přesně tohle vygenerovat.</span>`;
+      h += `<span>${tr(`No telling covers this yet — turn on <b>Open mode</b> in your`)} <a href="#" onclick="app.switchView('profile');return false">${tr(`Profile`)}</a> ${tr(`to generate it.`)}</span>`;
     } else {
-      h += gapLabel + `
-        ${best ? `<button class="steer-chip" onclick="app.pickTelling('${blockId}','${best.b.meta.id}')">Přečíst nejbližší</button>` : ''}
-        <button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" id="wish-btn-${blockId}" onclick="app.tellingWish('${blockId}','${conceptId}')">🌱 Chci tohle podání (+2 XP)</button>`;
+      h += `<span>${tr(`No telling covers this yet — your interest was recorded and helps editors decide what to write next. &#128203;`)}</span>`;
     }
     h += '</div>';
-    h += `<div style="font-size:.68rem;color:var(--text-3);margin-top:.35em">Tohle jsou podání jednoho konceptu. Chybí ti celý <i>koncept</i>? <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">🌱 navrhni ho</a> (+10 XP) · <a href="#" onclick="event.preventDefault();app.showHowItWorks('tellings')" style="color:var(--text-3)">Jak tohle celé funguje?</a></div>`;
+    h += `<div style="font-size:.7rem;color:var(--text-3);margin-top:.35em">${tr(`These are tellings of one concept. Missing a whole <i>concept</i>?`)} <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">${tr(`🌱 propose it`)}</a> ${tr(`(+10 XP).`)}</div>`;
     panel.innerHTML = h;
   }
 
@@ -742,8 +1006,8 @@ class PBook {
       const isCur = current.includes(v);
       const isSel = selSet.includes(v);
       return `<button class="steer-chip dimval ${isCur ? 'dim-current' : ''} ${isSel ? 'dim-active' : ''} ${count ? '' : 'dim-empty'}"
-        onclick="app.steerDim('${blockId}','${dim}','${v}')" title="${isCur ? 'tohle pokrývá podání, které právě čteš · ' : ''}${isSel ? 've tvé volbě (klikni pro odebrání) · ' : ''}${count ? count + ' podání pokrývá this' : 'no telling yet — be the first'}">
-        ${isCur ? '◉ ' : ''}${icons[v] ? icons[v] + ' ' : ''}${v}${count ? ` <span class="dimcount">${count}</span>` : ' ＋'}</button>`;
+        onclick="app.steerDim('${blockId}','${dim}','${v}')" title="${isCur ? tr('the telling you are reading covers this · ') : ''}${isSel ? tr('in your target (click to remove) · ') : ''}${count ? count + tr(' telling(s) cover this') : tr('no telling yet — be the first')}">
+        ${isCur ? '◉ ' : ''}${icons[v] ? icons[v] + ' ' : ''}${this.escHtml(this._fw(dim === 'lens' ? 'lensShort' : dim, v))}${count ? ` <span class="dimcount">${count}</span>` : ' ＋'}</button>`;
     }).join('');
   }
 
@@ -768,8 +1032,12 @@ class PBook {
   // After a chapter renders, re-apply the reader's saved telling choices.
   async _applyTellingChoices() {
     const choices = this._tellingChoices();
+    const essentials = !this._fullBook();
     for (const [cid, vid] of Object.entries(choices)) {
-      const anchor = this.concepts?.[cid]?.anchor;
+      // essentials flow serves a picked git telling directly; generated/community
+      // picks are swapped into the concept's served slot
+      if (essentials && this.findBlock(vid)) continue;
+      const anchor = (essentials && this._servedSlot?.[cid]) || this.concepts?.[cid]?.anchor;
       if (!anchor || !document.getElementById(`b-${anchor}`)) continue;
       let entry = this._findAnyBlock(vid);
       if (!entry) { try { await this._fetchCommunity(cid); entry = this._findAnyBlock(vid); } catch (e) {} }
@@ -783,8 +1051,24 @@ class PBook {
     if (!variant) return;
     this.user.updateFacetAffinity(this._blockFacets(variant.meta), 2); // choosing a telling is a strong signal
     this.rc.logEvent('steer', { blockId, action: 'pick', servedId: variantId, result: 'served' });
+    const cid = this._conceptIds(variant.meta)[0];
+    this._setTellingChoice(cid, variantId);
+    // Essentials flow: a git telling becomes the concept's served telling — re-render
+    // so the "more ways" strip and the notice describe what is actually on screen.
+    if (!this._fullBook() && this.findBlock(variantId)) {
+      if (this._requestedTellings) delete this._requestedTellings[cid];
+      this._rerenderAt(variantId);
+      return;
+    }
     this._swapBlock(blockId, variant, this._blockFacets(variant.meta) || {});
-    this._setTellingChoice(this._conceptIds(variant.meta)[0], variantId);
+  }
+
+  // Re-render the chapter that holds a block and land on that block
+  _rerenderAt(blockId) {
+    const b = this.findBlock(blockId);
+    const chIdx = b ? b.meta._chapterIdx : this._renderedChapter;
+    this._pendingScroll = { parentId: blockId, meta: { id: blockId } };
+    this.renderRead(chIdx);
   }
 
   // Steering with an honest miss path: the steered facet must actually move —
@@ -800,7 +1084,7 @@ class PBook {
     if (action === 'praise') {
       this.user.updateFacetAffinity(this._blockFacets(meta), 2);
       this.rc.logEvent('steer', { blockId, concept: conceptId, action: 'praise' });
-      this.showXPToast('Zaznamenáno — víc podání jako tohle 👍', 'achievement');
+      this.showXPToast(tr('Noted — more tellings like this one 👍'), 'achievement');
       return;
     }
 
@@ -835,7 +1119,7 @@ class PBook {
       return dir > 0 ? set.some(v => vals.indexOf(v) > curBest) : set.some(v => vals.indexOf(v) < curBest);
     };
     const icons = CONFIG.facets.lens.icons || {};
-    const askLabel = facet === 'lens' ? `${icons[value] || ''} ${value}` : action === 'visual' ? 'vizuálněji' : `${action} (${target.depth})`;
+    const askLabel = facet === 'lens' ? `${icons[value] || ''} ${value}` : action === 'visual' ? tr('more visual') : `${action} (${target.depth})`;
     await this._serveOrMiss(blockId, conceptId, target, candidateFilter, { action, value, askLabel });
   }
 
@@ -870,7 +1154,7 @@ class PBook {
   // Shared serve/honest-miss tail of every steer
   async _serveOrMiss(blockId, conceptId, target, candidateFilter, info) {
     await this._fetchCommunity(conceptId);
-    const pool = this._conceptPool(conceptId).filter(b => (b.meta?.id || b.id) !== blockId);
+    const pool = this._tellingPool(conceptId).filter(b => (b.meta?.id || b.id) !== blockId);
     const candidates = pool.filter(candidateFilter);
     let best = null, bestScore = 0;
     for (const b of candidates) {
@@ -878,15 +1162,13 @@ class PBook {
       if (s > bestScore) { best = b; bestScore = s; }
     }
     const logBase = { blockId, concept: conceptId, action: info.action, facet: info.facet || null, value: info.value || null, target, matchScore: Math.round(bestScore * 100) / 100 };
-    if (best && bestScore >= CONFIG.steering.serveThreshold) {
-      // Skutečně pokrývající podání → naservíruj. Nikdy neswapujeme na vzdálené varianty.
+    if (best) {
       this.rc.logEvent('steer', { ...logBase, result: 'served', servedId: best.meta.id });
       this._swapBlock(blockId, best, target);
     } else {
-      // Poctivá mezera: nic nepokrývá, co sis vybral → panel s nejbližším + generovat/přát si
+      // Honest miss: nothing in the catalog does what was asked → show what exists + generate CTA
       this.rc.logEvent('steer_miss', logBase);
-      const pct = best ? ` (nejblíž: ${Math.round(bestScore * 100)} % shody)` : '';
-      this.toggleTellings(blockId, `Podání <b>${info.askLabel}</b> tohoto konceptu zatím neexistuje${pct}:`, target);
+      this.toggleTellings(blockId, `${tr(`No <b>{0}</b> telling of this concept yet — here's what exists:`, info.askLabel)}`, target);
       document.getElementById(`tellings-${blockId}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
@@ -903,14 +1185,11 @@ class PBook {
   }
 
   // Swap the rendered article for a variant of the same concept, with undo
-  async _swapBlock(originalId, variantEntry, target, opts = {}) {
+  async _swapBlock(originalId, variantEntry, target, offerGenerate = false) {
     if (!this._slotDom) this._slotDom = {};
     const el = document.getElementById(`b-${originalId}`)
       || (this._slotDom[originalId] && document.getElementById(`b-${this._slotDom[originalId]}`));
     if (!el) return;
-    // starou lištu nad slotem VŽDY ukliď — jinak se při řetězení swapů vrství
-    const prevNotice = el.previousElementSibling;
-    if (prevNotice?.classList?.contains('variant-notice')) prevNotice.remove();
     const vMeta = variantEntry.meta;
     const vBlock = { ...vMeta, body: variantEntry.body, _chapterNum: vMeta._chapterNum || this._findAnyBlock(originalId)?.meta?._chapterNum, _chapterTitle: vMeta._chapterTitle || '' };
     const html = await this.renderSpine(vBlock);
@@ -921,26 +1200,40 @@ class PBook {
     this._slotDom[originalId] = vMeta.id;
 
     const isGenerated = vMeta.state === 'private' || vMeta.state === 'community';
-    const noticeBits = [];
-    if (vMeta.lens && vMeta.lens !== 'generic') noticeBits.push(`${(CONFIG.facets.lens.icons || {})[vMeta.lens] || ''} příklady: ${vMeta.lens}`);
-    if (vMeta.depth) noticeBits.push(`hloubka: ${vMeta.depth}`);
+    // plain words ("job-board examples · standard to technical depth"), never raw "a..b"
+    const noticeBits = [this._tellingWords(vMeta, ['lens', 'depth', 'genre']).replace(/^examples from everywhere · /, '')].filter(Boolean);
     const provenance = vMeta.state === 'community'
-      ? `<span class="gen-badge">sdílel čtenář &middot; zatím bez redakce</span>`
+      ? `<span class="gen-badge">${tr(`shared by a reader &middot; not yet editor-verified`)}</span>`
       : vMeta.state === 'private'
-        ? `<span class="gen-badge">&#9889; vygenerováno podle tvého nastavení &middot; zatím bez redakce</span>`
+        ? `<span class="gen-badge">${tr(`&#9889; generated for your settings &middot; not yet editor-verified`)}</span>`
         : '';
-    const cidNow = this._conceptIds(vMeta)[0];
-    const isDefault = cidNow && this._tellingChoices()[cidNow] === vMeta.id;
     const notice = `<div class="variant-notice">
-      <span>&#127899;&#65039; ${noticeBits.join(' &middot; ') || 'Jiné podání'} ${provenance}</span>
-      <span id="vn-act-${vMeta.id}">
-        ${opts.ask && !isDefault ? `<button class="steer-chip" style="border-color:var(--product);color:var(--product)" onclick="app.chooseVariant('${vMeta.id}')">✔ Používat místo originálu</button>` : ''}
-        ${isDefault ? `<span style="font-size:.68rem;color:var(--product)">✓ tvoje výchozí podání</span>` : ''}
-        <button class="steer-chip" onclick="app.toggleTellings('${vMeta.id}')">&#127899;&#65039; Podání</button>
-        <button class="steer-chip" onclick="app.unswapBlock('${vMeta.id}')" title="Vrátí originál; tohle podání zůstane jako alternativa v 🎛">&#8617; Originál</button>
+      <span>${tr(`&#127899;&#65039; Different telling: {0} {1}`, noticeBits.join(' &middot; ') || 'variant', provenance)}</span>
+      <span>
+        <button class="steer-chip" onclick="app.toggleTellings('${vMeta.id}')">${tr(`&#127899;&#65039; All tellings`)}</button>
+        <button class="steer-chip" onclick="app.unswapBlock('${vMeta.id}')">${tr(`&#8617; Original`)}</button>
       </span>
     </div>`;
 
+    // A telling can be a block that ALSO sits in the feed on its own (satellite
+    // cards of a concept are rendered in reading order too). Serving it in this
+    // slot without hiding that standalone copy shows the same section twice in
+    // a row — hide it here, unswapBlock() brings it back.
+    const strays = Array.from(document.querySelectorAll(`[id="b-${vMeta.id}"]`)).filter(n => n !== el);
+    strays.forEach(n => {
+      n.dataset.swappedInto = originalId;
+      n.style.display = 'none';
+      const prev = n.previousElementSibling;
+      if (prev && prev.classList && prev.classList.contains('variant-notice')) {
+        prev.dataset.swappedInto = originalId;
+        prev.style.display = 'none';
+      }
+    });
+
+    // Chained steering (Deeper, then another world) used to stack a stale notice
+    // above the new one — the slot keeps exactly one.
+    const oldNotice = el.previousElementSibling;
+    if (oldNotice && oldNotice.classList?.contains('variant-notice') && !oldNotice.dataset.swappedInto) oldNotice.remove();
     el.outerHTML = notice + html;
     // Register the variant for dwell tracking (falls back to default reading time)
     const newEl = document.getElementById(`b-${vMeta.id}`);
@@ -966,6 +1259,11 @@ class PBook {
     const prev = el.previousElementSibling;
     if (prev?.classList?.contains('variant-notice')) prev.remove();
     el.outerHTML = html;
+    // bring back the standalone copy hidden while this telling filled the slot
+    document.querySelectorAll(`[data-swapped-into="${originalId}"]`).forEach(n => {
+      delete n.dataset.swappedInto;
+      n.style.display = '';
+    });
     const newEl = document.getElementById(`b-${originalId}`);
     if (newEl && this._observer) { newEl.dataset.observed = '1'; this._observer.observe(newEl); }
     this.rc.logEvent('steer_undo', { variantId, originalId });
@@ -992,9 +1290,12 @@ class PBook {
 
   // Generate a segment-scoped variant: cache-keyed server side, lands PRIVATE to this reader
   async generateVariant(blockId, conceptId) {
-    const target = this._steerTargets?.[conceptId] || this.user.getTargetFacets();
+    const target = { ...(this._steerTargets?.[conceptId] || this.user.getTargetFacets()) };
+    if (CONFIG.book.languages) target.lang = LANG;   // a multilingual book writes in the language being read
     const offer = document.getElementById(`gen-offer-${blockId}`);
-    if (offer) offer.innerHTML = '<span class="gen-spinner">&#9889; Writing your telling&hellip; (~30 s — same concept, checked against its contract)</span>';
+    if (offer) offer.innerHTML = ('<span class="gen-spinner">' + tr(`&#9889; Writing your telling&hellip; (~30 s — same concept, checked against its contract)`) + '</span>');
+    const payV = this.aiCanPay('advanced');
+    if (!payV.ok) { if (offer) offer.innerHTML = this.aiPaywallHtml('advanced'); return; }
     this.rc.logEvent('generate_request', { concept: conceptId, target });
     try {
       const existingVariants = this._conceptPool(conceptId).map(b => {
@@ -1006,10 +1307,10 @@ class PBook {
       const res = await fetch(CONFIG.steering.generateEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ concept: conceptId, facets: target, existingVariants, instructions }),
+        body: JSON.stringify({ concept: conceptId, facets: target, existingVariants, instructions, auth: this._walletAuth() }),
       });
       const data = await res.json();
-      if (!res.ok || !data.ok) throw new Error(data.error || 'generation failed');
+      if (!res.ok || !data.ok) throw new Error(data.error || tr('generation failed'));
       const block = {
         meta: { ...data.block.facets, id: data.block.id, title: data.block.title, type: 'spine',
                 diagramSvg: data.block.svg || undefined,
@@ -1020,12 +1321,15 @@ class PBook {
       };
       this._savePrivateBlock(block);
       if (offer) offer.remove();
-      this._swapBlock(blockId, block, target, { ask: true });
+      this._swapBlock(blockId, block, target);
       this.rc.logEvent('generate_served', { concept: conceptId, variantId: block.meta.id, cached: !!data.cached });
-      this.showXPToast('⚡ Hotovo — dole v liště zvol: nahradit originál, nebo nechat jako alternativu', 'info');
+      if (!data.cached) this._walletApply(data, 'advanced', payV);
+      this._setTellingChoice(conceptId, block.meta.id);
       if (this._f('gamification')) { this.user.addXP(2); this.user.save(); this.updateXPBadge(); }
     } catch (e) {
-      if (offer) offer.innerHTML = `<span>Generování se nepovedlo (${this.escHtml(e.message)}). Tvůj požadavek se zaznamenal pro redakci.</span>`;
+      const pwV = this._aiErrorPaywall(e, 'advanced');
+      if (pwV) { if (offer) offer.innerHTML = pwV; return; }
+      if (offer) offer.innerHTML = `<span>${tr(`Generation didn't work out ({0}). Your request was recorded for the editors.`, this.escHtml(e.message))}</span>`;
       this.rc.logEvent('generate_failed', { concept: conceptId, error: String(e.message).slice(0, 200) });
     }
   }
@@ -1067,10 +1371,8 @@ class PBook {
     this.updateXPBadge();
     if (!this._f('missions')) document.querySelector('[data-view="glossary"]')?.style.setProperty('display', 'none');
     this.switchView(view || 'home');
-    // First-time tour
-    if (!localStorage.getItem('pbook-tour-done')) {
-      setTimeout(() => this.startTour(), 1000);
-    }
+    // First-time tour — only once the view has content (it used to open over a blank Home)
+    this._startTourWhenReady();
   }
 
   // One-tap onboarding pick with immediate, visible effect (selection + preview line)
@@ -1080,13 +1382,21 @@ class PBook {
     el.classList.add('selected');
     const lens = document.querySelector('#introLens .intro-voice.selected')?.dataset.lens || 'generic';
     const goal = document.querySelector('#introGoal .intro-voice.selected')?.dataset.goal || 'understand';
-    const WORLD = { generic: 'mix různých platforem', ecommerce: 'obchody, košíky a „zákazníci také koupili“', media: 'playlisty, autoplay a historie sledování', 'social-feeds': 'feedy, sledování a tvůrci', education: 'kurzy, cvičení a studenti' };
-    const GOAL = { understand: 'nejdřív srozumitelná vysvětlení', build: 'praktické věci a technická hloubka, když budeš chtít', decide: 'důraz na kompromisy a hodnocení', protect: 'tvoje data, tvoje volby, tvoje práva' };
+    // Honest promise: say how many sections really are told in that world today
+    const GOAL = CONFIG.goals ? Object.fromEntries(Object.entries(CONFIG.goals).map(([k, g]) => [k, loc(g.hint || g.label)])) : { understand: tr('clear explanations first'), build: tr('more technical depth, and a guided path for builders'), decide: tr('a guided path through trade-offs, evaluation and build-vs-buy'), protect: tr('a guided path through your data, your controls and your rights') };
+    const n = lens === 'generic' ? 0 : this._lensCoverage(lens);
+    const world = lens === 'generic' ? (loc(CONFIG.facets?.lens?.genericHint) || tr('Examples from many platforms'))
+      : `${tr(`<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)`, this._fw('lens', lens), n, n === 1 ? '' : 's')}`;
     const hint = document.getElementById('onboardHint');
-    if (hint) hint.innerHTML = `→ Příklady budou ze světa <b>${WORLD[lens]}</b> · ${GOAL[goal]}. Každou sekci můžeš později doladit.`;
+    if (hint) hint.innerHTML = `${world} · ${GOAL[goal]}.`;
   }
 
   startWithVoiceAndGo(view) {
+    this._saveDoorPicks();
+    this.startAndGo(view);
+  }
+
+  _saveDoorPicks() {
     // (voice picker removed — the facet taxonomy replaced learning styles; legacy name kept)
     // Onboarding calibration (P0): lens + goal — light, skippable, seeds the facet profile
     const lensSel = document.querySelector('#introLens .intro-voice.selected');
@@ -1103,7 +1413,8 @@ class PBook {
     if (openMode) { this.user.readerMode = 'open'; this.rc.setUserProperties({ readerMode: 'open' }); }
     this.user.save();
     this.rc.logEvent('onboarding', { lens: lensSel?.dataset.lens, goal: goalSel?.dataset.goal, openMode: !!openMode });
-    this.startAndGo(view);
+    this._applyGoal();
+    try { localStorage.setItem('pbook-onboarded', '1'); } catch (e) {}
   }
 
   startRandom() {
@@ -1136,8 +1447,8 @@ class PBook {
 
     // Returning user — change CTA
     const continueBlock = this.getContinueBlock();
-    ctaBtn.textContent = 'Pokračovat ve čtení \u{1F4D6}';
-    ctaBtn.onclick = () => this.startWithVoiceAndGo('home');
+    ctaBtn.textContent = continueBlock ? tr('Continue where you left off →') : tr('Back to the book →');
+    ctaBtn.onclick = () => { this._saveFeatureToggles(); this.updateXPBadge(); this._resumeReading(); };
 
     // Add extra buttons below CTA
     let extras = document.getElementById('welcomeExtras');
@@ -1152,20 +1463,20 @@ class PBook {
 
     // Memory cards button
     if (dueRecalls.length > 0) {
-      html += `<button class="btn-secondary" style="font-size:.78rem;padding:.4em .8em;border-radius:8px;border:1.5px solid var(--warn);color:var(--warn);background:var(--warn-bg)" onclick="app.startAndGo('quiz');setTimeout(()=>app.startPractice(true),300)">\u{1F9E0} ${dueRecalls.length} kartiček k opakování</button>`;
+      html += `<button class="btn-secondary" style="font-size:.78rem;padding:.4em .8em;border-radius:8px;border:1.5px solid var(--warn);color:var(--warn);background:var(--warn-bg)" onclick="app.startAndGo('quiz');setTimeout(()=>app.startPractice(true),300)">${tr(`\u{1F9E0} {0} cards due`, dueRecalls.length)}</button>`;
     } else if (Object.keys(u.recall).length > 0) {
-      html += `<button class="btn-secondary" style="font-size:.78rem;padding:.4em .8em;border-radius:8px;border:1.5px solid var(--accent);color:var(--accent)" onclick="app.startAndGo('quiz')">\u{1F9E0} Otestuj znalosti</button>`;
+      html += `<button class="btn-secondary" style="font-size:.78rem;padding:.4em .8em;border-radius:8px;border:1.5px solid var(--accent);color:var(--accent)" onclick="app.startAndGo('quiz')">${tr(`\u{1F9E0} Test knowledge`)}</button>`;
     }
 
     // Profile link
     if (auth) {
-      html += `<button class="btn-secondary" style="font-size:.78rem;padding:.4em .8em;border-radius:8px;border:1.5px solid var(--border);color:var(--text-2)" onclick="app.startAndGo('profile')">${this.getLevelIcon()} ${this.escHtml(auth.displayName || 'Profil')}</button>`;
+      html += `<button class="btn-secondary" style="font-size:.78rem;padding:.4em .8em;border-radius:8px;border:1.5px solid var(--border);color:var(--text-2)" onclick="app.startAndGo('profile')">${this.getLevelIcon()} ${this.escHtml(auth.displayName || tr('Profile'))}</button>`;
     } else {
-      html += `<button class="btn-secondary" style="font-size:.78rem;padding:.4em .8em;border-radius:8px;border:1.5px solid var(--border);color:var(--text-2)" onclick="app.startAndGo('profile')">Tvůj profil (${prog.pct}%)</button>`;
+      html += `<button class="btn-secondary" style="font-size:.78rem;padding:.4em .8em;border-radius:8px;border:1.5px solid var(--border);color:var(--text-2)" onclick="app.startAndGo('profile')">${tr(`Your profile ({0}%)`, prog.pct)}</button>`;
     }
 
     // Progress summary
-    html += `<div style="width:100%;font-size:.7rem;color:var(--text-3);text-align:center;margin-top:.2em">${prog.read}/${prog.total} sections &middot; ${u.xp} XP &middot; Lv.${u.level}</div>`;
+    html += `<div style="width:100%;font-size:.7rem;color:var(--text-3);text-align:center;margin-top:.2em">${tr(`{0}/{1} sections &middot; {2} XP &middot; Lv.{3}`, prog.read, prog.total, u.xp, u.level)}</div>`;
 
     extras.innerHTML = html;
   }
@@ -1185,13 +1496,12 @@ class PBook {
   // ===== ONBOARDING TOUR =====
   startTour() {
     this._tourSteps = [
-      { target: '.tab[data-view="home"]', text: "\u{1F3E0} Tohle je tvůj Domov! Jako Netflix, ale na učení. Scrolluj a vyber si, co tě láká.", pos: 'top' },
-      { target: '.tab[data-view="read"]', text: "\u{1F4F1} Feed! Prostě scrolluj — appka sama pozná, co ti ukázat dál. Jako TikTok, ale fakt se něco naučíš.", pos: 'top' },
-      { target: '.tab[data-view="glossary"]', text: "\u{1F3AF} Mise! Každá je výprava s příběhem a závěrečným boss kvízem. Poraz bosse = získáš titul!", pos: 'top' },
-      { target: '.tab[data-view="map"]', text: "\u{1F5FA} Mapa! Přehled celé knihy, tvoje uložené sekce a poznámky. Klepni na kapitolu a skoč tam.", pos: 'top' },
-      { target: '.tab[data-view="quiz"]', text: "\u{1F9E0} Kvíz! Otestuj, co si pamatuješ. Kartičky jsou chytré — těžké se vracejí častěji, snadné méně. Jako Anki na informatiku!", pos: 'top' },
-      { target: '#xpBadge', text: "\u{1F31F} Tohle je tvoje úroveň! XP dostáváš za čtení, minihry a dokončené mise. Vyšší úroveň = nové vzhledy!", pos: 'bottom' },
-      { target: null, text: "A je to! Klepni na cokoli, co tě zaujme — tuhle knihu nejde číst špatně. Kdyby ses ztratil, klepni nahoře na „p-book“ a vrátíš se sem. JEDEM! \u{1F680}", pos: 'center' },
+      { target: '.tab[data-view="home"]', text: tr("Browse: shelves of sections picked for you. Every pick has a “Why this?” — the book explains its own recommendations."), pos: 'top' },
+      { target: '.tab[data-view="read"]', text: tr("Read: the book in order, one section after another. Each section can be retold — simpler, deeper, or with examples from your world."), pos: 'top' },
+      { target: '.tab[data-view="glossary"]', text: tr("Missions: guided paths through the book for one goal, with a short final check."), pos: 'top' },
+      { target: '.tab[data-view="map"]', text: tr("Map: every concept in the book, what you have read, and your notes."), pos: 'top' },
+      { target: '.tab[data-view="quiz"]', text: tr("Recall: short questions that come back just before you would forget — the ones you miss return sooner."), pos: 'top' },
+      { target: null, text: tr("That is all. Your progress stays on this device; the back button takes you back through the book."), pos: 'center' },
     ];
     this._tourIdx = 0;
     this._showTourStep();
@@ -1221,14 +1531,15 @@ class PBook {
         // Highlight circle
         overlay.innerHTML = `<div class="tour-highlight" style="top:${rect.top - 4}px;left:${rect.left - 4}px;width:${rect.width + 8}px;height:${rect.height + 8}px"></div>`;
         // Tooltip
-        const tipTop = step.pos === 'top' ? rect.top - 80 : rect.bottom + 12;
+        // anchor the tip's BOTTOM edge above the tab (a taller tip used to cover it)
+        const tipPos = step.pos === 'top' ? `bottom:${Math.round(window.innerHeight - rect.top + 12)}px` : `top:${Math.round(rect.bottom + 12)}px`;
         const tipLeft = Math.max(10, Math.min(rect.left, window.innerWidth - 260));
-        overlay.innerHTML += `<div class="tour-tip" style="top:${tipTop}px;left:${tipLeft}px">
+        overlay.innerHTML += `<div class="tour-tip" role="dialog" aria-label="Tour" style="${tipPos};left:${tipLeft}px">
           <div class="tour-text">${step.text}</div>
           <div class="tour-nav">
             <span class="tour-count">${this._tourIdx + 1}/${total}</span>
-            ${isLast ? `<button class="tour-btn tour-btn-primary" onclick="app._endTour()">Jasné!</button>` : `<button class="tour-btn tour-btn-primary" onclick="app._nextTour()">Další</button>`}
-            <button class="tour-btn" onclick="app._endTour()">Přeskočit</button>
+            ${isLast ? `<button class="tour-btn tour-btn-primary" onclick="app._endTour()">${tr(`Got it`)}</button>` : `<button class="tour-btn tour-btn-primary" onclick="app._nextTour()">${tr(`Next`)}</button>`}
+            <button class="tour-btn" onclick="app._endTour()">${tr(`Skip`)}</button>
           </div>
         </div>`;
       } else {
@@ -1241,7 +1552,7 @@ class PBook {
       overlay.innerHTML = `<div class="tour-tip tour-center">
         <div class="tour-text">${step.text}</div>
         <div class="tour-nav">
-          <button class="tour-btn tour-btn-primary" onclick="app._endTour()">Začít číst!</button>
+          <button class="tour-btn tour-btn-primary" onclick="app._endTour()">${tr(`Start reading`)}</button>
         </div>
       </div>`;
     }
@@ -1321,7 +1632,9 @@ class PBook {
   }
 
   // ===== VIEW SWITCHING =====
-  switchView(view, auto) {
+  // skipRender: the caller (openBlock) renders the right chapter itself — no double render
+  switchView(view, auto, skipRender) {
+    setTimeout(() => { const mb = document.getElementById('miniBoard'); if (mb) mb.style.display = view === 'read' && this._cmapData ? '' : 'none'; }, 0);
     this.currentView = view;
     const modeMap = { home: 'netflix', read: 'read', map: 'map', glossary: 'mission', quiz: 'quiz', chat: 'tutor', profile: 'profile' };
     this.rc.setContext(modeMap[view] || view);
@@ -1336,13 +1649,14 @@ class PBook {
 
     // Update tab highlights
     document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
-    // Clear hash to prevent deep-link re-triggering on tab click
-    if (!auto && window.location.hash) history.replaceState(null, '', window.location.pathname);
+    // A user-initiated view switch is a history entry (system back walks back through
+    // the book — js/ux.js); it also clears a deep-link hash from the URL.
+    if (!auto) this._navPushView(view);
 
     // Linear nav only in read view
 
     if (view === 'home') this.renderHome();
-    else if (view === 'read') this.renderRead();
+    else if (view === 'read') { if (!skipRender) this.renderRead(); }
     else if (view === 'map') this.renderMap();
     else if (view === 'glossary') { if (this._f('missions')) this.renderMissions(); else this.switchView('home'); }
     else if (view === 'quiz') this.renderQuiz();
@@ -1352,107 +1666,93 @@ class PBook {
   }
 
   // ===== HOME VIEW (Netflix shelves) =====
+  // Browse paints at once from what the book knows locally; the three network
+  // shelves (Recombee personal, item-to-item, community) arrive as placeholders
+  // and fill in when — and only if — their requests come back (js/ux.js).
+  // A card appears at most once per page (`shown`); every pick says why.
   async renderHome() {
     const el = document.getElementById('homeContent');
+    const token = this._homeToken = (this._homeToken || 0) + 1;
+    const shown = new Set();
+    // metas/blocks → metas not yet on the page (max n)
+    const take = (list, max = 10) => {
+      const out = [];
+      for (const x of list) {
+        const m = x?.meta || x;
+        if (!m?.id || shown.has(m.id)) continue;
+        shown.add(m.id); out.push(m);
+        if (out.length >= max) break;
+      }
+      return out;
+    };
     let html = '';
 
-    // 1. Continue reading (hero)
-    const continueBlock = this.getContinueBlock();
-    if (continueBlock) {
-      html += this.shelf('Pokračuj ve čtení', [this.cardHtml(continueBlock, true)]);
-    }
-
-    // Recently added — new content (publishedAt within 30 days), local only
-    {
-      const newBlocks = this.allBlocks
-        .filter(b => this._isNew(b.meta) && b.meta.type === 'spine')
-        .sort((a, b) => new Date(b.meta.publishedAt) - new Date(a.meta.publishedAt))
-        .slice(0, 12);
-      if (newBlocks.length) {
-        html += this.shelf('Nově přidané', newBlocks.map(b => this.cardHtml(b.meta)));
-      }
-    }
+    // 1. Start here (new reader) / Continue reading (returning)
+    html += this._homeHero(take);
 
     // Recall cards — show due + almost due (within 30 min)
     if (this._f('spaceRepetition')) {
       const now = Date.now();
-      const soonThreshold = 30 * 60 * 1000; // 30 minutes
+      const soonThreshold = 30 * 60 * 1000;
       const dueAndSoon = Object.entries(this.user.recall)
         .filter(([_, c]) => c.nextReview <= now + soonThreshold)
         .sort((a, b) => a[1].nextReview - b[1].nextReview)
         .map(([blockId, card]) => ({ blockId, ...card }));
       if (dueAndSoon.length > 0) {
         const recallCards = dueAndSoon.slice(0, 8).map(r => this._recallCardHtml(r)).filter(Boolean);
-        if (recallCards.length) html += this.shelf(`\u{1F9E0} Do you remember? (${recallCards.length})`, recallCards);
+        if (recallCards.length) html += this.shelf(`${tr(`Do you remember? ({0})`, recallCards.length)}`, recallCards, tr('Answer before you peek — the ones you miss come back sooner.'));
       }
     }
 
+    // 2. Next for you — the local, explainable recommender (concept order,
+    // prerequisites, your facet profile, active missions)
+    if (this.user.readBlocks.size) {
+      const picks = this._nextPicks({ exclude: shown, limit: 8 });
+      const cards = picks.filter(p => take([p.meta], 1).length).map(p => this.cardHtml(p.meta, false, p));
+      if (cards.length) html += this.shelf(tr('Next for you'), cards, tr('Unread ideas you are ready for, each in the telling that fits you best.'));
+    }
+
+    // Network shelves: placeholders now, filled asynchronously
+    const lastReadId = [...this.user.readBlocks].reverse().find(id => this.findBlock(id));
+    const lastReadBlock = lastReadId && this.findBlock(lastReadId);
+    html += this._pendingShelf('rcPersonal', tr('Picked for you'));
+    if (lastReadBlock) html += this._pendingShelf('rcRelated', tr('Because you read: ') + this.escHtml(lastReadBlock.meta.title || ''));
+
     // Active missions (guarded)
-    if (!this._f('missions')) { /* skip missions shelf */ } else {
-    const missions = this.getMissions();
-    const activeMissions = missions.filter(m => {
-      if (this._isMissionLocked(m)) return false;
-      const p = this._getMissionProgress(m);
-      return p.read > 0 && !((this.user.completedMissions || []).includes(m.id));
-    });
-    const nextMission = missions.find(m => !this._isMissionLocked(m) && this._getMissionProgress(m).read === 0);
-    const missionCards = [...activeMissions, ...(nextMission ? [nextMission] : [])].slice(0, 4).map(m => {
-      const coreRead = m.core.filter(id => this.user.readBlocks.has(id)).length;
-      const isNext = coreRead === 0;
-      return `<div class="card" style="border-top: 3px solid var(--accent); flex: 0 0 240px; cursor:pointer" onclick="app.showMission('${m.id}')">
-        <div class="card-chapter" style="color:var(--accent);font-weight:700">${isNext ? 'Další mise' : 'Rozehráno'}</div>
-        <div style="font-size:1.3rem;margin:.1em 0">${m.icon}</div>
-        <div class="card-title">${m.title}</div>
-        <div class="mission-progress-dots" style="margin:.3em 0">${m.core.map((id, i) => `<span class="mission-dot ${this.user.readBlocks.has(id) ? 'done' : i === coreRead ? 'current' : ''}"></span>`).join('')}</div>
-        <div class="card-meta"><span class="card-time">${coreRead}/${m.core.length} steps</span></div>
-      </div>`;
-    });
-    if (missionCards.length) html += this.shelf('Tvoje mise', missionCards);
-    } // end missions guard
-
-    // Core essentials — unread core blocks
-    const unreadCore = this.allBlocks.filter(b => b.meta.core && b.meta.type === 'spine' && !this.user.readBlocks.has(b.meta.id)).slice(0, 10);
-    if (unreadCore.length) {
-      html += this.shelf('Základní čtení', unreadCore.map(b => this.cardHtml(b.meta)));
+    if (this._f('missions')) {
+      const missions = this.getMissions();
+      const activeMissions = missions.filter(m => {
+        if (this._isMissionLocked(m)) return false;
+        const p = this._getMissionProgress(m);
+        return p.read > 0 && !((this.user.completedMissions || []).includes(m.id));
+      });
+      const nextMission = missions.find(m => !this._isMissionLocked(m) && this._getMissionProgress(m).read === 0);
+      const missionCards = [...activeMissions, ...(nextMission ? [nextMission] : [])].slice(0, 4).map(m => {
+        const coreRead = m.core.filter(id => this._stepRead(id)).length;
+        const isNext = coreRead === 0;
+        return `<div class="card" style="border-top: 3px solid var(--accent); flex: 0 0 240px; cursor:pointer" onclick="app.showMission('${m.id}')">
+          <div class="card-chapter" style="color:var(--accent);font-weight:700">${isNext ? tr('Suggested path') : tr('In progress')}</div>
+          <div style="font-size:1.3rem;margin:.1em 0" aria-hidden="true">${m.icon}</div>
+          <div class="card-title">${m.title}</div>
+          <div class="mission-progress-dots" style="margin:.3em 0">${m.core.map((id, i) => `<span class="mission-dot ${this._stepRead(id) ? 'done' : i === coreRead ? 'current' : ''}"></span>`).join('')}</div>
+          <div class="card-meta"><span class="card-time">${tr(`{0} of {1} steps`, coreRead, m.core.length)}</span></div>
+        </div>`;
+      });
+      if (missionCards.length) html += this.shelf(tr('Guided paths'), missionCards);
     }
 
-    // 2. Recommended for you (Recombee scenario: homepage-personal)
-    const forYou = await this.rc.getRecsForUser('homepage-personal', 8, this.rc.reql({ type: 'spine' }), this.rc.reqlBoost(this.user));
-    if (forYou?.recomms?.length) {
-      const forYouCards = forYou.recomms.map(r => this.cardFromRec(r)).filter(Boolean);
-      if (forYouCards.length) html += this.shelf('Vybrané pro tebe', forYouCards);
+    // 3. Frontier: the next ideas, each shown as all of its tellings
+    html += this._frontierShelves(take);
+
+    // Recently added — new content (publishedAt within 30 days)
+    {
+      const newBlocks = take(this.allBlocks
+        .filter(b => this._isNew(b.meta) && b.meta.type === 'spine')
+        .sort((a, b) => new Date(b.meta.publishedAt) - new Date(a.meta.publishedAt)), 12);
+      if (newBlocks.length) html += this.shelf(tr('Recently added'), newBlocks.map(m => this.cardHtml(m, false, { reasons: [tr('Added {0}', new Date(m.publishedAt).toLocaleDateString(locale()))] })));
     }
 
-    // Community layer (open mode only, spec §6): tellings other readers generated & shared,
-    // clearly labelled, blended into discovery — the living part of the book
-    if (this._f('community') && this.user.readerMode === 'open') {
-      try {
-        const shared = await this.rc.listCommunityBlocks(null, 8);
-        if (shared.length) {
-          const cards = shared.map(b => {
-            const m = b.meta;
-            const facetLine = [m.lens, m.depth].filter(v => v && v !== 'generic').join(' · ');
-            return `<div class="card" style="border-top:3px solid var(--warn,#D97706);flex:0 0 240px;cursor:pointer" onclick="app.openCommunityBlock('${this.escHtml(m.id)}')">
-              <div class="card-chapter" style="color:var(--warn,#D97706);font-weight:700">⚡ reader-generated</div>
-              <div class="card-title">${this.escHtml(m.title || m.id)}</div>
-              <div class="card-teaser" style="font-size:.7rem">${facetLine ? this.escHtml(facetLine) + ' · ' : ''}shared by ${this.escHtml(m.sharedAs || 'a reader')}</div>
-            </div>`;
-          });
-          html += this.shelf('Od ostatních čtenářů 🌱', cards);
-        }
-      } catch (e) { /* community shelf is best-effort */ }
-    }
-
-    // Interest testing: proposed concepts as clearly labeled ghost items — demand
-    // is measured before anyone writes (the pre-mint stage of the elastic catalog)
-    const ghosts = this._unvotedProposals();
-    if (ghosts.length) {
-      html += this.shelf('Máme tohle napsat? 🌱 Hlasuj o navržených konceptech',
-        ghosts.slice(0, 4).map(p => this._ghostCardHtml(p, 'home')));
-    }
-
-    // 3. Told your way — facet-matched picks: unread tellings whose subspace best
-    // covers the reader's target facets (local subspace scoring, no scenario needed)
+    // Told your way — facet-matched picks (only once the reader has a profile)
     const target = this.user.getTargetFacets();
     const isDefaultTarget = Object.values(this.user.steerPrefs || {}).every(v => !v) && this.user.getAffinitySummary().total < 3;
     if (!isDefaultTarget) {
@@ -1460,67 +1760,64 @@ class PBook {
         .filter(b => b.meta.type === 'spine' && !this.user.readBlocks.has(b.meta.id))
         .map(b => ({ b, s: this._facetMatch(b.meta, target) }))
         .filter(x => x.s >= 0.7)
-        .sort((x, y) => y.s - x.s)
-        .slice(0, 10);
-      if (scored.length >= 3) html += this.shelf('🎛 Told your way', scored.map(x => this.cardHtml(x.b.meta)));
+        .sort((x, y) => y.s - x.s);
+      const metas = take(scored.map(x => x.b), 10);
+      if (metas.length >= 3) html += this.shelf(tr('Told your way'), metas.map(m => this.cardHtml(m, false,
+        { reasons: [this._fitReason(m, target) || tr('Matches the format you have been choosing')] })));
     }
 
-    // 4. Quick reads
-    const quickReads = this.allBlocks.filter(b => b.meta.type === 'spine' && b.meta.standalone && !this.user.readBlocks.has(b.meta.id)).slice(0, 10);
-    if (quickReads.length) {
-      html += this.shelf('Rychlé čtení', quickReads.map(b => this.cardHtml(b.meta)));
+    // Essential reading — unread core sections (review blocks excluded)
+    const unreadCore = take(this.allBlocks.filter(b => b.meta.core && b.meta.type === 'spine'
+      && !this.user.readBlocks.has(b.meta.id)
+      && !/opakov/i.test(String(b._chapter || b.meta.chapter || ''))
+      && !/^\s*(opakování|review)\b/i.test(String(b.meta.title || ''))), 10);
+    if (unreadCore.length >= 2) html += this.shelf(tr('Essential reading'), unreadCore.map(m => this.cardHtml(m, false, { reasons: ['Verified by the authors as essential for the certificate path'] })));
+
+    html += this._gamesShelfHtml(); // 🎮 Play with the ideas → Playground
+
+    // Quick reads
+    const quick = take(this.allBlocks.filter(b => b.meta.type === 'spine' && b.meta.standalone && !this.user.readBlocks.has(b.meta.id)), 10);
+    if (quick.length >= 2) html += this.shelf(tr('Quick reads'), quick.map(m => this.cardHtml(m)), tr('Stand-alone sections — no earlier reading needed.'));
+
+    // Community + interest testing
+    if (this._f('community') && this.user.readerMode === 'open') html += this._pendingShelf('community', tr('From fellow readers 🌱'));
+    const ghosts = this._unvotedProposals();
+    if (ghosts.length) {
+      html += this.shelf(tr('Should we write this? Vote on proposed concepts 🌱'),
+        ghosts.slice(0, 4).map(p => this._ghostCardHtml(p, 'home')));
     }
 
-    // 5. Liked items (if any)
+    // Your collections (personal lists: not deduplicated)
     const liked = [...this.user.ratings].filter(([_, r]) => r >= 0.7).map(([id]) => this.findBlock(id)).filter(Boolean);
-    if (liked.length) {
-      html += this.shelf('&#10084; Your liked', liked.reverse().map(b => this.cardHtml(b.meta)));
-    }
-
-    // 6. Saved items (if any)
+    if (liked.length) html += this.shelf(tr('&#10084; Your favourites'), liked.reverse().map(b => this.cardHtml(b.meta)));
     const saved = [...this.user.savedBlocks].map(id => this.findBlock(id)).filter(Boolean);
-    if (saved.length) {
-      html += this.shelf('&#128278; Saved for later', saved.reverse().map(b => this.cardHtml(b.meta)));
-    }
+    if (saved.length) html += this.shelf(tr('&#128278; Saved for later'), saved.reverse().map(b => this.cardHtml(b.meta)));
 
-    // 7. Topic carousels (pick top 3 topics user hasn't explored much)
-    const topicEntries = Object.entries(this.topicIndex).filter(([_, ids]) => ids.length >= 3).sort((a, b) => b[1].length - a[1].length);
-    const shownTopics = new Set();
-    topicEntries.slice(0, 6).forEach(([topic, ids]) => {
-      if (shownTopics.size >= 3) return;
-      const topicBlocks = ids.map(id => this.findBlock(id)).filter(Boolean).slice(0, 10);
-      if (topicBlocks.length >= 3) {
-        html += this.shelf(topic, topicBlocks.map(b => this.cardHtml(b.meta)));
-        shownTopics.add(topic);
-      }
-    });
-
-    // 8. By chapter (unread first)
+    // By chapter — the book's own order, minus what is already on the page
     this.book.chapters.forEach((ch, i) => {
       const allSpines = (this.chapters[i]?.blocks || []).filter(b => b.type === 'spine');
       const unread = allSpines.filter(b => !this.user.readBlocks.has(b.id));
       const read = allSpines.filter(b => this.user.readBlocks.has(b.id));
-      const chBlocks = [...unread, ...read].slice(0, 8);
-      if (chBlocks.length) {
-        html += this.shelf(`Ch${ch.number}: ${ch.title}`, chBlocks.map(b => this.cardHtml(b)));
-      }
+      const metas = take([...unread, ...read], 8);
+      if (metas.length) html += this.shelf(`${tr(`Chapter {0}: {1}`, ch.number, ch.title)}`, metas.map(m => this.cardHtml(m)), ch.subtitle ? this.escHtml(ch.subtitle) : '');
     });
 
-    el.innerHTML = html || '<div class="search-empty">Načítám obsah…</div>';
-    // Update arrows multiple times to catch layout settling
+    el.innerHTML = html || ('<div class="search-empty">' + tr(`Loading content...`) + '</div>');
     this._updateShelfArrows();
     setTimeout(() => this._updateShelfArrows(), 200);
     setTimeout(() => this._updateShelfArrows(), 600);
+    this._fillHomeAsync(token, shown, lastReadBlock);
   }
 
-  shelf(title, cardHtmls) {
+  shelf(title, cardHtmls, sub) {
     const id = 'shelf-' + (this._shelfCounter = (this._shelfCounter || 0) + 1);
     return `<section class="shelf fade-up">
       <div class="shelf-head"><h3 class="shelf-title">${title}</h3></div>
+      ${sub ? `<p class="shelf-sub">${sub}</p>` : ''}
       <div class="shelf-wrap">
-        <button class="shelf-btn shelf-btn-left arrow-hidden" onclick="app.scrollShelf('${id}',-1)">&#8249;</button>
+        <button class="shelf-btn shelf-btn-left arrow-hidden" onclick="app.scrollShelf('${id}',-1)" aria-label="${tr(`Scroll left`)}">&#8249;</button>
         <div class="shelf-scroll" id="${id}">${cardHtmls.join('')}</div>
-        <button class="shelf-btn shelf-btn-right arrow-hidden" onclick="app.scrollShelf('${id}',1)">&#8250;</button>
+        <button class="shelf-btn shelf-btn-right arrow-hidden" onclick="app.scrollShelf('${id}',1)" aria-label="${tr(`Scroll right`)}">&#8250;</button>
       </div>
     </section>`;
   }
@@ -1587,15 +1884,19 @@ class PBook {
     const m = (body || '').match(/!\[[^\]]*\]\((images\/[^)\s]+\.(?:svg|png|jpe?g|webp))\)/);
     if (m) return m[1];
     if (block.diagram && DIAGRAM_FILES[block.diagram]) return DIAGRAM_FILES[block.diagram];
+    if (block.diagram && /^[a-z0-9][a-z0-9-]*$/i.test(block.diagram)) return `images/${block.diagram}.svg`;   // bare figure name
     return null;
   }
 
-  cardHtml(block, hero = false) {
+  // why: { reasons[], math? } — rendered as a "Why this?" disclosure (js/ux.js)
+  cardHtml(block, hero = false, why = null) {
     const chLabel = block._chapterTitle || this.getChapterLabel(block);
     const isRead = this.user.readBlocks.has(block.id);
     const isNew = this._isNew(block);
-    const badge = block.type === 'depth' ? `<span class="card-badge ${block.voice}">${CONFIG.voices[block.voice]?.label || block.voice}</span>` : '';
-    const newBadge = isNew ? '<span class="card-badge-new">NEW</span>' : '';
+    // facet words (genre · depth · world) replace the retired voice badge
+    const facetLine = this._cardFacetLine(block);
+    const badge = facetLine ? `<span class="card-facets">${this.escHtml(facetLine)}</span>` : '';
+    const newBadge = isNew ? ('<span class="card-badge-new">' + tr(`NEW`) + '</span>') : '';
     const teaser = block.teaser ? `<div class="card-teaser">${block.teaser}</div>` : '';
 
     // Visual preview strip: detect content type from body
@@ -1611,19 +1912,18 @@ class PBook {
     let preview = '';
     if (hasDiagram || hasMath || hasTable || hasCode) {
       const tags = [];
-      if (hasDiagram) tags.push('<span class="card-tag tag-diagram">&#128202; Diagram</span>');
-      if (hasMath) tags.push('<span class="card-tag tag-math">&#8721; Math</span>');
-      if (hasTable) tags.push('<span class="card-tag tag-table">&#9638; Table</span>');
-      if (hasCode) tags.push('<span class="card-tag tag-code">&lt;/&gt; Code</span>');
+      if (hasDiagram) tags.push(('<span class="card-tag tag-diagram">' + tr(`&#128202; Diagram`) + '</span>'));
+      if (hasMath) tags.push(('<span class="card-tag tag-math">' + tr(`&#8721; Math`) + '</span>'));
+      if (hasTable) tags.push(('<span class="card-tag tag-table">' + tr(`&#9638; Table`) + '</span>'));
+      if (hasCode) tags.push(('<span class="card-tag tag-code">' + tr(`&lt;/&gt; Code`) + '</span>'));
       preview = `<div class="card-tags">${tags.join('')}</div>`;
     }
 
-    // Voice-colored top border for depth cards
-    const borderStyle = block.type === 'depth' && block.voice ? `border-top: 3px solid var(--${block.voice})` : '';
+    const borderStyle = '';
 
     // Topic tags
     const topics = (this.blockTopics[block.id] || []).slice(0, 2);
-    const topicHtml = topics.length ? `<div class="card-topics">${topics.map(t => `<span class="card-topic" onclick="event.stopPropagation();app.showTopic('${t}')">${t}</span>`).join('')}</div>` : '';
+    const topicHtml = topics.length ? `<div class="card-topics">${topics.map(t => `<span class="card-topic" onclick="event.stopPropagation();app.showTopic('${t}')">${tr(t)}</span>`).join('')}</div>` : '';
 
     return `<div class="card ${hero ? 'card-hero' : ''} ${isRead ? 'card-read' : ''} ${art ? 'card-has-art' : ''}" style="${borderStyle}" onclick="app.openBlock('${block.id}')">
       ${art ? `<img class="card-art" src="${art}" alt="" loading="lazy" onerror="this.remove()">` : ''}
@@ -1632,7 +1932,8 @@ class PBook {
       <div class="card-title">${block.title}</div>
       ${teaser}
       ${topicHtml}
-      <div class="card-meta">${newBadge}${badge}<span class="card-time">${block.readingTime || 3} min</span></div>
+      <div class="card-meta">${newBadge}${badge}<span class="card-time">${tr(`{0} min`, block.readingTime || 3)}</span></div>
+      ${this._whyHtml(why)}
     </div>`;
   }
 
@@ -1643,13 +1944,30 @@ class PBook {
   }
 
   getContinueBlock() {
-    // Find next unread spine block after last read position
+    // Find the next unread idea (essentials) / spine block (full book)
     for (let ci = this.user.currentChapter; ci < this.book.chapters.length; ci++) {
       const ch = this.chapters[ci];
       if (!ch) continue;
-      const spines = ch.blocks.filter(b => b.type === 'spine');
-      const next = spines.find(b => !this.user.readBlocks.has(b.id));
+      const next = this._nextUnreadInFlow(ch);
       if (next) return next;
+    }
+    return null;
+  }
+
+  // The spine blocks the reader actually meets in a chapter, in order: one served
+  // telling per idea (essentials) or every spine (full book).
+  _flowSpines(ch) {
+    if (!ch) return [];
+    if (this._fullBook()) return ch.blocks.filter(b => b.type === 'spine');
+    return this._chapterGroups(ch).map(g => this._servedTelling(g.cid, g.tellings)).filter(Boolean);
+  }
+  // Next unread step of the flow: in essentials an idea counts as read once ANY
+  // of its tellings was read (the reader chose how to meet it).
+  _nextUnreadInFlow(ch) {
+    if (this._fullBook()) return ch.blocks.find(b => b.type === 'spine' && !this.user.readBlocks.has(b.id)) || null;
+    for (const g of this._chapterGroups(ch)) {
+      if (!g.tellings.length || g.tellings.some(b => this.user.readBlocks.has(b.id))) continue;
+      return this._servedTelling(g.cid, g.tellings);
     }
     return null;
   }
@@ -1672,6 +1990,7 @@ class PBook {
     // Render current chapter
     const html = await this._renderChapterContent(ch, idx);
     pane.innerHTML = html;
+    this._refreshMiniBoard();
     this._renderedChapter = idx;
     this._loadedChapters = new Set([idx]);
 
@@ -1680,7 +1999,7 @@ class PBook {
 
     // Scroll: if pending scroll (from openBlock), go to that block; otherwise top
     if (this._pendingScroll) {
-      this._scrollToBlock(this._pendingScroll.parentId, this._pendingScroll.meta);
+      this._scrollToBlock(this._pendingScroll.parentId, this._pendingScroll.meta, this._pendingScroll.instant);
       this._pendingScroll = null;
     } else {
       window.scrollTo(0, 0);
@@ -1690,39 +2009,213 @@ class PBook {
     this.renderMath();
     this._initLottieAnimations();
     this._observeBlocks(ch);
+    this._attachParaTools();       // point-and-edit affordances on every paragraph
+    this._attachReveals();         // click-through reveal of data-krok SVGs
     this._applyTellingChoices();   // re-apply saved per-concept telling choices
     this._updateMissionBar();
     this._showMissionIntro();
   }
 
+  // ===== ESSENTIALS FLOW: one served telling per concept =====
+  // The chapter shows ONE telling of each concept, chosen for this reader, with
+  // a strip to the others; "Show every telling" (Profile / Settings) restores the
+  // full book. Games and questions stay inline after their concept.
+  _fullBook() { try { return localStorage.getItem('pbook-full-book') === '1'; } catch (e) { return false; } }
+  setFullBook(on) {
+    try { if (on) localStorage.setItem('pbook-full-book', '1'); else localStorage.removeItem('pbook-full-book'); } catch (e) {}
+    this.rc.logEvent('flow_mode', { mode: on ? 'full' : 'essentials' });
+    document.querySelectorAll('.full-book-toggle').forEach(el => { el.checked = !!on; });
+    if (this.currentView === 'read' && this._renderedChapter !== undefined) this.renderRead(this._renderedChapter);
+    else if (this.currentView === 'profile') this.renderProfile();
+  }
+  _readerLang() { return CONFIG.book.languages ? LANG : (this.user.getTargetFacets().lang || 'en'); }
+
+  // Concept groups of a chapter in reading order (book.json): primary concept → tellings + games/questions
+  _chapterGroups(ch) {
+    if (ch._groups) return ch._groups;
+    const groups = [], byCid = {};
+    for (const b of ch.blocks) {
+      const cid = this._conceptIds(b)[0] || ('_' + b.id);
+      let g = byCid[cid];
+      if (!g) { g = byCid[cid] = { cid, tellings: [], extras: [] }; groups.push(g); }
+      (b.type === 'spine' ? g.tellings : g.extras).push(b);
+    }
+    return (ch._groups = groups);
+  }
+
+  // Which telling a reader gets by default: never a different language than the
+  // reader's when an alternative exists; pinned format preferences (Profile →
+  // Format preferences) pick the best-covering telling; otherwise the anchor.
+  _defaultTelling(cid, tellings) {
+    if (!tellings.length) return null;
+    const anchorId = this.concepts?.[cid]?.anchor;
+    const anchor = tellings.find(b => b.id === anchorId) || tellings[0];
+    const lang = this._readerLang();
+    const same = tellings.filter(b => this._covers(b, 'lang', lang));
+    const pool = same.length ? same : tellings;
+    const first = pool.includes(anchor) ? anchor : pool[0];
+    const pins = {};
+    for (const [k, v] of Object.entries(this.user.steerPrefs || {})) if (v && CONFIG.facets[k] && k !== 'lang') pins[k] = v;
+    if (!Object.keys(pins).length) return first;
+    let best = first, bestS = this._facetMatch(first, pins);
+    for (const b of pool) {
+      const s = this._facetMatch(b, pins);
+      if (s > bestS + 1e-9) { best = b; bestS = s; }          // ties keep the anchor
+    }
+    return best;
+  }
+  // The served telling: a telling the reader asked for (opened it this session,
+  // or picked it in the tellings panel) beats the default.
+  _servedTelling(cid, tellings) {
+    if (!tellings.length) return null;
+    const asked = this._requestedTellings?.[cid] || this._tellingChoices()[cid];
+    return tellings.find(b => b.id === asked) || this._defaultTelling(cid, tellings);
+  }
+
+  // The served telling of a concept anywhere in the book (null in full-book mode)
+  _servedTellingId(cid) {
+    if (this._fullBook()) return null;
+    const anchor = this.findBlock(this.concepts?.[cid]?.anchor);
+    const ch = anchor && this.chapters[anchor.meta._chapterIdx];
+    const g = ch && this._chapterGroups(ch).find(x => x.cid === cid);
+    return g ? this._servedTelling(cid, g.tellings)?.id || null : null;
+  }
+
+  // One short human label per telling, for the "more ways" strip
+  _tellingLabel(b) { return tr(this._tellingLabelEn(b)); }
+  _tellingLabelEn(b) {
+    const genre = this._facetValues(b, 'genre')[0];
+    if (genre === 'comic' || genre === 'animation') return genre;
+    const lang = this._facetValues(b, 'lang');
+    if (lang.length && !lang.includes(this._readerLang())) return langLabel(lang[0]);
+    const lens = this._facetValues(b, 'lens');
+    const WORLD = CONFIG.facets?.lens?.worldLabels || { ecommerce: tr('shop example'), media: tr('media example'), 'social-feeds': tr('feed example'), education: tr('classroom example'), jobs: tr('jobs example') };
+    if (!lens.includes('generic') && WORLD[lens[0]]) return WORLD[lens[0]];
+    const len = this._facetValues(b, 'lengthBand');
+    if (len.length === 1 && len[0] === 'tldr') return 'tl;dr';
+    const depth = this._facetValues(b, 'depth');
+    if (this._facetValues(b, 'formalism').includes('full')) return 'formal';
+    if (depth[0] === 'technical' || depth[0] === 'research') return 'technical';
+    if (genre === 'story') return 'story';
+    if (genre === 'worked-example') return tr('worked example');
+    if (genre === 'code-walkthrough') return 'code';
+    if (len.includes('deep')) return 'deep';
+    if (depth[0] === 'intro') return tr('gentle intro');
+    // the anchor is not "another take" (the notice read "The telling you opened: another take")
+    const id = b.id || b.meta?.id;
+    if (id && this.concepts?.[this._conceptIds(b.meta || b)[0]]?.anchor === id) return tr('main telling');
+    return tr('another take');
+  }
+
+  // "🎛 N more ways to read this: tl;dr · story · comic…" under the served telling.
+  // A label swaps that telling in; the lead opens the full tellings panel.
+  _moreWaysStrip(served, tellings) {
+    const others = tellings.filter(b => b.id !== served.id);
+    if (!others.length || !this._f('steering')) return '';
+    const byLabel = new Map();
+    for (const b of others) { const l = this._tellingLabel(b); if (!byLabel.has(l)) byLabel.set(l, b); }
+    const shown = [...byLabel.entries()].slice(0, 5);
+    const chips = shown.map(([label, b]) =>
+      `<button class="mw-chip" onclick="app.pickTelling('${served.id}','${b.id}')" title="${this.escHtml(b.title || '')}">${this.escHtml(label)}</button>`).join('<span class="mw-sep">&middot;</span>');
+    return `<div class="more-ways fade-up" id="mw-${served.id}">
+      <button class="mw-lead" onclick="app.openTellings('${served.id}')" title="${tr(`See every telling of this concept`)}">${tr(`&#127899;&#65039; {0} more way{1} to read this:`, others.length, others.length > 1 ? 's' : '')}</button>
+      ${chips}${byLabel.size > shown.length ? '<span class="mw-sep">&hellip;</span>' : ''}
+    </div>`;
+  }
+
+  // Open (not toggle) the tellings panel of a block and bring it into view
+  async openTellings(blockId) {
+    const panel = document.getElementById(`tellings-${blockId}`);
+    if (!panel) return;
+    if (panel.style.display === 'none') await this.toggleTellings(blockId);
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Back to the default telling for a concept (drops this session's request and the saved pick)
+  resetTelling(cid) {
+    if (this._requestedTellings) delete this._requestedTellings[cid];
+    this._setTellingChoice(cid, null);
+    const anchor = this.findBlock(this.concepts?.[cid]?.anchor);
+    const ch = anchor ? this.chapters[anchor.meta._chapterIdx] : this.chapters[this._renderedChapter];
+    const g = ch && this._chapterGroups(ch).find(x => x.cid === cid);
+    const def = g && this._defaultTelling(cid, g.tellings);
+    if (def) this._rerenderAt(def.id);
+    else this.renderRead(this._renderedChapter);
+  }
+
+  // Minutes at ~220 words/min, from the bodies (readingTime keys are estimates)
+  _minutesOf(blocks) {
+    const words = blocks.reduce((s, b) => s + String(b.body || '').split(/\s+/).filter(Boolean).length, 0);
+    return Math.max(1, Math.round(words / 220));
+  }
+  _fmtMinutes(m) { return m < 60 ? `${m} min` : `${tr(`{0} h {1} min`, Math.floor(m / 60), String(m % 60).padStart(2, '0'))}`; }
+
   async _renderChapterContent(ch, idx) {
-    let html = `<div class="ch-head fade-up" id="ch-head-${idx}"><div class="ch-label">Kapitola ${ch.number}</div><h2>${ch.title}</h2><div class="ch-sub">${ch.subtitle}</div></div>`;
+    const full = this._fullBook();
+    const groups = this._chapterGroups(ch);
+    this._servedSlot = this._servedSlot || {};
+    const served = new Map();     // cid → served telling (essentials only)
+    if (!full) groups.forEach(g => { const s = this._servedTelling(g.cid, g.tellings); if (s) { served.set(g.cid, s); this._servedSlot[g.cid] = s.id; } });
+    const essentialMin = this._minutesOf([...served.values()]);
+    const fullMin = this._minutesOf(ch.blocks.filter(b => b.type === 'spine'));
+    const pathLine = full
+      ? `${tr(`Every telling &middot; {0} &middot;`, this._fmtMinutes(fullMin))} <a href="#" onclick="event.preventDefault();app.setFullBook(false)">${tr(`show one telling per idea`)}</a>`
+      : `${tr(`{0} ideas, one telling each &middot; ~{1} &middot; every telling {2} &middot;`, served.size, this._fmtMinutes(essentialMin), this._fmtMinutes(fullMin))} <a href="#" onclick="event.preventDefault();app.setFullBook(true)">${tr(`show all`)}</a>`;
+    let html = `<div class="ch-head fade-up" id="ch-head-${idx}"><div class="ch-label">${tr(`Chapter {0}`, ch.number)}</div><h2>${ch.title}</h2><div class="ch-sub">${ch.subtitle}</div><div class="ch-path">${pathLine}</div></div>`;
 
     let spineCount = 0;
-    for (const block of ch.blocks) {
-      if (block.type === 'spine') {
-        html += await this.renderSpine(block);
-        spineCount++;
-        // Interest-testing interstitial: one proposed-concept card per chapter
-        if (spineCount === 4) {
-          const gp = this._unvotedProposals();
-          if (gp.length) {
-            const pick = gp[idx % gp.length];
-            html += `<div class="fade-up" style="margin:1.2em 0;display:flex;justify-content:center">${this._ghostCardHtml(pick, 'feed' + idx)}</div>`;
-          }
-        }
-        // Insert inline quiz every 2-3 spine blocks
-        if (spineCount % 3 === 0) {
-          const quizHtml = this._generateQuiz(block);
-          if (quizHtml) html += `<div class="inline-quiz fade-up">${quizHtml}</div>`;
-        }
-      } else if (block.type === 'question') {
-        html += this.renderQuestion(block);
-      } else if (block.type === 'game' && this._f('games')) {
-        html += this.renderGame(block);
+    const renderExtra = block => {
+      if (block.type === 'question') return this.renderQuestion(block);
+      if (block.type === 'game' && this._f('games')) return this.renderGame(block);
+      return '';
+    };
+    // Spaced retrieval: after every second idea, a "Check yourself" on the one before it
+    const runs = [], checked = new Set();
+    const closeIdea = cid => {
+      runs.push(cid);
+      const prev = runs[runs.length - 2];
+      if (runs.length % 2 === 0 && this.concepts?.[prev] && !checked.has(prev)) { checked.add(prev); html += this._checkYourselfCard(prev); }
+    };
+    if (full) {
+      // full book: every block in book.json order (as before)
+      let cur = null;
+      for (const block of ch.blocks) {
+        const cid = this._conceptIds(block)[0] || ('_' + block.id);
+        if (cur !== null && cid !== cur) closeIdea(cur);
+        cur = cid;
+        if (block.type === 'spine') {
+          html += await this.renderSpine(block);
+          if (++spineCount === 4) html += this._ghostInterstitial(idx);
+        } else html += renderExtra(block);
       }
+      if (cur !== null) closeIdea(cur);
+      return html;
+    }
+    // essentials: per idea, the served telling + a strip to the others, then its games/questions
+    for (const g of groups) {
+      const s = served.get(g.cid);
+      if (s) {
+        const def = this._defaultTelling(g.cid, g.tellings);
+        if (def && def.id !== s.id) {
+          html += `<div class="variant-notice"><span>&#127899;&#65039; ${this._requestedTellings?.[g.cid] === s.id ? tr('The telling you opened') : tr('Your picked telling')}: ${this.escHtml(this._tellingLabel(s))}</span>
+            <span><button class="steer-chip" onclick="app.resetTelling('${g.cid}')">${tr(`&#8617; Default telling`)}</button></span></div>`;
+        }
+        html += await this.renderSpine(s);
+        html += this._moreWaysStrip(s, g.tellings);
+        if (++spineCount === 4) html += this._ghostInterstitial(idx);
+      }
+      for (const block of g.extras) html += renderExtra(block);
+      closeIdea(g.cid);
     }
     return html;
+  }
+
+  // Interest-testing interstitial: one proposed-concept card per chapter
+  _ghostInterstitial(idx) {
+    const gp = this._unvotedProposals();
+    if (!gp.length) return '';
+    const pick = gp[idx % gp.length];
+    return `<div class="fade-up" style="margin:1.2em 0;display:flex;justify-content:center">${this._ghostCardHtml(pick, 'feed' + idx)}</div>`;
   }
 
   _setupInfiniteScroll(pane, startIdx) {
@@ -1746,7 +2239,7 @@ class PBook {
           // Chapter divider if different chapter
           const lastCh = this._lastFeedChapter;
           if (ch && ch.id !== lastCh) {
-            pane.insertAdjacentHTML('beforeend', `<div class="feed-ch-divider fade-up"><span>Kap. ${ch.number}: ${ch.title}</span></div>`);
+            pane.insertAdjacentHTML('beforeend', `<div class="feed-ch-divider fade-up"><span>${tr(`Ch{0}: {1}`, ch.number, ch.title)}</span></div>`);
             this._lastFeedChapter = ch.id;
           }
           const html = block.meta.type === 'game' ? this.renderGame(block.meta) : await this.renderSpine(block.meta);
@@ -1758,17 +2251,10 @@ class PBook {
             if (el && !el.dataset.observed) { el.dataset.observed = '1'; this._observer?.observe(el); }
           }
         }
-        // Testování zájmu i v nekonečném feedu: každou druhou dávku vlož 🌱 návrh
-        this._feedMoreCount = (this._feedMoreCount || 0) + 1;
-        if (this._feedMoreCount % 2 === 0) {
-          const gp = this._unvotedProposals();
-          if (gp.length) {
-            const pick = gp[this._feedMoreCount % gp.length];
-            pane.insertAdjacentHTML('beforeend', `<div class="fade-up" style="margin:1.2em 0;display:flex;justify-content:center">${this._ghostCardHtml(pick, 'feedmore' + this._feedMoreCount)}</div>`);
-          }
-        }
         this.renderMath();
         this._initLottieAnimations();
+        this._attachParaTools();
+        this._attachReveals();
       }
       this._isLoadingMore = false;
     };
@@ -1781,9 +2267,16 @@ class PBook {
     const shown = this._feedShownBlocks || new Set();
     let blocks = [];
 
-    // Try Recombee for personalized recommendations
+    // The infinite feed = ONE recommendation paginated via Next Items (the
+    // next-read scenario exists in the DB); a fresh query only at the start
+    // or when the chain is exhausted.
     if (this.rc.enabled && this._f('personalization')) {
-      const result = await this.rc.getRecsForUser('next-read', count * 3, this.rc.reql({ type: 'spine' }), this.rc.reqlBoost(this.user));
+      let result = null;
+      if (this._feedRecommId) result = await this.rc.getNextRecs(this._feedRecommId, count * 3);
+      if (!result?.recomms?.length) {
+        result = await this.rc.getRecsForUser('next-read', count * 3, this.rc.reql({ type: 'spine' }), this.rc.reqlBoost(this.user));
+      }
+      this._feedRecommId = result?.recommId || null;
       if (result?.recomms?.length) {
         for (const r of result.recomms) {
           if (shown.has(r.id)) continue;
@@ -1793,24 +2286,35 @@ class PBook {
       }
     }
 
-    // Fallback: sequential not-yet-shown blocks, voice-preferred, unread first
+    // Fallback 1: the local explainable recommender (ready concepts, best-fitting telling)
     if (blocks.length < count) {
-      const voice = this.user.preferredVoice;
+      const ex = new Set([...shown, ...blocks.map(b => b.meta.id)]);
+      for (const p of this._nextPicks({ exclude: ex, limit: count - blocks.length })) {
+        const b = this.findBlock(p.meta.id);
+        if (b) blocks.push(b);
+      }
+    }
+    // Fallback 2: sequential not-yet-shown blocks, unread first, best facet fit first
+    if (blocks.length < count) {
+      const target = this.user.getTargetFacets();
+      const fitCache = new Map();
+      const fit = b => { if (!fitCache.has(b)) fitCache.set(b, Math.round(this._facetMatch(b.meta, target) * 3)); return fitCache.get(b); };
       const candidates = this.allBlocks.filter(b =>
         (b.meta.type === 'spine' || (b.meta.type === 'game' && this._f('games'))) &&
         !shown.has(b.meta.id) && !blocks.find(x => x.meta.id === b.meta.id)
       );
-      // Sort: unread first, then by voice preference
+      // Sort: satisfiable first (unmet HARD prereqs push a block later — the
+      // feed should build the reader's picture in a sensible order), then
+      // unread first, then voice preference
       candidates.sort((a, b) => {
+        const aBlocked = a.meta.concept && this._unmetPrereqs(a.meta.concept).length ? 1 : 0;
+        const bBlocked = b.meta.concept && this._unmetPrereqs(b.meta.concept).length ? 1 : 0;
+        if (aBlocked !== bBlocked) return aBlocked - bBlocked;
         const aRead = this.user.readBlocks.has(a.meta.id) ? 1 : 0;
         const bRead = this.user.readBlocks.has(b.meta.id) ? 1 : 0;
         if (aRead !== bRead) return aRead - bRead;
-        if (voice && voice !== 'universal') {
-          const av = a.meta.voice === voice ? 0 : a.meta.voice === 'universal' ? 1 : 2;
-          const bv = b.meta.voice === voice ? 0 : b.meta.voice === 'universal' ? 1 : 2;
-          return av - bv;
-        }
-        return 0;
+        // coarse fit buckets keep the book's order among similar fits (the sort is stable)
+        return fit(b) - fit(a);
       });
       for (const b of candidates) {
         blocks.push(b);
@@ -1822,6 +2326,39 @@ class PBook {
   }
 
   // (moved inline to renderRead)
+
+  // Dwell needed before a block counts as read: a quarter of its reading time at
+  // ~230 wpm (from the body, not the readingTime estimate), at least 8 s, at most 3 min.
+  _readThresholdMs(block) {
+    const words = String(block?.body || '').split(/\s+/).filter(Boolean).length;
+    const fullMs = words ? (words / 230) * 60000 : (Number(block?.readingTime) || 2) * 60000;
+    return Math.min(Math.max(8000, fullMs * 0.25), 180000);
+  }
+
+  _markRead(id, block, ownerCh, elapsedMs) {
+    if (this.user.readBlocks.has(id)) return;
+    block = block || this.findBlock(id)?.meta;
+    ownerCh = ownerCh || (block && this.chapters[block._chapterIdx]);
+    this.user.trackRead(id, block?.voice, this._blockFacets(block));
+    this.rc.sendView(id, Math.round((elapsedMs || 0) / 1000));
+    const art = document.getElementById(`b-${id}`);
+    art?.querySelector('.block-status')?.classList.remove('seen');
+    art?.querySelector('.block-status')?.classList.add('read');
+    art?.querySelector('.mark-read-btn')?.remove();
+    this._revealFeedbackBar(id);
+    this._updateInlineReadNext(id, ownerCh);
+    this._insertInlineRecall(id);
+    this.showXPToast(tr('+10 XP'), 'xp');
+    this.checkGamificationEvents();
+    this._updateMissionBar();
+    this._refreshMiniBoard();
+  }
+
+  // Explicit "Mark as read" at the end of a block (counts like a full dwell)
+  markReadNow(id) {
+    if (this._dwellTimers?.[id]) { clearInterval(this._dwellTimers[id]); delete this._dwellTimers[id]; }
+    this._markRead(id, null, null, this._dwellAcc?.[id] || 0);
+  }
 
   _observeBlocks(ch) {
     // Dwell-time tracking: seen after 3s visible, read after estimated reading time
@@ -1843,14 +2380,25 @@ class PBook {
           // Start dwell timer — find block from any loaded chapter
           const ownerCh = this._observedChapters[id];
           const block = ownerCh ? ownerCh.blocks.find(b => b.id === id) : null;
-          const readTimeMs = Math.min(((block?.readingTime || 2) * 60 * 1000) * 0.15, 12000); // 15% of reading time, max 12s — kids read fast!
-          const startTime = Date.now();
+          if (block) this._setFeedFocus(block);
+          const readTimeMs = this._readThresholdMs(block);
+          // dwell ACCUMULATES across visits (scrolling back up does not reset it)
+          if (!this._dwellAcc) this._dwellAcc = {};
+          if (!this._reachedEnd) this._reachedEnd = {};
+          const startTime = Date.now() - (this._dwellAcc[id] || 0);
+          if (this._dwellTimers[id]) clearInterval(this._dwellTimers[id]);
 
           this._dwellTimers[id] = setInterval(() => {
             const elapsed = Date.now() - startTime;
+            this._dwellAcc[id] = elapsed;
+            // the end of the block has been on screen at least once
+            if (!this._reachedEnd[id] && e.target.getBoundingClientRect().bottom <= window.innerHeight + 24) this._reachedEnd[id] = true;
 
+            // The steering bar stays hidden while the reader reads — asking
+            // "how did this land" mid-read is invasive. It appears at the same
+            // dwell threshold that marks the section read (also on revisits).
+            if (elapsed >= readTimeMs && this._reachedEnd[id]) this._revealFeedbackBar(id);
             // After 3s: mark as "seen" + update sidebar context
-            if (elapsed >= 3000) this._armFeedbackBar(id);   // start the feedback bar's fade window
             if (elapsed >= 3000 && !this.user.seenBlocks.has(id)) {
               this.user.trackSeen(id);
               this.rc.sendView(id, Math.round(elapsed / 1000));
@@ -1859,18 +2407,11 @@ class PBook {
               // context panel removed
             }
 
-            // After reading time: mark as "read"
-            if (elapsed >= readTimeMs && !this.user.readBlocks.has(id)) {
-              this.user.trackRead(id, block?.voice, this._blockFacets(block));
-              this.rc.sendView(id, Math.round(elapsed / 1000));
-              e.target.querySelector('.block-status')?.classList.remove('seen');
-              e.target.querySelector('.block-status')?.classList.add('read');
-              // context panel removed
-              this._updateInlineReadNext(id, ownerCh);
-              this._insertInlineRecall(id);
-              this.showXPToast('+10 XP', 'xp');
-              this.checkGamificationEvents();
-              this._updateMissionBar();
+            // Read = the reader reached the end of the block AND stayed long
+            // enough for its length (or tapped "Mark as read")
+            if (elapsed >= readTimeMs && this._reachedEnd[id] && !this.user.readBlocks.has(id)) {
+              this._markRead(id, block, ownerCh, elapsed);
+              this._checkProgressMoments?.();   // chapter complete card (js/ux.js)
               clearInterval(this._dwellTimers[id]);
             }
 
@@ -1902,7 +2443,7 @@ class PBook {
 
   // Highlights come exclusively from frontmatter `highlights` array — no auto-generation
   _getHighlights(block) {
-    if (block.highlights && Array.isArray(block.highlights) && block.highlights.length) return block.highlights;
+    if (block.highlights && Array.isArray(block.highlights) && block.highlights.length) return block.highlights.map(h => smartPunct(h));
     return null;
   }
 
@@ -1914,22 +2455,23 @@ class PBook {
       const ov = this.privateBlocks[ovId];
       if (this._overridesOff().has(block.id)) {
         // original shown, edit kept safe — switching back is one click
-        overrideBar = `<div class="override-bar">📄 Original — your edited version is saved
-          · <a href="#" onclick="event.preventDefault();app.toggleOverride('${block.id}')">✨ show your version</a>
-          · <a href="#" style="color:#B91C1C" onclick="event.preventDefault();app.discardOverride('${block.id}')">🗑 discard your edits (permanent)</a></div>`;
+        overrideBar = `<div class="override-bar">${tr(`📄 Original — your edited version is saved ·`)} <a href="#" onclick="event.preventDefault();app.toggleOverride('${block.id}')">${tr(`✨ show your version`)}</a>
+          · <a href="#" style="color:#B91C1C" onclick="event.preventDefault();app.discardOverride('${block.id}')">${tr(`🗑 discard your edits (permanent)`)}</a></div>`;
       } else {
         block = { ...block, body: ov.body, diagramSvg: ov.meta.diagramSvg || block.diagramSvg };
-        overrideBar = `<div class="override-bar">✨ Your accepted version — changes are <mark class="remix-mark">highlighted</mark>
-          · <a href="#" onclick="event.preventDefault();app.toggleOverride('${block.id}')">↩ show original</a>
-          ${ov.meta.state !== 'community' ? `· <a href="#" onclick="event.preventDefault();app._showShareConsent('${ovId}')">📣 share with readers &amp; editors</a>` : '· ⚡ shared'}</div>`;
+        overrideBar = `<div class="override-bar">${tr(`✨ Your accepted version — changes are`)} <mark class="remix-mark">${tr(`highlighted`)}</mark>
+          · <a href="#" onclick="event.preventDefault();app.toggleOverride('${block.id}')">${tr(`↩ show original`)}</a>
+          ${ov.meta.state !== 'community' ? `· <a href="#" onclick="event.preventDefault();app._showShareConsent('${ovId}')">${tr(`📣 share with readers &amp; editors`)}</a>` : tr('· ⚡ shared')}</div>`;
       }
     }
-    let bodyHtml = renderMarkdown(block.body);
+    let bodyHtml = renderMarkdown(await this._resolveMediaMarks(block.body, this._mediaMap(block)));
     // Remixed passages carry ⟦rx⟧…⟦/rx⟧ markers — render as visible "changed by you" marks
     if (bodyHtml.includes('⟦rx⟧')) {
-      bodyHtml = bodyHtml.replace(/⟦rx⟧/g, '<mark class="remix-mark" title="Remixovaná pasáž — liší se od originálu">')
+      // legacy blocks (markers inside a paragraph) — region markers are handled by the renderer
+      bodyHtml = bodyHtml.replace(/⟦rx⟧/g, ('<mark class="remix-mark" title="' + tr(`Remixed passage — changed from the original`) + '">'))
                          .replace(/⟦\/rx⟧/g, '</mark>');
     }
+    bodyHtml = bodyHtml.replace(/⟦\/?(rx|svg)⟧/g, '');   // never leak a marker into the page
     let diagramHtml = '';
     if (block.diagramSvg) {
       // reader-remixed diagram (private/community copy) — sanitized inline SVG override
@@ -1957,27 +2499,31 @@ class PBook {
     const chTitle = block._chapterTitle || '';
     // Position within chapter
     const ch = this.chapters[block._chapterIdx];
-    const chSpines = ch ? ch.blocks.filter(b => b.type === 'spine') : [];
-    const posInCh = chSpines.findIndex(b => b.id === block.id) + 1;
+    const chSpines = this._flowSpines(ch);
+    const myCid = this._conceptIds(block)[0];
+    const posInCh = (chSpines.findIndex(b => b.id === block.id) + 1)
+      || (chSpines.findIndex(b => myCid && this._conceptIds(b)[0] === myCid) + 1);
     const totalInCh = chSpines.length;
 
     return `<article class="block-article fade-up" id="b-${block.id}">
+      ${this._prereqBanner(block)}
       ${overrideBar}
       <div class="block-nav">
-        <button class="bnav-back" onclick="app.goBack()" title="Zpět">&larr;</button>
-        <span class="bnav-ch" onclick="app.goToMapChapter(${block._chapterIdx})">Kap. ${chNum}</span>
+        <button class="bnav-back" onclick="app.goBack()" title="Back" aria-label="Back">&larr;</button>
+        <span class="bnav-sep" aria-hidden="true">|</span>
+        <button class="bnav-ch" onclick="app.goToMapChapter(${block._chapterIdx})" title="${tr(`Chapter {0} on the map`, chNum)}">${tr(`Chapter {0}`, chNum)}</button>
         <span class="bnav-sep">&middot;</span>
-        <span class="bnav-progress">${posInCh}/${totalInCh}</span>
-        ${block.core ? '<span class="bnav-core">CORE</span>' : ''}
+        <span class="bnav-progress" title="${tr(`Section {0} of {1} in this chapter`, posInCh, totalInCh)}">${tr(`{0} of {1}`, posInCh, totalInCh)}</span>
+        ${block.core ? ('<span class="bnav-core" title="' + tr(`Essential and verified by the authors`) + '">' + tr(`Essential`) + '</span>') : ''}
+        ${block.status && block.status !== 'accepted' ? `<span class="bnav-core bnav-draft" title="${tr(`Visible only in admin preview (pbook-admin) until an editor accepts it`)}">${this.escHtml(block.status)}</span>` : ''}
         <div class="block-status ${isRead ? 'read' : this.user.seenBlocks.has(block.id) ? 'seen' : ''}"></div>
       </div>
       <div class="block-header">
         <h3>${block.title}</h3>
         <div class="block-meta">
-          <span>${block.readingTime || 3} min čtení</span>
+          <span>${tr(`{0} min read`, block.readingTime || 3)}</span>
         </div>
       </div>
-      ${block.state === 'private' ? `<div style="font-size:.68rem;margin:.2em 0"><span class="gen-badge">⚡ vygenerováno na tvoje přání · zatím bez redakce</span> <span style="color:var(--text-3)">Koncept z Mapy znalostí — hlasy čtenářů rozhodnou, jestli dostane redakční verzi.</span></div>` : block.state === 'community' ? `<div style="font-size:.68rem;margin:.2em 0;display:flex;gap:.5em;align-items:center;flex-wrap:wrap"><span class="gen-badge">🌱 sdílel čtenář${block.sharedAs && block.sharedAs !== 'anonym' ? ' ' + this.escHtml(block.sharedAs) : ''} · zatím bez redakce</span>${localStorage.getItem('pbook-role') === 'editor' ? `<button class="steer-chip" style="border-color:var(--product);color:var(--product);font-size:.66rem" onclick="app.adoptBlock('${block.id}')">📥 Převzít do core knihy</button>` : ''}</div>` : ''}
       ${this._renderTellingsIndicator(block)}
       <div class="block-with-side">
         <div class="block-main">
@@ -1986,48 +2532,45 @@ class PBook {
         </div>
         ${sideHtml}
       </div>
-      ${block.keyTakeaway ? `<div class="key-takeaway"><div class="key-takeaway-label">Hlavní myšlenka</div><div class="key-takeaway-text">${block.keyTakeaway}</div></div>` : ''}
+      ${block.keyTakeaway ? `<div class="key-takeaway"><div class="key-takeaway-label">${tr(`Key Takeaway`)}</div><div class="key-takeaway-text">${block.keyTakeaway}</div></div>` : ''}
       ${this._renderConceptLinks(block)}
       ${this._renderFeedbackBar(block)}
       <div class="block-footer">
         <div class="block-reactions" data-block="${block.id}">
           <button class="like-btn ${this.user.ratings.get(block.id)>=0.7?'liked':''}" onclick="app.toggleLike('${block.id}')">
             ${this.user.ratings.get(block.id)>=0.7?'&#10084;&#65039;':'&#9825;'}
-            <span>${this.user.ratings.get(block.id)>=0.7?'Líbí se':'Líbí?'}</span>
+            <span>${this.user.ratings.get(block.id)>=0.7?tr('Liked'):tr('Like')}</span>
           </button>
+          ${isRead ? '' : `<button class="mark-read-btn" onclick="app.markReadNow('${block.id}')" title="${tr(`Count this section as read`)}">${tr(`&#10003; Mark as read`)}</button>`}
         </div>
         <div class="block-actions">
-          <button class="improve-btn" onclick="app.improveBlock('${block.id}')" title="Uprav sekci sám, nebo ji nech přepsat AI">&#9999;&#65039; Vylepšit</button>
-          <button class="act-btn tutor-btn" onclick="app.askAboutBlock('${block.id}')" title="Zeptej se asistenta">&#10067;</button>
-          <button class="act-btn" onclick="app.toggleNote('${block.id}')" title="Přidat poznámku">&#128221;</button>
-          ${this.user.recall[block.id] ? `<button class="act-btn" onclick="app.showBlockRecall('${block.id}')" title="Otestuj paměť">&#129504;</button>` : ''}
-          <button class="act-btn ${this.user.savedBlocks.has(block.id)?'active':''}" onclick="app.saveBlock('${block.id}')" title="Uložit na později">&#128278;</button>
-          <button class="act-btn share-btn" onclick="app.shareBlock('${block.id}')" title="Sdílet">&#128279;</button>
-          <button class="act-btn flag-btn" onclick="app.flagBlock('${block.id}')" title="Navrhnout autorovi úpravu">&#9873;</button>
+          ${this.user.recall[this._recallKey(block.id)] ? `<button class="block-more-btn" onclick="app.showBlockRecall('${block.id}')" title="${tr(`Test your memory`)}">${tr(`&#10003; Check yourself`)}</button>` : ''}
+          <button class="block-more-btn act-btn ${this.user.savedBlocks.has(block.id)?'active':''}" onclick="app.saveBlock('${block.id}')" title="Save" aria-label="${tr(`Save for later`)}">${tr(`&#128278; Save`)}</button>
+          <button class="block-more-btn" onclick="app.openBlockMenu('${block.id}')" aria-haspopup="dialog" title="${tr(`More actions`)}">${tr(`&#8943; More`)}</button>
         </div>
       </div>
       <div class="note-editor" id="note-${block.id}" style="display:none">
         <div class="note-quote-preview" id="note-quote-${block.id}" style="display:none"></div>
-        <textarea placeholder="Tvoje poznámka k této sekci…" id="note-text-${block.id}"></textarea>
+        <textarea placeholder="${tr(`Your note on this section...`)}" id="note-text-${block.id}"></textarea>
         <input type="hidden" id="note-edit-idx-${block.id}" value="-1">
         <div class="note-actions">
-          <button class="note-save" onclick="app.saveNote('${block.id}')">Uložit poznámku</button>
-          <button class="note-cancel" onclick="app.toggleNote('${block.id}')">Zrušit</button>
+          <button class="note-save" onclick="app.saveNote('${block.id}')">${tr(`Save note`)}</button>
+          <button class="note-cancel" onclick="app.toggleNote('${block.id}')">${tr(`Cancel`)}</button>
         </div>
       </div>
       <div class="flag-form" id="flag-${block.id}" style="display:none">
-        <div class="flag-header">Navrhnout autorovi úpravu</div>
+        <div class="flag-header">${tr(`Suggest edit to author`)}</div>
         <select id="flag-type-${block.id}">
-          <option value="typo">Překlep / formátování</option>
-          <option value="unclear">Obsah je nejasný</option>
-          <option value="incorrect">Věcná chyba</option>
-          <option value="suggestion">Návrh na obsah</option>
-          <option value="missing">Něco tu chybí</option>
+          <option value="typo">${tr(`Typo / formatting issue`)}</option>
+          <option value="unclear">${tr(`Content is unclear`)}</option>
+          <option value="incorrect">${tr(`Factual issue`)}</option>
+          <option value="suggestion">${tr(`Content suggestion`)}</option>
+          <option value="missing">${tr(`Something is missing`)}</option>
         </select>
-        <textarea id="flag-text-${block.id}" placeholder="Tvoje zpětná vazba (soukromá, uvidí ji jen autoři)…"></textarea>
+        <textarea id="flag-text-${block.id}" placeholder="${tr(`Your feedback (private, only visible to authors)...`)}"></textarea>
         <div class="note-actions">
-          <button class="note-save" onclick="app.submitFlag('${block.id}')">Poslat autorům</button>
-          <button class="note-cancel" onclick="app.flagBlock('${block.id}')">Zrušit</button>
+          <button class="note-save" onclick="app.submitFlag('${block.id}')">${tr(`Send to authors`)}</button>
+          <button class="note-cancel" onclick="app.flagBlock('${block.id}')">${tr(`Cancel`)}</button>
         </div>
       </div>
     </article>`;
@@ -2104,7 +2647,7 @@ class PBook {
       // New note
       notes.push({ quote: quote.substring(0, 200), text, ts: Date.now() });
       this.user.trackNote(blockId);
-      if (this._f('gamification')) { this.user.addXP(3); this.user.save(); this.showXPToast('+3 XP poznámka přidána'); this.updateXPBadge(); }
+      if (this._f('gamification')) { this.user.addXP(3); this.user.save(); this.showXPToast(tr('+3 XP note added')); this.updateXPBadge(); }
     }
     this._saveNotes(blockId, notes);
     this.toggleNote(blockId);
@@ -2117,7 +2660,7 @@ class PBook {
     if (n.type === 'user') {
       const quoteHtml = n.quote ? `<span class="snote-quote">"${this.escHtml(n.quote)}"</span>` : '';
       const noteHtml = n.text ? `<span class="snote-text">${this.escHtml(n.text)}</span>` : '';
-      return `<div class="snote snote-user"${clickAttr}><span class="snote-icon">${icon}</span><div class="snote-body">${quoteHtml}${noteHtml}</div><button class="snote-edit" onclick="event.stopPropagation();app.editUserNote('${blockId}',${n.idx})">edit</button><button class="snote-del" onclick="event.stopPropagation();app.deleteUserNote('${blockId}',${n.idx})">&times;</button></div>`;
+      return `<div class="snote snote-user"${clickAttr}><span class="snote-icon">${icon}</span><div class="snote-body">${quoteHtml}${noteHtml}</div><button class="snote-edit" onclick="event.stopPropagation();app.editUserNote('${blockId}',${n.idx})">${tr(`edit`)}</button><button class="snote-del" onclick="event.stopPropagation();app.deleteUserNote('${blockId}',${n.idx})">&times;</button></div>`;
     }
     return `<div class="snote snote-ai"${clickAttr}><span class="snote-icon">${icon}</span><span class="snote-text">${this.escHtml(n.text)}</span></div>`;
   }
@@ -2180,12 +2723,18 @@ class PBook {
     const form = document.getElementById(`flag-${blockId}`);
     if (form) {
       form.style.display = 'block';
-      form.innerHTML = '<div style="padding:.8em;color:var(--product);font-size:.85rem">Díky! +5 XP — nahlášené chyby se počítají do tvé 🛠 redakční dráhy.</div>';
+      form.innerHTML = ('<div style="padding:.8em;color:var(--product);font-size:.85rem">' + tr(`Thanks! +5 XP — reported issues count toward your 🛠 Editor track.`) + '</div>');
       setTimeout(() => { form.style.display = 'none'; }, 2500);
     }
   }
 
   escHtml(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  // Book identity comes from the book's own js/config.js (CONFIG.book), never from
+  // the engine: one engine serves many books (scripts/core-sync.sh).
+  _bookTitle() { return loc(CONFIG.book?.title) || tr('How Recommendations Work'); }
+  _bookAuthors() { return loc(CONFIG.book?.author) || tr('Pavel Kordík & Eva Nečasová'); }
+  // a string that sits inside a single-quoted JS argument inside an HTML attribute
+  _jsAttr(s) { return this.escHtml(String(s ?? '').replace(/\\/g, '\\\\').replace(/'/g, "\\'")); }
 
   // Initialize Lottie animations in rendered content
   _initLottieAnimations() {
@@ -2232,7 +2781,7 @@ class PBook {
     if (blockId) {
       this._saveHighlight(blockId, text);
       this.rc.sendRating(blockId, 0.8);
-      if (this._f('gamification')) { this.user.addXP(1); this.user.save(); this.showXPToast('+1 XP zvýrazněno'); this.updateXPBadge(); }
+      if (this._f('gamification')) { this.user.addXP(1); this.user.save(); this.showXPToast(tr('+1 XP highlighted')); this.updateXPBadge(); }
     }
     sel.removeAllRanges();
     document.getElementById('highlightPopup').style.display = 'none';
@@ -2314,169 +2863,12 @@ class PBook {
     }
   }
 
-  // ===== MINI-GAMES (data-driven from games/*.json) =====
-  renderGame(block) {
-    const gameFile = block.game || block.gameType || block.id;
-    return `<div class="game-block fade-up" id="b-${block.id}">
-      <div class="game-header">
-        <span class="game-icon">\u{1F3AE}</span>
-        <h4>${block.title}</h4>
-        <span class="game-timer" id="gt-${block.id}">1:00</span>
-      </div>
-      <div class="game-area" id="ga-${block.id}"></div>
-      <button class="game-start-btn" onclick="app.startGame('${block.id}','${gameFile}')">Hrát!</button>
-    </div>`;
-  }
-
-  async startGame(blockId, gameFile) {
-    const area = document.getElementById(`ga-${blockId}`);
-    const timerEl = document.getElementById(`gt-${blockId}`);
-    const startBtn = area?.parentElement?.querySelector('.game-start-btn');
-    if (!area) return;
-    if (startBtn) startBtn.style.display = 'none';
-
-    // Load game data from JSON
-    let game;
-    try {
-      const res = await fetch(`games/${gameFile}.json`);
-      game = await res.json();
-    } catch (e) {
-      area.innerHTML = '<div class="game-over">Hru se nepodařilo načíst.</div>';
-      return;
-    }
-
-    // 60s timer
-    let seconds = 60;
-    if (this._activeGameTimer) clearInterval(this._activeGameTimer);
-    this._activeGameTimer = setInterval(() => {
-      seconds--;
-      if (timerEl) timerEl.textContent = `0:${seconds.toString().padStart(2, '0')}`;
-      if (seconds <= 10 && timerEl) timerEl.style.color = '#EF4444';
-      if (seconds <= 0) {
-        clearInterval(this._activeGameTimer);
-        this._gameEnd(area, 'Time\'s up! Nice try.');
-      }
-    }, 1000);
-
-    // Launch by type
-    if (game.type === 'sort') this._gameSort(area, game);
-    else if (game.type === 'match') this._gameMatch(area, game);
-    else if (game.type === 'pop') this._gamePop(area, game);
-    else if (game.type === 'order') this._gameOrder(area, game);
-    else this._gameSort(area, game);
-  }
-
-  _gameEnd(area, msg) {
-    if (this._activeGameTimer) clearInterval(this._activeGameTimer);
-    area.innerHTML = `<div class="game-over">${msg} <b>+5 XP</b></div>`;
-    this.user.addXP(5); this.user.save();
-    this.showXPToast('+5 XP \u{1F3AE}', 'xp');
-    this._updateMissionBar();
-    setTimeout(() => {
-      const block = area.closest('.game-block');
-      if (block) { block.style.opacity = '.5'; block.style.pointerEvents = 'none'; }
-    }, 2500);
-  }
-
-  // Sort game: classify items into two buckets
-  _gameSort(area, game) {
-    const items = [...game.items].sort(() => Math.random() - 0.5);
-    let score = 0, idx = 0;
-    const show = () => {
-      if (idx >= items.length) { this._gameEnd(area, `Done! ${score}/${items.length} correct.`); return; }
-      const item = items[idx++];
-      area.innerHTML = `<div class="game-signal-card">${item.text}</div>
-        <div class="game-buckets">${game.buckets.map((b, bi) =>
-          `<button class="game-bucket ${bi === 0 ? 'strong' : 'weak'}" data-ans="${bi}">${b}</button>`
-        ).join('')}</div>
-        <div class="game-score">${score}/${idx - 1} correct</div>`;
-      area.querySelectorAll('.game-bucket').forEach(btn => {
-        btn.onclick = () => {
-          area.querySelectorAll('.game-bucket').forEach(b => b.disabled = true);
-          if (parseInt(btn.dataset.ans) === item.answer) { btn.classList.add('game-correct'); score++; }
-          else btn.classList.add('game-wrong');
-          setTimeout(show, 500);
-        };
-      });
-    };
-    show();
-  }
-
-  // Match game: find taste twin in a rating grid
-  _gameMatch(area, game) {
-    const items = game.items;
-    const you = items.map(() => Math.ceil(Math.random() * 5));
-    const users = game.users.map(name => ({
-      name,
-      ratings: items.map(() => Math.ceil(Math.random() * 5))
-    }));
-    const twin = Math.floor(Math.random() * users.length);
-    users[twin].ratings = items.map((_, j) => Math.max(1, Math.min(5, you[j] + (Math.random() < 0.65 ? 0 : (Math.random() < 0.5 ? -1 : 1)))));
-
-    let table = `<table class="game-table"><tr><th></th>${items.map(m => `<th>${m}</th>`).join('')}</tr>`;
-    table += `<tr class="game-you"><td><b>You</b></td>${you.map(r => `<td>${'\u2B50'.repeat(r)}</td>`).join('')}</tr>`;
-    users.forEach(u => { table += `<tr><td class="game-pick">${u.name}</td>${u.ratings.map(r => `<td>${'\u2B50'.repeat(r)}</td>`).join('')}</tr>`; });
-    table += '</table>';
-    area.innerHTML = `<div class="game-prompt">${game.instruction}</div>${table}`;
-    area.querySelectorAll('.game-pick').forEach((td, i) => {
-      td.onclick = () => {
-        if (i === twin) { this._gameEnd(area, `Correct! ${users[twin].name} is your taste twin! That's collaborative filtering.`); }
-        else { td.style.color = '#EF4444'; td.style.textDecoration = 'line-through'; }
-      };
-    });
-  }
-
-  // Pop game: click items to collect/escape
-  _gamePop(area, game) {
-    const cats = [...game.categories];
-    const target = cats[Math.floor(Math.random() * cats.length)];
-    const popped = new Set();
-    const render = () => {
-      area.innerHTML = `<div class="game-prompt">${game.instruction} Tvoje bublina: <b>${target}</b> (${popped.size}/${cats.length - 1})</div>
-        <div class="game-bubble-grid">${cats.sort(() => Math.random() - 0.5).map(c => {
-          const done = popped.has(c);
-          return `<button class="game-bubble-item ${c === target ? 'in-bubble' : ''} ${done ? 'popped' : ''}" ${done ? 'disabled' : ''}>${c}</button>`;
-        }).join('')}</div>`;
-      area.querySelectorAll('.game-bubble-item:not([disabled])').forEach(btn => {
-        btn.onclick = () => {
-          if (btn.textContent.trim() === target) { btn.classList.add('game-wrong'); }
-          else { popped.add(btn.textContent.trim()); if (popped.size >= cats.length - 1) this._gameEnd(area, 'Bublina praskla! Rozmanitost vítězí!'); else render(); }
-        };
-      });
-    };
-    render();
-  }
-
-  // Order game: put steps in correct sequence
-  _gameOrder(area, game) {
-    const steps = game.steps;
-    const shuffled = steps.map((text, i) => ({ text, order: i })).sort(() => Math.random() - 0.5);
-    const selected = [];
-    const render = () => {
-      const remaining = shuffled.filter(s => !selected.includes(s));
-      area.innerHTML = `<div class="game-prompt">${game.instruction}</div>
-        <div class="game-pipeline-selected">${selected.map((s, i) => `<div class="game-pipe-step done">${i + 1}. ${s.text}</div>`).join('')}</div>
-        <div class="game-pipeline-options">${remaining.map(s =>
-          `<button class="game-pipe-btn">${s.text}</button>`
-        ).join('')}</div>`;
-      area.querySelectorAll('.game-pipe-btn').forEach(btn => {
-        btn.onclick = () => {
-          const step = remaining.find(s => s.text === btn.textContent);
-          if (step && step.order === selected.length) {
-            selected.push(step);
-            if (selected.length >= steps.length) this._gameEnd(area, 'Perfektní pořadí! Zvládnuto!');
-            else render();
-          } else { btn.classList.add('game-wrong'); setTimeout(() => btn.classList.remove('game-wrong'), 400); }
-        };
-      });
-    };
-    render();
-  }
+  // ===== MINI-GAMES: the engine lives in js/games.js (installGames, below) =====
 
   renderQuestion(block) {
     // Structured options in frontmatter
     if (block.options && Array.isArray(block.options)) {
-      const opts = block.options.map(o => `<button class="q-opt" onclick="app.answerQ(this,'${o.voice || 'universal'}','${block.id}')"><span class="q-letter">${o.letter}</span><span>${o.text}</span></button>`).join('');
+      const opts = block.options.map(o => `<button class="q-opt" onclick="app.answerQ(this,'${o.letter}','${block.id}')"><span class="q-letter">${o.letter}</span><span>${o.text}</span></button>`).join('');
       return `<div class="q-block fade-up"><h4>${block.title}</h4><div class="q-desc">${block.description || ''}</div><div class="q-opts">${opts}</div></div>`;
     }
     // Body-based question: parse A/B/C/D options from markdown body
@@ -2484,14 +2876,13 @@ class PBook {
       const bodyHtml = renderMarkdown(block.body);
       // Extract lettered options and create clickable buttons
       const optRegex = /\*\*([A-D])[):.]*\*{0,2}\s*"([^"]+)"/g;
-      const voiceMap = { A: 'explorer', B: 'creator', C: 'thinker', D: 'universal' };
       const opts = [];
       let m;
       while ((m = optRegex.exec(block.body)) !== null) {
-        opts.push({ letter: m[1], text: m[2].trim().substring(0, 80), voice: voiceMap[m[1]] || 'universal' });
+        opts.push({ letter: m[1], text: m[2].trim().substring(0, 80) });
       }
       if (opts.length >= 2) {
-        const optsHtml = opts.map(o => `<button class="q-opt" onclick="app.answerQ(this,'${o.voice}','${block.id}')"><span class="q-letter">${o.letter}</span><span>${o.text}</span></button>`).join('');
+        const optsHtml = opts.map(o => `<button class="q-opt" onclick="app.answerQ(this,'${o.letter}','${block.id}')"><span class="q-letter">${o.letter}</span><span>${this.escHtml(o.text)}</span></button>`).join('');
         return `<div class="q-block fade-up" id="b-${block.id}"><div class="block-header"><h4>${block.title}</h4></div><div class="spine-body">${bodyHtml}</div><div class="q-opts">${optsHtml}</div></div>`;
       }
       // No parseable options — just render as article
@@ -2503,34 +2894,31 @@ class PBook {
   // Inline "read next" below each article — shown after block is read
   renderReadNext(blockId, ch) {
     if (!ch || !Array.isArray(ch.blocks)) return '';   // generated/remixed blocks have no chapter entry
-    const spines = ch.blocks.filter(b => b.type === 'spine');
-    const currentIdx = spines.findIndex(b => b.id === blockId);
+    const spines = this._flowSpines(ch);
+    let currentIdx = spines.findIndex(b => b.id === blockId);
+    if (currentIdx < 0) {           // a telling other than the served one: continue after its idea
+      const cur = ch.blocks.find(b => b.id === blockId);
+      const cid = cur && this._conceptIds(cur)[0];
+      currentIdx = cid ? spines.findIndex(b => this._conceptIds(b)[0] === cid) : -1;
+    }
     const nextInChapter = spines[currentIdx + 1];
 
-    // Find a personalized recommendation (different from sequential next)
-    let recBlock = null;
-    const unreadOther = this.allBlocks.filter(b =>
-      b._chapter !== ch.id && b.meta.type === 'spine' && !this.user.readBlocks.has(b.meta.id) && b.meta.id !== nextInChapter?.id
-    );
-    // Prefer voice-matching blocks
-    const voice = this.user.preferredVoice;
-    if (voice && voice !== 'universal') {
-      recBlock = unreadOther.find(b => b.meta.voice === voice) || unreadOther[0];
-    } else {
-      recBlock = unreadOther.sort(() => Math.random() - 0.5)[0];
-    }
+    // The local explainable recommender (js/ux.js _nextPicks) — it used to be a
+    // random unread block from anywhere in the book, with no reason given.
+    const here = new Set([blockId, nextInChapter?.id].filter(Boolean).flatMap(id => {
+      const b = this._findAnyBlock(id); return b ? this._conceptIds(b.meta) : [];
+    }));
+    const pick = this._nextPicks({ exclude: new Set([blockId, nextInChapter?.id]), limit: 6 }).find(p => !here.has(p.cid)) || null;
+    const recBlock = pick ? { meta: pick.meta } : null;
 
     let items = '';
     if (nextInChapter) {
-      items += `<div class="rn-item" onclick="app.previewBlock('${nextInChapter.id}')"><span class="rn-label">Další</span><span class="rn-title">${nextInChapter.title}</span><span class="rn-time">${nextInChapter.readingTime || 3}m</span></div>`;
+      items += `<div class="rn-item" onclick="app.previewBlock('${nextInChapter.id}')"><span class="rn-label">${tr(`Next`)}</span><span class="rn-title">${nextInChapter.title}</span><span class="rn-time">${nextInChapter.readingTime || 3}m</span></div>`;
     }
     if (recBlock) {
-      items += `<div class="rn-item rn-rec" onclick="app.previewBlock('${recBlock.meta.id}')"><span class="rn-label">\u2728 Doporučeno</span><span class="rn-title">${recBlock.meta.title}</span><span class="rn-time">Kap. ${recBlock.meta._chapterNum}</span></div>`;
+      items += `<div class="rn-item rn-rec" onclick="app.previewBlock('${recBlock.meta.id}')"><span class="rn-label">${tr(`Recommended`)}</span><span class="rn-title">${recBlock.meta.title}</span><span class="rn-time">${tr(`Ch{0}`, this._conceptChapterNum(pick.cid))}</span></div>${this._whyHtml(pick)}`;
     }
     if (!items) return '';
-
-    // 🌱 Kam dál: související nenapsaný koncept — testování zájmu přímo pod sekcí
-    items += this._rnGhostHtml(block);
 
     // "More like this" — text similarity, dedup with next/recommended
     const excludeIds = new Set([blockId]);
@@ -2538,12 +2926,12 @@ class PBook {
     if (recBlock) excludeIds.add(recBlock.meta.id);
     const similar = this._findSimilarBlocks(blockId, 5).filter(s => !excludeIds.has(s.id)).slice(0, 3);
     if (similar.length) {
-      items += '<div class="rn-similar"><div class="rn-similar-label">Podobné sekce</div>';
+      items += ('<div class="rn-similar"><div class="rn-similar-label">' + tr(`More like this`) + '</div>');
       similar.forEach(s => {
         const isRead = this.user.readBlocks.has(s.id);
         items += `<div class="rn-similar-item ${isRead ? 'rn-read' : ''}" onclick="app.previewBlock('${s.id}')">
           <span class="rn-similar-title">${s.title}</span>
-          <span class="rn-similar-ch">Kap. ${s.chNum}</span>
+          <span class="rn-similar-ch">${tr(`Ch{0}`, s.chNum)}</span>
         </div>`;
       });
       items += '</div>';
@@ -2552,8 +2940,8 @@ class PBook {
     // For shared-link visitors: CTA to explore the full book
     if (this._sharedBlockId === blockId) {
       items += `<div class="rn-cta">
-        <div class="rn-cta-text">Bavilo tě to? Čeká na tebe ještě ${this.allBlocks.filter(b => b.meta.type === 'spine').length} dalších sekcí!</div>
-        <button class="rn-cta-btn" onclick="app.showWelcome()">Prozkoumat celou knihu &rarr;</button>
+        <div class="rn-cta-text">${tr(`Enjoyed this? There are {0} more sections to explore!`, this.allBlocks.filter(b => b.meta.type === 'spine').length)}</div>
+        <button class="rn-cta-btn" onclick="app.showWelcome()">${tr(`Explore the full book &rarr;`)}</button>
       </div>`;
     }
 
@@ -2567,9 +2955,9 @@ class PBook {
     const url = window.location.origin + window.location.pathname + '#' + blockId;
 
     navigator.clipboard.writeText(url).then(() => {
-      this.showXPToast('Odkaz zkopírován!', 'info');
+      this.showXPToast(tr('Link copied!'), 'info');
     }).catch(() => {
-      prompt('Zkopíruj tento odkaz:', url);
+      prompt(tr('Copy this link:'), url);
     });
     this.rc.logEvent('share', { blockId, mode: 'share' });
   }
@@ -2580,8 +2968,8 @@ class PBook {
     const url = window.location.origin + window.location.pathname + '#mission-' + missionId;
 
     navigator.clipboard.writeText(url).then(() => {
-      this.showXPToast('Odkaz zkopírován!', 'info');
-    }).catch(() => { prompt('Zkopíruj tento odkaz:', url); });
+      this.showXPToast(tr('Link copied!'), 'info');
+    }).catch(() => { prompt(tr('Copy this link:'), url); });
     this.rc.logEvent('share', { missionId, mode: 'share_mission' });
   }
 
@@ -2600,14 +2988,14 @@ class PBook {
     panel.innerHTML = `
       <div class="preview-content">
         <div class="preview-header">
-          <span class="preview-ch">Kap. ${m._chapterNum}</span>
+          <span class="preview-ch">${tr(`Ch{0}`, m._chapterNum)}</span>
           <span class="preview-title">${m.title}</span>
           <button class="preview-close" onclick="document.getElementById('previewPanel').remove()">&times;</button>
         </div>
         <div class="preview-teaser">${this.escHtml(teaser)}${teaser.length >= 200 ? '...' : ''}</div>
         <div class="preview-actions">
-          <button class="preview-go" onclick="document.getElementById('previewPanel').remove();app.openBlock('${blockId}')">Přečíst &rarr;</button>
-          <button class="preview-dismiss" onclick="document.getElementById('previewPanel').remove()">Zůstat tady</button>
+          <button class="preview-go" onclick="document.getElementById('previewPanel').remove();app.openBlock('${blockId}')">${tr(`Read this &rarr;`)}</button>
+          <button class="preview-dismiss" onclick="document.getElementById('previewPanel').remove()">${tr(`Stay here`)}</button>
         </div>
       </div>
     `;
@@ -2638,19 +3026,20 @@ class PBook {
     if (!quiz) return;
     const article = document.getElementById(`b-${blockId}`);
     if (!article) return;
+    const key = this._recallKey(blockId);     // the concept's card
     const html = `<div class="inline-recall fade-up" id="block-recall-${blockId}">
-      <div class="ir-header"><span class="ir-icon">\u{1F9E0}</span> Test your memory</div>
+      <div class="ir-header"><span class="ir-icon">\u{1F9E0}</span> ${tr(`Test your memory`)}</div>
       <div class="ir-question">${quiz.q}</div>
       <div class="ir-answer" id="br-a-${blockId}" style="display:none">
         <div class="ir-answer-text">${quiz.a}</div>
-        ${this.user.recall[blockId] ? `<div class="recall-buttons">
-          <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${blockId}',0,this)">Zapomněl</button>
-          <button class="recall-btn recall-hard" onclick="app.scoreRecall('${blockId}',1,this)">Těžké</button>
-          <button class="recall-btn recall-good" onclick="app.scoreRecall('${blockId}',2,this)">Dobré</button>
-          <button class="recall-btn recall-easy" onclick="app.scoreRecall('${blockId}',3,this)">Snadné!</button>
-        </div>` : `<button class="recall-reveal" onclick="document.getElementById('block-recall-${blockId}').remove()">Jasné!</button>`}
+        ${this.user.recall[key] ? `<div class="recall-buttons">
+          <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${key}',0,this)">${tr(`Forgot`)}</button>
+          <button class="recall-btn recall-hard" onclick="app.scoreRecall('${key}',1,this)">${tr(`Hard`)}</button>
+          <button class="recall-btn recall-good" onclick="app.scoreRecall('${key}',2,this)">${tr(`Good`)}</button>
+          <button class="recall-btn recall-easy" onclick="app.scoreRecall('${key}',3,this)">${tr(`Easy!`)}</button>
+        </div>` : `<button class="recall-reveal" onclick="document.getElementById('block-recall-${blockId}').remove()">${tr(`Got it!`)}</button>`}
       </div>
-      <button class="recall-reveal" onclick="document.getElementById('br-a-${blockId}').style.display='block';this.style.display='none'">Ukázat odpověď</button>
+      <button class="recall-reveal" onclick="document.getElementById('br-a-${blockId}').style.display='block';this.style.display='none'">${tr(`Show answer`)}</button>
     </div>`;
     article.insertAdjacentHTML('afterend', html);
     document.getElementById(`block-recall-${blockId}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -2658,11 +3047,12 @@ class PBook {
 
   _insertInlineRecall(justReadId) {
     if (!this._f('spaceRepetition')) return;
-    // Find a due or almost-due recall for a DIFFERENT block
+    // Find a due or almost-due recall for a DIFFERENT concept
     const now = Date.now();
     const soonThreshold = 30 * 60 * 1000;
+    const justKey = this._recallKey(justReadId);
     const due = Object.entries(this.user.recall)
-      .filter(([id, c]) => id !== justReadId && c.nextReview <= now + soonThreshold)
+      .filter(([id, c]) => id !== justReadId && id !== justKey && c.nextReview <= now + soonThreshold)
       .sort((a, b) => a[1].nextReview - b[1].nextReview)
       .map(([blockId, card]) => ({ blockId, ...card }));
     if (!due.length) return;
@@ -2679,19 +3069,19 @@ class PBook {
     const readNext = document.getElementById(`rn-${justReadId}`);
     const insertAfter = readNext || article;
     const html = `<div class="inline-recall fade-up" id="inline-recall-${r.blockId}">
-      <div class="ir-header"><span class="ir-icon">\u{1F9E0}</span> Do you remember?</div>
+      <div class="ir-header"><span class="ir-icon">\u{1F9E0}</span> ${tr(`Do you remember?`)}</div>
       <div class="ir-question">${quiz.q}</div>
       <div class="ir-answer" id="ir-a-${r.blockId}" style="display:none">
         <div class="ir-answer-text">${quiz.a}</div>
-        <div class="ir-from">Ze sekce: ${block.meta.title}</div>
+        <div class="ir-from">${tr(`From: {0}`, block.meta.title)}</div>
         <div class="recall-buttons">
-          <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${r.blockId}',0,this)">Zapomněl</button>
-          <button class="recall-btn recall-hard" onclick="app.scoreRecall('${r.blockId}',1,this)">Těžké</button>
-          <button class="recall-btn recall-good" onclick="app.scoreRecall('${r.blockId}',2,this)">Dobré</button>
-          <button class="recall-btn recall-easy" onclick="app.scoreRecall('${r.blockId}',3,this)">Snadné!</button>
+          <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${r.blockId}',0,this)">${tr(`Forgot`)}</button>
+          <button class="recall-btn recall-hard" onclick="app.scoreRecall('${r.blockId}',1,this)">${tr(`Hard`)}</button>
+          <button class="recall-btn recall-good" onclick="app.scoreRecall('${r.blockId}',2,this)">${tr(`Good`)}</button>
+          <button class="recall-btn recall-easy" onclick="app.scoreRecall('${r.blockId}',3,this)">${tr(`Easy!`)}</button>
         </div>
       </div>
-      <button class="recall-reveal" onclick="document.getElementById('ir-a-${r.blockId}').style.display='block';this.style.display='none'">Hmm… Ukázat odpověď!</button>
+      <button class="recall-reveal" onclick="document.getElementById('ir-a-${r.blockId}').style.display='block';this.style.display='none'">${tr(`Show answer`)}</button>
     </div>`;
     insertAfter.insertAdjacentHTML('afterend', html);
   }
@@ -2702,169 +3092,84 @@ class PBook {
     const quiz = this._getRecallQuestion(block);
     if (!quiz) return '';
     return `<div class="card recall-card" style="border-top: 3px solid var(--warn); flex: 0 0 280px">
-      <div class="card-chapter" style="color:var(--warn);font-weight:700">Pamatuješ si?</div>
+      <div class="card-chapter" style="color:var(--warn);font-weight:700">${tr(`Do you remember?`)}</div>
       <div class="card-title">${quiz.q}</div>
       <div class="recall-answer" id="recall-a-${r.blockId}" style="display:none">
         <div class="recall-answer-text">${quiz.a}</div>
-        <div class="recall-hint" style="font-size:.7rem;color:var(--text-3);margin:.3em 0">Ze sekce: ${block.meta.title}</div>
+        <div class="recall-hint" style="font-size:.7rem;color:var(--text-3);margin:.3em 0">${tr(`From: {0}`, block.meta.title)}</div>
         <div class="recall-buttons">
-          <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${r.blockId}',0,this)">Zapomněl</button>
-          <button class="recall-btn recall-hard" onclick="app.scoreRecall('${r.blockId}',1,this)">Těžké</button>
-          <button class="recall-btn recall-good" onclick="app.scoreRecall('${r.blockId}',2,this)">Dobré</button>
-          <button class="recall-btn recall-easy" onclick="app.scoreRecall('${r.blockId}',3,this)">Snadné!</button>
+          <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${r.blockId}',0,this)">${tr(`Forgot`)}</button>
+          <button class="recall-btn recall-hard" onclick="app.scoreRecall('${r.blockId}',1,this)">${tr(`Hard`)}</button>
+          <button class="recall-btn recall-good" onclick="app.scoreRecall('${r.blockId}',2,this)">${tr(`Good`)}</button>
+          <button class="recall-btn recall-easy" onclick="app.scoreRecall('${r.blockId}',3,this)">${tr(`Easy!`)}</button>
         </div>
       </div>
-      <button class="recall-reveal" id="recall-r-${r.blockId}" onclick="document.getElementById('recall-a-${r.blockId}').style.display='block';this.style.display='none'">Ukázat odpověď</button>
+      <button class="recall-reveal" id="recall-r-${r.blockId}" onclick="document.getElementById('recall-a-${r.blockId}').style.display='block';this.style.display='none'">${tr(`Show answer`)}</button>
     </div>`;
   }
 
-  _generateQuiz(block) {
-    const body = (block.body || '').toLowerCase();
-    const quizzes = [];
+  // "Check yourself" — an interstitial built from the concept CONTRACT (human-owned
+  // recallQ/recallA, AGENTS §9), never from keyword templates. Rendered one concept
+  // after the reader met it (spaced retrieval); grading seeds the concept's card.
+  _checkYourselfCard(cid) {
+    const quiz = this._conceptRecall(cid);
+    if (!quiz) return '';                       // no contract recall → no interstitial
+    const key = this._recallKey(this.concepts?.[cid]?.anchor || cid);
+    const uid = 'cy-' + String(cid).replace(/[^\w-]/g, '');
+    return `<div class="inline-recall check-yourself fade-up" id="${uid}">
+      <div class="ir-header"><span class="ir-icon">&#129504;</span> ${tr(`Check yourself`)} <span class="cy-concept">${this.escHtml(this.concepts?.[cid]?.title || '')}</span></div>
+      <div class="ir-question">${quiz.q}</div>
+      <div class="ir-answer" id="${uid}-a" style="display:none">
+        <div class="ir-answer-text">${quiz.a}</div>
+        <div class="ir-from">${tr(`How well did you know it? Your answer schedules the next review.`)}</div>
+        <div class="recall-buttons">
+          <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${key}',0,this)">${tr(`Forgot`)}</button>
+          <button class="recall-btn recall-hard" onclick="app.scoreRecall('${key}',1,this)">${tr(`Hard`)}</button>
+          <button class="recall-btn recall-good" onclick="app.scoreRecall('${key}',2,this)">${tr(`Good`)}</button>
+          <button class="recall-btn recall-easy" onclick="app.scoreRecall('${key}',3,this)">${tr(`Easy`)}</button>
+        </div>
+      </div>
+      <button class="recall-reveal" onclick="document.getElementById('${uid}-a').style.display='block';this.style.display='none'">${tr(`Think first, then show the answer`)}</button>
+    </div>`;
+  }
 
-    // --- Rychlé kvízy podle klíčových slov v obsahu (informatika) ---
-    if (body.includes('hardware') || body.includes('software')) quizzes.push({ q: 'Čím se liší hardware a software?', a: 'Hardware jsou fyzické součástky, na které si sáhneš (procesor, displej). Software jsou programy, které v nich běží. Jedno bez druhého nedává smysl!' });
-    if (body.includes('cloud') || body.includes('server')) quizzes.push({ q: 'Kde doopravdy jsou fotky uložené „v cloudu“?', a: 'Na výkonném počítači (serveru) v datovém centru, ke kterému se připojuješ přes internet. Cloud = cizí počítač.' });
-    if (body.includes('klient') || body.includes('prohlížeč')) quizzes.push({ q: 'Co se stane, když otevřeš webovou stránku?', a: 'Tvůj prohlížeč (klient) pošle požadavek serveru, kde stránka „bydlí“ — a server mu obsah pošle zpátky.' });
-    if (body.includes('api')) quizzes.push({ q: 'K čemu slouží API?', a: 'Je to domluvený způsob, jak si programy povídají mezi sebou — appka přes API požádá službu o data nebo akci, podobně jako u číšníka objednáš jídlo.' });
-    if (body.includes('dekompozic') || body.includes('rozlož')) quizzes.push({ q: 'Co znamená dekompozice?', a: 'Rozložit velký problém na menší části, které už umíš vyřešit. Tak se řeší i obří projekty — po kouskách.' });
-    if (body.includes('algoritm')) quizzes.push({ q: 'Co je algoritmus?', a: 'Jednoznačný postup krok za krokem, který vede k cíli. Recept, návod i program — všechno jsou algoritmy.' });
-    if (body.includes('abstrakc')) quizzes.push({ q: 'Proč je abstrakce užitečná?', a: 'Dovolí ti ignorovat nepodstatné detaily a soustředit se na to důležité — jako mapa metra, která nekreslí každý dům.' });
-    if (body.includes('proměnn')) quizzes.push({ q: 'K čemu je v programu proměnná?', a: 'Je to pojmenovaná krabička na hodnotu, která se může měnit — třeba skóre ve hře.' });
-    if (body.includes('cykl') || body.includes('smyčk')) quizzes.push({ q: 'Kdy se v programu hodí cyklus?', a: 'Když se má něco opakovat — místo psaní stejného kódu stokrát ho napíšeš jednou a necháš opakovat.' });
-    if (body.includes('laděn') || body.includes('debug')) quizzes.push({ q: 'Co je ladění (debugging)?', a: 'Hledání a opravování chyb v programu. Chyba není selhání — je to stopa, která tě vede k řešení.' });
-    if (body.includes('data') && body.includes('informac')) quizzes.push({ q: 'Jaký je rozdíl mezi daty a informací?', a: 'Data jsou holé zaznamenané hodnoty (třeba číslo 21). Informace je jejich význam pro konkrétní situaci („dnes je tepleji než včera“).' });
-    if (body.includes('graf') || body.includes('vizualizac')) quizzes.push({ q: 'Proč záleží na volbě grafu?', a: 'Špatný graf umí lhát — správný typ grafu a poctivé osy rozhodují o tom, jestli data pochopíš, nebo tě zmatou.' });
-    if (body.includes('tabulk') || body.includes('databáz')) quizzes.push({ q: 'Proč se data ukládají do tabulek?', a: 'Řádek = jedna věc, sloupec = jedna vlastnost. Díky pevné struktuře se v datech dá rychle hledat, třídit a počítat.' });
-    if (body.includes('umělá inteligence') || body.includes('strojové učení')) quizzes.push({ q: 'Jak se AI učí?', a: 'Z dat! Hledá v nich vzory. Proto platí: jaká data, taková AI — i s jejich chybami a předsudky.' });
-    if (body.includes('halucin') || body.includes('generativn')) quizzes.push({ q: 'Proč AI občas s jistotou tvrdí nesmysly?', a: 'Generativní model předpovídá pravděpodobné pokračování textu, nemá databázi pravdy. Proto výstupy vždy ověřuj.' });
-    if (body.includes('prompt')) quizzes.push({ q: 'Co dělá dobrý prompt?', a: 'Jasně říká roli, úkol, kontext a formát výsledku. Čím přesnější zadání, tím užitečnější odpověď.' });
-    if (body.includes('bias') || body.includes('férov')) quizzes.push({ q: 'Co je bias v AI?', a: 'Zkreslení převzaté z dat — když v datech část světa chybí nebo je pokřivená, AI ji přehlíží nebo pokřivuje taky.' });
-    if (body.includes('doporuč')) quizzes.push({ q: 'Podle čeho ti appky doporučují obsah?', a: 'Sledují, co děláš (kliky, čas u videa), hledají vzory a porovnávají tě s podobnými uživateli.' });
-    if (body.includes('heslo') || body.includes('dvoufaktor') || body.includes('2fa')) quizzes.push({ q: 'Co dělá heslo silným?', a: 'Délka a jedinečnost — dlouhá fráze, pro každý účet jiná. A dvoufaktor tě podrží, i když heslo unikne.' });
-    if (body.includes('phishing') || body.includes('podvod')) quizzes.push({ q: 'Jak poznáš phishing?', a: 'Tlačí na spěch, vyhrožuje, odkaz vede jinam, než tvrdí. Neklikej — otevři si službu sám v oficiální appce.' });
-    if (body.includes('digitální stop')) quizzes.push({ q: 'Co je digitální stopa?', a: 'Všechno, co po tobě online zůstává — příspěvky, lajky, údaje o tom, co děláš. Jednou zveřejněné se maže těžko.' });
-    if (body.includes('dezinform') || body.includes('manipulac')) quizzes.push({ q: 'Jak si ověříš podezřelou zprávu?', a: 'Zkontroluj zdroj, hledej ji i jinde a všímej si emocí, které v tobě budí — manipulace míří na city, ne na rozum.' });
-    if (body.includes('wellbeing') || body.includes('scrollov')) quizzes.push({ q: 'Proč se z appek tak těžko odchází?', a: 'Jsou navržené, aby tě držely: autoplay, nekonečný feed, notifikace. Kdo to ví, může si nastavit vlastní pravidla.' });
-    if (body.includes('html') || body.includes('css')) quizzes.push({ q: 'Jaké role mají HTML a CSS?', a: 'HTML je struktura stránky (kostra), CSS je vzhled (barvy, písma, rozložení). JavaScript pak přidává interaktivitu.' });
-    if (body.includes('vibecoding')) quizzes.push({ q: 'Co je vibecoding?', a: 'Tvorba aplikace popisováním záměru AI asistentovi. Rychlé — ale výstup musíš přečíst, otestovat a umět opravit.' });
-    if (body.includes('herní smyčk') || body.includes('kolize')) quizzes.push({ q: 'Co dělá herní smyčka?', a: 'Mnohokrát za sekundu zpracuje vstup, přepočítá stav hry a překreslí obrazovku. Proto se hra plynule hýbe.' });
-    if (body.includes('senzor') || body.includes('micro:bit')) quizzes.push({ q: 'Jak zařízení vnímá svět?', a: 'Senzory měří (světlo, pohyb, teplotu), program data zpracuje a aktuátory provedou akci — vstup → zpracování → výstup.' });
+  // The concept's recall question, in the reader's language when a telling in that
+  // language carries one (every telling answers the same contract); else the contract.
+  _conceptRecall(cid) {
+    const c = this.concepts?.[cid];
+    const clean = s => String(s).replace(/\\(["'])/g, '$1');   // concepts.json keeps YAML escapes
+    const lang = this._readerLang();
+    if (lang !== (CONFIG.book.lang || 'en')) {   // the contract speaks the book's language
+      const local = (this.conceptBlocks?.[cid] || []).find(b => b.meta.recallQ && b.meta.recallA && this._covers(b.meta, 'lang', lang));
+      if (local) return { q: local.meta.recallQ, a: local.meta.recallA };
+    }
+    if (c?.contract?.recallQ && c.contract.recallA) return { q: clean(c.contract.recallQ), a: clean(c.contract.recallA) };
+    const anchor = c?.anchor && this.findBlock(c.anchor);
+    if (anchor?.meta.recallQ && anchor.meta.recallA) return { q: anchor.meta.recallQ, a: anchor.meta.recallA };
+    return null;
+  }
 
-    // Záložní kvíz
-    if (quizzes.length === 0)
-      quizzes.push({ q: 'Dokážeš vysvětlit „' + (block.title || 'toto téma') + '“ kamarádovi jednou větou?', a: 'Zkus to! Když to umíš říct jednoduše, opravdu tomu rozumíš. Když ne, přečti si sekci znovu — podruhé to sedne.' });
-
-    const quiz = quizzes[Math.floor(Math.random() * quizzes.length)];
-    return `<h4>&#129504; Rychlý kvíz!</h4>
-      <div class="ctx-quiz">
-        <div class="ctx-quiz-q">${quiz.q}</div>
-        <button class="ctx-quiz-reveal" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Hmm, nech mě přemýšlet… &#129300; Ukázat odpověď!</button>
-        <div class="ctx-quiz-a" style="display:none">${quiz.a}</div>
-      </div>`;
+  // Card keys (concept anchor ids) of every concept that has a recall question
+  _recallConceptKeys() {
+    return Object.values(this.concepts || {})
+      .filter(c => c.anchor && this.findBlock(c.anchor) && this._conceptRecall(c.id))
+      .map(c => c.anchorKey || c.anchor);
   }
 
   // --- Spaced repetition recall ---
+  // A card keyed by a concept anchor asks the CONTRACT question; any other telling
+  // asks its own recallQ (same contract, its own language), falling back to the
+  // contract. No contract and no recallQ → no card (null) — callers skip it.
   _getRecallQuestion(block) {
     if (!block) return null;   // recall may reference a variant that no longer resolves
-    const id = block.meta?.id || block.id;
-    const title = block.meta?.title || '';
-    const body = (block.body || '').toLowerCase();
-    const meta = block.meta || {};
-
-    // 1. Prefer frontmatter Q&A (editable by content creators)
-    if (meta.recallQ && meta.recallA) return { q: meta.recallQ, a: meta.recallA };
-
-    // 2. Fallback: hardcoded questions (kept for backwards compat)
-    const QUESTIONS = {
-      // ── Ch1: What Are Recommendations? ──
-      'ch1-noticed': { q: 'How do apps like YouTube seem to "know" what you want?', a: 'They track your clicks, watches, and skips to build a picture of your taste — then use algorithms to find similar content.' },
-      'ch1-everywhere': { q: 'Name 4 apps that use recommendation algorithms.', a: 'YouTube, TikTok, Spotify, Netflix, Amazon, Instagram, App Store — almost every app you use daily.' },
-      'ch1-not-magic': { q: 'Recommendations feel like magic — what are they really based on?', a: 'Patterns! Watch → find patterns → predict. Like a detective finding clues in your clicks.' },
-      'ch1-wrong-sidebar': { q: 'Why do recommendations sometimes go hilariously wrong?', a: 'The system only sees clicks, not reasons. If your sibling watches cartoons on your account, it thinks YOU like cartoons!' },
-      'ch1-patterns-d-think': { q: 'Why is finding patterns a "superpower" for algorithms?', a: 'Machines can spot patterns across millions of people simultaneously — connections no human could ever find manually.' },
-      'ch1-three-jobs': { q: 'What are the 3 jobs of a recommender system?', a: 'DISCOVER new things, FIND things faster in huge catalogs, and ENGAGE — keep you interested.' },
-      'ch1-wyr': { q: 'What is the main trade-off in recommendations?', a: 'Better recommendations need more data, but more data means companies know more about you. Privacy vs. personalization.' },
-      'ch1-ws-match': { q: 'Name 3 different recommendation models.', a: 'Friend-based, follow-based, interest-based, algorithm-based, and group-based. Most apps use hybrids.' },
-      // ── Ch2: How They Learn About You ──
-      'ch2-footprints': { q: 'What are digital footprints?', a: 'Every click, watch, skip, and search — invisible tracks that teach the system about your taste.' },
-      'ch2-track-d-exp': { q: 'Which signal is stronger: clicking a video or watching it to the end?', a: 'Watching to the end is MUCH stronger. The system tracks watch time, not just clicks.' },
-      'ch2-guess-signal': { q: 'What is the strongest signal you can send to an algorithm?', a: 'Sharing something! It takes real effort, which tells the system you really care about that content.' },
-      'ch2-clues': { q: 'Name the 3 types of clues recommenders use.', a: 'Item clues (what it IS), person clues (who YOU are), action clues (what you DO).' },
-      'ch2-incognito-sidebar': { q: 'What is the "cold start" problem?', a: 'When you create a new account, the system has zero info — it shows popular stuff until it learns who you are.' },
-      'ch2-myth': { q: 'True or false: your phone listens to your conversations for ads.', a: 'False! Algorithms predict so well from your clicks that it FEELS like they heard you — but they didn\'t.' },
-      'ch2-privacy': { q: 'Name 3 tools you have to control your data.', a: '"Not Interested" button, clear history, separate profiles, incognito mode, and app settings.' },
-      'ch2-privacy-d-create': { q: 'How fast does an algorithm start personalizing for you?', a: 'Just 5-10 videos! Watch a few cooking videos and your feed fills with cooking in minutes.' },
-      'ch2-ws-detective': { q: 'Can you train the algorithm on purpose?', a: 'Yes! Search for topics you want, like content deliberately, use "Not Interested" on what you don\'t want.' },
-      // ── Ch3: Different Ways to Recommend ──
-      'ch3-friends': { q: 'How does collaborative filtering work?', a: 'Find people with similar taste → recommend what THEY liked that you haven\'t tried yet.' },
-      'ch3-cf-d-exp': { q: 'What are "taste twins" in collaborative filtering?', a: 'People who liked the same things as you. If they also liked something new, you probably will too!' },
-      'ch3-cf-d-create': { q: 'Can you build collaborative filtering without a computer?', a: 'Yes! Survey friends, create a rating grid on paper, find who matches you best, check what they liked.' },
-      'ch3-netflix-sidebar': { q: 'What lesson did the Netflix Prize teach about algorithms?', a: 'Better accuracy doesn\'t always win — speed and simplicity matter more than perfection in real systems.' },
-      'ch3-content': { q: 'How does content-based filtering differ from collaborative?', a: 'Content-based looks at item FEATURES (genre, tags). Collaborative looks at USER BEHAVIOR (who liked what).' },
-      'ch3-compare-d-think': { q: 'When is content-based better than collaborative filtering?', a: 'For new items with no ratings yet, and for niche interests. Collaborative is better for surprising discoveries.' },
-      'ch3-spot-method': { q: '"Because you watched X" uses which method?', a: 'Content-based filtering! It finds items similar to X. "Fans also listen to" is collaborative filtering.' },
-      'ch3-bandits': { q: 'What is the explore-exploit dilemma?', a: 'Should the system show safe picks you\'ll like (exploit) or try new things you might discover (explore)? Both matter.' },
-      'ch3-deep-similarity': { q: 'What are "embeddings" in recommendation systems?', a: 'Items turned into lists of numbers (vectors). Close vectors = similar items. Neural networks learn these patterns.' },
-      'ch3-popular': { q: 'What is the biggest weakness of popularity-based recommendations?', a: 'No personalization — everyone sees the same thing. It can\'t account for YOUR unique taste.' },
-      'ch3-popular-sidebar': { q: 'What is the "rich-get-richer" problem?', a: 'Popular content gets more visibility → more views → stays popular. New creators get buried forever.' },
-      'ch3-pipeline': { q: 'What are the 3 stages of a recommendation pipeline?', a: 'FIND candidates (fast + rough), RANK them (precise scoring), CHECK for diversity.' },
-      'ch3-pipeline-d-exp': { q: 'How does YouTube find 20 videos from 800 million in 0.2 seconds?', a: 'Staged pipeline! Quick rough filters narrow 800M to 500 candidates, then careful ranking picks the best 20.' },
-      'ch3-speed': { q: 'How long would it take a human to do what YouTube does in 1 second?', a: '25 YEARS! That\'s why we need algorithms — the scale is impossibly large for humans.' },
-      'ch3-search-recs': { q: 'Are search results the same for everyone?', a: 'No! Search is increasingly personalized — what you see depends on your history, location, and past behavior.' },
-      // ── Ch4: Making Recommendations Better ──
-      'ch4-bubbles': { q: 'What is a filter bubble?', a: 'When the algorithm only shows you things you already like — you never discover anything new. The bubble is invisible.' },
-      'ch4-echo-d-think': { q: 'How is an echo chamber worse than a filter bubble?', a: 'Echo chambers make you think EVERYONE agrees with you — different people see different realities about the same topic.' },
-      'ch4-experiment': { q: 'How can you break out of a filter bubble?', a: 'Deliberately explore new content! Watch 3 videos on a new topic and your feed will start to change.' },
-      'ch4-fairness': { q: 'How can algorithms be unfair to new creators?', a: 'Popular → more recommended → more popular (repeat). New creators never get seen. Good systems give everyone a fair start.' },
-      'ch4-youtube-sidebar': { q: 'What percentage of YouTube watch time comes from recommendations?', a: '70%! That means algorithms — not you searching — drive most of what people watch.' },
-      'ch4-unfair-game': { q: 'How can platforms make recommendations fairer?', a: 'Random sampling, guaranteed visibility for new content, small-audience testing before scaling.' },
-      'ch4-objectives': { q: 'What is the algorithm actually trying to do?', a: 'It depends! Subscription services optimize for YOUR happiness. Free/ad services optimize for ADVERTISER revenue.' },
-      'ch4-explainability': { q: 'Why can\'t platforms fully explain their recommendations?', a: 'Neural networks use hundreds of signals — even engineers can\'t trace exactly why one item was chosen over another.' },
-      'ch4-testing': { q: 'What is an A/B test?', a: 'Show version A to half the users, version B to the other half, compare real behavior. Data decides, not guessing.' },
-      'ch4-ab-d-exp': { q: 'Do personalized recommendations actually work better than "just show popular"?', a: 'Yes! Tests show 37% more songs played, 4x more artist discovery, and higher engagement with personalization.' },
-      // ── Ch5: Build Your Own! ──
-      'ch5-start': { q: 'What are the 4 steps to build a recommendation system?', a: 'Collect data → find similar users → make predictions → test and improve.' },
-      'ch5-collect': { q: 'What is a rating matrix?', a: 'Users as rows, items as columns, ratings in cells. Most cells are empty — that\'s what you predict.' },
-      'ch5-spread-d-create': { q: 'Why can a spreadsheet help you build recommendations?', a: 'Color-coded ratings reveal taste patterns visually — you can see who matches before doing any math.' },
-      'ch5-similar': { q: 'How do you find "taste neighbors"?', a: 'Compare ratings on shared items — lower average difference = more similar taste.' },
-      'ch5-math-d-think': { q: 'What does cosine similarity measure?', a: 'The angle between two preference vectors — so someone who rates everything low but in the same PATTERN as you is still similar.' },
-      'ch5-real-numbers': { q: 'How many possible user-item combinations does Netflix have?', a: '3.4 TRILLION! And most cells are empty. Finding patterns in this sparse data is the core challenge.' },
-      'ch5-recommend': { q: 'How do you predict a rating for an unseen item?', a: 'Find 2-3 most similar users who rated it → average their ratings. Above 4 stars = recommend it.' },
-      'ch5-code-d-create': { q: 'How many lines of Python does it take to build basic collaborative filtering?', a: 'About 20! Data loading, similarity calculation, and prediction — the same logic Netflix uses, just smaller scale.' },
-      'ch5-debug': { q: 'Even Netflix\'s algorithm is wrong how often?', a: '20-30% of the time! Perfection isn\'t the goal — being right MOST of the time is what matters.' },
-      'ch5-improve': { q: 'What is the single biggest improvement for a recommendation system?', a: 'More data! More users and more ratings create more connections, which means better matches and predictions.' },
-      'ch5-career-sidebar': { q: 'What skills does a recommendation engineer need?', a: 'Math (statistics, linear algebra), programming (Python), creativity, and curiosity about user behavior.' },
-      'ch5-get-recommended': { q: 'What matters more to YouTube: clicks or watch time?', a: 'Watch time! A video 100 people watch fully beats 1,000 clicks that leave immediately.' },
-      'ch5-seo-algorithms': { q: 'Why doesn\'t "ranking #1 on Google" exist anymore?', a: 'Results are personalized — your content can be #1 for your audience and invisible to everyone else.' },
-      // ── Ch6: Ethics and You ──
-      'ch6-who-decides': { q: 'Who decides what you see when you open TikTok?', a: 'The algorithm — not you, not your parents, not TikTok employees. It optimizes for "what keeps you watching longest."' },
-      'ch6-rabbit-sidebar': { q: 'What is the "rabbit hole" effect?', a: 'Each recommended step feels small, but the accumulated path leads somewhere unexpected. The algorithm optimizes for the NEXT video, not the whole journey.' },
-      'ch6-addictive': { q: 'Name 2 design tricks that keep you scrolling.', a: 'Infinite scroll (no end point) and autoplay (next video starts automatically). These are deliberate design choices.' },
-      'ch6-control-d-create': { q: 'What is the "thumbnail test"?', a: 'Pause before clicking and ask: "Do I actually WANT this?" It breaks autopilot and puts you back in control.' },
-      'ch6-dopamine-sidebar': { q: 'Why does watching "just one more video" feel so hard to resist?', a: 'Dopamine! Your brain releases it for anticipation + uncertainty — the same mechanism as slot machines.' },
-      'ch6-adtech-vs-recs': { q: 'What is the difference between recommendations and ads?', a: 'Recommendations help you within ONE app. Adtech tracks you across the ENTIRE internet to sell your attention.' },
-      'ch6-privacy-real': { q: 'What is a "digital twin"?', a: 'A mathematical model of your behavior patterns — apps build one from your data without needing your name.' },
-      'ch6-data-d-exp': { q: 'Where can you see what Google knows about you?', a: 'myactivity.google.com — shows every search, video, and click. You can also auto-delete old data there.' },
-      'ch6-age-sidebar': { q: 'Can algorithms guess your age? How?', a: 'Within 3-5 years! From when you watch, how fast you scroll, music taste, and meme preferences — no personal info needed.' },
-      'ch6-ai-future': { q: 'Why does YOUR generation understand algorithms better than most adults?', a: 'You grew up WITH them — you notice weird recs, know how to game the algorithm, and feel the pull of infinite scroll.' },
-      'ch6-hard-d-think': { q: 'Name a hard question about algorithms that nobody has answered yet.', a: 'Should kids get different algorithms? Who defines "harmful"? Should algorithms show disagreement? No right answers exist yet.' },
-      'ch6-law-sidebar': { q: 'What right did the EU give people regarding algorithms?', a: 'The right to opt OUT of algorithmic recommendations, and a ban on using kids\' personal data for targeting.' },
-      'ch6-conversational': { q: 'How will LLMs change recommendations?', a: 'You\'ll ASK for what you want instead of scrolling. LLMs understand language, recommenders have the data — together they\'re powerful.' },
-    };
-
-    // Direct match by block ID
-    if (QUESTIONS[id]) return QUESTIONS[id];
-
-    // Generate from content — extract first meaningful sentence as answer
-    const sentences = (block.body || '').replace(/[#*_\[\]]/g, '').split(/[.!?]\s/).filter(s => s.length > 30 && s.length < 200);
-    if (sentences.length >= 2) {
-      const keyIdx = Math.floor(id.charCodeAt(id.length - 1) % sentences.length);
-      const answer = sentences[keyIdx].trim();
-      return { q: `What did you learn about "${title}"?`, a: answer + '.' };
+    const meta = block.meta || block;
+    const cid = this._conceptIds(meta)[0];
+    if (cid && this.concepts?.[cid]?.anchor === meta.id) {
+      const q = this._conceptRecall(cid);
+      if (q) return q;
     }
-
-    return { q: `What is the key idea of "${title}"?`, a: `Think about what this section explained. Try re-reading "${title}" to refresh your memory!` };
+    if (meta.recallQ && meta.recallA) return { q: meta.recallQ, a: meta.recallA };
+    return cid ? this._conceptRecall(cid) : null;
   }
 
   startPractice(dueOnly) {
@@ -2884,15 +3189,15 @@ class PBook {
         else easy.push(item);
       });
       const shuffle = arr => arr.sort(() => Math.random() - 0.5);
-      // Read blocks not yet in recall system
+      // Concepts read but not yet in the recall system (one card per concept)
       const recallSet = new Set(Object.keys(this.user.recall));
-      const newFromRead = [...this.user.readBlocks]
+      const newFromRead = [...new Set([...this.user.readBlocks].map(id => this._recallKey(id)))]
         .filter(id => !recallSet.has(id))
         .map(id => ({ blockId: id, isDue: false, ease: 2.5, reps: 0 }));
-      // ALL blocks with recallQ that user hasn't read yet (test knowledge even if not read)
-      const allWithQ = this.allBlocks
-        .filter(b => b.meta.recallQ && !this.user.readBlocks.has(b.meta.id) && !recallSet.has(b.meta.id))
-        .map(b => ({ blockId: b.meta.id, isDue: false, ease: 2.5, reps: 0 }));
+      // Every other concept with a contract question (test knowledge even if not read)
+      const allWithQ = this._recallConceptKeys()
+        .filter(id => !recallSet.has(id) && !newFromRead.some(n => n.blockId === id))
+        .map(id => ({ blockId: id, isDue: false, ease: 2.5, reps: 0 }));
       // Order: learning first (sweet spot), then struggling, new, confident, then unread with questions
       blocks = [...shuffle(med), ...shuffle(hard), ...shuffle(newFromRead), ...shuffle(easy), ...shuffle(allWithQ)];
     }
@@ -2934,18 +3239,18 @@ class PBook {
         const quiz = this._getRecallQuestion(block);
         if (quiz) {
           h += `<div style="padding:1em;max-width:500px;margin:0 auto">
-            <p style="font-size:.75rem;color:var(--text-3);margin-bottom:.8em">Někdo s tebou sdílel tuhle otázku:</p>
+            <p style="font-size:.75rem;color:var(--text-3);margin-bottom:.8em">${tr(`Someone shared this question with you:`)}</p>
             <div class="recall-card-big">
               <div class="recall-card-q">${quiz.q}</div>
               <div id="shared-a" style="display:none">
                 <div class="recall-card-answer">${quiz.a}</div>
-                <div style="margin-top:.5em;font-size:.72rem;color:var(--text-3)">Ze sekce: Kap. ${block.meta._chapterNum} — ${block.meta.title}</div>
+                <div style="margin-top:.5em;font-size:.72rem;color:var(--text-3)">${tr(`From: Ch{0} — {1}`, block.meta._chapterNum, block.meta.title)}</div>
                 <div style="display:flex;gap:.4em;margin-top:.6em">
-                  <button class="btn-primary" style="flex:1;font-size:.78rem" onclick="app.openBlock('${sharedId}')">Přečíst tuto sekci</button>
-                  <button class="btn-ghost" style="flex:1;font-size:.78rem;border:1px solid var(--accent);border-radius:8px;color:var(--accent)" onclick="app.renderQuiz()">Další otázky</button>
+                  <button class="btn-primary" style="flex:1;font-size:.78rem" onclick="app.openBlock('${sharedId}')">${tr(`Read this section`)}</button>
+                  <button class="btn-ghost" style="flex:1;font-size:.78rem;border:1px solid var(--accent);border-radius:8px;color:var(--accent)" onclick="app.renderQuiz()">${tr(`More questions`)}</button>
                 </div>
               </div>
-              <button class="recall-reveal-big" onclick="document.getElementById('shared-a').style.display='block';this.style.display='none'">Zamysli se… a pak odkryj!</button>
+              <button class="recall-reveal-big" onclick="document.getElementById('shared-a').style.display='block';this.style.display='none'">${tr(`Think about it... then reveal!`)}</button>
             </div>
           </div>`;
           el.innerHTML = h;
@@ -2956,16 +3261,17 @@ class PBook {
 
     // ── Header ──
     h += `<div style="padding:.8em 1em .2em">
-      <h2 style="font-family:var(--font-ui);font-size:1.15rem;font-weight:800">\u{1F9E0} Test Your Knowledge</h2>
-      <p style="font-size:.75rem;color:var(--text-3);margin-top:.1em">Rozložené opakování — zopakuj si, co ses naučil</p>
+      <h2 style="font-family:var(--font-ui);font-size:1.15rem;font-weight:800">${tr(`\u{1F9E0} Test Your Knowledge`)}</h2>
+      <p style="font-size:.75rem;color:var(--text-3);margin-top:.1em">${tr(`Spaced repetition — review what you learned`)}</p>
     </div>`;
+    h += this._gamesShelfHtml(); // hands-on games: a way to practise even before anything is read
 
     if (totalRead === 0) {
       h += `<div style="text-align:center;padding:3em 1em;color:var(--text-3)">
-        <p style="font-size:2rem;margin-bottom:.3em">\u{1F4DA}</p>
-        <p style="font-size:.9rem;font-weight:600">Nejdřív si něco přečti!</p>
-        <p style="font-size:.78rem;margin:.3em 0 1em">Paměťové kartičky vznikají automaticky při čtení.</p>
-        <button class="btn-primary" onclick="app.switchView('home')">Začít číst</button>
+        <p style="font-size:2rem;margin-bottom:.3em">${tr(`\u{1F4DA}`)}</p>
+        <p style="font-size:.9rem;font-weight:600">${tr(`Read some sections first!`)}</p>
+        <p style="font-size:.78rem;margin:.3em 0 1em">${tr(`Memory cards are created automatically as you read.`)}</p>
+        <button class="btn-primary" onclick="app.switchView('home')">${tr(`Start reading`)}</button>
       </div>`;
       el.innerHTML = h;
       return;
@@ -2974,9 +3280,11 @@ class PBook {
     // Self-heal: prune recall cards whose git block no longer exists (renamed/removed).
     // Reader-generated ids (gen--/remix--) are kept — they resolve via the private store
     // or the community cache and are simply skipped from display when uncached.
+    // Same safety rule as _reconcileProgress: never prune after a failed fetch,
+    // and a hidden draft (known id) is not a deleted block.
     let pruned = false;
-    Object.keys(u.recall).forEach(id => {
-      if (!/^(gen--|remix--)/.test(id) && !this._findAnyBlock(id)) { delete u.recall[id]; pruned = true; }
+    if (!this._contentFetchFailed) Object.keys(u.recall).forEach(id => {
+      if (!this._isRuntimeId(id) && !this._knownIds?.has(id) && !this._findAnyBlock(id)) { delete u.recall[id]; pruned = true; }
     });
     if (pruned) u.save();
 
@@ -2995,34 +3303,35 @@ class PBook {
         if (!quiz) return '';
         const card = u.recall[r.blockId];
         const overdue = Math.round((Date.now() - card.nextReview) / 3600000);
-        const reason = overdue > 24 ? `${Math.round(overdue/24)} d po termínu` : overdue > 0 ? `${overdue} h po termínu` : 'Právě teď';
+        const reason = overdue > 24 ? `${tr(`{0}d overdue`, Math.round(overdue/24))}` : overdue > 0 ? `${tr(`{0}h overdue`, overdue)}` : tr('Due now');
         return `<div class="card recall-card" style="border-top:3px solid var(--warn);flex:0 0 280px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3em">
-            <span style="color:var(--warn);font-weight:700;font-size:.7rem">Teď</span>
+            <span style="color:var(--warn);font-weight:700;font-size:.7rem">${tr(`Due`)}</span>
             <span style="color:var(--text-3);font-size:.6rem">${reason}</span>
           </div>
           <div class="card-title" style="font-size:.85rem;line-height:1.4">${quiz.q}</div>
           <div id="qd-a-${r.blockId}" style="display:none">
             <div style="font-size:.78rem;color:var(--text-2);margin:.4em 0;padding-top:.4em;border-top:1px solid var(--border)">${quiz.a}</div>
-            <div style="font-size:.6rem;color:var(--text-3);margin-bottom:.3em">Ze sekce: ${block.meta.title}</div>
+            <div style="font-size:.6rem;color:var(--text-3);margin-bottom:.3em">${tr(`From: {0}`, block.meta.title)}</div>
             <div class="recall-buttons">
-              <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${r.blockId}',0,this)">Zapomněl</button>
-              <button class="recall-btn recall-hard" onclick="app.scoreRecall('${r.blockId}',1,this)">Těžké</button>
-              <button class="recall-btn recall-good" onclick="app.scoreRecall('${r.blockId}',2,this)">Dobré</button>
-              <button class="recall-btn recall-easy" onclick="app.scoreRecall('${r.blockId}',3,this)">Snadné!</button>
+              <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${r.blockId}',0,this)">${tr(`Forgot`)}</button>
+              <button class="recall-btn recall-hard" onclick="app.scoreRecall('${r.blockId}',1,this)">${tr(`Hard`)}</button>
+              <button class="recall-btn recall-good" onclick="app.scoreRecall('${r.blockId}',2,this)">${tr(`Good`)}</button>
+              <button class="recall-btn recall-easy" onclick="app.scoreRecall('${r.blockId}',3,this)">${tr(`Easy!`)}</button>
             </div>
           </div>
-          <button class="recall-reveal" onclick="document.getElementById('qd-a-${r.blockId}').style.display='block';this.style.display='none'" style="margin-top:.3em">Ukázat odpověď</button>
+          <button class="recall-reveal" onclick="document.getElementById('qd-a-${r.blockId}').style.display='block';this.style.display='none'" style="margin-top:.3em">${tr(`Show answer`)}</button>
         </div>`;
       }).filter(Boolean);
-      if (dueCards.length) h += this.shelf(`\u{1F525} Due now (${due.length})`, dueCards);
+      if (dueCards.length) h += this.shelf(`${tr(`\u{1F525} Due now ({0})`, due.length)}`, dueCards);
     }
 
     // ── Unread blocks (haven't read yet = "Don't know") ──
     const allSpines = this.allBlocks.filter(b => b.meta.type === 'spine');
     const unreadBlocks = allSpines.filter(b => !u.readBlocks.has(b.meta.id));
     const recallSet = new Set(Object.keys(u.recall));
-    const newCards = [...u.readBlocks].filter(id => !recallSet.has(id)); // read but no recall yet
+    // read but no recall yet — one card per concept
+    const newCards = [...new Set([...u.readBlocks].map(id => this._recallKey(id)))].filter(id => !recallSet.has(id));
 
     // ── Confidence map: each card is a small colored cell, hover shows title ──
     // Build ordered list: struggling → new → learning → confident → unread
@@ -3039,14 +3348,14 @@ class PBook {
       const cellW = Math.max(4, Math.min(12, Math.floor((window.innerWidth - 32) / allCards.length)));
       h += `<div style="padding:.5em 1em .6em">
         <div style="display:flex;flex-wrap:wrap;gap:2px" id="quizMap">
-          ${allCards.map(c => `<div style="width:${cellW}px;height:${cellW}px;border-radius:2px;background:${c.color};cursor:pointer;transition:transform .1s" title="${this.escHtml(c.label + ': ' + c.q)}" onclick="app.${c.label === 'Unread' ? "openBlock('" + c.id + "')" : "showBlockRecall('" + c.id + "')"}"></div>`).join('')}
+          ${allCards.map(c => `<div style="width:${cellW}px;height:${cellW}px;border-radius:2px;background:${c.color};cursor:pointer;transition:transform .1s" title="${this.escHtml(tr(c.label) + ': ' + c.q)}" onclick="app.${c.label === 'Unread' ? "openBlock('" + c.id + "')" : "showBlockRecall('" + c.id + "')"}"></div>`).join('')}
         </div>
-        <div style="display:flex;gap:.8em;font-size:.58rem;color:var(--text-3);margin-top:.4em">
-          ${hardCards.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#dc2626;vertical-align:middle"></span> ${hardCards.length} struggling</span>` : ''}
-          ${newCards.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--accent);vertical-align:middle"></span> ${newCards.length} new</span>` : ''}
-          ${medCards.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--warn);vertical-align:middle"></span> ${medCards.length} learning</span>` : ''}
-          ${easyCards.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--product);vertical-align:middle"></span> ${easyCards.length} confident</span>` : ''}
-          ${unreadBlocks.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--border);vertical-align:middle"></span> ${unreadBlocks.length} unread</span>` : ''}
+        <div style="display:flex;gap:.8em;font-size:.7rem;color:var(--text-3);margin-top:.4em">
+          ${hardCards.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#dc2626;vertical-align:middle"></span> ${tr(`{0} struggling`, hardCards.length)}</span>` : ''}
+          ${newCards.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--accent);vertical-align:middle"></span> ${tr(`{0} new`, newCards.length)}</span>` : ''}
+          ${medCards.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--warn);vertical-align:middle"></span> ${tr(`{0} learning`, medCards.length)}</span>` : ''}
+          ${easyCards.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--product);vertical-align:middle"></span> ${tr(`{0} confident`, easyCards.length)}</span>` : ''}
+          ${unreadBlocks.length ? `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--border);vertical-align:middle"></span> ${tr(`{0} unread`, unreadBlocks.length)}</span>` : ''}
         </div>
       </div>`;
     }
@@ -3062,16 +3371,16 @@ class PBook {
         if (!quiz) return '';
         const card = u.recall[r.blockId];
         const overdue = Math.round((Date.now() - card.nextReview) / 3600000);
-        const reason = overdue > 24 ? `${Math.round(overdue/24)}d overdue` : overdue > 0 ? `${overdue}h overdue` : 'Due';
+        const reason = overdue > 24 ? `${tr(`{0}d overdue`, Math.round(overdue/24))}` : overdue > 0 ? `${tr(`{0}h overdue`, overdue)}` : tr('Due');
         return this._quizPreviewCard(r.blockId, card, 'var(--warn)', reason);
       }).filter(Boolean);
-      if (dueCards.length) h += this.shelf(`\u{1F525} Review now (${due.length})`, dueCards);
+      if (dueCards.length) h += this.shelf(`${tr(`\u{1F525} Review now ({0})`, due.length)}`, dueCards);
     }
 
     // Struggling (ease < 1.8) — shown first, these need the most work
     if (hardCards.length > 0) {
       const hCards = hardCards.sort((a,b) => a[1].ease - b[1].ease).slice(0, 12).map(([id, c]) => this._quizPreviewCard(id, c, '#dc2626', 'Struggling')).filter(Boolean);
-      if (hCards.length) h += this.shelf(`\u{1F534} Struggling (${hardCards.length})`, hCards);
+      if (hCards.length) h += this.shelf(`${tr(`\u{1F534} Struggling ({0})`, hardCards.length)}`, hCards);
     }
 
     // New (read but never reviewed) — important to start reviewing
@@ -3083,46 +3392,46 @@ class PBook {
         if (!quiz) return '';
         return this._quizPreviewCard(id, { ease: 2.5, reps: 0, nextReview: Date.now() }, 'var(--accent)', 'New');
       }).filter(Boolean);
-      if (nCards.length) h += this.shelf(`\u{1F7E3} New — never tested (${newCards.length})`, nCards);
+      if (nCards.length) h += this.shelf(`${tr(`\u{1F7E3} New — never tested ({0})`, newCards.length)}`, nCards);
     }
 
     // Learning (ease 1.8-2.5) — the sweet spot for practice
     if (medCards.length > 0) {
       const mCards = medCards.sort((a,b) => a[1].ease - b[1].ease).slice(0, 12).map(([id, c]) => this._quizPreviewCard(id, c, 'var(--warn)', 'Learning')).filter(Boolean);
-      if (mCards.length) h += this.shelf(`\u{1F7E1} Learning (${medCards.length})`, mCards);
+      if (mCards.length) h += this.shelf(`${tr(`\u{1F7E1} Learning ({0})`, medCards.length)}`, mCards);
     }
 
     // Confident (ease >= 2.5) — still shown, tested occasionally
     if (easyCards.length > 0) {
       const eCards = easyCards.sort((a,b) => b[1].ease - a[1].ease).slice(0, 10).map(([id, c]) => this._quizPreviewCard(id, c, 'var(--product)', 'Confident')).filter(Boolean);
-      if (eCards.length) h += this.shelf(`\u{1F7E2} Confident (${easyCards.length})`, eCards);
+      if (eCards.length) h += this.shelf(`${tr(`\u{1F7E2} Confident ({0})`, easyCards.length)}`, eCards);
     }
 
     // Unread — motivate reading
     if (unreadBlocks.length > 0) {
       const uCards = unreadBlocks.slice(0, 8).map(b => {
         return `<div class="card" style="border-top:3px solid var(--border);flex:0 0 240px;opacity:.7;cursor:pointer" onclick="app.openBlock('${b.meta.id}')">
-          <div style="font-size:.6rem;font-weight:700;color:var(--text-3);margin-bottom:.2em">\u{1F512} Not read yet</div>
+          <div style="font-size:.6rem;font-weight:700;color:var(--text-3);margin-bottom:.2em">${tr(`\u{1F512} Not read yet`)}</div>
           <div class="card-title" style="font-size:.82rem;line-height:1.3">${b.meta.title}</div>
-          <div style="font-size:.62rem;color:var(--text-3);margin-top:.2em">Kap. ${b.meta._chapterNum} · Kartičku odemkneš přečtením</div>
+          <div style="font-size:.7rem;color:var(--text-3);margin-top:.2em">${tr(`Ch{0} · Read to unlock card`, b.meta._chapterNum)}</div>
         </div>`;
       });
-      h += this.shelf(`\u{26AA} Haven't read yet (${unreadBlocks.length})`, uCards);
+      h += this.shelf(`${tr(`\u{26AA} Haven't read yet ({0})`, unreadBlocks.length)}`, uCards);
     }
 
     // ── How it works ──
     h += `<div style="padding:.6em 1em">
       <details style="font-size:.75rem;color:var(--text-2)">
-        <summary style="cursor:pointer;font-weight:600;color:var(--text-3);font-size:.7rem">Jak funguje chytré opakování?</summary>
+        <summary style="cursor:pointer;font-weight:600;color:var(--text-3);font-size:.7rem">${tr(`How does smart review work?`)}</summary>
         <div style="margin-top:.5em;line-height:1.5">
-          <p>Kartičky se přesouvají mezi drahami podle tvých odpovědí:</p>
+          <p>${tr(`Cards move between lanes based on your answers:`)}</p>
           <ul style="padding-left:1.2em;margin:.4em 0">
-            <li><strong>Zapomněl</strong> → kartička jde mezi Problémové a brzy se vrátí</li>
-            <li><strong>Těžké</strong> → zůstává ve své dráze, kratší interval</li>
-            <li><strong>Dobré</strong> → posouvá se k Jistým, běžný interval</li>
-            <li><strong>Snadné</strong> → jde mezi Jisté, delší interval</li>
+            <li>${tr(`<strong>Forgot</strong> → card moves to Struggling, reviewed again soon`)}</li>
+            <li>${tr(`<strong>Hard</strong> → stays in current lane, shorter interval`)}</li>
+            <li>${tr(`<strong>Good</strong> → moves toward Confident, normal interval`)}</li>
+            <li>${tr(`<strong>Easy</strong> → moves to Confident, longer interval`)}</li>
           </ul>
-          <p>I Jisté kartičky se vracejí — bez opakování znalosti blednou. Algoritmus nejčastěji zkouší středně těžké kartičky (tam se naučíš nejvíc).</p>
+          <p>${tr(`Even Confident cards come back — knowledge fades without review. The algorithm tests middle-difficulty cards most often (that's where you learn the most).`)}</p>
         </div>
       </details>
     </div>`;
@@ -3134,11 +3443,11 @@ class PBook {
       .slice(0, 5);
     if (upcoming.length > 0) {
       h += `<div style="padding:.5em 1em">
-        <div style="font-size:.7rem;font-weight:600;color:var(--text-3);margin-bottom:.3em">Nadcházející opakování</div>
+        <div style="font-size:.7rem;font-weight:600;color:var(--text-3);margin-bottom:.3em">${tr(`Upcoming reviews`)}</div>
         ${upcoming.map(([id, c]) => {
           const b = this.findBlock(id);
           const title = b?.meta?.title || id;
-          return `<div style="display:flex;align-items:center;gap:.4em;font-size:.68rem;padding:.2em 0;color:var(--text-2)">
+          return `<div style="display:flex;align-items:center;gap:.4em;font-size:.7rem;padding:.2em 0;color:var(--text-2)">
             <span style="color:var(--warn);font-weight:600;min-width:3.5em">${this._timeUntil(c.nextReview)}</span>
             <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${this.escHtml(title)}</span>
           </div>`;
@@ -3148,18 +3457,18 @@ class PBook {
 
     // ── Bottom actions (side by side on wide screens) ──
     const unread = this.allBlocks.filter(b => b.meta.core && b.meta.type === 'spine' && !u.readBlocks.has(b.meta.id));
-    const totalWithQ = this.allBlocks.filter(b => b.meta.recallQ).length;
+    const totalWithQ = this._recallConceptKeys().length;   // one card per concept
     h += `<div style="padding:.8em 1em">`;
     h += `<div style="display:flex;gap:.5em;flex-wrap:wrap">`;
     if (unread.length > 0) {
-      h += `<button class="btn-primary" style="flex:1;min-width:150px;font-size:.82rem;padding:.5em" onclick="app.switchView('home')">Pokračovat ve čtení \u{1F4D6} (${unread.length})</button>`;
+      h += `<button class="btn-primary" style="flex:1;min-width:150px;font-size:.82rem;padding:.5em" onclick="app.switchView('home')">${tr(`Continue reading \u{1F4D6} ({0})`, unread.length)}</button>`;
     }
     if (totalWithQ > 0) {
-      h += `<button class="btn-ghost" style="flex:1;min-width:150px;border:1.5px solid var(--accent);border-radius:8px;padding:.5em;font-size:.78rem;color:var(--accent)" onclick="app.startPractice()">Otestovat všech ${totalWithQ} cards</button>`;
+      h += `<button class="btn-ghost" style="flex:1;min-width:150px;border:1.5px solid var(--accent);border-radius:8px;padding:.5em;font-size:.78rem;color:var(--accent)" onclick="app.startPractice()">${tr(`Test all {0} cards`, totalWithQ)}</button>`;
     }
     h += `</div>`;
     if (hardCards.length > 0) {
-      h += `<div style="text-align:center;margin-top:.4em"><button style="border:1.5px solid #dc2626;border-radius:8px;padding:.35em .8em;font-size:.72rem;color:#dc2626;cursor:pointer;background:none;font-family:var(--font-ui)" onclick="app._startHardMode()">Hard mode (${hardCards.length})</button></div>`;
+      h += `<div style="text-align:center;margin-top:.4em"><button style="border:1.5px solid #dc2626;border-radius:8px;padding:.35em .8em;font-size:.72rem;color:#dc2626;cursor:pointer;background:none;font-family:var(--font-ui)" onclick="app._startHardMode()">${tr(`Hard mode ({0})`, hardCards.length)}</button></div>`;
     }
     h += `</div>`;
 
@@ -3168,13 +3477,13 @@ class PBook {
 
   _timeUntil(ts) {
     const diff = ts - Date.now();
-    if (diff <= 0) return 'Právě teď';
+    if (diff <= 0) return tr('Due now');
     const min = Math.round(diff / 60000);
-    if (min < 60) return `in ${min}m`;
+    if (min < 60) return `${tr(`in {0}m`, min)}`;
     const hrs = Math.round(min / 60);
-    if (hrs < 24) return `in ${hrs}h`;
+    if (hrs < 24) return `${tr(`in {0}h`, hrs)}`;
     const days = Math.round(hrs / 24);
-    return `in ${days}d`;
+    return `${tr(`in {0}d`, days)}`;
   }
 
   _quizPreviewCard(blockId, card, color, label) {
@@ -3183,24 +3492,24 @@ class PBook {
     const quiz = this._getRecallQuestion(block);
     if (!quiz) return '';
     const isDue = card.nextReview && card.nextReview <= Date.now();
-    const timeLabel = card.nextReview ? (isDue ? 'Právě teď' : this._timeUntil(card.nextReview)) : '';
+    const timeLabel = card.nextReview ? (isDue ? tr('Due now') : this._timeUntil(card.nextReview)) : '';
     const uid = blockId.replace(/[^a-z0-9]/g, '');
     return `<div class="card" style="border-top:3px solid ${color};flex:0 0 260px;cursor:pointer" onclick="var a=document.getElementById('qp-${uid}');if(a)a.style.display=a.style.display==='none'?'block':'none'">
       <div style="display:flex;justify-content:space-between;margin-bottom:.2em">
-        <span style="font-size:.6rem;font-weight:700;color:${color}">${label}</span>
-        <span style="font-size:.55rem;color:${isDue ? 'var(--warn)' : 'var(--text-3)'};font-weight:${isDue ? '600' : '400'}">${card.reps ? card.reps + 'x · ' : ''}${timeLabel}</span>
+        <span style="font-size:.6rem;font-weight:700;color:${color}">${tr(label)}</span>
+        <span style="font-size:.7rem;color:${isDue ? 'var(--warn)' : 'var(--text-3)'};font-weight:${isDue ? '600' : '400'}">${card.reps ? card.reps + 'x · ' : ''}${timeLabel}</span>
       </div>
       <div class="card-title" style="font-size:.82rem;line-height:1.3">${quiz.q}</div>
-      <div style="font-size:.62rem;color:var(--text-3);margin-top:.2em">Kap. ${block.meta._chapterNum}: ${block.meta.title}</div>
+      <div style="font-size:.7rem;color:var(--text-3);margin-top:.2em">${tr(`Ch{0}: {1}`, block.meta._chapterNum, block.meta.title)}</div>
       <div id="qp-${uid}" style="display:none;margin-top:.4em;padding-top:.4em;border-top:1px solid var(--border)">
         <div style="font-size:.78rem;color:var(--text-2);line-height:1.4;margin-bottom:.4em">${quiz.a}</div>
         <div class="recall-buttons" onclick="event.stopPropagation()">
-          <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${blockId}',0,this)">Zapomněl</button>
-          <button class="recall-btn recall-hard" onclick="app.scoreRecall('${blockId}',1,this)">Těžké</button>
-          <button class="recall-btn recall-good" onclick="app.scoreRecall('${blockId}',2,this)">Dobré</button>
-          <button class="recall-btn recall-easy" onclick="app.scoreRecall('${blockId}',3,this)">Snadné!</button>
+          <button class="recall-btn recall-forgot" onclick="app.scoreRecall('${blockId}',0,this)">${tr(`Forgot`)}</button>
+          <button class="recall-btn recall-hard" onclick="app.scoreRecall('${blockId}',1,this)">${tr(`Hard`)}</button>
+          <button class="recall-btn recall-good" onclick="app.scoreRecall('${blockId}',2,this)">${tr(`Good`)}</button>
+          <button class="recall-btn recall-easy" onclick="app.scoreRecall('${blockId}',3,this)">${tr(`Easy!`)}</button>
         </div>
-        <a href="#" onclick="event.stopPropagation();event.preventDefault();app.openBlock('${blockId}')" style="display:block;font-size:.62rem;color:var(--accent);margin-top:.3em;text-align:center">Přečíst sekci znovu &rarr;</a>
+        <a href="#" onclick="event.stopPropagation();event.preventDefault();app.openBlock('${blockId}')" style="display:block;font-size:.7rem;color:var(--accent);margin-top:.3em;text-align:center">${tr(`Re-read this section &rarr;`)}</a>
       </div>
     </div>`;
   }
@@ -3238,14 +3547,14 @@ class PBook {
       const unread = this.allBlocks.filter(b => b.meta.core && b.meta.type === 'spine' && !this.user.readBlocks.has(b.meta.id));
       el.innerHTML = `<div class="recall-session">
         <div class="recall-summary-icon">${perfect ? '\u{1F31F}' : pct >= 70 ? '\u{1F389}' : '\u{1F4AA}'}</div>
-        <h2>${perfect ? 'Bez chyby!' : pct >= 70 ? 'Skvělá práce!' : 'Jen tak dál!'}</h2>
-        <p style="font-size:1.1rem;font-weight:700;margin:.3em 0">${s.correct} / ${s.total} correct (${pct}%)</p>
+        <h2>${perfect ? tr('Perfect score!') : pct >= 70 ? tr('Great job!') : tr('Keep going!')}</h2>
+        <p style="font-size:1.1rem;font-weight:700;margin:.3em 0">${tr(`{0} / {1} correct ({2}%)`, s.correct, s.total, pct)}</p>
         <div class="recall-summary-bar"><div style="width:${pct}%;background:${pct >= 70 ? 'var(--product)' : 'var(--warn)'};height:100%;border-radius:4px"></div></div>
-        ${bonusXP ? `<p style="color:var(--accent);font-weight:600;margin-top:.5em">+${bonusXP} XP quiz bonus</p>` : ''}
+        ${bonusXP ? `<p style="color:var(--accent);font-weight:600;margin-top:.5em">${tr(`+{0} XP quiz bonus`, bonusXP)}</p>` : ''}
         <div style="display:flex;flex-direction:column;gap:.5em;margin-top:1em;align-items:center">
-          ${unread.length > 0 ? `<button class="btn-primary" style="width:100%;max-width:280px" onclick="app.switchView('home')">\u{1F4D6} Číst nové sekce (zbývá ${unread.length})</button>` : ''}
-          <button class="btn-ghost" style="border:1px solid var(--accent);border-radius:8px;padding:.5em 1em;font-size:.82rem;color:var(--accent);width:100%;max-width:280px" onclick="app.startPractice()">Otestovat další kartičky</button>
-          <button style="font-size:.72rem;color:var(--text-3);margin-top:.3em;cursor:pointer" onclick="app._quizSessionActive=false;app._recallQueue=null;app.renderQuiz()">Zpět na přehled kvízu</button>
+          ${unread.length > 0 ? `<button class="btn-primary" style="width:100%;max-width:280px" onclick="app.switchView('home')">${tr(`\u{1F4D6} Read new sections ({0} left)`, unread.length)}</button>` : ''}
+          <button class="btn-ghost" style="border:1px solid var(--accent);border-radius:8px;padding:.5em 1em;font-size:.82rem;color:var(--accent);width:100%;max-width:280px" onclick="app.startPractice()">${tr(`Test more cards`)}</button>
+          <button style="font-size:.72rem;color:var(--text-3);margin-top:.3em;cursor:pointer" onclick="app._quizSessionActive=false;app._recallQueue=null;app.renderQuiz()">${tr(`Back to quiz overview`)}</button>
         </div>
       </div>`;
       return;
@@ -3253,19 +3562,19 @@ class PBook {
 
     const item = q[idx];
     const block = this._findAnyBlock(item.blockId);
-    if (!block) { this._recallIdx++; this._renderQuizCard(); return; }
     const quiz = this._getRecallQuestion(block);
+    if (!block || !quiz) { this._recallIdx++; this._renderQuizCard(); return; }
     const card = this.user.recall[item.blockId];
     const reps = card ? card.reps : 0;
     const ease = card ? card.ease.toFixed(1) : '—';
-    const diffLabel = !card ? 'Nová' : card.ease >= 2.5 ? 'Snadná' : card.ease >= 1.8 ? 'Střední' : 'Těžká';
+    const diffLabel = !card ? tr('New') : card.ease >= 2.5 ? tr('Easy') : card.ease >= 1.8 ? tr('Medium') : tr('Hard');
     const diffColor = !card ? 'var(--text-3)' : card.ease >= 2.5 ? 'var(--product)' : card.ease >= 1.8 ? 'var(--warn)' : '#dc2626';
 
     el.innerHTML = `<div class="recall-session">
       <div class="recall-progress-row">
         <span class="recall-progress-label">${idx + 1} / ${q.length}</span>
         <div class="recall-progress-bar"><div style="width:${Math.round((idx/q.length)*100)}%;background:var(--accent);height:100%;border-radius:4px;transition:width .3s"></div></div>
-        ${item.isDue ? '<span class="recall-due-badge">Teď</span>' : ''}
+        ${item.isDue ? ('<span class="recall-due-badge">' + tr(`Due`) + '</span>') : ''}
         <span style="font-size:.6rem;color:${diffColor};font-weight:600">${diffLabel}</span>
       </div>
       <div class="recall-card-big">
@@ -3273,20 +3582,20 @@ class PBook {
         <div class="recall-card-a" id="recallAnswer" style="display:none">
           <div class="recall-card-answer">${quiz.a}</div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin:.4em 0">
-            <a href="#" onclick="event.preventDefault();app.openBlock('${item.blockId}')" style="color:var(--accent);font-size:.72rem">Ch${block.meta._chapterNum}: ${block.meta.title} &rarr;</a>
-            <span style="font-size:.6rem;color:var(--text-3)">${reps}x reviewed &middot; ease ${ease}</span>
+            <a href="#" onclick="event.preventDefault();app.openBlock('${item.blockId}')" style="color:var(--accent);font-size:.72rem">${tr(`Ch{0}: {1} &rarr;`, block.meta._chapterNum, block.meta.title)}</a>
+            <span style="font-size:.6rem;color:var(--text-3)">${tr(`{0}x reviewed &middot; ease {1}`, reps, ease)}</span>
           </div>
           <div class="recall-buttons">
-            <button class="recall-btn recall-forgot" onclick="app._answerRecall('${item.blockId}',0)">Zapomněl</button>
-            <button class="recall-btn recall-hard" onclick="app._answerRecall('${item.blockId}',1)">Těžké</button>
-            <button class="recall-btn recall-good" onclick="app._answerRecall('${item.blockId}',2)">Dobré</button>
-            <button class="recall-btn recall-easy" onclick="app._answerRecall('${item.blockId}',3)">Snadné!</button>
+            <button class="recall-btn recall-forgot" onclick="app._answerRecall('${item.blockId}',0)">${tr(`Forgot`)}</button>
+            <button class="recall-btn recall-hard" onclick="app._answerRecall('${item.blockId}',1)">${tr(`Hard`)}</button>
+            <button class="recall-btn recall-good" onclick="app._answerRecall('${item.blockId}',2)">${tr(`Good`)}</button>
+            <button class="recall-btn recall-easy" onclick="app._answerRecall('${item.blockId}',3)">${tr(`Easy!`)}</button>
           </div>
         </div>
-        <button class="recall-reveal-big" id="recallRevealBtn" onclick="document.getElementById('recallAnswer').style.display='block';this.style.display='none'">Ukázat odpověď</button>
+        <button class="recall-reveal-big" id="recallRevealBtn" onclick="document.getElementById('recallAnswer').style.display='block';this.style.display='none'">${tr(`Show answer`)}</button>
       </div>
       <div style="display:flex;justify-content:center;margin-top:.8em">
-        <button style="font-size:.72rem;color:var(--text-3);border:1px solid var(--border);border-radius:6px;padding:.3em .8em;cursor:pointer" onclick="app._endPractice()">Konec (${this._recallScore.correct}/${idx} správně<!-- -->t)</button>
+        <button style="font-size:.72rem;color:var(--text-3);border:1px solid var(--border);border-radius:6px;padding:.3em .8em;cursor:pointer" onclick="app._endPractice()">${tr(`Stop ({0}/{1} correct)`, this._recallScore.correct, idx)}</button>
       </div>
     </div>`;
     window.scrollTo(0, 0);
@@ -3305,20 +3614,20 @@ class PBook {
     const url = window.location.origin + window.location.pathname + '#quiz-' + blockId;
 
     navigator.clipboard.writeText(url).then(() => {
-      this.showXPToast('Odkaz zkopírován!', 'info');
-    }).catch(() => { prompt('Zkopíruj tento odkaz:', url); });
+      this.showXPToast(tr('Link copied!'), 'info');
+    }).catch(() => { prompt(tr('Copy this link:'), url); });
   }
 
   _answerRecall(blockId, quality) {
     this.user.processRecall(blockId, quality);
     if (quality >= 2) this._recallScore.correct++;
-    const labels = ['Zapomněl', 'Těžké', 'Dobré!', 'Snadné!'];
+    const labels = [tr('Forgot'), tr('Hard'), tr('Good!'), tr('Easy!')];
     this.showXPToast(labels[quality], quality >= 2 ? 'xp' : 'info');
     if (quality === 0) {
       // Forgot — show "re-read" link before moving on
       const answerEl = document.getElementById('recallAnswer');
       if (answerEl) {
-        answerEl.insertAdjacentHTML('beforeend', `<div style="text-align:center;margin-top:.5em"><a href="#" onclick="event.preventDefault();app.openBlock('${blockId}')" style="color:var(--accent);font-size:.82rem;font-weight:600">Přečíst sekci znovu &rarr;</a></div>`);
+        answerEl.insertAdjacentHTML('beforeend', `<div style="text-align:center;margin-top:.5em"><a href="#" onclick="event.preventDefault();app.openBlock('${blockId}')" style="color:var(--accent);font-size:.82rem;font-weight:600">${tr(`Re-read this section &rarr;`)}</a></div>`);
       }
       this._recallIdx++;
       setTimeout(() => this._renderQuizCard(), 2000);
@@ -3335,9 +3644,11 @@ class PBook {
     this._scoredRecall.add(blockId);
     setTimeout(() => this._scoredRecall.delete(blockId), 2000);
 
+    // a "Check yourself" card can be answered before its concept was ever scheduled
+    if (!this.user.recall[blockId]) this.user.scheduleRecall(blockId);
     const xpEarned = this.user.processRecall(blockId, quality);
-    const labels = ['Zapomněl — brzy zopakujeme!', 'Těžké — vydrž!', 'Dobré — pěkně!', 'Snadné — paráda!'];
-    this.showXPToast(`+${xpEarned} XP ${labels[quality]}`, quality >= 2 ? 'xp' : 'info');
+    const labels = [tr('Forgot — reviewing soon!'), tr('Hard — keep at it!'), tr('Good — nice!'), tr('Easy — nailed it!')];
+    this.showXPToast(`${tr(`+{0} XP {1}`, xpEarned, labels[quality])}`, quality >= 2 ? 'xp' : 'info');
     this.checkGamificationEvents();
     this.updateXPBadge();
     // Remove the card from view (Browse shelf, inline, quiz preview)
@@ -3379,41 +3690,432 @@ class PBook {
   }
 
   // ===== MAP VIEW =====
+  // ===== MAPA KONCEPTŮ (port z informatika-pbook, přizpůsobeno) =====
+  async _loadConceptMap() {
+    if (this._cmapData !== undefined) return this._cmapData;
+    try {
+      const r = await fetch('content/concept-map.json');
+      this._cmapData = r.ok ? this._bookData(await r.json()) : null;
+    } catch (e) { this._cmapData = null; }
+    // No exported map (content/concept-map.json): one theme per chapter, and every concept
+    // joins below as a node of its chapter — the journey board and the feed mini-map work anyway.
+    if (!this._cmapData && Object.keys(this.concepts || {}).length) {
+      const PALETTE = ['#7C3AED', '#0EA5E9', '#10B981', '#F59E0B', '#EF4444', '#EC4899', '#14B8A6', '#6366F1'];
+      this._cmapData = { temata: (this.book?.chapters || []).map((ch, i) => ({ id: ch.id, nazev: ch.title, color: PALETTE[i % PALETTE.length] })), nodes: [], edges: [] };
+    }
+    if (this._cmapData) {
+      // Concepts the exported map does not know yet (new anchors, visible as
+      // drafts in admin view) still get a node in their chapter — otherwise the
+      // Map silently left out every concept added since the last export.
+      const known = new Set(this._cmapData.nodes.map(n => n.slug));
+      const added = this._conceptOrder().filter(cid => !known.has(cid)).map(cid => {
+        const c = this.concepts[cid];
+        return { slug: cid, title: c.title || cid, tema: c.chapter, state: 'core', teaser: this.findBlock(c.anchor)?.meta?.teaser || '', rel: [], ...(c.parents?.length ? { prereq: c.parents } : {}) };
+      });
+      if (added.length) {
+        const ti = new Map(this._cmapData.temata.map((t, i) => [t.id, i]));
+        this._cmapData.nodes = [...this._cmapData.nodes, ...added].sort((a, b) => (ti.get(a.tema) ?? 99) - (ti.get(b.tema) ?? 99));
+      }
+      this._cmapNodes = {};
+      this._cmapByPool = {};
+      this._cmapData.nodes.forEach(n => {
+        this._cmapNodes[n.slug] = n;
+        (n.pool || []).forEach(pid => { if (!this._cmapByPool[pid]) this._cmapByPool[pid] = n; });
+      });
+      this._refreshMiniBoard();
+    }
+    return this._cmapData;
+  }
+  // Map node by slug OR by a concept/block id from its pool
+  _cmapNode(id) { return this._cmapNodes?.[id] || this._cmapByPool?.[id] || null; }
+  // Blocks belonging to a map node: pool entries resolve as a block id first (exact),
+  // then as a concept (incl. variants); without a pool it falls back to concept = slug.
+  _nodePool(node) {
+    if (!node) return [];
+    const ids = node.pool?.length ? node.pool : [node.slug];
+    const out = []; const seen = new Set();
+    ids.forEach(id => {
+      const direct = (this.allBlocks || []).find(b => (b.meta?.id || b.id) === id);
+      const blocks = direct ? [direct] : (this._conceptPool(id) || []);
+      blocks.forEach(b => { const bid = b.meta?.id || b.id; if (!seen.has(bid)) { seen.add(bid); out.push(b); } });
+    });
+    return out;
+  }
+  _nodeAnchor(node) {
+    if (!node) return '';
+    const a = this.concepts?.[node.slug]?.anchor;
+    if (a) return a;
+    const sp = this._nodePool(node).find(b => (b.meta?.type || b.type) === 'spine');
+    return sp ? (sp.meta?.id || sp.id) : node.slug;
+  }
+  _conceptRead(slug) {
+    const node = this._cmapNodes?.[slug];
+    const pool = node ? this._nodePool(node) : (this._conceptPool(slug) || []);
+    return pool.some(b => this.user.readBlocks.has(b.meta?.id || b.id));
+  }
+  _conceptRemembered(slug) {
+    const node = this._cmapNodes?.[slug];
+    const ids = node
+      ? this._nodePool(node).filter(b => (b.meta?.type || b.type) === 'spine').map(b => b.meta?.id || b.id)
+      : [this.concepts?.[slug]?.anchor].filter(Boolean);
+    return ids.some(id => { const c = this.user.recall?.[id]; return c && c.reps >= 2 && c.nextReview > Date.now(); });
+  }
+  _unmetPrereqs(id) {
+    const node = this._cmapNode(id);
+    if (!node || !node.prereq?.length) return [];
+    return node.prereq
+      .map(pr => this._cmapNodes?.[pr]).filter(Boolean)
+      .filter(pn => this._nodePool(pn).some(b => (b.meta?.type || b.type) === 'spine') && !this._conceptRead(pn.slug));
+  }
+  // Shared game-board geometry (Journey) — used by the big map AND the floating
+  // read-feed mini-map so their shapes match.
+  _journeyLayout(cm) {
+    const temata = cm.temata.filter(t => cm.nodes.some(n => n.tema === t.id));
+    const cols = Math.min(2, temata.length) || 1;
+    const W = 800, colW = W / cols;
+    const perRow = Math.max(3, Math.floor((colW - 130) / 84));
+    const ROW_H = 92, PAD_TOP = 62, PAD_BOT = 36;
+    const geo = {};
+    temata.forEach((t, i) => {
+      const k = cm.nodes.filter(n => n.tema === t.id).length;
+      geo[t.id] = { col: i % cols, gridRow: Math.floor(i / cols), rows: Math.max(1, Math.ceil(k / perRow)) };
+    });
+    const nRows = Math.ceil(temata.length / cols);
+    const rowY = []; let acc = 34;
+    for (let r = 0; r < nRows; r++) {
+      rowY.push(acc);
+      const hs = temata.filter(t => geo[t.id].gridRow === r).map(t => geo[t.id].rows * ROW_H + PAD_TOP + PAD_BOT);
+      acc += Math.max(...hs, 0) + 24;
+    }
+    const H = acc + 6;
+    const pos = {};
+    temata.forEach(t => {
+      const g = geo[t.id];
+      const nodes = cm.nodes.filter(n => n.tema === t.id);
+      const top = rowY[g.gridRow] + PAD_TOP;
+      nodes.forEach((n, i) => {
+        const r = Math.floor(i / perRow);
+        const rowCount = Math.min(perRow, nodes.length - r * perRow);
+        let c = i % perRow;
+        if (r % 2) c = rowCount - 1 - c;
+        const step = rowCount > 1 ? Math.min(110, (colW - 140) / (rowCount - 1)) : 0;
+        const x0 = g.col * colW + colW / 2 - step * (rowCount - 1) / 2;
+        pos[n.slug] = { x: x0 + c * step, y: top + r * ROW_H + (i % 2 ? 8 : -6) };
+      });
+    });
+    const temaColor = {}; temata.forEach(t => { temaColor[t.id] = t.color; });
+    return { temata, cols, colW, W, H, geo, rowY, pos, temaColor, PAD_TOP, ROW_H };
+  }
+
+  // 🎲 Journey — game board with the suggested concept order
+  async renderJourneyMap() {
+    await this._loadConceptMap();
+    const cm = this._cmapData;
+    if (!cm) return '';
+    const { temata, W, H, pos, temaColor: __tc } = this._journeyLayout(cm);
+    const stat = {};
+    const now = Date.now();
+    cm.nodes.forEach(n => {
+      const pool = this._nodePool(n);
+      const readable = pool.filter(b => (b.meta?.type || b.type) === 'spine');
+      const read = readable.filter(b => this.user.readBlocks.has(b.meta?.id || b.id)).length;
+      const game = pool.find(b => (b.meta?.type || b.type) === 'game');
+      const due = readable.some(b => { const c = this.user.recall?.[b.meta?.id || b.id]; return c && c.nextReview <= now; });
+      stat[n.slug] = { read, total: readable.length, ghost: !readable.length, done: readable.length > 0 && read >= readable.length,
+        game: game ? (game.meta?.id || game.id) : null, due, rem: this._conceptRemembered(n.slug) };
+    });
+    const cur = cm.nodes.find(n => { const st = stat[n.slug]; return !st.ghost && !st.done && !this._unmetPrereqs(n.slug).length; })
+      || cm.nodes.find(n => !stat[n.slug].ghost && !stat[n.slug].done);
+    let road = '';
+    for (let i = 1; i < cm.nodes.length; i++) {
+      const a = pos[cm.nodes[i - 1].slug], b = pos[cm.nodes[i].slug];
+      const far = Math.abs(a.x - b.x) > 180 || Math.abs(a.y - b.y) > 120;
+      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2 + (far ? 40 : 12);
+      road += `M${a.x} ${a.y} Q ${mx} ${my}, ${b.x} ${b.y} `;
+    }
+    let arrows = '';
+    cm.nodes.forEach(n => (n.prereq || []).forEach((pr, pi) => {
+      const a = pos[pr], b = pos[n.slug];
+      if (!a || !b) return;
+      const why = (n.why && (n.why[pr] || n.why[pi])) || '';
+      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2 - 34;
+      arrows += `<path d="M${a.x} ${a.y} Q ${mx} ${my}, ${b.x} ${b.y}" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#jarr)" opacity="0.55">${why ? `<title>${tr(`Why first: {0}`, this.escHtml(why))}</title>` : ''}</path>`;
+    }));
+    const R = 25;
+    // min-width keeps the 10 px labels legible on a phone (the 800-wide board
+    // shrank them to ~5 px); the wrapper scrolls sideways instead
+    let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;min-width:640px;height:auto;display:block" font-family="system-ui,sans-serif">
+      <defs><marker id="jarr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#94A3B8"/></marker></defs>`;
+    temata.forEach(t => {
+      const pts = cm.nodes.filter(n => n.tema === t.id).map(n => pos[n.slug]);
+      const minX = Math.min(...pts.map(p2 => p2.x)) - 56, maxX = Math.max(...pts.map(p2 => p2.x)) + 56;
+      const minY = Math.min(...pts.map(p2 => p2.y)) - 58, maxY = Math.max(...pts.map(p2 => p2.y)) + 54;
+      svg += `<rect x="${minX}" y="${minY}" width="${maxX - minX}" height="${maxY - minY}" rx="24" fill="${t.color}" opacity="0.07"/>
+        <text x="${minX + 14}" y="${minY + 20}" font-size="12.5" font-weight="700" fill="${t.color}">${this.escHtml(t.nazev)}</text>`;
+    });
+    svg += `<path d="${road}" fill="none" stroke="var(--border)" stroke-width="8" stroke-linecap="round" opacity="0.9"/>` + arrows;
+    const temaColor = __tc;
+    cm.nodes.forEach(n => {
+      const { x, y } = pos[n.slug];
+      const st = stat[n.slug];
+      const color = temaColor[n.tema] || '#6B7280';
+      const label = this.escHtml(n.short || n.title.slice(0, 16));
+      const defTip = n.teaser || n.def || '';
+      if (st.ghost) {
+        svg += `<g style="cursor:pointer" onclick="app.startAuthoring('${n.slug}')">
+          <title>${this.escHtml((defTip ? defTip + ' — ' : '') + tr('No article yet — click to write the first one! (author studio with AI coach)'))}</title>
+          <circle cx="${x}" cy="${y}" r="17" fill="var(--card, #fff)" stroke="${color}" stroke-width="2" stroke-dasharray="4 4" opacity="0.85"/>
+          <text x="${x}" y="${y + 5}" text-anchor="middle" font-size="${this._nodeDraft(n) ? 12 : 14}" fill="${color}" opacity="0.9">${this._nodeDraft(n) ? '✍️' : '＋'}</text>
+          ${this._svgLabel(n.short || n.title, x, y + 32, 'font-size="10" fill="var(--text-3, #999)"', 16)}
+        </g>`;
+        if (st.game) svg += `<g style="cursor:pointer" onclick="app.switchView('read');app.openBlock('${st.game}')">
+          <circle cx="${x + 27}" cy="${y}" r="10" fill="#FEF3C7" stroke="#D97706" stroke-width="1.6"/>
+          <text x="${x + 27}" y="${y + 4}" text-anchor="middle" font-size="10"><title>${tr(`game for this concept`)}</title>🎮</text></g>`;
+        return;
+      }
+      const anchorId = this._nodeAnchor(n);
+      const pct = st.read / st.total;
+      const CIRC = 2 * Math.PI * (R + 4.5);
+      svg += `<g style="cursor:pointer" onclick="app.switchView('read');app.openBlock('${anchorId}')">
+        ${defTip ? `<title>${this.escHtml(defTip)}</title>` : ''}
+        <circle cx="${x}" cy="${y}" r="${R}" fill="${st.done ? '#D1FAE5' : 'var(--card, #fff)'}" stroke="${color}" stroke-width="3"/>
+        ${pct > 0 && !st.done ? `<circle cx="${x}" cy="${y}" r="${R + 4.5}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-dasharray="${(CIRC * pct).toFixed(1)} ${CIRC.toFixed(1)}" transform="rotate(-90 ${x} ${y})" opacity="0.85"/>` : ''}
+        <text x="${x}" y="${y + 5}" text-anchor="middle" font-size="${st.done ? 16 : 12.5}" font-weight="700" fill="${st.done ? '#15803D' : 'var(--text, #1b1b1f)'}">${st.done ? '✓' : `${st.read}/${st.total}`}</text>
+        ${st.rem ? `<text x="${x + R - 4}" y="${y - R + 6}" font-size="13"><title>${tr(`well remembered`)}</title>⭐</text>` : ''}
+        ${st.due ? `<text x="${x - R - 14}" y="${y + 4}" font-size="12" onclick="event.stopPropagation();app.switchView('quiz')"><title>${tr(`review due — open Quiz`)}</title>⏰</text>` : ''}
+        ${cur && cur.slug === n.slug ? `<circle cx="${x}" cy="${y}" r="${R + 9}" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="3 5"/><text x="${x - R + 1}" y="${y - R + 3}" text-anchor="middle" font-size="15">🧭</text>` : ''}
+        ${this._feedFocusSlug === n.slug ? `<circle cx="${x}" cy="${y}" r="${R + 13}" fill="none" stroke="#6366F1" stroke-width="2" opacity="0.85"><title>${tr(`reading now`)}</title></circle>` : ''}
+        ${this._nodeDraft(n) && !stat[n.slug].ghost ? `<text x="${x - R + 2}" y="${y + R + 4}" font-size="11" onclick="event.stopPropagation();app.startAuthoring('${this._nodeDraftSlug(n)}')"><title>${tr(`✍️ draft in progress`)}</title>✍️</text>` : ''}
+        ${this._svgLabel(n.short || n.title, x, y + R + 16, 'font-size="10.5" fill="var(--text-2, #666)"', 16)}
+      </g>`;
+      if (st.game) {
+        svg += `<g style="cursor:pointer" onclick="app.switchView('read');app.openBlock('${st.game}')">
+          <circle cx="${x + R + 12}" cy="${y}" r="10" fill="#FEF3C7" stroke="#D97706" stroke-width="1.6"/>
+          <text x="${x + R + 12}" y="${y + 4}" text-anchor="middle" font-size="10"><title>${tr(`game for this concept`)}</title>🎮</text>
+        </g>`;
+      }
+    });
+    svg += '</svg>';
+    return `<div class="fade-up" style="max-width:840px;margin:0 auto">
+      ${this._mapReturnToRead ? `<p style="margin:.1em 0 .3em"><button class="steer-chip" style="font-size:.74rem;border-color:#6366F1;color:#6366F1" onclick="app._mapReturnToRead=false;app.switchView('read')">${tr(`← Back to reading`)}</button></p>` : ''}
+      <p style="font-size:.78rem;color:var(--text-2);margin:.2em 0 .2em">${tr(`The book as a game board: fields are concepts, the number shows how many of their articles you have read (✓ = all). Dashed ＋ fields are still waiting for an article — click to write it yourself. Hover a field for its definition, hover an arrow for the reason of the dependency.`)}</p>
+      ${(this.proposals || []).length ? `<p style="font-size:.7rem;margin:0 0 .3em"><a href="#" style="color:#0EA5E9" onclick="event.preventDefault();app.setMapMode('koncepty')">${tr(`🌱 {0} proposals waiting for votes or an author →`, (this.proposals || []).length)}</a></p>` : ''}
+      <p style="font-size:.68rem;color:var(--text-3);margin:0 0 .5em">${tr(`✓ done · 2/4 in progress · ⭐ remembered · ⏰ review due · 🎮 game · ⇢ know first · ＋ waiting for an author`)}</p><div class="journey-scroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch">${svg}</div></div>`;
+  }
+
+  async renderConceptsMap() {
+    await this._loadConceptMap();
+    const cm = this._cmapData;
+    if (!cm) return ('<div style="padding:2em;text-align:center;color:var(--text-3)">' + tr(`Could not load the concept map.`) + '</div>');
+    const votes = this._ghostVotes();
+    const GENRE_ICONS = { explainer: '📄', story: '📖', 'worked-example': '🧮', 'code-walkthrough': '💻', comic: '🎭', animation: '🎞' };
+    const STATE_COLORS = { core: '#7C3AED', edited: '#10B981', community: '#D97706', private: '#9CA3AF' };
+    const TYPE_ICONS = { game: '🎮', question: '❓' };
+    const conceptRead = slug => this._conceptRead(slug);
+    const readN = cm.nodes.filter(n => conceptRead(n.slug)).length;
+    // 🌱 živé návrhy ze serveru (this.proposals) přiřazené k tématům dle kapitoly
+    const ghostsByTema = {};
+    (this.proposals || []).forEach(pr => {
+      const t = cm.temata.find(x => x.id === pr.chapter) ? pr.chapter : cm.temata[0]?.id;
+      (ghostsByTema[t] = ghostsByTema[t] || []).push(pr);
+    });
+
+    let h = `<div class="fade-up" style="max-width:760px;margin:0 auto">
+      <p style="font-size:.78rem;color:var(--text-2);margin:.2em 0 .8em">${tr(`The book by <b>concepts</b>, not chapters: each concept has its tellings (article, game, comic…) — click an icon to read. The ✍️ pencil opens the author studio with an AI coach. Dashed 🌱 concepts are not written yet — vote where to go deeper. Read <b>{r}/{n}</b> concepts.`).replace('{r}', readN).replace('{n}', cm.nodes.length)}</p>`;
+    cm.temata.forEach(t => {
+      const nodes = cm.nodes.filter(n => n.tema === t.id);
+      const ghosts = ghostsByTema[t.id] || [];
+      if (!nodes.length && !ghosts.length) return;
+      const readCount = nodes.filter(n => conceptRead(n.slug)).length;
+      h += `<details class="covmap-chapter-sec" open>
+        <summary style="display:flex;align-items:center;gap:.5em;cursor:pointer"><span style="width:10px;height:10px;border-radius:50%;background:${t.color};flex-shrink:0"></span>
+          <b>${this.escHtml(t.nazev)}</b>
+          <span style="color:var(--text-3);font-size:.72rem;margin-left:auto">${tr(`{0}/{1} read{2}`, readCount, nodes.length, ghosts.length ? ' · 🌱 ' + ghosts.length + tr(' proposals') : '')}</span></summary>
+        <div style="padding:.4em 0 .6em">`;
+      nodes.forEach(n => {
+        const pool = this._nodePool(n);
+        const anyRead = conceptRead(n.slug);
+        const anchorId = this._nodeAnchor(n);
+        const hasSpine = pool.some(b => ((b.meta || b).type) === 'spine');
+        const chips = pool.map(b => {
+          const m = b.meta || b;
+          const state = m.core ? 'core' : (m.state || 'edited');
+          const icon = TYPE_ICONS[m.type] || GENRE_ICONS[this._facetValues(m, 'genre')[0] || 'explainer'] || '📄';
+          const read = this.user.readBlocks.has(m.id);
+          return `<button class="tstrip-chip" style="--sc:${STATE_COLORS[state] || '#10B981'};${read ? 'box-shadow:0 0 0 1.5px #10B981' : ''}"
+            title="${this.escHtml((m.title || m.id) + (read ? tr(' · read') : ''))}" onclick="app.openTelling('${m.id}')">${icon}</button>`;
+        }).join('');
+        const isFocus = this._feedFocusSlug === n.slug;
+        h += `<div style="display:flex;align-items:center;gap:.5em;padding:.24em ${isFocus ? '.35em' : '0'};border-bottom:1px dashed var(--border)${isFocus ? ';background:color-mix(in srgb, #6366F1 7%, transparent);border-radius:8px' : ''}">
+          <span style="font-size:.75rem;width:1.1em;text-align:center">${anyRead ? '✅' : '○'}</span>
+          <a href="#" onclick="event.preventDefault();app.openBlock('${anchorId}')" style="font-size:.8rem;font-weight:600;color:var(--text);text-decoration:none;flex:1 1 auto" title="${this.escHtml(n.teaser || n.def || '')}">${this.escHtml(n.title)}</a>
+          ${hasSpine ? '' : ('<span style="font-size:.7rem;color:var(--text-3);border:1px dashed var(--border);border-radius:6px;padding:.06em .4em">' + tr(`🌱 no articles yet`) + '</span>')}
+          ${this._nodeDraft(n) ? `<button class="steer-chip" style="font-size:.6rem;border-color:#EC4899;color:#EC4899" onclick="app.startAuthoring('${this._nodeDraftSlug(n)}')">${tr(`✍️ draft in progress`)}</button>` : ''}
+          <span class="tstrip" style="margin:0">${chips}<button class="tstrip-chip" style="--sc:#EC4899" title="${tr(`Write your own telling of this concept (author studio with an AI coach)`)}" onclick="app.startAuthoring('${n.slug}')">✍️</button></span>
+        </div>`;
+      });
+      if (ghosts.length) {
+        h += `<div style="margin-top:.45em;font-size:.7rem;color:#0EA5E9;font-weight:700">${tr(`🌱 Where to go deeper — not written yet, vote:`)}</div>`;
+        ghosts.forEach(g => {
+          const voted = g.slug in votes;
+          h += `<div style="display:flex;align-items:flex-start;gap:.5em;padding:.22em 0">
+            <span style="font-size:.72rem;width:1.1em;text-align:center">🌱</span>
+            <div style="flex:1 1 auto"><span style="font-size:.78rem;font-weight:600;color:var(--text-2)">${this.escHtml(g.title)}</span>
+              <span style="font-size:.7rem;color:var(--text-3)"> — ${this.escHtml(g.objective || '')}</span></div>
+            <span id="ghost-${g.slug}-cmap" style="flex-shrink:0;display:flex;gap:.25em">${voted
+              ? `<span style="font-size:.7rem;color:#0EA5E9">${votes[g.slug] > 0 ? tr('✓ want') : tr('✓ passed')}</span>`
+              : `<button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9;font-size:.7rem;padding:.06em .4em" onclick="app.ghostVote('${g.slug}',1,'cmap')">${tr(`👍 want`)}</button>
+                 <button class="steer-chip" style="font-size:.7rem;padding:.06em .4em" onclick="app.ghostVote('${g.slug}',-1,'cmap')">${tr(`no`)}</button>`}
+              <button class="steer-chip" style="border-color:#EC4899;color:#EC4899;font-size:.7rem;padding:.06em .4em" onclick="app.startAuthoring('${g.slug}')">${tr(`✍️ write it`)}</button>
+              <button class="steer-chip" style="border-color:#7C3AED;color:#7C3AED;font-size:.7rem;padding:.06em .4em" title="${tr(`Creative workshop with the coach: align → create → certificate with your contribution`)}" onclick="app.startWorkshop('${g.slug}')">${tr(`🎓 workshop`)}</button></span>
+          </div>`;
+        });
+      }
+      h += `</div></details>`;
+    });
+    h += `</div>`;
+    return h;
+  }
+  // „Kam dál" pod sekcí: související koncepty z mapy (existující = odkaz, 🌱 = hlas)
+  // Floating game-board thumbnail — small, non-invasive, always visible while reading;
+  // click opens the Journey. Replaces the old dot strip (too much in the face).
+  // The concept you are reading right now — the mini-map highlights it as you scroll
+  _setFeedFocus(blockMeta) {
+    const ids = [blockMeta.id, ...(this._conceptIds ? this._conceptIds(blockMeta) : (blockMeta.concept ? [blockMeta.concept] : []))];
+    let node = null;
+    for (const cid of ids) { node = this._cmapNode(cid); if (node) break; }
+    const slug = node ? node.slug : null;
+    if (slug !== this._feedFocusSlug) { this._feedFocusSlug = slug; this._refreshMiniBoard(); }
+  }
+
+  _refreshMiniBoard() {
+    const cm = this._cmapData;
+    let el = document.getElementById('miniBoard');
+    if (!cm || !cm.nodes?.length) { if (el) el.style.display = 'none'; return; }
+    const { temata, W, H, pos, temaColor } = this._journeyLayout(cm);
+    const width = Math.min(100, Math.round(170 * W / H));
+    // Wide screens: the board sits in the left gutter (it used to cover the right
+    // edge of the text). Narrow screens: a progress pill that opens it in a sheet.
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'miniBoard';
+      el.className = 'mini-board';
+      document.body.appendChild(el);
+    }
+    el.style.setProperty('--mb-w', width + 'px');
+    const hasArt = n => this._nodePool(n).some(b => ((b.meta || b).type) === 'spine');
+    const cur = cm.nodes.find(n => hasArt(n) && !this._conceptRead(n.slug) && !this._unmetPrereqs(n.slug).length) || cm.nodes.find(n => hasArt(n) && !this._conceptRead(n.slug));
+    let svg = `<svg viewBox="0 0 ${W} ${H}" style="display:block;width:100%">`;
+    // regiony jako barevné plochy — tvar odpovídá velké mapě
+    temata.forEach(t => {
+      const pts = cm.nodes.filter(n => n.tema === t.id).map(n => pos[n.slug]);
+      if (!pts.length) return;
+      const minX = Math.min(...pts.map(p2 => p2.x)) - 52, maxX = Math.max(...pts.map(p2 => p2.x)) + 52;
+      const minY = Math.min(...pts.map(p2 => p2.y)) - 50, maxY = Math.max(...pts.map(p2 => p2.y)) + 48;
+      svg += `<rect x="${minX}" y="${minY}" width="${maxX - minX}" height="${maxY - minY}" rx="30" fill="${t.color}" opacity="0.13"/>`;
+    });
+    cm.nodes.forEach(n => {
+      const { x, y } = pos[n.slug] || {};
+      if (x === undefined) return;
+      const read = this._conceptRead(n.slug), rem = this._conceptRemembered(n.slug);
+      const ghost = !hasArt(n);
+      const isCur = cur && cur.slug === n.slug;
+      const isFocus = this._feedFocusSlug === n.slug;
+      const tip = `<title>${this.escHtml(n.short || n.title)}${isFocus ? tr(' · reading now') : ''}</title>`;
+      if (isFocus) svg += `<circle cx="${x}" cy="${y}" r="34" fill="none" stroke="#6366F1" stroke-width="9">${tip}</circle>`;
+      svg += ghost
+        ? `<circle cx="${x}" cy="${y}" r="14" fill="none" stroke="${temaColor[n.tema] || '#999'}" stroke-width="5" stroke-dasharray="8 8">${tip}</circle>`
+        : `<circle cx="${x}" cy="${y}" r="${isCur ? 22 : 17}" fill="${rem ? '#F59E0B' : read ? '#10B981' : 'var(--card,#fff)'}" stroke="${temaColor[n.tema] || '#999'}" stroke-width="${isCur ? 9 : 5}">${tip}</circle>`;
+    });
+    svg += '</svg>';
+    const { read, total } = this._conceptProgress();
+    el.innerHTML = `<button class="mb-board" title="${tr(`Your journey — open the map`)}" aria-label="${tr(`Your journey: {0} of {1} concepts read. Open the map`, read, total)}"
+        onclick="app._mapReturnToRead=true;app.switchView('map');app.setMapMode('cesta')">${svg}</button>
+      <button class="mb-pill${this._justRead?.size ? ' pulse' : ''}" aria-label="${tr(`Your journey: {0} of {1} concepts read`, read, total)}" onclick="app.openMiniSheet()">${this._ringSvg(total ? read / total : 0, 20)}<span>${read}/${total}</span></button>`;
+    this._justRead = null;
+    el.style.display = this.currentView === 'read' ? '' : 'none';
+  }
+
+
+  _prereqBanner(block) {
+    if (!block.concept || block.type !== 'spine') return '';
+    try { if ((JSON.parse(localStorage.getItem('pbook-prereq-dismissed') || '[]')).includes(block.concept)) return ''; } catch (e) {}
+    const unmet = this._unmetPrereqs(block.concept);
+    if (!unmet.length) return '';
+    const chips = unmet.map(n => `<button class="steer-chip" style="font-size:.7rem;border-color:#0EA5E9;color:#0EA5E9" onclick="app.openBlock('${this._nodeAnchor(n)}')">${this.escHtml(n.short || n.title)}</button>`).join('');
+    return `<div class="prereq-banner" style="display:flex;flex-wrap:wrap;gap:.35em;align-items:center;margin:0 0 .6em;padding:.45em .6em;border:1.5px dashed #0EA5E9;border-radius:9px;background:color-mix(in srgb, #0EA5E9 6%, transparent);font-size:.72rem">
+      ${tr(`<b>🧩 To make sense of this, first read:</b>{0}`, chips)}
+      <a href="#" style="margin-left:auto;color:var(--text-3)" onclick="event.preventDefault();try{const k='pbook-prereq-dismissed';const a=JSON.parse(localStorage.getItem(k)||'[]');a.push('${block.concept}');localStorage.setItem(k,JSON.stringify(a));}catch(e){};this.closest('.prereq-banner').remove()">${tr(`read anyway`)}</a>
+    </div>`;
+  }
+
+  _renderConceptLinks(block) {
+    const slug = block.concept;
+    const node = this._cmapNode(slug);
+    if (!node || !node.rel?.length) return '';
+    const rels = node.rel.map(r => this._cmapNodes[r]).filter(Boolean).slice(0, 5);
+    if (!rels.length) return '';
+    const chips = rels.map(r => {
+      const anchorId = this._nodeAnchor(r);
+      return `<button class="steer-chip" style="font-size:.7rem" title="${this.escHtml(r.teaser || '')}" onclick="app.openBlock('${anchorId}')">${this.escHtml(r.title)}</button>`;
+    }).join('');
+    return `<div class="concept-links" style="display:flex;flex-wrap:wrap;gap:.3em;align-items:center;margin:.5em 0;padding:.45em .55em;border:1px dashed var(--border);border-radius:9px">
+      <span style="font-size:.7rem;font-weight:700;color:var(--text-3)">${tr(`🧭 Where next:`)}</span>${chips}</div>`;
+  }
+
   async renderMap() {
     const el = document.getElementById('mapContent');
     const prog = this.user.getProgress(this.allBlocks);
     const visibleVoices = this.user.getVisibleVoices();
+    if (this._vmapAvailable === undefined) {
+      this._vmapAvailable = null;   // probe in flight
+      fetch('content/visual-map-data.json', { method: 'HEAD' }).then(r => {
+        this._vmapAvailable = r.ok;
+        if (!r.ok && this._mapMode === 'visual') this._mapMode = 'koncepty';
+        if (this.currentView === 'map') this.renderMap();
+      }).catch(() => { this._vmapAvailable = false; });
+    }
     const mapMode = this._mapMode || 'koncepty';
 
     const summary = this.user.getSignalSummary();
 
     let html = `<div class="map-header fade-up">
-      <h2 class="map-title">Book Map</h2>
+      <h2 class="map-title">${tr(`Book Map`)}</h2>
       <div class="map-progress-summary">
         <div class="map-progress-bar"><div class="map-progress-fill" style="width:${prog.pct}%"></div></div>
-        <span class="map-progress-text">${prog.read} read &middot; ${prog.seen} seen &middot; ${prog.total} total</span>
+        <span class="map-progress-text">${tr(`{0} read &middot; {1} seen &middot; {2} total`, prog.read, prog.seen, prog.total)}</span>
       </div>
       ${summary.views > 0 ? `<div class="map-signals-bar">
-        ${summary.reads > 0 ? `<span>&#128214; ${summary.reads} read</span>` : ''}
-        ${summary.views > summary.reads ? `<span>&#128065; ${summary.views - summary.reads} seen</span>` : ''}
-        ${summary.ratings > 0 ? `<span>&#128293; ${summary.ratings} rated</span>` : ''}
-        ${summary.saves > 0 ? `<span>&#128278; ${summary.saves} saved</span>` : ''}
-        ${summary.expands > 0 ? `<span>&#128295; ${summary.expands} explored</span>` : ''}
-        ${summary.dwellTotal > 60000 ? `<span>&#9201; ${Math.round(summary.dwellTotal/60000)}m reading</span>` : ''}
+        ${summary.reads > 0 ? `<span>${tr(`&#128214; {0} read`, summary.reads)}</span>` : ''}
+        ${summary.views > summary.reads ? `<span>${tr(`&#128065; {0} seen`, summary.views - summary.reads)}</span>` : ''}
+        ${summary.ratings > 0 ? `<span>${tr(`&#128293; {0} rated`, summary.ratings)}</span>` : ''}
+        ${summary.saves > 0 ? `<span>${tr(`&#128278; {0} saved`, summary.saves)}</span>` : ''}
+        ${summary.expands > 0 ? `<span>${tr(`&#128295; {0} explored`, summary.expands)}</span>` : ''}
+        ${summary.dwellTotal > 60000 ? `<span>${tr(`&#9201; {0}m reading`, Math.round(summary.dwellTotal/60000))}</span>` : ''}
       </div>` : ''}
       <div class="map-mode-toggle">
-        <button class="map-mode-btn ${mapMode === 'koncepty' ? 'active' : ''}" onclick="app.setMapMode('koncepty')">🧠 Koncepty</button>
-        <button class="map-mode-btn ${mapMode === 'visual' ? 'active' : ''}" onclick="app.setMapMode('visual')">Vizuální</button>
-        <button class="map-mode-btn ${mapMode === 'list' ? 'active' : ''}" onclick="app.setMapMode('list')">Podrobný seznam</button>
-        ${this._f('steering') ? `<button class="map-mode-btn ${mapMode === 'coverage' ? 'active' : ''}" onclick="app.setMapMode('coverage')">🌱 Živá kniha</button>` : ''}
-        <button class="map-mode-btn ${mapMode === 'saved' ? 'active' : ''}" onclick="app.setMapMode('saved')">Uložené${this.user.savedBlocks.size ? ' (' + this.user.savedBlocks.size + ')' : ''}</button>
-        <button class="map-mode-btn ${mapMode === 'notes' ? 'active' : ''}" onclick="app.setMapMode('notes')">Poznámky${this._getNoteCount() ? ' (' + this._getNoteCount() + ')' : ''}</button>
+        <button class="map-mode-btn ${mapMode === 'koncepty' ? 'active' : ''}" onclick="app.setMapMode('koncepty')">${tr(`🧠 Concepts`)}</button>
+        <button class="map-mode-btn ${mapMode === 'cesta' ? 'active' : ''}" onclick="app.setMapMode('cesta')">${tr(`🎲 Journey`)}</button>
+        ${this._vmapAvailable !== false ? `<button class="map-mode-btn ${mapMode === 'visual' ? 'active' : ''}" onclick="app.setMapMode('visual')">${tr(`Visual`)}</button>` : ''}
+        <button class="map-mode-btn ${mapMode === 'list' ? 'active' : ''}" onclick="app.setMapMode('list')">${tr(`Detail List`)}</button>
+        <button class="map-mode-btn ${mapMode === 'saved' ? 'active' : ''}" onclick="app.setMapMode('saved')">${tr(`Saved{0}`, this.user.savedBlocks.size ? ' (' + this.user.savedBlocks.size + ')' : '')}</button>
+        <button class="map-mode-btn ${mapMode === 'notes' ? 'active' : ''}" onclick="app.setMapMode('notes')">${tr(`Notes{0}`, this._getNoteCount() ? ' (' + this._getNoteCount() + ')' : '')}</button>
       </div>
-      <button class="map-reset-btn" onclick="app.resetAll()">Vynulovat postup</button>
+      <button class="map-reset-btn" onclick="app.resetAll()">${tr(`Reset progress`)}</button>
     </div>`;
 
+    if (mapMode === 'koncepty') {
+      html += await this.renderConceptsMap();
+      el.innerHTML = html;
+      return;
+    }
+    if (mapMode === 'cesta') {
+      html += await this.renderJourneyMap();
+      el.innerHTML = html;
+      return;
+    }
     if (mapMode === 'coverage') {
-      html += '<div id="coverageMapWrap" class="fade-up"><div style="padding:1.5em;color:var(--text-3);font-size:.8rem">Mapuji živou knihu…</div></div>';
+      html += ('<div id="coverageMapWrap" class="fade-up"><div style="padding:1.5em;color:var(--text-3);font-size:.8rem">' + tr(`Mapping the living book…`) + '</div></div>');
       el.innerHTML = html;
       this._renderCoverageMap().then(inner => {
         const wrap = document.getElementById('coverageMapWrap');
@@ -3434,9 +4136,7 @@ class PBook {
       return;
     }
 
-    if (mapMode === 'koncepty') {
-      html += await this.renderConceptsMap();
-    } else if (mapMode === 'visual') {
+    if (mapMode === 'visual') {
       html += await this.renderVisualMap(visibleVoices);
       el.innerHTML = html;
       this._vmapInitZoom();
@@ -3445,10 +4145,10 @@ class PBook {
 
     // List mode legend
     html += `<div class="map-legend">
-      <span class="ml-item"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#059669"/></svg> Read</span>
-      <span class="ml-item"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#E7E5E4"/></svg> Unread</span>
-      <span class="ml-item"><span style="font-size:.65rem;font-weight:700;color:var(--accent);background:var(--accent-bg);padding:.1em .3em;border-radius:3px">CORE</span> Must read</span>
-      <span class="ml-item"><span style="font-size:.65rem">\u{1F3AE}</span> Mini-game</span>
+      <span class="ml-item"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#059669"/></svg> ${tr(`Read`)}</span>
+      <span class="ml-item"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#E7E5E4"/></svg> ${tr(`Unread`)}</span>
+      <span class="ml-item"><span style="font-size:.7rem;font-weight:700;color:var(--accent);background:var(--accent-bg);padding:.1em .3em;border-radius:3px">${tr(`CORE`)}</span> ${tr(`Must read`)}</span>
+      <span class="ml-item"><span style="font-size:.65rem">${tr(`\u{1F3AE}`)}</span> ${tr(`Mini-game`)}</span>
     </div>`;
 
     // Chapter reading order — which chapters should come before which
@@ -3500,9 +4200,10 @@ class PBook {
         <div class="map-ch-info">
           <div class="map-ch-title">${ch.title}</div>
           <div class="map-ch-sub">${ch.subtitle}</div>
-          <div class="map-ch-stats">${readCount}/${totalCount} read &middot; ${coreRead}/${coreCount} core</div>
+          <div class="map-ch-stats">${tr(`{0}/{1} read &middot; {2}/{3} core`, readCount, totalCount, coreRead, coreCount)}</div>
         </div>
         ${chImg}
+        <button class="steer-chip" title="${tr(`Download this chapter as a slide deck (SlAIdy)`)}" style="font-size:.78rem;flex-shrink:0" onclick="event.stopPropagation();app.slaidyExportChapter('${ch.id}')">🎞</button>
         <div class="map-ch-arrow">&rsaquo;</div>
       </div>`;
 
@@ -3513,8 +4214,8 @@ class PBook {
         const isCore = item.core;
         const isGame = item.type === 'game';
         const icon = isGame ? '\u{1F3AE}' : isCore ? '\u{25CF}' : '\u{25CB}';
-        const badge = isCore ? '<span class="map-core-badge">CORE</span>' : '';
-        const gameTag = isGame ? '<span class="map-game-tag">\u{1F3AE}</span>' : '';
+        const badge = isCore ? ('<span class="map-core-badge">' + tr(`CORE`) + '</span>') : '';
+        const gameTag = isGame ? ('<span class="map-game-tag">' + tr(`\u{1F3AE}`) + '</span>') : '';
 
         html += `<div class="map-block ${isRead ? 'read' : ''}" onclick="app.openBlock('${item.id}')">
           <div class="map-dot ${isRead ? 'done' : ''}"></div>
@@ -3539,9 +4240,7 @@ class PBook {
 
   getSuggestedNext(prereqs) {
     for (let ci = 0; ci < this.book.chapters.length; ci++) {
-      const blocks = this.chapters[ci]?.blocks || [];
-      const spines = blocks.filter(b => b.type === 'spine');
-      const next = spines.find(b => !this.user.readBlocks.has(b.id));
+      const next = this.chapters[ci] && this._nextUnreadInFlow(this.chapters[ci]);
       if (next) return next.id;
     }
     return null;
@@ -3566,7 +4265,7 @@ class PBook {
     const values = conf.values;
     const icons = conf.icons || {};
     const myVal = this.user.getTargetFacets()[dim] || this._facetDefault(dim);
-    const DIM_LABELS = { lens: '🌐 World', depth: '📏 Depth', visuality: '🖼 Form', carriers: '🧩 Blocks', genre: '✒️ Genre', lang: '🌍 Language', lengthBand: '⏱ Délka' };
+    const DIM_LABELS = { lens: tr('🌐 World'), depth: tr('📏 Depth'), visuality: tr('🖼 Form'), carriers: tr('🧩 Blocks'), genre: tr('✒️ Genre'), lang: tr('🌍 Language'), lengthBand: tr('⏱ Length') };
 
     // non-git articles land in the chapter of their (primary) concept's anchor
     const chapterOfConcept = cid => this.concepts?.[cid]?.chapter;
@@ -3593,7 +4292,7 @@ class PBook {
       const cells = values.map(v => {
         const my = v === myVal ? ' covmap-mylens' : '';
         return set.includes(v)
-          ? `<td class="covmap-cell${my}" onclick="app.openTelling('${meta.id}')" title="pokrývá ${v} — přečteno"><span style="color:${color};font-size:.85rem">●</span></td>`
+          ? `<td class="covmap-cell${my}" onclick="app.openTelling('${meta.id}')" title="${tr(`covers {0} — read`, v)}"><span style="color:${color};font-size:.85rem">●</span></td>`
           : `<td class="covmap-cell${my}" style="cursor:default"><span style="color:var(--border)">·</span></td>`;
       }).join('');
       return `<tr><td class="covmap-concept" onclick="app.openTelling('${meta.id}')" title="Read">
@@ -3609,7 +4308,7 @@ class PBook {
       let rows = '';
       blocks.forEach(b => { rows += rowHtml(b); });
       extras.forEach(({ meta, kind }) => {
-        rows += rowHtml(meta, `<span class="telling-badge" style="color:#D97706;border-color:#D97706">${kind === 'yours' ? '✨ yours' : '⚡ shared'}</span> `);
+        rows += rowHtml(meta, `<span class="telling-badge" style="color:#D97706;border-color:#D97706">${kind === 'yours' ? tr('✨ yours') : tr('⚡ shared')}</span> `);
       });
       // chapter heat: share of this chapter's articles covering each value
       const chMetas = blocks.concat(extras.map(e => e.meta));
@@ -3617,10 +4316,10 @@ class PBook {
         const n = chMetas.filter(m => this._facetValues(m, dim).includes(v)).length;
         const pct = chMetas.length ? n / chMetas.length : 0;
         const bg = pct === 0 ? 'var(--border)' : pct < 0.34 ? '#FDE68A' : pct < 0.85 ? '#A7F3D0' : '#6EE7B7';
-        return `<span class="cov-heat" style="background:${bg}" title="${v}: ${n}/${chMetas.length} článků">${icons[v] || v[0]}</span>`;
+        return `<span class="cov-heat" style="background:${bg}" title="${tr(`{0}: {1}/{2} articles`, v, n, chMetas.length)}">${icons[v] || v[0]}</span>`;
       }).join('');
-      sections += `<details class="covmap-chapter-sec"><summary>Kap. ${ch.number} · ${this.escHtml(ch.title)}
-          <span class="covmap-mini">${chMetas.length} articles</span>
+      sections += `<details class="covmap-chapter-sec"><summary>${tr(`Ch{0} · {1}`, ch.number, this.escHtml(ch.title))}
+          <span class="covmap-mini">${tr(`{0} articles`, chMetas.length)}</span>
           <span class="cov-heatrow">${heat}</span></summary>
         <div style="overflow-x:auto"><table class="covmap">
           <tr><th></th>${values.map(v => `<th class="${v === myVal ? 'covmap-mylens' : ''}">${icons[v] || ''}<div>${v}</div></th>`).join('')}</tr>
@@ -3632,8 +4331,8 @@ class PBook {
         <div class="tellings-dims" style="margin-bottom:.4em">${Object.entries(DIM_LABELS).map(([d, l]) =>
           `<button class="steer-chip ${d === dim ? 'dim-active' : ''}" onclick="app.setCovDim('${d}')">${l}</button>`).join('')}
         </div>
-        <p style="font-size:.78rem;margin-bottom:.3em">Každý článek živé knihy — <b>${totalArticles}</b> řádků; podle hodnoty:${values.map(v => ` ${icons[v] || v} <b>${coveringCount[v]}</b>`).join(' ·')}. ● označuje the values an article's subspace covers — one article can serve several${myVal && myVal !== this._facetDefault(dim) ? `; your setting <b>${icons[myVal] || ''} ${myVal}</b> is highlighted` : ''}. Click a row to read; to request or generate a missing telling, use the 🎛 panel inside any section. Missing a whole <i>concept</i>? <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">🌱 navrhni ho</a>.</p>
-        <p style="font-size:.68rem;color:var(--text-3)">● color = state: <span style="color:#7C3AED">■</span> core · <span style="color:#10B981">■</span> edited · <span style="color:#D97706">■</span> reader content (✨ yours / ⚡ shared)</p>
+        <p style="font-size:.78rem;margin-bottom:.3em">${tr(`Every article of the living book — <b>{0}</b> rows; per value:{1}. ● marks the values an article's subspace covers — one article can serve several{2}. Click a row to read; to request or generate a missing telling, use the 🎛 panel inside any section. Missing a whole <i>concept</i>?`, totalArticles, values.map(v => ` ${icons[v] || v} <b>${coveringCount[v]}</b>`).join(' ·'), myVal && myVal !== this._facetDefault(dim) ? `${tr(`; your setting <b>{0} {1}</b> is highlighted`, icons[myVal] || '', myVal)}` : '')} <a href="#" onclick="event.preventDefault();app.proposeConcept()" style="color:var(--accent)">${tr(`🌱 propose it`)}</a>.</p>
+        <p style="font-size:.7rem;color:var(--text-3)">${tr(`● color = state:`)} <span style="color:#7C3AED">■</span> ${tr(`core ·`)} <span style="color:#10B981">■</span> ${tr(`edited ·`)} <span style="color:#D97706">■</span> ${tr(`reader content (✨ yours / ⚡ shared)`)}</p>
       </div>
       <div id="covInspector"></div>
       ${sections}`;
@@ -3659,19 +4358,19 @@ class PBook {
     let h = `<div class="cov-inspector">
       <div class="tellings-title" style="display:flex;justify-content:space-between;align-items:center">
         <span>${this.escHtml(c.title)} × ${icons[value] || ''} ${value}</span>
-        <button class="steer-chip" onclick="document.getElementById('covInspector').innerHTML=''">✕ zavřít</button>
+        <button class="steer-chip" onclick="document.getElementById('covInspector').innerHTML=''">${tr(`✕ close`)}</button>
       </div>`;
     if (!inCell.length) {
-      h += `<div class="tellings-miss">Tady zatím nic není — tahle buňka je pozvánka.</div>
-        <button class="steer-chip steer-gen" onclick="app.coverageGap('${conceptId}','${value}')">Otevřít koncept a vyžádat / vygenerovat toto podání →</button>`;
+      h += `<div class="tellings-miss">${tr(`Nothing assigned here yet — this cell is an invitation.`)}</div>
+        <button class="steer-chip steer-gen" onclick="app.coverageGap('${conceptId}','${value}')">${tr(`Open the concept &amp; request / generate this telling →`)}</button>`;
     } else {
       h += inCell.map(({ b }) => `<div class="telling-row">
           ${this._stateBadge(b.meta)}
           <span class="telling-title">${this.escHtml(b.meta.title || b.meta.id)}</span>
           ${this._facetChips(b.meta)}
-          <button class="steer-chip" onclick="app.openTelling('${b.meta.id}')">Přečíst</button>
+          <button class="steer-chip" onclick="app.openTelling('${b.meta.id}')">${tr(`Read`)}</button>
         </div>`).join('');
-      h += `<div style="font-size:.66rem;color:var(--text-3);margin-top:.4em">Štítky ukazují celý pokrytý podprostor každého podání — jedno podání může obsloužit víc buněk mapy.</div>`;
+      h += `<div style="font-size:.7rem;color:var(--text-3);margin-top:.4em">${tr(`Chips show each telling's full covered subspace — one telling can serve several cells of this map.`)}</div>`;
     }
     h += '</div>';
     box.innerHTML = h;
@@ -3709,12 +4408,12 @@ class PBook {
     if (!saved.length) {
       return `<div style="text-align:center;padding:2em;color:var(--text-3);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
         <p style="font-size:1.5rem;margin-bottom:.3em">&#128278;</p>
-        <p style="font-size:.85rem;font-weight:600">Zatím nic uloženého</p>
-        <p style="font-size:.78rem;color:var(--text-3);margin-top:.2em">Klepni na záložku u kterékoli sekce a uložíš si ji na později.</p>
+        <p style="font-size:.85rem;font-weight:600">${tr(`No saved items yet`)}</p>
+        <p style="font-size:.78rem;color:var(--text-3);margin-top:.2em">${tr(`Tap the bookmark icon on any section to save it for later.`)}</p>
       </div>`;
     }
 
-    let html = `<div style="font-size:.82rem;color:var(--text-2);margin-bottom:.8em">${saved.length} saved item${saved.length !== 1 ? 's' : ''} — tap to read, swipe to remove</div>`;
+    let html = `<div style="font-size:.82rem;color:var(--text-2);margin-bottom:.8em">${tr(`{0} saved item{1} — tap to read, swipe to remove`, saved.length, saved.length !== 1 ? 's' : '')}</div>`;
     html += '<div class="map-blocks">';
     saved.reverse().forEach(b => {
       const isRead = this.user.readBlocks.has(b.meta.id);
@@ -3722,9 +4421,9 @@ class PBook {
       html += `<div class="map-block ${isRead ? 'read' : ''}" style="position:relative" onclick="app.openBlock('${b.meta.id}')">
         <div class="map-dot ${isRead ? 'done' : ''}"></div>
         <span class="map-block-title">${b.meta.title}</span>
-        ${isCore ? '<span class="map-core-badge">CORE</span>' : ''}
-        <span style="font-size:.65rem;color:var(--text-3)">Kap. ${b.meta._chapterNum}</span>
-        <button class="saved-remove-btn" onclick="event.stopPropagation();app.unsaveBlock('${b.meta.id}')" title="Odebrat z uložených">&times;</button>
+        ${isCore ? ('<span class="map-core-badge">' + tr(`CORE`) + '</span>') : ''}
+        <span style="font-size:.7rem;color:var(--text-3)">${tr(`Ch{0}`, b.meta._chapterNum)}</span>
+        <button class="saved-remove-btn" onclick="event.stopPropagation();app.unsaveBlock('${b.meta.id}')" title="${tr(`Remove from saved`)}">&times;</button>
       </div>`;
     });
     html += '</div>';
@@ -3764,12 +4463,12 @@ class PBook {
     if (!allNotes.length) {
       return `<div style="text-align:center;padding:2em;color:var(--text-3);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
         <p style="font-size:1.5rem;margin-bottom:.3em">&#128221;</p>
-        <p style="font-size:.85rem;font-weight:600">Zatím žádné poznámky</p>
-        <p style="font-size:.78rem;color:var(--text-3);margin-top:.2em">Označ text a klepni na „Zvýraznit + poznámka“, nebo použij ikonu poznámky u sekce.</p>
+        <p style="font-size:.85rem;font-weight:600">${tr(`No notes yet`)}</p>
+        <p style="font-size:.78rem;color:var(--text-3);margin-top:.2em">${tr(`Select text and tap "Highlight + Note", or tap the note icon on any section.`)}</p>
       </div>`;
     }
 
-    let html = `<div style="font-size:.82rem;color:var(--text-2);margin-bottom:.8em">${allNotes.length} note${allNotes.length !== 1 ? 's' : ''}</div>`;
+    let html = `<div style="font-size:.82rem;color:var(--text-2);margin-bottom:.8em">${tr(`{0} note{1}`, allNotes.length, allNotes.length !== 1 ? 's' : '')}</div>`;
     html += '<div class="map-blocks">';
     allNotes.forEach(n => {
       const block = this.findBlock(n.blockId);
@@ -3781,8 +4480,8 @@ class PBook {
         <div style="display:flex;align-items:center;gap:.4em">
           <div class="map-dot ${this.user.readBlocks.has(n.blockId) ? 'done' : ''}"></div>
           <span class="map-block-title">${title}</span>
-          <span style="font-size:.65rem;color:var(--text-3)">Kap. ${ch}</span>
-          <button class="saved-remove-btn" onclick="event.stopPropagation();app.deleteUserNote('${n.blockId}',${n.idx});app.renderMap()" title="Smazat poznámku">&times;</button>
+          <span style="font-size:.7rem;color:var(--text-3)">${tr(`Ch{0}`, ch)}</span>
+          <button class="saved-remove-btn" onclick="event.stopPropagation();app.deleteUserNote('${n.blockId}',${n.idx});app.renderMap()" title="${tr(`Delete note`)}">&times;</button>
         </div>
         ${quoteHtml}${textHtml}
       </div>`;
@@ -3795,111 +4494,83 @@ class PBook {
 
 
   // ===== VISUAL RPG MAP =====
-  async renderVisualMap() {
-    await this._loadConceptMap();
-    const cm = this._cmapData;
-    if (!cm) return '<div style="padding:2em;text-align:center;color:var(--text-3)">Mapu konceptů se nepodařilo načíst.</div>';
-    const votes = this._ghostVotes();
-    const byConcept = this._blocksByConcept();
-    const isReadC = (slug) => (byConcept[slug] || []).some(b => this.user.readBlocks.has(b.meta.id));
-    const coreNodes = cm.nodes.filter(n => n.state === 'core');
-    const ghostNodes = cm.nodes.filter(n => n.state === 'ghost');
-    const coreRead = coreNodes.filter(n => isReadC(n.slug)).length;
-    const ghostVoted = ghostNodes.filter(n => n.slug in votes).length;
-    const W = cm.width, H = cm.height;
+  async renderVisualMap(visibleVoices) {
+    if (!this._visualMapData) {
+      try {
+        const res = await fetch('/content/visual-map-data.json');
+        this._visualMapData = await res.json();
+      } catch (e) {
+        return ('<div style="padding:2em;text-align:center;color:var(--text-3)">' + tr(`Visual map loading...`) + '</div>');
+      }
+    }
+    const mapData = this._visualMapData;
+    const W = mapData.width || 1400, H = mapData.height || 900;
+    const readSet = this.user.readBlocks;
+    const savedSet = this.user.savedBlocks;
+    const readCount = mapData.items.filter(i => readSet.has(i.id)).length;
+    const coreCount = mapData.items.filter(i => i.core).length;
+    const coreRead = mapData.items.filter(i => i.core && readSet.has(i.id)).length;
 
+    // Filter bar
     let html = `<div class="vmap-container">
     <div class="vmap-toolbar" style="display:flex;gap:.4em;padding:.4em;flex-wrap:wrap;align-items:center;font-size:.72rem">
-      <button class="vmap-filter-btn active" data-filter="all" onclick="app._vmapFilter('all',this)">Vše (${cm.nodes.length})</button>
-      <button class="vmap-filter-btn" data-filter="core" onclick="app._vmapFilter('core',this)">V knize (${coreNodes.length})</button>
-      <button class="vmap-filter-btn" data-filter="ghost" onclick="app._vmapFilter('ghost',this)">🌱 Návrhy (${ghostNodes.length})</button>
-      <button class="vmap-filter-btn" data-filter="read" onclick="app._vmapFilter('read',this)">Přečtené (${coreRead})</button>
-      <span style="margin-left:auto;color:var(--text-3)">Kolečkem přiblížíš · tažením posuneš · plné = v knize, čárkované 🌱 = navrhované</span>
+      <button class="vmap-filter-btn active" data-filter="all" onclick="app._vmapFilter('all',this)">${tr(`All ({0})`, mapData.items.length)}</button>
+      <button class="vmap-filter-btn" data-filter="core" onclick="app._vmapFilter('core',this)">${tr(`Core ({0})`, coreCount)}</button>
+      <button class="vmap-filter-btn" data-filter="unread" onclick="app._vmapFilter('unread',this)">${tr(`Unread ({0})`, mapData.items.length - readCount)}</button>
+      <button class="vmap-filter-btn" data-filter="read" onclick="app._vmapFilter('read',this)">${tr(`Read ({0})`, readCount)}</button>
+      <span style="margin-left:auto;color:var(--text-3)">${tr(`Scroll to zoom · Drag to pan`)}</span>
     </div>
     <div class="vmap-canvas" id="vmapCanvas" style="overflow:hidden;position:relative;border:1px solid var(--border);border-radius:8px;touch-action:none;cursor:grab">
       <svg id="vmapSvg" viewBox="0 0 ${W} ${H}" style="width:100%;display:block">
       <rect width="${W}" height="${H}" fill="var(--bg)"/>`;
 
-    // hrany: prerekvizity (plné) a souvisí (čárkované mosty)
-    cm.edges.forEach(e => {
-      const dash = e.type === 'souvisi' ? ' stroke-dasharray="4 3"' : '';
-      const op = e.type === 'souvisi' ? '0.22' : '0.34';
-      html += `<line class="vmap-edge" x1="${e.ax}" y1="${e.ay}" x2="${e.bx}" y2="${e.by}" stroke="#9CA3AF" stroke-width="${e.type === 'souvisi' ? 0.8 : 1.1}" opacity="${op}"${dash}/>`;
+    // Edges (similarity lines)
+    if (mapData.edges) {
+      mapData.edges.forEach(e => {
+        html += `<line class="vmap-edge" x1="${e.fx}" y1="${e.fy}" x2="${e.tx}" y2="${e.ty}" stroke="var(--border)" stroke-width="0.5" opacity="0.3"/>`;
+      });
+    }
+
+    // Chapter labels
+    mapData.chapters.forEach(ch => {
+      html += `<text x="${ch.cx}" y="${ch.cy - 28}" text-anchor="middle" font-size="13" font-weight="800" fill="${ch.color}" opacity="0.25" letter-spacing="0.5" class="vmap-ch-label">${ch.title.toUpperCase()}</text>`;
+      html += `<text x="${ch.cx}" y="${ch.cy - 15}" text-anchor="middle" font-size="9" fill="${ch.color}" opacity="0.2">${tr(`{0} sections`, ch.count)}</text>`;
     });
 
-    // popisky témat
-    cm.temata.forEach(t => {
-      html += `<text x="${t.cx}" y="${t.cy - 158}" text-anchor="middle" font-size="14" font-weight="800" fill="${t.color}" opacity="0.4" letter-spacing="0.5">${this.escHtml(t.nazev.toUpperCase())}</text>`;
-    });
+    // Items
+    mapData.items.forEach(item => {
+      const isRead = readSet.has(item.id);
+      const isSaved = savedSet.has(item.id);
+      const isCore = item.core;
+      const color = mapData.colors[item.chapter] || '#666';
+      const r = isCore ? 7 : 4;
+      const opacity = isRead ? '1.0' : isCore ? '0.65' : '0.3';
+      let stroke = '';
+      if (isSaved) stroke = `stroke="#f59e0b" stroke-width="2"`;
+      else if (isRead) stroke = `stroke="#10B981" stroke-width="1.5"`;
+      else if (isCore) stroke = `stroke="rgba(255,255,255,0.6)" stroke-width="1"`;
+      const t = this.escHtml(item.title.length > 35 ? item.title.substring(0, 33) + '…' : item.title);
+      const cls = `vmap-node${isCore ? ' vn-core' : ''}${isRead ? ' vn-read' : ''}${isSaved ? ' vn-saved' : ''}`;
 
-    // uzly
-    const tcolor = Object.fromEntries(cm.temata.map(t => [t.id, t.color]));
-    cm.nodes.forEach(n => {
-      const color = tcolor[n.tema] || '#666';
-      const t = this.escHtml(n.title.length > 30 ? n.title.substring(0, 28) + '…' : n.title);
-      if (n.state === 'core') {
-        const read = isReadC(n.slug);
-        html += `<g class="vmap-node vn-core${read ? ' vn-read' : ''}" data-id="${n.slug}" data-ch="${n.tema}" style="cursor:pointer" onclick="app.openBlock('${n.slug}')">
-          <circle cx="${n.x}" cy="${n.y}" r="9" fill="${color}" opacity="${read ? '1' : '0.72'}" ${read ? 'stroke="#10B981" stroke-width="2.5"' : 'stroke="rgba(255,255,255,0.7)" stroke-width="1"'}/>
-          ${read ? `<text x="${n.x}" y="${n.y + 3.5}" text-anchor="middle" font-size="9" fill="#fff" font-weight="800">✓</text>` : ''}
-          <text class="vmap-label" x="${n.x}" y="${n.y - 13}" text-anchor="middle" font-size="8.5" fill="var(--text-1)" opacity="0.85" font-weight="600">${t}</text>
-        </g>`;
-      } else {
-        const voted = n.slug in votes;
-        const want = votes[n.slug] > 0;
-        const draft = (byConcept[n.slug] || this._conceptPool(n.slug) || []).find(b => b.meta);
-        if (draft) {
-          html += `<g class="vmap-node vn-ghost vn-drafted" data-id="${n.slug}" data-ch="${n.tema}" style="cursor:pointer" onclick="app.openBlock('${draft.meta.id}')">
-            <circle cx="${n.x}" cy="${n.y}" r="7" fill="${color}" fill-opacity="0.3" stroke="${color}" stroke-width="1.8" stroke-dasharray="3 2"/>
-            <text x="${n.x}" y="${n.y + 3}" text-anchor="middle" font-size="7.5">⚡</text>
-            <text class="vmap-label" x="${n.x}" y="${n.y - 11}" text-anchor="middle" font-size="7.5" fill="var(--text-1)" opacity="0.8" font-weight="600">${t}</text>
-          </g>`;
-        } else {
-          html += `<g class="vmap-node vn-ghost${voted ? ' vn-voted' : ''}" data-id="${n.slug}" data-ch="${n.tema}" style="cursor:pointer" onclick="app._vmapGhost('${n.slug}', event)">
-            <circle cx="${n.x}" cy="${n.y}" r="6" fill="var(--bg)" stroke="${color}" stroke-width="1.6" stroke-dasharray="3 2" opacity="0.9"/>
-            <text x="${n.x}" y="${n.y + 2.8}" text-anchor="middle" font-size="7" opacity="0.9">${voted ? (want ? '👍' : '·') : '🌱'}</text>
-            <text class="vmap-label" x="${n.x}" y="${n.y - 10}" text-anchor="middle" font-size="7" fill="var(--text-2)" opacity="0.6">${t}</text>
-          </g>`;
-        }
-      }
+      html += `<g class="${cls}" data-id="${item.id}" data-ch="${item.chapter}" style="cursor:pointer" onclick="window.open('#${item.id}','_blank')">
+        <circle cx="${item.x}" cy="${item.y}" r="${r}" fill="${color}" opacity="${opacity}" ${stroke}/>
+        <text class="vmap-label" x="${item.x}" y="${item.y - r - 3}" text-anchor="middle" font-size="7.5" fill="var(--text-1)" opacity="${isCore ? '0.75' : '0'}" font-weight="${isCore ? '600' : '400'}">${t}</text>
+      </g>`;
     });
 
     html += `</svg></div>`;
-    html += `<div style="display:flex;flex-wrap:wrap;gap:.3em .5em;padding:.4em .2em;font-size:.65rem;align-items:center">`;
-    cm.temata.forEach(t => {
-      html += `<span class="vmap-ch-pill" data-ch="${t.id}" onclick="app._vmapHighlightCh('${t.id}')" style="display:inline-flex;align-items:center;gap:.2em;cursor:pointer;padding:.1em .4em;border-radius:10px;white-space:nowrap;border:1.5px solid transparent"><span style="width:7px;height:7px;border-radius:50%;background:${t.color};display:inline-block;flex-shrink:0"></span>${this.escHtml(t.nazev)}</span>`;
+
+    // Legend
+    html += `<div style="display:flex;flex-wrap:wrap;gap:.3em .5em;padding:.4em .2em;font-size:.7rem;align-items:center">`;
+    mapData.chapters.forEach(ch => {
+      html += `<span class="vmap-ch-pill" data-ch="${ch.id}" onclick="app._vmapHighlightCh('${ch.id}')" style="display:inline-flex;align-items:center;gap:.2em;cursor:pointer;padding:.1em .4em;border-radius:10px;white-space:nowrap;border:1.5px solid transparent"><span style="width:7px;height:7px;border-radius:50%;background:${ch.color};display:inline-block;flex-shrink:0"></span>${ch.title}</span>`;
     });
     html += `</div>`;
-    html += `<div style="font-size:.65rem;color:var(--text-3);padding:0 .3em .3em;display:flex;gap:.8em;flex-wrap:wrap">
-      <span>Přečteno ${coreRead}/${coreNodes.length} konceptů v knize · 🌱 hlasováno o ${ghostVoted}/${ghostNodes.length} návrzích</span>
-      <span>plná čára = staví na · čárkovaná = souvisí</span>
+    html += `<div style="font-size:.7rem;color:var(--text-3);padding:0 .3em .3em;display:flex;gap:.8em;flex-wrap:wrap">
+      <span>${tr(`Progress: {0}/{1} read · {2}/{3} core`, readCount, mapData.items.length, coreRead, coreCount)}</span>
+      <span>${tr(`◉ core ·`)} <span style="color:#10B981">◉</span> ${tr(`read ·`)} <span style="color:#f59e0b">◉</span> ${tr(`saved`)}</span>
     </div></div>`;
     return html;
-  }
-
-  // Klik na 🌱 uzel: mini panel se zájmem přímo v mapě
-  _vmapGhost(slug, ev) {
-    const n = this._cmapNodes?.[slug];
-    const container = document.getElementById('vmapCanvas');
-    if (!n || !container) return;
-    container.querySelector('.vmap-ghost-pop')?.remove();
-    const votes = this._ghostVotes();
-    const rect = container.getBoundingClientRect();
-    const x = Math.min(Math.max((ev?.clientX || rect.left + 40) - rect.left, 10), rect.width - 250);
-    const y = Math.min(Math.max((ev?.clientY || rect.top + 40) - rect.top + 12, 10), rect.height - 130);
-    const pop = document.createElement('div');
-    pop.className = 'vmap-ghost-pop';
-    pop.style.cssText = `position:absolute;left:${x}px;top:${y}px;z-index:3;width:240px;background:var(--surface,#fff);border:1.5px solid #0EA5E9;border-radius:10px;padding:.6em;font-size:.72rem;box-shadow:0 4px 14px rgba(0,0,0,.12)`;
-    pop.innerHTML = `<div style="display:flex;justify-content:space-between;gap:.4em"><b>🌱 ${this.escHtml(n.title)}</b><span style="cursor:pointer;color:var(--text-3)" onclick="this.closest('.vmap-ghost-pop').remove()">✕</span></div>
-      <div style="color:var(--text-2);margin:.3em 0">${this.escHtml(n.teaser || '')}</div>
-      <div style="color:var(--text-3);margin-bottom:.35em">O tomhle zatím kapitola není. Zajímalo by tě to?</div>
-      <div id="ghost-${slug}-vmap" style="display:flex;gap:.4em">${slug in votes
-        ? `<span style="color:#0EA5E9">✓ už jsi hlasoval</span>`
-        : `<button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" onclick="app.ghostVote('${slug}',1,'vmap')">👍 Tohle bych četl</button>
-           ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" onclick="app.openGenComposer('${slug}','vmap')">✨ Rozpracovat</button>` : ''}
-           <button class="steer-chip" onclick="app.ghostVote('${slug}',-1,'vmap')">Nic pro mě</button>`}</div>`;
-    container.appendChild(pop);
-    this.rc.logEvent('ghost_view', { slug, ctx: 'vmap' });
   }
 
   // Visual map interactions — zoom, pan, pinch (desktop + mobile)
@@ -4016,12 +4687,10 @@ class PBook {
     btn.classList.add('active');
     document.querySelectorAll('.vmap-node').forEach(g => {
       const isCore = g.classList.contains('vn-core');
-      const isGhost = g.classList.contains('vn-ghost');
       const isRead = g.classList.contains('vn-read');
       let show = true;
       if (filter === 'core') show = isCore;
-      else if (filter === 'ghost') show = isGhost;
-      else if (filter === 'unread') show = isCore && !isRead;
+      else if (filter === 'unread') show = !isRead;
       else if (filter === 'read') show = isRead;
       g.style.display = show ? '' : 'none';
     });
@@ -4053,10 +4722,10 @@ class PBook {
     const target = u.getTargetFacets();
     const summary = u.getAffinitySummary();
     const FACET_WORDS = {
-      lens: { generic: 'examples from everywhere', ecommerce: 'shopping examples', media: 'music & video examples', 'social-feeds': 'social feed examples', education: 'learning examples' },
-      visuality: { 'text-first': 'text explanations', balanced: 'a mix of text and diagrams', 'visual-first': 'visual explanations' },
-      depth: { intro: 'gentle introductions', standard: 'standard depth', technical: 'technical depth', research: 'research-level depth' },
-      formalism: { none: 'no formulas', light: 'a few formulas', full: 'full math' },
+      lens: Object.fromEntries(Object.entries(CONFIG.facetWords.lens).map(([k, v]) => [k, tr(loc(v))])),   // the one vocabulary of reader-facing words (js/config.js), incl. jobs
+      visuality: { 'text-first': tr('text explanations'), balanced: tr('a mix of text and diagrams'), 'visual-first': tr('visual explanations') },
+      depth: { intro: tr('gentle introductions'), standard: tr('standard depth'), technical: tr('technical depth'), research: tr('research-level depth') },
+      formalism: { none: tr('no formulas'), light: tr('a few formulas'), full: tr('full math') },
     };
     let h = '';
 
@@ -4074,10 +4743,10 @@ class PBook {
       }
       if (seen.size) {
         const edited = new Set(Object.values(this.privateBlocks || {}).map(b => b.meta.remixOf).filter(Boolean));
-        h += '<div class="profile-section"><h3>🕘 Naposledy zobrazené</h3><div class="history-list">';
+        h += ('<div class="profile-section"><h3>' + tr(`🕘 Recently viewed`) + '</h3><div class="history-list">');
         for (const [id, { meta, ts }] of seen) {
           const when = ts ? this._timeAgo(ts) : '';
-          const mark = edited.has(id) || this._overrides?.[id] ? ' <span class="hist-edit" title="tady máš úpravy">✏️</span>' : '';
+          const mark = edited.has(id) || this._overrides?.[id] ? (' <span class="hist-edit" title="' + tr(`you have edits here`) + '">✏️</span>') : '';
           h += `<button class="hist-row" onclick="app.openBlock('${id}')">
             <span class="hist-title">${this.escHtml(meta.title || id)}${mark}</span>
             <span class="hist-meta">${this.escHtml(meta._chapterTitle || '')} · ${when}</span></button>`;
@@ -4086,12 +4755,11 @@ class PBook {
       }
     }
 
-    h += '<div class="profile-section"><h3>&#129516; Tvoje čtenářská DNA</h3>';
-    h += `<p style="font-size:.7rem;margin:-.2em 0 .5em"><a href="#" onclick="event.preventDefault();app.showHowItWorks('profile')" style="color:var(--accent)">📖 Jak funguje živá kniha — číst, přispívat, sdílet →</a></p>`;
-    h += '<p style="font-size:.78rem;color:var(--text-2);margin-bottom:.6em">Model preferencí, který se o tobě kniha naučila — stejný, jaký si staví každý doporučovací systém. Kdykoli ho oprav; tvoje opravy mají vždy přednost.</p>';
+    h += ('<div class="profile-section"><h3>' + tr(`&#129516; Your Reading DNA`) + '</h3>');
+    h += ('<p style="font-size:.78rem;color:var(--text-2);margin-bottom:.6em">' + tr(`The preference model the book has learned about you — the same kind every recommender builds. Correct it anytime; your corrections always win.`) + '</p>');
 
     // Visual affinity bars (top values per primary facet)
-    const FACET_LABELS = { lens: '🌐 Example world', depth: '📏 Depth', visuality: '🖼 Visual style' };
+    const FACET_LABELS = { lens: tr('🌐 Example world'), depth: tr('📏 Depth'), visuality: tr('🖼 Visual style') };
     let hasBars = false;
     for (const facet of ['lens', 'depth', 'visuality']) {
       const aff = u.facetAffinity[facet];
@@ -4112,7 +4780,7 @@ class PBook {
       h += '</div></div>';
     }
     if (!hasBars) {
-      h += '<p style="font-size:.85rem;margin-bottom:.7em">Ještě se o tobě učím — přečti pár sekcí, dej 👍 nebo dolaď libovolné podání, a tohle se doplní.</p>';
+      h += ('<p style="font-size:.85rem;margin-bottom:.7em">' + tr(`Still learning about you — read a few sections, tap 👍 or steer any telling, and this fills in.`) + '</p>');
     }
 
     // Contributions to the living book
@@ -4124,32 +4792,36 @@ class PBook {
       const sharedList = priv.filter(b => b.meta.state === 'community');
       const shareRows = sharedList.slice(0, 5).map(b =>
         `<div style="font-size:.72rem;padding:.1em 0">⚡ ${this.escHtml(b.meta.title || b.meta.id)}
-          <button class="steer-chip" style="font-size:.62rem;padding:.05em .4em" onclick="app.shareThing('${this.escHtml(b.meta.title || 'My telling')}', 'Napsal jsem tohle podání do živé knihy „Jak funguje digitální svět“:', location.origin + '/#${b.meta.id}')">🔗 sdílet</button></div>`).join('');
+          <button class="steer-chip" style="font-size:.7rem;padding:.05em .4em" onclick="app.shareThing('${this.escHtml(b.meta.title || tr('My telling'))}', 'I wrote this telling in the living book “${this._jsAttr(this._bookTitle())}”:', location.origin + '/#${b.meta.id}')">${tr(`🔗 share`)}</button></div>`).join('');
       h += (shareRows ? `<div style="margin:.3em 0">${shareRows}</div>` : '');
-      h += `<div class="dna-contrib">🌱 <b>Tvoje příspěvky do živé knihy:</b>
-        ${generated ? `${generated}× vygenerované podání · ` : ''}${remixes ? `${remixes}× remix · ` : ''}${shared ? `<b>${shared}× sdíleno se čtenáři</b> · ` : ''}${!priv.length ? 'zatím nic — označ libovolnou pasáž a klepni na ✨, nebo najdi mezeru na ' : 'viz '}<a href="#" onclick="app.switchView('map');app.setMapMode('coverage');return false">🌱 mapě</a></div>`;
+      h += `<div class="dna-contrib">${tr(`🌱 <b>Your living-book contributions:</b> {0}{1}{2}{3}`, generated ? `${tr(`{0} generated telling{1} ·`, generated, generated > 1 ? 's' : '')} ` : '', remixes ? `${tr(`{0} remix{1} ·`, remixes, remixes > 1 ? 'es' : '')} ` : '', shared ? `${tr(`<b>{0} shared with readers</b> ·`, shared)} ` : '', !priv.length ? tr('none yet — select any passage and hit ✨, or find a gap on the ') : tr('see the '))}<a href="#" onclick="app.switchView('map');app.setMapMode('coverage');return false">${tr(`🌱 map`)}</a></div>`;
     }
 
     // Format preferences — explicit pins over the telling taxonomy. One tap per
     // dimension; "auto" = let the learned model decide. This replaces the legacy
     // Explorer/Creator/Thinker bars (voice still feeds ranking silently).
     const PREF_DIMS = [
-      { facet: 'lang', label: '🌍 Language', words: { en: 'English', cs: 'česky' } },
-      { facet: 'lengthBand', label: '⏱ Délka', words: { tldr: 'krátce a ostře', standard: 'standardně', deep: 'do hloubky' } },
-      { facet: 'visuality', label: '🖼 Form', words: FACET_WORDS.visuality },
-      { facet: 'depth', label: '📏 Depth', words: FACET_WORDS.depth },
-      { facet: 'lens', label: '🌐 World', words: FACET_WORDS.lens },
-      { facet: 'carriers', label: '🧩 Blocks', words: { prose: 'text', table: 'tables', diagram: 'diagrams', image: 'images', animation: 'animations', formula: 'formulas', code: 'code' } },
+      ...(CONFIG.book.languages ? [] : [{ facet: 'lang', label: tr('🌍 Language'), words: Object.fromEntries((CONFIG.facets.lang?.values || []).map(v => [v, LANG_NAMES[v] || langLabel(v)])) }]),
+      { facet: 'lengthBand', label: tr('⏱ Length'), words: { tldr: tr('short & sharp'), standard: tr('standard'), deep: tr('long form') } },
+      { facet: 'visuality', label: tr('🖼 Form'), words: FACET_WORDS.visuality },
+      { facet: 'depth', label: tr('📏 Depth'), words: FACET_WORDS.depth },
+      { facet: 'lens', label: tr('🌐 World'), words: FACET_WORDS.lens },
+      { facet: 'carriers', label: tr('🧩 Blocks'), words: { prose: tr('text'), table: tr('tables'), diagram: tr('diagrams'), image: tr('images'), animation: tr('animations'), formula: tr('formulas'), code: tr('code') } },
     ];
-    h += '<div style="margin-top:.6em;padding-top:.5em;border-top:1px solid var(--border)"><b style="font-size:.8rem">🎛 Preference formátu</b><p style="font-size:.68rem;color:var(--text-3);margin:.15em 0 .4em">Jak ti máme the book tell things to you? Explicit picks always beat the learned model.</p>';
+    h += ('<div style="margin-top:.6em;padding-top:.5em;border-top:1px solid var(--border)"><b style="font-size:.8rem">' + tr(`🎛 Format preferences`) + '</b><p style="font-size:.7rem;color:var(--text-3);margin:.15em 0 .4em">' + tr(`How should the book tell things to you? Explicit picks always beat the learned model.`) + '</p>');
     PREF_DIMS.forEach(({ facet, label, words }) => {
       const vals = CONFIG.facets[facet].values.filter(v => facet !== 'lens' || v !== 'generic');
       const pinned = u.steerPrefs[facet] || '';
       h += `<div class="dna-row" style="align-items:center"><span class="dna-label">${label}</span><div style="display:flex;flex-wrap:wrap;gap:.3em">
-        <button class="steer-chip ${!pinned ? 'dim-active' : ''}" onclick="app.correctFacetPref('${facet}','')">auto</button>
+        <button class="steer-chip ${!pinned ? 'dim-active' : ''}" onclick="app.correctFacetPref('${facet}','')">${tr(`auto`)}</button>
         ${vals.map(v => `<button class="steer-chip ${pinned === v ? 'dim-active' : ''}" onclick="app.correctFacetPref('${facet}','${v}')">${(words || {})[v] || v}</button>`).join('')}
       </div></div>`;
     });
+    // Essentials flow vs the full book (every telling of every idea, in book order)
+    h += `<label class="intro-toggle" style="display:flex;gap:.5em;align-items:flex-start;margin-top:.6em">
+        <input type="checkbox" class="full-book-toggle" ${this._fullBook() ? 'checked' : ''} onchange="app.setFullBook(this.checked)">
+        <div><b>${tr(`Show every telling`)}</b><br><span class="toggle-desc" style="font-size:.7rem">${tr(`Off: each idea once, told the way your preferences above ask for, with links to the other tellings. On: the full book — every telling of every idea, one after another.`)}</span></div>
+      </label>`;
     h += '</div>';
 
     // Reader mode: safe (verified only) vs open (community + generation)
@@ -4157,7 +4829,7 @@ class PBook {
       h += `<div style="margin-top:.8em;padding-top:.6em;border-top:1px solid var(--border)">
         <label class="intro-toggle" style="display:flex;gap:.5em;align-items:flex-start">
           <input type="checkbox" ${u.readerMode === 'open' ? 'checked' : ''} onchange="app.setReaderMode(this.checked ? 'open' : 'safe')">
-          <div><b>Otevřený režim</b> — živá kniha<br><span class="toggle-desc" style="font-size:.7rem">Zobrazovat i obsah generovaný na vyžádání a varianty sdílené ostatními čtenáři (zřetelně označené, zatím bez redakce). Vypnuto = jen ověřený obsah.</span></div>
+          <div>${tr(`<b>Open mode</b> — living book`)}<br><span class="toggle-desc" style="font-size:.7rem">${tr(`Also show content generated on demand and variants shared by other readers (clearly labelled, not yet editor-verified). Off = verified content only.`)}</span></div>
         </label></div>`;
     }
     h += '</div>';
@@ -4169,7 +4841,7 @@ class PBook {
     if (value) this.user.updateFacetAffinity({ [facet]: value }, 3);
     this.rc.logEvent('profile_correction', { facet, value: value || 'auto' });
     this.rc.setUserProperties({ ['pref' + facet.charAt(0).toUpperCase() + facet.slice(1)]: value || '' });
-    this.showXPToast('Preference uložena', 'achievement');
+    this.showXPToast(tr('Preference saved'), 'achievement');
     if (this.currentView === 'profile') this.renderProfile();
   }
 
@@ -4184,10 +4856,10 @@ class PBook {
   // ===== PROFILE VIEW =====
   _timeAgo(ts) {
     const s = Math.max(1, Math.round((Date.now() - ts) / 1000));
-    if (s < 90) return 'právě teď';
-    if (s < 3600) return 'před ' + Math.round(s / 60) + ' min';
-    if (s < 86400) return 'před ' + Math.round(s / 3600) + ' h';
-    return 'před ' + Math.round(s / 86400) + ' d';
+    if (s < 90) return tr('just now');
+    if (s < 3600) return Math.round(s / 60) + tr(' min ago');
+    if (s < 86400) return Math.round(s / 3600) + tr(' h ago');
+    return Math.round(s / 86400) + tr(' d ago');
   }
 
   renderProfile() {
@@ -4204,36 +4876,36 @@ class PBook {
       h += `<div class="auth-card auth-logged-in">
         <div class="auth-avatar">${this.getLevelIcon()}</div>
         <div class="auth-info">
-          <div class="auth-name">${this.escHtml(auth.displayName || 'Reader')}</div>
-          <div class="auth-email"><span style="color:var(--product)">&#9679;</span> Synced &middot; ${this.escHtml(auth.email)}</div>
+          <div class="auth-name">${this.escHtml(auth.displayName || tr('Reader'))}</div>
+          <div class="auth-email"><span style="color:var(--product)">&#9679;</span> ${tr(`Synced &middot; {0}`, this.escHtml(auth.email))}</div>
         </div>
-        <button class="auth-sync-btn" onclick="app.syncProfile()" id="syncBtn">Synchronizovat</button>
+        <button class="auth-sync-btn" onclick="app.syncProfile()" id="syncBtn">${tr(`Sync`)}</button>
       </div>`;
     } else {
       h += `<div class="auth-card" style="display:flex;align-items:center;gap:.8em">
         <span style="color:var(--text-3);font-size:1.2rem">&#9888;</span>
         <div style="flex:1">
-          <div style="font-size:.82rem;font-weight:600">Nepřihlášen</div>
-          <div style="font-size:.72rem;color:var(--text-3)">Tvůj postup se ukládá jen lokálně.</div>
+          <div style="font-size:.82rem;font-weight:600">${tr(`Not logged in`)}</div>
+          <div style="font-size:.72rem;color:var(--text-3)">${tr(`Your progress is saved locally only.`)}</div>
         </div>
-        <button class="auth-primary-btn" style="flex:0 0 auto;padding:.4em .8em;font-size:.75rem" onclick="app.toggleSettings()">Přihlásit se</button>
+        <button class="auth-primary-btn" style="flex:0 0 auto;padding:.4em .8em;font-size:.75rem" onclick="app.toggleSettings()">${tr(`Log in`)}</button>
       </div>`;
     }
     h += '</div>';
 
     // Level & XP hero card (gamification only)
     if (!this._f('gamification')) {
-      h += `<div class="profile-section"><h3>Postup čtení</h3><p style="font-size:.85rem">Přečteno ${p.progress.read} z ${p.progress.total} sekcí (${p.progress.pct} %)</p><p style="font-size:.8rem;color:var(--text-2)">${p.readingTimeMin} min total reading time</p></div>`;
+      h += `<div class="profile-section"><h3>${tr(`Reading Progress`)}</h3><p style="font-size:.85rem">${tr(`{0} of {1} sections read ({2}%)`, p.progress.read, p.progress.total, p.progress.pct)}</p><p style="font-size:.8rem;color:var(--text-2)">${tr(`{0} min total reading time`, p.readingTimeMin)}</p></div>`;
     } else {
     const xpInLevel = u.getXPInCurrentLevel();
     const xpNeeded = u.getXPForNextLevel();
     const xpPct = Math.min(100, Math.round((xpInLevel / xpNeeded) * 100));
     h += `<div class="gami-hero">
-      <div class="gami-level">Úr. ${u.level}</div>
+      <div class="gami-level">${tr(`Lv.{0}`, u.level)}</div>
       <div class="gami-info">
         <div class="gami-title">${u.getLevelTitle()}</div>
         <div class="gami-xp-bar"><div class="gami-xp-fill" style="width:${xpPct}%"></div></div>
-        <div class="gami-xp-text">${u.xp} XP &middot; ${xpNeeded - xpInLevel} XP to level ${u.level + 1}</div>
+        <div class="gami-xp-text">${tr(`{0} XP &middot; {1} XP to level {2}`, u.xp, xpNeeded - xpInLevel, u.level + 1)}</div>
       </div>
     </div>`;
 
@@ -4242,20 +4914,23 @@ class PBook {
     const totalRecall = Object.keys(u.recall).length;
     const totalReps = Object.values(u.recall).reduce((s, c) => s + c.reps, 0);
     h += `<div class="gami-stats">
-      <div class="gami-stat"><span class="gs-num">${p.progress.read}</span><span class="gs-label">Přečteno</span></div>
-      <div class="gami-stat"><span class="gs-num">${p.progress.pct}%</span><span class="gs-label">Hotovo</span></div>
-      <div class="gami-stat"><span class="gs-num">${u.achievements.length}</span><span class="gs-label">Odznaky</span></div>
-      <div class="gami-stat"><span class="gs-num">${p.readingTimeMin}</span><span class="gs-label">Minut čtení</span></div>
+      <div class="gami-stat"><span class="gs-num">${p.progress.read}</span><span class="gs-label">${tr(`Read`)}</span></div>
+      <div class="gami-stat"><span class="gs-num">${p.progress.pct}%</span><span class="gs-label">${tr(`Done`)}</span></div>
+      <div class="gami-stat"><span class="gs-num">${u.achievements.length}</span><span class="gs-label">${tr(`Badges`)}</span></div>
+      <div class="gami-stat"><span class="gs-num">${p.readingTimeMin}</span><span class="gs-label">${tr(`Min read`)}</span></div>
     </div>`;
 
+    // Reading DNA first: ideas you can explain, then your preference model (js/ux.js)
+    h += this._conceptBadgesHtml();
+    h += this._renderFacetProfile();
     // Recall section
     if (this._f('spaceRepetition')) {
-      const totalWithQ = this.allBlocks.filter(b => b.meta.recallQ).length;
+      const totalWithQ = this._recallConceptKeys().length;
       const hardC = Object.values(u.recall).filter(c => c.ease < 1.8).length;
       const medC = Object.values(u.recall).filter(c => c.ease >= 1.8 && c.ease < 2.5).length;
       const easyC = Object.values(u.recall).filter(c => c.ease >= 2.5).length;
 
-      h += '<div class="profile-section"><h3>\u{1F9E0} Paměťové kartičky</h3>';
+      h += ('<div class="profile-section"><h3>' + tr(`\u{1F9E0} Memory Cards`) + '</h3>');
 
       if (totalRecall > 0) {
         // Confidence bar
@@ -4264,10 +4939,10 @@ class PBook {
           ${medC ? `<div style="width:${Math.round(medC/totalRecall*100)}%;background:var(--warn)"></div>` : ''}
           ${easyC ? `<div style="width:${Math.round(easyC/totalRecall*100)}%;background:var(--product)"></div>` : ''}
         </div>`;
-        h += `<div style="display:flex;gap:.6em;font-size:.68rem;color:var(--text-3);margin-bottom:.5em">`;
-        if (hardC) h += `<span style="color:#dc2626">${hardC} struggling</span>`;
-        if (medC) h += `<span style="color:var(--warn)">${medC} learning</span>`;
-        if (easyC) h += `<span style="color:var(--product)">${easyC} confident</span>`;
+        h += `<div style="display:flex;gap:.6em;font-size:.7rem;color:var(--text-3);margin-bottom:.5em">`;
+        if (hardC) h += `<span style="color:#dc2626">${tr(`{0} struggling`, hardC)}</span>`;
+        if (medC) h += `<span style="color:var(--warn)">${tr(`{0} learning`, medC)}</span>`;
+        if (easyC) h += `<span style="color:var(--product)">${tr(`{0} confident`, easyC)}</span>`;
         h += `</div>`;
 
         // Next reviews
@@ -4276,50 +4951,53 @@ class PBook {
           .sort((a, b) => a[1].nextReview - b[1].nextReview)
           .slice(0, 3);
         if (upcoming.length) {
-          h += `<div style="font-size:.68rem;color:var(--text-3);margin-bottom:.5em">Další opakování: ${upcoming.map(([id, c]) => {
+          h += `<div style="font-size:.7rem;color:var(--text-3);margin-bottom:.5em">${tr(`Next reviews: {0}`, upcoming.map(([id, c]) => {
             const title = this.findBlock(id)?.meta?.title || id;
             return `<span style="color:var(--warn)">${this._timeUntil(c.nextReview)}</span> ${this.escHtml(title)}`;
-          }).join(' · ')}</div>`;
+          }).join(' · '))}</div>`;
         }
       }
 
       // Stats
       h += `<div style="display:flex;gap:.6em;font-size:.78rem;margin-bottom:.5em">`;
-      h += `<span>${totalRecall} tracked</span>`;
-      h += `<span style="color:var(--text-3)">${totalWithQ} total</span>`;
-      if (dueCount > 0) h += `<span style="color:var(--warn);font-weight:600">${dueCount} due now</span>`;
+      h += `<span>${tr(`{0} tracked`, totalRecall)}</span>`;
+      h += `<span style="color:var(--text-3)">${tr(`{0} total`, totalWithQ)}</span>`;
+      if (dueCount > 0) h += `<span style="color:var(--warn);font-weight:600">${tr(`{0} due now`, dueCount)}</span>`;
       h += `</div>`;
 
       // Actions
       h += `<div style="display:flex;gap:.4em">`;
-      h += `<button class="btn-primary" style="flex:1;font-size:.78rem;padding:.4em" onclick="app.switchView('quiz')">\u{1F9E0} Záložka Kvíz</button>`;
-      if (dueCount > 0) h += `<button class="recall-reveal" style="flex:1" onclick="app.startPractice(true)">Zopakovat ${dueCount} čekajících</button>`;
+      h += `<button class="btn-primary" style="flex:1;font-size:.78rem;padding:.4em" onclick="app.switchView('quiz')">${tr(`\u{1F9E0} Quiz tab`)}</button>`;
+      if (dueCount > 0) h += `<button class="recall-reveal" style="flex:1" onclick="app.startPractice(true)">${tr(`Review {0} due`, dueCount)}</button>`;
       h += `</div>`;
       h += `</div>`;
     }
 
     // Achievements
-    h += '<div class="profile-section"><h3>&#127942; Úspěchy</h3>';
+    const drafts = this._authorDrafts();
+    if (drafts.length) {
+      h += ('<div class="profile-section"><h3>' + tr(`✍️ Author drafts in progress`) + '</h3><p style="font-size:.72rem;color:var(--text-2)">' + tr(`Nothing gets lost: every draft autosaves on this device. Click to continue.`) + '</p>');
+      drafts.slice(0, 12).forEach(d => {
+        const when = d.st.ts ? new Date(d.st.ts).toLocaleString(locale('en-GB'), { day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+        h += `<div style="display:flex;align-items:center;gap:.5em;padding:.3em 0;border-bottom:1px dashed var(--border)">
+          <span style="flex:1 1 auto;font-size:.82rem"><b>${this.escHtml(d.title)}</b>${d.st.sourceTitle && d.st.sourceTitle !== d.title ? ` <span style="color:var(--text-3);font-size:.7rem">(${this.escHtml(d.st.sourceTitle.slice(0, 34))})</span>` : ''} <span style="color:var(--text-3);font-size:.7rem">${when}${d.st.done ? tr(' · sent to the book ✓') : ''}</span></span>
+          <button class="steer-chip" style="font-size:.7rem" onclick="app.startAuthoring('${d.slug}')">${tr(`✍️ continue`)}</button>
+        </div>`;
+      });
+      h += '</div>';
+    }
+    h += ('<div class="profile-section"><h3>' + tr(`&#127942; Achievements`) + '</h3>');
     if (u.achievements.length) {
       h += '<div class="gami-badges">';
       u.achievements.forEach(a => {
-        h += `<div class="gami-badge earned" title="${a.desc}"><span class="badge-icon">${a.icon}</span><span class="badge-name">${a.name}</span></div>`;
+        const n = ACHIEVEMENT_NAMES[a.id] || a;   // stored names are the old ones; show the current wording
+        h += `<div class="gami-badge earned" title="${a.desc ? tr(a.desc) : ''}"><span class="badge-icon">${n.icon}</span><span class="badge-name">${n.name}</span></div>`;
       });
       h += '</div>';
     }
     // Show locked achievements
     const earnedIds = new Set(u.achievements.map(a => a.id));
-    const allBadges = [
-      { id: 'first_read', icon: '👣', name: 'První krůčky' }, { id: 'reader_5', icon: '📚', name: 'Knihomol' },
-      { id: 'reader_15', icon: '⚡', name: 'Rychločtenář' }, { id: 'reader_30', icon: '🤖', name: 'Stroj na znalosti' },
-      { id: 'first_like', icon: '❤️', name: 'Palec nahoru' }, { id: 'like_10', icon: '🌟', name: 'Superfanoušek' },
-      { id: 'first_note', icon: '📝', name: 'Zapisovatel' }, { id: 'voice_all', icon: '🎭', name: 'Trojitá hrozba' },
-      { id: 'curious_cat', icon: '🐱', name: 'Zvědavá kočka' }, { id: 'quiz_master', icon: '🧩', name: 'Mistr kvízů' },
-      { id: 'level_5', icon: '🏆', name: 'Úroveň 5!' }, { id: 'save_5', icon: '🔖', name: 'Sběratel' },
-      { id: 'xp_200', icon: '💎', name: 'Lovec XP' }, { id: 'deep_diver', icon: '🤿', name: 'Potápěč' },
-      { id: 'recall_5', icon: '🧠', name: 'Paměťový profík' },
-      { id: 'certified', icon: '🎓', name: 'Certifikováno!' },
-    ];
+    const allBadges = Object.entries(ACHIEVEMENT_NAMES).map(([id, n]) => ({ id, ...n }));
     const locked = allBadges.filter(a => !earnedIds.has(a.id));
     if (locked.length) {
       h += '<div class="gami-badges">';
@@ -4329,65 +5007,75 @@ class PBook {
     h += '</div>';
 
     // XP breakdown
-    h += '<div class="profile-section"><h3>Jak získat XP</h3>';
+    if (CONFIG.aiEconomy?.enabled) {
+      const pr = CONFIG.aiEconomy.prices;
+      h += ('<div class="profile-section"><h3>' + tr(`⚡ AI wallet`) + '</h3>');
+      if (this._getAuth()) {
+        h += `<div style="font-size:1.6rem;font-weight:800">⚡ ${this._srvBalance != null ? this._srvBalance : '…'}</div>
+          <div style="font-size:.75rem;color:var(--text-2)">${tr(`server-side balance · basic AI (text) {0} ⚡ · advanced (variants & diagrams) {1} ⚡`, pr.basic, pr.advanced)}</div>
+          <div style="font-size:.75rem;color:var(--text-2);margin-top:.3em">${tr(`Earn by reading (+10), recall (+2), games (+5), notes (+3), manual edits (+{0}) and your own writing in the studio (+{1} per ~{2} chars). A daily cap is enforced server-side.`, CONFIG.aiEconomy.earnManualEdit, CONFIG.aiEconomy.earnManualEdit, CONFIG.aiEconomy.earnStudioChars || 250)}</div>`;
+      } else {
+        const left = Math.max(0, (CONFIG.aiEconomy.freeTrials || 1) - this._trialsUsedLocal());
+        h += `<div style="font-size:.95rem">${tr(`<b>{0}×</b> free AI tries on this device`, left)}</div>
+          <div style="font-size:.75rem;color:var(--text-2);margin-top:.3em">${tr(`After login (above) your ⚡ live server-side: +100 welcome, migration of existing XP, and earnings for working with the book. Prices: text {0} ⚡ · diagrams & variants {1} ⚡.`, pr.basic, pr.advanced)}</div>`;
+      }
+      h += ('<div style="font-size:.7rem;color:#15803D;margin-top:.35em">' + tr(`We nudge toward frugal AI use — manual work and thinking earn more. 🌱`) + '</div></div>');
+    }
+    h += ('<div class="profile-section"><h3>' + tr(`How to earn XP`) + '</h3>');
     h += '<div style="font-size:.8rem;display:grid;grid-template-columns:auto 1fr;gap:.3em .8em">';
-    h += '<span style="font-weight:600;color:var(--accent)">+10 XP</span><span>Přečti sekci</span>';
-    h += '<span style="font-weight:600;color:var(--accent)">+5 XP</span><span>Prozkoumej hloubkovou kartu</span>';
-    h += '<span style="font-weight:600;color:var(--accent)">+5 XP</span><span>Napiš poznámku</span>';
-    h += '<span style="font-weight:600;color:var(--accent)">+3 XP</span><span>Dej sekci lajk</span>';
-    h += '<span style="font-weight:600;color:var(--accent)">+2 XP</span><span>Ulož na později</span>';
-    h += '<span style="font-weight:600;color:#F59E0B">+2-8 XP</span><span>Opakování kartiček (podle toho, jak si pamatuješ)</span>';
+    h += ('<span style="font-weight:600;color:var(--accent)">' + tr(`+10 XP`) + '</span><span>' + tr(`Read a section`) + '</span>');
+    h += ('<span style="font-weight:600;color:var(--accent)">' + tr(`+5 XP`) + '</span><span>' + tr(`Explore a depth card`) + '</span>');
+    h += ('<span style="font-weight:600;color:var(--accent)">' + tr(`+5 XP`) + '</span><span>' + tr(`Write a note`) + '</span>');
+    h += ('<span style="font-weight:600;color:var(--accent)">' + tr(`+3 XP`) + '</span><span>' + tr(`Like a section`) + '</span>');
+    h += ('<span style="font-weight:600;color:var(--accent)">' + tr(`+2 XP`) + '</span><span>' + tr(`Save for later`) + '</span>');
+    h += ('<span style="font-weight:600;color:#F59E0B">' + tr(`+2-8 XP`) + '</span><span>' + tr(`Recall review (depends on how well you remember)`) + '</span>');
     h += '</div></div>';
 
 
     // Voice preference — computed from actually read non-core blocks by voice
-    // Transparent facet profile — the book shows you your own preference model (and lets you fix it)
-    h += this._renderFacetProfile();
+    // Transparent facet profile — the book shows you your own preference model (and lets you fix it) — rendered above, after the concept badges
 
     // Activity heatmap (last 8 weeks, GitHub-style, inline SVG)
     h += this._renderActivityHeatmap();
 
     // Knowledge cloud — extract terms from read blocks
     const termCounts = {};
-    const CLOUD_TERMS = {
-      'Hardware a software': ['hardware', 'software', 'procesor'],
-      'Internet a sítě': ['internet', 'klient', 'server', 'wi-fi'],
-      'Cloud': ['cloud', 'datové centrum', 'datacentr'],
-      'API': ['api', 'rozhraní'],
-      'Data a informace': ['data', 'informac'],
-      'Dekompozice': ['dekompozic', 'rozlož'],
-      'Abstrakce': ['abstrakc'],
-      'Vzory': ['vzor', 'pattern'],
-      'Algoritmy': ['algoritm'],
-      'Programování': ['program', 'python', 'scratch'],
-      'Proměnné': ['proměnn'],
-      'Podmínky a cykly': ['podmínk', 'cykl', 'smyčk', 'větven'],
-      'Funkce': ['funkce', 'procedur'],
-      'Ladění': ['laděn', 'debug', 'testován'],
-      'Datová gramotnost': ['datová gramotnost', 'korelac', 'kauzalit', 'zavádějíc'],
-      'Databáze': ['databáz', 'tabulk', 'sql', 'evidenc'],
-      'Vizualizace': ['graf', 'vizualizac'],
-      'Umělá inteligence': ['umělá inteligence', 'strojové učení', 'neuronov'],
-      'Generativní AI': ['generativn', 'chatgpt', 'halucin'],
-      'Prompty': ['prompt'],
-      'Ověřování': ['ověř', 'spolehliv'],
-      'Bias a férovost': ['bias', 'férov', 'předpojat', 'zkreslen'],
-      'Doporučování': ['doporuč', 'personali'],
-      'Soukromí': ['soukrom', 'osobní údaj', 'gdpr'],
-      'Hesla a 2FA': ['heslo', 'hesl', 'dvoufaktor', '2fa'],
-      'Phishing': ['phishing', 'podvod', 'sociální inženýrst'],
-      'Digitální stopa': ['digitální stop'],
-      'Kyberhygiena': ['aktualizac', 'záloh', 'antivir'],
-      'Dezinformace': ['dezinform', 'manipulac', 'fake'],
-      'Wellbeing': ['wellbeing', 'scrollov', 'závislost', 'pozornost'],
-      'Web': ['web', 'stránk', 'prohlížeč'],
-      'HTML a CSS': ['html', 'css'],
-      'JavaScript': ['javascript'],
-      'Doména a hosting': ['domén', 'hosting', 'publikov'],
-      'Aplikace': ['aplikac', 'appk', 'no-code'],
-      'Vibecoding': ['vibecoding', 'ai asistent'],
-      'Herní vývoj': ['herní', 'kolize', 'level'],
-      'Robotika a IoT': ['senzor', 'aktuátor', 'micro:bit', 'robot', 'arduino', 'iot'],
+    const CLOUD_TERMS = CONFIG.topics || {
+      'Collaborative Filtering': ['collaborative filter'],
+      'Content-Based': ['content-based', 'content based'],
+      'Cold Start': ['cold start', 'cold-start'],
+      'Filter Bubble': ['filter bubble', 'bubble'],
+      'Echo Chamber': ['echo chamber'],
+      'A/B Testing': ['a/b test', 'ab test'],
+      'Digital Footprints': ['footprint', 'digital footprint'],
+      'Pipeline': ['pipeline', 'candidate generation'],
+      'Popularity Bias': ['popular', 'trending', 'popularity'],
+      'Privacy': ['privacy', 'gdpr', 'data protection'],
+      'Tracking': ['tracker', 'cookie', 'tracking'],
+      'Dopamine Loop': ['dopamine'],
+      'Autoplay': ['autoplay', 'infinite scroll'],
+      'Fairness': ['fair', 'unfair', 'bias'],
+      'Diversity': ['diversity', 'long tail', 'coverage'],
+      'Algorithms': ['algorithm'],
+      'Recommendations': ['recommend', 'suggestion'],
+      'User Signals': ['signal', 'implicit', 'explicit'],
+      'Ratings': ['rating', 'stars', 'score'],
+      'Similarity': ['similar', 'cosine', 'taste twin'],
+      'Matrix Factorization': ['matrix factor', 'svd', 'latent'],
+      'Machine Learning': ['machine learn', 'neural', 'deep learn'],
+      'YouTube': ['youtube'],
+      'TikTok': ['tiktok'],
+      'Netflix': ['netflix'],
+      'Spotify': ['spotify'],
+      'Personalization': ['personali', 'personal'],
+      'Data Collection': ['data collect', 'item catalog', 'user data'],
+      'Exploration': ['exploration', 'exploit', 'bandit'],
+      'Ethics': ['ethic', 'responsible', 'transparent'],
+      'Embeddings': ['embedding', 'vector space', 'vector represent'],
+      'Self-Attention': ['attention', 'transformer', 'self-attention'],
+      'Two-Tower': ['two-tower', 'two tower', 'user tower', 'item tower'],
+      'nDCG': ['ndcg', 'dcg', 'ranking quality'],
+      'ALS': ['alternating least', 'als '],
     };
     [...u.readBlocks].forEach(id => {
       const block = this.findBlock(id);
@@ -4399,14 +5087,14 @@ class PBook {
     });
     const cloudEntries = Object.entries(termCounts).sort((a, b) => b[1] - a[1]);
     if (cloudEntries.length > 0) {
-      h += '<div class="profile-section"><h3>Tvoje znalosti</h3>';
+      h += ('<div class="profile-section"><h3>' + tr(`Your Knowledge`) + '</h3>');
       h += '<div class="knowledge-cloud">';
       const maxCount = Math.max(cloudEntries[0][1], 1);
       cloudEntries.forEach(([term, count]) => {
         const weight = count / maxCount;
         const size = 0.6 + weight * 0.55;
         const opacity = 0.35 + weight * 0.65;
-        h += `<span class="cloud-word" style="font-size:${size}rem;opacity:${opacity}">${term}</span>`;
+        h += `<span class="cloud-word" style="font-size:${size}rem;opacity:${opacity}">${tr(term)}</span>`;
       });
       h += '</div></div>';
     }
@@ -4417,40 +5105,40 @@ class PBook {
     const etBar = (label, cur, goal) => `<div class="dna-row"><span class="dna-label">${label}</span>
       <div class="dna-bar"><div class="dna-fill" style="width:${Math.min(100, Math.round(cur / goal * 100))}%"></div></div>
       <span class="dna-val">${cur}/${goal}</span></div>`;
-    h += `<div class="profile-section"><h3>🛠 Redakční dráha</h3>
+    h += `<div class="profile-section"><h3>${tr(`🛠 Editor track`)}</h3>
       <div style="font-size:.8rem;margin-bottom:.4em">${
         et.tier === 'editor'
-          ? `<span class="editor-badge">🛠 EDITOR</span> ${et.invited ? 'Pozván do redakčního týmu — vítej.' : 'Redaktorství sis vysloužil — tvoje příspěvky utvářejí knihu.'} <a href="admin.html" style="color:var(--accent)">Otevřít redakční konzoli</a> · <a href="#" onclick="event.preventDefault();app.showHowItWorks('editor')" style="color:var(--accent)">jak to funguje</a>`
+          ? `<span class="editor-badge">${tr(`🛠 EDITOR`)}</span> ${et.invited ? tr('Invited to the editorial team — welcome.') : tr("You've earned editorship — your contributions shape the book.")} <a href="admin.html" style="color:var(--accent)">${tr(`Open the editor console`)}</a> · <a href="HUMANS.md" style="color:var(--accent)">${tr(`duties`)}</a>`
           : et.tier === 'contributor'
-            ? `<b>Přispěvatel.</b> Jen tak dál — redaktorství se získává, nejmenuje:`
-            : `<b>Čtenář.</b> Redaktorství se získává, nejmenuje — hlas chyby, sdílej podání:`}</div>
-      ${etBar('🚩 nahlášené chyby', et.flags, 5)}
-      ${etBar('⚡ sdílená podání', et.shared, 5)}
-      ${etBar('📖 přijato do knihy', et.adopted, 1)}
-      <p style="font-size:.68rem;color:var(--text-3);margin-top:.3em">${et.invited ? 'Byl jsi pozván jako redaktor — sloupce navíc ukazují tvoje vlastní příspěvky.' : 'Povýšení: <b>1 podání přijaté</b> do knihy (redakce ho posoudila a přijala) — nebo <b>5 sdílených + 5 nahlášených</b>. Přijetí se pozná automaticky, když se tvoje sdílené podání objeví v knize.'}</p>
-      ${et.adopted >= 1 ? `<button class="steer-chip" style="border-color:var(--accent);color:var(--accent)" onclick="app.shareThing('Moje podání se dostalo do knihy', 'Moje vysvětlení bylo přijato do živé knihy „Jak funguje digitální svět“ 📖', location.origin + '/#' + (Object.values(app.privateBlocks).find(b => (b.meta.sharedAt || b.meta.state === 'community') && app.findBlock(b.meta.id))?.meta.id || ''))">📣 Pochlub se přijetím</button>` : ''}
+            ? `${tr(`<b>Contributor.</b> Keep going — editorship is earned, not appointed:`)}`
+            : `${tr(`<b>Reader.</b> Editorship is earned, not appointed — report issues, share tellings:`)}`}</div>
+      ${etBar(tr('🚩 issues reported'), et.flags, 5)}
+      ${etBar(tr('⚡ tellings shared'), et.shared, 5)}
+      ${etBar(tr('📖 adopted into book'), et.adopted, 1)}
+      <p style="font-size:.7rem;color:var(--text-3);margin-top:.3em">${et.invited ? tr('You were invited as an editor — the bars show your own contributions on top.') : tr(`Promotion: <b>1 telling adopted</b> into the book (editors reviewed and merged it) — or <b>5 shared + 5 reported</b>. Adoption is detected automatically when your shared telling appears in the book.`)}</p>
+      ${et.adopted >= 1 ? `<button class="steer-chip" style="border-color:var(--accent);color:var(--accent)" onclick="app.shareThing('My telling made it into the book', 'My explanation was adopted into the living book “${app._jsAttr(app._bookTitle())}” 📖', location.origin + '/#' + (Object.values(app.privateBlocks).find(b => (b.meta.sharedAt || b.meta.state === 'community') && app.findBlock(b.meta.id))?.meta.id || ''))">${tr(`📣 Brag about your adoption`)}</button>` : ''}
     </div>
 
-    <div class="profile-section"><h3>📣 Pozvi kamarády</h3>
-      <p style="font-size:.78rem;color:var(--text-2)">Kniha je s více čtenáři lepší — každý hlas, doladění i přání ovlivňuje, co se napíše. Pozvaní kamarádi startují s <b>+25 XP</b>.</p>
+    <div class="profile-section"><h3>${tr(`📣 Invite friends`)}</h3>
+      <p style="font-size:.78rem;color:var(--text-2)">${tr(`The book gets better with more readers — every vote, steer and wish shapes what gets written. Invited friends start with <b>+25 XP</b>.`)}</p>
       <div style="display:flex;gap:.4em;flex-wrap:wrap;align-items:center">
         <code style="font-size:.7rem;user-select:all;padding:.25em .5em;border:1px solid var(--border);border-radius:6px" id="inviteLink">${location.origin + '/?invite=R-' + (this.rc.userId || 'me').replace(/[^\w-]/g, '').slice(0, 8)}</code>
-        <button class="steer-chip" onclick="navigator.clipboard.writeText(document.getElementById('inviteLink').textContent).then(()=>app.showXPToast('🔗 Odkaz na pozvánku zkopírován','achievement'))">kopírovat</button>
-        <button class="steer-chip" style="border-color:var(--accent);color:var(--accent)" onclick="app.shareThing('Jak funguje digitální svět','Čtu živou učebnici informatiky a AI, která se ti přizpůsobuje. Přidej se:', document.getElementById('inviteLink').textContent)">sdílet</button>
+        <button class="steer-chip" onclick="navigator.clipboard.writeText(document.getElementById('inviteLink').textContent).then(()=>app.showXPToast('🔗 Invite link copied','achievement'))">${tr(`copy`)}</button>
+        <button class="steer-chip" style="border-color:var(--accent);color:var(--accent)" onclick="app.shareThing('${this._jsAttr(this._bookTitle())}','${this._jsAttr(loc(CONFIG.book?.inviteText) || tr('I\'m reading a living book that explains how recommender systems work — and adapts to you. Join me:'))}', document.getElementById('inviteLink').textContent)">${tr(`share`)}</button>
       </div>
     </div>`;
 
     // Tiered certificate (spec: Foundations / Practitioner / Guru) — certifies demonstrated
     // understanding by depth level, missions and recall — computed from verified core only
     const { tiers, achievedIdx } = this.getCertTiers();
-    h += '<div class="profile-section"><h3>Certifikát</h3>';
+    h += ('<div class="profile-section"><h3>' + tr(`Certificate`) + '</h3>');
     if (achievedIdx >= 0) {
       const t = tiers[achievedIdx];
       const savedName = localStorage.getItem('pbook-cert-name') || '';
       h += `<div class="cert-ready">
-        <p style="font-size:.85rem;margin-bottom:.6em">${t.icon} You've earned the <strong>${t.title}</strong> certificate — ${t.subtitle}.</p>
-        <button class="cert-btn" onclick="app.showCertificateModal()">Získat certifikát ${t.title}</button>
-        ${savedName ? `<p style="font-size:.75rem;color:var(--text-3);margin-top:.4em">Certifikát vystaven pro: ${this.escHtml(savedName)}</p>` : ''}
+        <p style="font-size:.85rem;margin-bottom:.6em">${tr(`{0} You've earned the <strong>{1}</strong> certificate — {2}.`, t.icon, t.title, t.subtitle)}</p>
+        <button class="cert-btn" onclick="app.showCertificateModal()">${tr(`Get Your {0} Certificate`, t.title)}</button>
+        ${savedName ? `<p style="font-size:.75rem;color:var(--text-3);margin-top:.4em">${tr(`Certificate issued to: {0}`, this.escHtml(savedName))}</p>` : ''}
       </div>`;
     }
     // Tier ladder with live requirements — always show the path ahead
@@ -4468,11 +5156,12 @@ class PBook {
 
     // Settings link
     h += '<div class="profile-section" style="text-align:center">';
-    h += '<button class="btn-ghost" style="border:1px solid var(--border);border-radius:6px;padding:.4em 1em;font-size:.78rem;color:var(--text-2)" onclick="app.toggleSettings()">&#9881; Nastavení a data</button>';
+    h += ('<button class="btn-ghost" style="border:1px solid var(--border);border-radius:6px;padding:.4em 1em;font-size:.78rem;color:var(--text-2)" onclick="app.toggleSettings()">' + tr(`&#9881; Settings &amp; data`) + '</button>');
     h += '</div>';
 
-    h += `<div style=\"text-align:center;font-size:.62rem;color:var(--text-3);margin:.8em 0\">p-book ${APP_VERSION}</div>`;
+    h += `<div style=\"text-align:center;font-size:.7rem;color:var(--text-3);margin:.8em 0\">${tr(`p-book {0}`, this._appVersion())}</div>`;
     el.innerHTML = h;
+    this._foldProfile(el);   // wallet, XP rules, editor track, invites: one tap away, not in the way
   }
 
   // ===== ACCOUNT & SYNC =====
@@ -4561,9 +5250,9 @@ class PBook {
     const password = document.getElementById('authPassword')?.value;
     const errEl = document.getElementById('authError');
 
-    if (!email || !password) { errEl.textContent = 'E-mail a heslo jsou povinné.'; return; }
-    if (password.length < 4) { errEl.textContent = 'Heslo musí mít aspoň 4 znaky.'; return; }
-    errEl.textContent = 'Zakládám účet…';
+    if (!email || !password) { errEl.textContent = tr('Email and password are required.'); return; }
+    if (password.length < 4) { errEl.textContent = tr('Password must be at least 4 characters.'); return; }
+    errEl.textContent = tr('Creating account...');
 
     const result = await this._authRequest({
       action: 'register', email, password,
@@ -4583,7 +5272,7 @@ class PBook {
     this._syncUserToRecombee();
 
     this._lastSyncTime = Date.now();
-    this.showXPToast('Účet založen! Tvůj postup se teď synchronizuje.', 'info');
+    this.showXPToast(tr('Account created! Your progress is now synced.'), 'info');
     this._refreshAfterAuth();
   }
 
@@ -4592,13 +5281,14 @@ class PBook {
     const password = document.getElementById('authPassword')?.value;
     const errEl = document.getElementById('authError');
 
-    if (!email || !password) { errEl.textContent = 'E-mail a heslo jsou povinné.'; return; }
-    errEl.textContent = 'Přihlašuji…';
+    if (!email || !password) { errEl.textContent = tr('Email and password are required.'); return; }
+    errEl.textContent = tr('Logging in...');
 
     const result = await this._authRequest({ action: 'login', email, password });
     if (result.error) { errEl.textContent = result.error; return; }
 
     this._setAuth({ email, token: result.token, displayName: result.displayName });
+    this.refreshAiBalance(true);
 
     // Merge cloud profile with local — cloud wins for reading progress (union of sets)
     if (result.profileData && Object.keys(result.profileData).length > 0) {
@@ -4653,7 +5343,7 @@ class PBook {
     this._syncUserToRecombee();
 
     this._lastSyncTime = Date.now();
-    this.showXPToast(`Vítej zpátky, ${result.displayName || 'čtenáři'}!`, 'info');
+    this.showXPToast(`${tr(`Welcome back, {0}!`, result.displayName || 'reader')}`, 'info');
     this._refreshAfterAuth();
   }
 
@@ -4661,12 +5351,12 @@ class PBook {
     const auth = this._getAuth();
     if (!auth) return;
     const btn = document.getElementById('syncBtn');
-    if (btn) btn.textContent = navigator.onLine ? 'Syncing...' : 'Queued';
+    if (btn) btn.textContent = navigator.onLine ? 'Syncing...' : tr('Queued');
 
     if (!navigator.onLine) {
       // Queue for when online
       this.rc._queueOffline({ type: 'log', data: { type: 'profile_sync', userId: auth.email, data: this._collectProfileData() } });
-      if (btn) setTimeout(() => { if (btn) btn.textContent = 'Sync'; }, 1500);
+      if (btn) setTimeout(() => { if (btn) btn.textContent = tr('Sync'); }, 1500);
       return;
     }
 
@@ -4678,12 +5368,17 @@ class PBook {
     });
 
     if (result.error) {
+      // Logged in elsewhere since (a login issues a new token): say it once, not every 2 minutes.
+      if (result.code === 'session_expired' && !btn) {
+        if (!this._sessionWarned) { this._sessionWarned = true; this.showXPToast(result.error, 'info'); }
+        return;
+      }
       this.showXPToast(result.error, 'info');
-      if (btn) btn.textContent = 'Sync';
+      if (btn) btn.textContent = tr('Sync');
       return;
     }
     this._lastSyncTime = Date.now();
-    if (btn) { btn.textContent = 'Synchronizováno!'; setTimeout(() => { if (btn) btn.textContent = 'Synchronizovat'; }, 2000); }
+    if (btn) { btn.textContent = tr('Synced!'); setTimeout(() => { if (btn) btn.textContent = tr('Sync now'); }, 2000); }
   }
 
   logout() {
@@ -4715,125 +5410,300 @@ class PBook {
     const typing = document.getElementById('tutorTyping');
     if (typing) typing.style.display = 'flex';
     messages.scrollTop = messages.scrollHeight;
-    // Simulate thinking delay
+    // Local retrieval is instant; a short beat keeps the exchange readable
     setTimeout(() => {
       if (typing) typing.style.display = 'none';
       const response = this.generateChatResponse(msg);
       messages.innerHTML += `<div class="chat-msg bot">${response}</div>`;
       messages.scrollTop = messages.scrollHeight;
-    }, 600 + Math.random() * 400);
+    }, 250);
   }
 
   // ===== GLOSSARY / TOPICS =====
   // ===== MISSIONS =====
   getMissions() {
+    // Missions are CONTENT, not engine: a book ships content/missions.json and the
+    // built-ins below are only the fallback (an engine sync used to hand a book
+    // missions that pointed at blocks it does not have).
+    const list = (Array.isArray(this._bookMissions) && this._bookMissions.length)
+      ? this._bookMissions.map(m => ({ ...m }))
+      : this._staticMissions();
+    if (this._customMission) list.push(this._customMission);
+    return list;
+  }
+  async _loadBookMissions() {
+    if (this._bookMissions !== undefined) return this._bookMissions;
+    this._bookMissions = null;
+    try {
+      const r = await fetch(`${CONFIG.book.contentDir}/missions.json`);   // optional file
+      if (r.ok) { const j = this._bookData(await r.json()); this._bookMissions = Array.isArray(j) ? j : (j.missions || null); }
+    } catch (e) {}
+    return this._bookMissions;
+  }
+  _staticMissions() {
     return [
       {
-        id: 'zaklady', title: 'Rozlušti digitální svět', icon: '\u{1F50C}',
-        difficulty: 'Začátečník',
-        story: 'Kamarádka tvrdí, že její fotky jsou „v cloudu“, ale netuší, co to znamená. Dokážeš jí vysvětlit, kudy fotka putuje a kde doopravdy leží?',
-        goal: 'Pochopit, co se děje pod povrchem appek — od hardwaru po API',
-        reward: { title: 'Průvodce digitálním světem', xp: 20 },
-        core: ['ch1-hardware-a-software', 'ch1-data-a-informace', 'ch1-internet-a-sit', 'ch1-cloud-a-server', 'ch1-api'],
+        id: 'youtube', title: 'How Do Platforms Know?', icon: '\u{1F3AC}',
+        difficulty: 'Beginner',
+        story: 'A colleague asks: "How does YouTube always know what I want to watch?" Can you explain the mechanisms behind recommendation systems?',
+        goal: 'Explain how recommendation algorithms work',
+        reward: { title: 'Algorithm Explainer', xp: 20 },
+        core: ['ch1-noticed', 'ch1-everywhere', 'ch1-not-magic', 'ch1-three-jobs', 'ch2-footprints', 'ch2-clues'],
         intros: [
-          "Začneme u věci, kterou držíš v ruce. Co je v telefonu hardware a co software?",
-          "Počítač pracuje s daty. Ale kdy se z dat stane informace?",
-          "Jak se tvoje zpráva dostane na druhý konec světa za zlomek sekundy?",
-          "„Cloud“ zní vznešeně. Spoiler: je to jen cizí počítač.",
-          "A jak si appky mezi sebou povídají? Přes API — číšníka digitálního světa."
+          "Let's start with something familiar. Have you noticed that platforms seem to anticipate your interests?",
+          "Recommendations aren't limited to YouTube. Let's map the recommendation landscape across platforms.",
+          "How does it actually work? It's not intuition — it's statistical pattern recognition at scale.",
+          "Every recommender serves three core functions. Consider what they might be before reading.",
+          "Now let's examine the user side. What behavioral signals are you generating?",
+          "These signals come in different types. Understanding the taxonomy is key to understanding the system."
         ],
-        boss: { q: 'Kamarádka se ptá: „Kde přesně je moje fotka, když je v cloudu? A jak se tam dostala?“ Vysvětli celou cestu — od telefonu po datové centrum.', hints: ['klient a server', 'internet', 'datové centrum', 'síť'] },
+        boss: { q: 'A colleague asks: "So how DO platforms know what I want to see?" Explain the mechanism in one paragraph, covering both the data side and the algorithmic side.', hints: ['patterns', 'behavioral signals', 'data', 'collaborative filtering', 'content-based'] },
         branches: {
-          explorer: { label: 'Jak funguje web', blocks: ['ch8-jak-funguje-web'] },
-          creator: { label: 'Kód, na který si sáhneš', blocks: ['ch12-micro-bit'] },
-          thinker: { label: 'Data kolem nás', blocks: ['ch4-datova-gramotnost'] }
+          explorer: { label: 'See it in action', blocks: ['ch2-track-d-exp', 'ch1-ws-match', 'ch1-history'] },
+          creator: { label: 'Try it yourself', blocks: ['ch2-privacy-d-create'] },
+          thinker: { label: 'Understand patterns', blocks: ['ch1-patterns-d-think', 'ch1-personalization-spectrum'] }
         }
       },
       {
-        id: 'mysleni', title: 'Mysli jako informatik', icon: '\u{1F9E9}',
-        difficulty: 'Začátečník',
-        story: 'Máš naučit robota uklidit pokoj. Robot je poslušný, ale úplně doslovný — udělá přesně to, co řekneš. A v tom je ten problém.',
-        goal: 'Zvládnout dekompozici, abstrakci, vzory a algoritmy',
-        reward: { title: 'Algoritmický detektiv', xp: 20 },
-        core: ['ch2-dekompozice', 'ch2-abstrakce', 'ch2-rozpoznavani-vzoru', 'ch2-algoritmus', 'ch2-rizeni-toku'],
+        id: 'detective', title: 'The Data Detective', icon: '\u{1F575}',
+        difficulty: 'Beginner',
+        story: 'Your recommendations are corrupted — irrelevant content keeps appearing because a shared account or a gift search polluted your profile. Time to investigate what data the algorithm actually uses.',
+        goal: 'Understand what data platforms collect and how signals work',
+        reward: { title: 'Data Detective', xp: 20 },
+        core: ['ch2-footprints', 'ch2-clues', 'ch2-guess-signal', 'ch2-myth', 'ch2-privacy'],
         intros: [
-          "Velký úkol vypadá děsivě — dokud ho nerozložíš na malé kousky.",
-          "Co můžeš klidně ignorovat? Umění vynechat nepodstatné je superschopnost.",
-          "Postupy se opakují. Kdo si vzorů všímá, řeší nové úlohy rychleji.",
-          "Teď postup zapiš tak jednoznačně, aby ho zvládl i doslovný robot.",
-          "A co když se má robot rozhodovat a opakovat kroky? Sekvence, větvení, cyklus."
+          "To fix poor recommendations, first understand what behavioral data you're generating.",
+          "Not all signals are equal. Some are strong indicators, others are noise.",
+          "Can you distinguish a strong signal from a weak one? This is what separates effective analysis from guesswork.",
+          "Before we go further, let's debunk some myths. Is your phone really listening to conversations?",
+          "Now the fundamental question: whose data is it, and what are your rights under GDPR/CCPA?"
         ],
-        boss: { q: 'Popiš robotovi postup, jak připravit svačinu do školy — tak jednoznačně, aby se nezasekl. Použij rozklad na kroky, aspoň jedno rozhodnutí (když…) a jedno opakování (dokud…).', hints: ['krok za krokem', 'podmínka', 'cyklus', 'jednoznačnost'] },
+        boss: { q: 'You notice irrelevant recommendations in your feed — content from a shared account or a one-time search has polluted your profile. Explain why this happened and what steps you would take to fix it.', hints: ['profile pollution', 'signals', 'history', 'preference model', 'negative signals'] },
         branches: {
-          creator: { label: 'Přelož to do kódu', blocks: ['ch3-podminky-v-kodu', 'ch3-cykly-v-kodu'] },
-          thinker: { label: 'Skládej z funkcí', blocks: ['ch3-funkce-a-procedury'] },
-          explorer: { label: 'Hledej chyby', blocks: ['ch3-ladeni-a-testovani'] }
+          explorer: { label: 'Investigate your data', blocks: ['ch2-track-d-exp', 'ch2-ws-detective', 'ch2-negative-signals'] },
+          creator: { label: 'Run an experiment', blocks: ['ch2-privacy-d-create'] },
+          thinker: { label: 'Analyze signals deeply', blocks: ['ch2-implicit-feedback', 'ch2-user-lifecycle'] }
         }
       },
       {
-        id: 'ai-detektiv', title: 'Prokoukni umělou inteligenci', icon: '\u{1F916}',
-        difficulty: 'Mírně pokročilý',
-        story: 'ChatGPT ti do referátu s naprostou jistotou napsal „fakt“, který neexistuje. Jak je to možné? Čas zjistit, co se v AI doopravdy děje — a jak s ní pracovat chytře.',
-        goal: 'Pochopit, jak se AI učí z dat, a naučit se ji využívat kriticky',
-        reward: { title: 'AI detektiv', xp: 30 },
-        core: ['ch5-co-je-a-co-neni-ai', 'ch5-ai-se-uci-z-dat', 'ch5-jak-funguje-generativni-model', 'ch5-prompt-a-promptova-gramotnost', 'ch5-overovani-vystupu', 'ch5-kdy-ai-ne-pouzit-a-disclosure'],
+        id: 'builder', title: 'Build a Recommender', icon: '\u{1F527}',
+        difficulty: 'Intermediate',
+        story: 'Your team needs a content recommendation system. You volunteer to prototype one from scratch. Can you build a working collaborative filtering implementation?',
+        goal: 'Build a working recommendation system step by step',
+        reward: { title: 'Recommendation Engineer', xp: 30 },
+        core: ['ch5-start', 'ch5-collect', 'ch3-friends', 'ch5-similar', 'ch5-recommend', 'ch5-improve'],
         intros: [
-          "AI je všude — ale co to vlastně je? A co všechno AI není?",
-          "AI se svět nenaučila z učebnic. Naučila se ho z dat. A v tom je háček.",
-          "Proč generativní model občas s jistotou vymýšlí? Protože předpovídá, nepamatuje si.",
-          "Dobrý prompt je půlka výsledku. Nauč se AI zadávat práci.",
-          "Teď to hlavní: jak poznáš, že ti AI tvrdí nesmysl? Ověřuj, ale využívej.",
-          "A poslední otázka: kdy AI radši nepoužít — a kdy přiznat, že jsi ji použil?"
+          "You committed to building a recommender prototype. Here's what you'll need.",
+          "Step 1: every recommender needs data. Time to collect preference signals.",
+          "The key technique is finding users with similar preferences — collaborative filtering.",
+          "Now you need a quantitative measure of similarity between users. This is where the math begins.",
+          "You have the data and similarity scores. Now generate actual predictions.",
+          "Your system works but could be better. Let's systematically improve it."
         ],
-        boss: { q: 'AI ti k referátu vygenerovala odstavec s odkazem na knihu, která neexistuje. Vysvětli, proč se to stalo, jak se to pozná a co uděláš dál — a kdy je fér použití AI přiznat.', hints: ['halucinace', 'předpověď', 'ověření', 'zdroj', 'přiznání AI'] },
+        boss: { q: 'A stakeholder complains: "Your recommender suggested something completely irrelevant!" Diagnose what likely went wrong and propose three specific improvements.', hints: ['similarity', 'data sparsity', 'diversity', 'cold start', 'evaluation'] },
         branches: {
-          explorer: { label: 'Algoritmy, které tě znají', blocks: ['ch5-doporucovaci-systemy'] },
-          thinker: { label: 'Bias a soukromí', blocks: ['ch5-bias-a-ferovost', 'ch5-soukromi-pri-praci-s-ai'] },
-          creator: { label: 'Generuj obrázky', blocks: ['ch10-generativni-obraz'] }
+          creator: { label: 'Build it for real', blocks: ['ch5-spread-d-create', 'ch5-code-d-create', 'ch5-debug'] },
+          thinker: { label: 'Understand the math', blocks: ['ch5-math-d-think', 'ch5-formulas'] },
+          explorer: { label: 'See CF in action', blocks: ['ch3-cf-d-exp', 'ch3-cf-limitations'] }
         }
       },
       {
-        id: 'obrana', title: 'Ubraň svůj digitální život', icon: '\u{1F6E1}',
-        difficulty: 'Začátečník',
-        story: 'Přišla ti zpráva: „Váš účet bude za 24 hodin smazán. Klikněte zde a přihlaste se.“ Vypadá skoro pravě. Skoro.',
-        goal: 'Získat návyky, díky kterým tě nikdo nenachytá',
-        reward: { title: 'Strážce účtů', xp: 25 },
-        core: ['ch6-hesla-a-2fa', 'ch6-phishing-a-socialni-inzenyrstvi', 'ch6-soukromi-a-digitalni-stopa', 'ch6-bezpecne-chovani-na-sitich', 'ch6-zakladni-hygiena'],
+        id: 'algorithms', title: 'The Algorithm Zoo', icon: '\u{1F9EC}',
+        difficulty: 'Intermediate',
+        story: 'Collaborative filtering, content-based, bandits, graph networks, transformers, LLMs — the recommendation landscape is vast. Can you navigate it and understand when to use what?',
+        goal: 'Understand the major algorithm families and their trade-offs',
+        reward: { title: 'Algorithm Navigator', xp: 30 },
+        core: ['ch3-friends', 'ch3-content', 'ch3-bandits', 'ch3-deep-similarity', 'ch3-graph-methods', 'ch3-session-based', 'ch3-llm-recs'],
         intros: [
-          "První hradba: heslo. Kolik tvých hesel by uhodl kamarád, který tě zná?",
-          "Nejslabší místo zabezpečení nejsou počítače, ale lidé. Útočníci to vědí.",
-          "Všechno, co online uděláš, někde zanechá stopu. Kdo ji čte?",
-          "Sítě jsou zábava — a taky loviště. Nauč se pravidla bezpečného pohybu.",
-          "A nakonec rutina, která tě podrží: aktualizace, zálohy, zamčená obrazovka."
+          "The oldest trick in recommendations: find people like you and suggest what they liked.",
+          "A completely different approach: ignore users, analyze the items themselves.",
+          "How much should you exploit what works vs. explore the unknown? Bandits solve this dilemma.",
+          "Modern systems represent everything as vectors in high-dimensional space. Here's why that works.",
+          "Users and items form a graph. Graph neural networks exploit this network structure directly.",
+          "When you don't know the user, you must work with just the current session. Session-based methods handle this.",
+          "LLMs are reshaping the interface. Can they replace traditional methods, or do they complement them?"
         ],
-        boss: { q: 'Popiš tři varovné signály, podle kterých poznáš podvodnou zprávu, a řekni, co uděláš místo kliknutí na odkaz.', hints: ['odesílatel', 'naléhavost', 'odkaz', 'oficiální appka'] },
+        boss: { q: 'You are architecting a recommendation system for a new platform with 10M items. Describe which algorithm family you would use for each pipeline stage (retrieval, scoring, re-ranking) and justify your choices.', hints: ['two-tower', 'collaborative filtering', 'content-based', 'bandits', 'diversity', 'LTR', 'cold start'] },
         branches: {
-          explorer: { label: 'Jak fungují algoritmy sítí', blocks: ['ch7-jak-funguji-algoritmy-siti'] },
-          thinker: { label: 'Kritické myšlení online', blocks: ['ch7-kriticke-mysleni-online', 'ch7-dezinformace-a-manipulace'] },
-          creator: { label: 'Hlídej si čas i hlavu', blocks: ['ch7-digitalni-wellbeing'] }
+          thinker: { label: 'Deep math', blocks: ['ch3-matrix-factorization', 'ch3-attention', 'ch3-feature-interactions'] },
+          explorer: { label: 'See architectures', blocks: ['ch3-two-tower', 'ch3-hybrid-patterns', 'ch3-multimodal'] },
+          creator: { label: 'Choose your tools', blocks: ['ch5-model-selection', 'ch5-open-source'] }
         }
       },
       {
-        id: 'tvurce', title: 'Postav a sdílej', icon: '\u{1F680}',
-        difficulty: 'Závěrečný projekt',
-        story: 'Třída potřebuje web pro školní projekt a ty ses přihlásil, že ho vytvoříš. Máš nápad, prázdný editor — a AI asistenta k ruce. Zvládneš to dotáhnout až k publikované stránce?',
-        goal: 'Projít celou cestu tvůrce: od nápadu přes kód a AI po publikování',
-        reward: { title: 'Digitální tvůrce', xp: 40 },
-        prerequisite: 2,
-        core: ['ch8-jak-funguje-web', 'ch8-html', 'ch8-css', 'ch9-vibecoding', 'ch9-ai-nastroje-pro-tvorbu', 'ch10-etika-autorstvi-a-oznacovani'],
+        id: 'bubble', title: 'Pop the Bubble', icon: '\u{1FAE7}',
+        difficulty: 'Intermediate',
+        story: 'You notice your news feed shows only one perspective. A colleague sees entirely different content. Are algorithmic filter bubbles shaping your information diet?',
+        goal: 'Understand filter bubbles, fairness, bias, and how to measure quality',
+        reward: { title: 'Bubble Analyst', xp: 25 },
+        core: ['ch4-bubbles', 'ch4-fairness', 'ch4-long-tail', 'ch4-satisfaction', 'ch4-testing'],
         intros: [
-          "Než něco postavíš, pochop, jak to jezdí: co se stane, když někdo zadá adresu tvého webu?",
-          "HTML je kostra stránky: nadpisy, odstavce, obrázky, odkazy.",
-          "CSS je styl: barvy, písma, rozložení. Stejná kostra, tisíc podob.",
-          "Teď zrychlíme: popiš AI, co chceš — a čti pozorně, co ti vrátila. Vibecoding.",
-          "AI nástrojů pro tvorbu je spousta. Který se hodí na co?",
-          "A než web pustíš do světa: čí je to dílo? Co přiznáš a jak?"
+          "Something seems off. Your feed converges to a narrow content type. A colleague sees entirely different things. Why?",
+          "Bubbles are one concern. But is the system fair to all content creators and users?",
+          "The long tail: most of a catalog rarely or never gets recommended, while a few hits take most of the slots. Is that popularity pull inevitable?",
+          "Engagement and satisfaction are not the same thing. What should we actually optimize for?",
+          "How do organizations evaluate whether their recommendations are working? Rigorous experimentation."
         ],
-        boss: { q: 'Popiš cestu školního webu od nápadu k publikované stránce: co tvoří HTML a co CSS, s čím pomůže AI, jak její výstup ověříš a co uvedeš o použití AI. Zmiň i to, jak se stránka dostane na internet.', hints: ['struktura', 'styl', 'prompt', 'kontrola výstupu', 'hosting', 'přiznání AI'] },
+        boss: { q: 'You are designing a recommendation system for a news platform. How would you balance personalization with information diversity while ensuring both user satisfaction and creator fairness? Discuss specific approaches.', hints: ['diversity', 'MMR', 'long tail', 'satisfaction', 'exploration', 'fairness metrics'] },
         branches: {
-          explorer: { label: 'Doména a hosting', blocks: ['ch8-domena-a-hosting'] },
-          creator: { label: 'Přidej interaktivitu', blocks: ['ch8-interaktivita-javascript', 'ch11-scratch-jako-vstup'] },
-          thinker: { label: 'Logika aplikace', blocks: ['ch9-logika-aplikace'] }
+          thinker: { label: 'Bias & metrics', blocks: ['ch4-bias-types', 'ch4-diversity-metrics', 'ch4-polarization'] },
+          creator: { label: 'Run experiments', blocks: ['ch4-experiment', 'ch4-interleaving'] },
+          explorer: { label: 'Design A/B tests', blocks: ['ch4-ab-d-exp', 'ch4-online-offline'] }
+        }
+      },
+      {
+        id: 'control', title: 'Take Back Control', icon: '\u{1F6E1}',
+        difficulty: 'Advanced',
+        story: 'Platforms know more about your preferences than you do. They use persuasive design, dark patterns, and behavioral inference to maximize engagement. Understanding these mechanisms is essential.',
+        goal: 'Digital literacy — understand privacy, persuasive design, the attention economy, and your rights',
+        reward: { title: 'Informed Digital Citizen', xp: 25 },
+        core: ['ch6-who-decides', 'ch6-addictive', 'ch6-privacy-real', 'ch6-ai-future', 'ch6-attention-economy'],
+        intros: [
+          "When you open a platform, who decided what appears on your screen? The answer reveals the incentive structure.",
+          "Infinite scroll. Autoplay. Variable rewards. These are deliberate persuasive design patterns.",
+          "Let's get specific: what do platforms actually know about you, and how did they learn it?",
+          "You've examined the challenges. Now let's discuss AI's role in the future of recommendations.",
+          "The attention economy frames all of this: your attention is the product being sold."
+        ],
+        boss: { q: 'Describe the attention economy model, explain 3 specific persuasive design patterns platforms use, and recommend concrete countermeasures for each. Reference relevant regulations.', hints: ['attention economy', 'dark patterns', 'variable rewards', 'GDPR', 'DSA', 'privacy audit'] },
+        branches: {
+          explorer: { label: 'Audit your data', blocks: ['ch6-data-d-exp', 'ch6-dark-patterns'] },
+          creator: { label: 'Reclaim control', blocks: ['ch6-control-d-create', 'ch6-ethics-checklist'] },
+          thinker: { label: 'Deeper analysis', blocks: ['ch6-hard-d-think', 'ch6-law-sidebar', 'ch6-privacy-preserving'] }
+        }
+      },
+      {
+        id: 'creator-boost', title: 'Get Your Content Recommended', icon: '\u{1F4F1}',
+        difficulty: 'Intermediate',
+        story: "You've published content — an article, video, podcast, or product. But the algorithm doesn't surface it. Can you learn how recommendation and discovery systems work from the creator's perspective?",
+        goal: 'Understand discoverability, the pipeline, and the creator-algorithm relationship',
+        reward: { title: 'Algorithm Whisperer', xp: 30 },
+        core: ['ch5-get-recommended', 'ch5-seo-algorithms', 'ch3-pipeline', 'ch3-search-recs', 'ch3-popular'],
+        intros: [
+          "You understand how algorithms select content for users. Now flip the perspective — how do you make them select yours?",
+          "Search and recommendations are converging. Understanding discoverability is essential for content strategy.",
+          "To work with the system, you need to understand the system. How does the recommendation pipeline operate?",
+          "Search results are personalized. How do you surface for the right audience segments?",
+          "Every creator starts in the cold-start zone. How do you escape the popularity trap?"
+        ],
+        boss: { q: "You've published a technical tutorial. Describe 5 specific strategies to maximize algorithmic discovery. Then discuss: where is the ethical line between optimization and manipulation?", hints: ['metadata', 'engagement signals', 'first impressions', 'consistency', 'cold start', 'creator economy'] },
+        branches: {
+          explorer: { label: 'Study the pipeline', blocks: ['ch3-pipeline-d-exp', 'ch3-search-recs-convergence'] },
+          creator: { label: 'Build & optimize', blocks: ['ch5-spread-d-create', 'ch5-case-studies'] },
+          thinker: { label: 'Creator economy ethics', blocks: ['ch6-creator-economy', 'ch4-objectives'] }
+        }
+      },
+      {
+        id: 'production', title: 'Ship It: Production RecSys', icon: '\u{1F680}',
+        difficulty: 'Advanced',
+        story: 'Your algorithm works in a notebook. Now deploy it to serve 10,000 requests per second with p99 latency under 200ms. Welcome to production recommendation engineering.',
+        goal: 'Understand the full production stack — from feature stores to monitoring to incident response',
+        reward: { title: 'Production Engineer', xp: 35 },
+        core: ['ch5-tech-stack', 'ch5-model-selection', 'ch5-monitoring', 'ch5-caching', 'ch5-scale'],
+        intros: [
+          "In a production RecSys the model is a small part of the code; data pipelines, serving and monitoring are most of it. Let's examine the full stack.",
+          "With so many algorithms available, choosing the right one for your problem is the first critical decision.",
+          "Your system is live. How do you know it's working? Monitoring and observability are your lifeline.",
+          "Latency is tight. Caching helps — but introduces freshness trade-offs.",
+          "The architecture that works for 10K items is wrong for 100M items. Scale changes everything."
+        ],
+        boss: { q: 'Design a production recommendation system for a platform with 50M items and 10M daily active users. Describe the architecture, the latency budget per component, and the monitoring strategy.', hints: ['two-tower', 'ANN index', 'feature store', 'caching', 'candidate generation', 're-ranking', 'monitoring', 'latency'] },
+        branches: {
+          explorer: { label: 'Production ops', blocks: ['ch5-observability', 'ch5-realtime', 'ch5-continual-learning'] },
+          creator: { label: 'Build the stack', blocks: ['ch5-open-source', 'ch5-feature-eng'] },
+          thinker: { label: 'Production math', blocks: ['ch5-ab-pitfalls', 'ch5-anti-patterns'] }
+        }
+      },
+      {
+        id: 'ethics-deep', title: 'The Responsible Recommender', icon: '\u{2696}',
+        difficulty: 'Advanced',
+        story: 'Recommendation algorithms shape what billions of people see, read, and buy. With that power comes responsibility. Can you navigate the ethical landscape?',
+        goal: 'Understand algorithmic accountability, fairness definitions, content safety, and global regulatory context',
+        reward: { title: 'Responsible Technologist', xp: 30 },
+        core: ['ch4-bias-types', 'ch4-multi-objective', 'ch6-content-safety', 'ch4-accountability', 'ch6-ethics-checklist', 'ch6-global'],
+        intros: [
+          "Bias in recommender systems isn't a single problem — it's a taxonomy. Selection bias, position bias, popularity bias, and more.",
+          "When goals conflict — engagement vs. diversity vs. fairness vs. revenue — how do you decide? Multi-objective optimization provides a framework.",
+          "Algorithms can amplify harmful content. Content safety is a design requirement, not an afterthought.",
+          "When recommendations fail, who is responsible? Algorithmic accountability is both a legal and organizational challenge.",
+          "Before launch, run through this checklist: user impact, fairness, privacy, safety, transparency, accountability.",
+          "Recommendations work differently across cultures. What's effective in the US may fail in Japan."
+        ],
+        boss: { q: 'A news platform asks you to audit their recommendation system for bias and fairness. Describe your methodology: what would you measure, what frameworks would you apply, and what regulatory requirements must be met?', hints: ['bias types', 'fairness definitions', 'DSA', 'GDPR', 'content safety', 'Pareto', 'auditing'] },
+        branches: {
+          thinker: { label: 'Formal frameworks', blocks: ['ch4-diversity-metrics', 'ch4-counterfactual', 'ch4-reward-design'] },
+          explorer: { label: 'Real-world context', blocks: ['ch6-creator-economy', 'ch6-dark-patterns', 'ch4-polarization'] },
+          creator: { label: 'Apply in practice', blocks: ['ch6-privacy-preserving', 'ch4-explanation-ux'] }
+        }
+      },
+      {
+        id: 'research', title: 'The Research Journey', icon: '\u{1F52C}',
+        difficulty: 'Advanced',
+        story: 'Behind every recommendation is decades of mathematical research. Trace the journey from elegant formulas to production systems serving billions of users.',
+        goal: 'Understand how mathematical research drives recommender system evolution',
+        reward: { title: 'Research Explorer', xp: 35 },
+        core: ['ch7-why-research', 'ch7-simple-to-scalable', 'ch7-vasp-combining', 'ch7-bandits', 'ch7-cold-start-language', 'ch7-evaluation', 'ch7-production-scale', 'ch7-roadmap'],
+        intros: [
+          "Every recommendation you see is the product of mathematical research. Let's trace how theory becomes practice.",
+          "EASE: a single matrix inverse that holds its own against deep models on standard benchmarks. Elegant but hard to scale. Enter ELSA.",
+          "Linear models find smooth patterns. Deep models find complex ones. VASP combines them with a clever trick.",
+          "Should you exploit what you know or explore the unknown? Bandit algorithms formalize this dilemma.",
+          "New items have zero interactions. beeFormer bridges the gap by teaching algorithms to read.",
+          "The biggest risk isn't a bad algorithm — it's measuring the wrong thing. The evaluation problem.",
+          "Research must survive the harsh reality of production: latency, memory, and billions of daily interactions.",
+          "The frontier: fairness guarantees, LLM integration, causal evaluation, and privacy-preserving personalization."
+        ],
+        boss: { q: 'Trace the research evolution from EASE to ELSA to beeFormer. For each step, explain what problem the new approach solved and what mathematical insight enabled the breakthrough.', hints: ['matrix inverse', 'low-rank', 'Eckart-Young', 'cold start', 'ELSA loss', 'Transformer'] },
+        branches: {
+          thinker: { label: 'Full derivations', blocks: ['ch7-ease-math', 'ch7-thompson-math', 'ch7-eval-math', 'ch7-regularization'] },
+          explorer: { label: 'Production & tools', blocks: ['ch7-sparse-reps', 'ch7-realm', 'ch7-repsys'] },
+          creator: { label: 'Build with code', blocks: ['ch5-code-d-create', 'ch5-open-source'] }
+        }
+      },
+      {
+        id: 'deep-tech', title: 'The Deep Tech Dive', icon: '\u{1F9E0}',
+        difficulty: 'Advanced',
+        story: 'You want the full mathematical picture — derivations, proofs, complexity analysis. This mission takes you through the hardest technical content in the book.',
+        goal: 'Master the mathematical foundations: matrix factorization, attention, bandits, evaluation theory',
+        reward: { title: 'RecSys Theorist', xp: 40 },
+        core: ['ch3-matrix-factorization', 'ch3-als-deep', 'ch3-attention-deep', 'ch7-ease-math', 'ch7-thompson-math', 'ch7-eval-math'],
+        intros: [
+          "Matrix factorization decomposes user-item interactions into latent factor spaces. Here's the full formulation.",
+          "ALS solves the factorization problem via alternating ridge regressions. Every step has a closed-form solution.",
+          "Self-attention computes context-dependent importance weights. The scaling, the multi-head trick, the causal mask — all derived.",
+          "EASE's beauty: one matrix inverse, one diagonal constraint, and the precision matrix interpretation.",
+          "Thompson Sampling is Bayesian-optimal. Here's the proof, the regret bound, and the Lai-Robbins connection.",
+          "The offline evaluation bias formalizes why good models can look bad. MNAR, IPS, and the LLOO+β correction."
+        ],
+        boss: { q: 'Derive the ALS update step from the matrix factorization objective. Then explain why EASE can match or beat deep models on standard benchmarks despite being linear, using the bias-variance trade-off framework.', hints: ['ridge regression', 'closed-form', 'sparse data', 'variance', 'spectral shrinkage', 'nuclear norm'] },
+        branches: {
+          thinker: { label: 'More theory', blocks: ['ch7-causal-bandits', 'ch7-regularization', 'ch3-two-tower-math'] },
+          explorer: { label: 'See in practice', blocks: ['ch7-vasp-ablation', 'ch7-distillation', 'ch7-transfer-learning'] },
+          creator: { label: 'Implement it', blocks: ['ch5-code-d-create', 'ch5-feature-eng'] }
+        }
+      },
+      {
+        id: 'master', title: 'Recommendation Master', icon: '\u{1F451}',
+        difficulty: 'Capstone',
+        story: "You've studied the components. Now synthesize everything — algorithms, production, ethics, research. Can you design a complete, responsible recommendation system?",
+        goal: 'Deep mastery — synthesize the full picture across all dimensions',
+        reward: { title: 'Recommendation Master', xp: 50 },
+        prerequisite: 3,
+        core: ['ch3-pipeline', 'ch3-content', 'ch3-friends', 'ch4-testing', 'ch5-improve', 'ch6-ai-future', 'ch7-roadmap'],
+        intros: [
+          "Welcome to the capstone. Production systems combine everything into a multi-stage pipeline.",
+          "One approach: analyze the item itself — its features, embeddings, and metadata.",
+          "Another approach: analyze user behavior — find preference similarities via collaborative filtering.",
+          "How do you validate that the system works? Rigorous experimentation and evaluation.",
+          "A working system isn't a finished system. Continuous improvement is the norm.",
+          "The future: LLMs, multimodal understanding, and the open research frontier.",
+          "What does responsible, effective recommendation look like? This is where it all comes together."
+        ],
+        boss: { q: 'Design a complete recommendation system for a new content platform. Cover: algorithm selection per pipeline stage, cold-start strategy, evaluation methodology, fairness safeguards, and production architecture. Justify each decision.', hints: ['pipeline', 'collaborative filtering', 'content-based', 'cold start', 'beeFormer', 'A/B testing', 'fairness', 'monitoring', 'diversity'] },
+        branches: {
+          explorer: { label: 'Case studies', blocks: ['ch5-case-studies', 'ch5-ecommerce', 'ch5-news-recs'] },
+          creator: { label: 'Full production', blocks: ['ch5-tech-stack', 'ch5-flywheel', 'ch5-continual-learning'] },
+          thinker: { label: 'Theory meets practice', blocks: ['ch7-emerging', 'ch4-counterfactual', 'ch4-multi-objective'] }
         }
       }
     ];
@@ -4846,7 +5716,7 @@ class PBook {
   }
 
   _getMissionProgress(mission) {
-    const read = mission.core.filter(id => this.user.readBlocks.has(id)).length;
+    const read = mission.core.filter(id => this._stepRead(id)).length;
     return { read, total: mission.core.length, pct: Math.round((read / Math.max(mission.core.length, 1)) * 100) };
   }
 
@@ -4904,7 +5774,7 @@ class PBook {
     if (done && !pm.rewarded) {
       pm.rewarded = true; this.user.save();
       if (this._f('gamification')) { this.user.addXP(50); this.user.save(); this.updateXPBadge(); }
-      setTimeout(() => this.showXPToast('🎯 Osobní mise splněna! +50 XP', 'achievement'), 800);
+      setTimeout(() => this.showXPToast(tr('🎯 Personal mission complete! +50 XP'), 'achievement'), 800);
     }
     const steps = pm.ids.map(id => {
       const b = this.findBlock(id);
@@ -4915,23 +5785,22 @@ class PBook {
     return `<div class="mission-card mission-active" style="border:2px solid var(--accent)">
       <div class="mission-icon">🎯</div>
       <div class="mission-info">
-        <div class="mission-title-row"><span class="mission-title">Tvoje mise: ${this.escHtml(pm.goal)}</span>
-          <span class="mission-diff" style="background:var(--accent)">PERSONAL</span></div>
-        <div style="font-size:.72rem;color:var(--text-3);margin:.2em 0">Složeno z ${pm.ids.length} konceptů podle tvého cíle — dokončíš přečtením všech. <a href="#" onclick="event.preventDefault();app.editPersonalMission()" style="color:var(--accent)">change goal</a></div>
+        <div class="mission-title-row"><span class="mission-title">${tr(`Your mission: {0}`, this.escHtml(pm.goal))}</span>
+          <span class="mission-diff" style="background:var(--accent)">${tr(`PERSONAL`)}</span></div>
+        <div style="font-size:.72rem;color:var(--text-3);margin:.2em 0">${tr(`Composed from {0} concepts matching your goal — read them all to complete.`, pm.ids.length)} <a href="#" onclick="event.preventDefault();app.editPersonalMission()" style="color:var(--accent)">${tr(`change goal`)}</a></div>
         ${steps}
-        <div style="font-size:.72rem;color:var(--text-2);margin-top:.3em">${read}/${pm.ids.length} read${done ? ' · complete 🎉' : ''}
-          ${done ? `<button class="steer-chip" style="margin-left:.5em;border-color:var(--accent);color:var(--accent)" onclick="app.shareThing('Mise splněna', 'Právě jsem dokončil svou osobní misi „${this.escHtml(pm.goal)}“ v živé knize Jak funguje digitální svět 🎯', location.origin)">📣 sdílet</button>` : ''}</div>
+        <div style="font-size:.72rem;color:var(--text-2);margin-top:.3em">${tr(`{0}/{1} read{2} {3}`, read, pm.ids.length, done ? tr(' · complete 🎉') : '', done ? `<button class="steer-chip" style="margin-left:.5em;border-color:var(--accent);color:var(--accent)" onclick="app.shareThing('Mission complete', 'I just finished my personal mission “${this.escHtml(pm.goal)}” in the living book ${this._jsAttr(this._bookTitle())} 🎯', location.origin)">${tr(`📣 share`)}</button>` : '')}</div>
       </div>
     </div>`;
   }
 
   editPersonalMission() {
     const cur = this.user.personalMission?.goal || '';
-    const text = window.prompt('🎯 What do you want to learn? The book will compose a mission from matching concepts.', cur);
+    const text = window.prompt(tr('🎯 What do you want to learn? The book will compose a mission from matching concepts.'), cur);
     if (text === null) return;
     if (!text.trim()) { this.user.personalMission = null; this.user.save(); this.renderMissions(); return; }
     const m = this.composePersonalMission(text);
-    if (!m) this.showXPToast('Žádné odpovídající koncepty — zkus jiná slova', 'achievement');
+    if (!m) this.showXPToast(tr('No matching concepts found — try different words'), 'achievement');
     this.renderMissions();
   }
 
@@ -4941,8 +5810,8 @@ class PBook {
     const completed = new Set(this.user.completedMissions || []);
 
     let html = '<div class="missions-inner">';
-    html += '<div class="missions-head"><h2>Mise</h2><p>Vyber si dobrodružství. Každá mise vypráví příběh a něco tě naučí.</p></div>';
-    html += this._personalMissionCard() || `<div style="font-size:.75rem;color:var(--text-3);margin:.2em 0 .6em">🎯 <a href="#" onclick="event.preventDefault();app.editPersonalMission()" style="color:var(--accent)">Řekni knize, co se chceš naučit</a> — složí ti osobní misi z odpovídajících konceptů.</div>`;
+    html += ('<div class="missions-head"><h2>' + tr(`Missions`) + '</h2><p>' + tr(`Guided paths through the book: each one follows a single question across chapters, in reading order.`) + '</p></div>');
+    html += this._personalMissionCard() || `<div style="font-size:.75rem;color:var(--text-3);margin:.2em 0 .6em">🎯 <a href="#" onclick="event.preventDefault();app.editPersonalMission()" style="color:var(--accent)">${tr(`Tell the book what you want to learn`)}</a> ${tr(`— it will compose a personal mission from matching concepts.`)}</div>`;
 
     missions.forEach(m => {
       const prog = this._getMissionProgress(m);
@@ -4956,9 +5825,9 @@ class PBook {
         <div class="mission-info">
           <div class="mission-title-row">
             <span class="mission-title">${m.title}</span>
-            <span class="mission-diff" style="background:${diffColors[m.difficulty]}">${m.difficulty}</span>
+            <span class="mission-diff" style="background:${diffColors[m.difficulty]}">${tr(m.difficulty)}</span>
           </div>
-          <div class="mission-story">${isLocked ? `Complete ${m.prerequisite} missions to unlock` : m.story.substring(0, 80) + '...'}</div>
+          <div class="mission-story">${isLocked ? `${tr(`Complete {0} missions to unlock`, m.prerequisite)}` : m.story.substring(0, 80) + '...'}</div>
           <div class="mission-progress-dots">
             ${m.core.map((id, i) => {
               const read = isComplete || this.user.readBlocks.has(id);
@@ -4966,8 +5835,8 @@ class PBook {
             }).join('')}
           </div>
           <div class="mission-meta">
-            <span class="mission-reward-preview">${m.reward.title} +${m.reward.xp}XP</span>
-            ${isComplete ? '<span class="mission-complete-badge">\u2713 Complete</span>' : `<span>${prog.read}/${m.core.length}</span>`}
+            <span class="mission-reward-preview">${tr(`{0} +{1}XP`, m.reward.title, m.reward.xp)}</span>
+            ${isComplete ? ('<span class="mission-complete-badge">' + tr(`\u2713 Complete`) + '</span>') : `<span>${prog.read}/${m.core.length}</span>`}
           </div>
         </div>
       </div>`;
@@ -4988,28 +5857,28 @@ class PBook {
     const isComplete = (this.user.completedMissions || []).includes(m.id);
     const branch = this.user.missionBranches?.[m.id];
     const allBlocks = this._getMissionBlocks(m);
-    const coreComplete = m.core.every(id => this.user.readBlocks.has(id));
+    const coreComplete = m.core.every(id => this._stepRead(id));
 
     let html = '<div class="missions-inner">';
-    html += `<button class="btn-ghost" onclick="app.renderMissions()" style="margin-bottom:.5em">&larr; Všechny mise</button>`;
+    html += `<button class="btn-ghost" onclick="app.renderMissions()" style="margin-bottom:.5em">${tr(`&larr; All missions`)}</button>`;
     html += `<div class="mission-detail-header">
       <span class="mission-detail-icon">${m.icon}</span>
       <div>
         <h2 class="mission-detail-title">${m.title}</h2>
         <p class="mission-detail-goal">${m.goal}</p>
       </div>
-      <button class="act-btn share-btn" onclick="app.shareMission('${m.id}')" title="Sdílet tuto misi" style="margin-left:auto;font-size:1rem">&#128279;</button>
+      <button class="act-btn share-btn" onclick="app.shareMission('${m.id}')" title="${tr(`Share this mission`)}" style="margin-left:auto;font-size:1rem">&#128279;</button>
     </div>`;
     html += `<div class="mission-detail-story">${m.story}</div>`;
 
     // Start/Continue wizard button
     if (!isComplete) {
-      const wizardLabel = prog.read === 0 ? 'Začít misi' : 'Pokračovat v misi';
+      const wizardLabel = prog.read === 0 ? tr('Start mission') : tr('Continue mission');
       html += `<div style="text-align:center;margin-bottom:1em"><button class="mission-complete-btn" onclick="app.startMissionWizard('${m.id}')">${wizardLabel} &rarr;</button></div>`;
     }
 
     // Progress overview — show core dots + optional branch dots
-    const coreRead = m.core.filter(id => this.user.readBlocks.has(id)).length;
+    const coreRead = m.core.filter(id => this._stepRead(id)).length;
     html += `<div class="mission-detail-progress">
       <div class="mission-progress-dots" style="justify-content:center">
         ${m.core.map((id, i) => {
@@ -5021,12 +5890,12 @@ class PBook {
           return `<span class="mission-dot branch-dot ${read ? 'done' : ''}" title="${this.findBlock(id)?.meta?.title || id}"></span>`;
         }).join('') : ''}
       </div>
-      <div style="text-align:center;font-size:.75rem;color:var(--text-3);margin-top:.3em">${coreRead}/${m.core.length} core steps${branch ? ` + bonus ${m.branches[branch].blocks.filter(id => this.user.readBlocks.has(id)).length}/${m.branches[branch].blocks.length}` : ''}</div>
+      <div style="text-align:center;font-size:.75rem;color:var(--text-3);margin-top:.3em">${tr(`{0}/{1} core steps{2}`, coreRead, m.core.length, branch ? ` ${tr(`+ bonus {0}/{1}`, m.branches[branch].blocks.filter(id => this._stepRead(id)).length, m.branches[branch].blocks.length)}` : '')}</div>
     </div>`;
 
     // Step list — core blocks
     html += '<div class="mission-steps">';
-    html += '<div class="mission-steps-label">Tvoje cesta</div>';
+    html += ('<div class="mission-steps-label">' + tr(`Your journey`) + '</div>');
     m.core.forEach((id, i) => {
       const block = this.findBlock(id);
       const isRead = this.user.readBlocks.has(id);
@@ -5036,7 +5905,7 @@ class PBook {
         <div class="step-marker">${isRead ? '\u2713' : i + 1}</div>
         <div class="step-content">
           <div class="step-title">${title}</div>
-          <div class="step-meta">Kapitola ${ch} &middot; ${block?.meta?.readingTime || 3} min</div>
+          <div class="step-meta">${tr(`Chapter {0} &middot; {1} min`, ch, block?.meta?.readingTime || 3)}</div>
         </div>
       </div>`;
     });
@@ -5044,25 +5913,25 @@ class PBook {
     // Branch point
     if (!branch) {
       html += `<div class="mission-branch-point">
-        <div class="branch-label">Vyber si cestu</div>
-        <div class="branch-desc">Příběh se tady větví. Vyber si svůj styl — kniha se ti přizpůsobí!</div>
+        <div class="branch-label">${tr(`How do you want to continue?`)}</div>
+        <div class="branch-desc">${tr(`Same mission, three ways to finish it. You can switch later.`)}</div>
         <div class="branch-options">`;
       Object.entries(m.branches).forEach(([voice, b]) => {
-        const vc = CONFIG.voices[voice] || {};
+        const vc = BRANCH_WORDS[voice] || CONFIG.voices[voice] || {};
         html += `<button class="branch-option ${voice}" onclick="app.pickBranch('${m.id}','${voice}')">
           <span class="branch-icon">${vc.icon || ''}</span>
           <span class="branch-name">${vc.label || voice}</span>
           <span class="branch-desc-text">${b.label}</span>
-          <span class="branch-count">+${b.blocks.length} sections</span>
+          <span class="branch-count">${trn(`+{0} section`, `+{0} sections`, b.blocks.length)}</span>
         </button>`;
       });
       html += '</div></div>';
     } else {
       // Show chosen branch blocks
       const b = m.branches[branch];
-      const vc = CONFIG.voices[branch] || {};
+      const vc = BRANCH_WORDS[branch] || CONFIG.voices[branch] || {};
       html += `<div class="mission-branch-chosen">
-        <div class="branch-label">${vc.icon || ''} cesta: ${vc.label || branch} <button class="btn-ghost" style="font-size:.7rem" onclick="app.pickBranch('${m.id}',null)">změnit</button></div>
+        <div class="branch-label">${tr(`{0} {1} path`, vc.icon || '', vc.label || branch)} <button class="btn-ghost" style="font-size:.7rem" onclick="app.pickBranch('${m.id}',null)">${tr(`change`)}</button></div>
       </div>`;
       b.blocks.forEach((id, i) => {
         const block = this.findBlock(id);
@@ -5072,7 +5941,7 @@ class PBook {
           <div class="step-marker">${isRead ? '\u2713' : '\u2022'}</div>
           <div class="step-content">
             <div class="step-title">${title}</div>
-            <div class="step-meta">${vc.label} path &middot; ${block?.meta?.readingTime || 3} min</div>
+            <div class="step-meta">${tr(`{0} path &middot; {1} min`, vc.label, block?.meta?.readingTime || 3)}</div>
           </div>
         </div>`;
       });
@@ -5084,11 +5953,11 @@ class PBook {
     if (isComplete) {
       html += `<div class="mission-reward-earned">
         <div class="reward-icon">\u{1F3C6}</div>
-        <div class="reward-text">Mise splněna! Získáváš: <b>${m.reward.title}</b> +${m.reward.xp} XP</div>
+        <div class="reward-text">${tr(`Mission complete! You earned: <b>{0}</b> +{1} XP`, m.reward.title, m.reward.xp)}</div>
       </div>`;
     } else if (coreComplete) {
       html += `<div class="mission-complete-action">
-        <button class="mission-complete-btn" onclick="app._startBossQuiz('${m.id}')">Utkej se s finálním bossem &rarr;</button>
+        <button class="mission-complete-btn" onclick="app._startBossQuiz('${m.id}')">${tr(`Face the Final Boss &rarr;`)}</button>
       </div>`;
     }
 
@@ -5113,6 +5982,2003 @@ class PBook {
     this._renderBossQuiz();
   }
 
+  // ===== MIKROMISE Z ODKAZU (učitel vybírá koncepty, forma je na žákovi) =====
+  _b64uDecode(x) {
+    try { return decodeURIComponent(escape(atob(String(x).replace(/-/g, '+').replace(/_/g, '/')))); } catch (e) { return null; }
+  }
+  _hash36(str) {
+    let a = 5381; for (let i = 0; i < str.length; i++) a = ((a * 33) ^ str.charCodeAt(i)) >>> 0;
+    return a.toString(36).toUpperCase();
+  }
+  loadCustomMission(b64) {
+    const raw = this._b64uDecode(b64);
+    if (!raw) return false;
+    let payload; try { payload = JSON.parse(raw); } catch (e) { return false; }
+    const slugs = (payload.c || []).filter(x => typeof x === 'string').slice(0, 12);
+    const recs = slugs.map(sl => this.concepts?.[sl]).filter(Boolean);
+    if (!recs.length) return false;
+    const core = recs.map(r => r.anchor).filter(id => id && this.findBlock(id));
+    if (!core.length) return false;
+    const titles = recs.map(r => r.title || r.id);
+    this._customMission = {
+      id: 'custom-' + this._hash36(slugs.join('|')),
+      _custom: true, _concepts: slugs,
+      title: (payload.t || '').slice(0, 60) || tr('Micro-mission from your teacher'),
+      icon: '\u{1F3AF}', difficulty: 'Micro-mission',
+      story: tr('Your teacher sent a micro-mission: practise the selected concepts. The form is yours — read, switch tellings, play.'),
+      goal: tr('Master the selected concepts and defend them at the boss question'),
+      reward: { title: 'Micro-certificate', xp: 15 },
+      core,
+      intros: titles.map(t => t + ':'),
+      boss: { q: tr('Explain in your own words what these concepts mean and how they relate: {list}. Give one example of your own for each.').replace('{list}', titles.join(', ')), hints: titles },
+      branches: {},
+    };
+    return true;
+  }
+  _showMicroCert(m, extra) {
+    document.getElementById('microCert')?.remove();
+    const isAuthor = extra && extra.kind === 'author';
+    const name = localStorage.getItem('pbook-cert-name') || '';
+    const items = isAuthor ? [extra.conceptTitle] : (m._concepts || []).map(sl => this.concepts?.[sl]?.title || sl);
+    const date = new Date().toLocaleDateString('cs-CZ');
+    const code = this._hash36([...(m?._concepts || []), extra?.slug || '', date].join('|')).padEnd(8, '0').slice(0, 8);
+    const el = document.createElement('div');
+    el.id = 'microCert';
+    el.innerHTML = `<div style="position:fixed;inset:0;background:rgba(20,20,30,.45);z-index:300;display:flex;align-items:center;justify-content:center;padding:1em" onclick="if(event.target===this)document.getElementById('microCert').remove()">
+      <div style="background:var(--card,#fff);border-radius:16px;max-width:420px;width:100%;padding:1.2em 1.3em;border-top:6px solid #7C3AED" id="microCertCard">
+        <div style="font-size:1.15rem;font-weight:800">${isAuthor ? tr('✍️ Author certificate') : tr('🎓 Micro-certificate')}</div>
+        <div style="font-size:.75rem;color:var(--text-2,#666);margin:.15em 0 .6em">${isAuthor ? tr('for developing a concept with an AI coach') : tr('for completing a micro-mission')}</div>
+        <input id="mcName" value="${this.escHtml(name)}" placeholder="${tr(`Your name (for print)`)}" onchange="localStorage.setItem('pbook-cert-name',this.value)"
+          style="width:100%;font-size:.95rem;font-weight:700;padding:.35em .5em;border:1px dashed var(--border,#ddd);border-radius:8px;margin-bottom:.5em">
+        <ul style="margin:.2em 0 .6em 1.1em;font-size:.85rem">${items.map(t => `<li>${this.escHtml(t)}</li>`).join('')}</ul>
+        <div style="font-family:ui-monospace,monospace;font-size:.72rem;color:var(--text-2,#666)">${tr(`date: {0}{1} · code: <b>{2}</b>`, date, extra && extra.score != null ? ` ${tr(`· coach score: {0}/100`, extra.score)}` : '', code)}</div>
+        <div style="display:flex;gap:.5em;margin-top:.8em" class="no-print">
+          <button class="note-save" onclick="print()">${tr(`🖨 Print`)}</button>
+          ${extra && extra.shareId ? `<button class="note-save" style="background:var(--accent)" onclick="document.getElementById('microCert').remove();app._showShareConsent('${extra.shareId}')">${tr(`📣 Share with the class`)}</button>` : ''}
+          <button class="note-cancel" onclick="document.getElementById('microCert').remove()">${tr(`Close`)}</button>
+        </div>
+        ${extra && extra.defense && extra.defense.length ? `<div style="margin-top:.7em;font-size:.72rem;color:var(--text-2,#666)"><b>${tr(`Defense questions (from the coach):`)}</b><ul style="margin:.2em 0 0 1.1em">${extra.defense.map(q => `<li>${this.escHtml(q)}</li>`).join('')}</ul></div>` : ''}
+      </div>
+    </div>`;
+    document.body.appendChild(el);
+  }
+
+  // ===== AUTORSKÉ STUDIO (žák rozpracuje koncept pod vedením AI kouče) =====
+  _authorState() {
+    try { return JSON.parse(localStorage.getItem('pbook-author-drafts')) || {}; } catch (e) { return {}; }
+  }
+  _authorSave(st) { localStorage.setItem('pbook-author-drafts', JSON.stringify(st)); }
+  // ===== Studio images: the text holds only a ⟦image N⟧ token, SVG source lives aside =====
+  // Humans never edit SVG as text — they see it in the preview and edit it THERE
+  // (double-click a label, ✨ AI instruction, 🗑). On send, tokens expand back to ⟦svg⟧.
+  // Image marks in the text: [diagram|animation|image|schema: …] — case-insensitive
+  // ===== MEDIA IN TEXT =====
+  // Frontmatter: media: name=images/file.svg | other=images/b.svg
+  // A ⟦obr:name⟧ mark in the body (or a direct ⟦obr:images/c.svg⟧ path) places
+  // the image/animation ANYWHERE — meta.diagram stays as the hero up top.
+  _mediaMap(meta) {
+    const out = {};
+    String(meta?.media || '').split('|').forEach(part => {
+      const m = part.trim().match(/^([\w-]+)\s*=\s*(\S+)$/);
+      if (m) out[m[1]] = m[2];
+    });
+    return out;
+  }
+  _mediaMarkRx() { return /⟦(?:obr|img|media)\s*:\s*([^⟧]+)⟧/g; }
+  async _resolveMediaMarks(body, map) {
+    if (!body || !/⟦(?:obr|img|media)\s*:/.test(body)) return body;
+    for (const m of [...body.matchAll(this._mediaMarkRx())]) {
+      const ref = m[1].trim();
+      const path = map?.[ref] || (/[\/.]/.test(ref) ? ref : null);
+      let repl = '';
+      if (path) {
+        try {
+          const html = await getDiagram(path);
+          if (html) repl = /^<svg/i.test(html.trim())
+            ? `\n\n⟦svg⟧\n${html.trim()}\n⟦/svg⟧\n\n`
+            : `\n\n${html}\n\n`;
+        } catch (e) {}
+      }
+      body = body.replace(m[0], repl);
+    }
+    return body;
+  }
+
+  // Draft block split: blank lines separate, but NOT inside ```fences
+  // (a code block with a blank line must not be halved — read-feed parity)
+  _studioSplitBlocks(draft) {
+    const out = []; let buf = []; let fence = false;
+    for (const line of (draft || '').split('\n')) {
+      if (/^```/.test(line)) fence = !fence;
+      if (!fence && line.trim() === '') {
+        if (buf.length) { out.push(buf.join('\n').trim()); buf = []; }
+      } else buf.push(line);
+    }
+    if (buf.length) out.push(buf.join('\n').trim());
+    return out.filter(Boolean);
+  }
+
+  _studioMarkerRx() { return /\[\s*(diagram|sch[eé]ma|animace|animation|obr[aá]zek|image|grafika)\s*:\s*([^\]]+)\]/gi; }
+
+  _studioAssetRx() { return /⟦(?:obrázek|obrazek|image)\s*(\d+)⟧/g; }
+  _studioCollapse(text) {
+    const stdo = this._studio;
+    return (text || '').replace(/⟦svg⟧([\s\S]*?)⟦\/svg⟧/g, (_, svg) => {
+      if (!svg.trim()) return '';
+      const id = String(++stdo.assetSeq);
+      stdo.assets[id] = svg.trim();
+      return `⟦image ${id}⟧`;
+    });
+  }
+  _studioExpand(text, order) {
+    return (text || '').replace(this._studioAssetRx(), (m2, id) => {
+      const svg = this._studio?.assets?.[id];
+      if (!svg) return '';
+      if (order) order.push(id);
+      return `\n\n⟦svg⟧\n${svg}\n⟦/svg⟧\n\n`;
+    });
+  }
+  // Creative-process stats (for the workshop/certificate): how much the human did vs the AI
+  _studioStat(kind) {
+    const stdo = this._studio; if (!stdo) return;
+    stdo.stats = stdo.stats || { manual: 0, ai: 0, coach: 0 };
+    stdo.stats[kind] = (stdo.stats[kind] || 0) + 1;
+    const all = this._authorState(); (all[stdo.slug] = all[stdo.slug] || {}).stats = stdo.stats; this._authorSave(all);
+  }
+
+  _studioSave() {
+    const stdo = this._studio; if (!stdo) return;
+    const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {});
+    st.text = document.getElementById('stDraft')?.value ?? st.text;
+    st.assets = stdo.assets; st.assetSeq = stdo.assetSeq; st.ts = Date.now();
+    this._authorSave(all);
+    const si = document.getElementById('stSaved');
+    if (si) si.textContent = tr('Saved ') + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' ✓';
+  }
+
+  // Enter the studio straight from reading: the section opens as a draft of your own telling
+  async startAuthoringFromBlock(blockId) {
+    const entry = this._findAnyBlock(blockId); if (!entry) return;
+    const slug = (this._conceptIds ? this._conceptIds(entry.meta)[0] : entry.meta.concept) || blockId;
+    const all = this._authorState();
+    const st = all[slug] || {};
+    // The section transfers FAITHFULLY: the header diagram (meta.diagram) as an
+    // inline image up top, remix ⟦rx⟧ marks stripped.
+    // You edit what you SEE: an accepted override wins over the git original —
+    // otherwise the studio would silently discard the reader’s earlier work.
+    const ovId = this._overrides?.[blockId];
+    const ov = ovId && !this._overridesOff().has(blockId) ? this.privateBlocks?.[ovId] : null;
+    let body = ((ov ? ov.body : entry.body) || '').replace(/⟦\/?rx⟧/g, '');
+    if (ov?.meta?.diagramSvg && !body.includes('⟦svg⟧')) body = '⟦svg⟧\n' + ov.meta.diagramSvg.trim() + '\n⟦/svg⟧\n\n' + body;
+    body = await this._resolveMediaMarks(body, this._mediaMap(entry.meta));
+    // Comics etc. embedded as markdown images (![alt](images/x.svg)) → editable
+    // asset: otherwise the block's main content can't be edited in the studio at all.
+    for (const im of [...body.matchAll(/!\[[^\]]*\]\(([^)\s]+\.svg)\)/g)]) {
+      if (/^https?:/i.test(im[1])) continue;
+      try {
+        const svg = ((await getDiagram(im[1])) || '').trim();
+        if (/^<svg[\s\S]*<\/svg>$/.test(svg) && svg.length < 120000) body = body.replace(im[0], `\n\n⟦svg⟧\n${svg}\n⟦/svg⟧\n\n`);
+      } catch (e) {}
+    }
+    const diag = entry.meta?.diagram;
+    if (diag && typeof diag === 'string' && /\.svg$/.test(diag) && !body.includes('⟦svg⟧')) {
+      try {
+        const svg = (await (await fetch(diag)).text()).trim();
+        if (/^<svg[\s\S]*<\/svg>$/.test(svg) && svg.length < 120000) body = '⟦svg⟧\n' + svg + '\n⟦/svg⟧\n\n' + body;
+      } catch (e) {}
+    }
+    // Clicking a telling ALWAYS opens that telling. One draft per concept stays,
+    // but work-in-progress (dirty = text changed since import) is never lost — it
+    // moves to st.backup with a restore banner. A clean auto-import is replaced silently.
+    const all2 = this._authorState();
+    const st2 = all2[slug] || {};
+    const dirty = !!(st2.text && st2.text.trim())
+      && st2.sourceBlockId !== blockId
+      && st2.importHash !== this._hash36(st2.text);
+    if (dirty) {
+      st2.backup = { text: st2.text, assets: st2.assets, assetSeq: st2.assetSeq, stats: st2.stats,
+        ts: st2.ts, sourceBlockId: st2.sourceBlockId, importHash: st2.importHash, title: st2.title, sourceTitle: st2.sourceTitle };
+      // Offer the return ONLY for work on the SAME text — a backup from another
+      // telling of the same concept would open a "different topic" on click.
+      this._stBackupOffer = st2.backup.sourceBlockId === blockId;
+    }
+    st2.text = body;
+    st2.assets = {}; st2.assetSeq = 0; st2.stats = { manual: 0, ai: 0, coach: 0 };
+    st2.sourceBlockId = blockId;
+    st2.sourceTitle = entry.meta?.title || '';
+    if (!st2.recallQ && entry.meta?.recallQ) st2.recallQ = entry.meta.recallQ;
+    if (!st2.recallA && entry.meta?.recallA) st2.recallA = entry.meta.recallA;
+    st2.facets = st2.facets || {};
+    if (!st2.facets.genre && entry.meta?.genre) { st2.facets.genre = entry.meta.genre; st2.genre = entry.meta.genre; }
+    if (!st2.facets.depth && entry.meta?.depth) st2.facets.depth = entry.meta.depth;
+    if (!st2.facets.visuality && entry.meta?.visuality) st2.facets.visuality = entry.meta.visuality;
+    st2.importHash = this._hash36(body);
+    delete st2.title;
+    all2[slug] = st2;
+    this._authorSave(all2);
+    this.rc.logEvent('author_from_block', { slug, blockId, displaced: dirty });
+    this.startAuthoring(slug);
+  }
+
+  startAuthoring(slug) {
+    const prop = (this.proposals || []).find(x => x.slug === slug);
+    const conc = this.concepts?.[slug];
+    const node = this._cmapNodes?.[slug];
+    // Books without concepts.json (legacy content, no concept: tags): the slug
+    // is a block id — build the contract from the block itself so the studio
+    // still opens everywhere.
+    const blk = !prop && !conc && !node ? this._findAnyBlock(slug) : null;
+    if (!prop && !conc && !node && !blk) { this.showXPToast('?', 'xp'); return; }
+    const title = prop ? prop.title : (conc?.title || node?.title || blk?.meta?.title || slug);
+    const contract = prop
+      ? { objective: prop.objective, mustCover: prop.mustCover || [], recallQ: prop.recallQ }
+      : conc
+        ? { objective: conc.contract?.objective, mustCover: (conc.contract?.mustCover || []).map(m => m.point || m), recallQ: conc.contract?.recallQ }
+        : node
+          ? { objective: node?.def || node?.teaser, mustCover: [], recallQ: undefined }
+          : { objective: blk?.meta?.teaser, mustCover: [], recallQ: blk?.meta?.recallQ };
+    const st = this._authorState()[slug] || {};
+    this._studio = { slug, title: st.title || title, contract, isProposal: !!prop, questions: [],
+      assets: { ...(st.assets || {}) }, assetSeq: st.assetSeq || 0, stats: st.stats || { manual: 0, ai: 0, coach: 0 } };
+    const cleanText = this._studioCollapse(st.text || '');
+    document.getElementById('authorStudio')?.remove();
+    const el = document.createElement('div');
+    el.id = 'authorStudio';
+    el.innerHTML = `<div style="position:fixed;inset:0;background:rgba(20,20,30,.5);z-index:250;overflow-y:auto">
+      <div style="max-width:780px;margin:3vh auto 6vh;background:var(--card,#fff);border:1px solid var(--border,#ddd);border-radius:16px;box-shadow:0 14px 44px rgba(0,0,0,.28);padding:1em 1.2em 2em">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:.6em">
+          <div style="font-weight:800;font-size:1.05rem">${tr(`✍️ Author studio`)}</div>
+          <span id="stEarn" style="font-size:.7rem;color:#15803D;margin-left:auto;text-align:right"></span>
+          <span id="stSaved" style="font-size:.7rem;color:var(--text-3,#999)"></span>
+          <button onclick="app._studioClose()" title="${tr(`Close — everything autosaves`)}" style="width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1.5px solid var(--border,#ccc);background:var(--bg,#fafaf7);font-size:1rem;font-weight:700;cursor:pointer;line-height:1">✕</button>
+        </div>
+        <div style="font-size:.75rem;color:var(--text-2,#666);margin:.2em 0 .7em">${tr(`Write straight into the page: click a paragraph to edit it, select and drag images. Everything saves continuously.`)}</div>
+        <div style="border:1.5px solid var(--border,#ddd);border-radius:10px;padding:.6em .8em;font-size:.8rem;background:var(--card,#fff)">
+          <b>${this.escHtml(title)}</b>
+          ${contract.objective ? `<div style="margin-top:.25em"><span style="color:var(--text-2,#666)">${tr(`Goal:`)}</span> ${this.escHtml(contract.objective)}</div>` : ''}
+          ${(contract.mustCover || []).length ? `<div style="margin-top:.25em;font-size:.74rem"><span style="color:var(--text-2,#666)">${tr(`Must cover:`)}</span> ${(contract.mustCover || []).map(x => `<span style="display:inline-block;border:1px solid var(--border,#ddd);border-radius:999px;padding:0 .5em;margin:.1em">${this.escHtml(x)}</span>`).join('')}</div>` : ''}
+  <div style="margin-top:.45em;border-top:1px dashed var(--border,#eee);padding-top:.4em">
+                <div style="font-size:.72rem;font-weight:700;color:var(--text-2,#666)">${tr(`🎯 After reading, the reader should answer`)}</div>
+                <input id="stGoalQ" placeholder="${tr(`Check question… (write this first!)`)}" value="${this.escHtml(st.recallQ || contract.recallQ || '')}"
+                  style="width:100%;font:inherit;font-size:.8rem;padding:.25em .45em;margin:.2em 0;border:1px dashed var(--border,#ccc);border-radius:8px;background:var(--bg,#fafaf7)">
+                <input id="stGoalA" placeholder="${tr(`Expected answer…`)}" value="${this.escHtml(st.recallA || '')}"
+                  style="width:100%;font:inherit;font-size:.8rem;padding:.25em .45em;margin:.1em 0;border:1px dashed var(--border,#ccc);border-radius:8px;background:var(--bg,#fafaf7)">
+                <div id="stFacetRows">${this._studioFacetRowsHtml(st)}</div>
+                <div id="stFacetOut"></div>
+          </div>
+        </div>
+        <style>#stCanvas .st-block{transition:background .15s}#stCanvas .st-block:not([data-img]):hover{background:color-mix(in srgb, var(--accent) 6%, transparent)}#stCanvas #stTitleH:hover{background:color-mix(in srgb, var(--accent) 6%, transparent)}</style><div id="stCanvas" style="border:1.5px solid var(--border,#eee);border-radius:12px;padding:1em 1.1em;background:var(--bg,#fafaf7);margin:.7em 0 .5em;min-height:30vh"></div>
+        <div style="display:flex;gap:.5em;align-items:center;flex-wrap:wrap">
+          ${this._f('generation') ? `<button class="note-save" id="stSeedBtn" onclick="app.seedDraft()" style="border:1.5px solid var(--accent);background:transparent;color:var(--accent)">${tr(`✨ Suggest a skeleton · {0} ⚡`, CONFIG.aiEconomy?.prices.basic || 0)}</button>
+          <button class="note-save" style="background:var(--accent)" id="stCoachBtn" onclick="app.coachRound()">${tr(`🧭 Coach · {0} ⚡`, CONFIG.aiEconomy?.prices.basic || 0)}</button>
+          <button class="note-save" id="stArtBtn" onclick="app.generateGraphic()" style="border:1.5px solid #D97706;background:transparent;color:#B45309">${tr(`🎨 Generate a graphic · {0} ⚡`, CONFIG.aiEconomy?.prices.advanced || 0)}</button>` : ''}
+          <button class="steer-chip" id="stFbBtn" title="${tr(`Ask for a second pair of eyes: you share a read-only snapshot, others comment — you remain the only writer.`)}" onclick="app.studioFeedbackPanel()" style="font-size:.72rem">${tr(`👀 Feedback`)}</button>
+          <button class="steer-chip" title="${tr(`Slides: export the draft as a SlAIdy deck and import it back`)}" onclick="app.slaidyPanel()" style="font-size:.72rem">${tr(`🎞 SlAIdy`)}</button>
+              <button class="note-save" id="stFinishBtn" onclick="app.finishAuthoring()" style="background:#10B981">${tr(`📤 Send to the book`)}</button>
+        </div>
+        <div id="stOut" style="margin-top:.7em"></div>
+        <div style="font-size:.7rem;color:var(--text-2,#666);margin-top:.5em">${tr(`✏️ Click a paragraph = edit (markdown works, Ctrl+Enter/click away = done, Esc = cancel); click the title = rename. Images: write [diagram: what to show], [animation: what moves] or [image: what to draw] marks in the text — "Generate a graphic" draws them ALL at once (one image per mark, inserted immediately), or click a single mark in the preview. Want click-through reveal? Write [animation: click-through — what appears at which step], or select an element and give it a 🎬 step. Finished image: click selects an element (drag, colours, ⧉, 🗑, ↩), double-click rewrites a label, ✨ sends an AI instruction.`)}</div>
+        <textarea id="stDraft" style="display:none">${this.escHtml(cleanText)}</textarea>
+      </div>
+    </div>`;
+    document.body.appendChild(el);
+    const ta = document.getElementById('stDraft');
+    ta.addEventListener('input', () => {
+      this._studioSave();
+      clearTimeout(this._stPvTimer);
+      this._stPvTimer = setTimeout(() => this._studioPreview(), 250);
+    });
+    // The creation goal (Q/A/form) is saved with the draft and sent to the coach and the skeleton
+    ['stGoalQ', 'stGoalA'].forEach(id => document.getElementById(id)?.addEventListener('change', () => this._studioSaveGoal()));
+    if ((cleanText || '').trim().length >= 60) document.getElementById('stSeedBtn')?.remove();
+    // Esc closes the window (everything autosaves); inputs keep their own Esc behaviour
+    if (!this._stEscBound) {
+      this._stEscBound = true;
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+        if (e.target.closest('textarea, input')) return;
+        if (document.getElementById('authorStudio')) this._studioClose();
+      });
+    }
+    if (cleanText !== (st.text || '')) this._studioSave();
+    this._studioPreview();
+    this._studioEarnHint(st);
+    if (st.shareId) {
+      fetch('/api/drafts?id=' + st.shareId).then(r => r.json()).then(d => {
+        const btn = document.getElementById('stFbBtn');
+        if (d?.ok && btn) {
+          const n = (d.comments || []).length;
+          if (n) { btn.textContent += ` (${n})`; btn.style.borderColor = '#7C3AED'; btn.style.color = '#7C3AED'; this._studioFbStatus(st.shareId); }
+        }
+      }).catch(() => {});
+    }
+    this._studioPreview();
+    if (this._stBackupOffer) {
+      this._stBackupOffer = false;
+      const rb = document.createElement('div');
+      rb.style.cssText = 'display:flex;gap:.5em;align-items:center;flex-wrap:wrap;font-size:.75rem;border:1.5px dashed #7C3AED;border-radius:9px;padding:.4em .6em;margin:.4em 0;color:var(--text-2,#666);background:color-mix(in srgb, #7C3AED 5%, transparent)';
+      rb.innerHTML = `${tr(`Your previous work-in-progress for this concept is safe.`)} <button class="steer-chip" style="font-size:.7rem;border-color:#7C3AED;color:#7C3AED" onclick="this.closest('div').remove();app._studioRestoreBackup()">${tr(`↩ Go back to it`)}</button>
+        <button class="steer-chip" style="font-size:.7rem" onclick="this.closest('div').remove()">✕</button>`;
+      document.getElementById('stCanvas')?.before(rb);
+    }
+    this.rc.logEvent('author_open', { slug });
+  }
+
+  // Live WYSIWYG surface: the draft split into blocks; a text block turns into a
+  // small markdown editor on click, an image block has selection/drag/toolbars.
+  // The markdown in #stDraft stays the source of truth — coach, skeleton and
+  // graphics keep working unchanged.
+  _studioPreview() {
+    const stdo = this._studio; if (!stdo) return;
+    const pane = document.getElementById('stCanvas'); if (!pane) return;
+    this._studioDeselect();
+    this._stEditing = null;
+    const draft = (document.getElementById('stDraft')?.value || '').trim();
+    const blocks = this._studioSplitBlocks(draft);
+    stdo._blocks = blocks;
+    const tokenRx = /^⟦(?:obrázek|obrazek|image)\s*(\d+)⟧$/;
+    let mkIdx = 0;
+    let inner = '';
+    blocks.forEach((b, i) => {
+      const m = b.match(tokenRx);
+      if (m && stdo.assets?.[m[1]]) {
+        const fh = renderMarkdown(`⟦svg⟧\n${stdo.assets[m[1]]}\n⟦/svg⟧`);
+        inner += `<div class="st-block" data-bi="${i}" data-img="${m[1]}">${fh}</div>`;
+        return;
+      }
+      let h = renderMarkdown(b);
+      // a file referenced by an ⟦obr:path⟧ mark — display it (only assets are editable)
+      h = h.replace(this._mediaMarkRx(), (_, ref) => /[\/.]/.test(ref.trim())
+        ? `<figure class="md-figure diagram-inline"><img src="${this.escHtml(ref.trim())}" style="max-width:100%"></figure>`
+        : `<span style="color:#B45309;font-size:.75rem">⟦obr:${this.escHtml(ref.trim())}⟧ — ?</span>`);
+      h = h.replace(this._studioMarkerRx(), (_, k, w) => {
+        const mi = mkIdx++;
+        return `<span style="display:inline-block;max-width:100%;border:1.5px dashed #7C3AED;border-radius:10px;padding:.35em .6em;margin:.15em .1em;color:#7C3AED;font-size:.78rem;vertical-align:middle">🎨 ${/anim/i.test(k) ? 'ANIMATION' : 'DIAGRAM'}: ${this.escHtml(w.trim())}
+          <button class="steer-chip" style="font-size:.7rem;margin-left:.5em;border-color:#7C3AED;color:#7C3AED" onclick="app.generateGraphic(${mi})">${tr(`🎨 Draw this one · {0} ⚡`, CONFIG.aiEconomy?.prices.advanced || 0)}</button></span>`;
+      });
+      inner += `<div class="st-block" data-bi="${i}" title="${tr(`click to edit this paragraph`)}" style="border-radius:8px;padding:.15em .35em;margin:0 -.35em;cursor:text">${h}</div>`;
+    });
+    if (!blocks.length) inner = `<div style="color:var(--text-3,#999);font-size:.8rem;margin-bottom:.6em">${tr(`Nothing yet — click ＋ and write the first paragraph, or let ✨ suggest a skeleton.`)}</div>`;
+    pane.innerHTML = `<article class="block-article" style="margin:0;padding:0;border:none;box-shadow:none"><h2 id="stTitleH" title="${tr(`click to rename`)}" style="margin:.1em 0 .5em;font-size:1.15rem;cursor:text;border-radius:6px" onclick="app._studioEditTitle()">${this.escHtml(stdo.title)} <span style="font-size:.7rem;opacity:.45">✏️</span></h2><div class="block-content spine-body">${inner}</div>
+      <button class="steer-chip" style="font-size:.72rem;margin-top:.3em" onclick="app._studioAddBlock()">${tr(`＋ paragraph`)}</button></article>`;
+    pane.querySelectorAll('.st-block[data-img]').forEach(div => {
+      const fig = div.querySelector('figure.diagram-inline'); if (!fig) return;
+      const aid = div.dataset.img;
+      fig.dataset.asset = aid;
+      fig.style.position = 'relative';
+      fig.style.touchAction = 'none';
+      const bar = document.createElement('div');
+      bar.style.cssText = 'display:flex;gap:.4em;align-items:center;margin:.25em 0 .1em;flex-wrap:wrap';
+      bar.innerHTML = `<button class="steer-chip" style="font-size:.7rem" onclick="app.studioEditImage('${aid}')">${tr(`✨ Edit (AI) · {0} ⚡`, CONFIG.aiEconomy?.prices.advanced || 0)}</button>
+        <button class="steer-chip" style="font-size:.7rem" onclick="app.studioDeleteImage('${aid}')">🗑</button>
+        <span style="font-size:.7rem;color:var(--text-3,#999)">${tr(`✏️ click an element = select & drag · double-click a label = rewrite`)}</span>`;
+      fig.appendChild(bar);
+    });
+    if (!pane._svgEditBound) {
+      pane._svgEditBound = true;
+      pane.addEventListener('dblclick', e => this._studioLabelEdit(e));
+      pane.addEventListener('pointerdown', e => this._studioPointerDown(e));
+      pane.addEventListener('click', e => {
+        if (e.target.closest('button, a, #stSelBar, textarea')) return;
+        // Asset images have their own controls (click = select element); other
+        // figures (raster, ⟦obr:⟧) belong to a text block → click opens its editor.
+        if (e.target.closest('figure')?.dataset.asset) return;
+        const blk = e.target.closest('.st-block');
+        if (blk && !blk.dataset.img) this._studioEditBlock(+blk.dataset.bi, blk);
+      });
+    }
+  }
+
+  // Click the title = rename the telling (stored with the draft)
+  _studioEditTitle() {
+    const stdo = this._studio; if (!stdo) return;
+    const h = document.getElementById('stTitleH'); if (!h) return;
+    const inp = document.createElement('input');
+    inp.value = stdo.title;
+    inp.style.cssText = 'width:100%;font:inherit;font-size:1.15rem;font-weight:700;padding:.1em .3em;border:1.5px solid var(--accent);border-radius:8px;background:var(--card,#fff)';
+    const commit = () => {
+      const v = inp.value.trim();
+      if (v) {
+        stdo.title = v;
+        const all = this._authorState(); (all[stdo.slug] = all[stdo.slug] || {}).title = v; this._authorSave(all);
+      }
+      this._studioPreview();
+    };
+    inp.addEventListener('blur', commit);
+    inp.addEventListener('keydown', ev => {
+      if (ev.key === 'Enter') { ev.preventDefault(); inp.blur(); }
+      if (ev.key === 'Escape') this._studioPreview();
+    });
+    h.replaceWith(inp);
+    inp.focus(); inp.select();
+  }
+
+  _studioEditBlock(i, blkEl) {
+    if (this._stEditing) this._studioCommitBlock();
+    const blocks = this._studio._blocks;
+    const ed = document.createElement('textarea');
+    ed.id = 'stBlockEd';
+    ed.value = blocks[i] ?? '';
+    ed.style.cssText = 'width:100%;min-height:64px;padding:.5em .6em;border:1.5px solid var(--accent);border-radius:8px;font:inherit;font-size:.88rem;line-height:1.55;background:var(--card,#fff);resize:none';
+    const grow = () => { ed.style.height = 'auto'; ed.style.height = Math.min(window.innerHeight * 0.5, ed.scrollHeight + 4) + 'px'; };
+    ed.addEventListener('input', grow);
+    ed.addEventListener('keydown', ev => {
+      if ((ev.ctrlKey || ev.metaKey) && ev.key === 'Enter') { ev.preventDefault(); ed.blur(); }
+      if (ev.key === 'Escape') { this._stEditing = null; this._studioPreview(); }
+    });
+    ed.addEventListener('blur', () => this._studioCommitBlock());
+    this._stEditing = { i };
+    if (blkEl) blkEl.replaceWith(ed); else document.querySelector('#stCanvas .block-content')?.appendChild(ed);
+    grow();
+    ed.focus();
+    ed.setSelectionRange(ed.value.length, ed.value.length);
+  }
+  _studioCommitBlock() {
+    const ed = document.getElementById('stBlockEd'); const st = this._stEditing;
+    if (!ed || !st) return;
+    this._stEditing = null;
+    const val = ed.value.trim();
+    const blocks = this._studio._blocks || [];
+    const before = st.i < blocks.length ? (blocks[st.i] || '') : '';
+    if (st.i >= blocks.length) { if (val) blocks.push(val); }
+    else if (val) blocks[st.i] = val;
+    else blocks.splice(st.i, 1);
+    const ta = document.getElementById('stDraft');
+    if (ta) ta.value = blocks.join('\n\n');
+    this._studioStat('manual');
+    if (val && val !== before) this._studioEarnAdd(Math.max(val.length > before.length ? val.length - before.length : 0, 15));
+    this._studioSave();
+    this._studioPreview();
+  }
+
+  // Hand-writing counts: every ~250 manually written chars → +⚡ (max 4× per
+  // draft, daily cap on the server). So you can always keep working without
+  // credits and earn the coach back. AI insertions bypass this (no commit).
+  _studioEarnAdd(chars) {
+    const c = CONFIG.aiEconomy;
+    if (!c?.enabled || !this._f('gamification')) return;
+    const stdo = this._studio; if (!stdo) return;
+    const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {});
+    st.earn = st.earn || { chars: 0, paid: 0 };
+    st.earn.chars += Math.max(0, chars | 0);
+    const step = c.earnStudioChars || 250, cap = c.earnStudioMax || 4;
+    const due = Math.min(cap, Math.floor(st.earn.chars / step));
+    while (st.earn.paid < due) {
+      st.earn.paid++;
+      this.user.addXP(c.earnManualEdit || 8); this.user.save();
+      this.showXPToast(tr('+{n} ⚡ for your own writing ✍️').replace('{n}', c.earnManualEdit || 8), 'xp');
+      this.updateXPBadge();
+      this.rc.logEvent('studio_manual_earn', { slug: stdo.slug, milestone: st.earn.paid });
+    }
+    this._authorSave(all);
+    this._studioEarnHint(st);
+  }
+  _studioEarnHint(st) {
+    const el = document.getElementById('stEarn'); if (!el) return;
+    const c = CONFIG.aiEconomy;
+    if (!c?.enabled || !this._f('gamification')) { el.textContent = ''; return; }
+    const e = (st || {}).earn || { chars: 0, paid: 0 };
+    const step = c.earnStudioChars || 250, cap = c.earnStudioMax || 4;
+    el.textContent = e.paid >= cap
+      ? tr('✍️ max ⚡ earned for this draft')
+      : tr('✍️ +{n} ⚡ in ~{z} chars of writing').replace('{n}', c.earnManualEdit || 8).replace('{z}', String(step - (e.chars % step)));
+    el.title = tr('Your own writing earns ⚡ for AI — the coach and graphics are paid from them. Milestone every ') + step + tr(' chars, max ') + cap + tr('× per draft.');
+  }
+  // Studio drafts in progress — always findable (Profile, Concepts, Journey)
+  // Draft for a map node: under the node slug, or any concept id from its pool
+  _nodeDraft(node) {
+    const st = this._authorState();
+    const hit = st[node.slug] || (node.pool || []).map(id => st[id]).find(x => x && x.text && x.text.trim());
+    return hit && hit.text && hit.text.trim() ? hit : null;
+  }
+  _nodeDraftSlug(node) {
+    const st = this._authorState();
+    if (st[node.slug]?.text?.trim()) return node.slug;
+    return (node.pool || []).find(id => st[id]?.text?.trim()) || node.slug;
+  }
+
+  _authorDrafts() {
+    const all = this._authorState();
+    return Object.entries(all)
+      .filter(([, st]) => st && st.text && st.text.trim())
+      .map(([slug, st]) => ({
+        slug, st,
+        title: this.concepts?.[slug]?.title || this._cmapNodes?.[slug]?.title
+          || (this.proposals || []).find(x => x.slug === slug)?.title || slug,
+      }))
+      .sort((a, b) => (b.st.ts || 0) - (a.st.ts || 0));
+  }
+
+  // ===== SLAIDY EXPORT / IMPORT =====
+  // Bridge to SlAIdy (kordikp/slaidy): deck bundle {id,title,meta,style,slides[],figs{}}.
+  // Interop marks are HTML comments (<!-- slide: … -->, <!-- col -->, <!-- gap -->,
+  // <!-- notes: … -->): the book hides them, SlAIdy understands them. Layout is chosen
+  // ADAPTIVELY (figure+text → two columns, short → centered, long → column break).
+  _slaidySlugify(s) {
+    return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'deck';
+  }
+  // data-krok (click reveal in the book) → SlAIdy's click steps. SlAIdy reveals
+  // a figure click by click itself, so "after the n-th click" becomes the step it
+  // arrives at, data-step="n+1". A timed reveal left by an older export goes.
+  _slaidyKrokCss(svg) {
+    return svg.replace(/<style>[^<]*@keyframes pbk[\s\S]*?<\/style>/, '')
+      .replace(/\sdata-krok=(["'])(\d+)\1/g, (_, q, n) => ` data-step=${q}${+n + 1}${q}`);
+  }
+  _slaidySlides({ title, group, md, figPrefix, figs, summary, notes, startN }) {
+    let n = 0;
+    let text = (md || '').replace(/⟦\/?rx⟧/g, '');
+    text = text.replace(/⟦svg⟧([\s\S]*?)⟦\/svg⟧/g, (_, svg) => {
+      svg = svg.trim();
+      if (!svg) return '';
+      const id = `fig-${figPrefix}-${++n}`;
+      figs[id] = this._slaidyKrokCss(svg);
+      return `\n\n![[${id}]]\n\n`;
+    });
+    const parts = [];
+    const SL = /<!--\s*slide(?::([^|>]*?))?(?:\|([^>]*?))?-->/gi;
+    let last = 0, m2, meta0 = null;
+    while ((m2 = SL.exec(text))) {
+      parts.push({ meta: meta0, body: text.slice(last, m2.index) });
+      meta0 = { title: (m2[1] || '').trim(), opts: (m2[2] || '').trim() };
+      last = m2.index + m2[0].length;
+    }
+    parts.push({ meta: meta0, body: text.slice(last) });
+    const chunks = [];
+    for (const p of parts.filter(p2 => p2.body.trim() || p2.meta)) {
+      if (p.meta) { chunks.push({ ...p.meta, body: p.body.trim() }); continue; }
+      const subs = p.body.split(/^(?=####\s)/m);
+      for (const sub of subs) {
+        const heading = sub.match(/^####\s+(.+)$/m);
+        const paras = this._studioSplitBlocks(sub);
+        let buf = [], size = 0;
+        const flush = () => { if (buf.length) { chunks.push({ title: heading ? heading[1].trim() : '', body: buf.join('\n\n') }); buf = []; size = 0; } };
+        for (const para of paras) {
+          buf.push(para); size += para.length;
+          if (size > 900 && !/^```|^\|/.test(para)) flush();
+        }
+        flush();
+      }
+    }
+    const out = [];
+    chunks.forEach((c, i) => {
+      let body = c.body || '';
+      const figIds = [...body.matchAll(/!\[\[([^\]|]+)(?:\|[^\]]*)?\]\]/g)].map(x => x[1]);
+      const textLen = body.replace(/!\[\[[^\]]*\]\]/g, '').replace(/<!--[\s\S]*?-->/g, '').trim().length;
+      const wide = /^\|.*\|.*\|/m.test(body) || /```/.test(body);
+      let layout = 'text', flags = [];
+      const opts = c.opts || '';
+      if (/layout=([a-z]+)/.test(opts)) layout = opts.match(/layout=([a-z]+)/)[1];
+      else if (figIds.length && textLen >= 240 && !wide) {
+        layout = 'two';
+        if (!/<!--\s*col\s*-->/.test(body)) {
+          const fi = body.indexOf('![[');
+          const cut = body.indexOf('\n\n', fi);
+          body = cut > -1 && cut < body.length - 3
+            ? body.slice(0, cut) + '\n\n<!-- col -->' + body.slice(cut)
+            : body + '\n\n<!-- col -->';
+        }
+      } else if (figIds.length) {
+        layout = 'text'; flags = ['center'];
+        body = body.replace(/!\[\[([^\]|]+)\]\]/g, '![[$1|82%]]');
+      } else if (textLen >= 520 && !wide) {
+        layout = 'two';
+        if (!/<!--\s*col\s*-->/.test(body)) {
+          const paras2 = body.split(/\n\n+/); let acc = 0, best = 1, bestD = 1e9;
+          const total = body.length;
+          paras2.forEach((p2, j) => { acc += p2.length; const d = Math.abs(acc - total / 2); if (j < paras2.length - 1 && d < bestD) { bestD = d; best = j + 1; } });
+          paras2.splice(best, 0, '<!-- col -->');
+          body = paras2.join('\n\n');
+        }
+      } else if (textLen < 380 && !wide) flags = ['center'];
+      if (/center/.test(opts) && !flags.includes('center')) flags.push('center');
+      out.push({
+        tag: 'S', group: group || null, sub: null,
+        title: (c.title || '').trim() || (i === 0 ? title : `${title} · ${i + 1}`),
+        layout, textScale: textLen > 900 ? 92 : 100,
+        body: body.trim(),
+        notes: i === chunks.length - 1 ? (notes || '') : '',
+        summary: i === 0 ? (summary || '') : '',
+        skip: false, flags, n: (startN || 0) + i + 1,
+      });
+    });
+    return out;
+  }
+  _slaidyDownload(bundle) {
+    const blob = new Blob([JSON.stringify(bundle, null, 1)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `${bundle.id}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  }
+  _slaidyStyle() { return { accent: '#7C3AED', ink: '#1E1B4B', paper: '#FFFFFF', titleSize: 38, bodySize: 19, header: 'position' }; }
+
+  // Bundle from the current draft (shared by export and cloud save)
+  _slaidyDraftBundle() {
+    const stdo = this._studio; if (!stdo) return null;
+    const md = this._studioExpand(document.getElementById('stDraft')?.value || '');
+    if (!md.trim()) return null;
+    const slug = this._slaidySlugify(stdo.title || stdo.slug);
+    const figs = {};
+    const goal = this._studioGoal();
+    const slides = this._slaidySlides({
+      title: stdo.title, group: null, md, figPrefix: slug, figs,
+      summary: goal.recallQ || '',
+      notes: goal.recallQ ? `${tr(`Recall question: {0}{1}`, goal.recallQ, goal.recallA ? `${tr(`\nExpected answer: {0}`, goal.recallA)}` : '')}` : '',
+    });
+    return {
+      id: `pbook-${slug}`, title: stdo.title,
+      meta: { author: '', affiliation: '', event: document.title, venue: location.host, date: '' },
+      style: this._slaidyStyle(), slides, figs,
+    };
+  }
+  slaidyExportDraft() {
+    const b = this._slaidyDraftBundle();
+    if (!b) { this.showXPToast(tr('The draft is empty'), 'xp'); return; }
+    this._slaidyDownload(b);
+    this.rc.logEvent('slaidy_export', { slug: this._studio.slug, slides: b.slides.length });
+    this.showXPToast(`${tr(`🎞 Deck downloaded ({0} slides)`, b.slides.length)}`, 'xp');
+  }
+
+  // ===== CLASS DECK STORAGE (/api/decks) =====
+  // No manual files: the deck is saved under a class code, SlAIdy opens it
+  // from a URL (?deck=…) and saves straight back; the book loads it any time.
+  _slaidyAppUrl() { return 'https://kordikp.github.io/slaidy/'; }
+  _slaidyDeckUrl(id) { return location.origin + '/api/decks?id=' + id; }
+  _slaidyGroup() { return (localStorage.getItem('pbook-deck-group') || localStorage.getItem('sk-class-code') || '').toLowerCase(); }
+  async slaidyCloudSave() {
+    const stdo = this._studio; if (!stdo) return;
+    const out = document.getElementById('stSlaidyOut') || document.getElementById('stOut');
+    const group = (document.getElementById('stDeckGroup')?.value || '').trim().toLowerCase();
+    if (!/^[a-z0-9-]{4,16}$/.test(group)) { out.innerHTML = `<div style="font-size:.76rem;color:#B45309;padding:.3em 0">${tr(`Enter a class code (4–16 chars, letters/digits/dash) — decks gather under it.`)}</div>`; return; }
+    localStorage.setItem('pbook-deck-group', group);
+    const bundle = this._slaidyDraftBundle();
+    if (!bundle) { this.showXPToast(tr('The draft is empty'), 'xp'); return; }
+    const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {});
+    out.innerHTML = `<div style="font-size:.76rem;color:var(--text-3);padding:.3em 0">${tr(`Saving to storage…`)}</div>`;
+    try {
+      const r = await fetch('/api/decks', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'save', group, id: st.deckId || undefined, title: stdo.title, deck: bundle }) });
+      const d = await r.json();
+      if (!r.ok || !d.ok) throw new Error(d.error || tr('save failed'));
+      st.deckId = d.id; st.deckGroup = group; this._authorSave(all);
+      // final slide = QR for anonymous reactions (id known only now → silent PUT)
+      try {
+        const { qrSvg } = await import('./qr.js');
+        const fbUrl = `${location.origin}/#ohlas-${group}~${d.id}`;
+        bundle.figs['fig-ohlas-qr'] = qrSvg(fbUrl, 8, 3);
+        bundle.slides = bundle.slides.filter(s2 => s2.title !== 'Feedback');
+        bundle.slides.push({ tag: 'S', group: null, sub: null, title: 'Feedback', layout: 'text', textScale: 100,
+          body: `${tr(`![[fig-ohlas-qr|46%]]\n\nScan and say anonymously how it landed — 😕 🙂 🤩\n\n\`{0}\``, fbUrl)}`,
+          notes: tr('Reactions show up in the class gallery (📊 Leaderboard).'), summary: tr('Anonymous class reactions after the talk.'), skip: false, flags: ['center'], n: bundle.slides.length + 1 });
+        await fetch('/api/decks?id=' + d.id, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bundle) });
+      } catch (e2) {}
+      const url = this._slaidyDeckUrl(d.id);
+      const open = this._slaidyAppUrl() + '?deck=' + encodeURIComponent(url);
+      out.innerHTML = `<div style="border:1.5px solid #10B981;border-radius:8px;padding:.5em .7em;font-size:.78rem;background:var(--card,#fff)">
+        ${tr(`💾 Saved (rev {0}, {1} slides) under <code>{2}</code>.`, d.rev, bundle.slides.length, this.escHtml(group))}
+        <div style="display:flex;gap:.5em;flex-wrap:wrap;margin-top:.4em">
+          <a class="note-save" style="background:#7C3AED;font-size:.74rem;text-decoration:none" href="${open}" target="_blank" rel="noopener">${tr(`▶ Open in SlAIdy`)}</a>
+          <button class="steer-chip" style="font-size:.72rem" onclick="navigator.clipboard.writeText('${open}');app.showXPToast('Link copied ✓','xp')">${tr(`🔗 copy link`)}</button>
+        </div>
+        <span style="color:var(--text-2,#666);font-size:.72rem">${tr(`Edits made in SlAIdy are saved there too — bring them back with "Load from class".`)}</span>
+      </div>`;
+      this.rc.logEvent('slaidy_cloud_save', { slug: stdo.slug, id: d.id, rev: d.rev, group });
+    } catch (e) {
+      out.innerHTML = `<div style="background:#FEE2E2;border-radius:8px;padding:.5em .7em;font-size:.78rem">${tr(`Save failed: {0}`, this.escHtml(e.message))}</div>`;
+    }
+  }
+  async slaidyCloudList() {
+    const out = document.getElementById('stSlaidyOut') || document.getElementById('stOut');
+    const group = (document.getElementById('stDeckGroup')?.value || '').trim().toLowerCase();
+    if (!/^[a-z0-9-]{4,16}$/.test(group)) { out.innerHTML = `<div style="font-size:.76rem;color:#B45309;padding:.3em 0">${tr(`Enter a class code and try again.`)}</div>`; return; }
+    localStorage.setItem('pbook-deck-group', group);
+    out.innerHTML = `<div style="font-size:.76rem;color:var(--text-3);padding:.3em 0">${tr(`Loading class decks…`)}</div>`;
+    try {
+      const d = await (await fetch('/api/decks?group=' + encodeURIComponent(group))).json();
+      if (!d.ok) throw new Error(d.error || tr('list failed'));
+      const items = (d.items || []).sort((a, b2) => String(b2.at).localeCompare(String(a.at)));
+      out.innerHTML = items.length ? `<div style="border:1.5px solid var(--border,#ddd);border-radius:8px;padding:.4em .6em;font-size:.78rem;background:var(--card,#fff)">
+        ${items.map(it => `<div style="display:flex;gap:.5em;align-items:center;padding:.25em 0;border-bottom:1px dashed var(--border,#eee)">
+          <span style="flex:1 1 auto;min-width:0"><b>${this.escHtml(it.title || '—')}</b> <span style="font-size:.7rem;color:var(--text-3)">${tr(`{0} · {1} slides · rev {2}`, this.escHtml(it.author || ''), it.n, it.rev)}</span></span>
+          <a class="steer-chip" style="font-size:.7rem;text-decoration:none" target="_blank" rel="noopener" href="${this._slaidyAppUrl()}?deck=${encodeURIComponent(this._slaidyDeckUrl(it.id))}">${tr(`▶ SlAIdy`)}</a>
+          <button class="steer-chip" style="font-size:.7rem" onclick="app.slaidyCloudLoad('${this.escHtml(it.id)}')">${tr(`📥 to studio`)}</button>
+        </div>`).join('')}</div>`
+        : `<div style="font-size:.76rem;color:var(--text-3);padding:.3em 0">${tr(`No deck under <code>{0}</code> yet.`, this.escHtml(group))}</div>`;
+    } catch (e) {
+      out.innerHTML = `<div style="background:#FEE2E2;border-radius:8px;padding:.5em .7em;font-size:.78rem">${this.escHtml(e.message)}</div>`;
+    }
+  }
+  async slaidyCloudLoad(id) {
+    try {
+      const d = await (await fetch('/api/decks?id=' + encodeURIComponent(id))).json();
+      if (!Array.isArray(d.slides)) throw new Error('could not load the deck');
+      this._slaidyImportBundle(d);
+      const stdo = this._studio;
+      if (stdo) { const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {}); st.deckId = id; this._authorSave(all); }
+    } catch (e) { this.showXPToast(tr('Load failed: ') + e.message, 'xp'); }
+  }
+
+  async slaidyExportChapter(chId) {
+    const ch = this.chapters?.[chId] || Object.values(this.chapters || {}).find(c => c.id === chId);
+    if (!ch) return;
+    const blocks = (ch.blocks || []).filter(b => b.meta?.type === 'spine');
+    const slug = this._slaidySlugify(ch.title || chId);
+    const figs = {};
+    let slides = [{ tag: 'S', group: ch.title, sub: null, title: ch.title, layout: 'cover', textScale: 100, body: ch.subtitle || ch.teaser || '', notes: '', summary: '', skip: false, flags: [], n: 1 }];
+    for (const b of blocks) {
+      const ovId = this._overrides?.[b.meta.id];
+      const ov = ovId && !this._overridesOff().has(b.meta.id) ? this.privateBlocks?.[ovId] : null;
+      let body = (ov ? ov.body : b.body) || '';
+      body = await this._resolveMediaMarks(body, this._mediaMap(b.meta));
+      if (ov?.meta?.diagramSvg && !body.includes('⟦svg⟧')) body = '⟦svg⟧\n' + ov.meta.diagramSvg.trim() + '\n⟦/svg⟧\n\n' + body;
+      const diag = b.meta?.diagram;
+      if (diag && typeof diag === 'string' && /\.svg$/.test(diag) && !body.includes('⟦svg⟧')) {
+        try { const svg = (await (await fetch(diag)).text()).trim(); if (/^<svg[\s\S]*<\/svg>$/.test(svg)) body = '⟦svg⟧\n' + svg + '\n⟦/svg⟧\n\n' + body; } catch (e) {}
+      }
+      for (const im of [...body.matchAll(/!\[[^\]]*\]\(([^)\s]+\.svg)\)/g)]) {
+        if (/^https?:/i.test(im[1])) continue;
+        try { const svg = ((await getDiagram(im[1])) || '').trim(); if (/^<svg[\s\S]*<\/svg>$/.test(svg)) body = body.replace(im[0], `\n\n⟦svg⟧\n${svg}\n⟦/svg⟧\n\n`); } catch (e) {}
+      }
+      slides = slides.concat(this._slaidySlides({
+        title: b.meta.title || b.meta.id, group: ch.title, md: body,
+        figPrefix: this._slaidySlugify(b.meta.id), figs,
+        summary: b.meta.teaser || '',
+        notes: b.meta.recallQ ? `${tr(`Recall question: {0}{1}`, b.meta.recallQ, b.meta.recallA ? `${tr(`\nExpected answer: {0}`, b.meta.recallA)}` : '')}` : '',
+        startN: slides.length,
+      }));
+    }
+    const bundle = {
+      id: `pbook-${slug}`, title: ch.title,
+      meta: { author: '', affiliation: '', event: document.title, venue: location.host, date: '' },
+      style: this._slaidyStyle(), slides, figs,
+    };
+    // No manual files: the chapter deck is saved to storage (one stable deck
+    // per chapter, shelf "kniha") and SlAIdy opens right away. File = fallback.
+    this.showXPToast(tr('🎞 Preparing the chapter deck…'), 'xp');
+    try {
+      const known = JSON.parse(localStorage.getItem('pbook-chapter-decks') || '{}');
+      const r = await fetch('/api/decks', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'save', group: 'kniha', id: known[chId] || undefined, title: ch.title, deck: bundle }) });
+      const d = await r.json();
+      if (!r.ok || !d.ok) throw new Error(d.error || tr('save failed'));
+      known[chId] = d.id; localStorage.setItem('pbook-chapter-decks', JSON.stringify(known));
+      window.open(this._slaidyAppUrl() + '?deck=' + encodeURIComponent(this._slaidyDeckUrl(d.id)), '_blank', 'noopener');
+      this.showXPToast(`${tr(`🎞 Chapter → {0} slides, opening SlAIdy`, slides.length)}`, 'xp');
+    } catch (e) {
+      this._slaidyDownload(bundle);
+      this.showXPToast(tr('Storage unavailable — deck downloaded as a file'), 'xp');
+    }
+    this.rc.logEvent('slaidy_export_chapter', { chId, slides: slides.length });
+  }
+
+  slaidyImportFile(input) {
+    const f = input.files?.[0]; if (!f) return;
+    const rd = new FileReader();
+    rd.onload = () => {
+      try {
+        const d = JSON.parse(rd.result);
+        this._slaidyImportBundle(d);
+      } catch (e) { this.showXPToast(tr('Import failed: ') + e.message, 'xp'); }
+    };
+    rd.readAsText(f);
+  }
+  _slaidyImportBundle(d) {
+      {
+        if (!Array.isArray(d.slides)) throw new Error('not a SlAIdy deck');
+        const figs = d.figs || d.figures || {};
+        const md = d.slides.filter(s => !s.skip).map(s => {
+          const opts = [s.layout && s.layout !== 'text' ? `layout=${s.layout}` : '', (s.flags || []).includes('center') ? 'center' : ''].filter(Boolean).join(' | ');
+          let body = String(s.body || '').replace(/!\[\[([^\]|]+)(?:\|[^\]]*)?\]\]/g, (_, id) => {
+            let svg = figs[id] || '';
+            svg = svg.replace(/<style>[^<]*@keyframes pbk[\s\S]*?<\/style>/, '');
+            // SlAIdy keeps a picture once, in d.assets, and a figure names it (asset:img-…).
+            // The book has no store beside the text, so the picture goes into the figure.
+            svg = svg.replace(/href="asset:(img-[0-9a-f]{12,40})"/g, (m, pid) => {
+              const a = (d.assets || {})[pid];
+              return a && /^image\/(png|jpeg|webp|gif)$/.test(a.type) && /^[A-Za-z0-9+/]+=*$/.test(a.data || '')
+                ? `href="data:${a.type};base64,${a.data}"` : m;
+            });
+            return svg ? `⟦svg⟧\n${svg.trim()}\n⟦/svg⟧` : '';
+          });
+          if (s.notes) body += `\n\n<!-- notes: ${String(s.notes).replace(/-->/g, '—>')} -->`;
+          return `<!-- slide: ${s.title || ''}${opts ? ' | ' + opts : ''} -->\n\n${body.trim()}`;
+        }).join('\n\n');
+        const stdo = this._studio; if (!stdo) return;
+        const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {});
+        if ((st.text || '').trim()) st.backup = { text: st.text, assets: st.assets, assetSeq: st.assetSeq, stats: st.stats, ts: Date.now(), sourceBlockId: st.sourceBlockId, importHash: st.importHash, title: st.title };
+        st.text = md;
+        st.assets = {}; st.assetSeq = 0;
+        st.title = d.title || st.title;
+        this._authorSave(all);
+        this._stBackupOffer = false;
+        this.rc.logEvent('slaidy_import', { slug: stdo.slug, slides: d.slides.length });
+        this.startAuthoring(stdo.slug);
+        this.showXPToast(`${tr(`🎞 Deck loaded ({0} slides) — the previous draft is backed up`, d.slides.length)}`, 'xp');
+      }
+  }
+
+  slaidyPanel() {
+    const out = document.getElementById('stOut'); if (!out) return;
+    if (document.getElementById('stSlaidy')) { document.getElementById('stSlaidy').remove(); return; }
+    const st = this._authorState()[this._studio?.slug] || {};
+    const group = st.deckGroup || this._slaidyGroup();
+    out.innerHTML = `<div id="stSlaidy" style="border:1.5px solid #7C3AED;border-radius:10px;padding:.55em .7em;font-size:.78rem;background:var(--card,#fff)">
+      ${tr(`<b>🎞 Slides</b> — the deck lives in the class storage; SlAIdy and the book read and save it themselves.`)}
+      <div style="display:flex;gap:.5em;flex-wrap:wrap;align-items:center;margin:.4em 0">
+        <input id="stDeckGroup" placeholder="${tr(`class code`)}" value="${this.escHtml(group)}" style="width:110px;font:inherit;font-size:.76rem;padding:.3em .5em;border:1.5px solid var(--border,#ddd);border-radius:8px;background:var(--bg,#fafaf7)">
+        <button class="note-save" style="background:#7C3AED;font-size:.74rem" onclick="app.slaidyCloudSave()">${tr(`💾 Save to class{0}`, st.deckId ? tr(' (update)') : '')}</button>
+        <button class="steer-chip" style="font-size:.72rem" onclick="app.slaidyCloudList()">${tr(`📥 Load from class`)}</button>
+        ${st.deckId ? `<a class="steer-chip" style="font-size:.72rem;text-decoration:none" target="_blank" rel="noopener" href="${this._slaidyAppUrl()}?deck=${encodeURIComponent(this._slaidyDeckUrl(st.deckId))}">${tr(`▶ Open in SlAIdy`)}</a>` : ''}
+        <button class="steer-chip" style="font-size:.72rem" onclick="document.getElementById('stSlaidy').remove()">✕</button>
+      </div>
+      <div id="stSlaidyOut"></div>
+      <span style="color:var(--text-2,#666);font-size:.72rem">${tr(`Layout is chosen adaptively (figure+text → two columns, short → centered); fine-tune with <code>&lt;!-- slide: Title | layout=two | center --&gt;</code>, <code>&lt;!-- col --&gt;</code>, <code>&lt;!-- gap --&gt;</code> — invisible in the book. 🎬 reveal steps play on their own on a slide. Manual file:`)} <button class="steer-chip" style="font-size:.7rem" onclick="app.slaidyExportDraft()">⬇</button> <label class="steer-chip" style="font-size:.7rem;cursor:pointer">⬆<input type="file" accept=".json,application/json" style="display:none" onchange="app.slaidyImportFile(this)"></label></span>
+    </div>`;
+  }
+
+
+  // ===== CREATIVE WORKSHOP — a separate guide on top of the studio =====
+  // role → alignment with the coach (mode coach/phase align) → creation in
+  // the studio → reflection (what the human brought) → certificate with the
+  // human contribution. The studio stays a fast editor; the workshop is the
+  // slow, deliberate path.
+  _wsState() { try { return JSON.parse(localStorage.getItem('pbook-workshop')) || {}; } catch (e) { return {}; } }
+  _wsSave() { const all = this._wsState(); all[this._ws.slug] = this._ws; localStorage.setItem('pbook-workshop', JSON.stringify(all)); }
+
+  startWorkshop(slug) {
+    const conc = this.concepts?.[slug];
+    const node = this._cmapNodes?.[slug];
+    const prop = (this.proposals || []).find(x => x.slug === slug);
+    const title = prop?.title || conc?.title || node?.title || slug;
+    this._ws = this._wsState()[slug] || { slug, title, step: 'role', role: null, msgs: [], brief: '', reflect: { brought: '', learned: '' } };
+    this._ws.title = title;
+    this._wsRender();
+  }
+
+  _wsRender() {
+    const ws = this._ws; if (!ws) return;
+    document.getElementById('workshop')?.remove();
+    const el = document.createElement('div');
+    el.id = 'workshop';
+    const ROLE_NAMES = { idea: 'idea-maker', spolu: 'co-creator', oponent: 'opponent', solo: tr('independent creator') };
+    let inner = '';
+    if (ws.step === 'role') {
+      const card = (r, t2, d) => `<button onclick="app._wsRole('${r}')" style="flex:1 1 180px;text-align:left;border:1.5px solid var(--border,#ddd);border-radius:12px;padding:.8em .9em;background:var(--card,#fff);cursor:pointer">
+        <div style="font-weight:800">${t2}</div><div style="font-size:.75rem;color:var(--text-2,#666);margin-top:.25em">${d}</div></button>`;
+      inner = `<h3 style="margin:.4em 0">${tr(`What role do you want?`)}</h3>
+        <div style="display:flex;gap:.7em;flex-wrap:wrap">
+          ${card('idea', tr('🎨 I have my own idea'), tr('You lead; the coach asks questions and helps sharpen it.'))}
+          ${card('spolu', tr('🤝 We invent it together'), tr('The coach proposes, you add — 50/50.'))}
+          ${card('oponent', tr('🔍 I will be the opponent'), tr('The coach brings a vision; you attack and improve it. Critique is creation too!'))}
+          ${card('solo', tr('✍️ I will create right away'), tr('No coach, free — writing even earns you ⚡, and you can summon the coach any time later.'))}
+        </div>`;
+    } else if (ws.step === 'align') {
+      const msgs = ws.msgs.map(m => `<div style="display:flex;${m.role === 'user' ? 'justify-content:flex-end' : ''}">
+        <div style="max-width:85%;border-radius:12px;padding:.45em .7em;margin:.2em 0;font-size:.85rem;white-space:pre-wrap;${m.role === 'user' ? 'background:var(--accent);color:#fff' : 'background:var(--bg,#f4f4f1);border:1px solid var(--border,#ddd)'}">${this.escHtml(m.text)}</div></div>`).join('');
+      inner = `<h3 style="margin:.4em 0">${tr(`Alignment with the coach`)} <span style="font-size:.7rem;color:var(--text-3);font-weight:400">(${ROLE_NAMES[ws.role] || ''})</span></h3>
+        <div id="wsChat" style="border:1.5px solid var(--border,#ddd);border-radius:12px;padding:.6em .7em;background:var(--card,#fff);max-height:46vh;overflow-y:auto">${msgs || ''}
+          ${!ws.msgs.length ? `<button class="steer-chip" onclick="app._wsAsk('')">${tr(`🎧 Let the coach open · {0} ⚡`, CONFIG.aiEconomy?.prices.basic || 0)}</button>` : ''}
+          <div id="wsSpin"></div></div>
+        <div style="display:flex;gap:.4em;margin-top:.5em">
+          <input id="wsInput" placeholder="${tr(`Write to the coach… (Enter = send)`)}" style="flex:1 1 auto;min-width:0;font:inherit;font-size:.88rem;padding:.5em .6em;border:1.5px solid var(--border,#ddd);border-radius:10px;background:var(--card,#fff)">
+          <button class="note-save" style="background:var(--accent)" onclick="app._wsAsk(document.getElementById('wsInput').value)">${tr(`Send · {0} ⚡`, CONFIG.aiEconomy?.prices.basic || 0)}</button>
+        </div>
+        <div id="wsBriefBox" style="margin-top:.6em">${ws.brief ? `<div style="border:1.5px solid #10B981;border-radius:12px;padding:.6em .8em;background:var(--card,#fff)">
+          <b>${tr(`🤝 Agreed:`)}</b> <span id="wsBriefTxt" style="font-size:.85rem">${this.escHtml(ws.brief)}</span>
+          <button class="steer-chip" style="font-size:.7rem" onclick="app._wsBriefEdit()">${tr(`✏️ edit`)}</button>
+          <div style="margin-top:.5em"><button class="note-save" style="background:#10B981" onclick="app._wsToStudio()">${tr(`Let’s create →`)}</button></div>
+        </div>` : `<div style="font-size:.72rem;color:var(--text-3)">${tr(`Keep aligning — the brief appears once you genuinely contribute.`)}
+          <div style="margin-top:.4em"><button class="steer-chip" style="font-size:.7rem" onclick="app._wsToStudio()">${tr(`✍️ Not waiting — I will create on my own (free) →`)}</button>
+          <span style="color:var(--text-3);font-size:.7rem">${tr(`writing earns ⚡, the coach can join later`)}</span></div></div>`}</div>`;
+    } else if (ws.step === 'reflect') {
+      const st = this._authorState()[ws.slug] || {};
+      const stats = st.stats || { manual: 0, ai: 0, coach: 0 };
+      inner = `<h3 style="margin:.4em 0">${tr(`Your mark on the work`)}</h3>
+        <p style="font-size:.78rem;color:var(--text-2)">${tr(`The certificate proves what YOU brought in. Say it in your own words.`)}</p>
+        <div style="font-size:.75rem;color:var(--text-2);margin:.3em 0">${tr(`✋ {0} manual edits · ✨ {1} AI steps · 🧭 {2} coach rounds`, stats.manual, stats.ai, stats.coach)}</div>
+        <label style="font-size:.75rem;font-weight:700">${tr(`What I brought in (idea, objections, examples, edits…)`)}</label>
+        <textarea id="wsBrought" style="width:100%;min-height:9vh;font:inherit;font-size:.85rem;padding:.5em;border:1.5px solid var(--border,#ddd);border-radius:10px;background:var(--card,#fff)">${this.escHtml(ws.reflect.brought)}</textarea>
+        <label style="font-size:.75rem;font-weight:700;margin-top:.5em;display:block">${tr(`What I learned along the way`)}</label>
+        <textarea id="wsLearned" style="width:100%;min-height:9vh;font:inherit;font-size:.85rem;padding:.5em;border:1.5px solid var(--border,#ddd);border-radius:10px;background:var(--card,#fff)">${this.escHtml(ws.reflect.learned)}</textarea>
+        <div style="margin-top:.6em"><button class="note-save" style="background:#10B981" onclick="app._wsFinish()">${tr(`Finish → certificate`)}</button></div>`;
+    } else if (ws.step === 'cert') {
+      const st = this._authorState()[ws.slug] || {};
+      const stats = st.stats || { manual: 0, ai: 0, coach: 0 };
+      const name = localStorage.getItem('pbook-cert-name') || '';
+      const date = new Date().toLocaleDateString(locale('en-GB'));
+      const code = this._hash36([ws.slug, ws.role, date].join('|')).padEnd(8, '0').slice(0, 8);
+      inner = `<div style="border-top:6px solid #7C3AED;border-radius:14px;background:var(--card,#fff);padding:1em 1.2em" id="wsCert">
+        <div style="font-size:1.1rem;font-weight:800">${tr(`🎓 Creative workshop certificate`)}</div>
+        <input value="${this.escHtml(name)}" placeholder="${tr(`Your name (for print)`)}" onchange="localStorage.setItem('pbook-cert-name',this.value)"
+          style="width:100%;font-size:.95rem;font-weight:700;padding:.35em .5em;border:1px dashed var(--border,#ddd);border-radius:8px;margin:.5em 0">
+        <div style="font-size:.9rem">${tr(`<b>{0}</b> · role: <b>{1}</b>`, this.escHtml(ws.title), ROLE_NAMES[ws.role] || '?')}</div>
+        ${ws.brief ? `<div style="font-size:.78rem;color:var(--text-2);margin:.3em 0">„${this.escHtml(ws.brief)}"</div>` : ''}
+        <div style="font-size:.78rem;margin:.4em 0">${tr(`✋ {0} manual edits · ✨ {1} AI steps · 🧭 {2} coach rounds`, stats.manual, stats.ai, stats.coach)}</div>
+        ${ws.reflect.brought ? `<div style="font-size:.82rem;margin:.4em 0">${tr(`<b>What I brought in:</b> {0}`, this.escHtml(ws.reflect.brought))}</div>` : ''}
+        ${ws.reflect.learned ? `<div style="font-size:.82rem;margin:.4em 0">${tr(`<b>What I learned:</b> {0}`, this.escHtml(ws.reflect.learned))}</div>` : ''}
+        <div style="font-family:ui-monospace,monospace;font-size:.7rem;color:var(--text-3);margin-top:.5em">${date} · kód ${code}</div>
+        <div style="display:flex;gap:.5em;margin-top:.7em" class="no-print">
+          <button class="note-save" onclick="print()">${tr(`🖨 Print`)}</button>
+          ${ws.blockId ? `<button class="note-save" style="background:var(--accent)" onclick="document.getElementById('workshop').remove();app._showShareConsent('${ws.blockId}')">${tr(`📣 Share with the class`)}</button>` : ''}
+          <button class="note-cancel" onclick="document.getElementById('workshop').remove()">${tr(`Close`)}</button>
+        </div></div>`;
+    }
+    el.innerHTML = `<div style="position:fixed;inset:0;background:rgba(20,20,30,.5);z-index:260;overflow-y:auto">
+      <div style="max-width:660px;margin:3vh auto 6vh;background:var(--card,#fff);border:1px solid var(--border,#ddd);border-radius:16px;box-shadow:0 14px 44px rgba(0,0,0,.28);padding:1em 1.2em 2em">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:.6em">
+          <div style="font-weight:800;font-size:1.05rem">${tr(`🎓 Creative workshop · {0}`, this.escHtml(ws.title))}</div>
+          <button onclick="app._wsSave();document.getElementById('workshop').remove()" title="${tr(`Close (progress is saved)`)}" style="width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1.5px solid var(--border,#ccc);background:var(--bg,#fafaf7);font-size:1rem;font-weight:700;cursor:pointer;line-height:1">✕</button>
+        </div>
+        <div style="font-size:.73rem;color:var(--text-2);margin:.2em 0 .8em">${tr(`First you and the coach agree on WHAT to create — then you create, and finally you present what YOU brought in.`)}</div>
+        ${inner}
+      </div></div>`;
+    document.body.appendChild(el);
+    const chat = document.getElementById('wsChat'); if (chat) chat.scrollTop = chat.scrollHeight;
+    const wi = document.getElementById('wsInput');
+    if (wi) wi.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); this._wsAsk(wi.value); } });
+  }
+
+  // "Create right away" skips the coach entirely — the studio is reachable ANY time, free
+  _wsRole(r) {
+    this._ws.role = r;
+    if (r === 'solo') { this._ws.step = 'create'; this._wsSave(); this._wsToStudio(); return; }
+    this._ws.step = 'align'; this._wsSave(); this._wsRender();
+  }
+
+  async _wsAsk(text) {
+    const ws = this._ws; if (!ws) return;
+    text = (text || '').trim();
+    if (text) { ws.msgs.push({ role: 'user', text: text.slice(0, 600) }); this._wsSave(); this._wsRender(); }
+    else if (ws.msgs.length) return;
+    const pay = this.aiCanPay('basic');
+    const spin = () => document.getElementById('wsSpin');
+    // Out of ⚡? The conversation is not a prison — you can always create by hand and earn ⚡ back.
+    const escapeBtn = `<div style="margin-top:.4em"><button class="steer-chip" style="font-size:.7rem;border-color:#15803D;color:#15803D" onclick="app._wsToStudio()">${tr(`✍️ I will create on my own for now (free, earns ⚡) →`)}</button></div>`;
+    if (!pay.ok) { if (spin()) spin().innerHTML = this.aiPaywallHtml('basic') + escapeBtn; return; }
+    if (spin()) spin().innerHTML = `<div style="font-size:.75rem;color:var(--text-3);padding:.3em 0">${tr(`The coach is thinking…`)}</div>`;
+    try {
+      const res = await fetch(CONFIG.steering.generateEndpoint, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'coach', phase: 'align', role: ws.role, concept: ws.slug,
+          messages: ws.msgs.slice(-12), auth: this._walletAuth() }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok || !data.align) throw new Error(data.error || tr('align failed'));
+      this._walletApply(data, 'basic', pay);
+      ws.msgs.push({ role: 'coach', text: data.align.reply });
+      if (data.align.brief) ws.brief = data.align.brief;
+      this._wsSave();
+      this._wsRender();
+      this.rc.logEvent('workshop_align', { slug: ws.slug, role: ws.role, hasBrief: !!ws.brief });
+    } catch (e) {
+      const pw = this._aiErrorPaywall(e, 'basic');
+      if (spin()) spin().innerHTML = (pw ? pw + escapeBtn : `<div style="background:#FEE2E2;border-radius:8px;padding:.4em .6em;font-size:.78rem">${this.escHtml(e.message)}</div>`);
+    }
+  }
+
+  _wsBriefEdit() {
+    const box = document.getElementById('wsBriefTxt'); if (!box) return;
+    const ta = document.createElement('textarea');
+    ta.value = this._ws.brief;
+    ta.style.cssText = 'width:100%;min-height:7vh;font:inherit;font-size:.85rem;padding:.4em;border:1.5px solid var(--accent);border-radius:8px';
+    ta.addEventListener('blur', () => { this._ws.brief = ta.value.trim() || this._ws.brief; this._wsSave(); this._wsRender(); });
+    box.replaceWith(ta); ta.focus();
+  }
+
+  _wsToStudio() {
+    const ws = this._ws;
+    ws.step = 'create'; this._wsSave();
+    document.getElementById('workshop')?.remove();
+    this.startAuthoring(ws.slug);
+    const stdo = this._studio;
+    if (stdo) stdo.wizard = true;
+    const bar = document.createElement('div');
+    bar.id = 'wsBar';
+    bar.style.cssText = 'display:flex;gap:.5em;align-items:center;flex-wrap:wrap;border:1.5px solid #7C3AED;border-radius:10px;padding:.4em .6em;margin:.4em 0;background:color-mix(in srgb, #7C3AED 6%, transparent);font-size:.75rem';
+    bar.innerHTML = `<b>${tr(`Workshop`)}</b> <span style="color:var(--text-2)">${this.escHtml((ws.brief || tr('Creating your own way — summon the coach 🧭 any time; writing earns you ⚡.')).slice(0, 140))}</span>
+      <button class="note-save" style="margin-left:auto;background:#10B981;font-size:.72rem" onclick="app.finishAuthoring()">${tr(`✅ Done → presentation`)}</button>`;
+    document.getElementById('stCanvas')?.before(bar);
+  }
+
+  _wsAfterSave(blockId) {
+    const ws = this._ws = this._ws || this._wsState()[this._studio?.slug] || null;
+    if (!ws) return;
+    ws.blockId = blockId; ws.step = 'reflect'; this._wsSave();
+    this._wsRender();
+  }
+
+  _wsFinish() {
+    const ws = this._ws;
+    ws.reflect.brought = (document.getElementById('wsBrought')?.value || '').trim().slice(0, 500);
+    ws.reflect.learned = (document.getElementById('wsLearned')?.value || '').trim().slice(0, 500);
+    ws.step = 'cert'; this._wsSave();
+    this.rc.logEvent('workshop_done', { slug: ws.slug, role: ws.role });
+    this._wsRender();
+  }
+
+  // Return to shelved work: the active draft and the backup are SWAPPED (nothing is deleted)
+  _studioRestoreBackup() {
+    const stdo = this._studio; if (!stdo) return;
+    const all = this._authorState(); const st = all[stdo.slug];
+    if (!st?.backup) return;
+    const cur = { text: st.text, assets: st.assets, assetSeq: st.assetSeq, stats: st.stats,
+      ts: st.ts, sourceBlockId: st.sourceBlockId, importHash: st.importHash, title: st.title };
+    const b = st.backup;
+    Object.assign(st, b);
+    st.backup = cur;
+    all[stdo.slug] = st;
+    this._authorSave(all);
+    this.showXPToast(tr('Swapped — the other version is now the backup.'), 'xp');
+    this.startAuthoring(stdo.slug);
+  }
+
+  // ===== A SECOND PAIR OF EYES: feedback on a draft snapshot (NOT co-editing) =====
+  // The author shares a snapshot (#zpetna-vazba-<id>); helpers only read and
+  // comment (👍/❓/💡 — the same language the coach speaks). Authorship stays clean.
+  studioFeedbackPanel() {
+    const stdo = this._studio; if (!stdo) return;
+    const out = document.getElementById('stOut'); if (!out) return;
+    const st = this._authorState()[stdo.slug] || {};
+    if (st.shareId) { this._studioFbStatus(st.shareId); return; }
+    out.innerHTML = `<div style="border:1.5px solid var(--accent);border-radius:10px;padding:.6em .8em;font-size:.8rem;background:var(--card,#fff)">
+      <b>${tr(`👀 A second pair of eyes`)}</b>
+      <div style="font-size:.74rem;color:var(--text-2);margin:.3em 0">${tr(`Creates a link to a snapshot of the draft. Anyone with it can read and comment (👍 works · ❓ question · 💡 idea) — not edit. Useful before sending to the book.`)}</div>
+      <div style="display:flex;gap:.4em;flex-wrap:wrap">
+        <input id="stFbNick" placeholder="${tr(`Your nickname (optional)`)}" style="flex:1 1 140px;min-width:0;font:inherit;font-size:.8rem;padding:.3em .5em;border:1px solid var(--border,#ddd);border-radius:8px">
+        <input id="stFbGroup" value="${this.escHtml(this._classCode() || CONFIG.community?.defaultGroup || '')}" placeholder="${this.escHtml(this._groupWords().code + tr(' from ') + this._groupWords().lead + tr(' (optional)'))}" style="flex:1 1 140px;min-width:0;font:inherit;font-size:.8rem;padding:.3em .5em;border:1px solid var(--border,#ddd);border-radius:8px">
+        <button class="note-save" style="background:var(--accent);font-size:.75rem" onclick="app._studioFbShare()">${tr(`Create the link`)}</button>
+        <button class="steer-chip" onclick="document.getElementById('stOut').innerHTML=''">✕</button>
+      </div></div>`;
+  }
+  async _studioFbShare() {
+    const stdo = this._studio; if (!stdo) return;
+    const out = document.getElementById('stOut');
+    const raw = (document.getElementById('stDraft')?.value || '').trim();
+    const text = this._studioExpand(raw).replace(/\n{3,}/g, '\n\n').trim();
+    const nick = (document.getElementById('stFbNick')?.value || '').trim();
+    try {
+      const res = await fetch('/api/drafts', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'share', draft: { slug: stdo.slug, title: stdo.title, text }, nick,
+          group: (document.getElementById('stFbGroup')?.value || '').trim().toLowerCase() }) });
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || tr('share failed'));
+      const all = this._authorState(); (all[stdo.slug] = all[stdo.slug] || {}).shareId = data.id; this._authorSave(all);
+      this.rc.logEvent('draft_shared', { slug: stdo.slug });
+      this._studioFbStatus(data.id);
+    } catch (e) {
+      out.innerHTML = `<div style="background:#FEE2E2;border-radius:8px;padding:.5em .7em;font-size:.8rem">${this.escHtml(e.message)}</div>`;
+    }
+  }
+  async _studioFbStatus(shareId) {
+    const stdo = this._studio; if (!stdo) return;
+    const out = document.getElementById('stOut');
+    const link = location.origin + '/#zpetna-vazba-' + shareId;
+    let comments = [];
+    try { const d = await (await fetch('/api/drafts?id=' + shareId)).json(); if (d.ok) comments = d.comments; } catch (e) {}
+    const KIND = { works: '👍', question: '❓', idea: '💡' };
+    out.innerHTML = `<div style="border:1.5px solid var(--accent);border-radius:10px;padding:.6em .8em;font-size:.8rem;background:var(--card,#fff)">
+      <b>${tr(`💬 Feedback ({0})`, comments.length)}</b>
+      <button class="steer-chip" style="font-size:.7rem" onclick="app._studioFbStatus('${shareId}')">${tr(`↻ refresh`)}</button>
+      <button class="steer-chip" style="font-size:.7rem" onclick="app._studioFbUnshare('${shareId}')">${tr(`🗑 unshare`)}</button>
+      <button class="steer-chip" style="font-size:.7rem" onclick="document.getElementById('stOut').innerHTML=''">✕</button>
+      <div style="font-size:.7rem;margin:.35em 0;display:flex;gap:.4em;align-items:center;flex-wrap:wrap"><span style="color:var(--text-2)">${tr(`Link created — send it to whoever you like:`)}</span>
+        <code style="font-size:.7rem;background:var(--bg,#f6f6f2);padding:.1em .4em;border-radius:6px;word-break:break-all">${link}</code>
+        <button class="steer-chip" style="font-size:.7rem" onclick="navigator.clipboard&&navigator.clipboard.writeText('${link}')">${tr(`Copy`)}</button></div>
+      ${comments.length ? comments.map(c => `<div style="border-top:1px dashed var(--border,#eee);padding:.3em 0;font-size:.78rem">${KIND[c.kind] || '💬'} ${this.escHtml(c.text)} <span style="color:var(--text-3);font-size:.7rem">— ${this.escHtml(c.nick || 'anonymous')}</span></div>`).join('')
+        : `<div style="color:var(--text-3);font-size:.72rem">${tr(`No comments yet — the link is active.`)}</div>`}
+    </div>`;
+  }
+  async _studioFbUnshare(shareId) {
+    try { await fetch('/api/drafts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'unshare', id: shareId }) }); } catch (e) {}
+    const stdo = this._studio;
+    if (stdo) { const all = this._authorState(); if (all[stdo.slug]) delete all[stdo.slug].shareId; this._authorSave(all); }
+    const out = document.getElementById('stOut'); if (out) out.innerHTML = '';
+  }
+
+  // Class gallery: a projector-friendly list of works shared with a code —
+  // for contests, pair tasks and in-class presentations.
+  async openClassGallery(code) {
+    document.getElementById('classGal')?.remove();
+    code = String(code || '').toLowerCase();
+    const voter = localStorage.getItem('pbook-uid') || '';
+    let data = null;
+    try { data = await (await fetch('/api/drafts?group=' + encodeURIComponent(code) + '&voter=' + encodeURIComponent(voter))).json(); } catch (e) {}
+    // order: votes desc, ties by submission time (stable and fair)
+    const items = (data?.ok ? data.items : []).sort((a, b2) => (b2.votes - a.votes) || String(a.at).localeCompare(String(b2.at)));
+    this._galState = { code, items, myVotes: new Set(data?.myVotes || []), votesAll: data?.votes || {}, voter };
+    const el = document.createElement('div');
+    el.id = 'classGal';
+    el.innerHTML = `<div style="position:fixed;inset:0;background:rgba(20,20,30,.5);z-index:265;overflow-y:auto" onclick="if(event.target===this)document.getElementById('classGal').remove()">
+      <div style="max-width:640px;margin:3vh auto 6vh;background:var(--card,#fff);border:1px solid var(--border,#ddd);border-radius:16px;box-shadow:0 14px 44px rgba(0,0,0,.28);padding:1em 1.2em 1.4em">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:.6em;flex-wrap:wrap">
+          <div style="font-weight:800;font-size:1.05rem">🖼 ${this.escHtml(this._groupWords().gallery)} · <code style="font-size:.8rem">${this.escHtml(code)}</code></div>
+          ${items.length ? `<button class="note-save" style="background:var(--accent);font-size:.74rem" onclick="app.classPresent(0)">${tr(`▶ Present`)}</button>` : ''}
+          <button class="steer-chip" style="font-size:.72rem" onclick="app.classLeaderboard('${this.escHtml(code)}')">${tr(`📊 Leaderboard`)}</button>
+          <button class="steer-chip" style="font-size:.7rem" onclick="app.openClassGallery('${this.escHtml(code)}')">${tr(`↻ refresh`)}</button>
+          <button onclick="document.getElementById('classGal').remove()" title="Close" style="width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1.5px solid var(--border,#ccc);background:var(--bg,#fafaf7);font-size:1rem;font-weight:700;cursor:pointer;line-height:1">✕</button>
+        </div>
+        <div style="font-size:.74rem;color:var(--text-2);margin:.2em 0 .6em">${tr(`Click to open — comment with 👍/❓/💡. The heart votes for the best work (1 vote per work, click again to take it back). ▶ Present = full screen for the {0}.`, this.escHtml(this._groupWords().group))}</div>
+        ${items.length ? items.map((it, i) => `<div onclick="document.getElementById('classGal').remove();app.openDraftFeedback('${this.escHtml(it.id)}')"
+            style="display:flex;gap:.6em;align-items:center;padding:.5em .6em;border:1.5px solid var(--border,#eee);border-radius:10px;margin:.35em 0;cursor:pointer">
+            <span style="font-weight:800;color:var(--accent)">${i + 1}.</span>
+            <span style="flex:1 1 auto;min-width:0"><b>${this.escHtml(it.title || '—')}</b> <span style="font-size:.72rem;color:var(--text-3)">— ${this.escHtml(it.nick || 'anonymous')}</span></span>
+            <button class="steer-chip gal-vote" data-id="${this.escHtml(it.id)}" onclick="event.stopPropagation();app.classVote('${this.escHtml(it.id)}',this)"
+              style="font-size:.82rem;min-width:56px;${this._galState.myVotes.has(it.id) ? 'background:#FEE2E2;border-color:#EF4444' : ''}">${this._galState.myVotes.has(it.id) ? '❤️' : '🤍'} <b class="gv-n">${it.votes || 0}</b></button>
+            <span style="color:var(--text-3)">›</span>
+          </div>`).join('')
+        : `<div style="color:var(--text-3);font-size:.8rem">${tr(`Nothing here yet — works appear once {0} share with the code.`, this.escHtml(this._groupWords().members))}</div>`}
+        <div id="galBoard"></div>
+        <div id="galTellings"></div>
+        <div id="galDecks"></div>
+      </div></div>`;
+    document.body.appendChild(el);
+    // This class's book submissions (isolated from other classes): hearts vote,
+    // the teacher ⭐ recommends the best to the editors — class → book → core
+    this.rc.listCommunityBlocks(null, 50, ['community'], { onlyGroup: code }).then(tells => {
+      const box = document.getElementById('galTellings');
+      if (!box || !tells.length) return;
+      const g = this._galState;
+      box.innerHTML = `<div style="font-size:.8rem;font-weight:700;margin:.8em 0 .1em">${tr(`✍️ Book submissions`)}</div>
+        <div style="font-size:.7rem;color:var(--text-3);margin:0 0 .3em">${tr(`Visible to this class only. Hearts vote; ⭐ = the teacher recommends it to the editors for the shared book.`)}</div>`
+        + tells.map(t => `<div style="display:flex;gap:.6em;align-items:center;padding:.45em .6em;border:1.5px solid var(--border,#eee);border-radius:10px;margin:.3em 0;cursor:pointer"
+            onclick="app._showTellingPreview('${this.escHtml(t.meta.id)}','${this.escHtml(code)}')">
+            <span style="flex:1 1 auto;min-width:0"><b>${this.escHtml(t.meta.title || '—')}</b> <span style="font-size:.72rem;color:var(--text-3)">— ${this.escHtml(t.meta.sharedAs || 'anonymous')}${t.meta.nominated ? tr(' · ⭐ recommended') : ''}</span></span>
+            <button class="steer-chip gal-vote" data-id="${this.escHtml(t.meta.id)}" onclick="event.stopPropagation();app.classVote('${this.escHtml(t.meta.id)}',this)"
+              style="font-size:.82rem;min-width:56px;${g.myVotes.has(t.meta.id) ? 'background:#FEE2E2;border-color:#EF4444' : ''}">${g.myVotes.has(t.meta.id) ? '❤️' : '🤍'} <b class="gv-n">${g.votesAll?.[t.meta.id] || 0}</b></button>
+            ${t.meta.nominated ? '' : `<button class="steer-chip" title="${tr(`Teacher: recommend to the editors for the shared book`)}" style="font-size:.78rem" onclick="event.stopPropagation();app.classNominate('${this.escHtml(t.meta.id)}','${this.escHtml(code)}',this)">⭐</button>`}
+          </div>`).join('');
+      this._galTellings = Object.fromEntries(tells.map(t => [t.meta.id, t]));
+    }).catch(() => {});
+    // Class slide decks from the storage — SlAIdy opens them straight from a URL
+    fetch('/api/decks?group=' + encodeURIComponent(code)).then(r => r.json()).then(d => {
+      const box = document.getElementById('galDecks');
+      if (!box || !d?.ok || !(d.items || []).length) return;
+      const items2 = d.items.sort((a, b2) => String(b2.at).localeCompare(String(a.at)));
+      box.innerHTML = `<div style="font-size:.8rem;font-weight:700;margin:.8em 0 .3em">${tr(`🎞 Class slide decks`)}</div>` + items2.map(it =>
+        `<div style="display:flex;gap:.6em;align-items:center;padding:.45em .6em;border:1.5px solid var(--border,#eee);border-radius:10px;margin:.3em 0">
+          <span style="flex:1 1 auto;min-width:0"><b>${this.escHtml(it.title || '—')}</b> <span style="font-size:.72rem;color:var(--text-3)">${tr(`— {0} · {1} slides`, this.escHtml(it.author || tr('no author')), it.n)}</span></span>
+          <a class="note-save" style="background:#7C3AED;font-size:.72rem;text-decoration:none" target="_blank" rel="noopener"
+            href="${this._slaidyAppUrl()}?deck=${encodeURIComponent(this._slaidyDeckUrl(it.id))}#present">${tr(`▶ Present`)}</a>
+        </div>`).join('');
+    }).catch(() => {});
+  }
+
+  // Voting: toggle, counted per pupil (uid) on the server — the last state wins
+  async classVote(id, btn) {
+    const g = this._galState; if (!g || !g.voter) return;
+    const on = !g.myVotes.has(id);
+    if (on) g.myVotes.add(id); else g.myVotes.delete(id);
+    document.querySelectorAll(`.gal-vote[data-id="${id}"]`).forEach(b2 => {
+      const nEl = b2.querySelector('.gv-n');
+      const n = Math.max(0, (parseInt(nEl?.textContent, 10) || 0) + (on ? 1 : -1));
+      b2.innerHTML = `${on ? '❤️' : '🤍'} <b class="gv-n">${n}</b>`;
+      b2.style.background = on ? '#FEE2E2' : '';
+      b2.style.borderColor = on ? '#EF4444' : '';
+    });
+    try {
+      await fetch('/api/drafts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'vote', id, group: g.code, voter: g.voter, on }) });
+    } catch (e) {}
+    this.rc.logEvent('class_vote', { group: g.code, id, on });
+  }
+
+  // Teacher nomination: class submission → editors' queue (lift into the shared book)
+  async classNominate(itemId, code, btn) {
+    const ok = await this.rc.api('POST', `/items/${encodeURIComponent(itemId)}`, {
+      nominated: code, nominatedAt: new Date().toISOString(), '!cascadeCreate': true,
+    });
+    this.rc.logEvent('class_nomination', { group: code, itemId, ok: ok !== null });
+    if (btn) btn.replaceWith(Object.assign(document.createElement('span'), { textContent: '⭐', title: tr('recommended to the editors') }));
+    this.showXPToast(ok !== null ? tr('⭐ Recommended to the editors — thanks for curating!') : tr('Nomination failed'), 'xp');
+  }
+  // Read-only preview of a class submission (voting in the header)
+  _showTellingPreview(itemId, code) {
+    const t = this._galTellings?.[itemId]; if (!t) return;
+    document.getElementById('tellPrev')?.remove();
+    const g = this._galState;
+    const el = document.createElement('div');
+    el.id = 'tellPrev';
+    el.innerHTML = `<div style="position:fixed;inset:0;background:rgba(20,20,30,.5);z-index:270;overflow-y:auto" onclick="if(event.target===this)document.getElementById('tellPrev').remove()">
+      <div style="max-width:720px;margin:3vh auto 6vh;background:var(--card,#fff);border:1px solid var(--border,#ddd);border-radius:16px;box-shadow:0 14px 44px rgba(0,0,0,.28);padding:1em 1.2em 1.4em">
+        <div style="display:flex;align-items:center;gap:.6em;flex-wrap:wrap">
+          <b style="flex:1 1 auto;min-width:0">${this.escHtml(t.meta.title || '—')}</b>
+          <span style="font-size:.74rem;color:var(--text-3)">${this.escHtml(t.meta.sharedAs || 'anonymous')}</span>
+          <button class="steer-chip gal-vote" data-id="${this.escHtml(itemId)}" onclick="app.classVote('${this.escHtml(itemId)}',this)"
+            style="font-size:.85rem;${g?.myVotes.has(itemId) ? 'background:#FEE2E2;border-color:#EF4444' : ''}">${g?.myVotes.has(itemId) ? '❤️' : '🤍'} <b class="gv-n">${g?.votesAll?.[itemId] || 0}</b></button>
+          <button class="steer-chip" title="${tr(`QR for anonymous class reactions`)}" style="font-size:.82rem" onclick="app.showReactionQr('${this.escHtml(code)}','${this.escHtml(itemId)}','${this.escHtml((t.meta.title || '').replace(/'/g, ''))}')">📊</button>
+          <button onclick="document.getElementById('tellPrev').remove()" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border,#ccc);background:var(--bg,#fafaf7);font-weight:700;cursor:pointer">✕</button>
+        </div>
+        <div class="block-content spine-body" style="margin-top:.6em">${renderMarkdown(t.body || '')}</div>
+      </div></div>`;
+    document.body.appendChild(el);
+    this._attachReveals(el);
+  }
+
+  // ===== POST-PRESENTATION REACTIONS =====
+  // Anonymous tap feedback from the room's phones (QR on the screen): 😕🙂🤩 +
+  // tags. Guides the teacher's ⭐; long-term success lives in the leaderboard.
+  _reactTags() { return [tr('🎯 clear point'), tr('😂 funny'), tr('🖼 great visual'), tr('📚 more examples'), tr('✂️ tighten it'), tr('🐢 too fast')]; }
+  async openReactionPage(group, id) {
+    document.getElementById('reactPage')?.remove();
+    group = String(group || '').toLowerCase(); id = String(id || '');
+    if (!/^[a-z0-9-]{4,16}$/.test(group) || !/^[\w-]{6,64}$/.test(id)) return;
+    const voter = localStorage.getItem('pbook-uid') || '';
+    let title = '';
+    try {
+      if (id.startsWith('d') && !id.includes('--')) title = (await (await fetch('/api/decks?id=' + id + '&meta=1')).json())?.title || '';
+      else if (!id.includes('--')) title = (await (await fetch('/api/drafts?id=' + id)).json())?.draft?.title || '';
+    } catch (e) {}
+    const st = { score: 0, tags: new Set() };
+    const el = document.createElement('div');
+    el.id = 'reactPage';
+    el.innerHTML = `<div style="position:fixed;inset:0;background:var(--bg,#FAFAF7);z-index:280;overflow-y:auto">
+      <div style="max-width:460px;margin:4vh auto;padding:0 1em">
+        <div style="font-weight:800;font-size:1.15rem">${tr(`How did it land?`)}</div>
+        ${title ? `<div style="font-size:.85rem;color:var(--text-2);margin-top:.15em">${this.escHtml(title)}</div>` : ''}
+        <div style="font-size:.72rem;color:var(--text-3);margin:.2em 0 .8em">${tr(`Anonymous feedback for the author and the teacher — a few taps and done.`)}</div>
+        <div id="rpScore" style="display:flex;gap:.6em">
+          ${[[3, '🤩', tr('now I get it')], [2, '🙂', tr('it helped')], [1, '😕', tr('not really')]].map(([v, e, l]) =>
+            `<button data-v="${v}" style="flex:1;padding:.8em .3em;border:2px solid var(--border,#ddd);border-radius:14px;background:var(--card,#fff);cursor:pointer;text-align:center">
+              <div style="font-size:1.9rem">${e}</div><div style="font-size:.72rem;margin-top:.2em">${l}</div></button>`).join('')}
+        </div>
+        <div style="font-size:.74rem;font-weight:700;margin:.9em 0 .3em">${tr(`Anything to add?`)} <span style="font-weight:400;color:var(--text-3)">${tr(`(optional)`)}</span></div>
+        <div id="rpTags" style="display:flex;gap:.4em;flex-wrap:wrap">
+          ${this._reactTags().map(t => `<button data-t="${this.escHtml(t)}" class="steer-chip" style="font-size:.78rem">${this.escHtml(t)}</button>`).join('')}
+        </div>
+        <input id="rpNote" placeholder="${tr(`…or write a few words (optional)`)}" maxlength="200"
+          style="width:100%;font:inherit;font-size:.85rem;padding:.55em .6em;border:1.5px solid var(--border,#ddd);border-radius:10px;background:var(--card,#fff);margin:.7em 0">
+        <button id="rpSend" class="note-save" style="width:100%;background:var(--accent);font-size:1rem;padding:.7em" disabled>${tr(`Send feedback`)}</button>
+        <div id="rpOut" style="margin-top:.8em"></div>
+      </div></div>`;
+    document.body.appendChild(el);
+    const send = document.getElementById('rpSend');
+    document.getElementById('rpScore').addEventListener('click', e => {
+      const b = e.target.closest('button[data-v]'); if (!b) return;
+      st.score = +b.dataset.v;
+      document.querySelectorAll('#rpScore button').forEach(x => { x.style.borderColor = 'var(--border,#ddd)'; x.style.background = 'var(--card,#fff)'; });
+      b.style.borderColor = '#6366F1'; b.style.background = '#EEF2FF';
+      send.disabled = false;
+    });
+    document.getElementById('rpTags').addEventListener('click', e => {
+      const b = e.target.closest('button[data-t]'); if (!b) return;
+      const t = b.dataset.t;
+      if (st.tags.has(t)) { st.tags.delete(t); b.style.background = ''; b.style.borderColor = ''; }
+      else { st.tags.add(t); b.style.background = '#EEF2FF'; b.style.borderColor = '#6366F1'; }
+    });
+    send.addEventListener('click', async () => {
+      send.disabled = true; send.textContent = tr('Sending…');
+      try {
+        const r = await fetch('/api/drafts', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'react', id, group, voter, score: st.score, tags: [...st.tags], note: document.getElementById('rpNote').value.trim() }) });
+        if (!(await r.json()).ok) throw new Error('failed');
+        this.rc.logEvent('telling_react', { id, group, score: st.score });
+        document.getElementById('rpOut').innerHTML = `<div style="border:1.5px solid #10B981;border-radius:10px;padding:.7em;font-size:.85rem;background:var(--card,#fff)">${tr(`Thanks! 🎉 Feedback delivered.`)} <a href="${location.origin}/#trida-${this.escHtml(group)}" style="color:var(--accent)">${tr(`See the class works →`)}</a></div>`;
+        send.remove();
+      } catch (e2) { send.disabled = false; send.textContent = tr('Send feedback'); this.showXPToast(tr('Failed — try again'), 'xp'); }
+    });
+  }
+  async showReactionQr(group, id, title) {
+    document.getElementById('reactQr')?.remove();
+    const url = `${location.origin}/#ohlas-${group}~${id}`;
+    let svg = '';
+    try { const { qrSvg } = await import('./qr.js'); svg = qrSvg(url, 8, 3); } catch (e) { svg = `<div style="padding:2em;color:#B45309">${tr(`QR failed — use the link`)}</div>`; }
+    const el = document.createElement('div');
+    el.id = 'reactQr';
+    el.innerHTML = `<div style="position:fixed;inset:0;background:rgba(20,20,30,.72);z-index:285;display:flex;align-items:center;justify-content:center" onclick="if(event.target===this){clearInterval(window._rqT);this.parentElement.remove()}">
+      <div style="background:#fff;border-radius:20px;padding:1.4em 1.6em;max-width:520px;text-align:center">
+        <div style="font-weight:800;font-size:1.2rem;color:#111">${tr(`📊 How did it land?`)}</div>
+        ${title ? `<div style="font-size:.85rem;color:#555;margin:.2em 0">${this.escHtml(title)}</div>` : ''}
+        <div style="width:min(58vh,340px);margin:.6em auto">${svg}</div>
+        <div style="font-family:ui-monospace,monospace;font-size:.78rem;color:#333;word-break:break-all">${this.escHtml(url)}</div>
+        <div id="rqTally" style="font-size:1.05rem;margin-top:.6em;color:#111">…</div>
+        <button class="note-save" style="margin-top:.6em" onclick="clearInterval(window._rqT);document.getElementById('reactQr').remove()">${tr(`Close`)}</button>
+      </div></div>`;
+    document.body.appendChild(el);
+    const tick = async () => {
+      try {
+        const d = await (await fetch('/api/drafts?group=' + encodeURIComponent(group))).json();
+        const rx = d?.reacts?.[id];
+        const t = document.getElementById('rqTally');
+        if (t) t.textContent = rx ? `${tr(`🤩 {0} · 🙂 {1} · 😕 {2} — total {3}`, rx.c3, rx.c2, rx.c1, rx.n)}` : tr('no reactions yet');
+      } catch (e) {}
+    };
+    tick();
+    window._rqT = setInterval(tick, 5000);
+  }
+
+  // ===== TELLING LEADERBOARD (course points) =====
+  async classLeaderboard(code) {
+    const box = document.getElementById('galBoard'); if (!box) return;
+    box.innerHTML = `<div style="font-size:.76rem;color:var(--text-3);padding:.4em 0">${tr(`Computing the leaderboard…`)}</div>`;
+    try {
+      const [gal, tells, tellsOrigin, logRows] = await Promise.all([
+        (async () => { try { return await (await fetch('/api/drafts?group=' + encodeURIComponent(code))).json(); } catch (e) { return null; } })(),
+        this.rc.listCommunityBlocks(null, 50, ['community'], { onlyGroup: code }),
+        (async () => {
+          const rec = await this.rc.api('POST', `/recomms/users/${this.rc.userId}/items/`, {
+            filter: `'classOrigin' == "${code}"`, count: 50, cascadeCreate: true, returnProperties: true });
+          return (rec?.recomms || []).map(r => ({ meta: { id: r.id, title: r.values?.title, sharedAs: r.values?.sharedAs, state: r.values?.state } }));
+        })().catch(() => []),
+        (async () => { try { return await (await fetch('/api/log')).json(); } catch (e) { return []; } })(),
+      ]);
+      const votes = gal?.votes || {}, reacts = gal?.reacts || {};
+      const usage = {};
+      for (const r of Array.isArray(logRows) ? logRows : []) {
+        const id = r.item_id || r.data?.itemId; if (!id) continue;
+        const u = (usage[id] = usage[id] || { views: new Set(), likes: new Set() });
+        if (r.type === 'detailview') u.views.add(r.user_id);
+        if (r.type === 'rating' && (r.rating >= 0.7 || r.data?.rating >= 0.7)) u.likes.add(r.user_id);
+      }
+      const seen = new Map();
+      for (const t of [...tells, ...tellsOrigin]) if (!seen.has(t.meta.id)) seen.set(t.meta.id, { id: t.meta.id, title: t.meta.title, who: t.meta.sharedAs, kind: t.meta.state === 'edited' || t.meta.state === 'core' ? tr('📖 in the book') : 'telling' });
+      for (const it of gal?.items || []) if (!seen.has(it.id)) seen.set(it.id, { id: it.id, title: it.title, who: it.nick, kind: 'draft' });
+      // items with signals but no metadata (deleted deck, old telling) — the teacher keeps the signal
+      for (const id of new Set([...Object.keys(votes), ...Object.keys(reacts)])) if (!seen.has(id)) seen.set(id, { id, title: tr('(no longer listed)'), who: '', kind: '?' });
+      const rows = [...seen.values()].map(x => {
+        const rx = reacts[x.id] || { n: 0, sum: 0, c1: 0, c2: 0, c3: 0 };
+        const u = usage[x.id] || { views: new Set(), likes: new Set() };
+        const score = (votes[x.id] || 0) * 3 + rx.sum + u.likes.size * 3 + Math.round(u.views.size / 2);
+        return { ...x, votes: votes[x.id] || 0, rx, views: u.views.size, likes: u.likes.size, score };
+      }).sort((a, b2) => b2.score - a.score);
+      if (!rows.length) { box.innerHTML = `<div style="font-size:.76rem;color:var(--text-3);padding:.4em 0">${tr(`Nothing to rank yet — submissions, works and reactions will appear here.`)}</div>`; return; }
+      box.innerHTML = `<div style="font-size:.8rem;font-weight:700;margin:.8em 0 .1em">${tr(`📊 Telling leaderboard`)}</div>
+        <div style="font-size:.7rem;color:var(--text-3);margin:0 0 .3em">${tr(`Score = ❤️ votes ×3 + presentation reactions (😕1/🙂2/🤩3) + 👍 reader likes ×3 + 👀 readers ÷2. Long-term signals keep growing after adoption into the book.`)}</div>
+        ${rows.map((r, i) => `<div style="display:flex;gap:.55em;align-items:center;padding:.4em .55em;border:1.5px solid ${i === 0 ? '#F59E0B' : 'var(--border,#eee)'};border-radius:10px;margin:.28em 0">
+          <span style="font-weight:800;color:${i < 3 ? '#B45309' : 'var(--text-3)'};min-width:1.4em">${i + 1}.</span>
+          <span style="flex:1 1 auto;min-width:0"><b>${this.escHtml(r.title || '—')}</b> <span style="font-size:.7rem;color:var(--text-3)">— ${this.escHtml(r.who || 'anonymous')}${r.kind === '📖 in the book' ? tr(' · 📖 in the book') : ''}</span></span>
+          <span style="font-size:.72rem;color:var(--text-2);white-space:nowrap">❤️${r.votes} 🤩${r.rx.c3} 🙂${r.rx.c2} 😕${r.rx.c1} 👀${r.views} 👍${r.likes}</span>
+          <b style="min-width:2.2em;text-align:right">${r.score}</b>
+        </div>`).join('')}
+        <button class="steer-chip" style="font-size:.72rem;margin-top:.3em" onclick="app._copyBoard('${this.escHtml(code)}')">${tr(`📋 copy for grading`)}</button>`;
+      this._boardRows = rows;
+      this.rc.logEvent('class_leaderboard', { group: code, n: rows.length });
+    } catch (e) {
+      box.innerHTML = `<div style="background:#FEE2E2;border-radius:8px;padding:.5em .7em;font-size:.78rem">${this.escHtml(e.message)}</div>`;
+    }
+  }
+  _copyBoard(code) {
+    const rows = this._boardRows || [];
+    const tsv = [tr('rank\ttitle\tauthor\tscore\tvotes\treactions 🤩/🙂/😕\treaders\tlikes'),
+      ...rows.map((r, i) => `${i + 1}\t${r.title}\t${r.who || ''}\t${r.score}\t${r.votes}\t${r.rx.c3}/${r.rx.c2}/${r.rx.c1}\t${r.views}\t${r.likes}`)].join('\n');
+    navigator.clipboard.writeText(tsv);
+    this.showXPToast(tr('Leaderboard copied (TSV) ✓'), 'xp');
+  }
+
+  // Class presentation: one work full screen, arrows/keys, voting in the header
+  async classPresent(idx) {
+    const g = this._galState; if (!g || !g.items.length) return;
+    document.getElementById('classGal')?.remove();
+    document.getElementById('classPres')?.remove();
+    // presented in submission order (fair) — votes are tallied at the end
+    const order = [...g.items].sort((a, b2) => String(a.at).localeCompare(String(b2.at)));
+    idx = Math.max(0, Math.min(order.length - 1, idx | 0));
+    const it = order[idx];
+    g._cache = g._cache || {};
+    if (!g._cache[it.id]) {
+      try { g._cache[it.id] = await (await fetch('/api/drafts?id=' + encodeURIComponent(it.id))).json(); } catch (e) { g._cache[it.id] = null; }
+    }
+    const d = g._cache[it.id];
+    const bodyHtml = d?.ok ? renderMarkdown(d.draft.text || '') : ('<p style="color:#EF4444">' + tr(`Could not load this work.`) + '</p>');
+    const el = document.createElement('div');
+    el.id = 'classPres';
+    el.innerHTML = `<div style="position:fixed;inset:0;background:var(--bg,#FAFAF7);z-index:270;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;gap:.7em;padding:.6em 1em;border-bottom:1.5px solid var(--border,#eee);flex-wrap:wrap">
+        <b style="font-size:1.05rem;flex:1 1 auto;min-width:0">${this.escHtml(it.title || '—')}</b>
+        <span style="font-size:.8rem;color:var(--text-2)">${this.escHtml(it.nick || 'anonymous')} · ${idx + 1}/${order.length}</span>
+        <button class="steer-chip gal-vote" data-id="${this.escHtml(it.id)}" onclick="app.classVote('${this.escHtml(it.id)}',this)"
+          style="font-size:.9rem;${g.myVotes.has(it.id) ? 'background:#FEE2E2;border-color:#EF4444' : ''}">${g.myVotes.has(it.id) ? '❤️' : '🤍'} <b class="gv-n">${it.votes || 0}</b></button>
+        <button class="steer-chip" title="${tr(`QR for anonymous class reactions (😕🙂🤩)`)}" style="font-size:.85rem" onclick="app.showReactionQr('${this.escHtml(g.code)}','${this.escHtml(it.id)}','${this.escHtml((it.title || '').replace(/'/g, ''))}')">${tr(`📊 Reactions`)}</button>
+        <button onclick="document.getElementById('classPres').remove();app.openClassGallery('${this.escHtml(g.code)}')" title="${tr(`Back to the gallery (Esc)`)}" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border,#ccc);background:var(--card,#fff);font-weight:700;cursor:pointer">✕</button>
+      </div>
+      <div style="flex:1 1 auto;overflow-y:auto;padding:1.2em 0">
+        <article class="block-article" style="max-width:820px;margin:0 auto;padding:0 1.2em;border:none;box-shadow:none;background:transparent">
+          <div class="block-content spine-body" style="font-size:1.08rem">${bodyHtml}</div>
+        </article>
+      </div>
+      <div style="display:flex;justify-content:center;gap:.8em;padding:.55em;border-top:1.5px solid var(--border,#eee)">
+        <button class="note-save" style="font-size:.95rem;min-width:110px;${idx === 0 ? 'opacity:.4' : ''}" onclick="app.classPresent(${idx - 1})">${tr(`← previous`)}</button>
+        <button class="note-save" style="background:var(--accent);font-size:.95rem;min-width:110px;${idx === order.length - 1 ? 'opacity:.4' : ''}" onclick="app.classPresent(${idx + 1})">${tr(`next →`)}</button>
+      </div>
+    </div>`;
+    document.body.appendChild(el);
+    this._attachReveals(el);
+    if (!this._presKeys) {
+      this._presKeys = true;
+      document.addEventListener('keydown', e => {
+        if (!document.getElementById('classPres')) return;
+        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); document.querySelectorAll('#classPres button[onclick^="app.classPresent"]')[1]?.click(); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); document.querySelectorAll('#classPres button[onclick^="app.classPresent"]')[0]?.click(); }
+        if (e.key === 'Escape') { document.getElementById('classPres').remove(); }
+      });
+    }
+    this.rc.logEvent('class_present', { group: g.code, idx });
+  }
+
+  async openDraftFeedback(shareId, optimistic) {
+    document.getElementById('draftFb')?.remove();
+    let data = null;
+    try { data = await (await fetch('/api/drafts?id=' + encodeURIComponent(shareId))).json(); } catch (e) {}
+    // optimistic: show a just-sent comment immediately (Supabase reads lag ~5s)
+    if (data?.ok && optimistic && !(data.comments || []).some(c => c.text === optimistic.text)) {
+      data.comments.push(optimistic);
+    }
+    const el = document.createElement('div');
+    el.id = 'draftFb';
+    const KIND = { works: '👍', question: '❓', idea: '💡' };
+    const inner = !data?.ok
+      ? `<div style="font-size:.85rem;color:var(--text-2)">${tr(`This link is no longer active.`)}</div>`
+      : `<div style="font-size:.75rem;color:var(--text-2);margin:.2em 0 .6em">${tr(`This is a work-in-progress — read-only. Help with a comment: what works, what is unclear, what you would try differently.`)}</div>
+        <article class="block-article" style="margin:0;padding:.8em 1em;border:1.5px solid var(--border,#eee);border-radius:12px;background:var(--bg,#fafaf7);max-height:46vh;overflow-y:auto">
+          <h2 style="margin:.1em 0 .5em;font-size:1.1rem">${this.escHtml(data.draft.title)}</h2>
+          <div class="block-content spine-body">${renderMarkdown(data.draft.text)}</div>
+        </article>
+        <div style="display:flex;gap:.4em;margin:.6em 0 .3em">
+          ${['works', 'question', 'idea'].map((k, i) => `<label style="font-size:.74rem;border:1.5px solid var(--border,#ddd);border-radius:999px;padding:.15em .6em;cursor:pointer"><input type="radio" name="fbKind" value="${k}" ${i === 2 ? 'checked' : ''} style="vertical-align:-1px"> ${[(tr('👍 What works')), (tr('❓ Question')), (tr('💡 Idea'))][i]}</label>`).join('')}
+        </div>
+        <textarea id="fbText" placeholder="${tr(`Write a comment…`)}" style="width:100%;min-height:8vh;font:inherit;font-size:.85rem;padding:.5em;border:1.5px solid var(--border,#ddd);border-radius:10px;background:var(--card,#fff)"></textarea>
+        <div style="display:flex;gap:.4em;margin-top:.4em;flex-wrap:wrap">
+          <input id="fbNick" placeholder="${tr(`Your nickname (optional)`)}" style="flex:1 1 130px;min-width:0;font:inherit;font-size:.8rem;padding:.3em .5em;border:1px solid var(--border,#ddd);border-radius:8px">
+          <button class="note-save" style="background:var(--accent)" onclick="app._sendDraftComment('${this.escHtml(shareId)}')">${tr(`Send the comment`)}</button>
+        </div>
+        ${data.comments.length ? `<div style="margin-top:.6em;font-size:.76rem">${data.comments.map(c => `<div style="border-top:1px dashed var(--border,#eee);padding:.3em 0">${KIND[c.kind] || '💬'} ${this.escHtml(c.text)} <span style="color:var(--text-3);font-size:.7rem">— ${this.escHtml(c.nick || 'anonymous')}</span></div>`).join('')}</div>` : ''}`;
+    el.innerHTML = `<div style="position:fixed;inset:0;background:rgba(20,20,30,.5);z-index:270;overflow-y:auto" onclick="if(event.target===this)document.getElementById('draftFb').remove()">
+      <div style="max-width:680px;margin:3vh auto 6vh;background:var(--card,#fff);border:1px solid var(--border,#ddd);border-radius:16px;box-shadow:0 14px 44px rgba(0,0,0,.28);padding:1em 1.2em 1.4em">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:.6em">
+          <div style="font-weight:800;font-size:1rem">👀 ${data?.ok ? this.escHtml(data.draft.nick || 'anonymous') + tr(' is asking for feedback') : tr('is asking for feedback')}</div>
+          <button onclick="document.getElementById('draftFb').remove()" title="Close" style="width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1.5px solid var(--border,#ccc);background:var(--bg,#fafaf7);font-size:1rem;font-weight:700;cursor:pointer;line-height:1">✕</button>
+        </div>
+        ${inner}
+      </div></div>`;
+    document.body.appendChild(el);
+  }
+  async _sendDraftComment(shareId) {
+    const text = (document.getElementById('fbText')?.value || '').trim();
+    if (text.length < 2) return;
+    const kind = document.querySelector('input[name="fbKind"]:checked')?.value || 'idea';
+    const nick = (document.getElementById('fbNick')?.value || '').trim();
+    try {
+      const r = await (await fetch('/api/drafts', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'comment', id: shareId, kind, text, nick }) })).json();
+      if (!r.ok) throw new Error(r.error || 'failed');
+      this.showXPToast(tr('Thanks! The author will see your comment.'), 'achievement');
+      this.openDraftFeedback(shareId, { kind, text, nick });
+    } catch (e) { this.showXPToast(this.escHtml(String(e.message).slice(0, 60)), 'xp'); }
+  }
+
+  // The telling form = the same facets shown when expanding tellings
+  // (CONFIG.facets): genre / depth / visuality, canonical values. With text
+  // already written, changing the form offers an AI TRANSFORM of the content
+  // (mode transform), not a silent relabel.
+  _studioFacetLabels() { return { _dim: { genre: tr('🎭 Genre'), depth: tr('📏 Depth'), visuality: tr('🖼 Visuality') } }; }
+  _studioFacetRowsHtml(st) {
+    const L = this._studioFacetLabels();
+    const fac = st.facets || { genre: st.genre || '', depth: '', visuality: '' };
+    return ['genre', 'depth', 'visuality'].map(dim => {
+      const vals = CONFIG.facets?.[dim]?.values || [];
+      return `<div style="font-size:.72rem;font-weight:700;color:var(--text-2,#666);margin-top:.25em">${(L._dim || {})[dim] || dim}:
+        <span>${vals.map(v => `<button class="steer-chip st-fac" data-dim="${dim}" data-v="${v}"
+          style="font-size:.7rem;margin:.1em${fac[dim] === v ? ';background:#EDE9FE;border-color:#7C3AED' : ''}"
+          onclick="app._studioFacetPick(this)">${this.escHtml((L[dim] || {})[v] || v)}</button>`).join('')}</span></div>`;
+    }).join('');
+  }
+  _studioFacetPick(el) {
+    const stdo = this._studio; if (!stdo) return;
+    const dim = el.dataset.dim, v = el.dataset.v;
+    const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {});
+    st.facets = st.facets || { genre: st.genre || '', depth: '', visuality: '' };
+    const hasText = (document.getElementById('stDraft')?.value || '').trim().length >= 120;
+    const changed = st.facets[dim] && st.facets[dim] !== v;
+    const apply = () => {
+      st.facets[dim] = v; if (dim === 'genre') st.genre = v;
+      this._authorSave(all);
+      const rows = document.getElementById('stFacetRows');
+      if (rows) rows.innerHTML = this._studioFacetRowsHtml(st);
+    };
+    if (!hasText || !changed) { apply(); return; }
+    // The offer shows RIGHT UNDER the facet chips (not below the canvas where it's off-screen)
+    const out = document.getElementById('stFacetOut') || document.getElementById('stOut');
+    const lbl = this.escHtml(((this._studioFacetLabels()[dim] || {})[v]) || v);
+    out.innerHTML = `<div style="display:flex;gap:.5em;align-items:center;flex-wrap:wrap;border:1.5px solid #D97706;border-radius:10px;padding:.45em .6em;font-size:.8rem;background:var(--card,#fff);margin-top:.4em">
+      ${tr(`The text is already written — changing the form should change the content too.`)}
+      <button class="steer-chip" style="border-color:#D97706;color:#B45309;font-weight:700" onclick="app._studioTransform('${dim}','${v}')">${tr(`✨ Transform the text → {0} · {1} ⚡`, lbl, CONFIG.aiEconomy?.prices.advanced || 0)}</button>
+      <button class="steer-chip" onclick="app._studioFacetApply('${dim}','${v}');document.getElementById('stFacetOut').innerHTML=''">${tr(`just relabel`)}</button>
+      <button class="steer-chip" onclick="document.getElementById('stFacetOut').innerHTML=''">✕</button>
+    </div>`;
+  }
+  _studioFacetApply(dim, v) {
+    const stdo = this._studio; if (!stdo) return;
+    const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {});
+    st.facets = st.facets || {}; st.facets[dim] = v; if (dim === 'genre') st.genre = v;
+    this._authorSave(all);
+    const rows = document.getElementById('stFacetRows');
+    if (rows) rows.innerHTML = this._studioFacetRowsHtml(st);
+  }
+  async _studioTransform(dim, v) {
+    const stdo = this._studio; if (!stdo) return;
+    const out = document.getElementById('stFacetOut') || document.getElementById('stOut');
+    const ta = document.getElementById('stDraft');
+    const pay = this.aiCanPay('advanced');
+    if (!pay.ok) { out.innerHTML = this.aiPaywallHtml('advanced'); return; }
+    const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {});
+    st.facets = st.facets || {}; st.facets[dim] = v; if (dim === 'genre') st.genre = v;
+    st.backup = { text: ta.value, assets: stdo.assets, assetSeq: stdo.assetSeq, stats: st.stats, ts: Date.now(), sourceBlockId: st.sourceBlockId, importHash: st.importHash, title: st.title };
+    this._authorSave(all);
+    const rows = document.getElementById('stFacetRows');
+    if (rows) rows.innerHTML = this._studioFacetRowsHtml(st);
+    out.innerHTML = `<span class="gen-spinner">${tr(`✨ Transforming the text… (~30 s)`)}</span>`;
+    try {
+      const res = await fetch(CONFIG.steering.generateEndpoint, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'transform', concept: stdo.isProposal ? undefined : stdo.slug,
+          text: ta.value, target: st.facets, auth: this._walletAuth() }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok || !data.text) throw new Error(data.error || tr('transform failed'));
+      this._walletApply(data, 'advanced', pay);
+      this._studioStat('ai');
+      ta.value = data.text;
+      this._studioSave();
+      this._studioPreview();
+      out.innerHTML = `<div style="border:1.5px solid #10B981;border-radius:8px;padding:.5em .7em;font-size:.8rem;background:var(--card,#fff)">${tr(`Transformed — the previous version is in the backup.`)}</div>`;
+      this.rc.logEvent('author_transform', { slug: stdo.slug, dim, v });
+    } catch (e) {
+      const pw = this._aiErrorPaywall(e, 'advanced');
+      out.innerHTML = pw || `<div style="background:#FEE2E2;border-radius:8px;padding:.5em .7em;font-size:.8rem">${this.escHtml(e.message)}</div>`;
+    }
+  }
+
+  _studioSaveGoal() {
+    const stdo = this._studio; if (!stdo) return;
+    const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {});
+    st.recallQ = (document.getElementById('stGoalQ')?.value || '').trim().slice(0, 300);
+    st.recallA = (document.getElementById('stGoalA')?.value || '').trim().slice(0, 500);
+    this._authorSave(all);
+  }
+  _studioGoal() {
+    const st = this._authorState()[this._studio?.slug] || {};
+    const f = st.facets || {};
+    return { recallQ: st.recallQ || '', recallA: st.recallA || '', genre: f.genre || st.genre || '', depth: f.depth || '', visuality: f.visuality || '' };
+  }
+
+  _studioClose() {
+    if (this._stEditing) this._studioCommitBlock();   // an open paragraph must never fall off the table
+    this._studioSave();
+    document.getElementById('authorStudio')?.remove();
+    this.showXPToast(tr('Draft saved ✓ — find it via ✍️ on the concept or in your Profile'), 'xp');
+  }
+
+  _studioAddBlock() {
+    if (this._stEditing) this._studioCommitBlock();
+    this._studioEditBlock((this._studio._blocks || []).length, null);
+  }
+
+  // Double-click a <text> = rewrite the label in a floating input right at the text (no prompt)
+  _studioLabelEdit(e) {
+    const t = e.target.closest('text'); if (!t) return;
+    const fig = e.target.closest('figure.diagram-inline');
+    const aid = fig?.dataset.asset; if (!aid || !this._studio?.assets?.[aid]) return;
+    document.getElementById('stLblEd')?.remove();
+    const r = t.getBoundingClientRect(), fr = fig.getBoundingClientRect();
+    const orig = t.textContent;
+    const inp = document.createElement('input');
+    inp.id = 'stLblEd';
+    inp.value = orig;
+    inp.style.cssText = `position:absolute;z-index:7;left:${Math.max(0, r.left - fr.left - 6)}px;top:${Math.max(0, r.top - fr.top - 8)}px;width:${Math.max(110, r.width + 40)}px;font:inherit;font-size:.85rem;padding:.15em .4em;border:1.5px solid var(--accent);border-radius:6px;background:var(--card,#fff)`;
+    const commit = () => {
+      const v = inp.value; inp.remove();
+      if (v == null || v === orig) return;
+      this._studioUndoPush(aid);
+      t.textContent = v;
+      this._studioCommitSvg(fig, aid);
+      this._studioStat('manual');
+    };
+    inp.addEventListener('keydown', ev => {
+      if (ev.key === 'Enter') { ev.preventDefault(); inp.blur(); }
+      if (ev.key === 'Escape') { inp.value = orig; inp.blur(); }
+    });
+    inp.addEventListener('blur', commit);
+    fig.appendChild(inp);
+    inp.focus(); inp.select();
+  }
+
+
+  // ===== Manual SVG editing: click selects an element, dragging moves it, the bar
+  // offers parent/duplicate/palette/delete/undo; every edit goes through an undo
+  // stack and serialises back into the asset. AI loops are slow — hands do the small stuff.
+  _studioUndoPush(aid) {
+    const stdo = this._studio; if (!stdo) return;
+    (stdo.undo = stdo.undo || {});
+    (stdo.undo[aid] = stdo.undo[aid] || []).push(stdo.assets[aid]);
+    if (stdo.undo[aid].length > 25) stdo.undo[aid].shift();
+  }
+  _studioCommitSvg(fig, aid) {
+    const svgEl = fig.querySelector('svg'); if (!svgEl) return;
+    this._studio.assets[aid] = new XMLSerializer().serializeToString(svgEl);
+    this._studioSave();
+  }
+  _studioDeselect() {
+    this._studioSel = null;
+    document.getElementById('stSelBox')?.remove();
+    document.getElementById('stSelBar')?.remove();
+  }
+
+  _studioPointerDown(e) {
+    if (e.target.closest('#stSelBar, button, textarea')) return;   // let toolbars and editors live
+    const fig = e.target.closest('figure.diagram-inline');
+    if (!fig) { this._studioDeselect(); return; }
+    const svg = fig.querySelector('svg');
+    if (!svg || !svg.contains(e.target) || e.target === svg) { this._studioDeselect(); return; }
+    const aid = fig.dataset.asset; if (!aid || !this._studio?.assets?.[aid]) return;
+    let el = e.target;
+    const prev = this._studioSel;
+    if (prev && prev.aid === aid && prev.el.contains(el) && prev.el !== svg) el = prev.el;
+    this._studioSel = { aid, el, fig, svg };
+    this._studioSelDraw();
+    e.preventDefault();
+    const vb = svg.viewBox?.baseVal;
+    const scale = vb && vb.width ? vb.width / svg.getBoundingClientRect().width : 1;
+    const startX = e.clientX, startY = e.clientY;
+    const baseTr = el.getAttribute('transform') || '';
+    let moved = false, pushed = false;
+    const onMove = ev => {
+      const dx = Math.round((ev.clientX - startX) * scale), dy = Math.round((ev.clientY - startY) * scale);
+      if (!moved && Math.abs(dx) < 3 && Math.abs(dy) < 3) return;
+      moved = true;
+      if (!pushed) { pushed = true; this._studioUndoPush(aid); }
+      // screen-space move = translate PREPENDED to the existing transform (rotations!)
+      el.setAttribute('transform', `translate(${dx} ${dy})${baseTr ? ' ' + baseTr : ''}`);
+      this._studioSelDraw(true);
+    };
+    const onUp = () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      if (moved) { this._studioCommitSvg(fig, aid); this._studioStat('manual'); this._studioSelDraw(); }
+    };
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+  }
+
+  _studioSelDraw(light) {
+    const sel = this._studioSel; if (!sel) return;
+    document.getElementById('stSelBox')?.remove();
+    if (!light) document.getElementById('stSelBar')?.remove();
+    const r = sel.el.getBoundingClientRect(), fr = sel.fig.getBoundingClientRect();
+    const box = document.createElement('div');
+    box.id = 'stSelBox';
+    box.style.cssText = `position:absolute;pointer-events:none;border:1.5px dashed #6366F1;border-radius:4px;left:${r.left - fr.left - 4}px;top:${r.top - fr.top - 4}px;width:${r.width + 8}px;height:${r.height + 8}px`;
+    sel.fig.appendChild(box);
+    if (light) return;
+    const pal = [['#1E1B4B', ''], ['#7C3AED', '#EDE9FE'], ['#0EA5E9', '#E0F2FE'], ['#10B981', '#D1FAE5'], ['#D97706', '#FEF3C7']];
+    const bar = document.createElement('div');
+    bar.id = 'stSelBar';
+    bar.style.cssText = `position:absolute;z-index:5;left:${Math.max(0, r.left - fr.left - 4)}px;top:${r.bottom - fr.top + 8}px;display:flex;gap:.3em;align-items:center;background:var(--card,#fff);border:1px solid var(--border,#ddd);border-radius:8px;padding:.2em .35em;box-shadow:0 2px 8px rgba(0,0,0,.12)`;
+    const b = (label, title, fn2) => `<button class="steer-chip" style="font-size:.7rem;padding:.05em .35em" title="${title}" onclick="app.${fn2}">${label}</button>`;
+    bar.innerHTML = b('⬆', tr('select the whole group (parent)'), 'studioSelParent()')
+      + b('⧉', tr('duplicate the element'), 'studioSelDup()')
+      + pal.map(([d, l]) => `<button title="${tr(`recolor (book palette)`)}" onclick="app.studioSelColor('${d}','${l}')" style="width:15px;height:15px;border-radius:50%;border:1.5px solid #fff;outline:1px solid var(--border,#ccc);background:${d};cursor:pointer;padding:0"></button>`).join('')
+      + b('🗑', tr('delete the element'), 'studioSelDel()')
+      + b(sel.el.dataset?.krok ? `🎬${sel.el.dataset.krok}` : '🎬', tr('reveal step: the element appears after the Nth click (keep clicking to set 1…6, then clear)'), 'studioSelStep()')
+      + b('✨', tr('AI edits only the selection'), `studioEditImage('${sel.aid}', true)`)
+      + b('↩', tr('undo (reverts the last manual image edit)'), `studioSelUndo('${sel.aid}')`)
+      + b('✕', tr('clear selection'), '_studioDeselect()');
+    sel.fig.appendChild(bar);
+  }
+
+  studioSelParent() {
+    const sel = this._studioSel; if (!sel) return;
+    const par = sel.el.parentElement;
+    if (!par || par === sel.svg || par.tagName === 'svg') return;
+    sel.el = par;
+    this._studioSelDraw();
+  }
+  studioSelDup() {
+    const sel = this._studioSel; if (!sel) return;
+    this._studioUndoPush(sel.aid);
+    const clone = sel.el.cloneNode(true);
+    const tr = clone.getAttribute('transform') || '';
+    clone.setAttribute('transform', `translate(14 14)${tr ? ' ' + tr : ''}`);
+    sel.el.after(clone);
+    sel.el = clone;
+    this._studioStat('manual');
+    this._studioCommitSvg(sel.fig, sel.aid);
+    this._studioSelDraw();
+  }
+  studioSelDel() {
+    const sel = this._studioSel; if (!sel) return;
+    this._studioUndoPush(sel.aid);
+    const { fig, aid } = sel;
+    sel.el.remove();
+    this._studioDeselect();
+    this._studioStat('manual');
+    this._studioCommitSvg(fig, aid);
+  }
+  // Click-through reveal: cycles data-krok 1→2→…→6→none on the selected element.
+  // Readers see the element only after the Nth click on the figure (_attachReveals).
+  studioSelStep() {
+    const sel = this._studioSel; if (!sel) return;
+    this._studioUndoPush(sel.aid);
+    const d = sel.el.dataset, cur = d.krok ? parseInt(d.krok, 10) || 0 : d.step ? Math.max(0, (parseInt(d.step, 10) || 1) - 1) : 0;
+    const next = cur >= 6 ? 0 : cur + 1;
+    if (next === 0) { delete sel.el.dataset.krok; delete sel.el.dataset.step; }
+    else { sel.el.dataset.krok = String(next); delete sel.el.dataset.step; }
+    this.showXPToast(next ? `${tr(`🎬 step {0} — revealed after click {1}`, next, next)}` : tr('🎬 step cleared — element visible right away'), 'xp');
+    this._studioStat('manual');
+    this._studioCommitSvg(sel.fig, sel.aid);
+    this._studioSelDraw();
+  }
+  studioSelColor(dark, light) {
+    const sel = this._studioSel; if (!sel) return;
+    this._studioUndoPush(sel.aid);
+    const paint = n => {
+      if (!n.tagName) return;
+      if (n.tagName.toLowerCase() === 'text') { n.setAttribute('fill', dark); return; }
+      const st = n.getAttribute('stroke');
+      if (st && st !== 'none') n.setAttribute('stroke', dark);
+      const f = n.getAttribute('fill');
+      if (f && f !== 'none' && light && !/^(#fff(fff)?|white)$/i.test(f)) n.setAttribute('fill', light);
+      if (!st && (!f || f === 'none')) n.setAttribute('stroke', dark);
+    };
+    paint(sel.el);
+    sel.el.querySelectorAll('*').forEach(paint);
+    this._studioStat('manual');
+    this._studioCommitSvg(sel.fig, sel.aid);
+  }
+  studioSelUndo(aid) {
+    const stdo = this._studio; if (!stdo) return;
+    const stack = stdo.undo?.[aid];
+    if (!stack || !stack.length) return;
+    stdo.assets[aid] = stack.pop();
+    this._studioSave();
+    this._studioPreview();
+  }
+
+  // ✨ AI image edit: the instruction is typed in an inline row under the buttons (no prompt)
+  studioEditImage(aid, selectionOnly) {
+    const out = document.getElementById('stOut'); if (!out) return;
+    const sel = !!(selectionOnly && this._studioSel?.aid === aid);
+    out.innerHTML = `<div style="display:flex;gap:.4em;align-items:center;border:1.5px solid #D97706;border-radius:10px;padding:.4em .5em;background:var(--card,#fff)">
+      <input id="stImgWish" placeholder="${sel ? '__SEL_PH__' : '__IMG_PH__'}" style="flex:1 1 auto;min-width:0;font:inherit;font-size:.82rem;padding:.3em .5em;border:1px solid var(--border,#ddd);border-radius:8px">
+      <button class="steer-chip" style="border-color:#D97706;color:#B45309" onclick="app._studioEditImageGo('${aid}', ${sel})">✨ ${CONFIG.aiEconomy?.prices.advanced || 0} ⚡</button>
+      <button class="steer-chip" onclick="document.getElementById('stOut').innerHTML=''">✕</button></div>`;
+    const inp = document.getElementById('stImgWish');
+    inp.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); this._studioEditImageGo(aid, sel); } });
+    inp.focus();
+  }
+  async _studioEditImageGo(aid, selectionOnly) {
+    const stdo = this._studio; const svg = stdo?.assets?.[aid]; if (!svg) return;
+    const out = document.getElementById('stOut');
+    const wish = (document.getElementById('stImgWish')?.value || '').trim();
+    if (wish.length < 3) return;
+    const sel = selectionOnly && this._studioSel?.aid === aid ? this._studioSel : null;
+    const instruction = sel
+      ? `Change ONLY this SVG element, keep everything else EXACTLY unchanged:\n${new XMLSerializer().serializeToString(sel.el).slice(0, 1800)}\nRequest: ${wish}`
+      : wish;
+    const pay = this.aiCanPay('advanced');
+    if (!pay.ok) { out.innerHTML = this.aiPaywallHtml('advanced'); return; }
+    out.innerHTML = `<span class="gen-spinner">${tr(`✨ Editing the image… (~20 s)`)}</span>`;
+    try {
+      const res = await fetch(CONFIG.steering.generateEndpoint, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'svg-remix', svg, instruction: instruction.slice(0, 2400), auth: this._walletAuth() }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok || !data.svg) throw new Error(data.error || tr('svg remix failed'));
+      this._walletApply(data, 'advanced', pay);
+      this._studioUndoPush(aid);
+      stdo.assets[aid] = data.svg;
+      this._studioStat('ai');
+      this._studioSave();
+      this._studioPreview();
+      out.innerHTML = `<div style="border:1.5px solid #10B981;border-radius:8px;padding:.5em .7em;font-size:.8rem;background:var(--card,#fff)">${tr(`Image updated — check the preview.`)}</div>`;
+      this.rc.logEvent('author_image_edit', { slug: stdo.slug, selection: !!sel });
+    } catch (e2) {
+      const pw = this._aiErrorPaywall(e2, 'advanced');
+      out.innerHTML = pw || `<div style="background:#FEE2E2;border-radius:8px;padding:.5em .7em;font-size:.8rem">${this.escHtml(e2.message)}</div>`;
+    }
+  }
+
+  // Image removal without a confirm dialog — an immediate [↩ Undo] instead
+  studioDeleteImage(aid) {
+    const stdo = this._studio; if (!stdo?.assets?.[aid]) return;
+    const ta = document.getElementById('stDraft');
+    stdo.lastDelete = { draft: ta.value, aid, svg: stdo.assets[aid] };
+    ta.value = ta.value.replace(new RegExp(`\\n?⟦(?:obrázek|obrazek|image)\\s*${aid}⟧\\n?`, 'g'), '\n');
+    delete stdo.assets[aid];
+    this._studioStat('manual');
+    this._studioSave();
+    this._studioPreview();
+    const out = document.getElementById('stOut');
+    if (out) out.innerHTML = `<div style="font-size:.8rem;display:flex;gap:.5em;align-items:center">__DELETED__
+      <button class="steer-chip" style="font-size:.7rem" onclick="app._studioUndelete()">__UNDO_DEL__</button></div>`;
+  }
+  _studioUndelete() {
+    const stdo = this._studio; const d = stdo?.lastDelete; if (!d) return;
+    stdo.assets[d.aid] = d.svg;
+    document.getElementById('stDraft').value = d.draft;
+    stdo.lastDelete = null;
+    this._studioSave();
+    this._studioPreview();
+    const out = document.getElementById('stOut'); if (out) out.innerHTML = '';
+  }
+
+
+  // 🎨 Draw a graphic for the draft (advanced): a [DIAGRAM/ANIMATION: …] mark says what and where
+  // 🎨 Graphic generation: EVERY mark in the text = one image; drawn one by
+  // one (credit by credit), each finished image replaces its mark right away.
+  // With no marks a single summary image is drawn. onlyIdx = just one mark.
+  async generateGraphic(onlyIdx) {
+    const stdo = this._studio; if (!stdo) return;
+    const out = document.getElementById('stOut');
+    const ta = document.getElementById('stDraft');
+    const draft = (ta?.value || '').trim();
+    if (draft.length < 40) { out.innerHTML = `<div style="background:#FEF3C7;border-radius:8px;padding:.5em .7em;font-size:.8rem">${tr(`Write some text first (a few sentences) — the graphic is drawn from it.`)}</div>`; return; }
+    let marks = [...ta.value.matchAll(this._studioMarkerRx())];
+    if (typeof onlyIdx === 'number') marks = marks[onlyIdx] ? [marks[onlyIdx]] : [];
+    const price = CONFIG.aiEconomy?.prices.advanced || 0;
+    if (marks.length > 1 && !window.__stForce) {
+      const price0 = CONFIG.aiEconomy?.prices.advanced || 0;
+      out.innerHTML = `<div style="display:flex;gap:.5em;align-items:center;flex-wrap:wrap;border:1.5px solid #D97706;border-radius:10px;padding:.45em .6em;font-size:.8rem;background:var(--card,#fff)">
+        ${tr(`🎨 Found {n} image marks (~{sum} ⚡ total).`)}
+        <button class="steer-chip" style="border-color:#D97706;color:#B45309;font-weight:700" onclick="window.__stForce=1;app.generateGraphic().finally(()=>{window.__stForce=0})">${tr(`🎨 Draw all`)}</button>
+        <span style="color:var(--text-3);font-size:.72rem">${tr(`or click marks in the preview one by one`)}</span>
+        <button class="steer-chip" onclick="document.getElementById('stOut').innerHTML=''">✕</button>
+      </div>`.replace('{n}', String(marks.length)).replace('{sum}', String(marks.length * price0));
+      return;
+    }
+    const jobs = marks.length
+      ? marks.map(m => ({ m, wantAnim: /anim/i.test(m[1]), wish: m[2].trim() }))
+      : [{ m: null, wantAnim: false, wish: null }];
+    const btn = document.getElementById('stArtBtn');
+    const orig = btn ? btn.textContent : '';
+    if (btn) btn.disabled = true;
+    let ok = 0, failed = [];
+    for (let i = 0; i < jobs.length; i++) {
+      const job = jobs[i];
+      const pay = this.aiCanPay('advanced');
+      if (!pay.ok) {
+        out.innerHTML = (ok ? `<div style="font-size:.78rem;margin-bottom:.4em">${tr(`Out of ⚡ — generated {ok} of {n}. Draw the remaining marks later by clicking them in the preview.`)}</div>`.replace('{ok}', String(ok)).replace('{n}', String(jobs.length)) : '') + this.aiPaywallHtml('advanced');
+        if (btn) { btn.disabled = false; btn.textContent = orig; }
+        return;
+      }
+      if (btn) btn.textContent = tr('Drawing {i}/{n}…').replace('{i}', String(i + 1)).replace('{n}', String(jobs.length));
+      out.innerHTML = `<span class="gen-spinner">${tr(`🎨 Drawing {i}/{n}: "{w}"`)}</span>`
+        .replace('{i}', String(i + 1)).replace('{n}', String(jobs.length))
+        .replace('{w}', this.escHtml((job.wish || 'Draw a simple diagram summarising the main idea of this text').slice(0, 80)));
+      const instruction = job.wish ? `${job.wantAnim ? 'animation' : 'diagram'}: ${job.wish}` : 'Draw a simple diagram summarising the main idea of this text';
+      try {
+        const res = await fetch(CONFIG.steering.generateEndpoint, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mode: 'insert', concept: stdo.isProposal ? undefined : stdo.slug,
+            instruction, context: this._studioExpand(ta.value).slice(0, 6000), wantSvg: true, auth: this._walletAuth() }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.error || tr('generate failed'));
+        this._walletApply(data, 'advanced', pay);
+        this._studioStat('ai');
+        if (!data.svg) { failed.push(job.wish || '?'); continue; }
+        const id = String(++stdo.assetSeq);
+        stdo.assets[id] = data.svg;
+        const token = `⟦image ${id}⟧`;
+        ta.value = job.m ? ta.value.replace(job.m[0], token) : ta.value + `\n\n${token}\n`;
+        this._studioSave();
+        this._studioPreview();
+        ok++;
+        this.rc.logEvent('author_graphic', { slug: stdo.slug, marked: !!job.m, batch: jobs.length });
+      } catch (e) {
+        const pw = this._aiErrorPaywall(e, 'advanced');
+        if (pw) { out.innerHTML = pw; if (btn) { btn.disabled = false; btn.textContent = orig; } return; }
+        failed.push((job.wish || '?') + ' (' + String(e.message).slice(0, 60) + ')');
+      }
+    }
+    out.innerHTML = `<div style="border:1.5px solid ${failed.length ? '#D97706' : '#10B981'};border-radius:8px;padding:.5em .7em;font-size:.8rem;background:var(--card,#fff)">`
+      + tr('✅ Images inserted: {ok}{fail}').replace('{ok}', String(ok)).replace('{fail}', failed.length ? tr(' · no result: {f} (refine the mark and click it in the preview)').replace('{f}', failed.map(f => `„${this.escHtml(f)}"`).join(', ')) : '')
+      + '</div>';
+    if (btn) { btn.disabled = false; btn.textContent = orig; }
+  }
+
+  async seedDraft() {
+    const stdo = this._studio; if (!stdo) return;
+    const ta = document.getElementById('stDraft');
+    const out = document.getElementById('stOut');
+    if (ta.value.trim().length > 60 && !window.__stSeedForce) {
+      out.innerHTML = `<div style="display:flex;gap:.5em;align-items:center;flex-wrap:wrap;border:1.5px solid var(--accent);border-radius:10px;padding:.45em .6em;font-size:.8rem;background:var(--card,#fff)">
+        ${tr(`✨ The skeleton will overwrite your draft.`)}
+        <button class="steer-chip" style="border-color:var(--accent);color:var(--accent);font-weight:700" onclick="window.__stSeedForce=1;app.seedDraft().finally(()=>{window.__stSeedForce=0})">${tr(`Overwrite with skeleton`)}</button>
+        <button class="steer-chip" onclick="document.getElementById('stOut').innerHTML=''">✕</button>
+      </div>`;
+      return;
+    }
+    const pay = this.aiCanPay('basic');
+    if (!pay.ok) { out.innerHTML = this.aiPaywallHtml('basic'); return; }
+    const btn = document.getElementById('stSeedBtn');
+    btn.disabled = true; const orig = btn.textContent; btn.textContent = tr('Coach is drafting…');
+    try {
+      const res = await fetch(CONFIG.steering.generateEndpoint, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'seed', concept: stdo.slug, lang: LANG,
+          proposalContract: stdo.isProposal ? stdo.contract : undefined, authorGoal: this._studioGoal(), auth: this._walletAuth() }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok || !data.seed) throw new Error(data.error || tr('seed failed'));
+      this._walletApply(data, 'basic', pay);
+      this._studioStat('ai');
+      ta.value = data.seed;
+      ta.dispatchEvent(new Event('input'));
+      (data.questions || []).forEach(q => stdo.questions.push(q));
+      out.innerHTML = `<div style="border:1.5px dashed var(--accent);border-radius:10px;padding:.6em .8em;font-size:.8rem;background:var(--card,#fff)">
+        ${tr(`<b>🌱 This skeleton is deliberately full of holes — the coach left it unfinished. Fill the [ADD] gaps, rewrite it your way, cut things. You are the author.</b> {0}`, data.questions?.length ? `<div style="margin-top:.35em"><b>${tr(`Skeleton questions:`)}</b><ul style="margin:.2em 0 0 1.1em">${data.questions.map(q => `<li>${this.escHtml(q)}</li>`).join('')}</ul></div>` : '')}
+      </div>`;
+    } catch (e) {
+      const pw = this._aiErrorPaywall(e, 'basic');
+      out.innerHTML = pw || `<div style="background:#FEE2E2;border-radius:8px;padding:.5em .7em;font-size:.8rem">${this.escHtml(e.message)}</div>`;
+    }
+    btn.disabled = false; btn.textContent = orig;
+  }
+
+  async coachRound() {
+    const stdo = this._studio; if (!stdo) return;
+    const out = document.getElementById('stOut');
+    const draft = (document.getElementById('stDraft')?.value || '').trim();
+    if (draft.length < 40) { out.innerHTML = `<div class="sk-fb" style="background:#FEF3C7;border-radius:8px;padding:.5em .7em;font-size:.8rem">${tr(`Write at least a few sentences (40+ chars), then call the coach.`)}</div>`; return; }
+    const pay = this.aiCanPay('basic');
+    if (!pay.ok) { out.innerHTML = this.aiPaywallHtml('basic'); return; }
+    const all = this._authorState(); const st = (all[stdo.slug] = all[stdo.slug] || {});
+    st.round = (st.round || 0) + 1; st.text = draft; this._authorSave(all);
+    const btn = document.getElementById('stCoachBtn');
+    btn.disabled = true; const orig = btn.textContent; btn.textContent = tr('Coach is reading…');
+    try {
+      const res = await fetch(CONFIG.steering.generateEndpoint, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'coach', concept: stdo.slug, draft, round: st.round,
+          proposalContract: stdo.isProposal ? stdo.contract : undefined, authorGoal: this._studioGoal(), auth: this._walletAuth() }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok || !data.coach) throw new Error(data.error || tr('coach unavailable'));
+      const c = data.coach;
+      this._walletApply(data, 'basic', pay);
+      st.best = Math.max(st.best || 0, c.score); this._authorSave(all);
+      this._studioStat('coach');
+      if (c.question) stdo.questions.push(c.question);
+      const bar = `<div style="height:8px;border-radius:4px;background:var(--border,#eee);overflow:hidden"><div style="height:100%;width:${c.score}%;background:${c.score >= 70 ? '#10B981' : c.score >= 40 ? '#D97706' : '#EF4444'}"></div></div>`;
+      out.innerHTML = `<div style="border:1.5px solid var(--border,#ddd);border-radius:10px;padding:.7em .8em;background:var(--card,#fff);font-size:.82rem">
+        <div style="display:flex;justify-content:space-between;align-items:center">${tr(`<b>🧭 Coach · round {0}</b><b>{1}/100</b>`, st.round, c.score)}</div>${bar}
+        ${c.strengths.length ? `<div style="margin-top:.5em;color:#15803D">${tr(`<b>What works:</b> {0}`, c.strengths.map(this.escHtml).join(' · '))}</div>` : ''}
+        ${c.gaps.length ? `<div style="margin-top:.3em;color:#B45309">${tr(`<b>What is missing:</b> {0}`, c.gaps.map(this.escHtml).join(' · '))}</div>` : ''}
+        ${c.question ? `<div style="margin-top:.3em">${tr(`<b>❓ Question for you:</b> {0}`, this.escHtml(c.question))}</div>` : ''}
+        ${c.tip ? `<div style="margin-top:.3em;color:var(--text-2,#666)">${tr(`<b>💡 Tip:</b> {0}`, this.escHtml(c.tip))}</div>` : ''}
+      </div>`;
+      this.rc.logEvent('author_coach', { slug: stdo.slug, round: st.round, score: c.score });
+    } catch (e) {
+      const pw = this._aiErrorPaywall(e, 'basic');
+      out.innerHTML = pw || `<div style="background:#FEE2E2;border-radius:8px;padding:.5em .7em;font-size:.8rem">${this.escHtml(e.message)}</div>`;
+    }
+    btn.disabled = false; btn.textContent = orig;
+  }
+  finishAuthoring() {
+    const stdo = this._studio; if (!stdo) return;
+    const all = this._authorState(); const st = all[stdo.slug] || {};
+    const raw = (document.getElementById('stDraft')?.value || '').trim();
+    const draft = this._studioExpand(raw).replace(/\n{3,}/g, '\n\n').trim();
+    if (draft.length < 80) { this.showXPToast(tr('Write something first — send at least a few sentences.'), 'xp'); return; }
+    const id = `autor--${stdo.slug}--${Date.now().toString(36)}`;
+    const block = {
+      meta: { id, title: stdo.title, type: 'spine', state: 'private', authored: true, core: false,
+        concept: stdo.isProposal ? undefined : stdo.slug, proposalSlug: stdo.isProposal ? stdo.slug : undefined,
+        recallQ: st.recallQ || undefined, recallA: st.recallA || undefined,
+        genre: (st.facets?.genre || st.genre) || undefined, depth: st.facets?.depth || undefined, visuality: st.facets?.visuality || undefined,
+        readingTime: Math.max(1, Math.round(draft.split(/\s+/).length / 200)) },
+      body: draft,
+    };
+    this._savePrivateBlock(block);
+    st.done = true; st.blockId = id; this._authorSave(all);
+    this.rc.logEvent('author_finished', { slug: stdo.slug, blockId: id, score: st.best, rounds: st.round || 0 });
+    document.getElementById('authorStudio')?.remove();
+    if (this._studio?.wizard) { this._wsAfterSave(id); return; }
+    this.showXPToast(tr('Saved into the book ✍️'), 'achievement');
+    this.switchView('read');
+    setTimeout(() => this.openBlock(id), 60);
+  }
   completeMission(missionId) {
     const missions = this.getMissions();
     const m = missions.find(x => x.id === missionId);
@@ -5127,8 +7993,9 @@ class PBook {
     this.user.checkAchievements();
     this.user.save();
 
-    this.showXPToast(`\u{1F3C6} ${m.reward.title}! +${m.reward.xp} XP`, 'achievement');
+    this.showXPToast(`${tr(`\u{1F3C6} {0}! +{1} XP`, m.reward.title, m.reward.xp)}`, 'achievement');
     this.checkGamificationEvents();
+    if (m._custom) this._showMicroCert(m);
     this.showMission(missionId);
   }
 
@@ -5140,8 +8007,10 @@ class PBook {
     this._wizardMission = m;
     this._wizardStep = 0;
     // Find first unread core block
-    const firstUnread = m.core.findIndex(id => !this.user.readBlocks.has(id));
+    const firstUnread = m.core.findIndex(id => !this._stepRead(id));
     if (firstUnread >= 0) this._wizardStep = firstUnread;
+    // every step read but the boss not beaten yet → straight to the boss
+    else if (!(this.user.completedMissions || []).includes(m.id)) this._wizardStep = m.core.length;
     this._renderWizardStep();
   }
 
@@ -5160,7 +8029,7 @@ class PBook {
     const blockId = blocks[step];
     const block = this.findBlock(blockId);
     const intro = m.intros?.[step] || '';
-    const isRead = this.user.readBlocks.has(blockId);
+    const isRead = this._stepRead(blockId);
 
     // Render wizard overlay in the glossary view
     const el = document.getElementById('glossaryContent');
@@ -5170,7 +8039,7 @@ class PBook {
     html += `<div class="wizard-progress">
       <div class="wizard-progress-fill" style="width:${Math.round(((step) / blocks.length) * 100)}%"></div>
     </div>
-    <div class="wizard-progress-label">${m.icon} ${m.title} &middot; Step ${step + 1} of ${blocks.length}</div>`;
+    <div class="wizard-progress-label">${tr(`{0} {1} &middot; Step {2} of {3}`, m.icon, m.title, step + 1, blocks.length)}</div>`;
 
     // Story intro
     if (intro) {
@@ -5181,14 +8050,14 @@ class PBook {
     html += `<div class="wizard-block-card" onclick="app._pendingMissionIntro='${(intro||'').replace(/'/g,"\\'")}';app.openBlock('${blockId}')">
       <div class="wizard-block-title">${block?.meta?.title || blockId}</div>
       <div class="wizard-block-teaser">${block?.meta?.teaser || ''}</div>
-      <div class="wizard-block-meta">Kapitola ${block?.meta?._chapterNum || '?'} &middot; ${block?.meta?.readingTime || 3} min čtení</div>
-      <button class="wizard-read-btn">${isRead ? '\u2713 Přečíst znovu' : 'Přečíst tuto sekci'} &rarr;</button>
+      <div class="wizard-block-meta">${tr(`Chapter {0} &middot; {1} min read`, block?.meta?._chapterNum || '?', block?.meta?.readingTime || 3)}</div>
+      <button class="wizard-read-btn">${isRead ? tr('\u2713 Read again') : tr('Read this section')} &rarr;</button>
     </div>`;
 
     // Navigation
     html += `<div class="wizard-nav">
-      ${step > 0 ? `<button class="wizard-nav-btn" onclick="app._wizardStep=${step - 1};app._renderWizardStep()">&larr; Předchozí</button>` : '<span></span>'}
-      ${isRead ? `<button class="wizard-nav-btn wizard-nav-next" onclick="app._wizardStep=${step + 1};app._renderWizardStep()">Další &rarr;</button>` : `<button class="wizard-nav-btn" disabled style="opacity:.4">Nejdřív přečti<!-- -->ontinue</button>`}
+      ${step > 0 ? `<button class="wizard-nav-btn" onclick="app._wizardStep=${step - 1};app._renderWizardStep()">${tr(`&larr; Previous`)}</button>` : '<span></span>'}
+      ${isRead ? `<button class="wizard-nav-btn wizard-nav-next" onclick="app._wizardStep=${step + 1};app._renderWizardStep()">${tr(`Next &rarr;`)}</button>` : `<button class="wizard-nav-btn" disabled style="opacity:.4">${tr(`Read to continue`)}</button>`}
     </div>`;
 
     html += '</div>';
@@ -5207,16 +8076,16 @@ class PBook {
     html += `<div class="wizard-progress">
       <div class="wizard-progress-fill" style="width:100%"></div>
     </div>
-    <div class="wizard-progress-label">${m.icon} ${m.title} &middot; Final Challenge!</div>`;
+    <div class="wizard-progress-label">${tr(`{0} {1} &middot; Final Challenge!`, m.icon, m.title)}</div>`;
 
     html += `<div class="boss-card">
       <div class="boss-icon">\u{1F409}</div>
-      <h3 class="boss-title">Final Boss: Prove You've Learned!</h3>
+      <h3 class="boss-title">${tr(`Final Boss: Prove You've Learned!`)}</h3>
       <div class="boss-question">${m.boss.q}</div>
-      <textarea class="boss-answer" id="bossAnswer" placeholder="Sem napiš svou odpověď…" rows="4"></textarea>
-      <div class="boss-hint" id="bossHint" style="display:none"></div>
+      <textarea class="boss-answer" id="bossAnswer" placeholder="${tr(`Type your answer here...`)}" rows="4">${this.escHtml(this._pendingBoss()[m.id]?.answer || '')}</textarea>
+      <div class="boss-hint" id="bossHint" style="${this._pendingBoss()[m.id] ? '' : 'display:none'}">${this._pendingBoss()[m.id] ? tr('Your saved answer is back in the box. The examiner could not grade it last time; check it now.') : ''}</div>
       <div class="boss-actions">
-        <button class="boss-submit" id="bossSubmit" onclick="app._checkBossAnswer('${m.id}')">Zkontrolovat odpověď</button>
+        <button class="boss-submit" id="bossSubmit" onclick="app._checkBossAnswer('${m.id}')">${tr(`Check my answer`)}</button>
         <span class="boss-examiner-note" id="bossExaminerNote"></span>
       </div>
     </div>`;
@@ -5227,7 +8096,7 @@ class PBook {
     // Show whether the AI examiner is on duty (async probe, non-blocking)
     this._probeBoss().then(on => {
       const note = document.getElementById('bossExaminerNote');
-      if (note) note.textContent = on ? '🤖 graded by the AI examiner' : '';
+      if (note) note.textContent = on ? tr('🤖 graded by the AI examiner') : '';
     });
   }
 
@@ -5250,71 +8119,121 @@ class PBook {
     if (rawAnswer.length < 20) {
       hintEl.style.display = 'block';
       hintEl.className = 'boss-hint boss-retry';
-      hintEl.innerHTML = 'Napiš toho víc! Zkus to vysvětlit aspoň několika větami.';
+      hintEl.innerHTML = tr('Write a bit more! Try to explain in at least a few sentences.');
       return;
     }
 
     // AI examiner grades substance; keyword check is the offline fallback
     if (await this._probeBoss()) {
       const btn = document.getElementById('bossSubmit');
-      if (btn) { btn.disabled = true; btn.textContent = 'Zkoušející čte… 🧐'; }
+      if (btn) { btn.disabled = true; btn.textContent = tr('The examiner is reading… 🧐'); }
       hintEl.style.display = 'block';
       hintEl.className = 'boss-hint';
-      hintEl.innerHTML = '<span class="gen-spinner">Drak zvažuje tvou odpověď…</span>';
+      hintEl.innerHTML = ('<span class="gen-spinner">' + tr(`The dragon considers your answer…`) + '</span>');
       try {
         const res = await fetch('/api/boss', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ question: m.boss.q, hints: m.boss.hints || [], answer: rawAnswer, missionTitle: m.title }),
+          body: JSON.stringify({ question: m.boss.q, hints: m.boss.hints || [], answer: rawAnswer, missionTitle: m.title, lang: LANG }),
         });
         const data = await res.json();
-        if (!res.ok || !data.ok) throw new Error(data.error || 'grading failed');
+        if (!res.ok || !data.ok) throw new Error(data.error || tr('grading failed'));
         const g = data.grade;
         this.rc.logEvent('boss_graded', { missionId, score: g.score, verdict: g.verdict });
         const bar = `<div class="boss-score-bar"><div class="boss-score-fill" style="width:${g.score}%;background:${g.verdict === 'pass' ? '#10B981' : g.verdict === 'almost' ? '#D97706' : '#EF4444'}"></div></div>
           <div style="font-size:.72rem;color:var(--text-3)">${g.score}/100</div>`;
+        this._setPendingBoss(missionId, null);      // graded now — the saved copy is done
         if (g.verdict === 'pass') {
           hintEl.className = 'boss-hint boss-pass';
-          hintEl.innerHTML = `${bar}<b>Passed!</b> ${this.escHtml(g.feedback)}`;
-          setTimeout(() => this.completeMission(missionId), 2000);
+          hintEl.innerHTML = `${tr(`{0}<b>Passed!</b> {1}`, bar, this.escHtml(g.feedback))}`;
+          this._bossReflection(missionId, hintEl, g.score);
         } else {
           hintEl.className = 'boss-hint boss-retry';
           hintEl.innerHTML = `${bar}${this.escHtml(g.feedback)}
-            ${g.missing?.length ? `<div style="margin-top:.4em">Ještě chybí: ${g.missing.map(x => `<b>${this.escHtml(x)}</b>`).join(' · ')}</div>` : ''}
+            ${g.missing?.length ? `<div style="margin-top:.4em">${tr(`Still missing: {0}`, g.missing.map(x => `<b>${this.escHtml(x)}</b>`).join(' · '))}</div>` : ''}
             ${g.followUp ? `<div style="margin-top:.4em">🐉 <i>${this.escHtml(g.followUp)}</i></div>` : ''}
             <div style="margin-top:.5em">
-              <button class="wizard-nav-btn" onclick="document.getElementById('bossAnswer').focus()">Vylepšit odpověď</button>
-              <button class="wizard-nav-btn" onclick="app._wizardStep=0;app._renderWizardStep()">Projít kroky znovu</button>
+              <button class="wizard-nav-btn" onclick="document.getElementById('bossAnswer').focus()">${tr(`Improve my answer`)}</button>
+              <button class="wizard-nav-btn" onclick="app._wizardStep=0;app._renderWizardStep()">${tr(`Review the steps`)}</button>
             </div>`;
         }
-        if (btn) { btn.disabled = false; btn.textContent = 'Zkontrolovat odpověď'; }
+        if (btn) { btn.disabled = false; btn.textContent = tr('Check my answer'); }
         return;
       } catch (e) {
-        if (btn) { btn.disabled = false; btn.textContent = 'Zkontrolovat odpověď'; }
+        if (btn) { btn.disabled = false; btn.textContent = tr('Check my answer'); }
         /* examiner down → fall through to keyword check */
       }
     }
-    this._checkBossAnswerLocal(missionId, rawAnswer.toLowerCase(), hintEl);
+    this._checkBossAnswerLocal(missionId, rawAnswer, hintEl);
   }
 
-  _checkBossAnswerLocal(missionId, answer, hintEl) {
+  // ===== POST-EXAM REFLECTION: what worked / what dragged / a suggestion =====
+  // One tap to continue, but it captures the fresh impression; signals flow
+  // to /api/log and editors see them in the admin Demand tab.
+  _bossReflection(missionId, hintEl, score) {
     const m = this._wizardMission;
-    const hints = m.boss.hints || [];
-    const found = hints.filter(h => answer.includes(h));
-    const score = found.length / Math.max(hints.length, 1);
-
-    if (score >= 0.5 || answer.length > 80) {
-      hintEl.style.display = 'block';
-      hintEl.className = 'boss-hint boss-pass';
-      hintEl.innerHTML = `<b>Paráda!</b> Zmínil jsi ${found.length} klíčových pojmů. Tomuhle tématu očividně rozumíš!`;
-      setTimeout(() => this.completeMission(missionId), 1500);
-    } else {
-      const missing = hints.filter(h => !answer.includes(h)).slice(0, 2);
-      hintEl.style.display = 'block';
-      hintEl.className = 'boss-hint boss-retry';
-      hintEl.innerHTML = `Dobrý začátek! Zkus ale zmínit i: <b>${missing.join('</b> a <b>')}</b>. Klidně se vrať a přečti si to znovu!`;
-      hintEl.innerHTML += `<br><button class="wizard-nav-btn" style="margin-top:.4em" onclick="app._wizardStep=0;app._renderWizardStep()">Projít kroky znovu</button>`;
+    const blocks = (m?.core || []).map(id => this.findBlock(id)).filter(Boolean).slice(0, 6);
+    const chip = (b, kind) => `<button class="steer-chip st-refl" data-kind="${kind}" data-id="${this.escHtml(b.meta.id)}"
+      style="font-size:.7rem;margin:.12em" onclick="app._bossReflToggle(this)">${this.escHtml((b.meta.title || b.meta.id).slice(0, 30))}</button>`;
+    const box = document.createElement('div');
+    box.id = 'bossRefl';
+    box.style.cssText = 'margin-top:.7em;border-top:1px dashed var(--border,#ddd);padding-top:.55em;font-size:.8rem;text-align:left';
+    box.innerHTML = `<b>${tr(`🪞 One more second — help the book grow`)}</b>
+      <div style="margin-top:.35em;font-size:.72rem;color:var(--text-2)">${tr(`👍 What worked best for you?`)}</div>
+      <div>${blocks.map(b => chip(b, 'liked')).join('')}</div>
+      <div style="margin-top:.35em;font-size:.72rem;color:var(--text-2)">${tr(`🌧 What was unclear or annoying?`)}</div>
+      <div>${blocks.map(b => chip(b, 'disliked')).join('')}</div>
+      <div style="margin-top:.35em;font-size:.72rem;color:var(--text-2)">${tr(`💡 What to improve? (tap)`)}</div>
+      <div><button class="steer-chip st-refl" data-kind="suggest" data-id="more visuals" style="font-size:.68rem;margin:.12em" onclick="app._bossReflToggle(this)">${tr(`more visuals`)}</button><button class="steer-chip st-refl" data-kind="suggest" data-id="shorter texts" style="font-size:.68rem;margin:.12em" onclick="app._bossReflToggle(this)">${tr(`shorter texts`)}</button><button class="steer-chip st-refl" data-kind="suggest" data-id="more real-life examples" style="font-size:.68rem;margin:.12em" onclick="app._bossReflToggle(this)">${tr(`more real-life examples`)}</button><button class="steer-chip st-refl" data-kind="suggest" data-id="more games" style="font-size:.68rem;margin:.12em" onclick="app._bossReflToggle(this)">${tr(`more games`)}</button><button class="steer-chip st-refl" data-kind="suggest" data-id="simpler explanations" style="font-size:.68rem;margin:.12em" onclick="app._bossReflToggle(this)">${tr(`simpler explanations`)}</button><button class="steer-chip st-refl" data-kind="suggest" data-id="make it harder" style="font-size:.68rem;margin:.12em" onclick="app._bossReflToggle(this)">${tr(`make it harder`)}</button></div>
+      <textarea id="bossReflNote" placeholder="${tr(`What would you improve? (optional — the editors will see it)`)}" style="width:100%;min-height:6vh;margin-top:.4em;font:inherit;font-size:.8rem;padding:.4em;border:1px solid var(--border,#ddd);border-radius:8px;background:var(--card,#fff)"></textarea>
+      <div style="margin-top:.4em"><button class="wizard-nav-btn" onclick="app._bossReflSubmit('${this.escHtml(missionId)}', ${Number(score) || 0})">${tr(`Continue 🎉`)}</button></div>`;
+    hintEl.appendChild(box);
+  }
+  _bossReflToggle(el) {
+    const on = el.dataset.on === '1';
+    el.dataset.on = on ? '' : '1';
+    el.style.background = on ? '' : (el.dataset.kind === 'liked' ? '#D1FAE5' : el.dataset.kind === 'suggest' ? '#EDE9FE' : '#FEE2E2');
+    el.style.borderColor = on ? '' : (el.dataset.kind === 'liked' ? '#10B981' : el.dataset.kind === 'suggest' ? '#7C3AED' : '#EF4444');
+  }
+  _bossReflSubmit(missionId, score) {
+    const box = document.getElementById('bossRefl');
+    const pick = kind => box ? [...box.querySelectorAll(`.st-refl[data-kind="${kind}"][data-on="1"]`)].map(e => e.dataset.id) : [];
+    const liked = pick('liked'), disliked = pick('disliked'), suggestions = pick('suggest');
+    const note = (document.getElementById('bossReflNote')?.value || '').trim().slice(0, 500);
+    if (liked.length || disliked.length || suggestions.length || note) {
+      fetch('/api/log', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'reflection', event: 'mission_reflection', userId: this.rc.userId,
+          mission: missionId, score, liked, disliked, suggestions, note }) }).catch(() => {});
+      this.rc.logEvent('mission_reflection', { mission: missionId, liked: liked.length, disliked: disliked.length, hasNote: !!note });
+      if (this._f('gamification')) { this.user.addXP(5); this.user.save(); this.updateXPBadge(); }
+      this.showXPToast(tr('Thanks! You sent the book feedback 🌱 +5 XP'), 'achievement');
     }
+    this.completeMission(missionId);
+  }
+
+  // Answers written while the examiner was unreachable: { missionId: { answer, at } }
+  _pendingBoss() { try { return JSON.parse(localStorage.getItem('pbook-boss-pending') || '{}'); } catch (e) { return {}; } }
+  _setPendingBoss(missionId, answer) {
+    const p = this._pendingBoss();
+    if (answer) p[missionId] = { answer: answer.slice(0, 5000), at: Date.now() }; else delete p[missionId];
+    try { localStorage.setItem('pbook-boss-pending', JSON.stringify(p)); } catch (e) {}
+  }
+
+  // Examiner unavailable: NEVER auto-pass (a mission feeds the certificate). The
+  // answer is saved for grading once the examiner is reachable; the keyword check
+  // only tells the reader which ideas the answer does not mention yet.
+  _checkBossAnswerLocal(missionId, rawAnswer, hintEl) {
+    const m = this._wizardMission;
+    const answer = rawAnswer.toLowerCase();
+    const hints = m.boss.hints || [];
+    const missing = hints.filter(h => !answer.includes(String(h).toLowerCase())).slice(0, 3);
+    this._setPendingBoss(missionId, rawAnswer);
+    this.rc.logEvent('boss_pending', { missionId });
+    hintEl.style.display = 'block';
+    hintEl.className = 'boss-hint';
+    hintEl.innerHTML = `${tr(`<b>The examiner is not reachable right now, so this answer is not graded yet.</b> It is saved on this device; open this mission again later and check it then.`)}`
+      + (missing.length ? `<div style="margin-top:.4em">${tr(`Before then, consider whether your answer covers: <b>{0}</b>.`, missing.map(h => this.escHtml(h)).join('</b>, <b>'))}</div>` : '')
+      + `<div style="margin-top:.5em"><button class="wizard-nav-btn" onclick="app._wizardStep=0;app._renderWizardStep()">${tr(`Review the steps`)}</button></div>`;
   }
 
   showTopic(topic) {
@@ -5349,16 +8268,16 @@ class PBook {
       html += `<br><br><i>${result.followUp}</i>`;
     }
     if (result.canEscalate) {
-      html += `<br><br><button class="tutor-escalate-btn" onclick="app.escalateToAuthor()">Radši se zeptat autora</button>`;
+      html += `<br><br><button class="tutor-escalate-btn" onclick="app.escalateToAuthor()">${tr(`Ask the author instead`)}</button>`;
     }
     return html;
   }
 
   escalateToAuthor() {
-    if (!this._activeConvId) return;
-    const conv = this.convManager.conversations.find(c => c.id === this._activeConvId);
+    const conv = this._activeConvId && this.convManager.conversations.find(c => c.id === this._activeConvId);
     const lastUserMsg = conv?.messages?.filter(m => m.role === 'user').pop();
-    if (!lastUserMsg) return;
+    // Nothing asked yet (the header button): open the contact form instead of doing nothing.
+    if (!lastUserMsg) { this.openContact('question'); return; }
 
     this.convManager.escalateToAuthor(
       this._activeConvId,
@@ -5366,11 +8285,103 @@ class PBook {
       this.user.currentBlock,
       this.user
     );
+    // The question used to stay in this browser only — now it reaches the authors
+    // (admin → 🤝 Contacts; never in the public log).
+    this.rc._sendToLog({
+      type: 'author_message',
+      userId: localStorage.getItem('pbook-uid') || 'unknown',
+      data: { question: lastUserMsg.text, blockId: this.user.currentBlock || null },
+    });
 
     // Show confirmation in chat
-    const msgHtml = '<div class="chat-msg system">Tvoje otázka byla odeslána Pavlovi (autorovi). Čte každou zprávu! Mezitím zkus prozkoumat související sekce knihy.</div>';
+    const msgHtml = ('<div class="chat-msg system">' + tr(`Your question was sent to the authors. Want an answer back?`) + ' <a href="#" onclick="event.preventDefault();app.openContact(\'question\')">' + tr(`Leave your contact`) + '</a>' + tr(`. In the meantime, try exploring related sections in the book.`) + '</div>');
     const chatEl = document.getElementById('chatMessagesFull') || document.getElementById('chatMessages');
     if (chatEl) chatEl.insertAdjacentHTML('beforeend', msgHtml);
+  }
+
+  // ===== CONTACT / COLLABORATE =====
+  // Someone who wants to work with us leaves a contact and a short note. It goes
+  // to /api/log as type "contact", which the public log never lists; editors read
+  // it in admin → 🤝 Contacts (editor key required).
+  openContact(topic = 'collaborate') {
+    document.querySelector('.contact-overlay')?.remove();
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem('pbook-contact') || '{}') || {}; } catch (e) {}
+    const name = saved.name || localStorage.getItem('pbook-cert-name') || '';
+    const contact = saved.contact || localStorage.getItem('pbook-cert-email') || '';
+    const topics = [
+      ['collaborate', tr('Collaborate on the book (write, edit, translate)')],
+      ['teaching', tr('Use it in my teaching or course')],
+      ['engine', tr('Build my own p-book on this engine')],
+      ['research', tr('Research collaboration')],
+      ['question', tr('A question for the authors')],
+      ['other', tr('Something else')],
+    ];
+    const overlay = document.createElement('div');
+    overlay.className = 'cert-overlay contact-overlay';
+    overlay.innerHTML = `
+      <div class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="ctTitle">
+        <button class="cert-close" aria-label="Close" onclick="this.closest('.cert-overlay').remove()">&times;</button>
+        <h2 id="ctTitle">${tr(`🤝 Let's work together`)}</h2>
+        <p style="font-size:.82rem;color:var(--text-2);margin-bottom:.4em">${tr(`Leave a contact and a short note — {0} will get back to you.`, this.escHtml(loc(CONFIG.book?.contactName) || tr('Pavel Kordík and Eva Nečasová')))}</p>
+        <label class="cert-label" for="ctName">${tr(`Your name`)}</label>
+        <input type="text" id="ctName" class="cert-input" maxlength="80" autocomplete="name" value="${this.escHtml(name)}">
+        <label class="cert-label" for="ctContact">${tr(`Email or other contact`)} <span style="color:var(--accent)">*</span></label>
+        <input type="text" id="ctContact" class="cert-input" maxlength="160" autocomplete="email" placeholder="${tr(`you@example.com`)}" value="${this.escHtml(contact)}">
+        <label class="cert-label" for="ctTopic">${tr(`What is it about?`)}</label>
+        <select id="ctTopic" class="cert-input">${topics.map(([v, l]) => `<option value="${v}"${v === topic ? ' selected' : ''}>${l}</option>`).join('')}</select>
+        <label class="cert-label" for="ctMsg">${tr(`Message`)} <span style="color:var(--accent)">*</span></label>
+        <textarea id="ctMsg" class="cert-input" rows="4" maxlength="1500" placeholder="${tr(`Who you are and what you have in mind…`)}"></textarea>
+        <input type="text" id="ctWebsite" class="contact-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p style="font-size:.7rem;color:var(--text-3);margin-top:.5em">${tr(`Used only to reply to you — never shown publicly.`)}</p>
+        <div class="cert-actions"><button class="cert-btn" id="ctSend" onclick="app.sendContact()">${tr(`Send message`)}</button></div>
+        <div class="contact-status" id="ctStatus" role="status"></div>
+      </div>`;
+    document.body.appendChild(overlay);
+    this._navOverlayOpen?.('contact');
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+    document.getElementById(contact ? 'ctMsg' : 'ctContact')?.focus();
+    this.rc?.logEvent?.('contact_open', { topic });
+  }
+
+  async sendContact() {
+    const $ = id => document.getElementById(id);
+    const name = $('ctName').value.trim(), contact = $('ctContact').value.trim();
+    const message = $('ctMsg').value.trim(), topic = $('ctTopic').value;
+    const status = $('ctStatus'), btn = $('ctSend');
+    // Something we can reply to: a well-formed email, or another handle/phone of 5+ characters
+    const contactOk = contact.includes('@') && !/^@/.test(contact)
+      ? /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(contact)
+      : contact.length >= 5;
+    $('ctContact').classList.toggle('cert-error', !contactOk);
+    $('ctMsg').classList.toggle('cert-error', !message);
+    if (!contactOk || !message) {
+      status.className = 'contact-status err';
+      status.textContent = !contact || !message ? tr('Please fill in a contact and a message.')
+        : tr('Please check the contact — we need an email address (or a phone or handle) to reply to.');
+      (contactOk ? $('ctMsg') : $('ctContact')).focus();
+      return;
+    }
+    btn.disabled = true; btn.textContent = tr('Sending…'); status.textContent = '';
+    try {
+      const r = await fetch('/api/log', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'contact', userId: localStorage.getItem('pbook-uid') || 'unknown',
+          data: { name, contact, topic, message, website: $('ctWebsite').value, page: location.hash || '/', lang: navigator.language || '' } }),
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      try { localStorage.setItem('pbook-contact', JSON.stringify({ name, contact })); } catch (e) {}
+      this.rc?.logEvent?.('contact_sent', { topic });
+      const modal = btn.closest('.cert-modal');
+      modal.innerHTML = `<button class="cert-close" aria-label="Close" onclick="this.closest('.cert-overlay').remove()">&times;</button>
+        <h2>${tr(`✓ Thank you!`)}</h2>
+        <p style="font-size:.9rem;color:var(--text-2);margin:.6em 0 1em">${tr(`Your message was delivered. We will get back to you at <b>{0}</b>.`, this.escHtml(contact))}</p>
+        <button class="cert-btn" onclick="this.closest('.cert-overlay').remove()">${tr(`Back to the book`)}</button>`;
+    } catch (e) {
+      btn.disabled = false; btn.textContent = tr('Send message');
+      status.className = 'contact-status err';
+      status.innerHTML = `${tr(`Sorry — the message did not go through ({0}). Please try again, or`, this.escHtml(e.message))} <a href="${this.escHtml(CONFIG.book?.issuesUrl || 'https://github.com/kordikp/recsys-pbook/issues/new')}" target="_blank" rel="noopener">${tr(`open an issue`)}</a>.`;
+    }
   }
 
   askAboutBlock(blockId) {
@@ -5384,11 +8395,11 @@ class PBook {
     const questions = this.tutor.getSuggestedQuestions(block);
     const chatEl = document.getElementById('chatMessagesFull');
     if (chatEl) {
-      chatEl.innerHTML = `<div class="chat-msg bot">O tématu <b>${block.meta.title}</b> je v knize spousta věcí. Co tě zajímá? Můžu vysvětlovat, najít související sekce, nebo jít do hloubky!</div>`;
+      chatEl.innerHTML = `<div class="chat-msg bot">${tr(`Ask anything about <b>{0}</b>. I answer from the book’s concept summaries and point you to the section that covers it — and say so when the book does not.`, this.escHtml(block.meta.title || ''))}</div>`;
       if (questions.length) {
         let sugHtml = '<div class="tutor-suggestions">';
         questions.forEach(q => {
-          sugHtml += `<button class="tutor-suggest-btn" onclick="app.askSuggested(this,'${this.escHtml(q)}')">${q}</button>`;
+          sugHtml += `<button class="tutor-suggest-btn" data-q="${this.escHtml(q)}" onclick="app.askSuggested(this,this.dataset.q)">${this.escHtml(q)}</button>`;
         });
         sugHtml += '</div>';
         chatEl.insertAdjacentHTML('beforeend', sugHtml);
@@ -5418,7 +8429,7 @@ class PBook {
 
   async onSearch(query) {
     const el = document.getElementById('searchResults');
-    if (!query || query.length < 2) { el.innerHTML = '<div class="search-empty">Piš a prohledám celý obsah…</div>'; return; }
+    if (!query || query.length < 2) { el.innerHTML = ('<div class="search-empty">' + tr(`Type to search across all content...`) + '</div>'); return; }
 
     // Local search (always works, even offline)
     // Normalize: lowercase, replace hyphens/underscores with spaces, collapse whitespace
@@ -5454,11 +8465,12 @@ class PBook {
 
     // Show local results immediately
     const renderResults = (results) => {
-      if (!results.length) { el.innerHTML = '<div class="search-empty">Nic jsem nenašel.</div>'; return; }
+      if (!results.length) { el.innerHTML = ('<div class="search-empty">' + tr(`No results found.`) + '</div>'); return; }
       el.innerHTML = results.map(r => {
         const meta = r.meta || r;
-        const badge = meta.voice && meta.voice !== 'universal' ? `<span class="card-badge ${meta.voice}">${CONFIG.voices[meta.voice]?.label || meta.voice}</span>` : '';
-        return `<div class="card" style="margin-bottom:.5em" onclick="app.openBlock('${meta.id}','search');app.closeSearch()"><div class="card-chapter">${meta._chapterTitle || ''}</div><div class="card-title">${meta.title || meta.id}</div><div class="card-meta">${badge}<span class="card-time">${meta.readingTime || 3} min</span></div></div>`;
+        const fl = this._cardFacetLine(meta);
+        const badge = fl ? `<span class="card-facets">${this.escHtml(fl)}</span>` : '';
+        return `<div class="card" style="margin-bottom:.5em" onclick="app.openBlock('${meta.id}','search');app.closeSearch()"><div class="card-chapter">${meta._chapterTitle || ''}</div><div class="card-title">${meta.title || meta.id}</div><div class="card-meta">${badge}<span class="card-time">${tr(`{0} min`, meta.readingTime || 3)}</span></div></div>`;
       }).join('');
     };
 
@@ -5479,100 +8491,51 @@ class PBook {
 
   // ===== INTERACTIONS =====
 
-  answerQ(el, voice, qId) {
+  // Question blocks: the chosen option shows its own feedback from the block's flat
+  // frontmatter (feedbackA..feedbackD). A question changes the reader's format
+  // preferences only when it says so (hintA..hintD: "depth=technical,formalism=light").
+  answerQ(el, letter, qId) {
     el.closest('.q-opts').querySelectorAll('.q-opt').forEach(o => o.classList.remove('selected'));
     el.classList.add('selected');
     this.rc.sendRating(qId, 1);
-    // voice answers now seed the FACET model (voice is a retired taxonomy; the
-    // question options still carry legacy voice tags in content)
-    if (voice && voice !== 'universal') {
-      const hint = voice === 'thinker' ? { depth: 'technical' }
-        : voice === 'creator' ? { genre: 'worked-example' }
-        : { genre: 'story' };
-      this.user.updateFacetAffinity(hint, 2);
+    this.rc.logEvent('question_answer', { blockId: qId, option: letter });
+    const meta = this.findBlock(qId)?.meta || {};
+    const clean = v => String(v || '').replace(/\\(["'])/g, '$1').trim();
+
+    // Format-picker questions: pins replace what an earlier answer to THIS question set
+    const hints = {};
+    for (const L of ['A', 'B', 'C', 'D']) hints[L] = this._parseHint(meta['hint' + L]);
+    const hinted = new Set(Object.values(hints).flatMap(h => Object.keys(h)));
+    let pinned = false;
+    if (hinted.size) {
+      for (const facet of hinted) this.user.setSteerPref(facet, hints[letter]?.[facet] || null);
+      for (const [facet, value] of Object.entries(hints[letter] || {})) this.user.updateFacetAffinity({ [facet]: value }, 3);
       this.user.save();
+      pinned = true;
     }
 
     const qBlock = el.closest('.q-block');
     let recsDiv = qBlock.querySelector('.q-recs');
     if (!recsDiv) { recsDiv = document.createElement('div'); recsDiv.className = 'q-recs fade-up'; qBlock.appendChild(recsDiv); }
-
-    // Generate personalized feedback based on the answer
-    const answerText = el.textContent.trim();
-    const letter = el.querySelector('.q-letter')?.textContent?.trim() || '';
-    const feedback = this._generateAnswerFeedback(qId, letter, voice, answerText);
-
-    // Find matching recommendations
-    const vc = CONFIG.voices[voice] || {};
-    const voiceFilter = voice !== 'universal' ? voice : null;
-    let recs = [];
-    if (voiceFilter) {
-      const voiceDepths = this.allBlocks.filter(b => b.meta.voice === voiceFilter && b.meta.type === 'depth' && !this.user.readBlocks.has(b.meta.id));
-      const unreadSpines = this.allBlocks.filter(b => b.meta.type === 'spine' && !this.user.readBlocks.has(b.meta.id));
-      recs = [...voiceDepths.slice(0, 3), ...unreadSpines.slice(0, 2)].slice(0, 4);
-    } else {
-      recs = this.allBlocks.filter(b => b.meta.type === 'spine' && !this.user.readBlocks.has(b.meta.id)).slice(0, 4);
-    }
-
-    let html = `<div class="q-feedback fade-up">${feedback}</div>`;
-    if (recs.length) {
-      html += `<div class="q-recs-title">Co číst dál${vc.label ? ' (cesta ' + vc.label + ')' : ''}:</div>`;
-      html += recs.map(b => `<div class="q-rec-item">${this.cardHtml(b.meta)}</div>`).join('');
-    }
+    const feedback = clean(meta['feedback' + letter]);
+    let html = feedback ? `<div class="q-feedback fade-up">${this.escHtml(feedback)}</div>` : '';
+    const pinWord = Object.keys(hints[letter] || {}).length ? tr('Saved as your format preference') : tr('Back to the default tellings');
+    if (pinned) html += `<div class="q-feedback-note">${pinWord} &middot; <a href="#" onclick="event.preventDefault();app.switchView('profile')">${tr(`change it in Profile`)}</a></div>`;
     recsDiv.innerHTML = html;
-    recsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (html) recsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  _generateAnswerFeedback(qId, letter, voice, text) {
-    // Question-specific feedback
-    const feedbacks = {
-      'ch1-q1': {
-        A: "Awesome choice! You're an Explorer! You'll love seeing how YouTube's algorithm actually decides what to show you — it's like peeking behind a magic curtain. Let's dig into the mechanics!",
-        B: "A Creator at heart! Building things is the BEST way to learn. By the end of this book, you'll have made your own recommendation system. How cool is that?",
-        C: "Great thinking! Understanding WHY things go wrong helps us make them better. You'll discover some surprising reasons why recommendations mess up — and what we can do about it.",
-        D: "You want it all — love it! You'll get to explore, build, AND think deeply. Every chapter has something for everyone."
-      },
-      'ch3-q1': {
-        A: "Collaborative filtering is fascinating! It's basically the idea that birds of a feather flock together. If you and someone else both love the same movies, you'll probably agree on new ones too!",
-        B: "Smart thinking! Content-based filtering is super logical — if you liked a video about building Minecraft castles, you'll probably like other building videos. Simple but powerful!",
-        C: "You're thinking like a real engineer! The best systems in the world (YouTube, Spotify, Netflix) all use hybrid approaches. Why pick one when you can use them all?",
-        D: "Sometimes the simplest solution is the best starting point! Showing what's popular is how most apps begin. Then they add smarter methods over time."
-      },
-      'ch4-q1': {
-        A: "Accuracy matters — nobody likes bad recommendations! But here's a fun twist: sometimes the MOST accurate system only shows you things you already know you like. Is that really the best?",
-        B: "You care about fairness — that's awesome! Imagine being a new YouTuber whose amazing videos never get recommended just because you're not famous yet. Fairness means giving everyone a chance.",
-        C: "Discovery is what makes recommendations MAGICAL! The best recommendation isn't something you already wanted — it's something you didn't know existed but absolutely love.",
-        D: "That's the right answer! The best recommendation systems balance all three. It's tricky, but that's what makes it such an interesting problem to solve."
-      },
-      'ch5-q1': {
-        A: "A Minecraft server recommender — YES! Imagine: it knows you like survival mode with friends, building medieval stuff, and servers with <50 players. It finds your perfect match. You could totally build this!",
-        B: "A music discovery engine! What if it could find genres you've never heard of based on the FEEL of music you like? Not just 'more pop' but 'here's this amazing Japanese city pop that has the same vibe.'",
-        C: "A smart book recommender! It could track not just what books you like, but how fast you read, whether you prefer short or long chapters, and even match your mood. Libraries would love this!",
-        D: "The best inventions are the ones nobody saw coming! Maybe a recommendation system for study buddies, hiking trails, science experiments, or even what to cook for dinner tonight. Dream big!"
-      },
-      'ch6-q1': {
-        A: "That's a valid choice — you value personalization. But think about this: if the algorithm ONLY shows you what you want, how will you ever discover something new? Sometimes the best experiences come from things you didn't know you'd like.",
-        B: "You want full control — respect! Some countries are actually making this a legal right. The EU's Digital Services Act lets people opt out of algorithmic recommendations entirely. You're thinking like a lawmaker!",
-        C: "That's a really mature perspective. Showing diverse viewpoints is important for understanding the world. The tricky part: who decides what counts as 'diverse'? It's harder than it sounds, but it's worth trying.",
-        D: "Honestly? This might be the wisest answer. These are genuinely hard questions with no perfect solutions. The fact that you recognize the complexity means you're thinking more deeply than most adults. Keep questioning!"
-      }
-    };
-
-    // Look up specific feedback
-    const qFeedbacks = feedbacks[qId];
-    if (qFeedbacks && qFeedbacks[letter]) {
-      return qFeedbacks[letter];
+  // "depth=intro..standard,formalism=light" → { depth: 'intro', formalism: 'light' }
+  // (a range pins its first value: pins are single points on the scale)
+  _parseHint(raw) {
+    const out = {};
+    for (const part of String(raw || '').split(',')) {
+      const [k, v] = part.split('=').map(x => (x || '').trim());
+      if (!k || !v || !CONFIG.facets[k]) continue;
+      const val = v.split('..')[0].split('|')[0];
+      if ((CONFIG.facets[k].values || []).includes(val)) out[k] = val;
     }
-
-    // Generic voice-based feedback
-    const voiceFeedback = {
-      explorer: "Dobrá volba! Jako Průzkumník si užiješ praktické ukázky a vizuální vysvětlení. Pojďme se podívat pod kapotu!",
-      creator: "Paráda — cesta Tvůrce! Připrav se na projekty, experimenty a stavění skutečných věcí. Učení děláním je nejlepší!",
-      thinker: "Pěkně — jsi Myslitel! Chceš rozumět tomu PROČ. Hlubší vysvětlení, která tě čekají, jsou přesně pro tebe.",
-      universal: "Skvělá volba! Dostaneš mix všeho — zkoumání, tvoření i přemýšlení. Jedeme dál!"
-    };
-
-    return voiceFeedback[voice] || voiceFeedback.universal;
+    return out;
   }
 
   toggleLike(blockId) {
@@ -5582,12 +8545,12 @@ class PBook {
     this.user.trackRating(blockId, newRating);
     if (!this.user.seenBlocks.has(blockId)) this.user.trackSeen(blockId);
     if (newRating >= 0.7 && !this.user.readBlocks.has(blockId)) this.user.trackRead(blockId);
-    if (newRating >= 0.7) { this.showXPToast('+3 XP ❤️', 'xp'); this.checkGamificationEvents(); }
+    if (newRating >= 0.7) { this.showXPToast(tr('+3 XP ❤️'), 'xp'); this.checkGamificationEvents(); }
     // Update button visually
     const btn = document.querySelector(`.block-reactions[data-block="${blockId}"] .like-btn`);
     if (btn) {
       btn.classList.toggle('liked', newRating >= 0.7);
-      btn.innerHTML = newRating >= 0.7 ? '&#10084;&#65039; <span>Liked</span>' : '&#9825; <span>Like</span>';
+      btn.innerHTML = newRating >= 0.7 ? ('&#10084;&#65039; <span>' + tr(`Liked`) + '</span>') : ('&#9825; <span>' + tr(`Like`) + '</span>');
     }
     // Share gate (spec §6): liking your own generated block opens the consent prompt —
     // the ONLY door from private to the shared community catalog
@@ -5626,14 +8589,21 @@ class PBook {
 
   remixSelection() {
     const sel = window.getSelection();
-    if (!sel || sel.isCollapsed) return;
+    if (!sel) return;
     const quote = sel.toString().trim();
-    const anchor = sel.anchorNode?.parentElement?.closest('.block-article');
+    const node = sel.anchorNode;
+    const anchor = node?.parentElement?.closest('.block-article');
     const blockId = anchor?.id?.replace('b-', '');
+    // The paragraph the cursor sits in — where a new passage would go.
+    const para = node?.parentElement?.closest('p, li, blockquote, h3, h4');
+    const anchorText = (para?.textContent || '').trim();
     sel.removeAllRanges();
     const popup = document.getElementById('highlightPopup');
     if (popup) popup.style.display = 'none';
-    if (!blockId || quote.length < 10) { this.showXPToast('Označ delší pasáž k remixu', 'xp'); return; }
+    if (!blockId) return;
+    // Marking a gap (or almost nothing) means "add something HERE" — a rewrite
+    // would have nothing to rewrite, so open the form in insert mode instead.
+    if (quote.length < 10) { this._openRemixForm(blockId, null, { insert: true, anchorText }); return; }
     this._openRemixForm(blockId, quote);
   }
 
@@ -5643,7 +8613,7 @@ class PBook {
     this._openRemixForm(blockId, null);
   }
 
-  async _openRemixForm(blockId, quote) {
+  async _openRemixForm(blockId, quote, opts = {}) {
     const el = document.getElementById(`b-${blockId}`);
     if (!el) return;
     document.getElementById(`remix-form-${blockId}`)?.remove();
@@ -5653,37 +8623,50 @@ class PBook {
     box.id = `remix-form-${blockId}`;
     box.className = 'share-consent remix-form';
     if (this.user.readerMode !== 'open') {
-      box.innerHTML = `<b>✨ Remix</b><div style="font-size:.75rem;margin-top:.3em">Remix vytvoří tvoji soukromou verzi této sekce. Zapni si <b>Otevřený režim</b> v <a href="#" onclick="app.switchView('profile');return false">Profile</a> first.</div>`;
+      box.innerHTML = `<b>${tr(`✨ Remix`)}</b><div style="font-size:.75rem;margin-top:.3em">${tr(`Remixing creates your own private version of this section. Turn on <b>Open mode</b> in your`)} <a href="#" onclick="app.switchView('profile');return false">${tr(`Profile`)}</a> ${tr(`first.`)}</div>`;
     } else {
       // Resolve the SOURCE slice now, so the manual path can edit real markdown.
       const entry = this._findAnyBlock(blockId);
       let base = (entry?.body || '').replace(/⟦\/?rx⟧/g, '');
-      let span = quote ? this._locateQuote(base, quote) : [0, base.length];
-      if (!span) span = [0, base.length];                     // fallback: whole section
-      while (span[0] > 0 && /[*_`~]/.test(base[span[0] - 1])) span[0]--;
-      while (span[1] < base.length && /[*_`~]/.test(base[span[1]])) span[1]++;
+      const insert = !!opts.insert;
+      let span;
+      if (insert) {
+        // collapsed span = insertion point, right after the marked paragraph
+        const at = opts.anchorText ? this._locateQuote(base, opts.anchorText) : null;
+        const pos = at ? at[1] : base.length;
+        span = [pos, pos];
+      } else {
+        span = quote ? this._locateQuote(base, quote) : [0, base.length];
+        if (!span) span = [0, base.length];                   // fallback: whole section
+        while (span[0] > 0 && /[*_`~]/.test(base[span[0] - 1])) span[0]--;
+        while (span[1] < base.length && /[*_`~]/.test(base[span[1]])) span[1]++;
+      }
       if (!this._improveCtx) this._improveCtx = {};
-      this._improveCtx[blockId] = { base, span };
-      this._remixQuote = quote || base.slice(span[0], span[1]);
-      const slice = base.slice(span[0], span[1]);
-      const scopeLabel = quote ? 'tuto část' : 'tuto sekci';
+      this._improveCtx[blockId] = { base, span, insert, anchorText: opts.anchorText || '' };
+      this._remixQuote = insert ? '' : (quote || base.slice(span[0], span[1]));
+      const slice = insert ? '' : base.slice(span[0], span[1]);
+      const scopeLabel = quote ? tr('this passage') : tr('this section');
+      const whereHint = insert
+        ? (opts.anchorText
+            ? `<div style="font-size:.7rem;color:var(--text-3);margin:.2em 0">${tr(`Goes here: right after “{0}{1}”`, this.escHtml(opts.anchorText.slice(0, 70)), opts.anchorText.length > 70 ? '…' : '')}</div>`
+            : ('<div style="font-size:.7rem;color:var(--text-3);margin:.2em 0">' + tr(`Goes at the end of this section.`) + '</div>'))
+        : '';
       box.innerHTML = `
-        <b>✏️ Improve ${scopeLabel}</b>
-        <div style="font-size:.68rem;color:var(--text-3);margin:.2em 0 .1em">Uprav text přímo…</div>
-        <textarea id="edit-src-${blockId}" rows="${Math.min(12, Math.max(3, slice.split('\n').length + 1))}"
+        <b>${insert ? tr('➕ Add here') : `${tr(`✏️ Improve {0}`, scopeLabel)}`}</b>
+        ${whereHint}
+        <div style="font-size:.7rem;color:var(--text-3);margin:.2em 0 .1em">${insert ? tr('Write your own text…') : tr('Edit the text directly…')}</div>
+        <textarea id="edit-src-${blockId}" rows="${insert ? 3 : Math.min(12, Math.max(3, slice.split('\n').length + 1))}"
+          ${insert ? 'placeholder="The text that will appear at this spot…"' : ''}
           style="width:100%;padding:.45em;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.76rem;font-family:ui-monospace,monospace;line-height:1.45">${this.escHtml(slice)}</textarea>
-        ${canGen ? `<div style="font-size:.68rem;color:var(--text-3);margin:.3em 0 .1em">…nebo popiš změnu a nech ji napsat AI — klidně jen klepni na hotový recept:</div>
-        <div style="display:flex;flex-wrap:wrap;gap:.25em;margin:.15em 0">
-          ${['Vysvětli jednodušeji', 'Přidej konkrétní příklad', 'Zkrať na polovinu', 'Převeď na odrážky', 'Přidej trochu humoru', 'Udělej to jako příběh'].map(p =>
-            `<button class="steer-chip" style="font-size:.64rem" onclick="const t=document.getElementById('remix-prompt-${blockId}');t.value=t.value?t.value+'; '+'${p}':'${p}';t.focus()">${p}</button>`).join('')}
-        </div>
-        <textarea id="remix-prompt-${blockId}" rows="2" placeholder="např. ‚vysvětli na příkladu školního obchůdku‘, ‚jednodušší slova‘, ‚přidej konkrétní číslo‘"
+        ${canGen ? `<div style="font-size:.7rem;color:var(--text-3);margin:.3em 0 .1em">${tr(`…or describe {0} and let AI write it:`, insert ? tr('what to add') : tr('the change'))}</div>
+        <textarea id="remix-prompt-${blockId}" rows="2" placeholder="${insert ? `${tr(`e.g. 'draw a diagram of the ranking pipeline and explain it', 'add a worked example'`)}` : `${tr(`e.g. 'explain with a running-shop example', 'simpler words', 'add one concrete number'`)}`}"
           style="width:100%;padding:.4em;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.78rem"></textarea>` : ''}
-        <div style="font-size:.68rem;color:var(--text-3);margin:.25em 0">Originál zůstane v obou případech netknutý — dostaneš vlastní verzi se zvýrazněnou změnou a sám rozhodneš, jestli si ji necháš, nebo ji budeš sdílet.</div>
+        <div style="font-size:.7rem;color:var(--text-3);margin:.25em 0">${tr(`Either way the original stays untouched — you get your own version with the change highlighted, and you decide whether to keep or share it.`)}</div>
+        <div style="font-size:.7rem;color:var(--text-3);margin:.15em 0">${this.aiEconHint()}</div>
         <div class="note-actions">
-          <button class="note-save" onclick="app.submitManualEdit('${blockId}')">💾 Uložit moji úpravu</button>
-          ${canGen ? `<button class="note-save" style="background:var(--accent)" onclick="app.submitRemix('${blockId}')">✨ Přepsat pomocí AI</button>` : ''}
-          <button class="note-cancel" onclick="document.getElementById('remix-form-${blockId}').remove()">Zrušit</button>
+          <button class="note-save" onclick="app.submitManualEdit('${blockId}')">${insert ? tr('💾 Insert my text') : tr('💾 Save my edit')}</button>
+          ${canGen ? `<button class="note-save" style="background:var(--accent)" onclick="app.submitRemix('${blockId}')">${tr(`{0} · from {1} ⚡`, insert ? tr('✨ Let AI write it') : tr('✨ AI rewrite'), CONFIG.aiEconomy?.prices.basic || 0)}</button>` : ''}
+          <button class="note-cancel" onclick="document.getElementById('remix-form-${blockId}').remove()">${tr(`Cancel`)}</button>
         </div>
         <div id="remix-status-${blockId}"></div>`;
     }
@@ -5701,8 +8684,8 @@ class PBook {
            oldText[oldText.length - 1 - s] === newText[newText.length - 1 - s]) s++;
     const head = newText.slice(0, p), mid = newText.slice(p, newText.length - s), tail = newText.slice(newText.length - s);
     if (!mid.trim()) return { marked: newText, oldMid: oldText.slice(p, oldText.length - s), newMid: mid };
-    const markedMid = mid.split(/\n{2,}/).map(seg => seg.trim() ? `⟦rx⟧${seg}⟦/rx⟧` : seg).join('\n\n');
-    return { marked: head + markedMid + tail, oldMid: oldText.slice(p, oldText.length - s), newMid: mid };
+    const markedMid = `\n⟦rx⟧\n${mid.trim()}\n⟦/rx⟧\n`;
+    return { marked: head.replace(/\s+$/, '') + markedMid + tail.replace(/^\s+/, ''), oldMid: oldText.slice(p, oldText.length - s), newMid: mid };
   }
 
   // Manual path: the reader IS the model. Same preview + accept pipeline as AI remix.
@@ -5713,14 +8696,22 @@ class PBook {
     if (edited == null || !ctx || !entry) return;
     const { base, span } = ctx;
     const original = base.slice(span[0], span[1]);
-    if (edited.trim() === original.trim()) { this.showXPToast('Zatím žádná změna — nejdřív text uprav', 'xp'); return; }
-    const { marked, oldMid, newMid } = this._markDiff(original, edited);
-    const newBody = base.slice(0, span[0]) + marked + base.slice(span[1]);
+    let marked, oldMid, newMid, newBody;
+    if (ctx.insert) {
+      if (!edited.trim()) { this.showXPToast(tr('Write the text to insert'), 'xp'); return; }
+      marked = this._markRegion(edited);
+      oldMid = ''; newMid = edited.trim();
+      newBody = this._spliceIn(base, span[0], marked);
+    } else {
+      if (edited.trim() === original.trim()) { this.showXPToast(tr('No change made yet — edit the text first'), 'xp'); return; }
+      ({ marked, oldMid, newMid } = this._markDiff(original, edited));
+      newBody = base.slice(0, span[0]) + marked + base.slice(span[1]);
+    }
     const src = entry.meta;
     const rootId = src.remixOf || src.id;
     const isReRemix = !!src.remixOf;
     const id = isReRemix ? src.id : `remix--${rootId}--${Date.now().toString(36)}`;
-    const log = [...(src.remixLog || []), { instruction: '(manual edit)', manual: true, ts: Date.now() }];
+    const log = [...(src.remixLog || []), { instruction: tr('(manual edit)'), manual: true, ts: Date.now() }];
     const block = {
       meta: {
         ...src, id, state: 'private', generated: true, remixOf: rootId, remixLog: log,
@@ -5733,8 +8724,131 @@ class PBook {
     document.getElementById(`remix-form-${blockId}`)?.remove();
     this._swapBlock(blockId, block, this._blockFacets(block.meta) || {});
     this.rc.logEvent('manual_edit', { blockId, remixId: id });
+    // Ruční práce plní AI peněženku — jednorázově na sekci, jen podstatná změna.
+    try {
+      const mk = 'pbook-manual-edit-rewarded';
+      const done = JSON.parse(localStorage.getItem(mk) || '[]');
+      const rootFor = src.remixOf || src.id;
+      const substantive = (newMid || '').length >= 20 || Math.abs((newMid || '').length - (oldMid || '').length) >= 20;
+      if (!done.includes(rootFor) && substantive && this._f('gamification') && CONFIG.aiEconomy?.enabled) {
+        done.push(rootFor); localStorage.setItem(mk, JSON.stringify(done));
+        const n = CONFIG.aiEconomy.earnManualEdit || 8;
+        this.user.addXP(n); this.user.save();
+        this.showXPToast(tr('+{n} XP for a manual edit ✍️').replace('{n}', n), 'xp');
+        this.updateXPBadge();
+      }
+    } catch (e) {}
     document.getElementById(`b-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     this._showRemixDecision(isReRemix ? rootId : blockId, id, oldMid || original, newMid || edited);
+  }
+
+  // Editing should be point-and-click: hovering a paragraph offers "rewrite this
+  // one", the gap under it offers "add something here". Selecting text still
+  // works — this just removes the need to aim with a selection.
+  // ===== CLICK-THROUGH REVEAL =====
+  // One image that uncovers itself step by step. The convention is SlAIdy's, so a
+  // figure clicks through the same in the book and on the projector: the figure is
+  // at step k = 1, 2, …; data-step="n" is there from step n, data-until="m" is gone
+  // from step m (that is how one drawing holds a series in which something is
+  // replaced, not only added). The book's own data-krok="n" — "after the n-th
+  // click" — is data-step="n+1". Click/tap reveals the next step; after the last
+  // one you can start over. The studio never activates reveal (authors see all).
+  _revealRange(el) {
+    const d = el.dataset;
+    const from = d.step ? parseInt(d.step, 10) || 1 : d.krok ? (parseInt(d.krok, 10) || 0) + 1 : 1;
+    return [from, d.until ? parseInt(d.until, 10) || Infinity : Infinity];
+  }
+  _attachReveals(root) {
+    const scope = root || document.getElementById('readPane') || document;
+    // inline figures in the body AND the block's own diagram (frontmatter diagram:)
+    scope.querySelectorAll('figure svg, .diagram-wrap > svg').forEach(svg => {
+      if (svg._revealInit || svg.closest('#stCanvas')) return;
+      const els = [...svg.querySelectorAll('[data-krok],[data-step],[data-until]')];
+      const ranges = els.map(el => this._revealRange(el));
+      const max = Math.max(1, ...ranges.map(([a, b]) => Math.max(a, Number.isFinite(b) ? b : 1)));
+      if (!els.length || max < 2) return;
+      svg._revealInit = true;
+      const fig = svg.closest('figure, .diagram-wrap');
+      fig.style.position = 'relative';
+      svg.style.cursor = 'pointer';
+      const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let cur = 1;
+      const badge = document.createElement('button');
+      badge.className = 'reveal-badge';
+      badge.style.cssText = 'position:absolute;right:8px;bottom:8px;z-index:3;border:1.5px solid var(--accent,#6366F1);background:var(--card,#fff);color:var(--accent,#4F46E5);border-radius:999px;padding:.2em .7em;font-size:.72rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12)';
+      const apply = () => {
+        els.forEach((el, j) => {
+          const on = ranges[j][0] <= cur && cur < ranges[j][1];
+          if (!still) el.style.transition = 'opacity .45s';
+          el.style.opacity = on ? '' : '0';
+          el.style.pointerEvents = on ? '' : 'none';
+        });
+        badge.textContent = cur === 1 ? `${tr(`▶ click through · {0} steps`, max - 1)}` : cur < max ? `${tr(`step {0}/{1} · next ▶`, cur - 1, max - 1)}` : tr('↺ again');
+      };
+      const advance = () => { cur = cur >= max ? 1 : cur + 1; apply(); };
+      svg.addEventListener('click', e => { e.stopPropagation(); advance(); });
+      badge.addEventListener('click', e => { e.stopPropagation(); advance(); });
+      fig.appendChild(badge);
+      apply();
+      this.rc?.logEvent?.('reveal_init', { steps: max - 1 });
+    });
+  }
+
+  _attachParaTools(root) {
+    if (this.user.readerMode !== 'open') return;
+    const scope = root || document.getElementById('readPane');
+    if (!scope) return;
+    scope.querySelectorAll('.block-article').forEach(article => {
+      const blockId = article.id.replace('b-', '');
+      const body = article.querySelector('.spine-body');
+      if (!body || body.dataset.paraTools) return;
+      body.dataset.paraTools = '1';
+      const paras = [...body.children].filter(el => /^(P|UL|OL|BLOCKQUOTE|TABLE|FIGURE|H3|H4)$/.test(el.tagName));
+      paras.forEach(el => {
+        if (el.closest('.rx-region')) return;              // already your edit
+        el.classList.add('para-host');
+        const text = (el.textContent || '').trim();
+        const tools = document.createElement('span');
+        tools.className = 'para-tools';
+        tools.innerHTML = `<button title="${tr(`rewrite this paragraph`)}" data-pt="edit">✏️</button>`;
+        tools.querySelector('[data-pt="edit"]').onclick = e => {
+          e.stopPropagation();
+          this._openRemixForm(blockId, text.length >= 10 ? text : null, text.length >= 10 ? {} : { insert: true, anchorText: text });
+        };
+        el.appendChild(tools);
+        const gap = document.createElement('button');
+        gap.className = 'gap-add';
+        gap.title = tr('add text or a diagram here');
+        gap.innerHTML = '<span></span>';
+        gap.onclick = e => {
+          e.stopPropagation();
+          this._openRemixForm(blockId, null, { insert: true, anchorText: text });
+        };
+        el.after(gap);
+      });
+    });
+  }
+
+  // Mark a changed/added region with markers ON THEIR OWN LINES. Inline markers
+  // used to sit inside the markdown and broke lists, tables and headings (and
+  // leaked as visible ⟦…⟧ when a structure swallowed them).
+  _markRegion(text, svg) {
+    const parts = [];
+    if (svg) parts.push(`⟦svg⟧${svg.trim()}⟦/svg⟧`);
+    if (text && text.trim()) parts.push(text.trim());
+    if (!parts.length) return '';
+    return `⟦rx⟧\n${parts.join('\n\n')}\n⟦/rx⟧`;
+  }
+
+  // Insert a passage at a source offset, keeping markdown paragraph separation
+  // (exactly one blank line on each side, never inside a word).
+  _spliceIn(base, pos, text) {
+    // The anchor maps only letters/digits from rendered text — trailing sentence
+    // punctuation (?" …) would be left stranded AFTER the insert. Skip past it.
+    while (pos > 0 && pos < base.length && !/\s/.test(base[pos - 1]) && /[?!.…,;:"'“”„‟»«)\]]/.test(base[pos])) pos++;
+    const before = base.slice(0, pos).replace(/\s+$/, '');
+    const after = base.slice(pos).replace(/^\s+/, '');
+    return [before, text.trim(), after].filter(Boolean).join('\n\n');
   }
 
   // Selection comes from the RENDERED text; the source is markdown. Locate the
@@ -5760,33 +8874,57 @@ class PBook {
 
   async submitRemix(blockId) {
     const instruction = document.getElementById(`remix-prompt-${blockId}`)?.value?.trim();
+    const ctx = this._improveCtx?.[blockId];
+    const isInsert = !!ctx?.insert;
     const quote = this._remixQuote;
-    if (!instruction || instruction.length < 3 || !quote) return;
+    if (!instruction || instruction.length < 3 || (!quote && !isInsert)) return;
     const entry = this._findAnyBlock(blockId);
     if (!entry) return;
     const status = document.getElementById(`remix-status-${blockId}`);
-    if (status) status.innerHTML = '<span class="gen-spinner">✨ Rewriting that part… (~20 s)</span>';
-    this.rc.logEvent('remix_request', { blockId, concept: this._conceptIds(entry.meta)[0], instruction: instruction.slice(0, 200) });
+    const wantsSvgAI = /\b(diagram|schema|schéma|obráz|obrazek|nákres|nakresli|animac|animation|visuali|draw|sketch)/i.test(instruction);
+    const remixTier = wantsSvgAI ? 'advanced' : 'basic';
+    const payR = this.aiCanPay(remixTier);
+    if (!payR.ok) { if (status) status.innerHTML = this.aiPaywallHtml(remixTier); return; }
+    if (status) status.innerHTML = `<span class="gen-spinner">✨ ${isInsert ? tr('Writing the new passage') : tr('Rewriting that part')}… (~20 s)</span>`;
+    this.rc.logEvent('remix_request', { blockId, concept: this._conceptIds(entry.meta)[0], mode: isInsert ? 'insert' : 'remix', instruction: instruction.slice(0, 200) });
 
     try {
-      // locate FIRST — and rewrite the exact SOURCE slice (markdown-accurate)
-      let base = entry.body || '';
-      let span = this._locateQuote(base, quote);
+      // The form already resolved base+span against the exact text the reader
+      // saw; trust it, and only re-locate when that context is missing.
+      let base = ctx?.base ?? (entry.body || '');
+      let span = ctx?.span;
       if (!span) {
-        base = base.replace(/⟦\/?rx⟧/g, '');               // selection may overlap an older mark
         span = this._locateQuote(base, quote);
+        if (!span) {
+          base = base.replace(/⟦\/?rx⟧/g, '');             // selection may overlap an older mark
+          span = this._locateQuote(base, quote);
+        }
+        // Still nothing to rewrite? Then the reader marked a spot, not a passage —
+        // add the new text there instead of failing.
+        if (!span) span = [base.length, base.length];
       }
-      if (!span) throw new Error('could not locate the selected passage in the source — try selecting a slightly longer stretch');
-      // snap span edges over markdown punctuation so we never cut **bold** in half
-      while (span[0] > 0 && /[*_`~]/.test(base[span[0] - 1])) span[0]--;
-      while (span[1] < base.length && /[*_`~]/.test(base[span[1]])) span[1]++;
+      if (!isInsert) {
+        // snap span edges over markdown punctuation so we never cut **bold** in half
+        while (span[0] > 0 && /[*_`~]/.test(base[span[0] - 1])) span[0]--;
+        while (span[1] < base.length && /[*_`~]/.test(base[span[1]])) span[1]++;
+      }
       const sourceQuote = base.slice(span[0], span[1]);
+      const insertHere = isInsert || !sourceQuote.trim();
 
       const res = await fetch(CONFIG.steering.generateEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        body: JSON.stringify(insertHere ? {
+          mode: 'insert',
+          auth: this._walletAuth(),
+          concept: entry.meta.concept || null,
+          facets: this._blockFacets(entry.meta) || {},
+          anchor: (ctx?.anchorText || base.slice(Math.max(0, span[0] - 400), span[0])).slice(-1200),
+          instruction: instruction.slice(0, 500),
+          context: base.slice(0, 6000),
+        } : {
           mode: 'remix',
+          auth: this._walletAuth(),
           concept: entry.meta.concept || null,
           facets: this._blockFacets(entry.meta) || {},
           selection: sourceQuote.slice(0, 2000),
@@ -5795,14 +8933,20 @@ class PBook {
         }),
       });
       const data = await res.json();
-      if (!res.ok || !data.ok) throw new Error(data.error || 'remix failed');
-      const replacement = data.replacement;
+      if (!res.ok || !data.ok) throw new Error(data.error || (insertHere ? tr('insert failed') : tr('remix failed')));
+      const replacement = insertHere ? data.addition : data.replacement;
+      this._walletApply(data, remixTier, payR);
       const attachedSvg = data.svg || null;   // reader asked for a diagram → server drew one
 
       // mark each paragraph separately — a single mark spanning \n\n breaks when
       // markdown closes the <p> inside it (only the first fragment stayed highlighted)
-      const marked = replacement.split(/\n{2,}/).map(seg => seg.trim() ? `⟦rx⟧${seg}⟦/rx⟧` : seg).join('\n\n');
-      const newBody = base.slice(0, span[0]) + marked + base.slice(span[1]);
+      // A drawn diagram belongs WHERE the change is — attaching it to the block
+      // would push it to the top and hide the section's original diagram.
+      const cleanSvg = attachedSvg ? this._sanitizeSvgClient(attachedSvg) : null;
+      const marked = this._markRegion(replacement, cleanSvg);
+      const newBody = insertHere
+        ? this._spliceIn(base, span[0], marked)
+        : this._spliceIn(base.slice(0, span[0]) + '\u0000' + base.slice(span[1]), base.slice(0, span[0]).length, marked).replace('\u0000', '');
 
       const src = entry.meta;
       const rootId = src.remixOf || src.id;
@@ -5813,7 +8957,7 @@ class PBook {
         meta: {
           ...src, id, state: 'private', generated: true, remixOf: rootId, remixLog: log,
           core: false, status: undefined,
-          ...(attachedSvg ? { diagramSvg: attachedSvg, visuality: 'balanced' } : {}),
+          ...(cleanSvg ? { visuality: 'balanced' } : {}),
           readingTime: Math.max(1, Math.round(newBody.split(/\s+/).length / 200)),
         },
         body: newBody,
@@ -5833,7 +8977,9 @@ class PBook {
       }
       this._showRemixDecision(origForDecision, id, sourceQuote, replacement);
     } catch (e) {
-      if (status) status.innerHTML = `<span style="color:var(--warn,#D97706);font-size:.72rem">Remix se nepovedl (${this.escHtml(String(e.message).slice(0, 120))}). Tvoje přání se zaznamenalo.</span>`;
+      const pwR = this._aiErrorPaywall(e, typeof remixTier !== 'undefined' ? remixTier : 'basic');
+      if (pwR) { if (status) status.innerHTML = pwR; return; }
+      if (status) status.innerHTML = `<span style="color:var(--warn,#D97706);font-size:.72rem">${tr(`Remix didn't work out ({0}). Your wish was recorded.`, this.escHtml(String(e.message).slice(0, 120)))}</span>`;
       this.rc.logEvent('remix_failed', { blockId, error: String(e.message).slice(0, 150) });
     }
   }
@@ -5844,7 +8990,7 @@ class PBook {
 
   _diagramRemixBtn(block) {
     if (!this._f('steering') || !this._f('generation')) return '';
-    return `<button class="diagram-remix-btn" onclick="app.remixDiagram('${block.id}')" title="✨ Remixuj diagram — popiš, co se má změnit">✨</button>`;
+    return `<button class="diagram-remix-btn" onclick="app.remixDiagram('${block.id}')" title="${tr(`✨ Remix this diagram — describe what should change`)}">✨</button>`;
   }
 
   _sanitizeSvgClient(svg) {
@@ -5861,8 +9007,8 @@ class PBook {
             .replace(/\son\w+\s*=\s*"[^"]*"/gi, '')
             .replace(/\son\w+\s*=\s*'[^']*'/gi, '')
             .replace(/javascript:/gi, '')
-            .replace(/(xlink:href|href)\s*=\s*"(?!#)[^"]*"/gi, '')
-            .replace(/(xlink:href|href)\s*=\s*'(?!#)[^']*'/gi, '');
+            .replace(/(xlink:href|href)\s*=\s*"(?!#|data:image\/(?:png|jpeg|webp|gif);base64,)[^"]*"/gi, '')
+            .replace(/(xlink:href|href)\s*=\s*'(?!#|data:image\/(?:png|jpeg|webp|gif);base64,)[^']*'/gi, '');
   }
 
   async remixDiagram(blockId) {
@@ -5874,19 +9020,19 @@ class PBook {
     box.id = `remix-form-${blockId}`;
     box.className = 'share-consent remix-form';
     if (!canGen) {
-      box.innerHTML = `<b>✨ Remix diagram</b><div style="font-size:.72rem;color:var(--text-3);margin-top:.3em">Generování teď není nastavené — tvoje přání se zaznamenalo pro redakci.</div>`;
+      box.innerHTML = `<b>${tr(`✨ Remix diagram`)}</b><div style="font-size:.72rem;color:var(--text-3);margin-top:.3em">${tr(`Generation isn't configured right now — your wish was recorded for the editors.`)}</div>`;
       this.rc.logEvent('remix_miss', { blockId, diagram: true });
     } else if (this.user.readerMode !== 'open') {
-      box.innerHTML = `<b>✨ Remix diagram</b><div style="font-size:.75rem;margin-top:.3em">Remix vytvoří tvoji soukromou verzi této sekce. Zapni si <b>Otevřený režim</b> v <a href="#" onclick="app.switchView('profile');return false">Profile</a> first.</div>`;
+      box.innerHTML = `<b>${tr(`✨ Remix diagram`)}</b><div style="font-size:.75rem;margin-top:.3em">${tr(`Remixing creates your own private version of this section. Turn on <b>Open mode</b> in your`)} <a href="#" onclick="app.switchView('profile');return false">${tr(`Profile`)}</a> ${tr(`first.`)}</div>`;
     } else {
       box.innerHTML = `
-        <b>✨ Remixuj tento diagram${el.querySelector('animate, animateTransform, animateMotion') ? ' / animaci' : ''}</b>
-        <textarea id="remix-prompt-${blockId}" rows="2" placeholder="Co se má změnit? např. ‚zpomal animaci‘, ‚přidej do příkladu třetího uživatele‘"
+        <b>${tr(`✨ Remix this diagram{0}`, el.querySelector('animate, animateTransform, animateMotion') ? tr(' / animation') : '')}</b>
+        <textarea id="remix-prompt-${blockId}" rows="2" placeholder="${tr(`What should change? e.g. 'make the products running shoes', 'slow the animation down', 'add a third user to the example'`)}"
           style="width:100%;padding:.4em;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.78rem;margin-top:.3em"></textarea>
-        <div style="font-size:.68rem;color:var(--text-3);margin:.25em 0">Originál zůstane netknutý — dostaneš vlastní verzi označenou jako remix. Funguje i na animace.</div>
+        <div style="font-size:.7rem;color:var(--text-3);margin:.25em 0">${tr(`The original stays untouched — you get your own version, marked as remixed. Works on animations too.`)}</div>
         <div class="note-actions">
-          <button class="note-save" onclick="app.submitDiagramRemix('${blockId}')">✨ Vygenerovat vylepšenou verzi</button>
-          <button class="note-cancel" onclick="document.getElementById('remix-form-${blockId}').remove()">Zrušit</button>
+          <button class="note-save" onclick="app.submitDiagramRemix('${blockId}')">${tr(`✨ Generate improved version · {0} ⚡`, CONFIG.aiEconomy?.prices.advanced || 0)}</button>
+          <button class="note-cancel" onclick="document.getElementById('remix-form-${blockId}').remove()">${tr(`Cancel`)}</button>
         </div>
         <div id="remix-status-${blockId}"></div>`;
     }
@@ -5901,7 +9047,9 @@ class PBook {
     const entry = this._findAnyBlock(blockId);
     if (!entry) return;
     const status = document.getElementById(`remix-status-${blockId}`);
-    if (status) status.innerHTML = '<span class="gen-spinner">✨ Redrawing… (~30–60 s for animations)</span>';
+    if (status) status.innerHTML = ('<span class="gen-spinner">' + tr(`✨ Redrawing… (~30–60 s for animations)`) + '</span>');
+    const payD = this.aiCanPay('advanced');
+    if (!payD.ok) { if (status) status.innerHTML = this.aiPaywallHtml('advanced'); return; }
     this.rc.logEvent('remix_request', { blockId, diagram: true, instruction: instruction.slice(0, 200) });
 
     try {
@@ -5917,6 +9065,7 @@ class PBook {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           mode: 'svg-remix',
+          auth: this._walletAuth(),
           concept: entry.meta.concept || null,
           facets: this._blockFacets(entry.meta) || {},
           svg: srcSvg,
@@ -5924,7 +9073,8 @@ class PBook {
         }),
       });
       const data = await res.json();
-      if (!res.ok || !data.ok) throw new Error(data.error || 'svg remix failed');
+      if (!res.ok || !data.ok) throw new Error(data.error || tr('svg remix failed'));
+      this._walletApply(data, 'advanced', payD);
       const cleanSvg = this._sanitizeSvgClient(data.svg);
       if (!cleanSvg) throw new Error('remixed SVG failed the safety check');
 
@@ -5946,7 +9096,7 @@ class PBook {
       document.getElementById(`b-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       this._showRemixDecision(origForDecision, id, null, null, true);
     } catch (e) {
-      if (status) status.innerHTML = `<span style="color:var(--warn,#D97706);font-size:.72rem">Remix se nepovedl (${this.escHtml(String(e.message).slice(0, 140))}). Tvoje přání se zaznamenalo.</span>`;
+      if (status) status.innerHTML = `<span style="color:var(--warn,#D97706);font-size:.72rem">${tr(`Remix didn't work out ({0}). Your wish was recorded.`, this.escHtml(String(e.message).slice(0, 140)))}</span>`;
       this.rc.logEvent('remix_failed', { blockId, diagram: true, error: String(e.message).slice(0, 150) });
     }
   }
@@ -5962,13 +9112,16 @@ class PBook {
     box.id = `share-consent-${blockId}`;
     box.className = 'share-consent remix-float share-consent-float';
     box.innerHTML = `
-      <b>Super, že se ti líbí!</b> Sdílet tohle podání do knihy, aby ho objevili i čtenáři s podobným nastavením?
-      <div style="font-size:.7rem;color:var(--text-3);margin:.3em 0">Sdílí se anonymně. Dokud ho neprojde redakce, zůstane označené jako čtenářské. Můžeš si ho nechat i soukromé — tvoje je tak i tak. <a href="#" onclick="event.preventDefault();app.showHowItWorks('share')" style="color:var(--accent)">Co se s příspěvkem stane?</a></div>
-      <input type="text" id="share-nick-${blockId}" placeholder="Volitelná přezdívka (prázdné = anonymně)" maxlength="40"
+      ${tr(`<b>Glad you liked it!</b> Share this telling into the book so other readers with similar settings can discover it?`)}
+      <div style="font-size:.7rem;color:var(--text-3);margin:.3em 0">${tr(`Shared anonymously by default. It stays labelled as reader-generated until an editor reviews it. You can keep it private — it stays yours either way.`)}</div>
+      <input type="text" id="share-nick-${blockId}" placeholder="${tr(`Optional nickname for credit (leave empty = anonymous)`)}" maxlength="40"
         style="width:100%;padding:.4em;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.75rem;margin:.2em 0">
+      <input type="text" id="share-group-${blockId}" placeholder="${tr(`{0} (optional — the telling then stays within your {1})`, this.escHtml(this._groupWords().code), this.escHtml(this._groupWords().group))}" maxlength="16" value="${this.escHtml(this._classCode() || CONFIG.community?.defaultGroup || '')}"
+        style="width:100%;padding:.4em;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.75rem;margin:.2em 0">
+      <div style="font-size:.7rem;color:var(--text-3)">${tr(`{0} Without a code it joins the book's reader tellings right away.`, (W => `${tr(`With a code: {0} and {1} see it in the {2}, the {3} votes — and {4} ⭐ recommends the best to the editors for the shared book.`, W.mates, W.lead, W.gallery.toLowerCase(), W.group, W.lead)}`)(this._groupWords()))}</div>
       <div class="note-actions">
-        <button class="note-save" onclick="app.shareGeneratedBlock('${blockId}')">📣 Sdílet do knihy</button>
-        <button class="note-cancel" onclick="document.getElementById('share-consent-${blockId}').remove()">Nechat soukromé</button>
+        <button class="note-save" onclick="app.shareGeneratedBlock('${blockId}')">${tr(`📣 Share into the book`)}</button>
+        <button class="note-cancel" onclick="document.getElementById('share-consent-${blockId}').remove()">${tr(`Keep private`)}</button>
       </div>`;
     document.body.appendChild(box);
   }
@@ -5978,9 +9131,21 @@ class PBook {
     if (!block) return;
     const nick = document.getElementById(`share-nick-${blockId}`)?.value?.trim() || '';
     const meta = block.meta;
+    const groupIn = (document.getElementById(`share-group-${blockId}`)?.value || '').trim().toLowerCase();
     // Community store = the Recombee catalog (state == "community") — immediately recommendable,
-    // no extra infrastructure. Body rides as an item property.
-    const ok = await this.rc.shareCommunityBlock({
+    // no extra infrastructure. Body rides as an item property. A book without a catalog
+    // shares into the drafts store instead: the group gallery (#trida-<code>) lists it
+    // for comments and votes, and the editors lift the best into the book.
+    const ok = !this.rc.enabled ? await (async () => {
+      try {
+        const r = await fetch('/api/drafts', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'share', nick, group: groupIn || CONFIG.community?.defaultGroup || '',
+            draft: { slug: meta.concept || meta.proposalSlug || meta.id, title: meta.title, text: block.body } }) });
+        const d = await r.json();
+        if (d.ok) block.meta.shareId = d.id;
+        return !!d.ok;
+      } catch (e) { return false; }
+    })() : await this.rc.shareCommunityBlock({
       itemId: meta.id,
       title: meta.title,
       body: block.body,
@@ -5993,18 +9158,25 @@ class PBook {
       remixOf: meta.remixOf || '',
       remixLog: meta.remixLog ? JSON.stringify(meta.remixLog).slice(0, 1500) : '',
       diagramSvg: meta.diagramSvg || '',
+      // Parallel classes: with a code the telling is visible only inside its
+      // class until the editors promote it (adoption clears classGroup).
+      classGroup: (() => { const g = (document.getElementById(`share-group-${blockId}`)?.value || '').trim().toLowerCase(); return /^[a-z0-9-]{4,16}$/.test(g) ? g : ''; })() || undefined,
+      classOrigin: (() => { const g = (document.getElementById(`share-group-${blockId}`)?.value || '').trim().toLowerCase(); return /^[a-z0-9-]{4,16}$/.test(g) ? g : ''; })() || undefined,
     });
+    const sharedGroup = (document.getElementById(`share-group-${blockId}`)?.value || '').trim().toLowerCase();
+    if (/^[a-z0-9-]{4,16}$/.test(sharedGroup)) localStorage.setItem('pbook-deck-group', sharedGroup);
     // Log regardless — the editorial nomination queue reads these events
-    this.rc.logEvent('community_share', { blockId, concept: meta.concept, sharedAs: nick ? 'nick' : 'anonymous', ok });
+    this.rc.logEvent('community_share', { blockId, concept: meta.concept, sharedAs: nick ? 'nick' : 'anonymous', group: sharedGroup || undefined, ok });
     document.getElementById(`share-consent-${blockId}`)?.remove();
     if (ok) {
       block.meta.state = 'community';
       this._savePrivateBlock(block, 'shared');
       if (this._communityCache?.[meta.concept]) delete this._communityCache[meta.concept];
-      this.showXPToast('+10 XP 📖 Sdíleno — ostatním se ukáže po nasazení (~1 min)', 'achievement');
+      this.showXPToast(this.rc.enabled ? tr('+10 XP 📖 You enriched the book!')
+        : `${tr(`+10 XP 📖 Shared — it is in the {0} for comments and votes`, this._groupWords().gallery.toLowerCase())}`, 'achievement');
       if (this._f('gamification')) { this.user.addXP(10); this.user.save(); this.updateXPBadge(); }
     } else {
-      this.showXPToast('Sdílení selhalo — zůstává soukromé, požadavek zaznamenán', 'xp');
+      this.showXPToast(tr('Sharing failed — kept private, request logged'), 'xp');
     }
   }
 
@@ -6034,22 +9206,30 @@ class PBook {
     this.user.currentBlock = blockId;
     this.user.currentChapter = chIdx;
     this.user.save();
-    // Update URL hash for sharing
-    history.replaceState(null, '', '#' + blockId);
+    // URL hash for sharing + a history entry for the system back button (js/ux.js)
+    this._navPushBlock(blockId);
     // Set analytics context: where did user discover this block?
     const mode = source || (this._wizardMission ? 'mission' : this.currentView === 'home' ? 'netflix' : this.currentView === 'map' ? 'map' : this.currentView === 'read' ? 'read' : this.currentView);
     this.rc.setContext(mode, { blockId, chapter: chIdx });
     this.rc.logEvent('open_block', { mode, blockId });
 
-    // If already viewing this chapter, just scroll
-    if (this.currentView === 'read' && this._renderedChapter === chIdx) {
+    // The essentials flow shows one telling per concept: opening a specific
+    // telling (search, mission step, shared link…) serves THAT one in its
+    // concept's slot for the rest of this session.
+    if (!this._fullBook() && block.meta.type === 'spine') {
+      const cid = this._conceptIds(block.meta)[0];
+      if (cid) (this._requestedTellings = this._requestedTellings || {})[cid] = blockId;
+    }
+
+    // If already viewing this chapter (and that telling is on screen), just scroll
+    if (this.currentView === 'read' && this._renderedChapter === chIdx && document.getElementById(`b-${blockId}`)) {
       this._scrollToBlock(parentId, block.meta);
       this._updateMissionBar();
       return;
     }
 
-    this._pendingScroll = { parentId, meta: block.meta };
-    this.switchView('read', true); // auto — don't log as user-initiated mode switch
+    this._pendingScroll = { parentId, meta: block.meta, instant: true };
+    this.switchView('read', true, true); // auto — don't log as user-initiated mode switch; renderRead below
     this.renderRead(chIdx);
   }
 
@@ -6064,11 +9244,11 @@ class PBook {
     container.style.display = 'flex';
     const step = this._wizardStep;
     container.innerHTML = `
-      <button class="mission-bar-back" onclick="app._returnToWizard()" title="Další krok">&#127919;</button>
+      <button class="mission-bar-back" onclick="app._returnToWizard()" title="${tr(`Next step`)}">&#127919;</button>
       <div class="mission-bar-dots">${m.core.map((id, i) => {
         const b = this.findBlock(id);
         const title = b?.meta?.title || id;
-        const cls = this.user.readBlocks.has(id) ? 'done' : i === step ? 'current' : '';
+        const cls = this._stepRead(id) ? 'done' : i === step ? 'current' : '';
         return `<span class="mission-dot ${cls}" title="${this.escHtml(title)}" onclick="app._wizardStep=${i};app._pendingMissionIntro='${(m.intros?.[i]||'').replace(/'/g,"\\'")}';app.openBlock('${id}')" style="cursor:pointer"></span>`;
       }).join('')}</div>
     `;
@@ -6081,8 +9261,8 @@ class PBook {
     // Find next unread step
     let nextStep = this._wizardStep;
     const currentId = m.core[nextStep];
-    if (currentId && this.user.readBlocks.has(currentId)) nextStep++;
-    while (nextStep < m.core.length && this.user.readBlocks.has(m.core[nextStep])) nextStep++;
+    if (currentId && this._stepRead(currentId)) nextStep++;
+    while (nextStep < m.core.length && this._stepRead(m.core[nextStep])) nextStep++;
     this._wizardStep = nextStep;
 
     if (nextStep >= m.core.length) {
@@ -6116,9 +9296,11 @@ class PBook {
   }
 
   goBack() {
+    // Real browser history first (the same path the phone's back gesture takes);
+    // a visit that started on this section goes to Browse — never back to the door.
+    if (this._canGoBack()) { history.back(); return; }
     if (!this._navHistory || !this._navHistory.length) {
-      // No history — go to welcome/home
-      this.showWelcome();
+      this.switchView('home');
       return;
     }
     const prev = this._navHistory.pop();
@@ -6138,11 +9320,12 @@ class PBook {
   }
 
 
-  _scrollToBlock(parentId, meta) {
+  // instant: arriving from another view (no long animated scroll from the chapter top)
+  _scrollToBlock(parentId, meta, instant) {
     setTimeout(() => {
       const el = document.getElementById(`b-${meta.id}`) || document.getElementById(`b-${parentId}`);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 300);
+      if (el) el.scrollIntoView({ behavior: instant || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+    }, instant ? 30 : 300);
   }
 
   goToMapChapter(idx) {
@@ -6176,35 +9359,35 @@ class PBook {
     if (!el) return;
     const auth = this._getAuth();
     if (auth) {
-      el.innerHTML = `<label>Account</label>
+      el.innerHTML = `<label>${tr(`Account`)}</label>
         <div class="auth-card auth-logged-in" style="margin-top:.3em">
           <div class="auth-avatar" style="width:32px;height:32px;font-size:1.1rem">${this.getLevelIcon()}</div>
           <div class="auth-info">
-            <div class="auth-name" style="font-size:.8rem">${this.escHtml(auth.displayName || 'Reader')}</div>
-            <div class="auth-email" style="font-size:.65rem"><span style="color:var(--product)">&#9679;</span> ${this.escHtml(auth.email)}</div>
+            <div class="auth-name" style="font-size:.8rem">${this.escHtml(auth.displayName || tr('Reader'))}</div>
+            <div class="auth-email" style="font-size:.7rem"><span style="color:var(--product)">&#9679;</span> ${this.escHtml(auth.email)}</div>
           </div>
-          <button class="auth-secondary-btn" style="font-size:.68rem;padding:.3em .5em" onclick="app._showEditAccount()">Upravit</button>
-          <button class="auth-logout-btn" onclick="app.logout();app._renderSettingsAccount();app.renderProfile()">Odhlásit se</button>
+          <button class="auth-secondary-btn" style="font-size:.7rem;padding:.3em .5em" onclick="app._showEditAccount()">${tr(`Edit`)}</button>
+          <button class="auth-logout-btn" onclick="app.logout();app._renderSettingsAccount();app.renderProfile()">${tr(`Log out`)}</button>
         </div>
         <div id="editAccountForm" style="display:none;margin-top:.4em">
-          <input type="text" id="editName" class="auth-input" placeholder="Zobrazované jméno" value="${this.escHtml(auth.displayName || '')}" maxlength="60" style="font-size:.78rem;padding:.4em .6em">
-          <input type="password" id="editPassword" class="auth-input" placeholder="Nové heslo (prázdné = beze změny)" maxlength="100" style="font-size:.78rem;padding:.4em .6em">
+          <input type="text" id="editName" class="auth-input" placeholder="${tr(`Display name`)}" value="${this.escHtml(auth.displayName || '')}" maxlength="60" style="font-size:.78rem;padding:.4em .6em">
+          <input type="password" id="editPassword" class="auth-input" placeholder="${tr(`New password (leave empty to keep)`)}" maxlength="100" style="font-size:.78rem;padding:.4em .6em">
           <div class="auth-btns">
-            <button class="auth-primary-btn" style="font-size:.72rem;padding:.35em" onclick="app.updateAccount()">Uložit změny</button>
-            <button class="auth-secondary-btn" style="font-size:.72rem;padding:.35em" onclick="document.getElementById('editAccountForm').style.display='none'">Zrušit</button>
+            <button class="auth-primary-btn" style="font-size:.72rem;padding:.35em" onclick="app.updateAccount()">${tr(`Save changes`)}</button>
+            <button class="auth-secondary-btn" style="font-size:.72rem;padding:.35em" onclick="document.getElementById('editAccountForm').style.display='none'">${tr(`Cancel`)}</button>
           </div>
           <div id="editAccountError" class="auth-error"></div>
         </div>`;
     } else {
       const savedName = localStorage.getItem('pbook-cert-name') || '';
-      el.innerHTML = `<label>Account</label>
+      el.innerHTML = `<label>${tr(`Account`)}</label>
         <div style="margin-top:.3em">
-          <input type="text" id="authName" class="auth-input" placeholder="Tvoje jméno" value="${this.escHtml(savedName)}" maxlength="60" style="font-size:.78rem;padding:.4em .6em">
-          <input type="email" id="authEmail" class="auth-input" placeholder="E-mail" maxlength="120" style="font-size:.78rem;padding:.4em .6em">
-          <input type="password" id="authPassword" class="auth-input" placeholder="Heslo (aspoň 4 znaky)" maxlength="100" style="font-size:.78rem;padding:.4em .6em">
+          <input type="text" id="authName" class="auth-input" placeholder="${tr(`Your name`)}" value="${this.escHtml(savedName)}" maxlength="60" style="font-size:.78rem;padding:.4em .6em">
+          <input type="email" id="authEmail" class="auth-input" placeholder="Email" maxlength="120" style="font-size:.78rem;padding:.4em .6em">
+          <input type="password" id="authPassword" class="auth-input" placeholder="${tr(`Password (4+ chars)`)}" maxlength="100" style="font-size:.78rem;padding:.4em .6em">
           <div class="auth-btns">
-            <button class="auth-primary-btn" style="font-size:.75rem;padding:.4em" onclick="app.register()">Založit účet</button>
-            <button class="auth-secondary-btn" style="font-size:.75rem;padding:.4em" onclick="app.login()">Přihlásit se</button>
+            <button class="auth-primary-btn" style="font-size:.75rem;padding:.4em" onclick="app.register()">${tr(`Create account`)}</button>
+            <button class="auth-secondary-btn" style="font-size:.75rem;padding:.4em" onclick="app.login()">${tr(`Log in`)}</button>
           </div>
           <div id="authError" class="auth-error"></div>
         </div>`;
@@ -6223,13 +9406,13 @@ class PBook {
     const password = document.getElementById('editPassword')?.value;
     const errEl = document.getElementById('editAccountError');
 
-    const body = { action: 'update', email: auth.email };
+    const body = { action: 'update', email: auth.email, token: auth.token };
     if (name) body.displayName = name;
     if (password) {
-      if (password.length < 4) { if (errEl) errEl.textContent = 'Heslo musí mít aspoň 4 znaky.'; return; }
+      if (password.length < 4) { if (errEl) errEl.textContent = tr('Password must be at least 4 characters.'); return; }
       body.password = password;
     }
-    if (!name && !password) { if (errEl) errEl.textContent = 'Není co uložit.'; return; }
+    if (!name && !password) { if (errEl) errEl.textContent = tr('Nothing to update.'); return; }
     if (errEl) errEl.textContent = 'Saving...';
 
     const result = await this._authRequest(body);
@@ -6287,9 +9470,9 @@ class PBook {
     URL.revokeObjectURL(a.href);
   }
 
-  setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme === 'light' ? '' : theme);
-    localStorage.setItem('pbook-theme', theme);
+  setTheme(theme) {   // 'light' | 'dark' | 'auto' (follows the device) — js/ux.js
+    try { localStorage.setItem('pbook-theme', theme); } catch (e) {}
+    this._applyThemeChoice();
     this.updateSettingsUI();
   }
 
@@ -6301,8 +9484,7 @@ class PBook {
   }
 
   applyTheme() {
-    const theme = localStorage.getItem('pbook-theme');
-    if (theme && theme !== 'light') document.documentElement.setAttribute('data-theme', theme);
+    this._applyThemeChoice();
     const fs = localStorage.getItem('pbook-fs');
     if (fs) { const map = { small: '0.95rem', medium: '1.1rem', large: '1.3rem' }; document.documentElement.style.setProperty('--fs', map[fs]); }
     this._applyLevelTheme();
@@ -6393,14 +9575,14 @@ class PBook {
       const y = 2 + dow * rowH;
       const intensity = d.count > 0 ? Math.max(0.2, d.count / maxCount) : 0;
       const fill = d.count === 0 ? 'var(--border-light)' : `rgba(124,58,237,${intensity})`;
-      svg += `<rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="2" fill="${fill}"><title>${d.key}: ${d.count} interactions</title></rect>`;
+      svg += `<rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="2" fill="${fill}"><title>${tr(`{0}: {1} interactions`, d.key, d.count)}</title></rect>`;
     });
     svg += '</svg>';
 
-    let h = '<div class="profile-section"><h3>Tvoje aktivita</h3>';
+    let h = ('<div class="profile-section"><h3>' + tr(`Your Activity`) + '</h3>');
     h += `<div style="display:flex;gap:1em;margin-bottom:.6em;font-size:.78rem">`;
-    h += `<span style="color:var(--text-3)">${totalActive} active days</span>`;
-    h += `<span style="color:var(--text-3)">${totalInteractions} interactions</span>`;
+    h += `<span style="color:var(--text-3)">${tr(`{0} active day{1}`, totalActive, totalActive === 1 ? '' : 's')}</span>`;
+    h += `<span style="color:var(--text-3)">${tr(`{0} interactions`, totalInteractions)}</span>`;
     h += `</div>`;
     h += svg;
     // Chapter breakdown bars
@@ -6415,7 +9597,7 @@ class PBook {
     const chEntries = Object.entries(chCounts).sort((a, b) => a[0] - b[0]);
     if (chEntries.length > 1) {
       const chMax = Math.max(...chEntries.map(([_, c]) => c), 1);
-      h += '<div style="margin-top:.8em;font-size:.72rem;color:var(--text-3)">Čtení po kapitolách</div>';
+      h += ('<div style="margin-top:.8em;font-size:.72rem;color:var(--text-3)">' + tr(`Reading by chapter`) + '</div>');
       h += '<div style="display:flex;flex-direction:column;gap:.2em;margin-top:.3em">';
       chEntries.forEach(([ch, count]) => {
         const pct = Math.round((count / chMax) * 100);
@@ -6450,22 +9632,113 @@ class PBook {
     ];
   }
 
+  // ===== AI EKONOMIKA (hospodárná AI) =====
+  // Server-autoritativní: zůstatek drží ledger v Supabase (api/wallet) a
+  // útratu vynucuje api/generate PŘED voláním modelu. Klient jen zrcadlí
+  // zůstatek pro UI. Anonym má jediný trial základní AI; plná AI po přihlášení.
+  _walletAuth() {
+    const a = this._getAuth();
+    const uid = localStorage.getItem('pbook-uid') || '';
+    return a ? { email: a.email, token: a.token, uid } : { uid };
+  }
+  async _walletCall(body) {
+    try {
+      const r = await fetch('/api/wallet', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      return await r.json();
+    } catch (e) { return { ok: false, error: 'offline' }; }
+  }
+  async refreshAiBalance(seed) {
+    const a = this._getAuth();
+    if (!a) { this._srvBalance = null; this.updateXPBadge(); return; }
+    const d = await this._walletCall({ action: 'balance', email: a.email, token: a.token, clientXp: seed ? this.user.xp : undefined });
+    if (d && d.ok) { this._srvBalance = d.balance; this.updateXPBadge(); }
+  }
+  // XP výdělky se na server hlásí dávkovaně (server je stropuje per den).
+  _walletEarnQueue(n) {
+    if (!this._getAuth() || !CONFIG.aiEconomy?.enabled) return;
+    this._earnQ = (this._earnQ || 0) + n;
+    clearTimeout(this._earnT);
+    this._earnT = setTimeout(async () => {
+      const q = this._earnQ; this._earnQ = 0;
+      const a = this._getAuth();
+      if (!a || q <= 0) return;
+      const d = await this._walletCall({ action: 'earn', email: a.email, token: a.token, amount: q, reason: 'activity' });
+      if (d && d.ok) { this._srvBalance = d.balance; this.updateXPBadge(); }
+    }, 4000);
+  }
+  _trialsUsedLocal() { return parseInt(localStorage.getItem('pbook-ai-trials-used') || (localStorage.getItem('pbook-ai-trial-used') === '1' ? '1' : '0'), 10) || 0; }
+  _trialUsedLocal() { return this._trialsUsedLocal() >= (CONFIG.aiEconomy?.freeTrials || 1); }
+  aiBalance() { return this._srvBalance == null ? 0 : this._srvBalance; }
+  aiCanPay(tier) {
+    const c = CONFIG.aiEconomy;
+    if (!c || !c.enabled || !this._f('gamification')) return { ok: true, free: false };
+    if (this._getAuth()) return { ok: this._srvBalance == null ? true : this._srvBalance >= c.prices[tier], free: false };
+    if (tier === 'basic' && !this._trialUsedLocal()) return { ok: true, free: true };
+    return { ok: false, free: false, login: true };
+  }
+  // Po úspěšné generaci: server už utratil (walletBalance v odpovědi) — klient jen zrcadlí.
+  _walletApply(data, tier, pay) {
+    const c = CONFIG.aiEconomy;
+    if (!c || !c.enabled || !this._f('gamification')) return;
+    if (this._getAuth()) {
+      if (data && data.walletBalance != null) { this._srvBalance = data.walletBalance; this.updateXPBadge(); }
+      else this.refreshAiBalance(false);
+      this.showXPToast(tr('−{p} ⚡ for AI · ⚡{b} left').replace('{p}', c.prices[tier]).replace('{b}', this.aiBalance()), 'xp');
+    } else if (pay && pay.free) {
+      localStorage.setItem('pbook-ai-trials-used', String(this._trialsUsedLocal() + 1));
+      this.showXPToast(tr('Free AI try 🌱 ({n} left)').replace('{n}', Math.max(0, (CONFIG.aiEconomy?.freeTrials || 1) - this._trialsUsedLocal())), 'xp');
+    }
+    this.rc.logEvent('ai_spend', { tier, price: this._getAuth() ? c.prices[tier] : 0, balance: this.aiBalance() });
+  }
+  aiPaywallHtml(tier, kind) {
+    const c = CONFIG.aiEconomy;
+    if (kind === 'login' || (!this._getAuth() && this._trialUsedLocal())) {
+      return `<div style="border:1.5px solid #0EA5E9;background:var(--card,#fff);border-radius:10px;padding:.55em .7em;font-size:.74rem;line-height:1.5">
+        ${tr(`<b>🔑 AI needs an account</b><br>The free try is used. Log in via`)} <a href="#" onclick="event.preventDefault();app.switchView('profile')">${tr(`Profile`)}</a> ${tr(`— your ⚡ start counting server-side and existing XP migrates (up to 100).`)}<br>
+        <span style="color:#15803D;font-size:.7rem">${tr(`We nudge toward frugal AI use — manual work and thinking earn more. 🌱`)}</span></div>`;
+    }
+    const tierName = tier === 'advanced' ? tr('Advanced AI (variants & diagrams)') : tr('Basic AI (text)');
+    return `<div style="border:1.5px solid #D97706;background:var(--card,#fff);border-radius:10px;padding:.55em .7em;font-size:.74rem;line-height:1.5">
+      ${tr(`<b>⚡ Not enough ⚡ for this yet</b><br> {0}`, tr(`{tier} costs <b>{p} ⚡</b>, you have <b>⚡{b}</b>. Earn by working with the book:`).replace('{tier}', tierName).replace('{p}', c.prices[tier]).replace('{b}', this.aiBalance()))}<br>
+      <span style="color:var(--text-2,#666)">${tr(`read a section +10 · recall +2 · game +5 · note +3 · <b>manual edit +{me}</b> · <b>your own writing in the studio +{me} per ~{z} chars</b>`).replace(/\{me\}/g, c.earnManualEdit).replace('{z}', c.earnStudioChars || 250)}</span><br>
+      <span style="color:var(--text-2,#666)">${tr(`You can keep creating by hand right now — nothing stops you, and work earns your ⚡ back.`)}</span><br>
+      <span style="color:#15803D;font-size:.7rem">${tr(`We nudge toward frugal AI use — manual work and thinking earn more. 🌱`)}</span>
+    </div>`;
+  }
+  // 402/401 ze serveru → paywall místo obecné chyby
+  _aiErrorPaywall(e, tier) {
+    const m = String(e && e.message || '');
+    if (m.includes('insufficient_xp')) return this.aiPaywallHtml(tier, 'xp');
+    if (m.includes('login_required')) return this.aiPaywallHtml(tier, 'login');
+    return null;
+  }
+  aiEconHint() {
+    const c = CONFIG.aiEconomy;
+    if (!c || !c.enabled || !this._f('gamification') || !this._f('generation')) return '';
+    if (this._getAuth()) return tr(`AI costs server-side XP: text {b} ⚡ · with a diagram {a} ⚡ — you have <b>⚡{bal}</b>. Manual editing is free and earns +{me} XP.`).replace('{b}', c.prices.basic).replace('{a}', c.prices.advanced).replace('{bal}', this.aiBalance()).replace('{me}', c.earnManualEdit);
+    if (!this._trialUsedLocal()) return tr('First AI try is free 🌱 — then log in and pay from earned XP (text {b} ⚡, diagram {a} ⚡).').replace('{b}', c.prices.basic).replace('{a}', c.prices.advanced);
+    return tr('AI unlocks after login (Profile) — paid from XP earned by reading and working with the book. Manual editing is free.');
+  }
+
   updateXPBadge() {
     const el = document.getElementById('xpBadge');
     if (!el) return;
-    if (!this._f('gamification')) { el.style.display = 'none'; return; }
+    // Progress first: concepts read out of the book's concepts (XP and level live in Profile)
     el.style.display = '';
-    const reward = this.getLevelRewards().filter(r => r.level <= this.user.level).pop();
+    const { read, total } = this._conceptProgress();
     const editor = this.getEditorTrack?.().tier === 'editor' ? '🛠 ' : '';
-    el.textContent = editor + (reward?.icon || '') + ' Lv.' + this.user.level + ' · ' + this.user.xp + 'XP';
-    el.title = editor ? 'Editor — earned through accepted contributions' : '';
+    el.innerHTML = `<span class="xp-ring">${this._ringSvg(total ? read / total : 0, 18)}<span>${editor}${read}/${total}</span></span>`;
+    el.title = `${tr(`{0} of {1} concepts read`, read, total)}` + (this._f('gamification') ? ` ${tr(`· level {0} · {1} XP`, this.user.level, this.user.xp)}` : '') + (editor ? tr(' · editor') : '');
+    el.setAttribute('aria-label', `${tr(`Your progress: {0} of {1} concepts read. Open your profile`, read, total)}`);
     // Apply cosmetic theme
     this._applyLevelTheme();
     // Update quiz tab badge
     const quizTab = document.querySelector('.tab[data-view="quiz"] .tab-label');
     if (quizTab && this._f('spaceRepetition')) {
       const dueCount = this.user.getDueRecalls().length;
-      quizTab.textContent = dueCount > 0 ? `Quiz (${dueCount})` : 'Quiz';
+      // a dot on the icon, not a count in the label (the label width jumped)
+      quizTab.closest('.tab')?.classList.toggle('has-due', dueCount > 0);
+      quizTab.closest('.tab')?.setAttribute('aria-label', dueCount > 0 ? `${tr(`Quiz, {0} cards due`, dueCount)}` : tr('Quiz'));
     }
   }
 
@@ -6498,11 +9771,11 @@ class PBook {
   checkGamificationEvents() {
     if (!this._f('gamification')) return;
     if (this.user._pendingLevelUp) {
-      this.showXPToast('Úroveň ' + this.user._pendingLevelUp + '! Teď jsi: ' + this.user.getLevelTitle(), 'levelup');
+      this.showXPToast(tr('Level ') + this.user._pendingLevelUp + ' · ' + this.user.getLevelTitle(), 'levelup');
       this.user._pendingLevelUp = null;
     } else if (this.user._pendingAchievement) {
-      const a = this.user._pendingAchievement;
-      this.showXPToast(a.icon + ' ' + a.name + '!', 'achievement');
+      const a = this.user._pendingAchievement, n = ACHIEVEMENT_NAMES[a.id] || a;
+      this.showXPToast(n.icon + ' ' + n.name, 'achievement');
       this.user._pendingAchievement = null;
     }
     this.updateXPBadge();
@@ -6524,7 +9797,7 @@ class PBook {
   // logged (cross-user aggregation in admin) and recorded locally (feeds the editor
   // track); the drafting AI turns ranked wishes into contract proposals for editors.
   proposeConcept(seed) {
-    const text = (window.prompt('🌱 Jaký koncept v knize chybí?\n\nPopiš ho jednou dvěma větami — každý návrh projde redakcí (a přípravnou AI).', seed || '') || '').trim();
+    const text = (window.prompt(tr('🌱 What concept is missing from this book?\n\nDescribe it in a sentence or two — editors (and the drafting AI) review every proposal.'), seed || '') || '').trim();
     if (!text || text.length < 8) return;
     try {
       const flags = JSON.parse(localStorage.getItem('pbook-flags') || '[]');
@@ -6533,7 +9806,7 @@ class PBook {
     } catch (e) {}
     this.rc.logEvent('concept_wish', { text: text.slice(0, 300) });
     if (this._f('gamification')) { this.user.addXP(10); this.user.save(); this.updateXPBadge(); }
-    this.showXPToast('🌱 +10 XP — návrh konceptu zaznamenán pro redakci', 'achievement');
+    this.showXPToast(tr('🌱 +10 XP — concept proposal recorded for the editors'), 'achievement');
   }
 
   // Share helper: native share sheet where available, clipboard elsewhere.
@@ -6544,7 +9817,7 @@ class PBook {
     } catch (e) { if (e.name === 'AbortError') return; }
     try {
       await navigator.clipboard.writeText(`${text} ${url}`);
-      this.showXPToast('🔗 Link copied — paste it to a friend', 'achievement');
+      this.showXPToast(tr('🔗 Link copied — paste it to a friend'), 'achievement');
       this.rc.logEvent('share', { what: title, via: 'clipboard' });
     } catch (e) {}
   }
@@ -6554,12 +9827,46 @@ class PBook {
   // yet" cards. Votes measure demand BEFORE anyone invests writing effort — the
   // pre-mint stage of the elastic catalog. Curated in content/concept-proposals.json.
   async _loadProposals() {
+    this._loadConceptMap();   // fire-and-forget: „Kam dál" pod sekcemi ho potřebuje brzy
+    return this.__loadProposalsInner();
+  }
+  async __loadProposalsInner() {
     this.proposals = [];
     try {
       const res = await fetch('content/concept-proposals.json');
-      if (res.ok) this.proposals = (await res.json()).proposals || [];
+      if (res.ok) this.proposals = this._bookData(await res.json()).proposals || [];
     } catch (e) { /* optional file */ }
+    // Server-saved proposals (admin creates/edits them live; event-sourced in
+    // Supabase). Server state wins on slug collisions; a server-side delete
+    // hides a git-shipped proposal too.
+    try {
+      const r = await fetch('/api/proposals');
+      if (r.ok) {
+        const d = await r.json();
+        if (d && d.ok) {
+          const bySlug = new Map(this.proposals.map(p => [p.slug, p]));
+          (d.proposals || []).forEach(p => bySlug.set(p.slug, p));
+          (d.deleted || []).forEach(slug => bySlug.delete(slug));
+          this.proposals = [...bySlug.values()];
+        }
+      }
+    } catch (e) { /* offline → git file only */ }
   }
+  // Compact, anonymous reader profile for demand analytics: top facet
+  // preferences only — no names, no ids beyond the existing pseudonymous uid.
+  _audienceSnapshot() {
+    const top = obj => {
+      const e = Object.entries(obj || {}).sort((a, b) => (b[1] || 0) - (a[1] || 0));
+      return e.length && e[0][1] > 0 ? e[0][0] : undefined;
+    };
+    const fa = this.user.facetAffinity || {};
+    const out = {};
+    const lens = (this.user.steerPrefs || {}).lens || top(fa.lens); if (lens) out.lens = lens;
+    const depth = top(fa.depth); if (depth) out.depth = depth;
+    if (this.user.goal) out.goal = this.user.goal;
+    return out;
+  }
+
   _ghostVotes() {
     try { return JSON.parse(localStorage.getItem('pbook-ghost-votes') || '{}'); } catch (e) { return {}; }
   }
@@ -6574,14 +9881,14 @@ class PBook {
       this.rc.logEvent('ghost_view', { slug: p.slug, ctx });
     }
     return `<div class="card ghost-card" style="flex:0 0 262px;border-top:3px solid #0EA5E9">
-      <div class="card-chapter" style="color:#0EA5E9;font-weight:700">🌱 NÁVRH · zatím nenapsáno <a href="#" onclick="event.preventDefault();app.showHowItWorks('ghost')" style="float:right;font-weight:400;color:var(--text-3)">?</a></div>
+      <div class="card-chapter" style="color:#0EA5E9;font-weight:700">${tr(`🌱 PROPOSED · not written yet`)}</div>
       <div class="card-title">${this.escHtml(p.title)}</div>
       <div class="card-teaser" style="font-size:.72rem">${this.escHtml(p.objective)}</div>
-      <div style="font-size:.64rem;color:var(--text-3);font-style:italic;margin:.3em 0">Uměl bys odpovědět: ${this.escHtml(p.recallQ)}</div>
-      <div id="ghost-${p.slug}-${ctx}" style="display:flex;gap:.4em;margin-top:.35em;flex-wrap:wrap">
-        <button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" onclick="app.ghostVote('${p.slug}',1,'${ctx}')">👍 Tohle bych četl</button>
-        ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" onclick="app.openGenComposer('${p.slug}','${ctx}')">✨ Rozpracovat hned</button>` : ''}
-        <button class="steer-chip" onclick="app.ghostVote('${p.slug}',-1,'${ctx}')">Nic pro mě</button>
+      <div style="font-size:.7rem;color:var(--text-3);font-style:italic;margin:.3em 0">${tr(`You'd be able to answer: {0}`, this.escHtml(p.recallQ))}</div>
+      <div id="ghost-${p.slug}-${ctx}" style="display:flex;gap:.4em;margin-top:.35em">
+        <button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9" onclick="app.ghostVote('${p.slug}',1,'${ctx}')">${tr(`👍 I'd read this`)}</button>
+        <button class="steer-chip" onclick="app.ghostVote('${p.slug}',-1,'${ctx}')">${tr(`Not for me`)}</button>
+        <button class="steer-chip" style="border-color:var(--accent);color:var(--accent)" onclick="app.startAuthoring('${p.slug}')">${tr(`✍️ I could write it`)}</button>
       </div>
     </div>`;
   }
@@ -6589,421 +9896,14 @@ class PBook {
     const votes = this._ghostVotes();
     votes[slug] = v;
     localStorage.setItem('pbook-ghost-votes', JSON.stringify(votes));
-    this.rc.logEvent(v > 0 ? 'ghost_want' : 'ghost_skip', { slug });
+    this.rc.logEvent(v > 0 ? 'ghost_want' : 'ghost_skip', { slug, aud: this._audienceSnapshot() });
     if (v > 0 && this._f('gamification')) { this.user.addXP(2); this.user.save(); this.updateXPBadge(); }
     const el = document.getElementById(`ghost-${slug}-${ctx}`);
     if (el) {
       el.innerHTML = v > 0
-        ? `<span style="font-size:.7rem;color:#0EA5E9">✓ +2 XP — zájem zaznamenán, redakce vidí součty. <a href="#" onclick="event.preventDefault();app.proposeConcept('${this.escHtml(slug)}: ')" style="color:var(--accent)">přidej svůj pohled</a></span>`
-        : `<span style="font-size:.7rem;color:var(--text-3)">✓ zaznamenáno — tenhle už neuvidíš</span>`;
+        ? `<span style="font-size:.7rem;color:#0EA5E9">${tr(`✓ +2 XP — demand recorded, editors see the totals.`)} <a href="#" onclick="event.preventDefault();app.proposeConcept('${this.escHtml(slug)}: ')" style="color:var(--accent)">${tr(`add your angle`)}</a></span>`
+        : `<span style="font-size:.7rem;color:var(--text-3)">${tr(`✓ noted — you won't see this one again`)}</span>`;
     }
-  }
-
-  // ===== KONCEPTOVÁ MAPA (graf z Mapy informatických konceptů Glitch) =====
-  async _loadConceptMap() {
-    if (this._cmapData) return;
-    try {
-      const res = await fetch('content/concept-map.json');
-      if (res.ok) {
-        this._cmapData = await res.json();
-        this._cmapNodes = Object.fromEntries(this._cmapData.nodes.map(n => [n.slug, n]));
-      }
-    } catch (e) { /* volitelný soubor */ }
-  }
-
-  _blocksByConcept() {
-    if (this._byConcept) return this._byConcept;
-    const m = {};
-    (this.allBlocks || []).forEach(b => {
-      const c = b.meta?.concept;
-      if (c) (m[c] = m[c] || []).push(b);
-    });
-    this._byConcept = m;
-    return m;
-  }
-
-  // Záložka Koncepty: koncepty seskupené podle témat, u každého jeho podání;
-  // 🌱 navrhované koncepty s hlasováním o zájmu přímo v seznamu.
-  async renderConceptsMap() {
-    await this._loadConceptMap();
-    const cm = this._cmapData;
-    if (!cm) return '<div style="padding:2em;text-align:center;color:var(--text-3)">Mapu konceptů se nepodařilo načíst.</div>';
-    const byConcept = this._blocksByConcept();
-    const votes = this._ghostVotes();
-    const GENRE_ICONS = { explainer: '📄', story: '📖', 'worked-example': '🧮', 'code-walkthrough': '💻', comic: '🎭', animation: '🎞' };
-    const STATE_COLORS = { core: '#7C3AED', edited: '#10B981', community: '#D97706', private: '#9CA3AF' };
-    const TYPE_ICONS = { game: '🎮', question: '❓' };
-    const coreN = cm.nodes.filter(n => n.state === 'core');
-    const readN = coreN.filter(n => (byConcept[n.slug] || []).some(b => this.user.readBlocks.has(b.meta.id))).length;
-
-    let h = `<div class="fade-up" style="max-width:760px;margin:0 auto">
-      <p style="font-size:.78rem;color:var(--text-2);margin:.2em 0 .8em">Kniha podle <b>konceptů</b>, ne kapitol: každý koncept má svá podání (článek, hru, komiks…).
-      Čárkované 🌱 koncepty zatím napsané nejsou — hlasováním říkáš redakci, kam jít do hloubky.
-      Přečteno <b>${readN}/${coreN.length}</b> konceptů.</p>`;
-
-    cm.temata.forEach(t => {
-      const nodes = cm.nodes.filter(n => n.tema === t.id);
-      const cores = nodes.filter(n => n.state === 'core');
-      const ghosts = nodes.filter(n => n.state === 'ghost');
-      const readCount = cores.filter(n => (byConcept[n.slug] || []).some(b => this.user.readBlocks.has(b.meta.id))).length;
-      h += `<details class="covmap-chapter-sec" open>
-        <summary style="display:flex;align-items:center;gap:.5em"><span style="width:10px;height:10px;border-radius:50%;background:${t.color};flex-shrink:0"></span>
-          <b>${this.escHtml(t.nazev)}</b>
-          <span style="color:var(--text-3);font-size:.72rem;margin-left:auto">${readCount}/${cores.length} přečteno · 🌱 ${ghosts.length} návrhů</span></summary>
-        <div style="padding:.4em 0 .6em">`;
-      cores.forEach(n => {
-        const pool = this._conceptPool(n.slug);
-        const anyRead = pool.some(b => this.user.readBlocks.has(b.meta.id));
-        const chips = pool.map(b => {
-          const m = b.meta;
-          const state = m.core ? 'core' : (m.state || 'edited');
-          const icon = TYPE_ICONS[m.type] || GENRE_ICONS[this._facetValues(m, 'genre')[0] || 'explainer'] || '📄';
-          const read = this.user.readBlocks.has(m.id);
-          return `<button class="tstrip-chip" style="--sc:${STATE_COLORS[state] || '#10B981'};${read ? 'box-shadow:0 0 0 1.5px #10B981' : ''}"
-            title="${this.escHtml((m.title || m.id) + (read ? ' · přečteno' : ''))}" onclick="app.openTelling('${m.id}')">${icon}</button>`;
-        }).join('');
-        h += `<div style="display:flex;align-items:center;gap:.5em;padding:.22em 0;border-bottom:1px dashed var(--border-light,#eee)">
-          <span style="font-size:.75rem;width:1.1em;text-align:center">${anyRead ? '✅' : '○'}</span>
-          <a href="#" onclick="event.preventDefault();app.openBlock('${n.slug}')" style="font-size:.8rem;font-weight:600;color:var(--text-1);text-decoration:none;flex:1 1 auto">${this.escHtml(n.title)}</a>
-          <span class="tstrip" style="margin:0">${chips}</span>
-        </div>`;
-      });
-      if (ghosts.length) {
-        h += `<div style="margin-top:.45em;font-size:.68rem;color:#0EA5E9;font-weight:700">🌱 Kam jít do hloubky — zatím nenapsáno, hlasuj:</div>`;
-        ghosts.forEach(n => {
-          const voted = n.slug in votes;
-          const gpool = this._conceptPool(n.slug);
-          const draftChips = gpool.map(b => `<button class="tstrip-chip" style="--sc:#9CA3AF" title="${this.escHtml((b.meta.title || b.meta.id) + ' · ⚡ tvůj draft — čti v knize')}" onclick="app.openBlock('${b.meta.id}')">⚡</button>`).join('');
-          h += `<div style="display:flex;align-items:flex-start;gap:.5em;padding:.22em 0">
-            <span style="font-size:.72rem;width:1.1em;text-align:center">🌱</span>
-            <div style="flex:1 1 auto"><span style="font-size:.78rem;font-weight:600;color:var(--text-2)">${this.escHtml(n.title)}</span>
-              <span style="font-size:.68rem;color:var(--text-3)"> — ${this.escHtml(n.teaser || '')}</span></div>
-            ${draftChips ? `<span class="tstrip" style="margin:0">${draftChips}</span>` : ''}
-            <span id="ghost-${n.slug}-cmap" style="flex-shrink:0">${voted
-              ? `<span style="font-size:.68rem;color:#0EA5E9">✓ ${votes[n.slug] > 0 ? 'chci' : 'nezájem'}</span>${this._genReady && this.user.readerMode === 'open' && !gpool.length ? ` <button class="steer-chip steer-gen" style="font-size:.62rem;padding:.06em .4em" onclick="app.openGenComposer('${n.slug}','cmap')">✨ rozpracovat</button>` : ''}`
-              : `<button class="steer-chip" style="border-color:#0EA5E9;color:#0EA5E9;font-size:.62rem;padding:.06em .4em" onclick="app.ghostVote('${n.slug}',1,'cmap')">👍 chci</button>
-                 ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" style="font-size:.62rem;padding:.06em .4em" onclick="app.openGenComposer('${n.slug}','cmap')">✨ rozpracovat</button>` : ''}
-                 <button class="steer-chip" style="font-size:.62rem;padding:.06em .4em" onclick="app.ghostVote('${n.slug}',-1,'cmap')">ne</button>`}</span>
-          </div>`;
-        });
-      }
-      h += `</div></details>`;
-    });
-    h += `</div>`;
-    return h;
-  }
-
-  // „Kam dál" pásek pod sekcí: související koncepty z mapy znalostí —
-  // existující jako odkazy, 🌱 nenapsané jako testování zájmu.
-  _renderConceptLinks(block) {
-    const slug = block.concept;
-    const node = this._cmapNodes?.[slug];
-    if (!node || !node.rel?.length) return '';
-    const votes = this._ghostVotes();
-    const rels = node.rel
-      .map(r => this._cmapNodes[r]).filter(Boolean)
-      .sort((a, b) => (a.state === 'core' ? 0 : 1) - (b.state === 'core' ? 0 : 1))
-      .slice(0, 6);
-    if (!rels.length) return '';
-    const chips = rels.map(r => {
-      if (r.state === 'core') {
-        return `<button class="steer-chip" style="font-size:.66rem" title="${this.escHtml(r.teaser || '')}" onclick="app.openBlock('${r.slug}')">${this.escHtml(r.title)}</button>`;
-      }
-      const draft = (this._conceptPool(r.slug) || []).find(b => b.meta);
-      if (draft) {
-        return `<button class="steer-chip" style="font-size:.66rem;border-style:dashed;color:var(--accent)" title="${this.escHtml((r.teaser || '') + ' · ⚡ tvůj draft — čti v knize')}" onclick="app.openBlock('${draft.meta.id}')">⚡ ${this.escHtml(r.title)}</button>`;
-      }
-      const voted = r.slug in votes;
-      return `<button class="steer-chip" id="clink-${block.id}-${r.slug}" style="font-size:.66rem;border-style:dashed;${voted ? 'color:#0EA5E9;border-color:#0EA5E9' : 'color:var(--text-2)'}"
-        title="${this.escHtml((r.teaser || '') + ' · Zatím nenapsáno — kliknutím dáš hlas, ať to napíšeme.')}"
-        onclick="app.ghostChip('${r.slug}','clink-${block.id}-${r.slug}')">${voted ? '✓' : '🌱'} ${this.escHtml(r.title)}</button>`;
-    }).join('');
-    return `<div class="concept-links" style="display:flex;flex-wrap:wrap;gap:.3em;align-items:center;margin:.5em 0;padding:.45em .55em;border:1px dashed var(--border);border-radius:9px">
-      <span style="font-size:.66rem;font-weight:700;color:var(--text-3)">🧭 Kam dál:</span>${chips}</div>`;
-  }
-
-  // Hlas z „Kam dál" chipu — 🌱 koncept, o kterém zatím nepíšeme
-  ghostChip(slug, elId) {
-    const votes = this._ghostVotes();
-    if (!(slug in votes)) {
-      votes[slug] = 1;
-      localStorage.setItem('pbook-ghost-votes', JSON.stringify(votes));
-      this.rc.logEvent('ghost_want', { slug, ctx: 'inline' });
-      if (this._f('gamification')) { this.user.addXP(2); this.user.save(); this.updateXPBadge(); }
-      this.showXPToast('🌱 +2 XP — zájem zaznamenán, redakce vidí součty', 'achievement');
-    }
-    const el = document.getElementById(elId);
-    if (el) { el.style.color = '#0EA5E9'; el.style.borderColor = '#0EA5E9'; el.innerHTML = '✓ ' + el.innerHTML.replace(/^\S+\s/, ''); el.onclick = null; }
-  }
-
-  // Přání konkrétního podání (když generování není k dispozici) — měří poptávku
-  tellingWish(blockId, conceptId) {
-    const target = this._steerTargets?.[conceptId] || {};
-    this.rc.logEvent('telling_wish', { blockId, concept: conceptId, target });
-    try {
-      const flags = JSON.parse(localStorage.getItem('pbook-flags') || '[]');
-      flags.push({ blockId, type: 'telling-wish', text: JSON.stringify(target), timestamp: new Date().toISOString() });
-      localStorage.setItem('pbook-flags', JSON.stringify(flags));
-    } catch (e) {}
-    if (this._f('gamification')) { this.user.addXP(2); this.user.save(); this.updateXPBadge(); }
-    const btn = document.getElementById(`wish-btn-${blockId}`);
-    if (btn) btn.outerHTML = '<span style="font-size:.7rem;color:#0EA5E9">✓ +2 XP — přání zaznamenáno, redakce vidí, po čem je poptávka</span>';
-  }
-
-  // 🌱 návrh v read-next: preferuj související nenapsaný koncept, jinak náhodný nehlasovaný
-  _rnGhostHtml(block) {
-    const votes = this._ghostVotes();
-    let pick = null;
-    const rel = this._cmapNodes?.[block.concept]?.rel || [];
-    for (const r of rel) {
-      const n = this._cmapNodes[r];
-      if (n && n.state === 'ghost' && !(n.slug in votes)) { pick = { slug: n.slug, title: n.title, objective: n.teaser }; break; }
-    }
-    if (!pick) {
-      const gp = this._unvotedProposals();
-      if (gp.length) pick = gp[(this.user.readBlocks.size + 3) % gp.length];
-    }
-    if (!pick) return '';
-    if (!this._ghostSeen) this._ghostSeen = new Set();
-    if (!this._ghostSeen.has(pick.slug)) { this._ghostSeen.add(pick.slug); this.rc.logEvent('ghost_view', { slug: pick.slug, ctx: 'rnext' }); }
-    return `<div class="rn-item" style="border:1px dashed #0EA5E9;border-radius:8px">
-      <span class="rn-label" style="color:#0EA5E9">🌱 Kam dál</span>
-      <span class="rn-title">${this.escHtml(pick.title)}</span>
-      <span id="ghost-${pick.slug}-rnext" class="rn-time" style="display:inline-flex;gap:.3em">
-        <button class="steer-chip" style="font-size:.6rem;padding:.04em .35em;border-color:#0EA5E9;color:#0EA5E9" onclick="event.stopPropagation();app.ghostVote('${pick.slug}',1,'rnext')">👍 chci</button>
-        ${this._genReady && this.user.readerMode === 'open' ? `<button class="steer-chip steer-gen" style="font-size:.6rem;padding:.04em .35em" onclick="event.stopPropagation();app.openGenComposer('${pick.slug}','rnext')">✨</button>` : ''}
-      </span></div>`;
-  }
-
-  // ✨ Rozpracovat nenapsaný koncept: první podání vznikne na přání čtenáře
-  async draftGhost(slug, ctx, targetOverride, wish) {
-    const node = this._cmapNodes?.[slug];
-    const area = document.getElementById(`ghost-${slug}-${ctx}`);
-    if (area) area.innerHTML = '<span class="gen-spinner">⚡ Píšu podání na míru… (~30 s, podle kontraktu z mapy znalostí)</span>';
-    this.rc.logEvent('ghost_draft_request', { slug, ctx, target: targetOverride || null });
-    try {
-      const target = targetOverride || { ...this.user.getTargetFacets(), lang: 'cs' };
-      const res = await fetch(CONFIG.steering.generateEndpoint, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ concept: slug, facets: target, existingVariants: [], instructions: wish || undefined }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.ok) throw new Error(data.error || 'generation failed');
-      const block = {
-        meta: { ...data.block.facets, id: data.block.id, title: data.block.title, type: 'spine',
-                diagramSvg: data.block.svg || undefined, concept: slug, state: 'private', generated: true,
-                readingTime: Math.max(1, Math.round((data.block.body.split(/\s+/).length) / 200)),
-                recallQ: data.block.recallQ || null, recallA: data.block.recallA || null },
-        body: data.block.body,
-      };
-      this._savePrivateBlock(block);
-      const votes = this._ghostVotes();
-      if (!(slug in votes)) { votes[slug] = 1; localStorage.setItem('pbook-ghost-votes', JSON.stringify(votes)); }
-      this.rc.logEvent('ghost_draft_served', { slug, variantId: block.meta.id, cached: !!data.cached });
-      if (this._f('gamification')) { this.user.addXP(5); this.user.save(); this.updateXPBadge(); }
-      this._hydrateGhostDrafts();
-      const chNum = this._findAnyBlock(block.meta.id)?.meta?._chapterNum;
-      if (area) area.innerHTML = `<span style="font-size:.7rem;color:#0EA5E9">✓ +5 XP — koncept je rozpracovaný a zařazený${chNum ? ` do kapitoly ${chNum}` : ''} tvé knihy</span>`;
-      this._showDraftOverlay(block, node);
-    } catch (e) {
-      this.rc.logEvent('ghost_draft_failed', { slug, error: String(e.message).slice(0, 200) });
-      if (area) area.innerHTML = `<span style="font-size:.7rem;color:var(--warn,#D97706)">Generování se nepovedlo (${this.escHtml(String(e.message).slice(0, 80))}) — tvůj zájem je aspoň zaznamenán.</span>`;
-      const votes = this._ghostVotes();
-      if (!(slug in votes)) { votes[slug] = 1; localStorage.setItem('pbook-ghost-votes', JSON.stringify(votes)); this.rc.logEvent('ghost_want', { slug }); }
-    }
-  }
-
-  openDraft(blockId) {
-    const entry = this.privateBlocks?.[blockId] || this._findAnyBlock(blockId);
-    if (entry) this._showDraftOverlay(entry, this._cmapNodes?.[entry.meta.concept]);
-  }
-
-  _showDraftOverlay(entry, node) {
-    document.getElementById('draftOverlay')?.remove();
-    const m = entry.meta;
-    const ov = document.createElement('div');
-    ov.id = 'draftOverlay';
-    ov.className = 'cert-overlay';
-    ov.innerHTML = `<div class="cert-modal" style="max-width:640px;max-height:86vh;overflow:auto;text-align:left">
-      <button class="cert-close" onclick="document.getElementById('draftOverlay').remove()">&times;</button>
-      <div style="font-size:.68rem;color:#0EA5E9;font-weight:700;margin-bottom:.2em">🌱 ${this.escHtml(node?.title || m.concept)} · <span class="gen-badge">⚡ vygenerováno na tvoje přání · zatím bez redakce</span></div>
-      <h3 style="margin:.1em 0 .5em">${this.escHtml(m.title || '')}</h3>
-      <div class="spine-body">${renderMarkdown(entry.body || '')}</div>
-      ${m.recallQ ? `<div class="key-takeaway" style="margin-top:.7em"><div class="key-takeaway-label">Zapamatuj si</div><div class="key-takeaway-text"><b>${this.escHtml(m.recallQ)}</b><br>${this.escHtml(m.recallA || '')}</div></div>` : ''}
-      ${this._renderConceptLinks({ id: m.id, concept: m.concept })}
-      <div style="display:flex;gap:.5em;margin-top:.8em;flex-wrap:wrap">
-        <button class="btn-primary" style="font-size:.78rem" onclick="document.getElementById('draftOverlay').remove();app.openBlock('${m.id}')">📖 Otevřít v knize</button>
-        <button class="btn-ghost" style="font-size:.78rem;border:1px solid var(--border);border-radius:8px;padding:.4em .8em" onclick="document.getElementById('draftOverlay').remove()">Zavřít</button>
-        <span style="font-size:.66rem;color:var(--text-3);align-self:center">Blok je teď součástí tvé knihy — v kapitole, ve feedu i v hledání. <a href="#" onclick="event.preventDefault();app.showHowItWorks('draft')" style="color:var(--accent)">Jak to funguje?</a></span>
-      </div></div>`;
-    ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
-    document.body.appendChild(ov);
-    this.renderMath?.();
-  }
-
-  // Rozpracovaný 🌱 koncept není druhá liga: zařadí se do kapitoly svého tématu
-  // jako běžný blok — čte se ve feedu, najde se v hledání, sype kartičky do kvízu.
-  _hydrateGhostDrafts() {
-    if (!this._cmapNodes || !this.chapters) return;
-    let added = 0;
-    for (const pb of Object.values(this.privateBlocks || {})) {
-      const slug = pb.meta?.concept;
-      const node = this._cmapNodes[slug];
-      if (!node || node.state !== 'ghost') continue;
-      if (this.allBlocks.some(b => b.meta.id === pb.meta.id)) continue;
-      const chIdx = Object.keys(this.chapters).map(Number)
-        .find(i => (this.chapters[i].directory || '').endsWith('-' + node.tema));
-      if (chIdx === undefined) continue;
-      const ch = this.chapters[chIdx];
-      const flat = { ...pb.meta, body: pb.body, sequence: 9000 + added, type: 'spine',
-        standalone: true, core: false, status: 'accepted', title: pb.meta.title || node.title,
-        _chapter: ch.id, _chapterNum: ch.number, _chapterTitle: ch.title, _chapterIdx: chIdx,
-        meta: { ...pb.meta, chapter: ch.id } };
-      ch.blocks.push(flat);
-      this.allBlocks.push({ meta: flat, body: pb.body, _chapter: ch.id });
-      if (!this.conceptBlocks[slug]) this.conceptBlocks[slug] = [];
-      if (!this.conceptBlocks[slug].some(b => b.meta.id === flat.id)) this.conceptBlocks[slug].push({ meta: flat, body: pb.body });
-      added++;
-    }
-    if (added) { this._byConcept = null; this.rc?.setAllBlocks?.(this.allBlocks); }
-    return added;
-  }
-
-  // Redakční adopce: komunitní podání → commit do content/ + book.json (git)
-  async adoptBlock(blockId) {
-    let key = localStorage.getItem('pbook-editor-key') || '';
-    if (!key) {
-      key = (window.prompt('Redakční klíč (EDITOR_TOKEN):') || '').trim();
-      if (!key) return;
-      localStorage.setItem('pbook-editor-key', key);
-    }
-    this.showXPToast('📥 Přebírám do knihy…', 'info');
-    try {
-      const res = await fetch('/api/community', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'adopt', id: blockId, editorKey: key }),
-      });
-      const d = await res.json();
-      if (!d.ok) {
-        if (res.status === 403) localStorage.removeItem('pbook-editor-key');
-        throw new Error(d.error || res.status);
-      }
-      this.rc.logEvent('community_adopted', { blockId, path: d.path });
-      this.showXPToast('✅ Převzato — commit ' + (d.commit || '') + ', v knize bude po nasazení (~1 min)', 'achievement');
-    } catch (e) {
-      this.showXPToast('Převzetí selhalo: ' + String(e.message).slice(0, 60), 'info');
-    }
-  }
-
-  // Průvodce živou knihou — jak přispívat a co se s příspěvkem děje
-  async showHowItWorks(anchor) {
-    this.rc.logEvent('howitworks_open', { anchor: anchor || null });
-    if (!this._howMd) {
-      try { this._howMd = await (await fetch('/jak-funguje-ziva-kniha.md')).text(); }
-      catch (e) { this._howMd = '# Jak funguje živá kniha\n\nPrůvodce se nepodařilo načíst.'; }
-    }
-    document.getElementById('howOverlay')?.remove();
-    const ov = document.createElement('div');
-    ov.id = 'howOverlay';
-    ov.className = 'cert-overlay';
-    ov.innerHTML = `<div class="cert-modal" style="max-width:680px;max-height:88vh;overflow:auto;text-align:left">
-      <button class="cert-close" onclick="document.getElementById('howOverlay').remove()">&times;</button>
-      <div class="spine-body">${renderMarkdown(this._howMd)}</div>
-      <div style="text-align:center;margin-top:.8em"><button class="btn-primary" style="font-size:.8rem" onclick="document.getElementById('howOverlay').remove()">Jasné, jdu na to</button></div>
-    </div>`;
-    ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
-    document.body.appendChild(ov);
-  }
-
-  // ===== SKLADATEL PODÁNÍ — parametry generování na míru, předvyplněné z DNA =====
-  _COMPOSE_DIMS() {
-    return [
-      { dim: 'genre', label: '✒️ Žánr', vals: { explainer: '📄 výklad', story: '📖 příběh', 'worked-example': '🧮 řešený příklad', 'code-walkthrough': '💻 kód', comic: '🎭 komiks', animation: '🎞 animace' } },
-      { dim: 'depth', label: '📏 Hloubka', vals: { intro: 'úvodní', standard: 'standardní', technical: 'technická' } },
-      { dim: 'lengthBand', label: '⏱ Délka', vals: { tldr: '⚡ krátce', standard: 'akorát', deep: 'do hloubky' } },
-      { dim: 'lens', label: '🌐 Svět příkladů', vals: { generic: '🌐 odevšad', ecommerce: '🛒 nakupování', media: '🎵 hudba a video', 'social-feeds': '📱 sítě', education: '🎓 škola' } },
-      { dim: 'visuality', label: '🖼 Forma', vals: { 'text-first': 'text', balanced: 'text + vizuál', 'visual-first': 'hlavně vizuál' } },
-    ];
-  }
-
-  openGenComposer(slug, ctx) {
-    const title = this._cmapNodes?.[slug]?.title || this.concepts?.[slug]?.title || slug;
-    const profile = this.user.getTargetFacets();
-    this._composeTarget = { lang: 'cs', lens: 'generic', depth: 'intro', lengthBand: 'standard', genre: 'explainer', visuality: 'text-first', formalism: 'none',
-      ...Object.fromEntries(Object.entries(profile).filter(([k, v]) => v && String(v).indexOf('..') === -1 && String(v).indexOf('|') === -1)),
-      ...(this._steerTargets?.[slug] || {}) };
-    this._composeSlug = slug; this._composeCtx = ctx;
-    this.rc.logEvent('composer_open', { slug, ctx });
-    document.getElementById('genComposer')?.remove();
-    const ov = document.createElement('div');
-    ov.id = 'genComposer';
-    ov.className = 'cert-overlay';
-    ov.innerHTML = `<div class="cert-modal" style="max-width:560px;max-height:88vh;overflow:auto;text-align:left">
-      <button class="cert-close" onclick="document.getElementById('genComposer').remove()">&times;</button>
-      <div style="font-size:.68rem;color:#0EA5E9;font-weight:700">🌱 ${this.escHtml(title)}</div>
-      <h3 style="margin:.15em 0 .1em">Podání na míru</h3>
-      <p style="font-size:.72rem;color:var(--text-3);margin:0 0 .6em">Předvyplněno podle tvé čtenářské DNA — uprav si to a teprve pak se generuje. Obsah hlídá kontrakt konceptu z Mapy znalostí.</p>
-      <div id="genComposerBody"></div>
-      <div style="font-size:.68rem;color:var(--text-3);margin:.45em 0 .15em">Něco konkrétního? (nepovinné)</div>
-      <input type="text" id="compose-wish" class="gen-wish" maxlength="300" style="width:100%"
-        value="${this.escHtml(this._steerWish?.[slug] || '')}"
-        placeholder="např. ‚na příkladu školního turnaje‘, ‚hodně jednoduše‘, ‚přidej tabulku‘">
-      <div style="display:flex;gap:.5em;margin-top:.75em;align-items:center;flex-wrap:wrap">
-        <button class="btn-primary" style="font-size:.82rem" onclick="app._composeGo()">✨ Generovat (~30 s)</button>
-        <button class="btn-ghost" style="font-size:.78rem;border:1px solid var(--border);border-radius:8px;padding:.4em .8em" onclick="document.getElementById('genComposer').remove()">Zrušit</button>
-        <span id="compose-note" style="font-size:.66rem;color:var(--text-3)"></span>
-      </div></div>`;
-    ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
-    document.body.appendChild(ov);
-    this._composeRender();
-  }
-
-  _composeRender() {
-    const box = document.getElementById('genComposerBody');
-    if (!box) return;
-    const t = this._composeTarget;
-    box.innerHTML = this._COMPOSE_DIMS().map(({ dim, label, vals }) => `
-      <div class="dna-row" style="align-items:flex-start;margin:.3em 0"><span class="dna-label" style="padding-top:.2em">${label}</span>
-        <div style="display:flex;flex-wrap:wrap;gap:.25em">${Object.entries(vals).map(([v, cap]) =>
-          `<button class="steer-chip ${t[dim] === v ? 'dim-active' : ''}" style="font-size:.68rem" onclick="app._composePick('${dim}','${v}')">${cap}</button>`).join('')}
-        </div></div>`).join('');
-    const note = document.getElementById('compose-note');
-    if (note) note.textContent = (t.genre === 'comic' || t.genre === 'animation')
-      ? (t.genre === 'comic' ? 'Nakreslí se čtyřpanelový komiks (~40 s).' : 'Nakreslí se animované SVG (~40 s).')
-      : '';
-  }
-
-  _composePick(dim, value) {
-    this._composeTarget[dim] = value;
-    if (dim === 'genre' && (value === 'comic' || value === 'animation')) this._composeTarget.visuality = 'visual-first';
-    if (dim === 'depth' && value === 'intro') this._composeTarget.formalism = 'none';
-    this._composeRender();
-  }
-
-  _composeGo() {
-    const slug = this._composeSlug, ctx = this._composeCtx;
-    const wish = document.getElementById('compose-wish')?.value?.trim().slice(0, 300) || '';
-    if (!this._steerTargets) this._steerTargets = {};
-    this._steerTargets[slug] = { ...this._composeTarget };
-    if (!this._steerWish) this._steerWish = {};
-    this._steerWish[slug] = wish;
-    this.user.updateFacetAffinity(this._composeTarget, 2);
-    document.getElementById('genComposer')?.remove();
-    this.draftGhost(slug, ctx, { ...this._composeTarget }, wish);
-  }
-
-  // Rozhodnutí po vygenerování: nastavit variantu jako výchozí podání konceptu
-  chooseVariant(variantId) {
-    const entry = this._findAnyBlock(variantId);
-    if (!entry) return;
-    const cid = this._conceptIds(entry.meta)[0];
-    this._setTellingChoice(cid, variantId);
-    this.rc.logEvent('telling_choice_set', { concept: cid, variantId });
-    const act = document.getElementById(`vn-act-${variantId}`);
-    if (act) act.innerHTML = `<span style="font-size:.68rem;color:var(--product)">✓ tvoje výchozí podání</span>
-      <button class="steer-chip" onclick="app.toggleTellings('${variantId}')">&#127899;&#65039; Podání</button>
-      <button class="steer-chip" onclick="app.unswapBlock('${variantId}')" title="Vrátí originál; tohle podání zůstane jako alternativa v 🎛">&#8617; Originál</button>`;
-    this.showXPToast('✓ Tohle podání teď v knize uvidíš místo originálu (vrátíš přes ↩)', 'achievement');
   }
 
   // ===== EDITOR TRACK =====
@@ -7034,7 +9934,7 @@ class PBook {
       if ((b.meta.sharedAt || b.meta.state === 'community') && this.findBlock(id) && !awarded.has(id)) {
         awarded.add(id); changed = true;
         if (this._f('gamification')) { this.user.addXP(100); this.user.save(); }
-        setTimeout(() => this.showXPToast('📖 Your telling was adopted into the book! +100 XP — Editor track', 'achievement'), 1200);
+        setTimeout(() => this.showXPToast(tr('📖 Your telling was adopted into the book! +100 XP — Editor track'), 'achievement'), 1200);
       }
     }
     if (changed) {
@@ -7046,33 +9946,45 @@ class PBook {
   getCertTiers() {
     const u = this.user;
     const core = this.allBlocks.filter(b => b.meta.core && b.meta.type === 'spine');
-    const byDepth = want => core.filter(b => want.includes(b.meta.depth || 'standard'));
-    const readCount = list => list.filter(b => u.readBlocks.has(b.meta.id)).length;
-    const readAll = list => list.length === 0 || list.every(b => u.readBlocks.has(b.meta.id));
+    // Depth tiers by declared COVERAGE (a standard..technical block belongs to both
+    // tiers), never string equality — a range tag must not drop a block from all tiers.
+    const byDepth = want => core.filter(b => want.some(d => this._covers(b.meta, 'depth', d)));
+    // A core block counts once the reader has met its idea in ANY verified (git)
+    // telling — the essentials flow may serve the tl;dr or a world telling instead.
+    const isRead = b => u.readBlocks.has(b.meta.id) || this._conceptIds(b.meta).slice(0, 1)
+      .some(cid => (this.conceptBlocks?.[cid] || []).some(t => t.meta.type === 'spine' && u.readBlocks.has(t.meta.id)));
+    const readCount = list => list.filter(isRead).length;
+    const readAll = list => list.length === 0 || list.every(isRead);
 
     const base = byDepth(['intro', 'standard']);
     const tech = byDepth(['technical']);
     const research = byDepth(['research']);
     const missions = this._f('missions') ? this.getMissions() : [];
     const done = u.completedMissions || [];
-    const advancedDone = done.filter(id => ['Advanced', 'Pokročilý', 'Závěrečný projekt'].includes(missions.find(m => m.id === id)?.difficulty)).length;
+    const advancedDone = done.filter(id => missions.find(m => m.id === id)?.difficulty === 'Advanced').length;
     const recallReps = Object.values(u.recall || {}).reduce((s, c) => s + (c.reps || 0), 0);
 
     const tiers = [
-      { id: 'foundations', icon: '\u{1F949}', title: 'Základy', subtitle: 'Rozumí digitálnímu světu', color: '#B45309',
-        reqs: [{ label: `přečteno základní core (${readCount(base)}/${base.length})`, done: readAll(base) }] },
-      { id: 'practitioner', icon: '\u{1F948}', title: 'Praktik', subtitle: 'Umí tvořit s technologiemi', color: '#64748B',
+      { id: 'foundations', icon: '\u{1F949}', title: tr('Foundations'), subtitle: tr('Understands Recommendations'), color: '#B45309',
+        reqs: [{ label: `${tr(`core essentials read ({0}/{1})`, readCount(base), base.length)}`, done: readAll(base) }] },
+      { id: 'practitioner', icon: '\u{1F948}', title: tr('Practitioner'), subtitle: tr('Can Build Recommenders'), color: '#64748B',
         reqs: [
-          { label: `přečteno technické core (${readCount(tech)}/${tech.length})`, done: readAll(tech) },
-          { label: `dokončené mise (${Math.min(done.length, 2)}/2)`, done: done.length >= 2 },
+          { label: `${tr(`technical core read ({0}/{1})`, readCount(tech), tech.length)}`, done: readAll(tech) },
+          { label: `${tr(`missions completed ({0}/2)`, Math.min(done.length, 2))}`, done: done.length >= 2 },
         ] },
-      { id: 'guru', icon: '\u{1F947}', title: 'Digitální guru', subtitle: 'Mistr algoritmů', color: '#CA8A04',
+      { id: 'guru', icon: '\u{1F947}', title: tr('Recommendation Guru'), subtitle: tr('Masters the Algorithms'), color: '#CA8A04',
         reqs: [
-          { label: `přečteno pokročilé core (${readCount(research)}/${research.length})`, done: readAll(research) },
-          { label: `poražen boss pokročilé mise (${Math.min(advancedDone, 1)}/1)`, done: advancedDone >= 1 },
-          { label: `opakování kartiček (${Math.min(recallReps, 10)}/10)`, done: recallReps >= 10 },
+          { label: `${tr(`research-level core read ({0}/{1})`, readCount(research), research.length)}`, done: readAll(research) },
+          { label: `${tr(`advanced mission boss beaten ({0}/1)`, Math.min(advancedDone, 1))}`, done: advancedDone >= 1 },
+          { label: `${tr(`recall reviews ({0}/10)`, Math.min(recallReps, 10))}`, done: recallReps >= 10 },
         ] },
     ];
+    // A book renames the tiers in CONFIG.certificate.tiers: { foundations: { title, subtitle }, … } (plain or {cs, en, …})
+    for (const t of tiers) {
+      const o = CONFIG.certificate?.tiers?.[t.id];
+      if (o?.title) t.title = loc(o.title);
+      if (o?.subtitle) t.subtitle = loc(o.subtitle);
+    }
     let achievedIdx = -1;
     for (let i = 0; i < tiers.length; i++) {
       if (i === achievedIdx + 1 && tiers[i].reqs.every(r => r.done)) achievedIdx = i;
@@ -7088,25 +10000,26 @@ class PBook {
     overlay.innerHTML = `
       <div class="cert-modal">
         <button class="cert-close" onclick="this.closest('.cert-overlay').remove()">&times;</button>
-        <h2>Your Certificate</h2>
-        <p style="font-size:.82rem;color:var(--text-2);margin-bottom:1em">Gratulujeme k dokončení knihy! Vyplň údaje a certifikát bude tvůj.</p>
-        <label class="cert-label">Tvoje jméno <span style="color:var(--accent)">*</span></label>
-        <input type="text" id="certName" class="cert-input" placeholder="např. Jana Nováková" value="${this.escHtml(savedName)}" maxlength="60">
-        <label class="cert-label">Jak se ti kniha líbila? <span style="font-weight:400;color:var(--text-3)">(nepovinné)</span></label>
-        <textarea id="certComment" class="cert-input" rows="3" placeholder="Naučil jsem se, že…" maxlength="500"></textarea>
-        <label class="cert-label">Doporučil bys knihu dál? <span style="font-weight:400;color:var(--text-3)">(nepovinné)</span></label>
+        <h2>${tr(`Your Certificate`)}</h2>
+        <p style="font-size:.82rem;color:var(--text-2);margin-bottom:1em">${tr(`Congratulations on completing the book! Fill in your details to personalize your certificate.`)}</p>
+        <label class="cert-label">${tr(`Your name`)} <span style="color:var(--accent)">*</span></label>
+        <input type="text" id="certName" class="cert-input" placeholder="${tr(`e.g. Maya Johnson`)}" value="${this.escHtml(savedName)}" maxlength="60">
+        <label class="cert-label">${tr(`What did you think of the book?`)} <span style="font-weight:400;color:var(--text-3)">${tr(`(optional)`)}</span></label>
+        <textarea id="certComment" class="cert-input" rows="3" placeholder="${tr(`I learned that recommendations work by...`)}" maxlength="500"></textarea>
+        <label class="cert-label">${tr(`Would you recommend this book?`)} <span style="font-weight:400;color:var(--text-3)">${tr(`(optional)`)}</span></label>
         <div class="cert-stars" id="certStars">
           ${[1,2,3,4,5].map(i => `<button class="cert-star" data-val="${i}" onclick="app._setCertStars(${i})">${i <= 0 ? '\u2606' : '\u2606'}</button>`).join('')}
         </div>
-        <label class="cert-label">E-mail <span style="font-weight:400;color:var(--text-3)">(nepovinné — dáme vědět o nových knihách)</span></label>
-        <input type="email" id="certEmail" class="cert-input" placeholder="your@email.com" value="${this.escHtml(savedEmail)}" maxlength="120">
+        <label class="cert-label">${tr(`Email`)} <span style="font-weight:400;color:var(--text-3)">${tr(`(optional — we'll let you know about new books)`)}</span></label>
+        <input type="email" id="certEmail" class="cert-input" placeholder="${tr(`your@email.com`)}" value="${this.escHtml(savedEmail)}" maxlength="120">
         <div class="cert-actions">
-          <button class="cert-btn cert-btn-primary" onclick="app.generateCertificate()">Stáhnout certifikát</button>
-          <button class="cert-btn cert-btn-share" onclick="app.shareCertificate()">Sdílet</button>
+          <button class="cert-btn cert-btn-primary" onclick="app.generateCertificate()">${tr(`Download Certificate`)}</button>
+          <button class="cert-btn cert-btn-share" onclick="app.shareCertificate()">${tr(`Share`)}</button>
         </div>
         <div id="certPreview" style="margin-top:1em"></div>
       </div>`;
     document.body.appendChild(overlay);
+    this._navOverlayOpen?.('certificate');
     overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
     document.getElementById('certName').focus();
   }
@@ -7122,23 +10035,23 @@ class PBook {
   _buildCertSVG(name) {
     const u = this.user;
     const p = u.getProfile(this.allBlocks);
-    const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    const date = new Date().toLocaleDateString(locale('en-US'), { year: 'numeric', month: 'long', day: 'numeric' });
     // Specialization line from the facet profile (voice is legacy)
     const _tf = u.getTargetFacets();
     const voiceLabel = [
-      _tf.depth && _tf.depth !== 'standard' ? `hloubka ${_tf.depth}` : null,
-      _tf.lens && _tf.lens !== 'generic' ? `svět ${_tf.lens}` : null,
-      _tf.lang === 'cs' ? 'česká edice' : null,
-    ].filter(Boolean).join(' · ') || 'Univerzální';
+      _tf.depth && _tf.depth !== 'standard' ? tr('{0} depth', tr(_tf.depth)) : null,
+      _tf.lens && _tf.lens !== 'generic' ? tr('{0} world', this._fw('lensShort', _tf.lens)) : null,
+      _tf.lang && _tf.lang !== 'en' && !CONFIG.book.languages ? tr('{0} edition', langLabel(_tf.lang)) : null,
+    ].filter(Boolean).join(' · ') || tr('Universal');
     const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    const displayName = esc(name || 'Anonymní čtenář');
+    const displayName = esc(name || tr('Anonymous Reader'));
     // Adjust font size for long names
     const nameSize = displayName.length > 25 ? 18 : displayName.length > 18 ? 21 : 24;
     // Tier (Foundations / Practitioner / Guru) — header, subtitle and accent follow the achieved tier
     const { tiers, achievedIdx } = this.getCertTiers();
     const tier = tiers[Math.max(achievedIdx, 0)];
-    const tierHeader = achievedIdx >= 0 ? `CERTIFIKÁT • ${tier.title.toUpperCase()}` : 'CERTIFIKÁT O ABSOLVOVÁNÍ';
-    const tierLine = achievedIdx >= 0 ? esc(`${tier.subtitle} — ověřený core obsah`) : 'úspěšně dokončil(a) studium základů informatiky a umělé inteligence';
+    const tierHeader = achievedIdx >= 0 ? `${tr(`CERTIFICATE • {0}`, tier.title.toUpperCase())}` : tr('CERTIFICATE OF COMPLETION');
+    const tierLine = achievedIdx >= 0 ? esc(`${tr(`{0} — verified core content at {1} depth`, tier.subtitle, tr(tier.id === 'guru' ? 'research' : tier.id === 'practitioner' ? 'technical' : 'foundational'))}`) : (CONFIG.certificate?.completed ? esc(loc(CONFIG.certificate.completed)) : tr('has successfully completed the study of Modern Recommender Systems'));
     const tierColor = achievedIdx >= 0 ? tier.color : '#7C3AED';
 
     return `<?xml version="1.0" encoding="UTF-8"?>
@@ -7158,40 +10071,40 @@ class PBook {
   <line x1="200" y1="95" x2="600" y2="95" stroke="#C4B5FD" stroke-width="1"/>
 
   <!-- Title -->
-  <text x="400" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#4C1D95" font-weight="bold">Jak funguje digitální svět</text>
-  <text x="400" y="168" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#7C3AED">A p-book by Pavel Kordik</text>
+  <text x="400" y="140" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#4C1D95" font-weight="bold">${this.escHtml(this._bookTitle())}</text>
+  <text x="400" y="168" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#7C3AED">${tr(`A p-book by {0}`, this.escHtml(this._bookAuthors()))}</text>
 
   <!-- This certifies -->
-  <text x="400" y="210" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#6B7280">Potvrzujeme, že</text>
+  <text x="400" y="210" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#6B7280">${tr(`This certifies that`)}</text>
   <text x="400" y="248" text-anchor="middle" font-family="Georgia,serif" font-size="${nameSize}" fill="#1C1917" font-weight="bold">${displayName}</text>
   <line x1="250" y1="260" x2="550" y2="260" stroke="#D4B5FD" stroke-width="1"/>
 
   <!-- Achievement stats -->
   <text x="400" y="295" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#6B7280">${tierLine}</text>
 
-  <text x="200" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#7C3AED" font-weight="600">${p.progress.read} sections read</text>
-  <text x="400" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#7C3AED" font-weight="600">Level ${u.level} \u2022 ${u.xp} XP</text>
-  <text x="600" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#7C3AED" font-weight="600">${u.achievements.length} badges earned</text>
+  <text x="200" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#7C3AED" font-weight="600">${tr(`{0} sections read`, p.progress.read)}</text>
+  <text x="400" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#7C3AED" font-weight="600">${tr(`Level {0} \u2022 {1} XP`, u.level, u.xp)}</text>
+  <text x="600" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#7C3AED" font-weight="600">${tr(`{0} badges earned`, u.achievements.length)}</text>
 
-  <text x="200" y="358" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9CA3AF">${p.progress.pct}% complete</text>
-  <text x="400" y="358" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9CA3AF">${voiceLabel} path</text>
-  <text x="600" y="358" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9CA3AF">${p.readingTimeMin} min reading</text>
+  <text x="200" y="358" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9CA3AF">${tr(`{0}% complete`, p.progress.pct)}</text>
+  <text x="400" y="358" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9CA3AF">${tr(`{0} path`, voiceLabel)}</text>
+  <text x="600" y="358" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9CA3AF">${tr(`{0} min reading`, p.readingTimeMin)}</text>
 
   <!-- Specialization -->
   <rect x="280" y="378" width="240" height="30" rx="15" fill="#7C3AED" opacity=".1"/>
-  <text x="400" y="398" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#7C3AED" font-weight="600">Specialization: ${voiceLabel}</text>
+  <text x="400" y="398" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#7C3AED" font-weight="600">${tr(`Specialization: {0}`, voiceLabel)}</text>
 
   <!-- Topics -->
-  <text x="400" y="438" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9CA3AF">Klíčová témata: ${(p.topTopics || []).slice(0, 4).join(' \u2022 ') || 'Informatika'}</text>
+  <text x="400" y="438" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9CA3AF">${tr(`Key topics: {0}`, (p.topTopics || []).slice(0, 4).join(' \u2022 ') || (CONFIG.certificate?.topic ? this.escHtml(loc(CONFIG.certificate.topic)) : tr('Recommender Systems')))}</text>
 
   <!-- Footer -->
   <line x1="150" y1="470" x2="350" y2="470" stroke="#D4B5FD" stroke-width="1"/>
-  <text x="250" y="488" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#4C1D95">Pavel Kordik</text>
-  <text x="250" y="502" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#9CA3AF">Author &amp; Recombee Co-founder</text>
+  <text x="250" y="488" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#4C1D95">${this.escHtml(CONFIG.book?.signature || tr('Pavel Kordik'))}</text>
+  <text x="250" y="502" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#9CA3AF">${CONFIG.book?.signatureRole ? this.escHtml(loc(CONFIG.book.signatureRole)) : tr(`Author &amp; Recombee Co-founder`)}</text>
 
   <line x1="450" y1="470" x2="650" y2="470" stroke="#D4B5FD" stroke-width="1"/>
   <text x="550" y="488" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#4C1D95">${date}</text>
-  <text x="550" y="502" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#9CA3AF">Datum dokončení</text>
+  <text x="550" y="502" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#9CA3AF">${tr(`Date of completion`)}</text>
 
   <!-- Seal -->
   <circle cx="400" cy="490" r="22" fill="#7C3AED" opacity=".15"/>
@@ -7218,10 +10131,10 @@ class PBook {
 
     // Award certificate achievement
     if (!u.achievements.find(a => a.id === 'certified')) {
-      u.achievements.push({ id: 'certified', name: 'Certifikováno!', icon: '\u{1F393}', desc: 'Získal jsi certifikát', earnedAt: Date.now() });
+      u.achievements.push({ id: 'certified', name: 'Certified', icon: '\u{1F393}', desc: tr('Earned your certificate'), earnedAt: Date.now() });
       u.addXP(50);
       u.save();
-      this.showXPToast('+50 XP \u{1F393} Certificate earned!', 'achievement');
+      this.showXPToast(tr('+50 XP \u{1F393} Certificate earned!'), 'achievement');
     }
 
     // Store to Supabase
@@ -7251,7 +10164,7 @@ class PBook {
     const blob = new Blob([svg], { type: 'image/svg+xml' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `recsys-certificate-${name.replace(/[^a-zA-Z0-9]/g, '-')}.svg`;
+    a.download = `${CONFIG.book?.slug || 'recsys'}-certificate-${name.replace(/[^a-zA-Z0-9]/g, '-')}.svg`;
     a.click();
     URL.revokeObjectURL(a.href);
 
@@ -7259,7 +10172,7 @@ class PBook {
     const preview = document.getElementById('certPreview');
     if (preview) {
       preview.innerHTML = `<div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:.5em">${svg.replace('<?xml version="1.0" encoding="UTF-8"?>', '')}</div>
-        <p style="font-size:.75rem;color:var(--product);font-weight:600">Certifikát stažen! Níže ho můžeš i sdílet.</p>`;
+        <p style="font-size:.75rem;color:var(--product);font-weight:600">${tr(`Certificate downloaded! You can also share it below.`)}</p>`;
     }
   }
 
@@ -7291,29 +10204,29 @@ class PBook {
       // Try Web Share API (mobile-friendly)
       if (navigator.share && navigator.canShare?.({ files: [new File([pngBlob], 'certificate.png', { type: 'image/png' })] })) {
         await navigator.share({
-          title: 'Dokončil jsem knihu „Jak funguje digitální svět“!',
-          text: `Právě jsem dočetl p-book „Jak funguje digitální svět“ a získal certifikát!`,
-          files: [new File([pngBlob], 'recsys-certificate.png', { type: 'image/png' })]
+          title: `${tr(`I completed "{0}"!`, this._bookTitle())}`,
+          text: `${tr(`I just finished the p-book "{0}" by {1} and earned my certificate!`, this._bookTitle(), this._bookAuthors())}`,
+          files: [new File([pngBlob], `${CONFIG.book?.slug || 'recsys'}-certificate.png`, { type: 'image/png' })]
         });
       } else {
         // Fallback: copy PNG to clipboard
         await navigator.clipboard.write([new ClipboardItem({ 'image/png': pngBlob })]);
-        this.showXPToast('Certifikát zkopírován do schránky! Vlož ho, kam chceš.', 'info');
+        this.showXPToast(tr('Certificate copied to clipboard! Paste it anywhere to share.'), 'info');
       }
     } catch (e) {
       // Final fallback: download the SVG
       const blob = new Blob([svg], { type: 'image/svg+xml' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `recsys-certificate-${name.replace(/[^a-zA-Z0-9]/g, '-')}.svg`;
+      a.download = `${CONFIG.book?.slug || 'recsys'}-certificate-${name.replace(/[^a-zA-Z0-9]/g, '-')}.svg`;
       a.click();
       URL.revokeObjectURL(a.href);
-      this.showXPToast('Certifikát uložen! Pochlub se kamarádům.', 'info');
+      this.showXPToast(tr('Certificate saved! Share it with your friends.'), 'info');
     }
   }
 
   resetAll() {
-    if (!confirm('Vynulovat všechna data čtení? Smaže se postup, poznámky i preference.')) return;
+    if (!confirm(tr('Reset all reading data? This clears your progress, notes, and preferences.'))) return;
     this.user.reset();
     localStorage.removeItem('pbook-theme');
     localStorage.removeItem('pbook-fs');
@@ -7329,20 +10242,22 @@ class PBook {
     if (!this._blockIndex || this._blockIndex.size !== this.allBlocks.length) {
       this._blockIndex = new Map(this.allBlocks.map(b => [b.meta.id, b]));
     }
-    return this._blockIndex.get(id) || null;
+    return this._blockIndex.get(id) || (this._langAlias?.[id] && this._blockIndex.get(this._langAlias[id])) || null;
   }
 
   getChapterLabel(block) {
     for (const [i, ch] of Object.entries(this.chapters)) {
-      if (ch.blocks.some(b => b.id === block.id)) return `Ch${ch.number}: ${ch.title}`;
+      if (ch.blocks.some(b => b.id === block.id)) return `${tr(`Ch{0}: {1}`, ch.number, ch.title)}`;
     }
     return '';
   }
 }
 
 // ===== INIT =====
+installGames(PBook);
 const app = new PBook();
 window.app = app;
+installUx(PBook);   // js/ux.js: navigation, door/resume, explainable picks, progress moments
 app.init();
 
 // Text highlight on selection (desktop + mobile)
@@ -7350,9 +10265,16 @@ function _showHighlightPopup() {
   const popup = document.getElementById('highlightPopup');
   if (!popup) return;
   const sel = window.getSelection();
-  if (!sel || sel.isCollapsed || !sel.toString().trim()) { popup.style.display = 'none'; return; }
+  if (!sel || sel.isCollapsed || !sel.toString()) { popup.style.display = 'none'; return; }
   const anchor = sel.anchorNode?.parentElement?.closest('.spine-body, .d-content, .sb-block');
   if (!anchor) { popup.style.display = 'none'; return; }
+  // Marking a gap (or a couple of characters) is a request to ADD something
+  // there — highlighting and notes need real text, so offer only the ✎ action.
+  const tiny = sel.toString().trim().length < 10;
+  const btns = popup.querySelectorAll('button');
+  btns.forEach((b, i) => { b.style.display = (tiny && i < btns.length - 1) ? 'none' : ''; });
+  const last = btns[btns.length - 1];
+  if (last) last.title = tiny ? tr('Add new text or a diagram here') : tr('Improve this part — edit it yourself or let AI rewrite it');
   const range = sel.getRangeAt(0);
   const rect = range.getBoundingClientRect();
   popup.style.display = 'flex';
@@ -7371,8 +10293,13 @@ document.addEventListener('click', (e) => {
   const concept = app?.concepts?.[slug];
   if (concept?.anchor && app.findBlock(concept.anchor)) {
     app.rc.logEvent('concept_link', { slug });
-    app.openBlock(concept.anchor, 'crosslink');
+    app.openBlock(app._servedTellingId(slug) || concept.anchor, 'crosslink');   // the reader's telling of that idea
+    return;
   }
+  // anchor still a draft: any visible telling of the idea, else say so (the link used to do nothing)
+  const t = concept && app._tellingPool(slug).find(b => app.findBlock(b.meta?.id));
+  if (t) { app.rc.logEvent('concept_link', { slug }); app.openBlock(t.meta.id, 'crosslink'); }
+  else app.showXPToast?.(tr('That idea is still being written — it is not in the book yet'), 'info');
 });
 
 document.addEventListener('contextmenu', (e) => {

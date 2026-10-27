@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Zľava, alebo plné vstupné?",
+  "instruction": "Zľavu majú deti mladšie ako 15 rokov a ľudia od 65 rokov.",
+  "buckets": [
+    "Zľava",
+    "Plné vstupné"
+  ],
+  "items": [
+    {
+      "text": "Ema, 9 rokov",
+      "answer": 0,
+      "why": "9 je menej ako 15, zľava platí."
+    },
+    {
+      "text": "Tomáš, 15 rokov",
+      "answer": 1,
+      "why": "Pozor na hranicu: 15 nie je menej ako 15. Plné vstupné."
+    },
+    {
+      "text": "Věra, 71 rokov",
+      "answer": 0,
+      "why": "71 je viac ako 65, zľava platí."
+    },
+    {
+      "text": "Jan, 34 rokov",
+      "answer": 1,
+      "why": "34 nie je menej ako 15 a nie je to ani 65 a viac."
+    },
+    {
+      "text": "Petra, 14 rokov",
+      "answer": 0,
+      "why": "14 je menej ako 15, zľava platí."
+    },
+    {
+      "text": "Karel, 65 rokov",
+      "answer": 0,
+      "why": "Pozor na hranicu: „od 65“ znamená aj presne 65. Zľava platí."
+    },
+    {
+      "text": "Ondřej, 40 rokov",
+      "answer": 1,
+      "why": "40 nie je menej ako 15 a nie je to ani 65 a viac."
+    },
+    {
+      "text": "Lucie, 64 rokov",
+      "answer": 1,
+      "why": "64 je stále menej ako 65. Plné vstupné."
+    }
+  ],
+  "debrief": "Podmienka „mladší ako 15 alebo od 65“ rozhoduje presne, aj na hranici. Pätnásťročný už zľavu nemá, šesťdesiatpäťročný ju má. Hranica je pri podmienkach najčastejšie miesto chyby."
+}

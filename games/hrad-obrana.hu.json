@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "A vár melyik része állítja meg a támadást?",
+  "instruction": "Minden támadáshoz keresd meg azt a védelmet, amely megállítja.",
+  "buckets": [
+    "Várfalak = frissítések",
+    "Kapu = alkalmazásengedélyek",
+    "Őrség = csak megbízható források",
+    "Második vár = mentés máshol"
+  ],
+  "items": [
+    {
+      "text": "A támadók ismernek egy hibát a böngésző egy régi verziójában, és kihasználják.",
+      "answer": 0,
+      "why": "A frissítés folt. Kijavítja azt a lyukat, amelyről a támadók tudnak."
+    },
+    {
+      "text": "Egy zseblámpa-alkalmazás hozzáférést kér a névjegyeidhez, a helyadataidhoz és a mikrofonhoz.",
+      "answer": 1,
+      "why": "A zseblámpának csak a fényre van szüksége. A többi engedélyt utasítsd el."
+    },
+    {
+      "text": "Egy weboldal „végtelen érme csalást” kínál letöltésre. Benne egy trójai faló van.",
+      "answer": 2,
+      "why": "Csak a hivatalos áruházból telepíts. Az őrség nem engedi be az ajándékot hozó idegent."
+    },
+    {
+      "text": "Egy zsarolóvírus titkosítja az összes fotódat, és váltságdíjat követel.",
+      "answer": 3,
+      "why": "A másik helyen lévő másolat túléli. A fotókat visszaállítod, és nem kell fizetned."
+    },
+    {
+      "text": "A rendszer biztonsági frissítést jelez",
+      "answer": 0,
+      "why": "A frissítés befoltozza a lyukat, mielőtt valaki kihasználná. Telepítsd."
+    },
+    {
+      "text": "Egy horoszkópos kvíz hozzáférést kér az SMS-eidhez",
+      "answer": 1,
+      "why": "A kvíznek nincs szüksége az SMS-eidre. Ne engedélyezd."
+    },
+    {
+      "text": "Egy barátod a „játék új verzióját” küldi letöltésre az áruházon kívülről",
+      "answer": 2,
+      "why": "Egy barátodtól is érkezhet hamisított fájl. Csak a hivatalos áruházból tölts le."
+    },
+    {
+      "text": "Beleejted a telefonodat a vízbe, és nem kapcsol be",
+      "answer": 3,
+      "why": "Itt csak az a biztonsági mentés segít, amely nem a telefonodon van."
+    }
+  ],
+  "debrief": "Minden védelem más támadást állít meg. A frissítések befoltozzák a lyukakat, az engedélyek figyelik, mit tehet egy app, a megbízható források nem engedik be a hamisított programokat, a biztonsági mentés pedig megmenti az adatokat, ha minden más csődöt mond."
+}

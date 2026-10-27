@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Kedvezmény vagy teljes ár?",
+  "instruction": "Kedvezményt kapnak a 15 év alatti gyerekek és a 65 éves és idősebb emberek.",
+  "buckets": [
+    "Kedvezmény",
+    "Teljes ár"
+  ],
+  "items": [
+    {
+      "text": "Ema, 9 éves",
+      "answer": 0,
+      "why": "A 9 kevesebb, mint 15, jár a kedvezmény."
+    },
+    {
+      "text": "Tomáš, 15 éves",
+      "answer": 1,
+      "why": "Figyelj a határra: a 15 nem kevesebb, mint 15. Teljes ár."
+    },
+    {
+      "text": "Věra, 71 éves",
+      "answer": 0,
+      "why": "A 71 több, mint 65, jár a kedvezmény."
+    },
+    {
+      "text": "Jan, 34 éves",
+      "answer": 1,
+      "why": "A 34 nem kevesebb, mint 15, és nem is 65 vagy több."
+    },
+    {
+      "text": "Petra, 14 éves",
+      "answer": 0,
+      "why": "A 14 kevesebb, mint 15, jár a kedvezmény."
+    },
+    {
+      "text": "Karel, 65 éves",
+      "answer": 0,
+      "why": "Figyelj a határra: a „65 éves és idősebb” a pontosan 65-öt is jelenti. Jár a kedvezmény."
+    },
+    {
+      "text": "Ondřej, 40 éves",
+      "answer": 1,
+      "why": "A 40 nem kevesebb, mint 15, és nem is 65 vagy több."
+    },
+    {
+      "text": "Lucie, 64 éves",
+      "answer": 1,
+      "why": "A 64 még kevesebb, mint 65. Teljes ár."
+    }
+  ],
+  "debrief": "A „15 év alatt vagy 65 évtől” feltétel pontosan dönt, a határon is. A 15 évesnek már nem jár kedvezmény, a 65 évesnek igen. A feltételeknél a határ a leggyakoribb hibaforrás."
+}

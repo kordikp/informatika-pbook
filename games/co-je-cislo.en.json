@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Encoding or encryption?",
+  "instruction": "A rule every program knows, or a lock that only someone has the key to?",
+  "buckets": [
+    "Encoding (public rule)",
+    "Encryption (secret key)"
+  ],
+  "items": [
+    {
+      "text": "The letter A is stored as 65",
+      "answer": 0,
+      "why": "Every computer knows the character table. Nothing is secret."
+    },
+    {
+      "text": "A photo saved as .png",
+      "answer": 0,
+      "why": "The PNG format is public. Any image viewer can open it."
+    },
+    {
+      "text": "A chat message only the recipient can read",
+      "answer": 1,
+      "why": "The message is locked with a key only the recipient has. That's encryption."
+    },
+    {
+      "text": "A pixel as three numbers: red, green, blue",
+      "answer": 0,
+      "why": "A public rule for writing a colour as numbers."
+    },
+    {
+      "text": "The padlock and https in your browser",
+      "answer": 1,
+      "why": "The connection to the website is encrypted, so nobody on the way can read it."
+    },
+    {
+      "text": "A song saved as .mp3",
+      "answer": 0,
+      "why": "MP3 is a public format. Any player can play it."
+    },
+    {
+      "text": "A Caesar cipher with a key of 3",
+      "answer": 1,
+      "why": "Without the key (a shift of 3) you can't read the message. It's a cipher, if a weak one."
+    }
+  ],
+  "debrief": "Encoding is a public rule for writing data as numbers. Every program knows it. Encryption locks the data, and only someone with the key can read it."
+}

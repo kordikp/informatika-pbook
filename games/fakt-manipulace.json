@@ -9,35 +9,44 @@
   "items": [
     {
       "text": "„Zápas skončil 2:1“",
-      "answer": 0
+      "answer": 0,
+      "why": "Výsledek si ověříš na webu soutěže nebo v sestřihu."
     },
     {
       "text": "„SDÍLEJ, než to smažou!!!“",
-      "answer": 1
+      "answer": 1,
+      "why": "Tlačí na spěch a strach. Nic konkrétního, co by šlo ověřit."
     },
     {
       "text": "„Voda vře při 100 °C“",
-      "answer": 0
+      "answer": 0,
+      "why": "Dá se změřit. Přesně to platí u hladiny moře."
     },
     {
       "text": "„Všichni už vědí, že…“",
-      "answer": 1
+      "answer": 1,
+      "why": "Odvolává se na dav místo důkazu."
     },
     {
       "text": "„Studie vyšla v časopise Nature v roce 2023“",
-      "answer": 0
+      "answer": 0,
+      "why": "Časopis a rok jsou údaje, které se dají dohledat."
     },
     {
       "text": "„Probuď se, tohle ti tají!“",
-      "answer": 1
+      "answer": 1,
+      "why": "Vyvolává pocit spiknutí a nedává nic k ověření."
     },
     {
       "text": "„Vlak jede v 8:15 z hlavního nádraží“",
-      "answer": 0
+      "answer": 0,
+      "why": "Ověříš v jízdním řádu."
     },
     {
       "text": "„Jen hlupák tomu ještě věří“",
-      "answer": 1
+      "answer": 1,
+      "why": "Útočí na tebe místo argumentu. Chce, aby ses styděl nesouhlasit."
     }
-  ]
+  ],
+  "debrief": "Fakt se dá ověřit: výsledek, čas, zdroj. Manipulace tlačí na emoce a spěch a ověření se vyhýbá. Když tě něco nutí jednat hned, zpomal."
 }

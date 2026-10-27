@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "A photo's journey to the chat",
+  "instruction": "Put in order what happens when you send a photo to a friend.",
+  "steps": [
+    "The phone asks DNS for the chat server's address",
+    "The photo is split into packets with the server's IP address",
+    "Routers pass the packets on, each maybe a different way",
+    "The server puts the packets back together into the photo",
+    "The server sends the photo to your friend's phone"
+  ],
+  "debrief": "A photo doesn't travel in one piece. First the server's address is found, then the photo is split into packets, they go through routers perhaps by different routes, and the server puts them back together.",
+  "why": [
+    "The phone knows the server's name but needs its IP address. DNS tells it.",
+    "With the address it can split the photo into packets and write on each one where it is going.",
+    "Each router sends the packet a bit closer to the destination.",
+    "The packets may arrive in a different order. The server puts them back together by their numbers.",
+    "Once the server has the whole photo, it sends it to your friend in the same way."
+  ]
+}

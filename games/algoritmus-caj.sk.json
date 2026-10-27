@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Algoritmus: uvar čaj",
+  "instruction": "Zoraď kroky tak jednoznačne, aby ich zvládol aj doslovný robot!",
+  "steps": [
+    "Nalej vodu do kanvice",
+    "Zapni kanvicu a počkaj, kým voda zovrie",
+    "Vlož čajové vrecúško do hrnčeka",
+    "Zalej vrecúško vriacou vodou",
+    "Počkaj 3 minúty",
+    "Vyber vrecúško a čaj podávaj"
+  ],
+  "debrief": "V algoritme záleží na poradí. Každý krok stavia na tom predchádzajúcom: zaliať sa dá až vriacou vodou a vrecúško vyberieš, až keď sa čaj vylúhuje.",
+  "why": [
+    "Bez vody v kanvici nie je čo ohriať.",
+    "Voda musí zovrieť skôr, ako ju naleješ.",
+    "Vrecúško musí byť v hrnčeku, skôr ako ho zaleješ.",
+    "Teraz je v kanvici vriaca voda a v hrnčeku vrecúško.",
+    "Čaj sa lúhuje až po zaliatí.",
+    "Vrecúško vyberieš, až keď sa čaj vylúhoval."
+  ]
+}

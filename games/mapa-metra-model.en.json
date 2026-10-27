@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "What belongs on an underground map?",
+  "instruction": "A model for travelling by underground. What do you keep in it and what do you leave out?",
+  "buckets": [
+    "Belongs in the model",
+    "Leave out"
+  ],
+  "items": [
+    {
+      "text": "Stations",
+      "answer": 0,
+      "why": "Without stations you don't know where to get on and off."
+    },
+    {
+      "text": "Which stations each line connects",
+      "answer": 0,
+      "why": "That tells you where a line will take you."
+    },
+    {
+      "text": "Where you can change lines",
+      "answer": 0,
+      "why": "Without the changes you can't plan a journey on two lines."
+    },
+    {
+      "text": "The order of stations on a line",
+      "answer": 0,
+      "why": "You know how many stops to go and where to get off."
+    },
+    {
+      "text": "The streets above the tunnel",
+      "answer": 1,
+      "why": "They are no use to you underground."
+    },
+    {
+      "text": "The exact length of the tunnel in metres",
+      "answer": 1,
+      "why": "For the journey, the order of the stations is enough."
+    },
+    {
+      "text": "The colour of the house fronts",
+      "answer": 1,
+      "why": "You can't see them from the underground."
+    },
+    {
+      "text": "The names of shops by the exit",
+      "answer": 1,
+      "why": "You don't need them to travel by underground. They belong on a map of the area."
+    }
+  ],
+  "debrief": "A good model keeps only what you need for the task. For an underground journey, stations, lines and changes are enough. Streets, lengths and shops would just clutter the map."
+}

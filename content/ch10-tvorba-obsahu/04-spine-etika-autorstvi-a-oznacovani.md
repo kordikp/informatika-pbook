@@ -8,7 +8,7 @@ teaser: "Vygeneroval jsi parádní obrázek. Tři otázky: z čeho se model uči
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Jaké tři otázky řeší etika generovaného obsahu a proč se AI obsah označuje?"
 recallA: "Na čích dílech se model učil, komu patří výsledek a jak dát najevo, že obsah tvořila AI. Označení chrání důvěru publika — lidé mají právo vědět, s čím se dívají — a u některých typů obsahu ho vyžaduje i zákon."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch10-etika-autorstvi-a-oznacovani
-state: core
+state: edited
 carriers: prose
 ---
 

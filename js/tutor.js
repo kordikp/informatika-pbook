@@ -1,193 +1,137 @@
-// TutorEngine — Mock implementation with LLM-ready interface
-// Architecture: TutorEngine.generateResponse(message, context) → response
-// MockTutorEngine: keyword search + kid-friendly templates + author escalation
-// LLMTutorEngine: future drop-in replacement via Netlify function → Claude API
+// "Ask the book" — an honest, local question answerer.
+//
+// It answers ONLY from the concept contracts in content/concepts.json (title,
+// objective, mustCover, recallQ/recallA — the human-owned summaries every telling
+// is checked against). Retrieval is BM25-lite over those fields; the answer is the
+// matching concept's recallA plus a link to its anchor section and its other
+// tellings. No language model, no generated text: when nothing in the book
+// matches, it says so and offers "propose this concept" or "message the authors".
+// (The retrieval half of retrieval-augmented generation, without the generation —
+// see the llm-recommenders concept for what the other half adds and risks.)
 
-export class MockTutorEngine {
-  constructor() {
-    this._usedBlocks = new Set(); // avoid repeating same blocks in a conversation
+import { tr } from './i18n.js';
+
+const STOP = new Set(('the a an and or but of to in on for with by from at as is are was were be been being do does did ' +
+  'what whats which who whom whose why how when where can could should would will shall may might must this that these ' +
+  'those it its they them their there here about into than then so such not no yes you your yours i me my we our us ' +
+  'has have had get gets got make makes made use used using work works explain tell mean means difference between ' +
+  'vs versus does doing thing things way ways one ones also just very really some any all more most').split(' '));
+
+const fold = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+const stem = w => w.length > 5 ? w.replace(/(ations?|ings?|ers?|ed|es|s)$/, '') : w.length > 3 ? w.replace(/s$/, '') : w;
+export const tokenize = s => fold(s).replace(/\\"/g, ' ').split(/[^a-z0-9]+/).filter(w => w.length >= 2 && !STOP.has(w)).map(stem);
+const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const clean = s => String(s || '').replace(/\\"/g, '"').replace(/ -- /g, ' – ');
+
+// field → weight
+const FIELDS = { title: 4, id: 3, recallQ: 2, objective: 1.5, mustCover: 1, recallA: 1, anchor: 1 };
+
+export class AskTheBook {
+  constructor(app) {
+    this.app = app;
+    this._index = null;
+    this._indexKey = '';
   }
 
-  resetConversation() {
-    this._usedBlocks.clear();
+  resetConversation() {}
+
+  _build() {
+    const concepts = Object.values(this.app.concepts || {});
+    const key = concepts.length + ':' + (concepts[0]?.id || '');
+    if (this._index && this._indexKey === key) return this._index;
+    const docs = concepts.map(c => {
+      const k = c.contract || {};
+      const f = {
+        title: tokenize(c.title), id: tokenize(c.id), recallQ: tokenize(k.recallQ), objective: tokenize(k.objective),
+        mustCover: tokenize((k.mustCover || []).map(p => p.point || p).join(' ')), recallA: tokenize(k.recallA),
+        anchor: (m => tokenize(m ? `${m.title || ''} ${m.teaser || ''}` : ''))(this.app.findBlock?.(c.anchor)?.meta),
+      };
+      const tf = {};
+      for (const [field, words] of Object.entries(f)) for (const w of words) tf[w] = (tf[w] || 0) + FIELDS[field];
+      return { c, tf, titleFold: fold(c.title) };
+    });
+    const df = {};
+    docs.forEach(d => Object.keys(d.tf).forEach(w => { df[w] = (df[w] || 0) + 1; }));
+    const N = docs.length || 1;
+    const idf = w => Math.log(1 + N / (df[w] || 0.5));
+    this._index = { docs, idf, df };
+    this._indexKey = key;
+    return this._index;
   }
 
-  generateResponse(message, context) {
-    const { allBlocks, topicIndex, currentBlockId, currentChapterId, userProfile } = context;
-    const q = message.toLowerCase().trim();
-
-    // Detect question type
-    const qType = this._detectQuestionType(q);
-
-    // Score blocks with context awareness
-    const scored = allBlocks.map(b => {
-      let score = 0;
-      const title = (b.meta.title || '').toLowerCase();
-      const body = (b.body || '').toLowerCase();
-      const words = q.split(/\s+/).filter(w => w.length >= 3);
-
-      for (const word of words) {
-        if (title.includes(word)) score += 5;
-        if (body.includes(word)) score += 1;
+  // → [{ concept, score, coverage }] best first
+  search(query, limit = 3) {
+    const { docs, idf, df } = this._build();
+    const q = [...new Set(tokenize(query))];
+    if (!q.length) return [];
+    const known = q.filter(w => df[w]);
+    const qMass = q.reduce((s, w) => s + idf(w), 0) || 1;
+    const qf = fold(query);
+    return docs.map(d => {
+      let score = 0, hit = 0;
+      for (const w of known) {
+        const tf = d.tf[w];
+        if (!tf) continue;
+        score += idf(w) * (tf * 2.2) / (tf + 1.2);
+        hit += idf(w);
       }
+      if (d.titleFold.length > 4 && qf.includes(d.titleFold)) score += 8;      // the concept named outright
+      return { concept: d.c, score, coverage: hit / qMass };
+    }).filter(r => r.score > 0).sort((a, b) => b.score - a.score).slice(0, limit);
+  }
 
-      // Boost current chapter content 3x
-      if (currentChapterId && b._chapter === currentChapterId) score *= 3;
-      // Boost current block's related content
-      if (currentBlockId && b.meta.parent === currentBlockId) score *= 2;
-      // Penalize already-shown blocks
-      if (this._usedBlocks.has(b.meta.id)) score *= 0.3;
-
-      return { block: b, score };
-    }).filter(s => s.score > 0).sort((a, b) => b.score - a.score).slice(0, 4);
-
-    // Find matching topics
-    const matchTopics = Object.keys(topicIndex || {}).filter(t =>
-      t.toLowerCase().includes(q) || q.includes(t.toLowerCase().split(' ')[0])
-    );
-
-    // Calculate confidence
-    const topScore = scored[0]?.score || 0;
-    const confidence = Math.min(1, topScore / 15); // normalize: 15+ = high confidence
-
-    // Track used blocks
-    scored.forEach(s => this._usedBlocks.add(s.block.meta.id));
-
-    // Build response
-    const blocks = scored.map(s => ({
-      id: s.block.meta.id,
-      title: s.block.meta.title,
-      chapter: s.block.meta._chapterNum,
-      score: s.score
-    }));
-
-    if (confidence < 0.1) {
+  // Interface kept from the old engine: generateResponse(message, context) → { text, confidence, canEscalate }
+  generateResponse(message) {
+    const app = this.app;
+    const res = this.search(message, 3);
+    const top = res[0];
+    const n = Object.keys(app.concepts || {}).length;
+    if (!top || top.coverage < 0.34 || top.score < 2) {
+      const seed = esc(String(message).slice(0, 160)).replace(/'/g, '&#39;');
       return {
-        text: this._noMatchResponse(),
-        blocks: [],
-        followUp: 'Zkus se zeptat na algoritmy, AI, programování nebo třeba na to, jak funguje internet!',
         confidence: 0,
-        canEscalate: true
+        canEscalate: false,
+        text: `${tr(`I could not find that in the book. I only answer from its {0} concept summaries, so I would rather say so than guess.`, n)}
+          <div class="ask-actions">
+            <button class="tutor-suggest-btn" onclick="app.proposeConcept(this.dataset.q)" data-q="${seed}">${tr(`🌱 Suggest it as a new topic`)}</button>
+            <button class="tutor-suggest-btn" onclick="app.escalateToAuthor()">${tr(`✉ Send the question to the authors`)}</button>
+          </div>`,
       };
     }
-
-    const top = scored[0].block;
-    const teaser = top.meta.teaser || (top.body || '').substring(0, 180).replace(/[#*_\[\]]/g, '').trim();
-
-    let text = this._openingLine(qType, confidence);
-    text += `<b>${top.meta.title}</b> (kapitola ${top.meta._chapterNum}) je přesně o tomhle! `;
-    text += `${teaser}... `;
-    text += `<br><br><a href="#" onclick="event.preventDefault();app.openBlock('${top.meta.id}')">Přečíst tuto sekci &rarr;</a>`;
-
-    if (scored.length > 1) {
-      text += '<br><br>Mohlo by tě zajímat i:';
-      scored.slice(1, 3).forEach(s => {
-        text += `<br>&bull; <a href="#" onclick="event.preventDefault();app.openBlock('${s.block.meta.id}')">${s.block.meta.title}</a> (kap. ${s.block.meta._chapterNum})`;
-      });
-    }
-
-    if (matchTopics.length > 0) {
-      text += '<br><br>Související témata: ';
-      text += matchTopics.slice(0, 3).map(t =>
-        `<a href="#" onclick="event.preventDefault();app.showTopic('${t}')">${t}</a>`
-      ).join(' &middot; ');
-    }
-
-    const followUp = this._socraticFollowUp(qType, top);
-
-    return { text, blocks, followUp, confidence, canEscalate: confidence < 0.3 };
-  }
-
-  _detectQuestionType(q) {
-    if (/^(why|how come|what makes|proč|jak to, že|čím to)/.test(q)) return 'why';
-    if (/^(how|jak |jak se|jak si|jak na)/.test(q)) return 'how';
-    if (/^(what if|what would|imagine|co kdyby|co by se stalo|představ si)/.test(q)) return 'whatif';
-    if (/^(what is|what are|what's|define|explain|co je|co jsou|co znamená|vysvětli)/.test(q)) return 'what';
-    if (/^(can you|could you|tell me|show me|můžeš|mohl bys|řekni mi|ukaž mi)/.test(q)) return 'request';
-    return 'general';
-  }
-
-  _openingLine(qType, confidence) {
-    const lines = {
-      why: ["Skvělá otázka! O tomhle se v knize píše. ", "Přesně na tohle se ptají i skuteční informatici! ", "Přemýšlíš jako inženýr! "],
-      how: ["Ukážu ti to — v knize je to hezky vysvětlené. ", "Dobrá otázka! Funguje to takhle: ", "Rozložme si to na kroky: "],
-      whatif: ["Ó, myšlenkové experimenty! Ty má kniha ráda. ", "Zajímavé! Nad tímhle přemýšlejí i profíci. ", "Pojďme tu myšlenku prozkoumat! "],
-      what: ["Dobrá otázka! Mrknu, co o tom je v knize. ", "Tady je, co to znamená: ", "Kniha to vysvětluje takhle: "],
-      request: ["Jasně! Najdu ti tu správnou sekci. ", "Jdu na to! ", "Rád pomůžu — od toho tady jsem! "],
-      general: ["Mrknu do knihy! ", "Zajímavá otázka! ", "Tady je, co jsem našel: "]
+    const card = (r, lead) => {
+      const c = r.concept, k = c.contract || {};
+      const tellings = (app.conceptBlocks?.[c.id] || []).filter(b => b.meta.type === 'spine').length;
+      // anchor still a draft (hidden from readers): point at a visible telling instead
+      const anchor = app.findBlock(c.anchor) || (app.conceptBlocks?.[c.id] || []).find(b => b.meta.type === 'spine') || null;
+      const ch = app._conceptChapterNum ? app._conceptChapterNum(c.id) : '';
+      return `<div class="ask-card${lead ? '' : ' ask-card-related'}">
+        <div class="ask-kicker">${tr(`{0} · Chapter {1}`, lead ? tr('From the book') : tr('Related'), esc(ch))}</div>
+        <div class="ask-title">${esc(c.title)}</div>
+        ${lead && k.recallQ ? `<div class="ask-q">${esc(clean(k.recallQ))}</div>` : ''}
+        <p class="ask-a">${esc(clean(k.recallA || k.objective || ''))}</p>
+        ${anchor ? `<button class="tutor-suggest-btn" onclick="app.openBlock('${esc(anchor.meta.id)}','ask')">${tr(`Read: {0} →`, esc(anchor.meta.title || c.title))}</button>` : ''}
+        ${lead && tellings > 1 ? `<span class="ask-note">${tr(`{0} ways to read it in the book`, tellings)}</span>` : ''}
+      </div>`;
     };
-    const options = lines[qType] || lines.general;
-    return options[Math.floor(Math.random() * options.length)];
-  }
-
-  _socraticFollowUp(qType, topBlock) {
-    const followUps = {
-      why: [
-        'Napadá tě příklad ze života, kde na tomhle záleží?',
-        'Co myslíš, že by se stalo, kdybychom to udělali obráceně?',
-        'Proč to podle tebe inženýři navrhli právě takhle?'
-      ],
-      how: [
-        'Dokázal bys ten postup jednoduše vysvětlit kamarádovi?',
-        'Která část je podle tebe pro počítač nejtěžší?',
-        'Napadá tě situace, kdy by tenhle postup selhal?'
-      ],
-      whatif: [
-        'Jaké důkazy bys potřeboval, abys tu myšlenku otestoval?',
-        'Jak bys navrhl experiment, který to zjistí?',
-        'Jaké nevýhody by ten přístup mohl mít?'
-      ],
-      what: [
-        'Napadá tě běžný příklad z každodenního života?',
-        'V čem se to liší od toho, co jsi čekal?',
-        'Co tě na tomhle konceptu nejvíc překvapilo?'
-      ],
-      general: [
-        'Co tě na tomhle tématu zajímá nejvíc?',
-        'Chceš zkusit praktické aktivity k tomuhle tématu?',
-        'Zkus to, co ses naučil, někomu vysvětlit — krásně se to tím upevní!'
-      ]
+    const related = res.slice(1).filter(r => r.score >= top.score * 0.6 && r.coverage >= 0.34).slice(0, 1);
+    return {
+      confidence: Math.min(1, top.coverage),
+      canEscalate: true,
+      text: card(top, true) + related.map(r => card(r, false)).join('') +
+        ('<div class="ask-source">' + tr(`Answered from the book’s concept summaries — no AI model involved.`) + '</div>'),
     };
-    const options = followUps[qType] || followUps.general;
-    return options[Math.floor(Math.random() * options.length)];
   }
 
-  _noMatchResponse() {
-    const responses = [
-      "Hmm, o tomhle v knize nic není! Nejlíp umím vysvětlovat informatiku. Zkus se zeptat třeba <b>jak funguje internet</b>, <b>co je algoritmus</b> nebo <b>proč AI halucinuje</b>!",
-      "Tohle je mimo záběr knihy! Rád ale pomůžu s tématy jako <b>hesla a phishing</b>, <b>tvorba webu</b> nebo <b>jak se AI učí z dat</b>. Anebo napiš skutečnému Pavlovi!",
-      "Tohle jsem v knize nenašel. Kniha se věnuje <b>algoritmům</b>, <b>AI</b>, <b>datům</b>, <b>bezpečnosti</b> a <b>tvorbě webů, appek i her</b> — zeptej se na cokoli z toho!"
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
-  }
-
-  // Generate suggested questions based on current block content
+  // Questions the book can actually answer about this section: its concept's
+  // recall question, then the recall questions of neighbouring concepts.
   getSuggestedQuestions(block) {
+    const app = this.app;
     if (!block) return [];
-    const body = (block.body || '').toLowerCase();
-    const title = block.meta?.title || '';
-    const questions = [];
-
-    if (body.includes('algoritm')) questions.push('Čím se liší algoritmus od obyčejného návodu?');
-    if (body.includes('proměnn')) questions.push('K čemu jsou v programu proměnné?');
-    if (body.includes('cloud')) questions.push('Kde doopravdy leží data uložená v cloudu?');
-    if (body.includes('bublin') || body.includes('feed')) questions.push('Jak se dostanu ze své informační bubliny?');
-    if (body.includes('laděn') || body.includes('testov')) questions.push('Jak se hledá chyba v programu?');
-    if (body.includes('soukrom') || body.includes('data')) questions.push('Jaká data o mně appky sbírají?');
-    if (body.includes('heslo') || body.includes('phishing')) questions.push('Jak poznám podvodnou zprávu?');
-    if (body.includes('html') || body.includes('css')) questions.push('Jak spolu souvisí HTML, CSS a JavaScript?');
-    if (body.includes('bias') || body.includes('férov')) questions.push('Může být AI nespravedlivá?');
-    if (body.includes('autoplay') || body.includes('scrollov')) questions.push('Proč je tak těžké přestat scrollovat?');
-    if (body.includes('generativn') || body.includes('halucin')) questions.push('Proč si AI občas vymýšlí?');
-    if (body.includes('doporuč')) questions.push('Podle čeho mi TikTok vybírá videa?');
-
-    // Fallback
-    if (questions.length === 0) {
-      questions.push(`Jaká je hlavní myšlenka sekce „${title}“?`);
-      questions.push(`Proč je tohle téma důležité?`);
-    }
-
-    return questions.slice(0, 3);
+    const cid = app._conceptIds ? app._conceptIds(block.meta)[0] : null;
+    const order = app._conceptOrder ? app._conceptOrder() : Object.keys(app.concepts || {});
+    const i = order.indexOf(cid);
+    const ids = [cid, order[i + 1], order[i - 1]].filter(id => id && app.concepts?.[id]?.contract?.recallQ);
+    return ids.slice(0, 3).map(id => clean(app.concepts[id].contract.recallQ));
   }
 }
 

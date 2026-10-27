@@ -1,0 +1,58 @@
+{
+  "type": "sort",
+  "title": "Spoznaj stavebný kameň",
+  "instruction": "Premenná, podmienka, alebo cyklus? Roztrieď kúsky kódu!",
+  "buckets": [
+    "Premenná",
+    "Podmienka",
+    "Cyklus"
+  ],
+  "items": [
+    {
+      "text": "skore = 0",
+      "answer": 0,
+      "why": "Do premennej skore sa uloží 0."
+    },
+    {
+      "text": "if zivoty == 0:",
+      "answer": 1,
+      "why": "Ďalšia časť sa vykoná, len keď sú životy 0. To je podmienka."
+    },
+    {
+      "text": "while hra_bezi:",
+      "answer": 2,
+      "why": "Opakuje sa, kým hra beží. To je cyklus."
+    },
+    {
+      "text": "meno = \"Kuba\"",
+      "answer": 0,
+      "why": "Premenná meno si pamätá text Kuba."
+    },
+    {
+      "text": "opakuj 10×: urob drep",
+      "answer": 2,
+      "why": "Rovnaký krok desaťkrát za sebou."
+    },
+    {
+      "text": "ak prší → nasaď si kapucňu",
+      "answer": 1,
+      "why": "Kapucňu si nasadíš, len keď prší."
+    },
+    {
+      "text": "zivoty = zivoty - 1",
+      "answer": 0,
+      "why": "Premenná sa zmení: nová hodnota je o 1 menšia."
+    },
+    {
+      "text": "for cislo in range(100):",
+      "answer": 2,
+      "why": "Prejde čísla 0 až 99, jedno po druhom."
+    },
+    {
+      "text": "if heslo == spravne:",
+      "answer": 1,
+      "why": "Pustí ťa ďalej, len keď heslo sedí."
+    }
+  ],
+  "debrief": "Premenná si niečo pamätá, podmienka vyberá, čo sa stane, a cyklus opakuje. Z týchto troch kameňov sa stavia skoro každý program."
+}

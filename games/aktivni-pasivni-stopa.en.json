@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Active or passive footprint?",
+  "instruction": "Did you leave it knowingly, or did it appear without you seeing it?",
+  "buckets": [
+    "Active (knowingly)",
+    "Passive (you can't see it)"
+  ],
+  "items": [
+    {
+      "text": "A photo you post",
+      "answer": 0,
+      "why": "You decided to share it, so it's an active footprint."
+    },
+    {
+      "text": "A GPS location saved in a photo",
+      "answer": 1,
+      "why": "The phone writes it into the photo by itself. You can't see it in the photo."
+    },
+    {
+      "text": "A comment under a video",
+      "answer": 0,
+      "why": "You wrote it knowingly and others can see it."
+    },
+    {
+      "text": "Cookies from a website you visited",
+      "answer": 1,
+      "why": "The website saves them in your browser, even if you don't click on anything."
+    },
+    {
+      "text": "The history of what you search for",
+      "answer": 1,
+      "why": "It saves itself, and it shows what you're interested in."
+    },
+    {
+      "text": "A post about your holiday",
+      "answer": 0,
+      "why": "You shared it yourself. Careful, it also gives away that you're not at home."
+    },
+    {
+      "text": "How long you watch which video",
+      "answer": 1,
+      "why": "The app quietly measures it and uses it to pick your next videos."
+    }
+  ],
+  "debrief": "You can see your active footprint because you create it yourself. The passive one forms quietly: location, cookies, history and time spent on videos. It often gives away more about you than what you share."
+}

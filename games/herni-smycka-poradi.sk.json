@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Postav hernú slučku",
+  "instruction": "Zoraď, čo hra robí 60× za sekundu, stále dookola!",
+  "steps": [
+    "Načítaj vstup hráča (klávesy, dotyk)",
+    "Posuň postavy a vypočítaj nové polohy",
+    "Skontroluj kolízie (dotkli sa objekty?)",
+    "Uprav skóre a životy podľa pravidiel",
+    "Vykresli celú scénu znova na obrazovku"
+  ],
+  "debrief": "Hra opakuje rovnakú slučku desiatky ráz za sekundu: vstup, pohyb, kolízie, pravidlá, vykreslenie. Preto sa zdá, že všetko beží plynulo.",
+  "why": [
+    "Najprv musí hra vedieť, čo hráč stlačil.",
+    "Podľa vstupu sa vypočítajú nové polohy postáv.",
+    "Či sa objekty dotkli, sa dá zistiť až z nových polôh.",
+    "Podľa kolízií vieš, či pribudne skóre, alebo ubudne život.",
+    "Nakoniec sa vykreslí scéna so všetkým, čo sa v tomto kole zmenilo."
+  ]
+}

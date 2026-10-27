@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Hová mented?",
+  "instruction": "Csak az eszközre vagy a felhőbe? Döntsd el aszerint, mire van szükséged.",
+  "buckets": [
+    "Az eszközön kell lennie",
+    "Jó a felhő"
+  ],
+  "items": [
+    {
+      "text": "Egy játék, amellyel internet nélkül akarsz játszani a repülőn",
+      "answer": 0,
+      "why": "A repülőn nem csatlakozhatsz a felhőhöz."
+    },
+    {
+      "text": "Egy kiselőadás, amelyen otthon és az iskolában is dolgozol",
+      "answer": 1,
+      "why": "Bármelyik számítógépről megnyithatod."
+    },
+    {
+      "text": "Térkép egy hegyi kiránduláshoz, ahol nincs térerő",
+      "answer": 0,
+      "why": "Térerő nélkül a térkép nem töltődik be a felhőből. Töltsd le előre."
+    },
+    {
+      "text": "Fotók, amelyeket telefoncsere után is meg akarsz tartani",
+      "answer": 1,
+      "why": "A felhőben megmaradnak, akkor is, ha lecseréled vagy elveszíted a telefonodat."
+    },
+    {
+      "text": "Egy dokumentum, amelyet egyszerre írsz az osztálytársaiddal",
+      "answer": 1,
+      "why": "Mindannyian ugyanazon a szerveren lévő másolaton dolgoztok."
+    },
+    {
+      "text": "Egy jegy, amelyet a metróban, a föld alatt mutatsz fel",
+      "answer": 0,
+      "why": "A föld alatt gyakran nincs térerő. A jegyet tartsd a telefonodra mentve."
+    }
+  ],
+  "debrief": "A felhő akkor jó, ha több eszközön vagy több emberrel együtt akarod használni az adatokat. Ahol nincs internet, ott az adatoknak magán az eszközön kell lenniük."
+}

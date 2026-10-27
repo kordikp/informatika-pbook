@@ -1,17 +1,100 @@
 {
-  "type": "pop",
+  "type": "loop",
+  "mode": "user",
   "title": "Praskni bublinu",
-  "instruction": "Algoritmus tě zavřel do bubliny jednoho tématu! Klikej na JINÁ témata a prorač se ven.",
-  "categories": [
-    "Hudba",
-    "Hry",
-    "Sport",
-    "Knihy",
-    "Vaření",
-    "Věda",
-    "Umění",
-    "Cestování",
-    "Příroda",
-    "Historie"
-  ]
+  "minutes": 3,
+  "instruction": "Tohle je tvůj feed s videi. Každý den otevři jedno video, které by sis pustil. Sleduj, kolik témat ve feedu zbývá.",
+  "instruction2": "Do 5 dnů vrať feed aspoň na 5 témat. Otevři něco jiného, vyhledej si téma, klikni na „Nezajímá mě“ nebo zapni nastavení, které do feedu přimíchá jiná témata.",
+  "feedSize": 6,
+  "phase1Days": 8,
+  "phase2Days": 5,
+  "goalTopics": 5,
+  "exploreSlots": 2,
+  "gamma": 2,
+  "rate": 0.2,
+  "topics": [
+    {
+      "name": "Fotbal",
+      "items": [
+        "Gól týdne",
+        "Nejlepší zákroky brankářů",
+        "Trénink: kličky jako profík",
+        "Sestřih derby",
+        "Přestupy, které nikdo nečekal"
+      ]
+    },
+    {
+      "name": "Vaření",
+      "items": [
+        "Palačinky za 10 minut",
+        "Pizza z pánve",
+        "Jak krájet jako kuchař",
+        "Dort bez pečení",
+        "Snídaně do školy"
+      ]
+    },
+    {
+      "name": "Věda",
+      "items": [
+        "Proč je nebe modré",
+        "Sopka z jedlé sody",
+        "Jak vidí včela",
+        "Největší hvězda vesmíru",
+        "Pokus s magnetem"
+      ]
+    },
+    {
+      "name": "Hudba",
+      "items": [
+        "Akordy na kytaru pro začátečníky",
+        "Jak vzniká hit",
+        "Beatbox za 5 minut",
+        "Zpěvák bez autotunu",
+        "Bicí z kuchyňských hrnců"
+      ]
+    },
+    {
+      "name": "Zvířata",
+      "items": [
+        "Kočka, která otevírá dveře",
+        "Jak spí delfíni",
+        "Pes se učí nový trik",
+        "Nejmenší opice světa",
+        "Mravenci staví most"
+      ]
+    },
+    {
+      "name": "Hry",
+      "items": [
+        "Nejtěžší level všech dob",
+        "Postav si hrad v Minecraftu",
+        "Speedrun za 3 minuty",
+        "Tajné místo ve hře",
+        "Jak vzniká herní postava"
+      ]
+    },
+    {
+      "name": "Kreslení",
+      "items": [
+        "Nakresli draka krok za krokem",
+        "Stínování tužkou",
+        "Komiks na jedné stránce",
+        "Portrét za 60 sekund",
+        "Akvarel pro začátečníky"
+      ]
+    },
+    {
+      "name": "Příroda",
+      "items": [
+        "Bouřka zpomaleně",
+        "Jak roste semínko",
+        "Nejvyšší strom světa",
+        "Stopy zvířat v lese",
+        "Proč padá listí"
+      ]
+    }
+  ],
+  "reveal": "Feed se zúžil, aniž by to někdo rozhodl: každý klik trochu posunul tvůj profil a feed se z profilu vybírá. Zevnitř nic nechybí. Proto je bublina neviditelná.",
+  "reveal2": "Když otevřeš něco jiného, profil se posouvá jen pomalu. Nejrychleji pomůže „Nezajímá mě“ a přimíchání jiných témat. To ti ukáže i témata, na která by ses sám nezeptal.",
+  "debrief": "Bublina vzniká z obyčejných kliků, které se vracejí do feedu. Nevidíš ji, protože nevidíš, co ti feed neukázal. Prasknout ji pomůže schválně hledat jiná témata a nechat si do feedu přimíchat něco nového."
 }

@@ -1,25 +1,40 @@
 {
-  "pbook_version": "1.0",
+  "pbook_version": "2.0",
   "title": "Jak funguje digitální svět",
-  "subtitle": "Základy informatiky a umělé inteligence pro 2. stupeň ZŠ",
+  "subtitle": "Základy informatiky a umělé inteligence pro 2. stupeň ZŠ: 24 jader v 6 kapitolách",
+  "subject": "computing and artificial intelligence for lower-secondary school (algorithms, programs, data, computers and networks, AI, online safety)",
   "author": "Pavel Kordík & tým AI dětem",
   "author_affiliation": "AI dětem & ČVUT v Praze",
-  "audience": "8. třída ZŠ (2. stupeň, 13–14 let)",
+  "audience": "pupils aged 11-15 (Czech 2. stupeň ZŠ) and their teachers",
   "language": "cs",
+  "languages": [
+    "cs",
+    "en",
+    "sk",
+    "hu"
+  ],
+  "url": "https://informatika-pbook.vercel.app",
   "license": "CC BY-NC-SA 4.0",
   "repository": "https://github.com/kordikp/informatika-pbook",
-
   "source": {
-    "description": "Kniha zpracovává core vrstvu Mapy informatických konceptů Glitch (63 konceptů ve 12 tématech). Mapa staví na revidovaném RVP Informatika (2024) a mezinárodních rámcích (CSTA K-12, UNESCO AI Competency Framework, AI4K12, DigComp 2.2).",
+    "description": "Kniha stojí na upravené Mapě informatických konceptů Glitch: z 202 uzlů 24 jader v 6 kapitolách, výlety do hloubky a 5 světů. Mapa vychází z revidovaného RVP Informatika (2024) a rámců CSTA K-12, UNESCO AI Competency Framework, AI4K12 a DigComp 2.2.",
     "knowledge_map": "https://knowledge-map-glitch.vercel.app/",
-    "maintainer": "AI dětem"
+    "maintainer": "AI dětem",
+    "generator": "https://github.com/kordikp/koncepty-pbook (scripts/do-pbooku.py)"
   },
-
+  "facets": {
+    "lens": [
+      "generic"
+    ]
+  },
+  "lensWorlds": {
+    "generic": "examples from school, phones, games and apps that pupils aged 11-15 know"
+  },
   "content_index": "content/book.json",
   "content_dir": "content/",
   "games_dir": "games/",
   "images_dir": "images/",
-
+  "concepts_index": "content/concepts.json",
   "content_format": {
     "type": "markdown",
     "frontmatter": "yaml",
@@ -35,31 +50,29 @@
       "game": "Odkaz na soubor games/*.json (pokud type=game)",
       "diagram": "Odkaz na soubor images/*.svg",
       "recallQ": "Otázka pro rozložené opakování (editovatelná tvůrci)",
-      "recallA": "Odpověď na otázku pro opakování"
+      "recallA": "Odpověď na otázku pro opakování",
+      "concept": "Koncept, jehož je blok podáním (content/concepts.json)",
+      "lang": "cs | en | sk | hu",
+      "translationOf": "id bloku, jehož je tento blok překladem (v jazyce čtenáře ho nahradí)"
     }
   },
-
   "api": {
     "llm_index": "/.well-known/pbook.json",
     "content_list": "content/book.json",
     "content_files": "content/{chapter_directory}/{filename}",
     "games": "games/{game_id}.json"
   },
-
   "integrations": {
     "recombee": {
-      "description": "Doporučovací engine pro personalizované doručování obsahu (ve forku zatím vypnuto)",
-      "required": false,
-      "scenarios": ["homepage-personal", "homepage-voice", "next-read", "context-related", "search"]
+      "description": "Vypnuto: doporučování běží v prohlížeči",
+      "required": false
     }
   },
-
   "features": {
-    "gamification": "XP, úrovně, odznaky, certifikát o absolvování (lze vypnout)",
-    "spaced_repetition": "Kvízy ve stylu Anki pro dlouhodobé zapamatování",
-    "missions": "Příběhové vzdělávací cesty s větvením a boss kvízy",
-    "mini_games": "Interaktivní klikací hry s 60s časovačem",
-    "personalization": "Přizpůsobení obsahu podle hlasu (Průzkumník/Tvůrce/Myslitel)",
-    "analytics": "Sledování interakcí po módech pro výzkum"
+    "gamification": "XP, úrovně, odznaky, certifikát od AI dětem (lze vypnout)",
+    "spaced_repetition": "Kartičky s rozloženým opakováním (1–3–7–21 dní)",
+    "missions": "Mise kapitol s bossem, kterého hodnotí AI zkoušející",
+    "mini_games": "Třídičky a skládačky ke každému jádru",
+    "languages": "Čeština, angličtina, slovenština a maďarština: přepínač na úvodní obrazovce i v Nastavení, ?lang=en"
   }
 }

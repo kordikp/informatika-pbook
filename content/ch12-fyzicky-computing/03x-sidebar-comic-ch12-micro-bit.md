@@ -15,7 +15,7 @@ concept: ch12-micro-bit
 state: edited
 generator: gpt-5.6-sol
 lens: generic
-lang: en
+lang: cs
 visuality: visual-first
 depth: intro..standard
 formalism: none

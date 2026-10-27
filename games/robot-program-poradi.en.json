@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "A program for a robot",
+  "instruction": "Put the blocks in order: input, processing and output. The robot drives straight, turns left and lights up at the finish.",
+  "steps": [
+    "▶ when button A is pressed",
+    "move forward 3",
+    "turn left",
+    "move forward 2",
+    "switch on the light"
+  ],
+  "debrief": "The robot's program has an input (the button), processing (moves in an exact order) and an output (the light). Swap two moves and the robot ends up somewhere else.",
+  "why": [
+    "The program waits for the input: it starts only when button A is pressed.",
+    "First it drives straight for 3 squares.",
+    "Then it turns. If it turned earlier, it would go a different way.",
+    "After the turn it drives 2 squares to the finish.",
+    "The output: the light comes on only once the robot is at the finish."
+  ]
+}

@@ -8,7 +8,7 @@ teaser: "Proč tě appka někdy „nepustí“ dál? Protože přesně ví, v ja
 voice: universal
 parent: null
 diagram: null
-core: true
+core: false
 recallQ: "Co tvoří logiku aplikace?"
 recallA: "Stavy (v jakém režimu appka je), vstupy (co uživatel udělá) a akce (co se provede). Chování appky = pravidla „když ve stavu S přijde vstup V, proveď akci A a přejdi do stavu S2“."
 highlights:
@@ -24,7 +24,7 @@ lengthBand: standard
 genre: explainer
 status: accepted
 concept: ch9-logika-aplikace
-state: core
+state: edited
 carriers: prose
 ---
 

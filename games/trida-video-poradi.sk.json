@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Natoč triedne video",
+  "instruction": "Zoraď úlohy tak, aby každá prišla až po tom, od čoho závisí.",
+  "steps": [
+    "Vybrať tému",
+    "Napísať scenár",
+    "Natočiť zábery",
+    "Zostrihať zábery",
+    "Pridať titulky a hudbu",
+    "Pustiť video triede"
+  ],
+  "debrief": "Každá úloha závisí od tej predchádzajúcej: bez témy nie je scenár, bez záberov nie je čo strihať. Kto nájde závislosti, vie, v akom poradí prácu rozdeliť.",
+  "why": [
+    "Bez témy nevieš, o čom písať.",
+    "Scenár hovorí, čo natočiť.",
+    "Natáčaš podľa scenára.",
+    "Strihať sa dajú až natočené zábery.",
+    "Titulky a hudba sa pridávajú k zostrihanému videu.",
+    "Pustiť sa dá až hotové video."
+  ]
+}

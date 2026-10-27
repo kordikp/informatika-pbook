@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Build a game loop",
+  "instruction": "Put in order what a game does 60× a second, over and over!",
+  "steps": [
+    "Read the player's input (keys, touch)",
+    "Move the characters and work out their new positions",
+    "Check for collisions (did objects touch?)",
+    "Update the score and lives according to the rules",
+    "Draw the whole scene on the screen again"
+  ],
+  "debrief": "A game repeats the same loop dozens of times a second: input, movement, collisions, rules, drawing. That's why everything seems to run smoothly.",
+  "why": [
+    "First the game has to know what the player pressed.",
+    "The new positions of the characters are worked out from the input.",
+    "Whether objects touched can only be told from the new positions.",
+    "The collisions tell you whether the score goes up or a life is lost.",
+    "Finally the scene is drawn with everything that changed in this round."
+  ]
+}

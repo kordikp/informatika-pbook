@@ -57,7 +57,7 @@
   <text x="262" y="143" text-anchor="middle" font-size="11" font-weight="700" fill="#D97706">2 · větvení</text>
 
   <text x="336" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="#10B981">ano<animate attributeName="opacity" values="1;1;0.25;1;0.25;1;1" keyTimes="0;0.13;0.145;0.16;0.175;0.19;1" dur="6s" repeatCount="indefinite"/></text>
-  <text x="182" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="#D97706">ne</text>
+  <text x="213" y="127" text-anchor="end" font-size="11" font-weight="700" fill="#D97706">ne</text>
   <path d="M296 116 L326 143" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#rtArrG)"/>
   <path d="M228 116 L194 143" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#rtArrA)"/>
 

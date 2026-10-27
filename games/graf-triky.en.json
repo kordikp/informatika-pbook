@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Honest chart or trick?",
+  "instruction": "What is fine, and what does a chart that wants to fool you have?",
+  "buckets": [
+    "Honest",
+    "Trick!"
+  ],
+  "items": [
+    {
+      "text": "The Y axis starts at zero",
+      "answer": 0,
+      "why": "The heights of the bars match the real values."
+    },
+    {
+      "text": "The Y axis starts at 99",
+      "answer": 1,
+      "why": "Then a small difference looks huge."
+    },
+    {
+      "text": "Labelled axes with units",
+      "answer": 0,
+      "why": "You know what the chart measures and in what."
+    },
+    {
+      "text": "The chart starts in just the year when things look good",
+      "answer": 1,
+      "why": "A picked period hides what it was like before."
+    },
+    {
+      "text": "A bar chart to compare classes",
+      "answer": 0,
+      "why": "Bars side by side are easy to compare."
+    },
+    {
+      "text": "A figure twice as tall = “double”",
+      "answer": 1,
+      "why": "A figure twice as tall is also twice as wide, so it looks like four times as much."
+    },
+    {
+      "text": "A line chart for the temperature during a week",
+      "answer": 0,
+      "why": "A line shows how a value changes over time."
+    },
+    {
+      "text": "A pie with 15 slices and no labels",
+      "answer": 1,
+      "why": "So many slices without labels can't be compared. You don't know which is which."
+    }
+  ],
+  "debrief": "An honest chart has labelled axes, a sensible scale and a suitable type. Tricks change the impression, not the data: a cut-off axis, a picked period, pictures instead of bars."
+}

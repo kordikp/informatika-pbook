@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Podvod, alebo v poriadku?",
+  "instruction": "Podvod, alebo v poriadku?",
+  "buckets": [
+    "Podvod",
+    "V poriadku"
+  ],
+  "items": [
+    {
+      "text": "SMS (neznáme číslo): Vaša zásielka čaká na doplatok 1,29 € za clo. Bez platby bude dnes vrátená. Zaplaťte tu: zasielka-doplatok.example",
+      "answer": 0,
+      "why": "Mieri na zhon („dnes“) a malú sumu, ktorá nevyzerá podozrivo."
+    },
+    {
+      "text": "E-mail (Triedna učiteľka · školská adresa): Dobrý deň, v piatok ideme na exkurziu. Zraz o 8:00 pred školou, desiatu a pitie so sebou. Podrobnosti nájdete v EduPage.",
+      "answer": 1,
+      "why": "Nič nechce: žiadny odkaz, žiadne údaje, žiadny zhon."
+    },
+    {
+      "text": "E-mail (Herný tím): Gratulujeme! V súťaži si vyhral 2 000 drahokamov. Výhru si vyzdvihni do 24 hodín prihlásením svojím herným účtom: odmeny-hra.example",
+      "answer": 0,
+      "why": "Mieri na odmenu a zhon. Text je bez jedinej chyby. Napísala ho AI."
+    },
+    {
+      "text": "Hovor (Mama · neznáme číslo): „Ahoj, to som ja. Pokazil sa mi mobil, volám z cudzieho. Príde ti SMS s kódom, prečítaj mi ho, rýchlo. Vysvetlím ti to doma.“",
+      "answer": 0,
+      "why": "Mieri na dôveru a strach o blízkeho. Hlas môže byť naklonovaný AI."
+    },
+    {
+      "text": "SMS (Hra): (Práve sa prihlasuješ do hry.) Kód na prihlásenie: 482913. Nikomu ho nehovor, ani podpore.",
+      "answer": 1,
+      "why": "Kód prišiel, pretože sa práve prihlasuješ ty. Patrí len do prihlasovacieho okna."
+    },
+    {
+      "text": "Chat (Kamarát Tomáš): Hele, hlasuj prosím za mňa v súťaži! Stačí sa prihlásiť svojím účtom tu: sutaz-hlasovanie.example 🙏",
+      "answer": 0,
+      "why": "Mieri na priateľstvo. Tomášov účet už môže ovládať podvodník."
+    }
+  ],
+  "debrief": "Podvod spoznáš podľa zhonu, cudzieho odkazu a žiadosti o kód, heslo alebo platbu. Keď si nie si istý, over si to inou cestou: v aplikácii, u učiteľa alebo na známom čísle."
+}

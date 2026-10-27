@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "Komu jaké právo?",
+  "instruction": "Teď jsi správce ty. Sdílíš dokument ke skupinovému projektu. Komu dáš jaké právo?",
+  "buckets": [
+    "Upravovat",
+    "Komentovat",
+    "Jen číst",
+    "Nesdílet"
+  ],
+  "items": [
+    {
+      "text": "Spolužáci ze skupiny, kteří projekt píšou s tebou.",
+      "answer": 0,
+      "why": "Píšou s tebou, potřebují text měnit."
+    },
+    {
+      "text": "Celá třída, aby si projekty po odevzdání přečetla.",
+      "answer": 2,
+      "why": "Přečtou si ho a nic nerozbijí."
+    },
+    {
+      "text": "Kdokoli na internetu, kdo dostane odkaz.",
+      "answer": 3,
+      "why": "Sdílíš jmenovitě a jen tolik, kolik je potřeba."
+    },
+    {
+      "text": "Nový člen skupiny, který s vámi dopíše závěr.",
+      "answer": 0,
+      "why": "Píše s vámi, potřebuje text měnit."
+    },
+    {
+      "text": "Kamarád, který ti text jen projde a připíše poznámky k pravopisu.",
+      "answer": 1,
+      "why": "Poznámky napíše do komentářů, text měnit nemusí."
+    },
+    {
+      "text": "Rodiče, kteří se chtějí podívat, na čem pracuješ.",
+      "answer": 2,
+      "why": "Chtějí se jen podívat, stačí jim čtení."
+    },
+    {
+      "text": "Spolužák z jiné třídy, který chce projekt opsat.",
+      "answer": 3,
+      "why": "Opisování nepodporuj. Nesdílej."
+    },
+    {
+      "text": "Neznámý účet, který žádá o přístup k dokumentu.",
+      "answer": 3,
+      "why": "Nevíš, kdo to je. Přístup nedávej."
+    }
+  ],
+  "debrief": "Dej každému jen takové právo, jaké opravdu potřebuje. Kdo píše, upravuje. Kdo radí, komentuje. Kdo se jen dívá, čte. A kdo k dokumentu nepatří, nedostane nic."
+}

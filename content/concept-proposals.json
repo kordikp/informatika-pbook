@@ -1,501 +1,1187 @@
 {
  "proposals": [
   {
-   "slug": "digitalni-zaklady-reprezentace-dat",
-   "title": "Reprezentace dat",
-   "tema": "digitalni-zaklady",
-   "objective": "Počítač uvnitř zná jen nuly a jedničky (bity), takže čísla, písmena, obrázky i zvuk se musí zakódovat do čísel.",
-   "recallQ": "Porovnal bys dva způsoby kódování dat a posoudí, který se hodí pro úsporné uložení a který pro bezchybný přenos?"
-  },
-  {
-   "slug": "digitalni-zaklady-adresy-a-protokoly",
-   "title": "Adresy a protokoly",
-   "tema": "digitalni-zaklady",
-   "objective": "Aby se zařízení na internetu našla a rozuměla si, používají adresy a dohodnutá pravidla komunikace: doména (seznam.cz) se přes DNS přeloží na číselnou IP adresu a data p…",
-   "recallQ": "Rozlišil bys roli domény, IP adresy a protokolu HTTP při načítání stránky?"
-  },
-  {
-   "slug": "digitalni-zaklady-vrstvy-pocitace",
-   "title": "Vrstvy počítače",
-   "tema": "digitalni-zaklady",
-   "objective": "Počítač je poskládaný z vrstev: úplně dole hardware, nad ním operační systém a nahoře aplikace, kterou používáš.",
-   "recallQ": "Vysvětlil bys na příkladu, jak vrstvy hardware – operační systém – aplikace skrývají složitost té pod sebou?"
-  },
-  {
-   "slug": "digitalni-zaklady-operacni-system-a-soubory",
-   "title": "Operační systém a soubory",
-   "tema": "digitalni-zaklady",
-   "objective": "Operační systém (Windows, Android, iOS) je program, který řídí celé zařízení a dává ostatním aplikacím přístup k hardwaru.",
-   "recallQ": "Co je „Operační systém a soubory“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "digitalni-zaklady-kde-jsou-data-fyzicky",
-   "title": "Kde jsou data fyzicky",
-   "tema": "digitalni-zaklady",
-   "objective": "Data z aplikací neleží „někde v internetu\", ale na konkrétních serverech na konkrétním místě na světě.",
-   "recallQ": "Co je „Kde jsou data fyzicky“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "informaticke-mysleni-pseudokod-a-vyvojove-diagramy",
-   "title": "Pseudokód a vývojové diagramy",
-   "tema": "informaticke-mysleni",
-   "objective": "Způsoby, jak zapsat postup srozumitelně pro člověka ještě předtím, než ho napíšeš v konkrétním programovacím jazyce.",
-   "recallQ": "Zapsal bys jednoduchý postup jako pseudokód nebo vývojový diagram?"
-  },
-  {
-   "slug": "informaticke-mysleni-logika-a-booleovske-vyrazy",
-   "title": "Logika a booleovské výrazy",
-   "tema": "informaticke-mysleni",
-   "objective": "Rozhodování v programech stojí na výrocích, které jsou buď pravda, nebo nepravda („má hráč míň než nula životů?\").",
-   "recallQ": "Vysvětlil bys význam spojek A ZÁROVEŇ, NEBO a NE na konkrétní podmínce?"
-  },
-  {
-   "slug": "informaticke-mysleni-modelovani-a-simulace",
-   "title": "Modelování a simulace",
-   "tema": "informaticke-mysleni",
-   "objective": "Model je zjednodušený obraz skutečnosti — třeba graf, schéma nebo tabulka — který zachytí to podstatné a zbytek vynechá.",
-   "recallQ": "Co je „Modelování a simulace“ a k čemu se ti hodí?"
-  },
-  {
    "slug": "informaticke-mysleni-efektivita-reseni",
-   "title": "Efektivita řešení",
-   "tema": "informaticke-mysleni",
-   "objective": "Stejný problém jde vyřešit mnoha způsoby, ale ne všechny stojí stejně — liší se počtem kroků, časem nebo pamětí.",
-   "recallQ": "Porovnal bys dvě řešení stejné úlohy a rozliší, které vyžaduje méně kroků?"
+   "title": {
+    "cs": "Efektivita řešení",
+    "en": "Efficiency of a solution",
+    "sk": "Efektivita riešenia",
+    "hu": "Egy megoldás hatékonysága"
+   },
+   "tema": "ch1-postup",
+   "objective": {
+    "cs": "Efektivitu lze posuzovat na různých úrovních.",
+    "en": "Efficiency can be judged at different levels.",
+    "sk": "Efektivitu možno posudzovať na rôznych úrovniach.",
+    "hu": "A hatékonyságot különböző szinteken lehet megítélni."
+   },
+   "recallQ": {
+    "cs": "Porovnal bys různá řešení nebo algoritmy podle vhodně zvoleného kritéria efektivity?",
+    "en": "What is “Efficiency of a solution”, and what is it good for?",
+    "sk": "Čo je „Efektivita riešenia“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Egy megoldás hatékonysága”, és mire jó neked?"
+   }
   },
   {
-   "slug": "informaticke-mysleni-zakladni-algoritmy",
-   "title": "Základní algoritmy",
-   "tema": "informaticke-mysleni",
-   "objective": "Osvědčené postupy, které se používají pořád dokola, hlavně hledání (najdi prvek v seznamu) a řazení (seřaď podle velikosti).",
-   "recallQ": "Co je „Základní algoritmy“ a k čemu se ti hodí?"
+   "slug": "programovani-efektivita",
+   "title": {
+    "cs": "Efektivita programu",
+    "en": "Efficiency of a program",
+    "sk": "Efektivita programu",
+    "hu": "Egy program hatékonysága"
+   },
+   "tema": "ch1-postup",
+   "objective": {
+    "cs": "Stejnou úlohu lze často naprogramovat různými způsoby.",
+    "en": "The same task can often be programmed in different ways.",
+    "sk": "Rovnakú úlohu možno často naprogramovať rôznymi spôsobmi.",
+    "hu": "Ugyanazt a feladatot gyakran többféleképpen is be lehet programozni."
+   },
+   "recallQ": {
+    "cs": "Porovnal bys různá řešení stejné úlohy a rozpozná rozdíly v množství vykonávaných činností, čitelnosti a snadnosti dalších úprav?",
+    "en": "What is “Efficiency of a program”, and what is it good for?",
+    "sk": "Čo je „Efektivita programu“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Egy program hatékonysága”, és mire jó neked?"
+   }
   },
   {
-   "slug": "informaticke-mysleni-hodnoceni-a-analyza-chyb",
-   "title": "Hodnocení a analýza chyb",
-   "tema": "informaticke-mysleni",
-   "objective": "Umět se na hotové řešení podívat kriticky: funguje?",
-   "recallQ": "Co je „Hodnocení a analýza chyb“ a k čemu se ti hodí?"
+   "slug": "digitalni-zaklady-komprese-dat",
+   "title": {
+    "cs": "Komprese dat",
+    "en": "Data compression",
+    "sk": "Kompresia dát",
+    "hu": "Adattömörítés"
+   },
+   "tema": "ch3-data",
+   "objective": {
+    "cs": "Komprese zmenší soubor tím, že odstraní opakování nebo nepodstatné detaily.",
+    "en": "Compression makes a file smaller by removing repetition or unimportant details.",
+    "sk": "Kompresia zmenší súbor tým, že odstráni opakovanie alebo nepodstatné detaily.",
+    "hu": "A tömörítés úgy teszi kisebbé a fájlt, hogy eltávolítja az ismétléseket vagy a lényegtelen részleteket."
+   },
+   "recallQ": {
+    "cs": "Co je „Komprese dat“ a k čemu se ti hodí?",
+    "en": "What is “Data compression”, and what is it good for?",
+    "sk": "Čo je „Kompresia dát“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Adattömörítés”, és mire jó neked?"
+   }
   },
   {
-   "slug": "programovani-blokove-vs-textove-programovani",
-   "title": "Blokové vs. textové programování",
-   "tema": "programovani",
-   "objective": "Na začátku se programuje skládáním barevných bloků (Scratch), kde nejde udělat překlep.",
-   "recallQ": "Porovnal bys blokové a textové programování z hlediska přesnosti zápisu a možností?"
-  },
-  {
-   "slug": "programovani-seznamy-a-kolekce",
-   "title": "Seznamy a kolekce",
-   "tema": "programovani",
-   "objective": "Když nestačí jedna proměnná, uloží se víc hodnot najednou do seznamu (třeba jména všech hráčů).",
-   "recallQ": "Použil bys seznam k uložení více hodnot a projde jeho prvky cyklem?"
-  },
-  {
-   "slug": "programovani-udalosti",
-   "title": "Události",
-   "tema": "programovani",
-   "objective": "Programy často nečekají v jednom sledu, ale reagují na to, co udělá uživatel — klik, stisk klávesy, dotyk.",
-   "recallQ": "Vysvětlil bys princip událostmi řízeného programování ve tvaru „když se stane X, spusť Y“?"
-  },
-  {
-   "slug": "programovani-knihovny-a-volani-api-v-kodu",
-   "title": "Knihovny a volání API v kódu",
-   "tema": "programovani",
-   "objective": "Nemusíš psát všechno od nuly — knihovna je hotový cizí kód, který zavoláš a použiješ (třeba na práci s datem nebo grafy).",
-   "recallQ": "Použil bys funkci z knihovny nebo volání API k vyřešení dílčího úkolu?"
-  },
-  {
-   "slug": "programovani-verzovani-kodu",
-   "title": "Verzování kódu",
-   "tema": "programovani",
-   "objective": "Git a GitHub ukládají historii změn kódu, takže se vždycky můžeš vrátit k funkční verzi a víc lidí může pracovat na jednom projektu, aniž by si přepsali práci.",
-   "recallQ": "Co je „Verzování kódu“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "programovani-cteni-a-hodnoceni-ai-kodu",
-   "title": "Čtení a hodnocení AI kódu",
-   "tema": "programovani",
-   "objective": "Dnes velkou část kódu napíše AI — o to důležitější je umět cizí kód přečíst, pochopit, co dělá, a posoudit, jestli je správný a bezpečný.",
-   "recallQ": "Co je „Čtení a hodnocení AI kódu“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "programovani-zaklady-objektu-oop",
-   "title": "Základy objektů (OOP)",
-   "tema": "programovani",
-   "objective": "Objekt spojuje data a to, co s nimi jde dělat, do jednoho celku (třeba „hráč\" má životy i umí skočit).",
-   "recallQ": "Co je „Základy objektů (OOP)“ a k čemu se ti hodí?"
+   "slug": "data-databaze-provazanost-tabulek",
+   "title": {
+    "cs": "Provázanost tabulek a relační model",
+    "en": "Linked tables and the relational model",
+    "sk": "Prepojenie tabuliek a relačný model",
+    "hu": "Összekapcsolt táblák és a relációs modell"
+   },
+   "tema": "ch3-data",
+   "objective": {
+    "cs": "Reálné informační systémy zřídka vystačí s jedinou tabulkou.",
+    "en": "Real information systems rarely make do with a single table.",
+    "sk": "Reálne informačné systémy si zriedka vystačia s jedinou tabuľkou.",
+    "hu": "A valódi információs rendszerek ritkán érik be egyetlen táblával."
+   },
+   "recallQ": {
+    "cs": "Co je „Provázanost tabulek a relační model“ a k čemu se ti hodí?",
+    "en": "What is “Linked tables and the relational model”, and what is it good for?",
+    "sk": "Čo je „Prepojenie tabuliek a relačný model“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Összekapcsolt táblák és a relációs modell”, és mire jó neked?"
+   }
   },
   {
    "slug": "data-databaze-dotazovani-sql",
-   "title": "Dotazování (SQL)",
-   "tema": "data-databaze",
-   "objective": "SQL je jazyk, kterým se databáze ptáš na to, co potřebuješ („vyber všechny žáky z 8.A\").",
-   "recallQ": "Co je „Dotazování (SQL)“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "data-databaze-ucel-informacnich-systemu",
-   "title": "Účel informačních systémů",
-   "tema": "data-databaze",
-   "objective": "Informační systém je software, který eviduje a zpracovává data pro nějakou potřebu — školní matrika, rezervace, e-shop.",
-   "recallQ": "Posoudil bys u informačního systému, který používá, k čemu slouží a zda je pro daný účel opravdu užitečný?"
-  },
-  {
-   "slug": "data-databaze-statisticka-gramotnost",
-   "title": "Statistická gramotnost",
-   "tema": "data-databaze",
-   "objective": "Aby tě čísla nezmátla: korelace (dvě věci jdou spolu) neznamená kauzalitu (jedna způsobuje druhou), malý nebo nereprezentativní vzorek klame a graf jde snadno „natáhnout…",
-   "recallQ": "Posoudil bys u předloženého tvrzení, zda ho nezkresluje malý či nereprezentativní vzorek nebo záměna korelace a kauzality?"
+   "title": {
+    "cs": "Dotazování (SQL)",
+    "en": "Querying (SQL)",
+    "sk": "Dopytovanie (SQL)",
+    "hu": "Lekérdezés (SQL)"
+   },
+   "tema": "ch3-data",
+   "objective": {
+    "cs": "SQL je jazyk, kterým se databáze ptáš na to, co potřebuješ („vyber všechny žáky z 8.A\").",
+    "en": "SQL is the language you use to ask a database for what you need (“select all the students from class 8A”).",
+    "sk": "SQL je jazyk, ktorým sa databázy pýtaš na to, čo potrebuješ („vyber všetkých žiakov z 8.A“).",
+    "hu": "Az SQL az a nyelv, amellyel megkérdezed az adatbázistól, amire szükséged van („válaszd ki a 8.A összes tanulóját”)."
+   },
+   "recallQ": {
+    "cs": "Co je „Dotazování (SQL)“ a k čemu se ti hodí?",
+    "en": "What is “Querying (SQL)”, and what is it good for?",
+    "sk": "Čo je „Dopytovanie (SQL)“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Lekérdezés (SQL)”, és mire jó neked?"
+   }
   },
   {
    "slug": "data-databaze-cisteni-realnych-dat",
-   "title": "Čištění reálných dat",
-   "tema": "data-databaze",
-   "objective": "Skutečná data jsou „špinavá\" — chybí hodnoty, opakují se, jsou v různých formátech.",
-   "recallQ": "Co je „Čištění reálných dat“ a k čemu se ti hodí?"
+   "title": {
+    "cs": "Čištění reálných dat",
+    "en": "Cleaning real data",
+    "sk": "Čistenie reálnych dát",
+    "hu": "Valódi adatok tisztítása"
+   },
+   "tema": "ch3-data",
+   "objective": {
+    "cs": "Skutečná data jsou „špinavá\" — chybí hodnoty, opakují se, jsou v různých formátech.",
+    "en": "Real data is “dirty”: values are missing, repeated, or in different formats.",
+    "sk": "Skutočné dáta sú „špinavé“: chýbajú hodnoty, opakujú sa, sú v rôznych formátoch.",
+    "hu": "A valódi adatok „piszkosak”: hiányoznak értékek, ismétlődnek, különböző formátumúak."
+   },
+   "recallQ": {
+    "cs": "Co je „Čištění reálných dat“ a k čemu se ti hodí?",
+    "en": "What is “Cleaning real data”, and what is it good for?",
+    "sk": "Čo je „Čistenie reálnych dát“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Valódi adatok tisztítása”, és mire jó neked?"
+   }
   },
   {
    "slug": "data-databaze-nosql-a-dokumentove-databaze",
-   "title": "NoSQL a dokumentové databáze",
-   "tema": "data-databaze",
-   "objective": "Ne všechno se hodí do tabulek — NoSQL databáze ukládají data volněji (třeba jako dokumenty), což se hodí pro obsah, který nemá pevný tvar.",
-   "recallQ": "Co je „NoSQL a dokumentové databáze“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "data-databaze-vektorove-databaze",
-   "title": "Vektorové databáze",
-   "tema": "data-databaze",
-   "objective": "Text nebo obrázek se dá převést na řadu čísel (embedding), která zachycuje jeho význam.",
-   "recallQ": "Co je „Vektorové databáze“ a k čemu se ti hodí?"
+   "title": {
+    "cs": "NoSQL a dokumentové databáze",
+    "en": "NoSQL and document databases",
+    "sk": "NoSQL a dokumentové databázy",
+    "hu": "NoSQL és dokumentum-adatbázisok"
+   },
+   "tema": "ch3-data",
+   "objective": {
+    "cs": "Ne všechno se hodí do tabulek — NoSQL databáze ukládají data volněji (třeba jako dokumenty), což se hodí pro obsah, který nemá pevný tvar.",
+    "en": "Not everything fits into tables: NoSQL databases store data more loosely (for example as documents), which suits content that has no fixed shape.",
+    "sk": "Nie všetko sa hodí do tabuliek: NoSQL databázy ukladajú dáta voľnejšie (napríklad ako dokumenty), čo sa hodí pre obsah, ktorý nemá pevný tvar.",
+    "hu": "Nem minden fér bele táblákba: a NoSQL-adatbázisok lazábban tárolják az adatokat (például dokumentumként), ami a kötött forma nélküli tartalomhoz illik."
+   },
+   "recallQ": {
+    "cs": "Co je „NoSQL a dokumentové databáze“ a k čemu se ti hodí?",
+    "en": "What is “NoSQL and document databases”, and what is it good for?",
+    "sk": "Čo je „NoSQL a dokumentové databázy“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „NoSQL és dokumentum-adatbázisok”, és mire jó neked?"
+   }
   },
   {
    "slug": "data-databaze-programova-analyza-dat",
-   "title": "Programová analýza dat",
-   "tema": "data-databaze",
-   "objective": "Když je dat moc na ruční klikání, zpracují se kódem (typicky Python + knihovna pandas).",
-   "recallQ": "Vysvětlil bys výhody zpracování dat kódem (rychlost, opakovatelnost, doložitelnost) oproti ručnímu klikání?"
+   "title": {
+    "cs": "Automatizovaná analýza dat",
+    "en": "Automated data analysis",
+    "sk": "Automatizovaná analýza dát",
+    "hu": "Automatizált adatelemzés"
+   },
+   "tema": "ch3-data",
+   "objective": {
+    "cs": "Když je dat moc na ruční klikání, zpracují se kódem (typicky Python + knihovna pandas).",
+    "en": "When there's too much data for clicking by hand, it is processed with code (typically Python + the pandas library).",
+    "sk": "Keď je dát priveľa na ručné klikanie, spracujú sa kódom (typicky Python + knižnica pandas).",
+    "hu": "Ha túl sok az adat a kézi kattintgatáshoz, kóddal dolgozzák fel (jellemzően Python + a pandas könyvtár)."
+   },
+   "recallQ": {
+    "cs": "Porovnal bys automatické a ruční zpracování dat, vysvětlí jejich výhody a omezení a uvede příklady situací, kdy je vhodné použít jednotlivé přístupy?",
+    "en": "What is “Automated data analysis”, and what is it good for?",
+    "sk": "Čo je „Automatizovaná analýza dát“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Automatizált adatelemzés”, és mire jó neked?"
+   }
   },
   {
    "slug": "data-databaze-analyza-dat-pomoci-ai",
-   "title": "Analýza dat pomocí AI",
-   "tema": "data-databaze",
-   "objective": "Dnes stačí data nahrát a zeptat se běžnou řečí („ukaž trend prodejů po měsících\") — AI vygeneruje graf i vysvětlení.",
-   "recallQ": "Ověřil bys u výstupu, který mu AI z dat vygenerovala, zda čísla a závěr odpovídají skutečným datům?"
+   "title": {
+    "cs": "Analýza dat pomocí AI",
+    "en": "Data analysis with AI",
+    "sk": "Analýza dát pomocou AI",
+    "hu": "Adatelemzés MI-vel"
+   },
+   "tema": "ch3-data",
+   "objective": {
+    "cs": "Dnes stačí data nahrát a zeptat se běžnou řečí („ukaž trend prodejů po měsících\") — AI vygeneruje graf i vysvětlení.",
+    "en": "Today you just upload the data and ask in plain language (“show the sales trend by month”), and AI generates a chart and an explanation.",
+    "sk": "Dnes stačí dáta nahrať a opýtať sa bežnou rečou („ukáž trend predaja po mesiacoch“) a AI vygeneruje graf aj vysvetlenie.",
+    "hu": "Ma elég feltölteni az adatokat, és hétköznapi nyelven kérdezni („mutasd az eladások havi alakulását”), az MI pedig grafikont és magyarázatot is készít."
+   },
+   "recallQ": {
+    "cs": "Ověřil bys u výstupu, který mu AI z dat vygenerovala, zda čísla a závěr odpovídají skutečným datům?",
+    "en": "What is “Data analysis with AI”, and what is it good for?",
+    "sk": "Čo je „Analýza dát pomocou AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Adatelemzés MI-vel”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-zaklady-bezpecne-smazani-dat",
+   "title": {
+    "cs": "Bezpečné smazání dat",
+    "en": "Deleting data safely",
+    "sk": "Bezpečné vymazanie dát",
+    "hu": "Adatok biztonságos törlése"
+   },
+   "tema": "ch4-stroje-a-site",
+   "objective": {
+    "cs": "Smazaný soubor z disku hned nezmizí — systém si jen přestane pamatovat, kde ležel, a data tam zůstávají, dokud je něco nepřepíše.",
+    "en": "A deleted file doesn't vanish from the disk straight away: the system just stops remembering where it was, and the data stays there until something overwrites it.",
+    "sk": "Vymazaný súbor z disku hneď nezmizne: systém si len prestane pamätať, kde ležal, a dáta tam zostávajú, kým ich niečo neprepíše.",
+    "hu": "A törölt fájl nem tűnik el azonnal a lemezről: a rendszer csak elfelejti, hol volt, az adatok pedig ott maradnak, amíg valami felül nem írja őket."
+   },
+   "recallQ": {
+    "cs": "Vysvětlil bys „líné“ mazání dat a popíše, jak data před vyhozením zařízení odstranit bezpečně?",
+    "en": "What is “Deleting data safely”, and what is it good for?",
+    "sk": "Čo je „Bezpečné vymazanie dát“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Adatok biztonságos törlése”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-zaklady-software-a-cloud-mimo-eu",
+   "title": {
+    "cs": "Software a cloud mimo EU",
+    "en": "Software and cloud outside the EU",
+    "sk": "Softvér a cloud mimo EÚ",
+    "hu": "Szoftver és felhő az EU-n kívül"
+   },
+   "tema": "ch4-stroje-a-site",
+   "objective": {
+    "cs": "Software a cloud z některých zemí mohou podléhat tamním zákonům a tajným službám — antivirus nebo cloud elektrárny tak může být trojský kůň: tváří se užitečně a zevnitř …",
+    "en": "Software and cloud services from some countries may be subject to their laws and secret services, so a power plant's antivirus or cloud can be a Trojan horse: it looks useful…",
+    "sk": "Softvér a cloud z niektorých krajín môžu podliehať tamojším zákonom a tajným službám, takže antivírus alebo cloud elektrárne môže byť trójsky kôň: tvári sa užitočne…",
+    "hu": "Egyes országok szoftverei és felhőszolgáltatásai az ottani törvények és titkosszolgálatok hatálya alá tartozhatnak, így egy erőmű vírusirtója vagy felhője trójai faló lehet: hasznosnak látszik…"
+   },
+   "recallQ": {
+    "cs": "Vysvětlil bys bezpečnostní rizika používání softwaru a cloudových služeb ze zemí mimo EU a pojem trojský kůň?",
+    "en": "What is “Software and cloud outside the EU”, and what is it good for?",
+    "sk": "Čo je „Softvér a cloud mimo EÚ“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Szoftver és felhő az EU-n kívül”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-zaklady-jak-funguje-vyhledavac",
+   "title": {
+    "cs": "Jak funguje vyhledávač",
+    "en": "How a search engine works",
+    "sk": "Ako funguje vyhľadávač",
+    "hu": "Hogyan működik a keresőmotor"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Vyhledávač web neprohledává ve chvíli, kdy hledáš.",
+    "en": "A search engine doesn't search the web at the moment you search.",
+    "sk": "Vyhľadávač web neprehľadáva vo chvíli, keď hľadáš.",
+    "hu": "A keresőmotor nem abban a pillanatban kutatja át a webet, amikor keresel."
+   },
+   "recallQ": {
+    "cs": "Vysvětlil bys hlavní myšlenku toho, jak si vyhledávač tvoří přehled o obsahu webu?",
+    "en": "What is “How a search engine works”, and what is it good for?",
+    "sk": "Čo je „Ako funguje vyhľadávač“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Hogyan működik a keresőmotor”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-zaklady-financovani-socialnich-siti-reklamou",
+   "title": {
+    "cs": "Financování sociálních sítí reklamou",
+    "en": "Social networks funded by advertising",
+    "sk": "Financovanie sociálnych sietí reklamou",
+    "hu": "A közösségi oldalak finanszírozása reklámból"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Sociální síť je zdarma, protože platí inzerenti — za tvou pozornost a za možnost cílit reklamu podle toho, co o tobě síť ví.",
+    "en": "A social network is free because advertisers pay: for your attention and for the chance to target ads based on what the network knows about you.",
+    "sk": "Sociálna sieť je zadarmo, pretože platia inzerenti: za tvoju pozornosť a za možnosť cieliť reklamu podľa toho, čo o tebe sieť vie.",
+    "hu": "A közösségi oldal azért ingyenes, mert a hirdetők fizetnek: a figyelmedért és azért, hogy aszerint célozhassák a reklámot, amit az oldal tud rólad."
+   },
+   "recallQ": {
+    "cs": "Popsal bys princip financování sociálních sítí pomocí reklamy?",
+    "en": "What is “Social networks funded by advertising”, and what is it good for?",
+    "sk": "Čo je „Financovanie sociálnych sietí reklamou“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „A közösségi oldalak finanszírozása reklámból”, és mire jó neked?"
+   }
   },
   {
    "slug": "umela-inteligence-pet-velkych-ideji-ai",
-   "title": "Pět velkých idejí AI",
-   "tema": "umela-inteligence",
-   "objective": "Přehledný rámec, který shrnuje, co AI umí, do pěti oblastí: vnímání (senzory), reprezentace a usuzování, učení z dat, přirozená interakce s lidmi a společenský dopad.",
-   "recallQ": "Popsal bys pět velkých idejí AI (vnímání, reprezentace a usuzování, učení z dat, interakce s lidmi, společenský dopad)?"
-  },
-  {
-   "slug": "umela-inteligence-strojove-uceni-prakticky",
-   "title": "Strojové učení prakticky",
-   "tema": "umela-inteligence",
-   "objective": "AI nejlíp pochopíš, když si sám natrénuješ malý model — třeba v Teachable Machine nebo micro:bit CreateAI ho naučíš rozpoznat gesto či obrázek.",
-   "recallQ": "Zhodnotil bys přesnost svého natrénovaného modelu na nových příkladech?"
+   "title": {
+    "cs": "Pět velkých idejí AI",
+    "en": "Five big ideas of AI",
+    "sk": "Päť veľkých myšlienok AI",
+    "hu": "Az MI öt nagy gondolata"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Přehledný rámec, který shrnuje, co AI umí, do pěti oblastí: vnímání (senzory), reprezentace a usuzování, učení z dat, přirozená interakce s lidmi a společenský dopad.",
+    "en": "A clear framework that sums up what AI can do in five areas: perception (sensors), representation and reasoning, learning from data, natural interaction with people and social…",
+    "sk": "Prehľadný rámec, ktorý zhŕňa, čo AI vie, do piatich oblastí: vnímanie (senzory), reprezentácia a usudzovanie, učenie z dát, prirodzená interakcia s ľuďmi a spoločenský…",
+    "hu": "Áttekinthető keret, amely öt területen foglalja össze, mire képes az MI: érzékelés (szenzorok), reprezentáció és következtetés, tanulás adatokból, természetes interakció az emberekkel és társadalmi…"
+   },
+   "recallQ": {
+    "cs": "Popsal bys pět velkých idejí AI (vnímání, reprezentace a usuzování, učení z dat, interakce s lidmi, společenský dopad)?",
+    "en": "What is “Five big ideas of AI”, and what is it good for?",
+    "sk": "Čo je „Päť veľkých myšlienok AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Az MI öt nagy gondolata”, és mire jó neked?"
+   }
   },
   {
    "slug": "umela-inteligence-typy-ai-uloh",
-   "title": "Typy AI úloh",
-   "tema": "umela-inteligence",
-   "objective": "AI úlohy se dělí na pár základních druhů: klasifikace (zařaď do kategorie — spam/ne-spam), predikce (odhadni číslo — třeba cenu) a generování (vytvoř nový obsah — text, …",
-   "recallQ": "Popsal bys rozdíl mezi klasifikací, predikcí a generováním?"
+   "title": {
+    "cs": "Typy AI úloh",
+    "en": "Types of AI tasks",
+    "sk": "Typy úloh AI",
+    "hu": "Az MI-feladatok típusai"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "AI úlohy se dělí na pár základních druhů: klasifikace (zařaď do kategorie — spam/ne-spam), predikce (odhadni číslo — třeba cenu) a generování (vytvoř nový obsah — text, …",
+    "en": "AI tasks fall into a few basic kinds: classification (put into a category: spam/not spam), prediction (estimate a number, such as a price) and generation (create new cont…",
+    "sk": "Úlohy AI sa delia na pár základných druhov: klasifikácia (zaraď do kategórie: spam/nie spam), predikcia (odhadni číslo, napríklad cenu) a generovanie (vytvor nový obsa…",
+    "hu": "Az MI-feladatok néhány alapvető fajtába sorolhatók: osztályozás (sorold kategóriába: spam/nem spam), előrejelzés (becsülj meg egy számot, például egy árat) és generálás (hozz létre új tartal…"
+   },
+   "recallQ": {
+    "cs": "Popsal bys rozdíl mezi klasifikací, predikcí a generováním?",
+    "en": "What is “Types of AI tasks”, and what is it good for?",
+    "sk": "Čo je „Typy úloh AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Az MI-feladatok típusai”, és mire jó neked?"
+   }
   },
   {
    "slug": "umela-inteligence-jak-funguji-chatboti-llm-rag",
-   "title": "Jak fungují chatboti (LLM, RAG)",
-   "tema": "umela-inteligence",
-   "objective": "Dnešní chatboti stojí na velkých jazykových modelech (LLM) natrénovaných na obrovském množství textu.",
-   "recallQ": "Co je „Jak fungují chatboti (LLM, RAG)“ a k čemu se ti hodí?"
+   "title": {
+    "cs": "Jak fungují chatboti (LLM, RAG)",
+    "en": "How chatbots work (LLM, RAG)",
+    "sk": "Ako fungujú chatboty (LLM, RAG)",
+    "hu": "Hogyan működnek a chatbotok (LLM, RAG)"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Dnešní chatboti stojí na velkých jazykových modelech (LLM) natrénovaných na obrovském množství textu.",
+    "en": "Today's chatbots are built on large language models (LLMs) trained on huge amounts of text.",
+    "sk": "Dnešné chatboty stoja na veľkých jazykových modeloch (LLM) natrénovaných na obrovskom množstve textu.",
+    "hu": "A mai chatbotok óriási mennyiségű szövegen tanított nagy nyelvi modellekre (LLM) épülnek."
+   },
+   "recallQ": {
+    "cs": "Co je „Jak fungují chatboti (LLM, RAG)“ a k čemu se ti hodí?",
+    "en": "What is “How chatbots work (LLM, RAG)”, and what is it good for?",
+    "sk": "Čo je „Ako fungujú chatboty (LLM, RAG)“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Hogyan működnek a chatbotok (LLM, RAG)”, és mire jó neked?"
+   }
   },
   {
    "slug": "umela-inteligence-hlubsi-etika-ai",
-   "title": "Hlubší etika AI",
-   "tema": "umela-inteligence",
-   "objective": "Za používáním AI stojí etické otázky: neškodit, být spravedlivý ke všem skupinám, být průhledný v tom, jak AI rozhoduje, a myslet i na její energetickou náročnost.",
-   "recallQ": "Posoudil bys konkrétní použití AI podle etických kritérií (neškodit, spravedlnost, průhlednost)?"
+   "title": {
+    "cs": "Hlubší etika AI",
+    "en": "Deeper AI ethics",
+    "sk": "Hlbšia etika AI",
+    "hu": "Az MI mélyebb etikája"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Za používáním AI stojí etické otázky: neškodit, být spravedlivý ke všem skupinám, být průhledný v tom, jak AI rozhoduje, a myslet i na její energetickou náročnost.",
+    "en": "Behind the use of AI there are ethical questions: do no harm, be fair to all groups, be transparent about how AI decides, and think about its energy demands…",
+    "sk": "Za používaním AI stoja etické otázky: neškodiť, byť spravodlivý ku všetkým skupinám, byť transparentný v tom, ako AI rozhoduje, a myslieť aj na jej energetickú náročn…",
+    "hu": "Az MI használata mögött etikai kérdések állnak: ne ártani, igazságosnak lenni minden csoporttal, átláthatónak lenni abban, hogyan dönt az MI, és gondolni az energiaigényére is…"
+   },
+   "recallQ": {
+    "cs": "Posoudil bys konkrétní použití AI podle etických kritérií (neškodit, spravedlnost, průhlednost)?",
+    "en": "What is “Deeper AI ethics”, and what is it good for?",
+    "sk": "Čo je „Hlbšia etika AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Az MI mélyebb etikája”, és mire jó neked?"
+   }
   },
   {
    "slug": "umela-inteligence-deepfakes-a-synteticka-media",
-   "title": "Deepfakes a syntetická média",
-   "tema": "umela-inteligence",
-   "objective": "AI umí vyrobit falešné, ale realisticky vypadající video, foto nebo hlas.",
-   "recallQ": "Posoudil bys u konkrétního videa nebo obrázku, zda může jít o deepfake, a zdůvodní to?"
+   "title": {
+    "cs": "Deepfakes a syntetická média",
+    "en": "Deepfakes and synthetic media",
+    "sk": "Deepfaky a syntetické médiá",
+    "hu": "Deepfake-ek és szintetikus média"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "AI umí vyrobit falešné, ale realisticky vypadající video, foto nebo hlas.",
+    "en": "AI can produce fake but realistic-looking video, photos or voice.",
+    "sk": "AI vie vyrobiť falošné, ale realisticky vyzerajúce video, fotku alebo hlas.",
+    "hu": "Az MI hamis, de valósághűnek látszó videót, fotót vagy hangot tud készíteni."
+   },
+   "recallQ": {
+    "cs": "Posoudil bys u konkrétního videa nebo obrázku, zda může jít o deepfake, a zdůvodní to?",
+    "en": "What is “Deepfakes and synthetic media”, and what is it good for?",
+    "sk": "Čo je „Deepfaky a syntetické médiá“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Deepfake-ek és szintetikus média”, és mire jó neked?"
+   }
   },
   {
    "slug": "umela-inteligence-ai-a-spolecnost",
-   "title": "AI a společnost",
-   "tema": "umela-inteligence",
-   "objective": "AI mění práci, vzdělávání i to, jak vzniká a šíří se informace — přináší příležitosti i rizika (dezinformace, závislost).",
-   "recallQ": "Co je „AI a společnost“ a k čemu se ti hodí?"
+   "title": {
+    "cs": "AI a společnost",
+    "en": "AI and society",
+    "sk": "AI a spoločnosť",
+    "hu": "MI és társadalom"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "AI mění práci, vzdělávání i to, jak vzniká a šíří se informace — přináší příležitosti i rizika (dezinformace, závislost).",
+    "en": "AI is changing work, education and how information is created and spread, bringing opportunities as well as risks (disinformation, dependence).",
+    "sk": "AI mení prácu, vzdelávanie aj to, ako vznikajú a šíria sa informácie, a prináša príležitosti aj riziká (dezinformácie, závislosť).",
+    "hu": "Az MI megváltoztatja a munkát, az oktatást és azt is, hogyan születnek és terjednek az információk, lehetőségeket és kockázatokat is hozva (dezinformáció, függőség)."
+   },
+   "recallQ": {
+    "cs": "Co je „AI a společnost“ a k čemu se ti hodí?",
+    "en": "What is “AI and society”, and what is it good for?",
+    "sk": "Čo je „AI a spoločnosť“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „MI és társadalom”, és mire jó neked?"
+   }
   },
   {
-   "slug": "kyberbezpecnost-sifrovani-a-https",
-   "title": "Šifrování a HTTPS",
-   "tema": "kyberbezpecnost",
-   "objective": "Šifrování promění data v nečitelnou změť pro každého, kdo nemá klíč.",
-   "recallQ": "Co je „Šifrování a HTTPS“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "kyberbezpecnost-typy-utoku",
-   "title": "Typy útoků",
-   "tema": "kyberbezpecnost",
-   "objective": "Přehled hrozeb, se kterými se lze setkat: malware (škodlivý program), ransomware (zašifruje data a žádá výkupné) a další.",
-   "recallQ": "Popsal bys základní typy útoků (malware, ransomware) a způsob jejich šíření?"
-  },
-  {
-   "slug": "kyberbezpecnost-ai-podvody",
-   "title": "AI podvody",
-   "tema": "kyberbezpecnost",
-   "objective": "AI posunula podvody na novou úroveň: deepfake video, naklonovaný hlas známého člověka nebo dokonalý phishing bez chyb.",
-   "recallQ": "Posoudil bys důvěryhodnost podezřelého sdělení a doporučí ověření jinou cestou?"
-  },
-  {
-   "slug": "kyberbezpecnost-sextortion-a-citlivy-obsah",
-   "title": "Sextortion a citlivý obsah",
-   "tema": "kyberbezpecnost",
-   "objective": "Vydírání intimními fotkami — dnes i falešnými, vytvořenými AI.",
-   "recallQ": "Co je „Sextortion a citlivý obsah“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "kyberbezpecnost-overovani-pres-druhy-kanal",
-   "title": "Ověřování přes druhý kanál",
-   "tema": "kyberbezpecnost",
-   "objective": "Když ti „kamarád\" píše o peníze nebo „banka\" chce heslo, ověř si to jinou cestou — zavolej, zeptej se napřímo.",
-   "recallQ": "Zhodnotil bys důvěryhodnost žádosti a zdůvodní potřebu ji ověřit jinou cestou?"
-  },
-  {
-   "slug": "kyberbezpecnost-sitova-bezpecnost-a-ctf",
-   "title": "Síťová bezpečnost a CTF",
-   "tema": "kyberbezpecnost",
-   "objective": "Pro zvídavé: jak se chrání sítě a jak přemýšlí útočník.",
-   "recallQ": "Co je „Síťová bezpečnost a CTF“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "digitalni-obcanstvi-rozumet-ai-halucinace-bias",
-   "title": "Rozumět AI (halucinace, bias)",
-   "tema": "digitalni-obcanstvi",
-   "objective": "Občanské minimum o AI: že jazykové modely předpovídají slova (a proto halucinují), že se učí z dat (a proto mají bias) a že jejich výstup je potřeba ověřovat.",
-   "recallQ": "Ověřil bys výstup AI a posoudí, zda je použitelný, nebo obsahuje chybu?"
-  },
-  {
-   "slug": "digitalni-obcanstvi-rozpoznani-ai-obsahu",
-   "title": "Rozpoznání AI obsahu",
-   "tema": "digitalni-obcanstvi",
-   "objective": "Umět odhadnout, jestli je text, obraz nebo video vytvořené AI — a vědět, že spolehlivý univerzální detektor neexistuje.",
-   "recallQ": "Posoudil bys původ obsahu na základě kontextu a ověření zdroje, ne pouze podle vzhledu?"
-  },
-  {
-   "slug": "digitalni-obcanstvi-etika-ai-ve-skole",
-   "title": "Etika AI ve škole",
-   "tema": "digitalni-obcanstvi",
-   "objective": "Kde je hranice mezi tím, když ti AI pomůže se učit, a když za tebe úkol prostě udělá (a připraví tě o učení).",
-   "recallQ": "Co je „Etika AI ve škole“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "digitalni-obcanstvi-pravo-a-etika",
-   "title": "Právo a etika",
-   "tema": "digitalni-obcanstvi",
-   "objective": "Základní pravidla digitálního světa: autorská práva (čí je co) a ochrana osobních údajů (GDPR), zvlášť u nezletilých.",
-   "recallQ": "Vysvětlil bys základní pravidla autorských práv a ochrany osobních údajů (GDPR) u nezletilých?"
-  },
-  {
-   "slug": "digitalni-obcanstvi-obchodni-modely-platforem",
-   "title": "Obchodní modely platforem",
-   "tema": "digitalni-obcanstvi",
-   "objective": "Když je služba „bezplatná\", obvykle platíš pozorností a daty.",
-   "recallQ": "Co je „Obchodní modely platforem“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "digitalni-obcanstvi-aktivni-digitalni-obcanstvi",
-   "title": "Aktivní digitální občanství",
-   "tema": "digitalni-obcanstvi",
-   "objective": "Být online nejen konzument, ale i tvůrce hodnotného obsahu a slušný účastník diskuse.",
-   "recallQ": "Vytvořil bys vlastní hodnotný příspěvek, kterým pozitivně spoluutváří digitální prostředí?"
-  },
-  {
-   "slug": "tvorba-webu-ai-asistovana-tvorba-webu",
-   "title": "AI-asistovaná tvorba webu",
-   "tema": "tvorba-webu",
-   "objective": "Nástroje jako v0, Lovable nebo Claude Artifacts vytvoří funkční stránku z pouhého popisu za pár vteřin.",
-   "recallQ": "Posoudil bys kvalitu a použitelnost stránky, kterou vytvořila AI, a zdůvodní navržené úpravy?"
-  },
-  {
-   "slug": "tvorba-webu-frameworky",
-   "title": "Frameworky",
-   "tema": "tvorba-webu",
-   "objective": "U větších webů se nepíše všechno od nuly — frameworky (React a spol.) a knihovny stylů (Tailwind) dávají hotové stavební bloky a řád.",
-   "recallQ": "Co je „Frameworky“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "tvorba-webu-nasazeni-webu",
-   "title": "Nasazení webu",
-   "tema": "tvorba-webu",
-   "objective": "Nasazení (deployment) je krok, kdy se web z tvého počítače dostane na internet.",
-   "recallQ": "Co je „Nasazení webu“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "tvorba-webu-pristupnost-a-seo",
-   "title": "Přístupnost a SEO",
-   "tema": "tvorba-webu",
-   "objective": "Přístupnost (a11y) znamená udělat web použitelný i pro lidi s hendikepem (čtečky obrazovky, ovládání klávesnicí); SEO je péče o to, aby web našly vyhledávače.",
-   "recallQ": "Posoudil bys přístupnost stránky pro uživatele s hendikepem a doporučí konkrétní zlepšení?"
-  },
-  {
-   "slug": "tvorba-webu-ux-ui-a-design-webu",
-   "title": "UX/UI a design webu",
-   "tema": "tvorba-webu",
-   "objective": "UI je to, jak web vypadá, UX to, jak se používá.",
-   "recallQ": "Co je „UX/UI a design webu“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "tvorba-aplikaci-prace-s-api-a-backendem",
-   "title": "Práce s API a backendem",
-   "tema": "tvorba-aplikaci",
-   "objective": "Aby appka uměla víc než jen zobrazovat, propojí se přes API s dalšími službami a se serverovou částí, která pracuje s daty.",
-   "recallQ": "Co je „Práce s API a backendem“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "tvorba-aplikaci-databaze-a-autentizace",
-   "title": "Databáze a autentizace",
-   "tema": "tvorba-aplikaci",
-   "objective": "Appky si pamatují data (databáze) a musí poznat, kdo je kdo (autentizace — přihlašování).",
-   "recallQ": "Co je „Databáze a autentizace“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "tvorba-aplikaci-zivotni-cyklus-vyvoje",
-   "title": "Životní cyklus vývoje",
-   "tema": "tvorba-aplikaci",
-   "objective": "Aplikace nevznikne jedním skokem — má cyklus: navrhnout, naprogramovat, otestovat, nasadit a vylepšovat.",
-   "recallQ": "Popsal bys fáze vývoje aplikace: návrh, programování, testování, nasazení a vylepšování?"
-  },
-  {
-   "slug": "tvorba-aplikaci-publikace-do-app-storu",
-   "title": "Publikace do app storů",
-   "tema": "tvorba-aplikaci",
-   "objective": "Aby se hotová appka dostala k lidem, projde publikací — na webu je to nasazení, u mobilů obchody (App Store, Google Play) s jejich pravidly a schvalováním.",
-   "recallQ": "Vysvětlil bys rozdíl mezi zveřejněním webové aplikace a publikací mobilní aplikace přes obchody se schvalováním?"
-  },
-  {
-   "slug": "tvorba-aplikaci-iluze-ze-to-umim",
-   "title": "Iluze, že to umím",
-   "tema": "tvorba-aplikaci",
-   "objective": "Když za tebe appku „poskládá\" AI, snadno vznikne pocit, že to umíš — dokud se něco nerozbije a ty nevíš proč.",
-   "recallQ": "Co je „Iluze, že to umím“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "tvorba-obsahu-generativni-video",
-   "title": "Generativní video",
-   "tema": "tvorba-obsahu",
-   "objective": "AI dnes vytvoří realistické video z textu nebo obrázku (Sora, Veo, Runway) i se zvukem.",
-   "recallQ": "Co je „Generativní video“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "tvorba-obsahu-generativni-hudba-a-hlas",
-   "title": "Generativní hudba a hlas",
-   "tema": "tvorba-obsahu",
-   "objective": "Nástroje jako Suno nebo ElevenLabs složí celou písničku nebo napodobí hlas z krátké ukázky.",
-   "recallQ": "Vytvořil bys krátkou skladbu nebo mluvený výstup v generativním nástroji podle zadání?"
-  },
-  {
-   "slug": "tvorba-obsahu-strih-a-postprodukce-s-ai",
-   "title": "Střih a postprodukce s AI",
-   "tema": "tvorba-obsahu",
-   "objective": "AI dnes zvládne velkou část dokončovacích prací: automatické titulky, čištění zvuku, výběr nejlepších záběrů nebo úpravu videa přepisem textu (CapCut, Descript).",
-   "recallQ": "Co je „Střih a postprodukce s AI“ a k čemu se ti hodí?"
-  },
-  {
-   "slug": "tvorba-obsahu-kontrola-nad-vysledkem",
-   "title": "Kontrola nad výsledkem",
-   "tema": "tvorba-obsahu",
-   "objective": "Vygenerovat jeden hezký obrázek je snadné; těžší je udržet stejnou postavu nebo styl napříč více obrázky a mít nad výsledkem skutečnou kontrolu.",
-   "recallQ": "Použil bys referenční obrázek nebo dokreslování (in/out-painting), aby udržel stejný styl či postavu napříč obrázky?"
+   "slug": "data-databaze-vektorove-databaze",
+   "title": {
+    "cs": "Vektorové databáze",
+    "en": "Vector databases",
+    "sk": "Vektorové databázy",
+    "hu": "Vektoradatbázisok"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Text nebo obrázek se dá převést na řadu čísel (embedding), která zachycuje jeho význam.",
+    "en": "A text or an image can be turned into a series of numbers (an embedding) that captures its meaning.",
+    "sk": "Text alebo obrázok sa dá previesť na rad čísel (embedding), ktorý zachytáva jeho význam.",
+    "hu": "Egy szöveget vagy képet számok sorozatává (beágyazássá, angolul embedding) lehet alakítani, amely megragadja a jelentését."
+   },
+   "recallQ": {
+    "cs": "Co je „Vektorové databáze“ a k čemu se ti hodí?",
+    "en": "What is “Vector databases”, and what is it good for?",
+    "sk": "Čo je „Vektorové databázy“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Vektoradatbázisok”, és mire jó neked?"
+   }
   },
   {
    "slug": "tvorba-obsahu-puvod-obsahu-a-vodoznaky",
-   "title": "Původ obsahu a vodoznaky",
-   "tema": "tvorba-obsahu",
-   "objective": "Jak poznat, jestli je obsah pravý, nebo vytvořený AI?",
-   "recallQ": "Co je „Původ obsahu a vodoznaky“ a k čemu se ti hodí?"
+   "title": {
+    "cs": "Původ obsahu a vodoznaky",
+    "en": "Content origin and watermarks",
+    "sk": "Pôvod obsahu a vodoznaky",
+    "hu": "A tartalom eredete és a vízjelek"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Jak poznat, jestli je obsah pravý, nebo vytvořený AI?",
+    "en": "How can you tell whether content is real or made by AI?",
+    "sk": "Ako spoznať, či je obsah pravý, alebo vytvorený AI?",
+    "hu": "Hogyan lehet felismerni, hogy egy tartalom valódi-e, vagy MI készítette?"
+   },
+   "recallQ": {
+    "cs": "Co je „Původ obsahu a vodoznaky“ a k čemu se ti hodí?",
+    "en": "What is “Content origin and watermarks”, and what is it good for?",
+    "sk": "Čo je „Pôvod obsahu a vodoznaky“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „A tartalom eredete és a vízjelek”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-obcanstvi-rozpoznani-ai-obsahu",
+   "title": {
+    "cs": "Rozpoznání AI obsahu",
+    "en": "Recognising AI content",
+    "sk": "Rozpoznanie obsahu z AI",
+    "hu": "MI-tartalom felismerése"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Umět odhadnout, jestli je text, obraz nebo video vytvořené AI — a vědět, že spolehlivý univerzální detektor neexistuje.",
+    "en": "Being able to estimate whether a text, image or video was made by AI, and knowing that no reliable universal detector exists.",
+    "sk": "Vedieť odhadnúť, či je text, obraz alebo video vytvorené AI, a vedieť, že spoľahlivý univerzálny detektor neexistuje.",
+    "hu": "Meg tudni becsülni, hogy egy szöveget, képet vagy videót MI készített-e, és tudni, hogy megbízható univerzális detektor nem létezik."
+   },
+   "recallQ": {
+    "cs": "Posoudil bys původ obsahu na základě kontextu a ověření zdroje, ne pouze podle vzhledu?",
+    "en": "What is “Recognising AI content”, and what is it good for?",
+    "sk": "Čo je „Rozpoznanie obsahu z AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „MI-tartalom felismerése”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-obcanstvi-obchodni-modely-platforem",
+   "title": {
+    "cs": "Obchodní modely platforem",
+    "en": "Platform business models",
+    "sk": "Obchodné modely platforiem",
+    "hu": "A platformok üzleti modelljei"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Když je služba „bezplatná\", obvykle platíš pozorností a daty.",
+    "en": "When a service is “free”, you usually pay with attention and data.",
+    "sk": "Keď je služba „bezplatná“, zvyčajne platíš pozornosťou a dátami.",
+    "hu": "Ha egy szolgáltatás „ingyenes”, általában figyelemmel és adatokkal fizetsz."
+   },
+   "recallQ": {
+    "cs": "Co je „Obchodní modely platforem“ a k čemu se ti hodí?",
+    "en": "What is “Platform business models”, and what is it good for?",
+    "sk": "Čo je „Obchodné modely platforiem“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „A platformok üzleti modelljei”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-obcanstvi-aktivni-digitalni-obcanstvi",
+   "title": {
+    "cs": "Aktivní digitální občanství",
+    "en": "Active digital citizenship",
+    "sk": "Aktívne digitálne občianstvo",
+    "hu": "Aktív digitális állampolgárság"
+   },
+   "tema": "ch5-ai",
+   "objective": {
+    "cs": "Být online nejen konzument, ale i tvůrce hodnotného obsahu a slušný účastník diskuse.",
+    "en": "Being online not just as a consumer, but also as a creator of valuable content and a decent participant in discussions.",
+    "sk": "Byť online nielen konzument, ale aj tvorca hodnotného obsahu a slušný účastník diskusie.",
+    "hu": "Online nemcsak fogyasztónak lenni, hanem értékes tartalmak alkotójának és a viták tisztességes résztvevőjének is."
+   },
+   "recallQ": {
+    "cs": "Vytvořil bys vlastní hodnotný příspěvek, kterým pozitivně spoluutváří digitální prostředí?",
+    "en": "What is “Active digital citizenship”, and what is it good for?",
+    "sk": "Čo je „Aktívne digitálne občianstvo“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Aktív digitális állampolgárság”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-zaklady-mikroprocesor-a-virus-v-periferii",
+   "title": {
+    "cs": "Mikroprocesor a virus v periferii",
+    "en": "Microprocessors and a virus in a peripheral",
+    "sk": "Mikroprocesor a vírus v periférii",
+    "hu": "A mikroprocesszor és a vírus a perifériában"
+   },
+   "tema": "ch6-bezpeci",
+   "objective": {
+    "cs": "Mikroprocesor je malý „mozek“ — a je dnes i v myši, USB disku nebo lampičce.",
+    "en": "A microprocessor is a small “brain”, and today it's even in a mouse, a USB stick or a desk lamp.",
+    "sk": "Mikroprocesor je malý „mozog“ a dnes je aj v myši, USB kľúči alebo lampičke.",
+    "hu": "A mikroprocesszor egy kis „agy”, és ma már az egérben, a pendrive-ban vagy az asztali lámpában is ott van."
+   },
+   "recallQ": {
+    "cs": "Co je „Mikroprocesor a virus v periferii“ a k čemu se ti hodí?",
+    "en": "What is “Microprocessors and a virus in a peripheral”, and what is it good for?",
+    "sk": "Čo je „Mikroprocesor a vírus v periférii“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „A mikroprocesszor és a vírus a perifériában”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-zaklady-skryty-a-chytry-pocitac",
+   "title": {
+    "cs": "Skrytý a chytrý počítač",
+    "en": "Hidden and smart computers",
+    "sk": "Skrytý a múdry počítač",
+    "hu": "Rejtett és okos számítógép"
+   },
+   "tema": "ch6-bezpeci",
+   "objective": {
+    "cs": "Počítač v pračce nebo autě bez internetu je „skrytý“ a zvenčí nedosažitelný.",
+    "en": "A computer in a washing machine or a car without internet is “hidden” and can't be reached from outside.",
+    "sk": "Počítač v práčke alebo aute bez internetu je „skrytý“ a zvonku nedosiahnuteľný.",
+    "hu": "Egy internet nélküli mosógépben vagy autóban lévő számítógép „rejtett”, kívülről elérhetetlen."
+   },
+   "recallQ": {
+    "cs": "Rozlišil bys skrytý počítač bez připojení od chytrého zařízení online a vysvětlí jeho rizika?",
+    "en": "What is “Hidden and smart computers”, and what is it good for?",
+    "sk": "Čo je „Skrytý a múdry počítač“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Rejtett és okos számítógép”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-zaklady-rizika-chytrych-technologii",
+   "title": {
+    "cs": "Rizika chytrých technologií",
+    "en": "Risks of smart technology",
+    "sk": "Riziká múdrych technológií",
+    "hu": "Az okos technológiák kockázatai"
+   },
+   "tema": "ch6-bezpeci",
+   "objective": {
+    "cs": "Chytrá síť, chytré auto, chytrá domácnost: pohodlí a úspora, ale i možnost, že technologii někdo hackne nebo že sbírá víc dat, než je nutné.",
+    "en": "A smart grid, a smart car, a smart home: comfort and savings, but also the possibility that someone hacks the technology or that it collects more data than necessary.",
+    "sk": "Múdra sieť, múdre auto, múdra domácnosť: pohodlie a úspora, ale aj možnosť, že technológiu niekto hackne alebo že zbiera viac dát, než je nutné.",
+    "hu": "Okos hálózat, okos autó, okos otthon: kényelem és megtakarítás, de az a lehetőség is, hogy valaki feltöri a technológiát, vagy hogy több adatot gyűjt, mint amennyi szükséges."
+   },
+   "recallQ": {
+    "cs": "Co je „Rizika chytrých technologií“ a k čemu se ti hodí?",
+    "en": "What is “Risks of smart technology”, and what is it good for?",
+    "sk": "Čo je „Riziká múdrych technológií“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Az okos technológiák kockázatai”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "kyberbezpecnost-sextortion-a-citlivy-obsah",
+   "title": {
+    "cs": "Sextortion a citlivý obsah",
+    "en": "Sextortion and sensitive content",
+    "sk": "Sextortion a citlivý obsah",
+    "hu": "Szextorzió és érzékeny tartalom"
+   },
+   "tema": "ch6-bezpeci",
+   "objective": {
+    "cs": "Vydírání intimními fotkami — dnes i falešnými, vytvořenými AI.",
+    "en": "Blackmail with intimate photos, today even fake ones made by AI.",
+    "sk": "Vydieranie intímnymi fotkami, dnes aj falošnými, vytvorenými AI.",
+    "hu": "Zsarolás intim fotókkal, ma már MI által készített hamisakkal is."
+   },
+   "recallQ": {
+    "cs": "Co je „Sextortion a citlivý obsah“ a k čemu se ti hodí?",
+    "en": "What is “Sextortion and sensitive content”, and what is it good for?",
+    "sk": "Čo je „Sextortion a citlivý obsah“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Szextorzió és érzékeny tartalom”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "kyberbezpecnost-sitova-bezpecnost-a-ctf",
+   "title": {
+    "cs": "Síťová bezpečnost a CTF",
+    "en": "Network security and CTF",
+    "sk": "Sieťová bezpečnosť a CTF",
+    "hu": "Hálózatbiztonság és CTF"
+   },
+   "tema": "ch6-bezpeci",
+   "objective": {
+    "cs": "Pro zvídavé: jak se chrání sítě a jak přemýšlí útočník.",
+    "en": "For the curious: how networks are protected and how an attacker thinks.",
+    "sk": "Pre zvedavých: ako sa chránia siete a ako uvažuje útočník.",
+    "hu": "A kíváncsiaknak: hogyan védik a hálózatokat, és hogyan gondolkodik a támadó."
+   },
+   "recallQ": {
+    "cs": "Co je „Síťová bezpečnost a CTF“ a k čemu se ti hodí?",
+    "en": "What is “Network security and CTF”, and what is it good for?",
+    "sk": "Čo je „Sieťová bezpečnosť a CTF“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Hálózatbiztonság és CTF”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "digitalni-obcanstvi-pravo-a-etika",
+   "title": {
+    "cs": "Právo a etika",
+    "en": "Law and ethics",
+    "sk": "Právo a etika",
+    "hu": "Jog és etika"
+   },
+   "tema": "ch6-bezpeci",
+   "objective": {
+    "cs": "Základní pravidla digitálního světa: autorská práva (čí je co) a ochrana osobních údajů (GDPR), zvlášť u nezletilých.",
+    "en": "The basic rules of the digital world: copyright (who owns what) and personal data protection (GDPR), especially for minors.",
+    "sk": "Základné pravidlá digitálneho sveta: autorské práva (čo je čie) a ochrana osobných údajov (GDPR), zvlášť pri maloletých.",
+    "hu": "A digitális világ alapszabályai: szerzői jog (mi kié) és a személyes adatok védelme (GDPR), különösen a kiskorúaknál."
+   },
+   "recallQ": {
+    "cs": "Vysvětlil bys základní pravidla autorských práv a ochrany osobních údajů (GDPR) u nezletilých?",
+    "en": "What is “Law and ethics”, and what is it good for?",
+    "sk": "Čo je „Právo a etika“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Jog és etika”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-webu-ai-asistovana-tvorba-webu",
+   "title": {
+    "cs": "AI-asistovaná tvorba webu",
+    "en": "AI-assisted web building",
+    "sk": "Tvorba webu s pomocou AI",
+    "hu": "MI-vel támogatott weboldalkészítés"
+   },
+   "tema": "ch8-tvorba-webu",
+   "objective": {
+    "cs": "Nástroje jako v0, Lovable nebo Claude Artifacts vytvoří funkční stránku z pouhého popisu za pár vteřin.",
+    "en": "Tools like v0, Lovable or Claude Artifacts create a working page from a mere description in a few seconds.",
+    "sk": "Nástroje ako v0, Lovable alebo Claude Artifacts vytvoria funkčnú stránku z obyčajného opisu za pár sekúnd.",
+    "hu": "Az olyan eszközök, mint a v0, a Lovable vagy a Claude Artifacts, puszta leírásból néhány másodperc alatt működő oldalt készítenek."
+   },
+   "recallQ": {
+    "cs": "Posoudil bys kvalitu a použitelnost stránky, kterou vytvořila AI, a zdůvodní navržené úpravy?",
+    "en": "What is “AI-assisted web building”, and what is it good for?",
+    "sk": "Čo je „Tvorba webu s pomocou AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „MI-vel támogatott weboldalkészítés”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-webu-frameworky",
+   "title": {
+    "cs": "Frameworky",
+    "en": "Frameworks",
+    "sk": "Frameworky",
+    "hu": "Keretrendszerek"
+   },
+   "tema": "ch8-tvorba-webu",
+   "objective": {
+    "cs": "U větších webů se nepíše všechno od nuly — frameworky (React a spol.) a knihovny stylů (Tailwind) dávají hotové stavební bloky a řád.",
+    "en": "For bigger websites, not everything is written from scratch: frameworks (React and co.) and style libraries (Tailwind) provide ready-made building blocks and order.",
+    "sk": "Pri väčších weboch sa nepíše všetko od nuly: frameworky (React a spol.) a knižnice štýlov (Tailwind) dávajú hotové stavebné bloky a poriadok.",
+    "hu": "Nagyobb weboldalaknál nem írnak meg mindent a nulláról: a keretrendszerek (React és társai) és a stíluskönyvtárak (Tailwind) kész építőköveket és rendet adnak."
+   },
+   "recallQ": {
+    "cs": "Co je „Frameworky“ a k čemu se ti hodí?",
+    "en": "What is “Frameworks”, and what is it good for?",
+    "sk": "Čo je „Frameworky“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Keretrendszerek”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-webu-nasazeni-webu",
+   "title": {
+    "cs": "Nasazení webu",
+    "en": "Deploying a website",
+    "sk": "Nasadenie webu",
+    "hu": "A weboldal telepítése"
+   },
+   "tema": "ch8-tvorba-webu",
+   "objective": {
+    "cs": "Nasazení (deployment) je krok, kdy se web z tvého počítače dostane na internet.",
+    "en": "Deployment is the step where a website gets from your computer onto the internet.",
+    "sk": "Nasadenie (deployment) je krok, keď sa web z tvojho počítača dostane na internet.",
+    "hu": "A telepítés (deployment) az a lépés, amikor a weboldal a számítógépedről felkerül az internetre."
+   },
+   "recallQ": {
+    "cs": "Co je „Nasazení webu“ a k čemu se ti hodí?",
+    "en": "What is “Deploying a website”, and what is it good for?",
+    "sk": "Čo je „Nasadenie webu“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „A weboldal telepítése”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-webu-pristupnost-a-seo",
+   "title": {
+    "cs": "Přístupnost a SEO",
+    "en": "Accessibility and SEO",
+    "sk": "Prístupnosť a SEO",
+    "hu": "Akadálymentesség és SEO"
+   },
+   "tema": "ch8-tvorba-webu",
+   "objective": {
+    "cs": "Přístupnost (a11y) znamená udělat web použitelný i pro lidi s hendikepem (čtečky obrazovky, ovládání klávesnicí); SEO je péče o to, aby web našly vyhledávače.",
+    "en": "Accessibility (a11y) means making a website usable for people with disabilities too (screen readers, keyboard control); SEO is making sure search engines find the website.",
+    "sk": "Prístupnosť (a11y) znamená urobiť web použiteľný aj pre ľudí s hendikepom (čítačky obrazovky, ovládanie klávesnicou); SEO je starostlivosť o to, aby web našli vyhľadávače.",
+    "hu": "Az akadálymentesség (a11y) azt jelenti, hogy a weboldal fogyatékkal élő emberek számára is használható (képernyőolvasók, billentyűzetes vezérlés); a SEO arról gondoskodik, hogy a keresőmotorok megtalálják az oldalt."
+   },
+   "recallQ": {
+    "cs": "Posoudil bys přístupnost stránky pro uživatele s hendikepem a doporučí konkrétní zlepšení?",
+    "en": "What is “Accessibility and SEO”, and what is it good for?",
+    "sk": "Čo je „Prístupnosť a SEO“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Akadálymentesség és SEO”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-webu-ux-ui-a-design-webu",
+   "title": {
+    "cs": "UX/UI a design webu",
+    "en": "UX/UI and web design",
+    "sk": "UX/UI a dizajn webu",
+    "hu": "UX/UI és webdizájn"
+   },
+   "tema": "ch8-tvorba-webu",
+   "objective": {
+    "cs": "UI je to, jak web vypadá, UX to, jak se používá.",
+    "en": "UI is how a website looks, UX is how it's used.",
+    "sk": "UI je to, ako web vyzerá, UX to, ako sa používa.",
+    "hu": "Az UI az, ahogyan a weboldal kinéz, az UX az, ahogyan használják."
+   },
+   "recallQ": {
+    "cs": "Co je „UX/UI a design webu“ a k čemu se ti hodí?",
+    "en": "What is “UX/UI and web design”, and what is it good for?",
+    "sk": "Čo je „UX/UI a dizajn webu“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „UX/UI és webdizájn”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-aplikaci-prace-s-api-a-backendem",
+   "title": {
+    "cs": "Práce s API a backendem",
+    "en": "Working with APIs and a backend",
+    "sk": "Práca s API a backendom",
+    "hu": "Munka API-kkal és backenddel"
+   },
+   "tema": "ch9-tvorba-aplikaci",
+   "objective": {
+    "cs": "Aby appka uměla víc než jen zobrazovat, propojí se přes API s dalšími službami a se serverovou částí, která pracuje s daty.",
+    "en": "For an app to do more than just display things, it connects through APIs to other services and to the server side that works with the data.",
+    "sk": "Aby apka vedela viac než len zobrazovať, prepojí sa cez API s ďalšími službami a so serverovou časťou, ktorá pracuje s dátami.",
+    "hu": "Hogy az app többre legyen képes a megjelenítésnél, API-kon keresztül kapcsolódik más szolgáltatásokhoz és az adatokkal dolgozó szerveroldali részhez."
+   },
+   "recallQ": {
+    "cs": "Co je „Práce s API a backendem“ a k čemu se ti hodí?",
+    "en": "What is “Working with APIs and a backend”, and what is it good for?",
+    "sk": "Čo je „Práca s API a backendom“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Munka API-kkal és backenddel”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-aplikaci-databaze-a-autentizace",
+   "title": {
+    "cs": "Databáze a autentizace",
+    "en": "Databases and authentication",
+    "sk": "Databázy a autentifikácia",
+    "hu": "Adatbázisok és hitelesítés"
+   },
+   "tema": "ch9-tvorba-aplikaci",
+   "objective": {
+    "cs": "Appky si pamatují data (databáze) a musí poznat, kdo je kdo (autentizace — přihlašování).",
+    "en": "Apps remember data (a database) and have to know who is who (authentication, that is, logging in).",
+    "sk": "Apky si pamätajú dáta (databáza) a musia spoznať, kto je kto (autentifikácia, teda prihlasovanie).",
+    "hu": "Az appok megjegyzik az adatokat (adatbázis), és tudniuk kell, ki kicsoda (hitelesítés, vagyis bejelentkezés)."
+   },
+   "recallQ": {
+    "cs": "Co je „Databáze a autentizace“ a k čemu se ti hodí?",
+    "en": "What is “Databases and authentication”, and what is it good for?",
+    "sk": "Čo je „Databázy a autentifikácia“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Adatbázisok és hitelesítés”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-aplikaci-zivotni-cyklus-vyvoje",
+   "title": {
+    "cs": "Životní cyklus vývoje",
+    "en": "The development life cycle",
+    "sk": "Životný cyklus vývoja",
+    "hu": "A fejlesztés életciklusa"
+   },
+   "tema": "ch9-tvorba-aplikaci",
+   "objective": {
+    "cs": "Aplikace nevznikne jedním skokem — má cyklus: navrhnout, naprogramovat, otestovat, nasadit a vylepšovat.",
+    "en": "An app isn't made in one leap; it has a cycle: design, program, test, deploy and improve.",
+    "sk": "Aplikácia nevznikne jedným skokom, má cyklus: navrhnúť, naprogramovať, otestovať, nasadiť a vylepšovať.",
+    "hu": "Egy alkalmazás nem egyetlen ugrással készül el, hanem ciklusa van: megtervezni, leprogramozni, tesztelni, telepíteni és fejleszteni."
+   },
+   "recallQ": {
+    "cs": "Popsal bys fáze vývoje aplikace: návrh, programování, testování, nasazení a vylepšování?",
+    "en": "What is “The development life cycle”, and what is it good for?",
+    "sk": "Čo je „Životný cyklus vývoja“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „A fejlesztés életciklusa”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-aplikaci-publikace-do-app-storu",
+   "title": {
+    "cs": "Publikace do app storů",
+    "en": "Publishing to app stores",
+    "sk": "Publikovanie do obchodov s apkami",
+    "hu": "Közzététel az alkalmazás-áruházakban"
+   },
+   "tema": "ch9-tvorba-aplikaci",
+   "objective": {
+    "cs": "Aby se hotová appka dostala k lidem, projde publikací — na webu je to nasazení, u mobilů obchody (App Store, Google Play) s jejich pravidly a schvalováním.",
+    "en": "For a finished app to reach people, it goes through publishing: on the web that means deployment, for phones it means the stores (App Store, Google Play) with their rules and approval.",
+    "sk": "Aby sa hotová apka dostala k ľuďom, prejde publikovaním: na webe je to nasadenie, pri mobiloch obchody (App Store, Google Play) s ich pravidlami a schvaľovaním.",
+    "hu": "Hogy a kész app eljusson az emberekhez, közzé kell tenni: a weben ez a telepítés, a telefonoknál az áruházak (App Store, Google Play) a szabályaikkal és a jóváhagyással."
+   },
+   "recallQ": {
+    "cs": "Vysvětlil bys rozdíl mezi zveřejněním webové aplikace a publikací mobilní aplikace přes obchody se schvalováním?",
+    "en": "What is “Publishing to app stores”, and what is it good for?",
+    "sk": "Čo je „Publikovanie do obchodov s apkami“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Közzététel az alkalmazás-áruházakban”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-obsahu-generativni-video",
+   "title": {
+    "cs": "Generativní video",
+    "en": "Generative video",
+    "sk": "Generatívne video",
+    "hu": "Generatív videó"
+   },
+   "tema": "ch10-tvorba-obsahu",
+   "objective": {
+    "cs": "AI dnes vytvoří realistické video z textu nebo obrázku (Sora, Veo, Runway) i se zvukem.",
+    "en": "Today AI creates realistic video from text or an image (Sora, Veo, Runway), even with sound.",
+    "sk": "AI dnes vytvorí realistické video z textu alebo obrázka (Sora, Veo, Runway), aj so zvukom.",
+    "hu": "Az MI ma szövegből vagy képből valósághű videót készít (Sora, Veo, Runway), akár hanggal is."
+   },
+   "recallQ": {
+    "cs": "Co je „Generativní video“ a k čemu se ti hodí?",
+    "en": "What is “Generative video”, and what is it good for?",
+    "sk": "Čo je „Generatívne video“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Generatív videó”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-obsahu-generativni-hudba-a-hlas",
+   "title": {
+    "cs": "Generativní hudba a hlas",
+    "en": "Generative music and voice",
+    "sk": "Generatívna hudba a hlas",
+    "hu": "Generatív zene és hang"
+   },
+   "tema": "ch10-tvorba-obsahu",
+   "objective": {
+    "cs": "Nástroje jako Suno nebo ElevenLabs složí celou písničku nebo napodobí hlas z krátké ukázky.",
+    "en": "Tools like Suno or ElevenLabs compose a whole song or imitate a voice from a short sample.",
+    "sk": "Nástroje ako Suno alebo ElevenLabs zložia celú pesničku alebo napodobnia hlas z krátkej ukážky.",
+    "hu": "Az olyan eszközök, mint a Suno vagy az ElevenLabs, egész dalt komponálnak, vagy egy rövid mintából utánoznak egy hangot."
+   },
+   "recallQ": {
+    "cs": "Vytvořil bys krátkou skladbu nebo mluvený výstup v generativním nástroji podle zadání?",
+    "en": "What is “Generative music and voice”, and what is it good for?",
+    "sk": "Čo je „Generatívna hudba a hlas“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Generatív zene és hang”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-obsahu-strih-a-postprodukce-s-ai",
+   "title": {
+    "cs": "Střih a postprodukce s AI",
+    "en": "Editing and post-production with AI",
+    "sk": "Strih a postprodukcia s AI",
+    "hu": "Vágás és utómunka MI-vel"
+   },
+   "tema": "ch10-tvorba-obsahu",
+   "objective": {
+    "cs": "AI dnes zvládne velkou část dokončovacích prací: automatické titulky, čištění zvuku, výběr nejlepších záběrů nebo úpravu videa přepisem textu (CapCut, Descript).",
+    "en": "Today AI can handle much of the finishing work: automatic subtitles, cleaning up sound, picking the best shots or editing a video by editing its transcript (CapCut, Descript…",
+    "sk": "AI dnes zvládne veľkú časť dokončovacích prác: automatické titulky, čistenie zvuku, výber najlepších záberov alebo úpravu videa prepisom textu (CapCut, Descript…",
+    "hu": "Az MI ma az utómunka nagy részét elvégzi: automatikus feliratok, hangtisztítás, a legjobb felvételek kiválasztása vagy a videó szerkesztése az átirat szerkesztésével (CapCut, Descript…"
+   },
+   "recallQ": {
+    "cs": "Co je „Střih a postprodukce s AI“ a k čemu se ti hodí?",
+    "en": "What is “Editing and post-production with AI”, and what is it good for?",
+    "sk": "Čo je „Strih a postprodukcia s AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Vágás és utómunka MI-vel”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-obsahu-kontrola-nad-vysledkem",
+   "title": {
+    "cs": "Kontrola nad výsledkem",
+    "en": "Control over the result",
+    "sk": "Kontrola nad výsledkom",
+    "hu": "Kontroll az eredmény felett"
+   },
+   "tema": "ch10-tvorba-obsahu",
+   "objective": {
+    "cs": "Vygenerovat jeden hezký obrázek je snadné; těžší je udržet stejnou postavu nebo styl napříč více obrázky a mít nad výsledkem skutečnou kontrolu.",
+    "en": "Generating one nice image is easy; what's harder is keeping the same character or style across several images and having real control over the result.",
+    "sk": "Vygenerovať jeden pekný obrázok je ľahké; ťažšie je udržať rovnakú postavu alebo štýl naprieč viacerými obrázkami a mať nad výsledkom skutočnú kontrolu.",
+    "hu": "Egyetlen szép képet generálni könnyű; nehezebb ugyanazt a szereplőt vagy stílust több képen át megtartani, és valódi kontrollt gyakorolni az eredmény felett."
+   },
+   "recallQ": {
+    "cs": "Použil bys referenční obrázek nebo dokreslování (in/out-painting), aby udržel stejný styl či postavu napříč obrázky?",
+    "en": "What is “Control over the result”, and what is it good for?",
+    "sk": "Čo je „Kontrola nad výsledkom“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Kontroll az eredmény felett”, és mire jó neked?"
+   }
   },
   {
    "slug": "tvorba-obsahu-propojeni-nastroju-obraz-video-zvuk",
-   "title": "Propojení nástrojů (obraz, video, zvuk)",
-   "tema": "tvorba-obsahu",
-   "objective": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
-   "recallQ": "Co je „Propojení nástrojů (obraz, video, zvuk)“ a k čemu se ti hodí?"
+   "title": {
+    "cs": "Propojení nástrojů (obraz, video, zvuk)",
+    "en": "Combining tools (image, video, sound)",
+    "sk": "Prepojenie nástrojov (obraz, video, zvuk)",
+    "hu": "Eszközök összekapcsolása (kép, videó, hang)"
+   },
+   "tema": "ch10-tvorba-obsahu",
+   "objective": {
+    "cs": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
+    "en": "Big projects come from combining several tools: you turn an image into a video, compose music for it and add a voice.",
+    "sk": "Veľké projekty vznikajú spojením niekoľkých nástrojov: z obrázka urobíš video, k nemu zložíš hudbu a pridáš hlas.",
+    "hu": "A nagy projektek több eszköz összekapcsolásával készülnek: a képből videót csinálsz, zenét komponálsz hozzá, és hangot adsz hozzá."
+   },
+   "recallQ": {
+    "cs": "Co je „Propojení nástrojů (obraz, video, zvuk)“ a k čemu se ti hodí?",
+    "en": "What is “Combining tools (image, video, sound)”, and what is it good for?",
+    "sk": "Čo je „Prepojenie nástrojov (obraz, video, zvuk)“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Eszközök összekapcsolása (kép, videó, hang)”, és mire jó neked?"
+   }
   },
   {
    "slug": "herni-vyvoj-lehke-enginy",
-   "title": "Lehké enginy",
-   "tema": "herni-vyvoj",
-   "objective": "Mezikrok mezi Scratchem a plnými nástroji: GDevelop (bez kódu, přes logiku událostí) nebo Roblox Studio dají skutečnou hru, kterou jde sdílet.",
-   "recallQ": "Sestavil bys hru v lehkém enginu (GDevelop, Roblox Studio) pomocí logiky událostí a sdílí ji?"
+   "title": {
+    "cs": "Lehké enginy",
+    "en": "Lightweight engines",
+    "sk": "Ľahké enginy",
+    "hu": "Könnyű motorok"
+   },
+   "tema": "ch11-herni-vyvoj",
+   "objective": {
+    "cs": "Mezikrok mezi Scratchem a plnými nástroji: GDevelop (bez kódu, přes logiku událostí) nebo Roblox Studio dají skutečnou hru, kterou jde sdílet.",
+    "en": "A step between Scratch and full tools: GDevelop (no code, using event logic) or Roblox Studio give you a real game you can share.",
+    "sk": "Medzikrok medzi Scratchom a plnými nástrojmi: GDevelop (bez kódu, cez logiku udalostí) alebo Roblox Studio dajú skutočnú hru, ktorú sa dá zdieľať.",
+    "hu": "Köztes lépés a Scratch és a teljes eszközök között: a GDevelop (kód nélkül, eseménylogikával) vagy a Roblox Studio valódi, megosztható játékot ad."
+   },
+   "recallQ": {
+    "cs": "Sestavil bys hru v lehkém enginu (GDevelop, Roblox Studio) pomocí logiky událostí a sdílí ji?",
+    "en": "What is “Lightweight engines”, and what is it good for?",
+    "sk": "Čo je „Ľahké enginy“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Könnyű motorok”, és mire jó neked?"
+   }
   },
   {
    "slug": "herni-vyvoj-skutecne-enginy",
-   "title": "Skutečné enginy",
-   "tema": "herni-vyvoj",
-   "objective": "Profesionální nástroje s textovým kódem: Godot (jazyk GDScript, blízký Pythonu, zdarma a odlehčený) nebo Unity (C#, silné na mobilech).",
-   "recallQ": "Porovnal bys možnosti a náročnost skutečných enginů (Godot, Unity) s lehkými enginy a Scratchem?"
+   "title": {
+    "cs": "Skutečné enginy",
+    "en": "Real engines",
+    "sk": "Skutočné enginy",
+    "hu": "Igazi játékmotorok"
+   },
+   "tema": "ch11-herni-vyvoj",
+   "objective": {
+    "cs": "Profesionální nástroje s textovým kódem: Godot (jazyk GDScript, blízký Pythonu, zdarma a odlehčený) nebo Unity (C#, silné na mobilech).",
+    "en": "Professional tools with text code: Godot (the GDScript language, close to Python, free and lightweight) or Unity (C#, strong on mobile).",
+    "sk": "Profesionálne nástroje s textovým kódom: Godot (jazyk GDScript, blízky Pythonu, zadarmo a odľahčený) alebo Unity (C#, silné na mobiloch).",
+    "hu": "Professzionális eszközök szöveges kóddal: Godot (GDScript nyelv, a Pythonhoz közeli, ingyenes és könnyű) vagy Unity (C#, erős mobilon)."
+   },
+   "recallQ": {
+    "cs": "Porovnal bys možnosti a náročnost skutečných enginů (Godot, Unity) s lehkými enginy a Scratchem?",
+    "en": "What is “Real engines”, and what is it good for?",
+    "sk": "Čo je „Skutočné enginy“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Igazi játékmotorok”, és mire jó neked?"
+   }
   },
   {
    "slug": "herni-vyvoj-ai-generovani-assetu",
-   "title": "AI generování assetů",
-   "tema": "herni-vyvoj",
-   "objective": "AI dnes vytvoří herní grafiku a 3D objekty z popisu (Roblox Cube, Meshy) — místo hodin modelování napíšeš, co chceš.",
-   "recallQ": "Vytvořil bys herní grafiku nebo 3D objekt z textového popisu v AI nástroji (Roblox Cube, Meshy) a zasadí jej do hry?"
+   "title": {
+    "cs": "AI generování assetů",
+    "en": "Generating assets with AI",
+    "sk": "Generovanie assetov pomocou AI",
+    "hu": "Játékelemek generálása MI-vel"
+   },
+   "tema": "ch11-herni-vyvoj",
+   "objective": {
+    "cs": "AI dnes vytvoří herní grafiku a 3D objekty z popisu (Roblox Cube, Meshy) — místo hodin modelování napíšeš, co chceš.",
+    "en": "Today AI creates game graphics and 3D objects from a description (Roblox Cube, Meshy): instead of hours of modelling, you write what you want.",
+    "sk": "AI dnes vytvorí hernú grafiku a 3D objekty z opisu (Roblox Cube, Meshy): namiesto hodín modelovania napíšeš, čo chceš.",
+    "hu": "Az MI ma leírásból készít játékgrafikát és 3D-objektumokat (Roblox Cube, Meshy): órákig tartó modellezés helyett leírod, mit szeretnél."
+   },
+   "recallQ": {
+    "cs": "Vytvořil bys herní grafiku nebo 3D objekt z textového popisu v AI nástroji (Roblox Cube, Meshy) a zasadí jej do hry?",
+    "en": "What is “Generating assets with AI”, and what is it good for?",
+    "sk": "Čo je „Generovanie assetov pomocou AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Játékelemek generálása MI-vel”, és mire jó neked?"
+   }
   },
   {
    "slug": "herni-vyvoj-ai-asistenti-a-kod",
-   "title": "AI asistenti a kód",
-   "tema": "herni-vyvoj",
-   "objective": "Vestavění pomocníci (Roblox Assistant, Unity Muse) i externí AI umí napsat a upravit kód hry.",
-   "recallQ": "Použil bys AI asistenta k vytvoření nebo úpravě části herního kódu podle popsaného záměru?"
+   "title": {
+    "cs": "AI asistenti a kód",
+    "en": "AI assistants and code",
+    "sk": "AI asistenti a kód",
+    "hu": "MI-asszisztensek és kód"
+   },
+   "tema": "ch11-herni-vyvoj",
+   "objective": {
+    "cs": "Vestavění pomocníci (Roblox Assistant, Unity Muse) i externí AI umí napsat a upravit kód hry.",
+    "en": "Built-in helpers (Roblox Assistant, Unity Muse) and external AI can write and change a game's code.",
+    "sk": "Vstavaní pomocníci (Roblox Assistant, Unity Muse) aj externá AI vedia napísať a upraviť kód hry.",
+    "hu": "A beépített segítők (Roblox Assistant, Unity Muse) és a külső MI is meg tudja írni és át tudja alakítani a játék kódját."
+   },
+   "recallQ": {
+    "cs": "Použil bys AI asistenta k vytvoření nebo úpravě části herního kódu podle popsaného záměru?",
+    "en": "What is “AI assistants and code”, and what is it good for?",
+    "sk": "Čo je „AI asistenti a kód“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „MI-asszisztensek és kód”, és mire jó neked?"
+   }
   },
   {
    "slug": "herni-vyvoj-publikace-hry",
-   "title": "Publikace hry",
-   "tema": "herni-vyvoj",
-   "objective": "Hotovou hru sdílíš s ostatními — třeba na itch.io nebo přímo v Robloxu.",
-   "recallQ": "Co je „Publikace hry“ a k čemu se ti hodí?"
+   "title": {
+    "cs": "Publikace hry",
+    "en": "Publishing a game",
+    "sk": "Publikovanie hry",
+    "hu": "Egy játék közzététele"
+   },
+   "tema": "ch11-herni-vyvoj",
+   "objective": {
+    "cs": "Hotovou hru sdílíš s ostatními — třeba na itch.io nebo přímo v Robloxu.",
+    "en": "You share your finished game with others, for example on itch.io or right inside Roblox.",
+    "sk": "Hotovú hru zdieľaš s ostatnými, napríklad na itch.io alebo priamo v Robloxe.",
+    "hu": "A kész játékot megosztod másokkal, például az itch.io-n vagy közvetlenül a Robloxban."
+   },
+   "recallQ": {
+    "cs": "Co je „Publikace hry“ a k čemu se ti hodí?",
+    "en": "What is “Publishing a game”, and what is it good for?",
+    "sk": "Čo je „Publikovanie hry“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Egy játék közzététele”, és mire jó neked?"
+   }
   },
   {
    "slug": "fyzicky-computing-arduino-a-raspberry-pi",
-   "title": "Arduino a Raspberry Pi",
-   "tema": "fyzicky-computing",
-   "objective": "Krok dál za micro:bit: Arduino tě přiblíží skutečné elektronice (nepájivé pole, víc senzorů), Raspberry Pi je plnohodnotný malý počítač s Linuxem pro náročnější projekty.",
-   "recallQ": "Porovnal bys micro:bit, Arduino a Raspberry Pi podle toho, k čemu se která deska hodí?"
+   "title": {
+    "cs": "Arduino a Raspberry Pi",
+    "en": "Arduino and Raspberry Pi",
+    "sk": "Arduino a Raspberry Pi",
+    "hu": "Arduino és Raspberry Pi"
+   },
+   "tema": "ch12-fyzicky-computing",
+   "objective": {
+    "cs": "Krok dál za micro:bit: Arduino tě přiblíží skutečné elektronice (nepájivé pole, víc senzorů), Raspberry Pi je plnohodnotný malý počítač s Linuxem pro náročnější projekty.",
+    "en": "A step beyond the micro:bit: Arduino brings you closer to real electronics (a breadboard, more sensors), Raspberry Pi is a full small computer running Linux for more demanding…",
+    "sk": "Krok ďalej za micro:bit: Arduino ťa priblíži skutočnej elektronike (nepájivé pole, viac senzorov), Raspberry Pi je plnohodnotný malý počítač s Linuxom pre náročnejš…",
+    "hu": "Egy lépés a micro:biten túl: az Arduino közelebb visz a valódi elektronikához (dugaszolós próbapanel, több szenzor), a Raspberry Pi pedig teljes értékű kis számítógép Linuxszal az igényesebb…"
+   },
+   "recallQ": {
+    "cs": "Porovnal bys micro:bit, Arduino a Raspberry Pi podle toho, k čemu se která deska hodí?",
+    "en": "What is “Arduino and Raspberry Pi”, and what is it good for?",
+    "sk": "Čo je „Arduino a Raspberry Pi“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Arduino és Raspberry Pi”, és mire jó neked?"
+   }
   },
   {
    "slug": "fyzicky-computing-roboti-a-vozitka",
-   "title": "Roboti a vozítka",
-   "tema": "fyzicky-computing",
-   "objective": "Když se k desce přidá podvozek a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
-   "recallQ": "Sestavil bys program, který robota rozjede a nechá ho reagovat na senzor, například na čáru nebo překážku?"
+   "title": {
+    "cs": "Roboti a vozítka",
+    "en": "Robots and rovers",
+    "sk": "Roboty a vozidlá",
+    "hu": "Robotok és járművek"
+   },
+   "tema": "ch12-fyzicky-computing",
+   "objective": {
+    "cs": "Když se k desce přidá podvozek a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
+    "en": "When you add a chassis and motors to the board (micro:bit + Maqueen, Lego Spike), you get a robot that moves.",
+    "sk": "Keď sa k doske pridá podvozok a motory (micro:bit + Maqueen, Lego Spike), vznikne pohyblivý robot.",
+    "hu": "Ha a panelhez alvázat és motorokat adsz (micro:bit + Maqueen, Lego Spike), mozgó robot lesz belőle."
+   },
+   "recallQ": {
+    "cs": "Sestavil bys program, který robota rozjede a nechá ho reagovat na senzor, například na čáru nebo překážku?",
+    "en": "What is “Robots and rovers”, and what is it good for?",
+    "sk": "Čo je „Roboty a vozidlá“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Robotok és járművek”, és mire jó neked?"
+   }
   },
   {
    "slug": "fyzicky-computing-iot",
    "title": "IoT",
-   "tema": "fyzicky-computing",
-   "objective": "Internet věcí (IoT): senzory posílají naměřená data po síti do cloudu, kde se zobrazí na přehledu (dashboardu).",
-   "recallQ": "Co je „IoT“ a k čemu se ti hodí?"
+   "tema": "ch12-fyzicky-computing",
+   "objective": {
+    "cs": "Internet věcí (IoT): senzory posílají naměřená data po síti do cloudu, kde se zobrazí na přehledu (dashboardu).",
+    "en": "The Internet of Things (IoT): sensors send measured data over the network to the cloud, where it is shown on an overview (a dashboard).",
+    "sk": "Internet vecí (IoT): senzory posielajú namerané dáta po sieti do cloudu, kde sa zobrazia na prehľade (dashboarde).",
+    "hu": "A dolgok internete (IoT): a szenzorok a hálózaton át a felhőbe küldik a mért adatokat, ahol egy áttekintő felületen (műszerfalon) jelennek meg."
+   },
+   "recallQ": {
+    "cs": "Co je „IoT“ a k čemu se ti hodí?",
+    "en": "What is “IoT”, and what is it good for?",
+    "sk": "Čo je „IoT“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „IoT”, és mire jó neked?"
+   }
   },
   {
    "slug": "fyzicky-computing-ai-primo-na-zarizeni-tinyml",
-   "title": "AI přímo na zařízení (TinyML)",
-   "tema": "fyzicky-computing",
-   "objective": "Strojové učení, které běží přímo na malém zařízení bez cloudu.",
-   "recallQ": "Popsal bys kroky, kterými na malém zařízení vznikne model strojového učení?"
+   "title": {
+    "cs": "AI přímo na zařízení (TinyML)",
+    "en": "AI right on the device (TinyML)",
+    "sk": "AI priamo v zariadení (TinyML)",
+    "hu": "MI közvetlenül az eszközön (TinyML)"
+   },
+   "tema": "ch12-fyzicky-computing",
+   "objective": {
+    "cs": "Strojové učení, které běží přímo na malém zařízení bez cloudu.",
+    "en": "Machine learning that runs right on a small device, without the cloud.",
+    "sk": "Strojové učenie, ktoré beží priamo na malom zariadení bez cloudu.",
+    "hu": "Gépi tanulás, amely közvetlenül egy kis eszközön fut, felhő nélkül."
+   },
+   "recallQ": {
+    "cs": "Popsal bys kroky, kterými na malém zařízení vznikne model strojového učení?",
+    "en": "What is “AI right on the device (TinyML)”, and what is it good for?",
+    "sk": "Čo je „AI priamo v zariadení (TinyML)“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „MI közvetlenül az eszközön (TinyML)”, és mire jó neked?"
+   }
   },
   {
    "slug": "fyzicky-computing-komunikace-mezi-zarizenimi",
-   "title": "Komunikace mezi zařízeními",
-   "tema": "fyzicky-computing",
-   "objective": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
-   "recallQ": "Vytvořil bys program, ve kterém jedno zařízení pošle data druhému?"
+   "title": {
+    "cs": "Komunikace mezi zařízeními",
+    "en": "Communication between devices",
+    "sk": "Komunikácia medzi zariadeniami",
+    "hu": "Kommunikáció az eszközök között"
+   },
+   "tema": "ch12-fyzicky-computing",
+   "objective": {
+    "cs": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
+    "en": "Devices can send each other data wirelessly, by radio or Bluetooth.",
+    "sk": "Zariadenia si môžu posielať dáta bezdrôtovo, cez rádio alebo Bluetooth.",
+    "hu": "Az eszközök vezeték nélkül küldhetnek egymásnak adatokat, rádión vagy Bluetoothon."
+   },
+   "recallQ": {
+    "cs": "Vytvořil bys program, ve kterém jedno zařízení pošle data druhému?",
+    "en": "What is “Communication between devices”, and what is it good for?",
+    "sk": "Čo je „Komunikácia medzi zariadeniami“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Kommunikáció az eszközök között”, és mire jó neked?"
+   }
   }
  ]
 }

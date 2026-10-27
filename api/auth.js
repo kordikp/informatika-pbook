@@ -23,8 +23,25 @@ async function supabase(method, path, body) {
   catch { return { ok: res.ok, status: res.status, data: text }; }
 }
 
-function hashPassword(email, password) {
+// Legacy scheme (unsalted SHA-256 of email:password) — only to verify old accounts once.
+function legacyHash(email, password) {
   return crypto.createHash('sha256').update(email.toLowerCase() + ':' + password).digest('hex');
+}
+// Current scheme: scrypt with a random salt, stored as "scrypt$<salt hex>$<hash hex>".
+function hashPassword(password) {
+  const salt = crypto.randomBytes(16).toString('hex');
+  return 'scrypt$' + salt + '$' + crypto.scryptSync(password, salt, 64).toString('hex');
+}
+// → 'ok' | 'legacy' (correct, but stored with the old scheme: re-hash it) | false
+function checkPassword(email, password, stored) {
+  if (typeof stored !== 'string') return false;
+  if (stored.startsWith('scrypt$')) {
+    const [, salt, hex] = stored.split('$');
+    const want = Buffer.from(hex || '', 'hex'), got = crypto.scryptSync(password, salt || '', 64);
+    return want.length === got.length && crypto.timingSafeEqual(want, got) ? 'ok' : false;
+  }
+  const legacy = Buffer.from(legacyHash(email, password)), have = Buffer.from(stored);
+  return legacy.length === have.length && crypto.timingSafeEqual(legacy, have) ? 'legacy' : false;
 }
 
 function generateToken() {
@@ -59,7 +76,7 @@ module.exports = async function handler(req, res) {
       const sessionToken = generateToken();
       const row = {
         email: emailLower,
-        password_hash: hashPassword(emailLower, password),
+        password_hash: hashPassword(password),
         display_name: (displayName || '').trim().substring(0, 60) || null,
         session_token: sessionToken,
         profile_data: profileData || {},
@@ -87,16 +104,16 @@ module.exports = async function handler(req, res) {
       }
 
       const user = result.data[0];
-      if (user.password_hash !== hashPassword(emailLower, password)) {
+      const verdict = checkPassword(emailLower, password, user.password_hash);
+      if (!verdict) {
         return res.status(401).json({ error: 'Wrong password.' });
       }
 
-      // Refresh session token
+      // Refresh session token (and move an old unsalted hash to scrypt while we know the password)
       const sessionToken = generateToken();
-      await supabase('PATCH', `user_profiles?email=eq.${encodeURIComponent(emailLower)}`, {
-        session_token: sessionToken,
-        updated_at: new Date().toISOString(),
-      });
+      const patch = { session_token: sessionToken, updated_at: new Date().toISOString() };
+      if (verdict === 'legacy') patch.password_hash = hashPassword(password);
+      await supabase('PATCH', `user_profiles?email=eq.${encodeURIComponent(emailLower)}`, patch);
 
       return res.status(200).json({
         ok: true,
@@ -104,6 +121,16 @@ module.exports = async function handler(req, res) {
         displayName: user.display_name,
         profileData: user.profile_data || {},
       });
+    }
+
+    // Account actions below need the session token from login/register — the
+    // email alone let anyone reset a password or read a profile.
+    if (action === 'update' || action === 'save' || action === 'load') {
+      if (!email || !token) return res.status(401).json({ error: 'not authenticated' });
+      const rows = await supabase('GET', `user_profiles?email=eq.${encodeURIComponent(email.toLowerCase().trim())}&select=session_token`);
+      if (!rows.ok || !Array.isArray(rows.data) || !rows.data.length || rows.data[0].session_token !== token) {
+        return res.status(401).json({ error: 'Your session has expired — please log in again.', code: 'session_expired' });
+      }
     }
 
     // ---- UPDATE ACCOUNT (name, password) ----
@@ -114,7 +141,7 @@ module.exports = async function handler(req, res) {
       if (displayName) update.display_name = displayName.substring(0, 60);
       if (password) {
         if (password.length < 4) return res.status(400).json({ error: 'password must be at least 4 characters' });
-        update.password_hash = hashPassword(emailLower, password);
+        update.password_hash = hashPassword(password);
       }
       const result = await supabase('PATCH', `user_profiles?email=eq.${encodeURIComponent(emailLower)}`, update);
       if (!result.ok) return res.status(500).json({ error: 'Update failed' });

@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Csalás vagy rendben van?",
+  "instruction": "Csalás vagy rendben van?",
+  "buckets": [
+    "Csalás",
+    "Rendben van"
+  ],
+  "items": [
+    {
+      "text": "SMS (ismeretlen szám): A csomagja 390 Ft vámpótdíj befizetésére vár. Befizetés nélkül ma visszaküldjük. Fizessen itt: csomag-befizetes.example",
+      "answer": 0,
+      "why": "A sietségre („ma”) és egy kis összegre céloz, amely nem tűnik gyanúsnak."
+    },
+    {
+      "text": "E-mail (Osztályfőnök · iskolai cím): Jó napot, pénteken tanulmányi kirándulásra megyünk. Találkozó 8:00-kor az iskola előtt, tízórait és innivalót hozzatok. A részleteket a KRÉTA-ban találjátok.",
+      "answer": 1,
+      "why": "Semmit sem kér: se linket, se adatokat, se sietséget."
+    },
+    {
+      "text": "E-mail (Játékcsapat): Gratulálunk! 2000 drágakövet nyertél a versenyen. A nyereményt 24 órán belül vedd át, a játékfiókoddal bejelentkezve: jatek-jutalmak.example",
+      "answer": 0,
+      "why": "A jutalomra és a sietségre céloz. A szövegben egyetlen hiba sincs. Az MI írta."
+    },
+    {
+      "text": "Hívás (Anya · ismeretlen szám): „Szia, én vagyok. Elromlott a telefonom, másikéról hívlak. Kapsz egy SMS-t egy kóddal, olvasd fel, gyorsan. Otthon elmagyarázom.”",
+      "answer": 0,
+      "why": "A bizalomra és egy közeli hozzátartozóért érzett félelemre céloz. A hangot klónozhatta az MI."
+    },
+    {
+      "text": "SMS (Játék): (Épp most jelentkezel be a játékba.) Bejelentkezési kód: 482913. Senkinek ne add meg, az ügyfélszolgálatnak sem.",
+      "answer": 1,
+      "why": "A kód azért jött, mert épp te jelentkezel be. Csak a bejelentkezési ablakba való."
+    },
+    {
+      "text": "Cset (Tomáš, a barátod): Figyi, szavazz rám légyszi egy versenyen! Csak jelentkezz be a fiókoddal itt: verseny-szavazas.example 🙏",
+      "answer": 0,
+      "why": "A barátságra céloz. Tomáš fiókját már egy csaló irányíthatja."
+    }
+  ],
+  "debrief": "A csalást a sietségről, az idegen linkről és a kód, jelszó vagy fizetés kéréséről ismered fel. Ha nem vagy biztos benne, ellenőrizd más úton: az alkalmazásban, egy tanárnál vagy egy ismert számon."
+}

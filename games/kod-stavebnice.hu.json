@@ -1,0 +1,58 @@
+{
+  "type": "sort",
+  "title": "Ismerd fel az építőkockát",
+  "instruction": "Változó, feltétel vagy ciklus? Válogasd szét a kódrészleteket!",
+  "buckets": [
+    "Változó",
+    "Feltétel",
+    "Ciklus"
+  ],
+  "items": [
+    {
+      "text": "pontszam = 0",
+      "answer": 0,
+      "why": "A pontszam változóba 0 kerül."
+    },
+    {
+      "text": "if eletek == 0:",
+      "answer": 1,
+      "why": "A következő rész csak akkor fut le, ha az életek száma 0. Ez feltétel."
+    },
+    {
+      "text": "while jatek_fut:",
+      "answer": 2,
+      "why": "Addig ismétlődik, amíg a játék fut. Ez ciklus."
+    },
+    {
+      "text": "nev = \"Kuba\"",
+      "answer": 0,
+      "why": "A nev változó a Kuba szöveget jegyzi meg."
+    },
+    {
+      "text": "ismételd 10×: guggolj",
+      "answer": 2,
+      "why": "Ugyanaz a lépés tízszer egymás után."
+    },
+    {
+      "text": "ha esik → vedd fel a kapucnit",
+      "answer": 1,
+      "why": "A kapucnit csak akkor veszed fel, ha esik."
+    },
+    {
+      "text": "eletek = eletek - 1",
+      "answer": 0,
+      "why": "A változó megváltozik: az új érték 1-gyel kisebb."
+    },
+    {
+      "text": "for szam in range(100):",
+      "answer": 2,
+      "why": "Végigmegy a számokon 0-tól 99-ig, egyenként."
+    },
+    {
+      "text": "if jelszo == helyes:",
+      "answer": 1,
+      "why": "Csak akkor enged tovább, ha a jelszó stimmel."
+    }
+  ],
+  "debrief": "A változó megjegyez valamit, a feltétel kiválasztja, mi történjen, a ciklus pedig ismétel. Szinte minden program ebből a három kockából épül."
+}

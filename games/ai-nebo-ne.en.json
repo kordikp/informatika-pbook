@@ -1,0 +1,57 @@
+{
+  "type": "sort",
+  "title": "AI or not?",
+  "instruction": "Does it learn from data and make guesses? Then it's AI. Does it just follow exact rules? Then it isn't.",
+  "buckets": [
+    "It's AI",
+    "It's not AI"
+  ],
+  "items": [
+    {
+      "text": "The TikTok feed picks videos",
+      "answer": 0,
+      "why": "It learns from what you watch and guesses what will keep you there."
+    },
+    {
+      "text": "The alarm clock rings at 7:00",
+      "answer": 1,
+      "why": "A fixed rule: ring at 7:00. It learns nothing."
+    },
+    {
+      "text": "Automatic video subtitles",
+      "answer": 0,
+      "why": "A model learned to turn speech into text from a huge number of recordings."
+    },
+    {
+      "text": "A calculator adds 2+3",
+      "answer": 1,
+      "why": "Adding is an exact procedure. The result isn't guessed, it's calculated."
+    },
+    {
+      "text": "You unlock your phone with your face",
+      "answer": 0,
+      "why": "A model learned to recognise your face even in different light or with glasses."
+    },
+    {
+      "text": "Traffic lights switch every 30 s",
+      "answer": 1,
+      "why": "A timer with a fixed rule. Traffic lights that learn from the traffic would be AI."
+    },
+    {
+      "text": "A translator translates a sentence",
+      "answer": 0,
+      "why": "It learned from millions of translated sentences how a sentence is most likely translated."
+    },
+    {
+      "text": "A lift goes to the floor you chose",
+      "answer": 1,
+      "why": "You press 3 and it goes to floor 3. An exact rule, no learning."
+    },
+    {
+      "text": "ChatGPT writes an answer",
+      "answer": 0,
+      "why": "A language model guesses the next words from what it learned from texts."
+    }
+  ],
+  "debrief": "You can tell AI by the fact that it learned from examples and makes guesses. A program with fixed rules only does what someone wrote for it exactly, even if it looks clever."
+}
