@@ -13,6 +13,7 @@ export const CONFIG = {
     lang: 'cs',                              // jazyk, ve kterém je kniha napsaná (originály bloků)
     languages: ['cs', 'en', 'sk', 'hu'],     // přepínač na úvodní obrazovce a v Nastavení; ?lang=en otevře knihu anglicky
     untranslatedTellings: 'hide',            // česká podání ze staré knihy (-podani-) se v jiných jazycích nezobrazí
+    languageFilter: 'strict',                // en/sk/hu jen ve svém jazyce: nepřeložený blok (zatím kap. Weby, Aplikace, Tvorba s AI) v jejich edici není
     signature: 'AI dětem',
     signatureRole: { cs: 'vydavatel certifikátu', en: 'issuer of the certificate', sk: 'vydavateľ certifikátu', hu: 'a tanúsítvány kiadója' },
     contactName: AUTHOR,
