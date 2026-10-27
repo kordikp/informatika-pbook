@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Beállítás vagy változtatás?",
+  "instruction": "Az app minden pillanatára válaszd ki, hogy a változó új értéket kap, vagy egy kicsit változik.",
+  "buckets": [
+    "legyen …",
+    "változtasd …-vel"
+  ],
+  "items": [
+    {
+      "text": "Kijelentkezés: a bejelentkezve értéke „nem” lesz",
+      "answer": 0,
+      "why": "Bármi volt is előtte, most „nem”."
+    },
+    {
+      "text": "Új üzenet jött: eggyel több olvasatlan",
+      "answer": 1,
+      "why": "A meglévőkhöz hozzájön még egy."
+    },
+    {
+      "text": "Megnyitottad a chatet: most nulla az olvasatlan",
+      "answer": 0,
+      "why": "Az érték 0-ra íródik felül."
+    },
+    {
+      "text": "Koppintás a + gombra a kosárban",
+      "answer": 1,
+      "why": "A meglévő darabszámhoz hozzájön egy."
+    },
+    {
+      "text": "A beállításokban kiválasztod a sötét módot",
+      "answer": 0,
+      "why": "A mód „sötét”-re íródik felül."
+    },
+    {
+      "text": "A hangerő le gomb",
+      "answer": 1,
+      "why": "A meglévő hangerőből elvesz egy kicsit."
+    }
+  ],
+  "debrief": "A beállítás felülírja az értéket, függetlenül attól, mi volt ott. A változtatás azzal számol, ami már ott van."
+}

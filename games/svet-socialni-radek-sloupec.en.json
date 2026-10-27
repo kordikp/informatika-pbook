@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Record or property?",
+  "instruction": "In a data export from a network: what is one record (a row), and what is a property (a column)?",
+  "buckets": [
+    "Record (row)",
+    "Property (column)"
+  ],
+  "items": [
+    {
+      "text": "One view of a video at 21:14",
+      "answer": 0,
+      "why": "One event, one row."
+    },
+    {
+      "text": "Watch time in seconds",
+      "answer": 1,
+      "why": "An item that every view has."
+    },
+    {
+      "text": "The video’s creator",
+      "answer": 1,
+      "why": "A property of every row."
+    },
+    {
+      "text": "One like under a particular photo",
+      "answer": 0,
+      "why": "One event, one record."
+    },
+    {
+      "text": "Date and time",
+      "answer": 1,
+      "why": "A column you can sort by."
+    },
+    {
+      "text": "One search for “skateboard tricks”",
+      "answer": 0,
+      "why": "Every search is another row."
+    }
+  ],
+  "debrief": "A row is one thing that happened. A column is an item that every row has. That is what makes sorting, filtering and calculating possible."
+}

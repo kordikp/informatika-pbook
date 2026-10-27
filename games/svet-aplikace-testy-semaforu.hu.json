@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Átmegy a hibás lámpa a teszten?",
+  "instruction": "A lámpát egy olyan táblázat alapján teszteled, amelynek az utolsó sora hibás. Mely tesztek sikeresek, és melyek leplezik le a hibát?",
+  "buckets": [
+    "Sikeres",
+    "Leleplezi a hibát"
+  ],
+  "items": [
+    {
+      "text": "Gombnyomás piroson elindítja a visszaszámlálást",
+      "answer": 0,
+      "why": "A táblázat első sora helyes."
+    },
+    {
+      "text": "A visszaszámlálás után zöld lesz",
+      "answer": 0,
+      "why": "A második sor helyes."
+    },
+    {
+      "text": "A zöld egy idő után villogni kezd",
+      "answer": 0,
+      "why": "A negyedik sor helyes."
+    },
+    {
+      "text": "Villogás után piros lesz",
+      "answer": 1,
+      "why": "A táblázat visszaküldi a lámpát a zöldre. Itt a hiba."
+    },
+    {
+      "text": "Gombnyomás zölden semmit sem változtat",
+      "answer": 0,
+      "why": "A „nem történik semmi” sornak is benne kell lennie a táblázatban, és benne is van."
+    },
+    {
+      "text": "Egy gombnyomás után két percen belül újra piros",
+      "answer": 1,
+      "why": "A lámpa soha nem tér vissza a pirosra."
+    }
+  ],
+  "debrief": "A hibát csak az a teszt leplezi le, amely végigmegy az utolsó átmeneten. Ezért fedik le a tesztek a táblázat minden sorát, nem csak az elejét."
+}

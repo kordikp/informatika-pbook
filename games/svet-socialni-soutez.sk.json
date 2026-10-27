@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Podvod, alebo v poriadku?",
+  "instruction": "Na sociálnej sieti ti prišli tieto správy a ponuky. Ktoré sú podvod?",
+  "buckets": [
+    "Podvod",
+    "V poriadku"
+  ],
+  "items": [
+    {
+      "text": "Vyhral si, zaplať poštovné 2 € do 24 hodín",
+      "answer": 0,
+      "why": "Za skutočnú výhru sa neplatí, a už vôbec nie v náhlení."
+    },
+    {
+      "text": "Súťaž na overenom profile kina: napíš do komentára, na aký film by si išiel",
+      "answer": 1,
+      "why": "Nič od teba nechce a organizátor je skutočný."
+    },
+    {
+      "text": "Kamarátka: pošli mi kód, čo ti prišiel, omylom som ho dala na tvoje číslo",
+      "answer": 0,
+      "why": "Kód je kľúč k tvojmu účtu. A jej účet je najskôr ukradnutý."
+    },
+    {
+      "text": "Známy youtuber vo videu: pošli mi 20 €, vrátim ti 40",
+      "answer": 0,
+      "why": "Deepfake so sľubom zdvojnásobenia peňazí."
+    },
+    {
+      "text": "Obchod ti v oficiálnej appke ukáže zľavový kód",
+      "answer": 1,
+      "why": "Zľava priamo v appke obchodu, nič nezadávaš."
+    },
+    {
+      "text": "Profil s menom banky: over účet, inak bude zablokovaný",
+      "answer": 0,
+      "why": "Strach a náhlenie. Banka sa ti ozve v aplikácii banky, nie na sociálnej sieti."
+    }
+  ],
+  "debrief": "Podvod prezradí, čo chce: peniaze, kartu, heslo alebo kód, a to hneď. Skutočná súťaž ani kamarát nič z toho nepotrebujú."
+}

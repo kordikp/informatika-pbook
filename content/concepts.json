@@ -27,6 +27,14 @@
         "svet-roboti-algoritmus-hra-en",
         "svet-roboti-algoritmus-hra-sk",
         "svet-roboti-algoritmus-hra-hu",
+        "svet-aplikace-algoritmus",
+        "svet-aplikace-algoritmus-en",
+        "svet-aplikace-algoritmus-sk",
+        "svet-aplikace-algoritmus-hu",
+        "svet-aplikace-algoritmus-hra",
+        "svet-aplikace-algoritmus-hra-en",
+        "svet-aplikace-algoritmus-hra-sk",
+        "svet-aplikace-algoritmus-hra-hu",
         "ch2-algoritmus",
         "ch2-story-algoritmus"
       ],
@@ -85,6 +93,14 @@
         "svet-roboti-dekompozice-en",
         "svet-roboti-dekompozice-sk",
         "svet-roboti-dekompozice-hu",
+        "svet-aplikace-dekompozice",
+        "svet-aplikace-dekompozice-en",
+        "svet-aplikace-dekompozice-sk",
+        "svet-aplikace-dekompozice-hu",
+        "svet-aplikace-dekompozice-hra",
+        "svet-aplikace-dekompozice-hra-en",
+        "svet-aplikace-dekompozice-hra-sk",
+        "svet-aplikace-dekompozice-hra-hu",
         "ch2-dekompozice",
         "ch2-worked-dekompozice",
         "ch3-funkce-a-procedury"
@@ -148,6 +164,22 @@
         "svet-roboti-abstrakce-a-model-hra-en",
         "svet-roboti-abstrakce-a-model-hra-sk",
         "svet-roboti-abstrakce-a-model-hra-hu",
+        "svet-weby-abstrakce-a-model",
+        "svet-weby-abstrakce-a-model-en",
+        "svet-weby-abstrakce-a-model-sk",
+        "svet-weby-abstrakce-a-model-hu",
+        "svet-weby-abstrakce-a-model-hra",
+        "svet-weby-abstrakce-a-model-hra-en",
+        "svet-weby-abstrakce-a-model-hra-sk",
+        "svet-weby-abstrakce-a-model-hra-hu",
+        "svet-tvorba-abstrakce-a-model",
+        "svet-tvorba-abstrakce-a-model-en",
+        "svet-tvorba-abstrakce-a-model-sk",
+        "svet-tvorba-abstrakce-a-model-hu",
+        "svet-tvorba-abstrakce-a-model-hra",
+        "svet-tvorba-abstrakce-a-model-hra-en",
+        "svet-tvorba-abstrakce-a-model-hra-sk",
+        "svet-tvorba-abstrakce-a-model-hra-hu",
         "ch2-abstrakce",
         "ch2-rozpoznavani-vzoru"
       ],
@@ -202,6 +234,14 @@
         "svet-roboti-over-a-oprav-en",
         "svet-roboti-over-a-oprav-sk",
         "svet-roboti-over-a-oprav-hu",
+        "svet-aplikace-over-a-oprav",
+        "svet-aplikace-over-a-oprav-en",
+        "svet-aplikace-over-a-oprav-sk",
+        "svet-aplikace-over-a-oprav-hu",
+        "svet-aplikace-over-a-oprav-hra",
+        "svet-aplikace-over-a-oprav-hra-en",
+        "svet-aplikace-over-a-oprav-hra-sk",
+        "svet-aplikace-over-a-oprav-hra-hu",
         "ch3-ladeni-a-testovani",
         "ch3-q-projekt"
       ],
@@ -256,6 +296,14 @@
         "svet-roboti-program-hra-en",
         "svet-roboti-program-hra-sk",
         "svet-roboti-program-hra-hu",
+        "svet-weby-program",
+        "svet-weby-program-en",
+        "svet-weby-program-sk",
+        "svet-weby-program-hu",
+        "svet-weby-program-hra",
+        "svet-weby-program-hra-en",
+        "svet-weby-program-hra-sk",
+        "svet-weby-program-hra-hu",
         "ch2-rizeni-toku"
       ],
       "contract": {
@@ -313,6 +361,14 @@
         "svet-roboti-opakovani-hra-en",
         "svet-roboti-opakovani-hra-sk",
         "svet-roboti-opakovani-hra-hu",
+        "svet-socialni-opakovani",
+        "svet-socialni-opakovani-en",
+        "svet-socialni-opakovani-sk",
+        "svet-socialni-opakovani-hu",
+        "svet-socialni-opakovani-hra",
+        "svet-socialni-opakovani-hra-en",
+        "svet-socialni-opakovani-hra-sk",
+        "svet-socialni-opakovani-hra-hu",
         "ch3-cykly-v-kodu",
         "ch3-code-cykly"
       ],
@@ -433,6 +489,14 @@
         "svet-roboti-promenna-en",
         "svet-roboti-promenna-sk",
         "svet-roboti-promenna-hu",
+        "svet-aplikace-promenna",
+        "svet-aplikace-promenna-en",
+        "svet-aplikace-promenna-sk",
+        "svet-aplikace-promenna-hu",
+        "svet-aplikace-promenna-hra",
+        "svet-aplikace-promenna-hra-en",
+        "svet-aplikace-promenna-hra-sk",
+        "svet-aplikace-promenna-hra-hu",
         "ch3-promenne-a-datove-typy",
         "ch3-worked-promenne"
       ],
@@ -495,6 +559,22 @@
         "svet-roboti-kodovani-hra-en",
         "svet-roboti-kodovani-hra-sk",
         "svet-roboti-kodovani-hra-hu",
+        "svet-weby-kodovani",
+        "svet-weby-kodovani-en",
+        "svet-weby-kodovani-sk",
+        "svet-weby-kodovani-hu",
+        "svet-weby-kodovani-hra",
+        "svet-weby-kodovani-hra-en",
+        "svet-weby-kodovani-hra-sk",
+        "svet-weby-kodovani-hra-hu",
+        "svet-tvorba-kodovani",
+        "svet-tvorba-kodovani-en",
+        "svet-tvorba-kodovani-sk",
+        "svet-tvorba-kodovani-hu",
+        "svet-tvorba-kodovani-hra",
+        "svet-tvorba-kodovani-hra-en",
+        "svet-tvorba-kodovani-hra-sk",
+        "svet-tvorba-kodovani-hra-hu",
         "ch1-data-a-informace"
       ],
       "contract": {
@@ -540,6 +620,22 @@
         "tabulka-a-evidence-hra-en",
         "tabulka-a-evidence-hra-sk",
         "tabulka-a-evidence-hra-hu",
+        "svet-aplikace-tabulka-a-evidence",
+        "svet-aplikace-tabulka-a-evidence-en",
+        "svet-aplikace-tabulka-a-evidence-sk",
+        "svet-aplikace-tabulka-a-evidence-hu",
+        "svet-aplikace-tabulka-a-evidence-hra",
+        "svet-aplikace-tabulka-a-evidence-hra-en",
+        "svet-aplikace-tabulka-a-evidence-hra-sk",
+        "svet-aplikace-tabulka-a-evidence-hra-hu",
+        "svet-socialni-tabulka-a-evidence",
+        "svet-socialni-tabulka-a-evidence-en",
+        "svet-socialni-tabulka-a-evidence-sk",
+        "svet-socialni-tabulka-a-evidence-hu",
+        "svet-socialni-tabulka-a-evidence-hra",
+        "svet-socialni-tabulka-a-evidence-hra-en",
+        "svet-socialni-tabulka-a-evidence-hra-sk",
+        "svet-socialni-tabulka-a-evidence-hra-hu",
         "ch4-strukturovana-vs-nestrukturovana-data",
         "ch4-tabulky-a-relacni-model",
         "ch4-worked-tabulky"
@@ -586,7 +682,23 @@
         "informacni-system-hra",
         "informacni-system-hra-en",
         "informacni-system-hra-sk",
-        "informacni-system-hra-hu"
+        "informacni-system-hra-hu",
+        "svet-aplikace-informacni-system",
+        "svet-aplikace-informacni-system-en",
+        "svet-aplikace-informacni-system-sk",
+        "svet-aplikace-informacni-system-hu",
+        "svet-aplikace-informacni-system-hra",
+        "svet-aplikace-informacni-system-hra-en",
+        "svet-aplikace-informacni-system-hra-sk",
+        "svet-aplikace-informacni-system-hra-hu",
+        "svet-socialni-informacni-system",
+        "svet-socialni-informacni-system-en",
+        "svet-socialni-informacni-system-sk",
+        "svet-socialni-informacni-system-hu",
+        "svet-socialni-informacni-system-hra",
+        "svet-socialni-informacni-system-hra-en",
+        "svet-socialni-informacni-system-hra-sk",
+        "svet-socialni-informacni-system-hra-hu"
       ],
       "contract": {
         "objective": "Rodiče ti v mobilu nastavili, že hry jdou jen do osmi večer. Ty to vypnout nemůžeš, oni ano. Kdo o tom rozhoduje?",
@@ -631,6 +743,22 @@
         "z-dat-informace-hra-en",
         "z-dat-informace-hra-sk",
         "z-dat-informace-hra-hu",
+        "svet-aplikace-z-dat-informace",
+        "svet-aplikace-z-dat-informace-en",
+        "svet-aplikace-z-dat-informace-sk",
+        "svet-aplikace-z-dat-informace-hu",
+        "svet-aplikace-z-dat-informace-hra",
+        "svet-aplikace-z-dat-informace-hra-en",
+        "svet-aplikace-z-dat-informace-hra-sk",
+        "svet-aplikace-z-dat-informace-hra-hu",
+        "svet-socialni-z-dat-informace",
+        "svet-socialni-z-dat-informace-en",
+        "svet-socialni-z-dat-informace-sk",
+        "svet-socialni-z-dat-informace-hu",
+        "svet-socialni-z-dat-informace-hra",
+        "svet-socialni-z-dat-informace-hra-en",
+        "svet-socialni-z-dat-informace-hra-sk",
+        "svet-socialni-z-dat-informace-hra-hu",
         "ch4-datova-gramotnost",
         "ch4-story-datova-gramotnost",
         "comic-ch4-datova-gramotnost",
@@ -682,6 +810,22 @@
         "uvnitr-zarizeni-hra-en",
         "uvnitr-zarizeni-hra-sk",
         "uvnitr-zarizeni-hra-hu",
+        "svet-aplikace-uvnitr-zarizeni",
+        "svet-aplikace-uvnitr-zarizeni-en",
+        "svet-aplikace-uvnitr-zarizeni-sk",
+        "svet-aplikace-uvnitr-zarizeni-hu",
+        "svet-aplikace-uvnitr-zarizeni-hra",
+        "svet-aplikace-uvnitr-zarizeni-hra-en",
+        "svet-aplikace-uvnitr-zarizeni-hra-sk",
+        "svet-aplikace-uvnitr-zarizeni-hra-hu",
+        "svet-tvorba-uvnitr-zarizeni",
+        "svet-tvorba-uvnitr-zarizeni-en",
+        "svet-tvorba-uvnitr-zarizeni-sk",
+        "svet-tvorba-uvnitr-zarizeni-hu",
+        "svet-tvorba-uvnitr-zarizeni-hra",
+        "svet-tvorba-uvnitr-zarizeni-hra-en",
+        "svet-tvorba-uvnitr-zarizeni-hra-sk",
+        "svet-tvorba-uvnitr-zarizeni-hra-hu",
         "ch1-hardware-a-software",
         "ch1-tldr-hardware"
       ],
@@ -744,6 +888,14 @@
         "svet-roboti-cesta-dat-hra-en",
         "svet-roboti-cesta-dat-hra-sk",
         "svet-roboti-cesta-dat-hra-hu",
+        "svet-weby-cesta-dat",
+        "svet-weby-cesta-dat-en",
+        "svet-weby-cesta-dat-sk",
+        "svet-weby-cesta-dat-hu",
+        "svet-weby-cesta-dat-hra",
+        "svet-weby-cesta-dat-hra-en",
+        "svet-weby-cesta-dat-hra-sk",
+        "svet-weby-cesta-dat-hra-hu",
         "ch1-internet-a-sit"
       ],
       "contract": {
@@ -789,6 +941,30 @@
         "cloud-a-server-hra-en",
         "cloud-a-server-hra-sk",
         "cloud-a-server-hra-hu",
+        "svet-weby-cloud-a-server",
+        "svet-weby-cloud-a-server-en",
+        "svet-weby-cloud-a-server-sk",
+        "svet-weby-cloud-a-server-hu",
+        "svet-weby-cloud-a-server-hra",
+        "svet-weby-cloud-a-server-hra-en",
+        "svet-weby-cloud-a-server-hra-sk",
+        "svet-weby-cloud-a-server-hra-hu",
+        "svet-aplikace-cloud-a-server",
+        "svet-aplikace-cloud-a-server-en",
+        "svet-aplikace-cloud-a-server-sk",
+        "svet-aplikace-cloud-a-server-hu",
+        "svet-aplikace-cloud-a-server-hra",
+        "svet-aplikace-cloud-a-server-hra-en",
+        "svet-aplikace-cloud-a-server-hra-sk",
+        "svet-aplikace-cloud-a-server-hra-hu",
+        "svet-tvorba-cloud-a-server",
+        "svet-tvorba-cloud-a-server-en",
+        "svet-tvorba-cloud-a-server-sk",
+        "svet-tvorba-cloud-a-server-hu",
+        "svet-tvorba-cloud-a-server-hra",
+        "svet-tvorba-cloud-a-server-hra-en",
+        "svet-tvorba-cloud-a-server-hra-sk",
+        "svet-tvorba-cloud-a-server-hra-hu",
         "ch1-cloud-a-server",
         "ch1-comic-cloud",
         "ch1-story-cloud",
@@ -834,7 +1010,23 @@
         "sifrovani",
         "sifrovani-en",
         "sifrovani-sk",
-        "sifrovani-hu"
+        "sifrovani-hu",
+        "svet-weby-sifrovani",
+        "svet-weby-sifrovani-en",
+        "svet-weby-sifrovani-sk",
+        "svet-weby-sifrovani-hu",
+        "svet-weby-sifrovani-hra",
+        "svet-weby-sifrovani-hra-en",
+        "svet-weby-sifrovani-hra-sk",
+        "svet-weby-sifrovani-hra-hu",
+        "svet-socialni-sifrovani",
+        "svet-socialni-sifrovani-en",
+        "svet-socialni-sifrovani-sk",
+        "svet-socialni-sifrovani-hu",
+        "svet-socialni-sifrovani-hra",
+        "svet-socialni-sifrovani-hra-en",
+        "svet-socialni-sifrovani-hra-sk",
+        "svet-socialni-sifrovani-hra-hu"
       ],
       "contract": {
         "objective": "Chat píše „Zprávy jsou koncově šifrované“. Co to znamená a kdo je tedy nepřečte?",
@@ -887,6 +1079,14 @@
         "svet-roboti-ai-se-uci-z-dat-hra-en",
         "svet-roboti-ai-se-uci-z-dat-hra-sk",
         "svet-roboti-ai-se-uci-z-dat-hra-hu",
+        "svet-tvorba-ai-se-uci-z-dat",
+        "svet-tvorba-ai-se-uci-z-dat-en",
+        "svet-tvorba-ai-se-uci-z-dat-sk",
+        "svet-tvorba-ai-se-uci-z-dat-hu",
+        "svet-tvorba-ai-se-uci-z-dat-hra",
+        "svet-tvorba-ai-se-uci-z-dat-hra-en",
+        "svet-tvorba-ai-se-uci-z-dat-hra-sk",
+        "svet-tvorba-ai-se-uci-z-dat-hra-hu",
         "ch5-co-je-a-co-neni-ai",
         "ch5-tldr-co-je-ai",
         "ch5-ai-se-uci-z-dat",
@@ -936,6 +1136,22 @@
         "generativni-model-hra-en",
         "generativni-model-hra-sk",
         "generativni-model-hra-hu",
+        "svet-tvorba-generativni-model",
+        "svet-tvorba-generativni-model-en",
+        "svet-tvorba-generativni-model-sk",
+        "svet-tvorba-generativni-model-hu",
+        "svet-tvorba-generativni-model-hra",
+        "svet-tvorba-generativni-model-hra-en",
+        "svet-tvorba-generativni-model-hra-sk",
+        "svet-tvorba-generativni-model-hra-hu",
+        "svet-socialni-generativni-model",
+        "svet-socialni-generativni-model-en",
+        "svet-socialni-generativni-model-sk",
+        "svet-socialni-generativni-model-hu",
+        "svet-socialni-generativni-model-hra",
+        "svet-socialni-generativni-model-hra-en",
+        "svet-socialni-generativni-model-hra-sk",
+        "svet-socialni-generativni-model-hra-hu",
         "ch5-jak-funguje-generativni-model",
         "ch5-comic-halucinace",
         "ch5-prompt-a-promptova-gramotnost",
@@ -984,6 +1200,22 @@
         "doporucovac-hra-en",
         "doporucovac-hra-sk",
         "doporucovac-hra-hu",
+        "svet-tvorba-doporucovac",
+        "svet-tvorba-doporucovac-en",
+        "svet-tvorba-doporucovac-sk",
+        "svet-tvorba-doporucovac-hu",
+        "svet-tvorba-doporucovac-hra",
+        "svet-tvorba-doporucovac-hra-en",
+        "svet-tvorba-doporucovac-hra-sk",
+        "svet-tvorba-doporucovac-hra-hu",
+        "svet-socialni-doporucovac",
+        "svet-socialni-doporucovac-en",
+        "svet-socialni-doporucovac-sk",
+        "svet-socialni-doporucovac-hu",
+        "svet-socialni-doporucovac-hra",
+        "svet-socialni-doporucovac-hra-en",
+        "svet-socialni-doporucovac-hra-sk",
+        "svet-socialni-doporucovac-hra-hu",
         "ch5-doporucovaci-systemy",
         "comic-ch5-doporucovaci-systemy",
         "ch7-jak-funguji-algoritmy-siti",
@@ -1035,6 +1267,22 @@
         "rozhodujes-ty-hra-en",
         "rozhodujes-ty-hra-sk",
         "rozhodujes-ty-hra-hu",
+        "svet-aplikace-rozhodujes-ty",
+        "svet-aplikace-rozhodujes-ty-en",
+        "svet-aplikace-rozhodujes-ty-sk",
+        "svet-aplikace-rozhodujes-ty-hu",
+        "svet-aplikace-rozhodujes-ty-hra",
+        "svet-aplikace-rozhodujes-ty-hra-en",
+        "svet-aplikace-rozhodujes-ty-hra-sk",
+        "svet-aplikace-rozhodujes-ty-hra-hu",
+        "svet-tvorba-rozhodujes-ty",
+        "svet-tvorba-rozhodujes-ty-en",
+        "svet-tvorba-rozhodujes-ty-sk",
+        "svet-tvorba-rozhodujes-ty-hu",
+        "svet-tvorba-rozhodujes-ty-hra",
+        "svet-tvorba-rozhodujes-ty-hra-en",
+        "svet-tvorba-rozhodujes-ty-hra-sk",
+        "svet-tvorba-rozhodujes-ty-hra-hu",
         "ch5-overovani-vystupu",
         "ch5-tldr-overovani",
         "ch5-vlastni-agency",
@@ -1087,6 +1335,22 @@
         "ucet-a-autentizace-hra-en",
         "ucet-a-autentizace-hra-sk",
         "ucet-a-autentizace-hra-hu",
+        "svet-weby-ucet-a-autentizace",
+        "svet-weby-ucet-a-autentizace-en",
+        "svet-weby-ucet-a-autentizace-sk",
+        "svet-weby-ucet-a-autentizace-hu",
+        "svet-weby-ucet-a-autentizace-hra",
+        "svet-weby-ucet-a-autentizace-hra-en",
+        "svet-weby-ucet-a-autentizace-hra-sk",
+        "svet-weby-ucet-a-autentizace-hra-hu",
+        "svet-socialni-ucet-a-autentizace",
+        "svet-socialni-ucet-a-autentizace-en",
+        "svet-socialni-ucet-a-autentizace-sk",
+        "svet-socialni-ucet-a-autentizace-hu",
+        "svet-socialni-ucet-a-autentizace-hra",
+        "svet-socialni-ucet-a-autentizace-hra-en",
+        "svet-socialni-ucet-a-autentizace-hra-sk",
+        "svet-socialni-ucet-a-autentizace-hra-hu",
         "ch6-hesla-a-2fa",
         "ch6-tldr-hesla"
       ],
@@ -1141,6 +1405,14 @@
         "svet-hry-podvod-cili-na-cloveka-hra-en",
         "svet-hry-podvod-cili-na-cloveka-hra-sk",
         "svet-hry-podvod-cili-na-cloveka-hra-hu",
+        "svet-socialni-podvod-cili-na-cloveka",
+        "svet-socialni-podvod-cili-na-cloveka-en",
+        "svet-socialni-podvod-cili-na-cloveka-sk",
+        "svet-socialni-podvod-cili-na-cloveka-hu",
+        "svet-socialni-podvod-cili-na-cloveka-hra",
+        "svet-socialni-podvod-cili-na-cloveka-hra-en",
+        "svet-socialni-podvod-cili-na-cloveka-hra-sk",
+        "svet-socialni-podvod-cili-na-cloveka-hra-hu",
         "ch6-phishing-a-socialni-inzenyrstvi",
         "ch6-comic-phishing",
         "ch6-story-phishing"
@@ -1196,6 +1468,14 @@
         "svet-hry-ochrana-zarizeni-hra-en",
         "svet-hry-ochrana-zarizeni-hra-sk",
         "svet-hry-ochrana-zarizeni-hra-hu",
+        "svet-aplikace-ochrana-zarizeni",
+        "svet-aplikace-ochrana-zarizeni-en",
+        "svet-aplikace-ochrana-zarizeni-sk",
+        "svet-aplikace-ochrana-zarizeni-hu",
+        "svet-aplikace-ochrana-zarizeni-hra",
+        "svet-aplikace-ochrana-zarizeni-hra-en",
+        "svet-aplikace-ochrana-zarizeni-hra-sk",
+        "svet-aplikace-ochrana-zarizeni-hra-hu",
         "ch6-zakladni-hygiena"
       ],
       "contract": {
@@ -1241,6 +1521,22 @@
         "digitalni-stopa-hra-en",
         "digitalni-stopa-hra-sk",
         "digitalni-stopa-hra-hu",
+        "svet-weby-digitalni-stopa",
+        "svet-weby-digitalni-stopa-en",
+        "svet-weby-digitalni-stopa-sk",
+        "svet-weby-digitalni-stopa-hu",
+        "svet-weby-digitalni-stopa-hra",
+        "svet-weby-digitalni-stopa-hra-en",
+        "svet-weby-digitalni-stopa-hra-sk",
+        "svet-weby-digitalni-stopa-hra-hu",
+        "svet-socialni-digitalni-stopa",
+        "svet-socialni-digitalni-stopa-en",
+        "svet-socialni-digitalni-stopa-sk",
+        "svet-socialni-digitalni-stopa-hu",
+        "svet-socialni-digitalni-stopa-hra",
+        "svet-socialni-digitalni-stopa-hra-en",
+        "svet-socialni-digitalni-stopa-hra-sk",
+        "svet-socialni-digitalni-stopa-hra-hu",
         "ch6-soukromi-a-digitalni-stopa",
         "ch6-bezpecne-chovani-na-sitich",
         "comic-ch6-bezpecne-chovani-na-sitich",
@@ -1463,35 +1759,25 @@
       }
     },
     {
-      "id": "ch8-jak-funguje-web",
-      "title": "Jak funguje web",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": "ch8-jak-funguje-web",
-      "anchorPath": "ch8-tvorba-webu/01-spine-jak-funguje-web.md",
+      "id": "svet-weby",
+      "title": "Svět webů: od náčrtu po adresu",
+      "chapter": "ch8-svety",
+      "anchor": "svet-weby",
+      "anchorPath": "ch8-svety/03-spine-svet-weby.md",
       "provenance": "anchored",
       "parents": [],
       "blocks": [
-        "ch8-jak-funguje-web"
+        "svet-weby",
+        "svet-weby-en",
+        "svet-weby-sk",
+        "svet-weby-hu"
       ],
       "contract": {
-        "objective": "Enter. A za zlomek vteřiny stránka. Co všechno se mezitím stihlo stát?",
+        "objective": "Web, který si otevře kamarád na druhém konci světa, postavíš za jedno odpoledne. A cestou potkáš třetinu jader téhle knihy.",
         "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "to, co se teď naučíš, můžeš do týdne mít venku — vlastní stránku, kterou si otevře kamarád na druhém konci města.",
-            "modality": "prose"
-          },
-          {
-            "point": "Prohlížeč (klient) pošle požadavek",
-            "modality": "prose"
-          },
-          {
-            "point": "Server — počítač, kde stránka „bydlí“ — požadavek přijme",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co se děje mezi prohlížečem a serverem při načtení stránky?",
-        "recallA": "Prohlížeč (klient) pošle přes protokol HTTP požadavek serveru, kde stránka „bydlí“; server vrátí obsah (HTML, CSS, obrázky) a prohlížeč z něj stránku vykreslí. Web je nekonečná výměna požadavek–odpověď.",
+        "mustCover": [],
+        "recallQ": "Jaké tři vrstvy má každá webová stránka a co se stane, když někdo napíše její adresu?",
+        "recallA": "HTML je struktura, CSS vzhled a JavaScript chování. Po zadání adresy DNS najde IP adresu serveru, prohlížeč pošle požadavek, server vrátí soubory stránky a prohlížeč z nich stránku poskládá.",
         "forbidden": [
           "invented statistics or benchmark numbers",
           "invented citations, URLs, or paper titles",
@@ -1500,33 +1786,25 @@
       }
     },
     {
-      "id": "ch8-html",
-      "title": "HTML: kostra stránky",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": "ch8-html",
-      "anchorPath": "ch8-tvorba-webu/02-spine-html.md",
+      "id": "svet-aplikace",
+      "title": "Svět aplikací: od nápadu po appku v mobilu",
+      "chapter": "ch8-svety",
+      "anchor": "svet-aplikace",
+      "anchorPath": "ch8-svety/04-spine-svet-aplikace.md",
       "provenance": "anchored",
       "parents": [],
       "blocks": [
-        "ch8-html",
-        "ch8-game-web-vrstvy",
-        "ch8-tldr-html"
+        "svet-aplikace",
+        "svet-aplikace-en",
+        "svet-aplikace-sk",
+        "svet-aplikace-hu"
       ],
       "contract": {
-        "objective": "Pár značek v obyčejném textáku — a máš svou první webovku. Doslova dnes.",
+        "objective": "Každá appka v tvém mobilu začala jako nápad na papíře. Tady uvidíš, co je pod ní: postup, stavy, data, server i to, co appka smí.",
         "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "HTML je kostra stránky — určuje, co je nadpis, odstavec, obrázek nebo odkaz.",
-            "modality": "prose"
-          },
-          {
-            "point": "HTML nepopisuje vzhled, ale význam.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co určuje HTML a proč jde o význam, ne o vzhled?",
-        "recallA": "HTML značkami určuje strukturu a význam obsahu: co je nadpis, odstavec, obrázek, odkaz. Vzhled řeší až CSS — sémantika (význam) slouží prohlížečům, vyhledávačům i čtečkám pro nevidomé.",
+        "mustCover": [],
+        "recallQ": "Z jakých dvou částí se skládá skoro každá appka a co dělá každá z nich?",
+        "recallA": "Z frontendu, který vidíš a ovládáš na svém zařízení, a z backendu na serveru, který drží data, ověřuje přihlášení a hlídá pravidla. Frontend posílá požadavky, backend odpovídá.",
         "forbidden": [
           "invented statistics or benchmark numbers",
           "invented citations, URLs, or paper titles",
@@ -1535,35 +1813,25 @@
       }
     },
     {
-      "id": "ch8-css",
-      "title": "CSS: vzhled a responzivita",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": "ch8-css",
-      "anchorPath": "ch8-tvorba-webu/03-spine-css.md",
+      "id": "svet-tvorba",
+      "title": "Svět tvorby s AI: obraz, video a zvuk",
+      "chapter": "ch8-svety",
+      "anchor": "svet-tvorba",
+      "anchorPath": "ch8-svety/05-spine-svet-tvorba.md",
       "provenance": "anchored",
       "parents": [],
       "blocks": [
-        "ch8-css"
+        "svet-tvorba",
+        "svet-tvorba-en",
+        "svet-tvorba-sk",
+        "svet-tvorba-hu"
       ],
       "contract": {
-        "objective": "Stejná kostra, tisíc převleků. CSS rozhoduje, jestli web vypadá jako 1998, nebo jako dnes.",
+        "objective": "Napíšeš větu a za pár vteřin máš obrázek, písničku nebo video. Otázka už nezní „umíš to?“, ale „víš, co s tím?“.",
         "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "CSS dává stránce vzhled: barvy, písmo, rozvržení.",
-            "modality": "prose"
-          },
-          {
-            "point": "V tom je ta síla: obsah (HTML) a vzhled (CSS) jsou oddělené.",
-            "modality": "prose"
-          },
-          {
-            "point": "responzivita — stránka se musí přizpůsobit mobilu i velké obrazovce.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co dělá CSS a co znamená responzivita?",
-        "recallA": "CSS dává HTML kostře vzhled: barvy, písma, rozvržení (dnes hlavně Flexboxem a Gridem). Responzivita znamená, že se stránka přizpůsobí mobilu i velké obrazovce — dnes povinnost, většina lidí přichází z mobilu.",
+        "mustCover": [],
+        "recallQ": "Co musí udělat člověk, když mu obrázek nebo video vytváří AI?",
+        "recallA": "Přesně popsat, co chce, vybrat a zkontrolovat výsledek (detaily, klišé, fakta), vědět, z čeho se model učil a kam letí jeho data, a přiznat, kde pomohla AI. Rozhoduje a odpovídá člověk.",
         "forbidden": [
           "invented statistics or benchmark numbers",
           "invented citations, URLs, or paper titles",
@@ -1572,396 +1840,25 @@
       }
     },
     {
-      "id": "ch8-domena-a-hosting",
-      "title": "Doména a hosting: web jde do světa",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": "ch8-domena-a-hosting",
-      "anchorPath": "ch8-tvorba-webu/04-spine-domena-a-hosting.md",
+      "id": "svet-socialni",
+      "title": "Svět sociálních sítí a videí",
+      "chapter": "ch8-svety",
+      "anchor": "svet-socialni",
+      "anchorPath": "ch8-svety/06-spine-svet-socialni.md",
       "provenance": "anchored",
       "parents": [],
       "blocks": [
-        "ch8-domena-a-hosting"
+        "svet-socialni",
+        "svet-socialni-en",
+        "svet-socialni-sk",
+        "svet-socialni-hu"
       ],
       "contract": {
-        "objective": "Web v počítači vidíš jen ty. Dvě věci ho pustí ven: bydliště a adresa.",
+        "objective": "TikTok, YouTube, Instagram i třídní skupina: tady trávíš hodiny. Podívej se pod kapotu feedu, profilu i zpráv.",
         "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "1. Hosting: místo, kde web běží.",
-            "modality": "prose"
-          },
-          {
-            "point": "2. Doména: adresa, kterou si lidi zapamatují.",
-            "modality": "prose"
-          },
-          {
-            "point": "publikovat web dnes zvládneš zdarma a za pár minut.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Jaký je rozdíl mezi doménou a hostingem?",
-        "recallA": "Hosting je místo, kde web běží — server, na který nahraješ soubory. Doména je zapamatovatelná adresa (mujweb.cz), přes kterou lidé web najdou. Publikovat dnes jde zdarma a za pár minut.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch8-interaktivita-javascript",
-      "title": "JavaScript: stránka ožívá",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": "ch8-interaktivita-javascript",
-      "anchorPath": "ch8-tvorba-webu/05-spine-interaktivita-javascript.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch8-interaktivita-javascript",
-        "ch8-code-javascript"
-      ],
-      "contract": {
-        "objective": "Klikneš — a stránka odpoví. Třetí vrstva webu dělá z plakátu aplikaci.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "JavaScript stránku oživí: reaguje na kliknutí, mění obsah, počítá.",
-            "modality": "prose"
-          },
-          {
-            "point": "JavaScript tenhle strom za běhu přestavuje",
-            "modality": "prose"
-          },
-          {
-            "point": "Události + úpravy DOM = každá webová aplikace na světě.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Jak JavaScript oživuje stránku?",
-        "recallA": "Reaguje na události (kliknutí, psaní) a za běhu upravuje strukturu stránky — DOM. Prohlížeč změny hned překreslí, takže se web chová jako aplikace, ne statický dokument.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch9-co-je-aplikace",
-      "title": "Co je aplikace: frontend a backend",
-      "chapter": "ch9-tvorba-aplikaci",
-      "anchor": "ch9-co-je-aplikace",
-      "anchorPath": "ch9-tvorba-aplikaci/01-spine-co-je-aplikace.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch9-co-je-aplikace"
-      ],
-      "contract": {
-        "objective": "Appka je divadlo: jeviště vidíš, ale představení drží zákulisí, do kterého nevidíš.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "Aplikace je program pro konkrétní účel",
-            "modality": "prose"
-          },
-          {
-            "point": "Frontend je to, co vidíš a ovládáš",
-            "modality": "prose"
-          },
-          {
-            "point": "Backend je to, co pracuje na pozadí",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Z jakých dvou částí se skládá aplikace a co která dělá?",
-        "recallA": "Frontend je část, kterou vidíš a ovládáš (obrazovky, tlačítka). Backend běží na pozadí — obvykle na serveru — a stará se o data, účty a logiku. Frontend se ptá, backend odpovídá.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch9-no-code-low-code",
-      "title": "No-code a low-code",
-      "chapter": "ch9-tvorba-aplikaci",
-      "anchor": "ch9-no-code-low-code",
-      "anchorPath": "ch9-tvorba-aplikaci/02-spine-no-code-low-code.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch9-no-code-low-code"
-      ],
-      "contract": {
-        "objective": "Postavit appku jako Lego: bez kódu, z hotových bloků. Kde to stačí — a kde narazíš?",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "No-code platformy jsou nástroje, kde appku poskládáš vizuálně, bez psaní kódu.",
-            "modality": "prose"
-          },
-          {
-            "point": "Učíš se logiku bez syntaxe.",
-            "modality": "prose"
-          },
-          {
-            "point": "standardní úloha (evidence, formulář, katalog, jednoduchý web) → no-code stačí a je nejrychlejší. Cokoli nestandardního → potřebuješ kód",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co jsou no-code platformy a kde jsou jejich hranice?",
-        "recallA": "Nástroje, kde appku poskládáš vizuálně z hotových bloků bez psaní kódu. Skvělé na rychlý start a pochopení logiky; narazíš, když potřebuješ něco, co v nabídce bloků není — pak přichází kód nebo AI.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch9-logika-aplikace",
-      "title": "Logika aplikace: stavy, vstupy, akce",
-      "chapter": "ch9-tvorba-aplikaci",
-      "anchor": "ch9-logika-aplikace",
-      "anchorPath": "ch9-tvorba-aplikaci/03-spine-logika-aplikace.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch9-logika-aplikace",
-        "ch9-worked-logika"
-      ],
-      "contract": {
-        "objective": "Proč tě appka někdy „nepustí“ dál? Protože přesně ví, v jakém je stavu. A ty teď taky.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "Logika aplikace je popis toho, co se stane, když uživatel něco udělá.",
-            "modality": "prose"
-          },
-          {
-            "point": "Stav — v jakém režimu appka právě je.",
-            "modality": "prose"
-          },
-          {
-            "point": "Vstup — co přijde zvenku.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co tvoří logiku aplikace?",
-        "recallA": "Stavy (v jakém režimu appka je), vstupy (co uživatel udělá) a akce (co se provede). Chování appky = pravidla „když ve stavu S přijde vstup V, proveď akci A a přejdi do stavu S2“.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch9-vibecoding",
-      "title": "Vibecoding: appka na zavolání",
-      "chapter": "ch9-tvorba-aplikaci",
-      "anchor": "ch9-vibecoding",
-      "anchorPath": "ch9-tvorba-aplikaci/04-spine-vibecoding.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch9-vibecoding",
-        "ch9-comic-vibecoding"
-      ],
-      "contract": {
-        "objective": "Popíšeš appku větou, AI napíše kód. Zní to jako podvod? Je to dovednost — s háčky.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "1. Rozmysli, CO chceš — před promptem.",
-            "modality": "prose"
-          },
-          {
-            "point": "2. Postupuj po krocích, ne najednou.",
-            "modality": "prose"
-          },
-          {
-            "point": "Vypadá to hotově ≠ je to hotové.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co je vibecoding a jaké má riziko?",
-        "recallA": "Tvorba aplikace popisováním záměru AI: ty řídíš a hodnotíš, AI píše kód. Riziko je „iluze, že to umím“ — bez porozumění základům uvízneš, jakmile se něco rozbije, a neodhalíš chyby, které AI udělala.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch9-ai-nastroje-pro-tvorbu",
-      "title": "AI nástroje pro tvorbu",
-      "chapter": "ch9-tvorba-aplikaci",
-      "anchor": "ch9-ai-nastroje-pro-tvorbu",
-      "anchorPath": "ch9-tvorba-aplikaci/05-spine-ai-nastroje-pro-tvorbu.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch9-ai-nastroje-pro-tvorbu"
-      ],
-      "contract": {
-        "objective": "Copilot, Cursor, Replit, Lovable… džungle jmen. Ve skutečnosti tři druhy parťáků.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "Učíš se psát kód → našeptávač",
-            "modality": "prose"
-          },
-          {
-            "point": "Stavíš projekt a chceš rozumět → AI editor.",
-            "modality": "prose"
-          },
-          {
-            "point": "Chceš dnes večer funkční prototyp → appka z popisu.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Jaké druhy AI nástrojů pro tvorbu existují a co rozhoduje o přijetí jejich návrhu?",
-        "recallA": "Našeptávače v editoru (Copilot), AI editory a agenti (Cursor, Claude Code) a „appka z popisu“ nástroje (Replit, Lovable). Návrh přijímáš, až když ověříš, že dělá, co potřebuješ — rozhoduje tvůj cíl, ne ochota AI.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch10-vizualni-jazyk",
-      "title": "Vizuální jazyk: gramatika obrazu",
-      "chapter": "ch10-tvorba-obsahu",
-      "anchor": "ch10-vizualni-jazyk",
-      "anchorPath": "ch10-tvorba-obsahu/01-spine-vizualni-jazyk.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch10-vizualni-jazyk"
-      ],
-      "contract": {
-        "objective": "AI ti vygeneruje deset obrázků za minutu. Ale který z nich je dobrý? To musíš poznat ty.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "Vizuální jazyk je gramatika obrazu — pravidla, podle kterých obraz působí na diváka.",
-            "modality": "prose"
-          },
-          {
-            "point": "AI ti vychrlí deset návrhů za minutu — ale který z nich je dobrý a proč, musíš rozhodnout ty.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Proč potřebuješ vizuální jazyk, když obrázek umí vygenerovat AI?",
-        "recallA": "AI vytvoří spoustu návrhů, ale posoudit, který funguje a proč, je na tobě — podle kompozice, barvy, kontrastu a typografie.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch10-prompt-pro-media",
-      "title": "Prompt pro média: popiš, co máš v hlavě",
-      "chapter": "ch10-tvorba-obsahu",
-      "anchor": "ch10-prompt-pro-media",
-      "anchorPath": "ch10-tvorba-obsahu/02-spine-prompt-pro-media.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch10-prompt-pro-media"
-      ],
-      "contract": {
-        "objective": "Stejný nástroj, dva prompty — jednou nuda, podruhé paráda. Rozdíl je v tom, jak umíš popisovat.",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "Generátor ti nečte myšlenky. Čte jen slova, která mu dáš.",
-            "modality": "prose"
-          },
-          {
-            "point": "Napoprvé to skoro nikdy nesedne — a to je normální.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Co má obsahovat dobrý prompt pro obrázek, video nebo hudbu?",
-        "recallA": "Konkrétní parametry: styl, náladu, světlo a záběr, u hudby žánr a tempo. Změnou jednoho parametru pak zjistíš, které slovo ovládá kterou část výsledku.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch10-generativni-obraz",
-      "title": "Generativní obraz: tvorba pro každého",
-      "chapter": "ch10-tvorba-obsahu",
-      "anchor": "ch10-generativni-obraz",
-      "anchorPath": "ch10-tvorba-obsahu/03-spine-generativni-obraz.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch10-generativni-obraz"
-      ],
-      "contract": {
-        "objective": "Neumíš kreslit? Popiš obrázek větou a za pár vteřin ho máš. Jenže — kdo je pak jeho autor?",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "Tvorba obrazu přestala být jen pro ty, kdo umějí kreslit — a to je velká věc.",
-            "modality": "prose"
-          },
-          {
-            "point": "Modely se učily i na dílech žijících umělců — bez ptaní.",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Jaký je hlavní přínos a hlavní riziko generativního obrazu?",
-        "recallA": "Přínos: tvořit může i ten, kdo neumí kreslit — rychle a levně. Riziko: modely se učily na cizích dílech bez souhlasu a realistické výstupy umí klamat.",
-        "forbidden": [
-          "invented statistics or benchmark numbers",
-          "invented citations, URLs, or paper titles",
-          "claiming a single method fully solves the problem"
-        ]
-      }
-    },
-    {
-      "id": "ch10-etika-autorstvi-a-oznacovani",
-      "title": "Etika, autorství a označování",
-      "chapter": "ch10-tvorba-obsahu",
-      "anchor": "ch10-etika-autorstvi-a-oznacovani",
-      "anchorPath": "ch10-tvorba-obsahu/04-spine-etika-autorstvi-a-oznacovani.md",
-      "provenance": "anchored",
-      "parents": [],
-      "blocks": [
-        "ch10-etika-autorstvi-a-oznacovani"
-      ],
-      "contract": {
-        "objective": "Vygeneroval jsi parádní obrázek. Tři otázky: z čeho se model učil, čí to je — a přiznáš to?",
-        "objectiveSource": "teaser-bootstrap",
-        "mustCover": [
-          {
-            "point": "1. Na čích dílech se model učil?",
-            "modality": "prose"
-          },
-          {
-            "point": "generovat „ve stylu žijícího autora“ a vydávat to za svou tvorbu je etický faul",
-            "modality": "prose"
-          },
-          {
-            "point": "dílo vytvořené čistě strojem autorská práva nemá",
-            "modality": "prose"
-          }
-        ],
-        "recallQ": "Jaké tři otázky řeší etika generovaného obsahu a proč se AI obsah označuje?",
-        "recallA": "Na čích dílech se model učil, komu patří výsledek a jak dát najevo, že obsah tvořila AI. Označení chrání důvěru publika — lidé mají právo vědět, s čím se dívají — a u některých typů obsahu ho vyžaduje i zákon.",
+        "mustCover": [],
+        "recallQ": "Proč je sociální síť zdarma a co o tobě při používání zjišťuje?",
+        "recallA": "Platí za ni inzerenti, kteří kupují tvou pozornost. Síť sleduje signály (co koukáš, jak dlouho, co přeskočíš, kde jsi) a skládá z nich, co tě zajímá. Data o tobě mají cenu.",
         "forbidden": [
           "invented statistics or benchmark numbers",
           "invented citations, URLs, or paper titles",
@@ -2762,6 +2659,366 @@
       }
     },
     {
+      "id": "tvorba-webu-ai-asistovana-tvorba-webu",
+      "title": "AI-asistovaná tvorba webu",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Nástroje jako v0, Lovable nebo Claude Artifacts vytvoří funkční stránku z pouhého popisu za pár vteřin.",
+        "mustCover": [
+          {
+            "point": "Žák z textového popisu vygeneruje pomocí AI nástroje funkční stránku a upraví ji podle svého záměru."
+          },
+          {
+            "point": "Žák posoudí kvalitu a použitelnost stránky, kterou vytvořila AI, a zdůvodní navržené úpravy."
+          }
+        ],
+        "recallQ": "Posoudil bys kvalitu a použitelnost stránky, kterou vytvořila AI, a zdůvodní navržené úpravy?",
+        "recallA": "Nástroje jako v0, Lovable nebo Claude Artifacts vytvoří funkční stránku z pouhého popisu za pár vteřin.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-webu-frameworky",
+      "title": "Frameworky",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "U větších webů se nepíše všechno od nuly — frameworky (React a spol.) a knihovny stylů (Tailwind) dávají hotové stavební bloky a řád.",
+        "mustCover": [
+          {
+            "point": "Žák vysvětlí, proč frameworky a knihovny stylů urychlují tvorbu webu a co předpokládají u tvůrce."
+          }
+        ],
+        "recallQ": "Co je „Frameworky“ a k čemu se ti hodí?",
+        "recallA": "U větších webů se nepíše všechno od nuly — frameworky (React a spol.) a knihovny stylů (Tailwind) dávají hotové stavební bloky a řád.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-webu-nasazeni-webu",
+      "title": "Nasazení webu",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Nasazení (deployment) je krok, kdy se web z tvého počítače dostane na internet.",
+        "mustCover": [
+          {
+            "point": "Žák podle postupu nasadí hotový web na hostingovou službu tak, aby byl veřejně dostupný."
+          }
+        ],
+        "recallQ": "Co je „Nasazení webu“ a k čemu se ti hodí?",
+        "recallA": "Nasazení (deployment) je krok, kdy se web z tvého počítače dostane na internet.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-webu-pristupnost-a-seo",
+      "title": "Přístupnost a SEO",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Přístupnost (a11y) znamená udělat web použitelný i pro lidi s hendikepem (čtečky obrazovky, ovládání klávesnicí); SEO je péče o to, aby web našly vyhledávače.",
+        "mustCover": [
+          {
+            "point": "Žák posoudí přístupnost stránky pro uživatele s hendikepem a doporučí konkrétní zlepšení."
+          },
+          {
+            "point": "Žák vysvětlí, proč přístupnost i SEO rozhodují o tom, kolik lidí se k obsahu dostane."
+          }
+        ],
+        "recallQ": "Posoudil bys přístupnost stránky pro uživatele s hendikepem a doporučí konkrétní zlepšení?",
+        "recallA": "Přístupnost (a11y) znamená udělat web použitelný i pro lidi s hendikepem (čtečky obrazovky, ovládání klávesnicí); SEO je péče o to, aby web našly vyhledávače.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-webu-ux-ui-a-design-webu",
+      "title": "UX/UI a design webu",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "UI je to, jak web vypadá, UX to, jak se používá.",
+        "mustCover": [
+          {
+            "point": "Žák u webové stránky rozliší prvky UI (vzhled) od aspektů UX (jak se používá) a najde místa, kde návrh mate uživatele."
+          },
+          {
+            "point": "Žák zhodnotí, zda návrh stránky vede uživatele srozumitelně k cíli, a zdůvodní svůj úsudek."
+          }
+        ],
+        "recallQ": "Co je „UX/UI a design webu“ a k čemu se ti hodí?",
+        "recallA": "UI je to, jak web vypadá, UX to, jak se používá.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-aplikaci-prace-s-api-a-backendem",
+      "title": "Práce s API a backendem",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Aby appka uměla víc než jen zobrazovat, propojí se přes API s dalšími službami a se serverovou částí, která pracuje s daty.",
+        "mustCover": [
+          {
+            "point": "Žák podle vzoru propojí aplikaci přes API s další službou tak, aby získala nebo odeslala data."
+          },
+          {
+            "point": "Žák vysvětlí, proč se z aplikace stává skutečná služba teprve propojením s API a backendem."
+          }
+        ],
+        "recallQ": "Co je „Práce s API a backendem“ a k čemu se ti hodí?",
+        "recallA": "Aby appka uměla víc než jen zobrazovat, propojí se přes API s dalšími službami a se serverovou částí, která pracuje s daty.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-aplikaci-databaze-a-autentizace",
+      "title": "Databáze a autentizace",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Appky si pamatují data (databáze) a musí poznat, kdo je kdo (autentizace — přihlašování).",
+        "mustCover": [
+          {
+            "point": "Žák pro aplikaci vytvoří tabulku evidence dat a stanoví pravidla pro práci s jejími záznamy."
+          },
+          {
+            "point": "Žák posoudí, zda aplikace dostatečně chrání hesla a osobní údaje uživatelů."
+          }
+        ],
+        "recallQ": "Co je „Databáze a autentizace“ a k čemu se ti hodí?",
+        "recallA": "Appky si pamatují data (databáze) a musí poznat, kdo je kdo (autentizace — přihlašování).",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-aplikaci-zivotni-cyklus-vyvoje",
+      "title": "Životní cyklus vývoje",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Aplikace nevznikne jedním skokem — má cyklus: navrhnout, naprogramovat, otestovat, nasadit a vylepšovat.",
+        "mustCover": [
+          {
+            "point": "Žák popíše fáze vývoje aplikace: návrh, programování, testování, nasazení a vylepšování."
+          },
+          {
+            "point": "Žák u vlastního projektu naplánuje kroky vývoje včetně testování a sběru zpětné vazby."
+          }
+        ],
+        "recallQ": "Popsal bys fáze vývoje aplikace: návrh, programování, testování, nasazení a vylepšování?",
+        "recallA": "Aplikace nevznikne jedním skokem — má cyklus: navrhnout, naprogramovat, otestovat, nasadit a vylepšovat.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-aplikaci-publikace-do-app-storu",
+      "title": "Publikace do app storů",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Aby se hotová appka dostala k lidem, projde publikací — na webu je to nasazení, u mobilů obchody (App Store, Google Play) s jejich pravidly a schvalováním.",
+        "mustCover": [
+          {
+            "point": "Žák vysvětlí rozdíl mezi zveřejněním webové aplikace a publikací mobilní aplikace přes obchody se schvalováním."
+          }
+        ],
+        "recallQ": "Vysvětlil bys rozdíl mezi zveřejněním webové aplikace a publikací mobilní aplikace přes obchody se schvalováním?",
+        "recallA": "Aby se hotová appka dostala k lidem, projde publikací — na webu je to nasazení, u mobilů obchody (App Store, Google Play) s jejich pravidly a schvalováním.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-obsahu-generativni-video",
+      "title": "Generativní video",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "AI dnes vytvoří realistické video z textu nebo obrázku (Sora, Veo, Runway) i se zvukem.",
+        "mustCover": [
+          {
+            "point": "Žák posoudí, zda je předložené video tvůrčím výstupem, nebo možnou dezinformací či deepfake, a zdůvodní své rozhodnutí."
+          }
+        ],
+        "recallQ": "Co je „Generativní video“ a k čemu se ti hodí?",
+        "recallA": "AI dnes vytvoří realistické video z textu nebo obrázku (Sora, Veo, Runway) i se zvukem.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-obsahu-generativni-hudba-a-hlas",
+      "title": "Generativní hudba a hlas",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Nástroje jako Suno nebo ElevenLabs složí celou písničku nebo napodobí hlas z krátké ukázky.",
+        "mustCover": [
+          {
+            "point": "Žák vytvoří krátkou skladbu nebo mluvený výstup v generativním nástroji podle zadání."
+          },
+          {
+            "point": "Žák zhodnotí rizika napodobení cizího hlasu a otázky autorských práv a zdůvodní, kdy je použití nevhodné."
+          }
+        ],
+        "recallQ": "Vytvořil bys krátkou skladbu nebo mluvený výstup v generativním nástroji podle zadání?",
+        "recallA": "Nástroje jako Suno nebo ElevenLabs složí celou písničku nebo napodobí hlas z krátké ukázky.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-obsahu-strih-a-postprodukce-s-ai",
+      "title": "Střih a postprodukce s AI",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "AI dnes zvládne velkou část dokončovacích prací: automatické titulky, čištění zvuku, výběr nejlepších záběrů nebo úpravu videa přepisem textu (CapCut, Descript).",
+        "mustCover": [
+          {
+            "point": "Žák upraví video nebo zvuk pomocí AI funkcí (titulky, čištění zvuku, výběr záběrů) podle postupu."
+          }
+        ],
+        "recallQ": "Co je „Střih a postprodukce s AI“ a k čemu se ti hodí?",
+        "recallA": "AI dnes zvládne velkou část dokončovacích prací: automatické titulky, čištění zvuku, výběr nejlepších záběrů nebo úpravu videa přepisem textu (CapCut, Descript…",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-obsahu-kontrola-nad-vysledkem",
+      "title": "Kontrola nad výsledkem",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Vygenerovat jeden hezký obrázek je snadné; těžší je udržet stejnou postavu nebo styl napříč více obrázky a mít nad výsledkem skutečnou kontrolu.",
+        "mustCover": [
+          {
+            "point": "Žák použije referenční obrázek nebo dokreslování (in/out-painting), aby udržel stejný styl či postavu napříč obrázky."
+          },
+          {
+            "point": "Žák prozkoumá, proč se ve dvou výstupech nepodařilo udržet stejnou postavu, a najde příčinu."
+          }
+        ],
+        "recallQ": "Použil bys referenční obrázek nebo dokreslování (in/out-painting), aby udržel stejný styl či postavu napříč obrázky?",
+        "recallA": "Vygenerovat jeden hezký obrázek je snadné; těžší je udržet stejnou postavu nebo styl napříč více obrázky a mít nad výsledkem skutečnou kontrolu.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
+      "id": "tvorba-obsahu-propojeni-nastroju-obraz-video-zvuk",
+      "title": "Propojení nástrojů (obraz, video, zvuk)",
+      "chapter": "ch8-svety",
+      "anchor": null,
+      "anchorPath": null,
+      "provenance": "ghost",
+      "blocks": [],
+      "contract": {
+        "objective": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
+        "mustCover": [
+          {
+            "point": "Žák naplánuje a vytvoří vlastní projekt zřetězením více nástrojů (z obrázku video, k němu hudba a hlas)."
+          }
+        ],
+        "recallQ": "Co je „Propojení nástrojů (obraz, video, zvuk)“ a k čemu se ti hodí?",
+        "recallA": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
+        "forbidden": [
+          "vymyšlené statistiky nebo čísla",
+          "vymyšlené citace, URL nebo názvy studií",
+          "tvrzení, že jediná metoda problém zcela řeší"
+        ]
+      }
+    },
+    {
       "id": "herni-vyvoj-lehke-enginy",
       "title": "Lehké enginy",
       "chapter": "ch8-svety",
@@ -3006,366 +3263,6 @@
         ],
         "recallQ": "Vytvořil bys program, ve kterém jedno zařízení pošle data druhému?",
         "recallA": "Zařízení si mohou posílat data bezdrátově — přes rádio nebo Bluetooth.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-webu-ai-asistovana-tvorba-webu",
-      "title": "AI-asistovaná tvorba webu",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Nástroje jako v0, Lovable nebo Claude Artifacts vytvoří funkční stránku z pouhého popisu za pár vteřin.",
-        "mustCover": [
-          {
-            "point": "Žák z textového popisu vygeneruje pomocí AI nástroje funkční stránku a upraví ji podle svého záměru."
-          },
-          {
-            "point": "Žák posoudí kvalitu a použitelnost stránky, kterou vytvořila AI, a zdůvodní navržené úpravy."
-          }
-        ],
-        "recallQ": "Posoudil bys kvalitu a použitelnost stránky, kterou vytvořila AI, a zdůvodní navržené úpravy?",
-        "recallA": "Nástroje jako v0, Lovable nebo Claude Artifacts vytvoří funkční stránku z pouhého popisu za pár vteřin.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-webu-frameworky",
-      "title": "Frameworky",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "U větších webů se nepíše všechno od nuly — frameworky (React a spol.) a knihovny stylů (Tailwind) dávají hotové stavební bloky a řád.",
-        "mustCover": [
-          {
-            "point": "Žák vysvětlí, proč frameworky a knihovny stylů urychlují tvorbu webu a co předpokládají u tvůrce."
-          }
-        ],
-        "recallQ": "Co je „Frameworky“ a k čemu se ti hodí?",
-        "recallA": "U větších webů se nepíše všechno od nuly — frameworky (React a spol.) a knihovny stylů (Tailwind) dávají hotové stavební bloky a řád.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-webu-nasazeni-webu",
-      "title": "Nasazení webu",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Nasazení (deployment) je krok, kdy se web z tvého počítače dostane na internet.",
-        "mustCover": [
-          {
-            "point": "Žák podle postupu nasadí hotový web na hostingovou službu tak, aby byl veřejně dostupný."
-          }
-        ],
-        "recallQ": "Co je „Nasazení webu“ a k čemu se ti hodí?",
-        "recallA": "Nasazení (deployment) je krok, kdy se web z tvého počítače dostane na internet.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-webu-pristupnost-a-seo",
-      "title": "Přístupnost a SEO",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Přístupnost (a11y) znamená udělat web použitelný i pro lidi s hendikepem (čtečky obrazovky, ovládání klávesnicí); SEO je péče o to, aby web našly vyhledávače.",
-        "mustCover": [
-          {
-            "point": "Žák posoudí přístupnost stránky pro uživatele s hendikepem a doporučí konkrétní zlepšení."
-          },
-          {
-            "point": "Žák vysvětlí, proč přístupnost i SEO rozhodují o tom, kolik lidí se k obsahu dostane."
-          }
-        ],
-        "recallQ": "Posoudil bys přístupnost stránky pro uživatele s hendikepem a doporučí konkrétní zlepšení?",
-        "recallA": "Přístupnost (a11y) znamená udělat web použitelný i pro lidi s hendikepem (čtečky obrazovky, ovládání klávesnicí); SEO je péče o to, aby web našly vyhledávače.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-webu-ux-ui-a-design-webu",
-      "title": "UX/UI a design webu",
-      "chapter": "ch8-tvorba-webu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "UI je to, jak web vypadá, UX to, jak se používá.",
-        "mustCover": [
-          {
-            "point": "Žák u webové stránky rozliší prvky UI (vzhled) od aspektů UX (jak se používá) a najde místa, kde návrh mate uživatele."
-          },
-          {
-            "point": "Žák zhodnotí, zda návrh stránky vede uživatele srozumitelně k cíli, a zdůvodní svůj úsudek."
-          }
-        ],
-        "recallQ": "Co je „UX/UI a design webu“ a k čemu se ti hodí?",
-        "recallA": "UI je to, jak web vypadá, UX to, jak se používá.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-aplikaci-prace-s-api-a-backendem",
-      "title": "Práce s API a backendem",
-      "chapter": "ch9-tvorba-aplikaci",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Aby appka uměla víc než jen zobrazovat, propojí se přes API s dalšími službami a se serverovou částí, která pracuje s daty.",
-        "mustCover": [
-          {
-            "point": "Žák podle vzoru propojí aplikaci přes API s další službou tak, aby získala nebo odeslala data."
-          },
-          {
-            "point": "Žák vysvětlí, proč se z aplikace stává skutečná služba teprve propojením s API a backendem."
-          }
-        ],
-        "recallQ": "Co je „Práce s API a backendem“ a k čemu se ti hodí?",
-        "recallA": "Aby appka uměla víc než jen zobrazovat, propojí se přes API s dalšími službami a se serverovou částí, která pracuje s daty.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-aplikaci-databaze-a-autentizace",
-      "title": "Databáze a autentizace",
-      "chapter": "ch9-tvorba-aplikaci",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Appky si pamatují data (databáze) a musí poznat, kdo je kdo (autentizace — přihlašování).",
-        "mustCover": [
-          {
-            "point": "Žák pro aplikaci vytvoří tabulku evidence dat a stanoví pravidla pro práci s jejími záznamy."
-          },
-          {
-            "point": "Žák posoudí, zda aplikace dostatečně chrání hesla a osobní údaje uživatelů."
-          }
-        ],
-        "recallQ": "Co je „Databáze a autentizace“ a k čemu se ti hodí?",
-        "recallA": "Appky si pamatují data (databáze) a musí poznat, kdo je kdo (autentizace — přihlašování).",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-aplikaci-zivotni-cyklus-vyvoje",
-      "title": "Životní cyklus vývoje",
-      "chapter": "ch9-tvorba-aplikaci",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Aplikace nevznikne jedním skokem — má cyklus: navrhnout, naprogramovat, otestovat, nasadit a vylepšovat.",
-        "mustCover": [
-          {
-            "point": "Žák popíše fáze vývoje aplikace: návrh, programování, testování, nasazení a vylepšování."
-          },
-          {
-            "point": "Žák u vlastního projektu naplánuje kroky vývoje včetně testování a sběru zpětné vazby."
-          }
-        ],
-        "recallQ": "Popsal bys fáze vývoje aplikace: návrh, programování, testování, nasazení a vylepšování?",
-        "recallA": "Aplikace nevznikne jedním skokem — má cyklus: navrhnout, naprogramovat, otestovat, nasadit a vylepšovat.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-aplikaci-publikace-do-app-storu",
-      "title": "Publikace do app storů",
-      "chapter": "ch9-tvorba-aplikaci",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Aby se hotová appka dostala k lidem, projde publikací — na webu je to nasazení, u mobilů obchody (App Store, Google Play) s jejich pravidly a schvalováním.",
-        "mustCover": [
-          {
-            "point": "Žák vysvětlí rozdíl mezi zveřejněním webové aplikace a publikací mobilní aplikace přes obchody se schvalováním."
-          }
-        ],
-        "recallQ": "Vysvětlil bys rozdíl mezi zveřejněním webové aplikace a publikací mobilní aplikace přes obchody se schvalováním?",
-        "recallA": "Aby se hotová appka dostala k lidem, projde publikací — na webu je to nasazení, u mobilů obchody (App Store, Google Play) s jejich pravidly a schvalováním.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-obsahu-generativni-video",
-      "title": "Generativní video",
-      "chapter": "ch10-tvorba-obsahu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "AI dnes vytvoří realistické video z textu nebo obrázku (Sora, Veo, Runway) i se zvukem.",
-        "mustCover": [
-          {
-            "point": "Žák posoudí, zda je předložené video tvůrčím výstupem, nebo možnou dezinformací či deepfake, a zdůvodní své rozhodnutí."
-          }
-        ],
-        "recallQ": "Co je „Generativní video“ a k čemu se ti hodí?",
-        "recallA": "AI dnes vytvoří realistické video z textu nebo obrázku (Sora, Veo, Runway) i se zvukem.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-obsahu-generativni-hudba-a-hlas",
-      "title": "Generativní hudba a hlas",
-      "chapter": "ch10-tvorba-obsahu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Nástroje jako Suno nebo ElevenLabs složí celou písničku nebo napodobí hlas z krátké ukázky.",
-        "mustCover": [
-          {
-            "point": "Žák vytvoří krátkou skladbu nebo mluvený výstup v generativním nástroji podle zadání."
-          },
-          {
-            "point": "Žák zhodnotí rizika napodobení cizího hlasu a otázky autorských práv a zdůvodní, kdy je použití nevhodné."
-          }
-        ],
-        "recallQ": "Vytvořil bys krátkou skladbu nebo mluvený výstup v generativním nástroji podle zadání?",
-        "recallA": "Nástroje jako Suno nebo ElevenLabs složí celou písničku nebo napodobí hlas z krátké ukázky.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-obsahu-strih-a-postprodukce-s-ai",
-      "title": "Střih a postprodukce s AI",
-      "chapter": "ch10-tvorba-obsahu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "AI dnes zvládne velkou část dokončovacích prací: automatické titulky, čištění zvuku, výběr nejlepších záběrů nebo úpravu videa přepisem textu (CapCut, Descript).",
-        "mustCover": [
-          {
-            "point": "Žák upraví video nebo zvuk pomocí AI funkcí (titulky, čištění zvuku, výběr záběrů) podle postupu."
-          }
-        ],
-        "recallQ": "Co je „Střih a postprodukce s AI“ a k čemu se ti hodí?",
-        "recallA": "AI dnes zvládne velkou část dokončovacích prací: automatické titulky, čištění zvuku, výběr nejlepších záběrů nebo úpravu videa přepisem textu (CapCut, Descript…",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-obsahu-kontrola-nad-vysledkem",
-      "title": "Kontrola nad výsledkem",
-      "chapter": "ch10-tvorba-obsahu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Vygenerovat jeden hezký obrázek je snadné; těžší je udržet stejnou postavu nebo styl napříč více obrázky a mít nad výsledkem skutečnou kontrolu.",
-        "mustCover": [
-          {
-            "point": "Žák použije referenční obrázek nebo dokreslování (in/out-painting), aby udržel stejný styl či postavu napříč obrázky."
-          },
-          {
-            "point": "Žák prozkoumá, proč se ve dvou výstupech nepodařilo udržet stejnou postavu, a najde příčinu."
-          }
-        ],
-        "recallQ": "Použil bys referenční obrázek nebo dokreslování (in/out-painting), aby udržel stejný styl či postavu napříč obrázky?",
-        "recallA": "Vygenerovat jeden hezký obrázek je snadné; těžší je udržet stejnou postavu nebo styl napříč více obrázky a mít nad výsledkem skutečnou kontrolu.",
-        "forbidden": [
-          "vymyšlené statistiky nebo čísla",
-          "vymyšlené citace, URL nebo názvy studií",
-          "tvrzení, že jediná metoda problém zcela řeší"
-        ]
-      }
-    },
-    {
-      "id": "tvorba-obsahu-propojeni-nastroju-obraz-video-zvuk",
-      "title": "Propojení nástrojů (obraz, video, zvuk)",
-      "chapter": "ch10-tvorba-obsahu",
-      "anchor": null,
-      "anchorPath": null,
-      "provenance": "ghost",
-      "blocks": [],
-      "contract": {
-        "objective": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
-        "mustCover": [
-          {
-            "point": "Žák naplánuje a vytvoří vlastní projekt zřetězením více nástrojů (z obrázku video, k němu hudba a hlas)."
-          }
-        ],
-        "recallQ": "Co je „Propojení nástrojů (obraz, video, zvuk)“ a k čemu se ti hodí?",
-        "recallA": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
         "forbidden": [
           "vymyšlené statistiky nebo čísla",
           "vymyšlené citace, URL nebo názvy studií",

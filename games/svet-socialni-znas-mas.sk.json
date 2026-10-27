@@ -1,0 +1,48 @@
+{
+  "type": "sort",
+  "title": "Niečo poznáš, alebo niečo máš?",
+  "instruction": "Dvojfázové overenie spojí dve rôzne veci. Čo z toho poznáš, čo máš a čo nie je tajné vôbec?",
+  "buckets": [
+    "Niečo poznáš",
+    "Niečo máš",
+    "Nie je to tajomstvo"
+  ],
+  "items": [
+    {
+      "text": "Heslo",
+      "answer": 0,
+      "why": "Máš ho v hlave alebo v správcovi hesiel."
+    },
+    {
+      "text": "Kód z overovacej appky v mobile",
+      "answer": 1,
+      "why": "Vznikne len v tvojom mobile."
+    },
+    {
+      "text": "PIN",
+      "answer": 0,
+      "why": "Číslo, ktoré poznáš."
+    },
+    {
+      "text": "Bezpečnostný kľúč na kľúčenke",
+      "answer": 1,
+      "why": "Fyzická vec, ktorú máš pri sebe."
+    },
+    {
+      "text": "SMS kód na tvoje číslo",
+      "answer": 1,
+      "why": "Príde len na tvoju SIM kartu."
+    },
+    {
+      "text": "Tvoje používateľské meno",
+      "answer": 2,
+      "why": "Vidí ho každý, kto navštívi tvoj profil."
+    },
+    {
+      "text": "Meno tvojho psa, ktoré je v bio",
+      "answer": 2,
+      "why": "Čo je na profile, je verejné."
+    }
+  ],
+  "debrief": "2FA chráni, pretože útočník by potreboval oboje: to, čo poznáš, aj to, čo máš. Verejné údaje nechránia nič."
+}

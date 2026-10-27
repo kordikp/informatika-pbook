@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Od Enteru k stránke",
+  "instruction": "Zoraď, čo sa deje od stlačenia Enteru po hotovú stránku.",
+  "steps": [
+    "Napíšeš adresu a stlačíš Enter",
+    "DNS preloží meno na IP adresu servera",
+    "Prehliadač pošle serveru požiadavku na stránku",
+    "Server pošle späť HTML",
+    "Prehliadač si povie o CSS, skripty a obrázky",
+    "Prehliadač stránku vykreslí"
+  ],
+  "debrief": "Každá stránka je výmena požiadaviek a odpovedí. Najprv meno na adresu, potom HTML, potom všetko, na čo HTML odkazuje.",
+  "why": [
+    "Všetko začína u teba: adresa je meno, nie číslo.",
+    "Bez IP adresy by požiadavka nevedela, kam ísť.",
+    "Až teraz vie, kam požiadavku poslať.",
+    "Odpoveď na prvú požiadavku je kostra stránky.",
+    "Až v HTML prehliadač zistí, aké ďalšie súbory stránka potrebuje.",
+    "Zo všetkých došlých súborov poskladá obraz, ktorý vidíš."
+  ]
+}

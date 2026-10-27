@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Schová to šifrovanie?",
+  "instruction": "Píšeš si s kamarátkou. Čo šifrovanie schová a čo nie?",
+  "buckets": [
+    "Schová",
+    "Neschová"
+  ],
+  "items": [
+    {
+      "text": "Obsah správy pred ľuďmi na tej istej verejnej Wi-Fi",
+      "answer": 0,
+      "why": "V tej istej sieti vidia len šifrovanú zmeť."
+    },
+    {
+      "text": "Koncovo šifrovanú správu pred serverom appky",
+      "answer": 0,
+      "why": "Server kľúč nemá, prenáša len zmeť."
+    },
+    {
+      "text": "Snímku obrazovky, ktorú kamarátka pošle ďalej",
+      "answer": 1,
+      "why": "Na jej mobile je už správa odomknutá."
+    },
+    {
+      "text": "Text prevedený na čísla podľa verejnej tabuľky",
+      "answer": 1,
+      "why": "To je kódovanie. Kto tabuľku pozná, prečíta ho."
+    },
+    {
+      "text": "Heslo poslané do appky cez https",
+      "answer": 0,
+      "why": "Cestou ho nikto neprečíta."
+    },
+    {
+      "text": "Správu, ktorú ti niekto číta cez rameno",
+      "answer": 1,
+      "why": "Na displeji je správa odomknutá."
+    }
+  ],
+  "debrief": "Šifrovanie chráni správu na ceste pred každým, kto nemá kľúč. Pred tým, čo s ňou urobí príjemca, ju neochráni."
+}

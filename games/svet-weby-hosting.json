@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Výhoda, nebo závislost?",
+  "instruction": "Tvůj web běží na hostingu v cloudu. Co z toho je výhoda a co závislost na cizí firmě?",
+  "buckets": [
+    "Výhoda cloudu",
+    "Závislost na cloudu"
+  ],
+  "items": [
+    {
+      "text": "Web běží, i když vypneš svůj počítač",
+      "answer": 0,
+      "why": "Server je zapnutý nonstop, tvůj počítač k tomu nepotřebuješ."
+    },
+    {
+      "text": "Zvládne tisíc návštěvníků naráz",
+      "answer": 0,
+      "why": "Datacentrum má výkon, jaký doma nemáš."
+    },
+    {
+      "text": "Když firma službu zruší, web zmizí",
+      "answer": 1,
+      "why": "Web bydlí u ní. Proto záloha jinde."
+    },
+    {
+      "text": "Data z přihlášek leží v zemi, kde stojí datacentrum",
+      "answer": 1,
+      "why": "Platí na ně tamní zákony, ne nutně ty naše."
+    },
+    {
+      "text": "O aktualizace serveru se stará firma",
+      "answer": 0,
+      "why": "Záplaty a údržbu nemusíš řešit ty."
+    },
+    {
+      "text": "Firma ti může zablokovat účet",
+      "answer": 1,
+      "why": "Řídíš se jejími podmínkami. Když je porušíš, nebo když se změní, web je pryč."
+    },
+    {
+      "text": "Web otevře kamarád odkudkoli na světě",
+      "answer": 0,
+      "why": "Server je připojený k internetu a odpovídá každému."
+    }
+  ],
+  "debrief": "Cloud ti dá server, který nikdy nespí. Zato jsi závislý na firmě, a proto měj soubory webu i jinde."
+}

@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Does it make the video file bigger?",
+  "instruction": "You are exporting the video for the open day. What makes the file bigger and what doesn’t?",
+  "buckets": [
+    "Bigger file",
+    "Same size or smaller"
+  ],
+  "items": [
+    {
+      "text": "4K instead of 1080p",
+      "answer": 0,
+      "why": "Four times as many pixels in every frame."
+    },
+    {
+      "text": "60 frames per second instead of 30",
+      "answer": 0,
+      "why": "Twice as many frames."
+    },
+    {
+      "text": "You rename the file to final_final.mp4",
+      "answer": 1,
+      "why": "The name doesn’t change the numbers inside."
+    },
+    {
+      "text": "Stronger compression when exporting",
+      "answer": 1,
+      "why": "It leaves out more details, so the file will be smaller."
+    },
+    {
+      "text": "You film rain instead of a blank wall, for the same length of time",
+      "answer": 0,
+      "why": "In rain almost every pixel changes, so compression has a lot to do."
+    },
+    {
+      "text": "You cut the video from a minute to half a minute",
+      "answer": 1,
+      "why": "Half as many frames."
+    },
+    {
+      "text": "You add music to the video",
+      "answer": 0,
+      "why": "Sound is numbers too, thousands for every second."
+    }
+  ],
+  "debrief": "More pixels, more frames, more time and more movement mean more numbers. Compression and a shorter cut make the file smaller."
+}

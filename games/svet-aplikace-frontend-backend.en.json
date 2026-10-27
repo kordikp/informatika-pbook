@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Frontend or backend?",
+  "instruction": "A music app and the school system. What does the frontend on your phone do, and what does the backend on the server do?",
+  "buckets": [
+    "Frontend (phone)",
+    "Backend (server)"
+  ],
+  "items": [
+    {
+      "text": "The ▶ button and the playback animation",
+      "answer": 0,
+      "why": "You see and control that on your device."
+    },
+    {
+      "text": "The database of the whole school’s marks",
+      "answer": 1,
+      "why": "The data of all the pupils is on the server."
+    },
+    {
+      "text": "Checking that the password is right",
+      "answer": 1,
+      "why": "Passwords are checked by the server, not by your phone."
+    },
+    {
+      "text": "Dark mode and font size",
+      "answer": 0,
+      "why": "The look of the screen is handled by the frontend."
+    },
+    {
+      "text": "Checking that only a teacher may enter a mark",
+      "answer": 1,
+      "why": "The rules for everyone are enforced by the backend."
+    },
+    {
+      "text": "Song recommendations based on what millions of people listen to",
+      "answer": 1,
+      "why": "Only the server has the data of millions of people."
+    },
+    {
+      "text": "The form you type a message into",
+      "answer": 0,
+      "why": "You type into it on your own device."
+    }
+  ],
+  "debrief": "The frontend talks to you, the backend keeps the data and the rules for everyone. That is why you see the same marks on every device."
+}

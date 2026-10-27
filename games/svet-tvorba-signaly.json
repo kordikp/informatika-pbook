@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Pomůže to dosahu?",
+  "instruction": "Doporučovač sleduje, co diváci s videem dělají. Které chování pošle video dál a které ho zabrzdí?",
+  "buckets": [
+    "Pošle video dál",
+    "Zabrzdí ho"
+  ],
+  "items": [
+    {
+      "text": "Lidé video dokoukají do konce",
+      "answer": 0,
+      "why": "Doba sledování je nejsilnější signál."
+    },
+    {
+      "text": "Většina ho po dvou vteřinách přeskočí",
+      "answer": 1,
+      "why": "Přeskočení říká: tohle nedrží pozornost."
+    },
+    {
+      "text": "Lidé ho posílají kamarádům",
+      "answer": 0,
+      "why": "Sdílení přivede nové diváky."
+    },
+    {
+      "text": "Pustí si ho znovu",
+      "answer": 0,
+      "why": "Opakované přehrání je silný zájem."
+    },
+    {
+      "text": "Klepnou na Nemám zájem",
+      "answer": 1,
+      "why": "Výslovný nezájem."
+    },
+    {
+      "text": "Pod videem se rozjede diskuse v komentářích",
+      "answer": 0,
+      "why": "Komentáře drží lidi u videa déle, i když se hádají."
+    }
+  ],
+  "debrief": "Doporučovač počítá hlavně s dobou sledování a s tím, co diváci udělají potom. Přeskočení je pro něj jasný signál, že video nedrží pozornost."
+}

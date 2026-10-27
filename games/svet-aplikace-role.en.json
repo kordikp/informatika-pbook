@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Who gets this right?",
+  "instruction": "The principle of least privilege: each right goes only to the role that needs it for its job. Who gets which?",
+  "buckets": [
+    "Pupil",
+    "Treasurer",
+    "Teacher"
+  ],
+  "items": [
+    {
+      "text": "Record that Eva has paid",
+      "answer": 1,
+      "why": "The treasurer keeps the payments."
+    },
+    {
+      "text": "See their own payment and the trip programme",
+      "answer": 0,
+      "why": "That is enough for every pupil."
+    },
+    {
+      "text": "Give someone the role of treasurer",
+      "answer": 2,
+      "why": "The admin decides about roles."
+    },
+    {
+      "text": "Change the departure time",
+      "answer": 2,
+      "why": "The teacher changes the trip programme."
+    },
+    {
+      "text": "Sign up for the trip",
+      "answer": 0,
+      "why": "Every pupil signs up for themselves."
+    },
+    {
+      "text": "See the list of who hasn’t paid yet",
+      "answer": 1,
+      "why": "The treasurer needs it to collect the money. The classmates don’t."
+    }
+  ],
+  "debrief": "The admin can do everything, but that doesn’t mean they should do everything. Each right belongs to whoever needs it, and to nobody else."
+}

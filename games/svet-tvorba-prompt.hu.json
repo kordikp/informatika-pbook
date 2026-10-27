@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Segít ez a promptnak?",
+  "instruction": "Jobb képet szeretnél a plakátra. Mi segít a promptban, és mi nem?",
+  "buckets": [
+    "Segít",
+    "Nem segít"
+  ],
+  "items": [
+    {
+      "text": "Stílust adni hozzá: akvarell",
+      "answer": 0,
+      "why": "Konkrét szó, amely megváltoztatja az eredményt."
+    },
+    {
+      "text": "Nagybetűvel odaírni, hogy KÉRLEK",
+      "answer": 1,
+      "why": "Sem az udvariasság, sem a nagybetű nem teszi jobbá a képet."
+    },
+    {
+      "text": "Leírni a fényt: naplemente",
+      "answer": 0,
+      "why": "A fény az egyik legerősebb paraméter."
+    },
+    {
+      "text": "Egyszerre öt szót megváltoztatni, és reménykedni",
+      "answer": 1,
+      "why": "Akkor nem tudod, melyik szó mit okozott."
+    },
+    {
+      "text": "Megadni a képkivágást: közeli",
+      "answer": 0,
+      "why": "A képkivágás dönti el, mi lesz látható a képen."
+    },
+    {
+      "text": "Odaírni, hogy „csináld jól”",
+      "answer": 1,
+      "why": "A generátor nem tudja, mit jelent neked a „jól”."
+    },
+    {
+      "text": "Leírni a hangulatot: titokzatos",
+      "answer": 0,
+      "why": "A hangulat a színekre és a fényre is hatással van."
+    }
+  ],
+  "debrief": "A generátor csak szavakat olvas, ezért a konkrét paraméterek segítenek: stílus, fény, képkivágás, hangulat. A kérlelés és az öt dolog egyszerre változtatása nem."
+}

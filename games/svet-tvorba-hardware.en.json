@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Hardware or software?",
+  "instruction": "You are putting together a computer for creating with AI. Which of these is hardware and which is software?",
+  "buckets": [
+    "Hardware",
+    "Software"
+  ],
+  "items": [
+    {
+      "text": "A graphics card",
+      "answer": 0,
+      "why": "A chip you can touch."
+    },
+    {
+      "text": "A model for generating pictures",
+      "answer": 1,
+      "why": "A program and its numbers, stored on a disk."
+    },
+    {
+      "text": "16 GB of memory",
+      "answer": 0,
+      "why": "Physical memory chips."
+    },
+    {
+      "text": "A video editor",
+      "answer": 1,
+      "why": "An app that runs on the computer."
+    },
+    {
+      "text": "The Windows operating system",
+      "answer": 1,
+      "why": "The system is a program too."
+    },
+    {
+      "text": "The AI chip in a phone",
+      "answer": 0,
+      "why": "A piece of silicon inside the phone."
+    },
+    {
+      "text": "An SSD drive",
+      "answer": 0,
+      "why": "Storage is a physical component."
+    }
+  ],
+  "debrief": "You can touch hardware; software runs on it. An AI model is software that needs powerful hardware."
+}

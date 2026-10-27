@@ -1,0 +1,34 @@
+{
+  "type": "pairs",
+  "title": "Which format for the web?",
+  "instruction": "You are putting text and pictures on the club’s website. For each one, find the format or encoding that suits it best.",
+  "debrief": "Compress photos, save sharp text without loss and draw icons as shapes. The right format saves megabytes.",
+  "choices": 4,
+  "pairs": [
+    {
+      "a": "JPG",
+      "b": "A photo from the camp in the page background",
+      "why": "A photo can take compression. The eye does not notice the missing details, and the file is much smaller."
+    },
+    {
+      "a": "PNG",
+      "b": "A screenshot with the small text of an error message",
+      "why": "Compression would blur the text. PNG leaves nothing out."
+    },
+    {
+      "a": "SVG",
+      "b": "A house icon in the menu, sharp on a phone and on a big monitor",
+      "why": "SVG is a description of shapes, so it is sharp at any size."
+    },
+    {
+      "a": "UTF-8",
+      "b": "The text of the page with accents and emoji",
+      "why": "UTF-8 has a number for every letter in the world and for emoji too."
+    },
+    {
+      "a": "WebP",
+      "b": "A gallery of twenty photos that should load fast on a phone",
+      "why": "WebP compresses photos even more efficiently than JPG."
+    }
+  ]
+}

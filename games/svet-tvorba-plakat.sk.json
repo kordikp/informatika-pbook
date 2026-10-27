@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "Čo patrí na plagát?",
+  "instruction": "Plagát na školský ples má jediný účel: aby sa ľudia zastavili a zistili kedy a kde. Označ, čo naň patrí.",
+  "hitLabel": "patrí na plagát",
+  "missLabel": "vynechať",
+  "debrief": "Dobrý plagát je model: nechá len to, čo slúži účelu. Všetko ostatné len prebíja to dôležité.",
+  "items": [
+    {
+      "text": "Dátum, čas a miesto",
+      "hit": true,
+      "why": "Presne toto má divák zistiť."
+    },
+    {
+      "text": "Jeden výrazný obrázok",
+      "hit": true,
+      "why": "Na jednu hlavnú vec padne oko."
+    },
+    {
+      "text": "Päť rôznych písiem",
+      "hit": false,
+      "why": "Viac písiem znamená chaos, nie zaujímavosť."
+    },
+    {
+      "text": "Program večera po minútach",
+      "hit": false,
+      "why": "Toľko textu z chodby nikto neprečíta. Patrí na web alebo do letáku."
+    },
+    {
+      "text": "Názov akcie veľkým písmom",
+      "hit": true,
+      "why": "Musí sa dať prečítať z diaľky."
+    },
+    {
+      "text": "Zoznam všetkých, čo pomáhali s výzdobou",
+      "hit": false,
+      "why": "Pekné poďakovanie, ale nie na plagát."
+    },
+    {
+      "text": "Text v silnom kontraste k pozadiu",
+      "hit": true,
+      "why": "Bez kontrastu sa text stratí."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Fér, alebo faul?",
+  "instruction": "Spolužiaci tvoria s AI. Čo je fér a čo faul?",
+  "buckets": [
+    "Fér",
+    "Faul"
+  ],
+  "items": [
+    {
+      "text": "Plagát z AI s vetou „vytvorené s pomocou AI“",
+      "answer": 0,
+      "why": "Priznané a poctivé."
+    },
+    {
+      "text": "Obrázok v štýle žijúcej ilustrátorky predávaný ako vlastná kresba",
+      "answer": 1,
+      "why": "Berie jej štýl aj prácu a ešte klame o autorstve."
+    },
+    {
+      "text": "„Fotka“ hradu z AI v referáte bez overenia a bez označenia",
+      "answer": 1,
+      "why": "Vydáva výmysel za fakt."
+    },
+    {
+      "text": "Návrh od AI, ktorý si prekreslil a priznal, odkiaľ je nápad",
+      "answer": 0,
+      "why": "Tvoja práca a poctivo priznaný zdroj."
+    },
+    {
+      "text": "Deepfake video spolužiaka ako vtip do skupiny",
+      "answer": 1,
+      "why": "Bez súhlasu a na jeho úkor. To je ubližovanie."
+    },
+    {
+      "text": "Ilustrácia k rozprávke: vybraná z desiatich, upravená a označená",
+      "answer": 0,
+      "why": "Rozhodol si ty a priznal si to."
+    }
+  ],
+  "debrief": "Fér je priznať AI, overiť, čo obraz tvrdí, a nebrať cudzí štýl ani tvár bez súhlasu. Za výsledok zodpovedá ten, kto ho zverejnil."
+}

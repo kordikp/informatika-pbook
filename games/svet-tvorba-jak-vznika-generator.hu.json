@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Hogyan készül egy képgenerátor",
+  "instruction": "Tedd sorba a lépéseket egy halom képtől egy olyan generátorig, amelyben meg lehet bízni.",
+  "steps": [
+    "Feliratos képeket gyűjteni",
+    "Tanítani: a modell mintázatokat keres a képek és a szavak között",
+    "Tesztelni a modellt olyan képeken, amelyeket a tanítás során nem látott",
+    "Kiengedni a generátort az emberek közé",
+    "Figyelni a hibákat és a kliséket, és pótolni a hiányzó adatokat"
+  ],
+  "debrief": "A modell azt tanulja meg, ami az adatokban van. Ezért olyan képeken tesztelik, amelyeket nem látott, és figyelik, hol hibázik, vagy hol ismétel kliséket.",
+  "why": [
+    "Példák nélkül a modellnek nincs miből tanulnia.",
+    "A mintázatokat a kapott adatokban keresi.",
+    "Csak az új adatok mutatják meg, hogy nem magolt-e be mindent.",
+    "Az emberekhez csak a teszt után.",
+    "A klisék és az adatok hiányai csak használat közben derülnek ki. A javítás jobb adatokat jelent."
+  ]
+}

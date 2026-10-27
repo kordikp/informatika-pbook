@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "Mi kerüljön a plakátra?",
+  "instruction": "Az iskolabál plakátjának egyetlen célja van: hogy az emberek megálljanak, és megtudják, mikor és hol. Jelöld meg, mi kerüljön rá.",
+  "hitLabel": "a plakátra való",
+  "missLabel": "kihagyni",
+  "debrief": "A jó plakát egy modell: csak azt hagyja meg, ami a célt szolgálja. Minden más csak elnyomja a lényeget.",
+  "items": [
+    {
+      "text": "Dátum, időpont és helyszín",
+      "hit": true,
+      "why": "Pontosan ezt kell megtudnia a nézőnek."
+    },
+    {
+      "text": "Egyetlen feltűnő kép",
+      "hit": true,
+      "why": "A szem egy fő dologra esik."
+    },
+    {
+      "text": "Öt különböző betűtípus",
+      "hit": false,
+      "why": "A több betűtípus káoszt jelent, nem érdekességet."
+    },
+    {
+      "text": "Az est programja percre pontosan",
+      "hit": false,
+      "why": "Ennyi szöveget senki sem olvas el a folyosóról. A weboldalra vagy egy szórólapra való."
+    },
+    {
+      "text": "A rendezvény neve nagy betűkkel",
+      "hit": true,
+      "why": "Messziről is olvashatónak kell lennie."
+    },
+    {
+      "text": "Mindenkinek a listája, aki segített a díszítésben",
+      "hit": false,
+      "why": "Szép köszönet, de nem a plakátra való."
+    },
+    {
+      "text": "A háttérrel erősen kontrasztos szöveg",
+      "hit": true,
+      "why": "Kontraszt nélkül elvész a szöveg."
+    }
+  ]
+}

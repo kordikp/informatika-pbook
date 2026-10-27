@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Vykoná to apka?",
+  "instruction": "Píšeš postup pre apku na delenie útraty. Označ kroky, ktoré apka dokáže vykonať bez domýšľania.",
+  "hitLabel": "presný krok",
+  "missLabel": "apka nevie ako",
+  "debrief": "Apka vykoná len krok, ktorý sa dá urobiť jediným spôsobom. „Rozumne“, „férovo“ alebo „trochu“ pre ňu nič neznamená.",
+  "items": [
+    {
+      "text": "Vydeľ súčet počtom ľudí",
+      "hit": true,
+      "why": "Jasné a vykonateľné: jedno číslo vydelíš druhým."
+    },
+    {
+      "text": "Rozpočítaj to nejako rozumne",
+      "hit": false,
+      "why": "Čo je rozumne? Apka to nevie."
+    },
+    {
+      "text": "Zaokrúhli diel nadol na celé centy a zvyšok pripočítaj prvému v zozname",
+      "hit": true,
+      "why": "Presne povie, kam ide cent navyše."
+    },
+    {
+      "text": "Kto menej jedol, nech zaplatí menej",
+      "hit": false,
+      "why": "Apka nevie, kto koľko jedol, ani o koľko menej."
+    },
+    {
+      "text": "Opakuj, kým nie sú všetky rozdiely nula",
+      "hit": true,
+      "why": "Jasná podmienka konca: postup skončí."
+    },
+    {
+      "text": "Pošli peniaze tomu, komu je to férové",
+      "hit": false,
+      "why": "Férovosť je názor, nie krok."
+    }
+  ]
+}

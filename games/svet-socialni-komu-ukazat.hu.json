@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Kinek mutasd meg?",
+  "instruction": "A legkisebb jogosultság elve: minden bejegyzés csak annak, akinek látnia kell. Hová valók ezek?",
+  "buckets": [
+    "Közeli barátoknak",
+    "Minden követőnek",
+    "Senkinek"
+  ],
+  "items": [
+    {
+      "text": "Fotó egy otthoni szülinapi buliról",
+      "answer": 0,
+      "why": "Személyes pillanat azoknak, akik ott voltak."
+    },
+    {
+      "text": "Videó a szakkör fellépéséről, amelyen csak te szerepelsz",
+      "answer": 1,
+      "why": "Nincs rajta semmi személyes, és büszke vagy rá."
+    },
+    {
+      "text": "Fotó egy QR-kódos koncertjegyről",
+      "answer": 2,
+      "why": "Aki lefotózza a kódot, helyetted mehet el."
+    },
+    {
+      "text": "Szelfi, amelyen mögötted látszik a név a csengőn",
+      "answer": 2,
+      "why": "Elárulja, hol laksz."
+    },
+    {
+      "text": "Egy rajz, amellyel dicsekedni szeretnél",
+      "answer": 1,
+      "why": "A saját műved, semmi érzékeny."
+    },
+    {
+      "text": "Vicces videó egy barátoddal, aki azt mondta: csak a bandának",
+      "answer": 0,
+      "why": "A beleegyezése csak a bandára vonatkozik."
+    }
+  ],
+  "debrief": "Minél szélesebb a kör, annál kisebb a kontroll. Ami pedig címet, kódot vagy mások magánéletét tartalmazza, az egyáltalán nem való ki."
+}

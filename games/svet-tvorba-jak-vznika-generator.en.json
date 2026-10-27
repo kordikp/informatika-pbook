@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "How an image generator is made",
+  "instruction": "Put the steps in order, from a pile of pictures to a generator you can trust.",
+  "steps": [
+    "Collect pictures with captions",
+    "Train: the model looks for patterns between pictures and words",
+    "Test the model on pictures it didn’t see during training",
+    "Release the generator to people",
+    "Watch for mistakes and clichés, and add the data that was missing"
+  ],
+  "debrief": "A model learns what is in the data. That is why it is tested on pictures it hasn’t seen, and people watch where it makes mistakes or repeats clichés.",
+  "why": [
+    "Without examples the model has nothing to learn from.",
+    "It looks for patterns in the data it was given.",
+    "Only new data shows whether it hasn’t just learned by heart.",
+    "Out to people only after the test.",
+    "Clichés and gaps in the data only show up in use. Fixing them means better data."
+  ]
+}

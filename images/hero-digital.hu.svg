@@ -16,7 +16,7 @@
   <rect x="1" y="1" width="518" height="218" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
 
   <text x="18" y="25" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1E1B4B">Hogyan működik a digitális világ</text>
-  <text x="18" y="43" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">A hardvertől az adatokon és az AI-n át a saját alkotásig.</text>
+  <text x="18" y="43" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">A hardvertől az adatokon és az MI-n át a saját alkotásig.</text>
 
   <!-- šipky: ty → témata -->
   <path d="M96 123 C105 123 106 79 116 79" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#arrow-green)"/>
@@ -73,7 +73,7 @@
   <!-- Rozumíš AI -->
   <rect x="365" y="58" width="139" height="42" rx="9" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
   <text x="375" y="76" font-family="system-ui, sans-serif" font-size="13">🤖</text>
-  <text x="394" y="77" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1E1B4B">Érted az AI-t</text>
+  <text x="394" y="77" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1E1B4B">Érted az MI-t</text>
   <text x="394" y="92" font-family="system-ui, sans-serif" font-size="10" fill="#6B7280">ellenőrizd, de használd</text>
 
   <!-- Tvoříš -->

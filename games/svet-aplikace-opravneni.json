@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Potřebuje to oprávnění?",
+  "instruction": "Appky chtějí tahle oprávnění. Kdy to dává smysl a kdy je to podezřelé?",
+  "buckets": [
+    "Dává smysl",
+    "Podezřelé"
+  ],
+  "items": [
+    {
+      "text": "Mapy chtějí polohu",
+      "answer": 0,
+      "why": "Bez polohy tě nenavigují."
+    },
+    {
+      "text": "Baterka chce kontakty",
+      "answer": 1,
+      "why": "Ke svícení kontakty nepotřebuje."
+    },
+    {
+      "text": "Videohovory chtějí kameru a mikrofon",
+      "answer": 0,
+      "why": "Bez nich hovor nejde."
+    },
+    {
+      "text": "Kalkulačka chce číst SMS",
+      "answer": 1,
+      "why": "Klasika malwaru: v SMS chodí ověřovací kódy."
+    },
+    {
+      "text": "Skener QR kódů chce kameru",
+      "answer": 0,
+      "why": "QR kód musí vidět."
+    },
+    {
+      "text": "Tapeta chce polohu, i když ji nepoužíváš",
+      "answer": 1,
+      "why": "Tapeta tě nepotřebuje sledovat."
+    },
+    {
+      "text": "Hra chce přístup ke všem tvým souborům",
+      "answer": 1,
+      "why": "Hraní tvoje dokumenty a fotky nepotřebuje."
+    }
+  ],
+  "debrief": "Oprávnění má sedět k tomu, co appka dělá. Když nesedí, appka nejspíš sbírá data, nebo je to malware."
+}

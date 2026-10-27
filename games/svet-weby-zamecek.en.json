@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "What does the padlock guarantee?",
+  "instruction": "The website has a padlock and https. What does that guarantee you, and what doesn’t it?",
+  "buckets": [
+    "Guarantees",
+    "Doesn’t guarantee"
+  ],
+  "items": [
+    {
+      "text": "Nobody reads the password on its way to the server",
+      "answer": 0,
+      "why": "That is exactly what encryption is for."
+    },
+    {
+      "text": "There is an honest company behind the website",
+      "answer": 1,
+      "why": "A scammer gets a certificate for free too."
+    },
+    {
+      "text": "On public Wi-Fi nobody sees what you type into the form",
+      "answer": 0,
+      "why": "On the same network only an encrypted jumble is visible."
+    },
+    {
+      "text": "The page contains no viruses",
+      "answer": 1,
+      "why": "A harmful file can be sent encrypted too."
+    },
+    {
+      "text": "Nobody changes the data on the way",
+      "answer": 0,
+      "why": "Encryption notices if someone tampered with the envelope."
+    },
+    {
+      "text": "The website treats your details well",
+      "answer": 1,
+      "why": "The padlock has no effect on what the website does with the data once it arrives."
+    }
+  ],
+  "debrief": "The padlock protects the route: nobody on it can read or change your data. It says nothing about whether the website is honest."
+}

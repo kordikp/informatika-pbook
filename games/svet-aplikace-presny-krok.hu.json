@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Végre tudja hajtani az app?",
+  "instruction": "Eljárást írsz egy számlaosztó appnak. Jelöld meg azokat a lépéseket, amelyeket az app találgatás nélkül végre tud hajtani.",
+  "hitLabel": "pontos lépés",
+  "missLabel": "az app nem tudja, hogyan",
+  "debrief": "Az app csak olyan lépést hajt végre, amelyet egyetlen módon lehet megtenni. Az „észszerűen”, a „fair” vagy a „kicsit” neki semmit sem jelent.",
+  "items": [
+    {
+      "text": "Oszd el az összeget a résztvevők számával",
+      "hit": true,
+      "why": "Világos és végrehajtható: az egyik számot elosztod a másikkal."
+    },
+    {
+      "text": "Oszd el valahogy észszerűen",
+      "hit": false,
+      "why": "Mi az, hogy észszerűen? Az app nem tudja."
+    },
+    {
+      "text": "Kerekítsd le a részt egész forintra, a maradékot pedig add hozzá a lista elsőjének",
+      "hit": true,
+      "why": "Pontosan megmondja, hová kerül a maradék forint."
+    },
+    {
+      "text": "Aki kevesebbet evett, fizessen kevesebbet",
+      "hit": false,
+      "why": "Az app nem tudja, ki mennyit evett, sem azt, hogy mennyivel kevesebbet."
+    },
+    {
+      "text": "Ismételd, amíg minden különbség nulla nem lesz",
+      "hit": true,
+      "why": "Világos befejezési feltétel: az eljárás véget ér."
+    },
+    {
+      "text": "Küldd a pénzt annak, akinek az fair",
+      "hit": false,
+      "why": "A fair egy vélemény, nem egy lépés."
+    }
+  ]
+}

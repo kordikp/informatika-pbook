@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Nagyobb lesz tőle a videófájl?",
+  "instruction": "A nyílt napra szánt videót exportálod. Mitől lesz nagyobb a fájl, és mitől nem?",
+  "buckets": [
+    "Nagyobb fájl",
+    "Ugyanakkora vagy kisebb"
+  ],
+  "items": [
+    {
+      "text": "4K 1080p helyett",
+      "answer": 0,
+      "why": "Minden képkockában négyszer annyi pixel."
+    },
+    {
+      "text": "Másodpercenként 60 képkocka 30 helyett",
+      "answer": 0,
+      "why": "Kétszer annyi képkocka."
+    },
+    {
+      "text": "Átnevezed a fájlt final_final.mp4-re",
+      "answer": 1,
+      "why": "A név nem változtatja meg a benne lévő számokat."
+    },
+    {
+      "text": "Erősebb tömörítés exportáláskor",
+      "answer": 1,
+      "why": "Több részletet hagy ki, a fájl kisebb lesz."
+    },
+    {
+      "text": "Esőt veszel fel egy üres fal helyett, ugyanolyan hosszan",
+      "answer": 0,
+      "why": "Esőben szinte minden pixel változik, a tömörítésnek van dolga bőven."
+    },
+    {
+      "text": "Egy percről fél percre rövidíted a videót",
+      "answer": 1,
+      "why": "Feleannyi képkocka."
+    },
+    {
+      "text": "Zenét teszel a videó alá",
+      "answer": 0,
+      "why": "A hang is szám, minden másodpercre több ezer."
+    }
+  ],
+  "debrief": "Több pixel, több képkocka, hosszabb idő és több mozgás több számot jelent. A tömörítés és a rövidebb vágás kisebbé teszi a fájlt."
+}

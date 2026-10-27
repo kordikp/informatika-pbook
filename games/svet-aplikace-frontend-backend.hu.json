@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Frontend vagy backend?",
+  "instruction": "Egy zenei app és az iskolai rendszer. Mit csinál a frontend a mobilodon, és mit a backend a szerveren?",
+  "buckets": [
+    "Frontend (mobil)",
+    "Backend (szerver)"
+  ],
+  "items": [
+    {
+      "text": "A ▶ gomb és a lejátszás animációja",
+      "answer": 0,
+      "why": "Ezt a saját eszközödön látod és irányítod."
+    },
+    {
+      "text": "Az egész iskola jegyeinek adatbázisa",
+      "answer": 1,
+      "why": "Az összes tanuló adatai a szerveren vannak."
+    },
+    {
+      "text": "Annak ellenőrzése, hogy stimmel-e a jelszó",
+      "answer": 1,
+      "why": "A jelszavakat a szerver ellenőrzi, nem a mobilod."
+    },
+    {
+      "text": "Sötét mód és betűméret",
+      "answer": 0,
+      "why": "A képernyő kinézetéről a frontend gondoskodik."
+    },
+    {
+      "text": "Annak ellenőrzése, hogy jegyet csak tanár írhat be",
+      "answer": 1,
+      "why": "A mindenkire érvényes szabályokat a backend őrzi."
+    },
+    {
+      "text": "Dalajánlások emberek millióinak zenehallgatása alapján",
+      "answer": 1,
+      "why": "Emberek millióinak adatai csak a szerveren vannak meg."
+    },
+    {
+      "text": "Az űrlap, amelybe az üzenetet írod",
+      "answer": 0,
+      "why": "A saját eszközödön írsz bele."
+    }
+  ],
+  "debrief": "A frontend veled beszél, a backend tárolja az adatokat és a mindenkire érvényes szabályokat. Ezért látod ugyanazokat a jegyeket minden eszközön."
+}

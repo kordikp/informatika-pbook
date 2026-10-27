@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Co poruší pravidla tabulky?",
+  "instruction": "Do tabulky výpůjček přibyly nové řádky. Označ ty, které porušují pravidla zápisu.",
+  "hitLabel": "porušuje pravidla",
+  "missLabel": "v pořádku",
+  "debrief": "Jednotný formát, žádné duplicity a povinné údaje. Jen tak appka spolehlivě filtruje, řadí a počítá.",
+  "items": [
+    {
+      "text": "Ondra · Hobit · zítra · ne",
+      "hit": true,
+      "why": "„Zítra“ není datum. Za týden nikdo neví, kdy to bylo."
+    },
+    {
+      "text": "Ondřej Novák · Hobit · 3. 11. 2026 · ne, když v tabulce už je Ondra",
+      "hit": true,
+      "why": "Jeden žák pod dvěma jmény: appka z něj udělá dva lidi."
+    },
+    {
+      "text": "(bez jména) · Malý princ · 4. 11. 2026 · ne",
+      "hit": true,
+      "why": "Chybí povinný údaj. Kdo má knihu?"
+    },
+    {
+      "text": "Ema · Malý princ · 4. 11. 2026 · ne",
+      "hit": false,
+      "why": "Všechny údaje ve správném formátu."
+    },
+    {
+      "text": "Eva · Hobit · 5. 11. 2026 · ano, poznámka prázdná",
+      "hit": false,
+      "why": "Poznámka není povinná, prázdná smí být."
+    },
+    {
+      "text": "Kuba · hobit · 6. 11. 2026 · ne",
+      "hit": true,
+      "why": "„hobit“ a „Hobit“ jsou pro appku dvě různé knihy."
+    }
+  ]
+}

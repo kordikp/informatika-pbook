@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Komu to ukázať?",
+  "instruction": "Zásada najmenších práv: každý príspevok len tomu, kto ho má vidieť. Kam patria tieto?",
+  "buckets": [
+    "Blízkym priateľom",
+    "Všetkým sledujúcim",
+    "Nikomu"
+  ],
+  "items": [
+    {
+      "text": "Fotka z narodeninovej oslavy doma",
+      "answer": 0,
+      "why": "Súkromná chvíľa pre tých, čo tam boli."
+    },
+    {
+      "text": "Video z vystúpenia krúžku, kde si len ty",
+      "answer": 1,
+      "why": "Nič súkromné na ňom nie je a si naň hrdý."
+    },
+    {
+      "text": "Fotka vstupenky s QR kódom na koncert",
+      "answer": 2,
+      "why": "Kto kód odfotí, môže ísť namiesto teba."
+    },
+    {
+      "text": "Selfie, za ktorým je vidieť meno na zvončeku",
+      "answer": 2,
+      "why": "Prezradí, kde bývaš."
+    },
+    {
+      "text": "Kresba, ktorou si sa pochválil",
+      "answer": 1,
+      "why": "Tvoje dielo, nič citlivé."
+    },
+    {
+      "text": "Vtipné video s kamarátom, ktorý povedal: len pre partiu",
+      "answer": 0,
+      "why": "Jeho súhlas platí len pre partiu."
+    }
+  ],
+  "debrief": "Čím širší okruh, tým menšia kontrola. A čo obsahuje adresu, kód alebo cudzie súkromie, nepatrí von vôbec."
+}

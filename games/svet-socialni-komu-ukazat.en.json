@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Who should see it?",
+  "instruction": "The principle of least privilege: each post only for those who should see it. Where do these belong?",
+  "buckets": [
+    "Close friends",
+    "All followers",
+    "No one"
+  ],
+  "items": [
+    {
+      "text": "A photo from a birthday party at home",
+      "answer": 0,
+      "why": "A private moment for the people who were there."
+    },
+    {
+      "text": "A video of your club’s performance with only you in it",
+      "answer": 1,
+      "why": "There is nothing private in it, and you are proud of it."
+    },
+    {
+      "text": "A photo of a concert ticket with a QR code",
+      "answer": 2,
+      "why": "Whoever photographs the code can go instead of you."
+    },
+    {
+      "text": "A selfie with the name on the doorbell visible behind you",
+      "answer": 2,
+      "why": "It gives away where you live."
+    },
+    {
+      "text": "A drawing you want to show off",
+      "answer": 1,
+      "why": "Your own work, nothing sensitive."
+    },
+    {
+      "text": "A funny video with a friend who said: only for our group",
+      "answer": 0,
+      "why": "His consent covers only your group."
+    }
+  ],
+  "debrief": "The wider the circle, the less control. And anything with an address, a code or someone else’s privacy in it doesn’t belong out there at all."
+}

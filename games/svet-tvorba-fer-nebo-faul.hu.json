@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Tisztességes vagy szabálytalan?",
+  "instruction": "Az osztálytársaid MI-vel alkotnak. Mi tisztességes, és mi szabálytalan?",
+  "buckets": [
+    "Tisztességes",
+    "Szabálytalan"
+  ],
+  "items": [
+    {
+      "text": "MI-vel készült plakát ezzel a mondattal: „MI segítségével készült”",
+      "answer": 0,
+      "why": "Bevallott és őszinte."
+    },
+    {
+      "text": "Egy élő illusztrátor stílusában készült kép, saját rajzként eladva",
+      "answer": 1,
+      "why": "Elveszi a stílusát és a munkáját, ráadásul hazudik a szerzőségről."
+    },
+    {
+      "text": "Egy vár MI-vel készült „fotója” a kiselőadásban, ellenőrzés és megjelölés nélkül",
+      "answer": 1,
+      "why": "Kitalációt ad el tényként."
+    },
+    {
+      "text": "Az MI terve, amelyet újrarajzoltál, és bevallottad, honnan az ötlet",
+      "answer": 0,
+      "why": "A saját munkád és egy őszintén bevallott forrás."
+    },
+    {
+      "text": "Deepfake videó egy osztálytársról, viccnek a csoportba",
+      "answer": 1,
+      "why": "Beleegyezés nélkül és az ő kárára. Ez bántás."
+    },
+    {
+      "text": "Illusztráció egy meséhez: tízből kiválasztva, szerkesztve és megjelölve",
+      "answer": 0,
+      "why": "Te döntöttél, és bevallottad."
+    }
+  ],
+  "debrief": "Tisztességes bevallani az MI-t, ellenőrizni, mit állít a kép, és nem elvenni beleegyezés nélkül mások stílusát vagy arcát. Az eredményért az felel, aki közzétette."
+}

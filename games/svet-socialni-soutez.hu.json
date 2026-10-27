@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Csalás vagy rendben van?",
+  "instruction": "Ezeket az üzeneteket és ajánlatokat kaptad egy közösségi oldalon. Melyik csalás?",
+  "buckets": [
+    "Csalás",
+    "Rendben van"
+  ],
+  "items": [
+    {
+      "text": "Nyertél, fizess 990 Ft postaköltséget 24 órán belül",
+      "answer": 0,
+      "why": "Egy valódi nyereményért nem kell fizetni, főleg nem sietve."
+    },
+    {
+      "text": "Nyereményjáték egy mozi hitelesített profilján: írd meg kommentben, melyik filmre mennél el",
+      "answer": 1,
+      "why": "Semmit sem kér tőled, és a szervező valódi."
+    },
+    {
+      "text": "Egy barátnőd: küldd el a kódot, amit kaptál, véletlenül a te számodat adtam meg",
+      "answer": 0,
+      "why": "A kód a fiókod kulcsa. Az ő fiókját pedig valószínűleg ellopták."
+    },
+    {
+      "text": "Egy ismert youtuber egy videóban: küldj 5000 Ft-ot, és visszaadok 10 000-et",
+      "answer": 0,
+      "why": "Deepfake a pénz megduplázásának ígéretével."
+    },
+    {
+      "text": "Egy bolt a hivatalos appjában kuponkódot mutat neked",
+      "answer": 1,
+      "why": "Kedvezmény közvetlenül a bolt appjában, semmit sem kell megadnod."
+    },
+    {
+      "text": "Egy bank nevét viselő profil: erősítsd meg a fiókodat, különben letiltják",
+      "answer": 0,
+      "why": "Félelem és sietség. A bank a banki appban keres meg, nem egy közösségi oldalon."
+    }
+  ],
+  "debrief": "A csalást az leplezi le, amit akar: pénzt, kártyát, jelszót vagy kódot, és azonnal. Egy valódi nyereményjátéknak és egy igazi barátnak egyikre sincs szüksége."
+}

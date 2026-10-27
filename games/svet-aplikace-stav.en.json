@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Set or change?",
+  "instruction": "For each moment in the app, choose whether the variable is set to a new value or changed by a bit.",
+  "buckets": [
+    "set to …",
+    "change by …"
+  ],
+  "items": [
+    {
+      "text": "Logging out: loggedIn becomes “no”",
+      "answer": 0,
+      "why": "Whatever it was before, now it is “no”."
+    },
+    {
+      "text": "A new message arrived: one more unread",
+      "answer": 1,
+      "why": "One is added to those already there."
+    },
+    {
+      "text": "You opened the chat: there are now zero unread",
+      "answer": 0,
+      "why": "The value is overwritten with 0."
+    },
+    {
+      "text": "Tapping + in the basket",
+      "answer": 1,
+      "why": "One is added to the number of items already there."
+    },
+    {
+      "text": "In the settings you choose dark mode",
+      "answer": 0,
+      "why": "The mode is overwritten with “dark”."
+    },
+    {
+      "text": "The volume down button",
+      "answer": 1,
+      "why": "It takes a little off the volume that is there."
+    }
+  ],
+  "debrief": "Set overwrites the value regardless of what was there. Change works with what is already there."
+}

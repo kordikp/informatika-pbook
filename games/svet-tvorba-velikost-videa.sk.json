@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Zväčší to súbor videa?",
+  "instruction": "Exportuješ video na deň otvorených dverí. Čo súbor zväčší a čo nie?",
+  "buckets": [
+    "Väčší súbor",
+    "Rovnako veľký alebo menší"
+  ],
+  "items": [
+    {
+      "text": "4K namiesto 1080p",
+      "answer": 0,
+      "why": "Štyrikrát viac pixelov v každej snímke."
+    },
+    {
+      "text": "60 snímok za sekundu namiesto 30",
+      "answer": 0,
+      "why": "Dvakrát viac snímok."
+    },
+    {
+      "text": "Súbor premenuješ na final_final.mp4",
+      "answer": 1,
+      "why": "Meno čísla vnútri nezmení."
+    },
+    {
+      "text": "Silnejšia kompresia pri exporte",
+      "answer": 1,
+      "why": "Vynechá viac detailov, súbor bude menší."
+    },
+    {
+      "text": "Natočíš dážď namiesto prázdnej steny, rovnako dlho",
+      "answer": 0,
+      "why": "V daždi sa mení skoro každý pixel, kompresia má čo robiť."
+    },
+    {
+      "text": "Video skrátiš z minúty na pol minúty",
+      "answer": 1,
+      "why": "Polovičný počet snímok."
+    },
+    {
+      "text": "Pridáš pod video hudbu",
+      "answer": 0,
+      "why": "Zvuk sú tiež čísla, tisíce za každú sekundu."
+    }
+  ],
+  "debrief": "Viac pixelov, viac snímok, dlhší čas a viac pohybu znamenajú viac čísel. Kompresia a kratší strih súbor zmenšia."
+}

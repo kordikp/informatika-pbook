@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Záznam, alebo vlastnosť?",
+  "instruction": "V exporte dát zo siete: čo je jeden záznam (riadok) a čo vlastnosť (stĺpec)?",
+  "buckets": [
+    "Záznam (riadok)",
+    "Vlastnosť (stĺpec)"
+  ],
+  "items": [
+    {
+      "text": "Jedno pozretie videa o 21:14",
+      "answer": 0,
+      "why": "Jedna udalosť, jeden riadok."
+    },
+    {
+      "text": "Čas sledovania v sekundách",
+      "answer": 1,
+      "why": "Údaj, ktorý má každé pozretie."
+    },
+    {
+      "text": "Tvorca videa",
+      "answer": 1,
+      "why": "Vlastnosť každého riadku."
+    },
+    {
+      "text": "Jeden lajk pod konkrétnou fotkou",
+      "answer": 0,
+      "why": "Jedna udalosť, jeden záznam."
+    },
+    {
+      "text": "Dátum a čas",
+      "answer": 1,
+      "why": "Stĺpec, podľa ktorého sa dá zoraďovať."
+    },
+    {
+      "text": "Jedno hľadanie „triky na skateboarde“",
+      "answer": 0,
+      "why": "Každé hľadanie je ďalší riadok."
+    }
+  ],
+  "debrief": "Riadok je jedna vec, ktorá sa stala. Stĺpec je údaj, ktorý má každý riadok. Vďaka tomu sa dá zoraďovať, filtrovať a počítať."
+}

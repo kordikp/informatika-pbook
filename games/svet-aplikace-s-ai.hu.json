@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "MI-t használni, vagy inkább ne?",
+  "instruction": "Az osztály appját építed. Mikor jó ötlet az MI segítségét kérni, és mikor inkább ne?",
+  "buckets": [
+    "Jó ötlet",
+    "Inkább ne"
+  ],
+  "items": [
+    {
+      "text": "Megírni a kvíz első változatát a terved alapján",
+      "answer": 0,
+      "why": "Te határozod meg, mit csináljon az app, aztán leteszteled."
+    },
+    {
+      "text": "Elmagyarázni egy kódrészletet, amelyet nem értesz",
+      "answer": 0,
+      "why": "Az MI jól magyaráz. Az eredményt azért próbáld ki."
+    },
+    {
+      "text": "Bemásolni a promptba az osztálytársak nevét és allergiáit tartalmazó táblázatot",
+      "answer": 1,
+      "why": "Mások érzékeny adatai nem valók a promptba."
+    },
+    {
+      "text": "Az appra bízni, ki mehet a kirándulásra",
+      "answer": 1,
+      "why": "Emberekről olyan emberek döntenek, akik felelnek érte."
+    },
+    {
+      "text": "Megoldani egy feladatot, amelyből a ciklusokat kellene megtanulnod",
+      "answer": 1,
+      "why": "Elveszítenéd azt, amiért a feladatot csinálod."
+    },
+    {
+      "text": "Javasolni tíz kvízkérdést, amelyeket aztán ellenőrzöl",
+      "answer": 0,
+      "why": "A javaslat rendben van, ha a tényeket máshol ellenőrzöd."
+    },
+    {
+      "text": "Elküldeni az appot az osztálynak azzal, hogy „az MI letesztelte”",
+      "answer": 1,
+      "why": "Tesztelned és felelned az eredményért neked kell."
+    }
+  ],
+  "debrief": "Az MI remek segítő a javaslatokhoz és a magyarázatokhoz. Az emberekről szóló döntéseket, az érzékeny adatokat és azt a tanulást, amelyet magadnak kell elvégezned, tartsd meg magadnak."
+}

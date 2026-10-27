@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Will it help the reach?",
+  "instruction": "The recommender watches what viewers do with a video. Which behaviour sends the video on, and which holds it back?",
+  "buckets": [
+    "Sends the video on",
+    "Holds it back"
+  ],
+  "items": [
+    {
+      "text": "People watch the video to the end",
+      "answer": 0,
+      "why": "Watch time is the strongest signal."
+    },
+    {
+      "text": "Most people skip it after two seconds",
+      "answer": 1,
+      "why": "Skipping says: this doesn’t hold attention."
+    },
+    {
+      "text": "People send it to their friends",
+      "answer": 0,
+      "why": "Sharing brings in new viewers."
+    },
+    {
+      "text": "They play it again",
+      "answer": 0,
+      "why": "Replaying shows strong interest."
+    },
+    {
+      "text": "They tap Not interested",
+      "answer": 1,
+      "why": "Explicit lack of interest."
+    },
+    {
+      "text": "A discussion takes off in the comments under the video",
+      "answer": 0,
+      "why": "Comments keep people at the video longer, even when they are arguing."
+    }
+  ],
+  "debrief": "The recommender counts mostly on watch time and on what viewers do afterwards. Skipping is a clear signal to it that the video doesn’t hold attention."
+}

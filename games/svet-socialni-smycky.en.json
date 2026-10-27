@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Which loop did the network use?",
+  "instruction": "For each part of a social network, choose the loop that runs in it.",
+  "buckets": [
+    "repeat n times",
+    "repeat until…",
+    "repeat forever"
+  ],
+  "items": [
+    {
+      "text": "Show 10 new posts from friends and then “You’re all caught up”",
+      "answer": 0,
+      "why": "The number is known in advance, and the feed has an end."
+    },
+    {
+      "text": "Keep playing videos until the user closes the app",
+      "answer": 1,
+      "why": "The end depends only on you."
+    },
+    {
+      "text": "The loading wheel spins until the data arrives",
+      "answer": 1,
+      "why": "It ends when something happens: the data arrives."
+    },
+    {
+      "text": "A story with three photos in a row",
+      "answer": 0,
+      "why": "Exactly three, known in advance."
+    },
+    {
+      "text": "Keep playing videos until the 30-minute time limit is up",
+      "answer": 1,
+      "why": "A stopping condition you set yourself."
+    },
+    {
+      "text": "The logo in the corner keeps slowly pulsing",
+      "answer": 2,
+      "why": "A decoration that runs the whole time and has no point at which to end."
+    }
+  ],
+  "debrief": "A fixed count has its end known in advance; “until” ends on a condition. A feed with no end is a loop whose only stopping condition is you."
+}

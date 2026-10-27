@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Scam or fine?",
+  "instruction": "You got these messages and offers on social media. Which are scams?",
+  "buckets": [
+    "Scam",
+    "Fine"
+  ],
+  "items": [
+    {
+      "text": "You’ve won; pay €2 postage within 24 hours",
+      "answer": 0,
+      "why": "You never pay for a real prize, and certainly not in a hurry."
+    },
+    {
+      "text": "A competition on a cinema’s verified profile: write in the comments which film you would go to",
+      "answer": 1,
+      "why": "It wants nothing from you, and the organiser is real."
+    },
+    {
+      "text": "A friend: send me the code you just got, I put in your number by mistake",
+      "answer": 0,
+      "why": "The code is the key to your account. And her account has most likely been stolen."
+    },
+    {
+      "text": "A well-known YouTuber in a video: send me €20 and I’ll send you back 40",
+      "answer": 0,
+      "why": "A deepfake with a promise to double your money."
+    },
+    {
+      "text": "A shop shows you a discount code in its official app",
+      "answer": 1,
+      "why": "A discount right in the shop’s app; you enter nothing."
+    },
+    {
+      "text": "A profile with a bank’s name: verify your account or it will be blocked",
+      "answer": 0,
+      "why": "Fear and hurry. Your bank will contact you in the bank’s app, not on social media."
+    }
+  ],
+  "debrief": "A scam gives itself away by what it wants: money, your card, a password or a code, and right now. A real competition and a real friend need none of these."
+}

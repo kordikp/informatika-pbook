@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Which graph for that question?",
+  "instruction": "For each question, choose the graph that answers it best.",
+  "buckets": [
+    "Line (change)",
+    "Bar (comparison)",
+    "Pie (share)"
+  ],
+  "items": [
+    {
+      "text": "How has my sleep changed over the last month?",
+      "answer": 0,
+      "why": "A change over time is a trend."
+    },
+    {
+      "text": "Do I sleep more at the weekend or during the week?",
+      "answer": 1,
+      "why": "You compare two groups side by side with bars."
+    },
+    {
+      "text": "What part of my screen time is games?",
+      "answer": 2,
+      "why": "A part of a whole is a share."
+    },
+    {
+      "text": "How did my number of steps grow from September to December?",
+      "answer": 0,
+      "why": "Growth over time is a trend."
+    },
+    {
+      "text": "Which of us three walked the most steps this week?",
+      "answer": 1,
+      "why": "Three people side by side: a comparison."
+    },
+    {
+      "text": "What is my day made of: school, sleep, free time?",
+      "answer": 2,
+      "why": "Pieces of one whole, the day, are a share."
+    }
+  ],
+  "debrief": "First the question, then the graph. Change over time is a line, comparison is bars, and a share of a whole is a pie."
+}

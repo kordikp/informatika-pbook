@@ -1,0 +1,48 @@
+{
+  "type": "sort",
+  "title": "Something you know, or something you have?",
+  "instruction": "Two-factor authentication combines two different things. Which of these do you know, which do you have, and which isn’t a secret at all?",
+  "buckets": [
+    "Something you know",
+    "Something you have",
+    "Not a secret"
+  ],
+  "items": [
+    {
+      "text": "A password",
+      "answer": 0,
+      "why": "You have it in your head or in a password manager."
+    },
+    {
+      "text": "A code from the authenticator app on your phone",
+      "answer": 1,
+      "why": "It is created only on your phone."
+    },
+    {
+      "text": "A PIN",
+      "answer": 0,
+      "why": "A number you know."
+    },
+    {
+      "text": "A security key on your keyring",
+      "answer": 1,
+      "why": "A physical thing you carry with you."
+    },
+    {
+      "text": "A text-message code sent to your number",
+      "answer": 1,
+      "why": "It comes only to your SIM card."
+    },
+    {
+      "text": "Your username",
+      "answer": 2,
+      "why": "Anyone who visits your profile can see it."
+    },
+    {
+      "text": "Your dog’s name, which is in your bio",
+      "answer": 2,
+      "why": "What is on your profile is public."
+    }
+  ],
+  "debrief": "2FA protects you because an attacker would need both: what you know and what you have. Public information protects nothing."
+}

@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Ktorú slučku sieť použila?",
+  "instruction": "Ku každej časti sociálnej siete vyber slučku, ktorá v nej beží.",
+  "buckets": [
+    "opakuj n×",
+    "opakuj, kým…",
+    "opakuj stále"
+  ],
+  "items": [
+    {
+      "text": "Ukáž 10 nových príspevkov priateľov a potom „To je všetko“",
+      "answer": 0,
+      "why": "Počet je známy vopred a feed má koniec."
+    },
+    {
+      "text": "Púšťaj videá, kým používateľ nezatvorí appku",
+      "answer": 1,
+      "why": "Koniec závisí len od teba."
+    },
+    {
+      "text": "Koliesko načítavania sa točí, kým neprídu dáta",
+      "answer": 1,
+      "why": "Skončí, až keď sa niečo stane: dáta prídu."
+    },
+    {
+      "text": "Príbeh s tromi fotkami za sebou",
+      "answer": 0,
+      "why": "Presne tri, známe vopred."
+    },
+    {
+      "text": "Púšťaj videá, kým neuplynie časový limit 30 minút",
+      "answer": 1,
+      "why": "Podmienka ukončenia, ktorú si si nastavil sám."
+    },
+    {
+      "text": "Logo v rohu stále pomaly pulzuje",
+      "answer": 2,
+      "why": "Dekorácia, ktorá beží celý čas a nemá kedy skončiť."
+    }
+  ],
+  "debrief": "Pevný počet má koniec vopred, „kým“ končí podmienkou. Feed bez konca je cyklus, ktorého jedinou podmienkou ukončenia si ty."
+}

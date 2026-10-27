@@ -1,6 +1,10 @@
 {
  "aliases": {
   "ch1-game-hardware-software": "uvnitr-zarizeni-hra",
+  "ch10-vizualni-jazyk": "svet-tvorba",
+  "ch10-prompt-pro-media": "svet-tvorba",
+  "ch10-generativni-obraz": "svet-tvorba",
+  "ch10-etika-autorstvi-a-oznacovani": "svet-tvorba",
   "ch11-herni-smycka-scena-a-objekty": "svet-hry",
   "ch11-game-herni-smycka": "vylet-smycka-ctyri-svety-hra",
   "ch11-vstup-hrace-stavy-a-skore": "svet-hry",
@@ -26,6 +30,21 @@
   "ch5-game-prompt-sila": "generativni-model-hra",
   "ch6-anim-sila-hesla": "ucet-a-autentizace",
   "ch7-game-bublina": "doporucovac-hra",
-  "ch7-game-fakt-manipulace": "rozhodujes-ty-hra"
+  "ch7-game-fakt-manipulace": "rozhodujes-ty-hra",
+  "ch8-jak-funguje-web": "svet-weby",
+  "ch8-html": "svet-weby",
+  "ch8-game-web-vrstvy": "svet-weby-program-hra",
+  "ch8-tldr-html": "svet-weby",
+  "ch8-css": "svet-weby",
+  "ch8-domena-a-hosting": "svet-weby",
+  "ch8-interaktivita-javascript": "svet-weby",
+  "ch8-code-javascript": "svet-weby",
+  "ch9-co-je-aplikace": "svet-aplikace",
+  "ch9-no-code-low-code": "svet-aplikace",
+  "ch9-logika-aplikace": "svet-aplikace",
+  "ch9-worked-logika": "svet-aplikace",
+  "ch9-vibecoding": "svet-aplikace",
+  "ch9-comic-vibecoding": "svet-aplikace",
+  "ch9-ai-nastroje-pro-tvorbu": "svet-aplikace"
  }
 }

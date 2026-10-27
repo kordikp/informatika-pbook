@@ -4,7 +4,7 @@ import { CONFIG } from './config.js';
 import { tr, trn, loc, locDeep, LANG, LANGS, LANG_NAMES, langLabel, locale, translateStatic } from './i18n.js';
 import { renderMarkdown, parseFrontmatter, smartPunct } from './markdown.js?v=3';
 import { RecombeeClient, UserModel } from './recombee.js?v=13';
-import { getDiagram, DIAGRAM_FILES } from './diagrams.js?v=7';
+import { getDiagram, DIAGRAM_FILES } from './diagrams.js?v=8';
 
 const APP_VERSION = '5.12.4';
 import { AskTheBook, ConversationManager } from './tutor.js?v=2';

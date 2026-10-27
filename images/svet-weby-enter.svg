@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Od Enteru ke stránce: DNS, požadavek a odpověď">
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker><marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#EF4444"/></marker><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif">
+  <text x="18" y="26" font-size="17" font-weight="700" fill="#1E1B4B">Od Enteru ke stránce</text>
+  <text x="18" y="44" font-size="11" fill="#6B7280">Nejdřív jméno na adresu, pak požadavek a odpověď. A pak každý další soubor.</text>
+  <rect x="18" y="54" width="118" height="38" rx="10" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+  <text x="77" y="70" font-size="12" font-weight="700" fill="#1E1B4B" text-anchor="middle">DNS</text>
+  <text x="77" y="84" font-size="9" fill="#1E1B4B" text-anchor="middle">jméno → IP adresa</text>
+  <rect x="18" y="112" width="118" height="66" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="77" y="134" font-size="20" fill="#1E1B4B" text-anchor="middle">💻</text>
+  <text x="77" y="156" font-size="10" font-weight="700" fill="#1E1B4B" text-anchor="middle">tvůj prohlížeč</text>
+  <text x="77" y="170" font-size="9" fill="#6B7280" text-anchor="middle">klient</text>
+  <line x1="54" y1="110" x2="54" y2="95" stroke="#7C3AED" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="100" y1="94" x2="100" y2="109" stroke="#0EA5E9" stroke-width="2" marker-end="url(#a)"/>
+  <text x="148" y="70" font-size="10" font-weight="600" fill="#7C3AED">1 · Kde je nas-krouzek.cz?</text>
+  <text x="148" y="86" font-size="10" font-weight="600" fill="#0EA5E9">2 · Tady: 185.21.4.12</text>
+  <rect x="384" y="112" width="118" height="66" rx="10" fill="#FFFFFF" stroke="#10B981" stroke-width="2"/>
+  <text x="443" y="134" font-size="20" fill="#1E1B4B" text-anchor="middle">🖥️</text>
+  <text x="443" y="156" font-size="10" font-weight="700" fill="#1E1B4B" text-anchor="middle">server</text>
+  <text x="443" y="170" font-size="9" fill="#6B7280" text-anchor="middle">nas-krouzek.cz</text>
+  <line x1="138" y1="130" x2="380" y2="130" stroke="#7C3AED" stroke-width="2" marker-end="url(#a)"/>
+  <text x="260" y="124" font-size="10" font-weight="600" fill="#7C3AED" text-anchor="middle">3 · požadavek: pošli úvodní stránku</text>
+  <line x1="382" y1="156" x2="142" y2="156" stroke="#10B981" stroke-width="2" marker-end="url(#g)"/>
+  <text x="260" y="170" font-size="10" font-weight="600" fill="#10B981" text-anchor="middle">4 · odpověď: HTML</text>
+  <line x1="138" y1="192" x2="380" y2="192" stroke="#7C3AED" stroke-width="1.5" opacity=".6" marker-end="url(#a)"/>
+  <text x="150" y="189" font-size="9" fill="#7C3AED">5 · požadavek: CSS</text>
+  <line x1="138" y1="206" x2="380" y2="206" stroke="#7C3AED" stroke-width="1.5" opacity=".6" marker-end="url(#a)"/>
+  <text x="150" y="203" font-size="9" fill="#7C3AED">5 · požadavek: skript</text>
+  <line x1="138" y1="220" x2="380" y2="220" stroke="#7C3AED" stroke-width="1.5" opacity=".6" marker-end="url(#a)"/>
+  <text x="150" y="217" font-size="9" fill="#7C3AED">5 · požadavek: obrázky</text>
+  <text x="260" y="246" font-size="10" fill="#6B7280" text-anchor="middle">Každý soubor je další požadavek a další odpověď, rozdělená na balíčky.</text>
+
+  </g>
+</svg>

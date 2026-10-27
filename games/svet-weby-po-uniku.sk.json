@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Čo ťa ochráni po úniku?",
+  "instruction": "Fórum, kde máš účet, uniklo. Čo ťa ochráni a čo nie?",
+  "buckets": [
+    "Pomôže",
+    "Nepomôže"
+  ],
+  "items": [
+    {
+      "text": "Na každej službe iné heslo",
+      "answer": 0,
+      "why": "Uniknuté heslo potom otvorí len to jedno fórum."
+    },
+    {
+      "text": "2FA na e-maile",
+      "answer": 0,
+      "why": "Útočník s heslom nemá tvoj mobil, a tak sa neprihlási."
+    },
+    {
+      "text": "Heslo Minecraft2023! na všetkých službách",
+      "answer": 1,
+      "why": "Jedno heslo všade: jeden únik otvorí všetko."
+    },
+    {
+      "text": "Správca hesiel s dlhými náhodnými heslami",
+      "answer": 0,
+      "why": "Každé heslo je iné a žiadne sa nedá uhádnuť."
+    },
+    {
+      "text": "K heslu pridať jednotku na koniec",
+      "answer": 1,
+      "why": "Útočníci tieto drobné zmeny skúšajú ako prvé."
+    },
+    {
+      "text": "Zmeniť heslo len na hacknutom fóre, inde ho nechať",
+      "answer": 1,
+      "why": "Na ostatných službách stále platí to uniknuté."
+    },
+    {
+      "text": "Heslo ako veta z niekoľkých slov",
+      "answer": 0,
+      "why": "Dlhé heslo sa ťažko háda, aj keď útočník pozná jeho odtlačok."
+    }
+  ],
+  "debrief": "Únik z jednej služby ohrozí len tie účty, ktoré majú rovnaké heslo. Jedinečné heslá a 2FA ho zastavia."
+}

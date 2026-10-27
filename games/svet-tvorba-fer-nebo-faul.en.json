@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Fair or foul?",
+  "instruction": "Your classmates are creating with AI. What is fair and what is a foul?",
+  "buckets": [
+    "Fair",
+    "Foul"
+  ],
+  "items": [
+    {
+      "text": "An AI poster with the sentence “created with the help of AI”",
+      "answer": 0,
+      "why": "Disclosed and honest."
+    },
+    {
+      "text": "A picture in the style of a living illustrator, sold as your own drawing",
+      "answer": 1,
+      "why": "It takes her style and her work, and lies about who made it."
+    },
+    {
+      "text": "An AI “photo” of a castle in a school report, unchecked and unlabelled",
+      "answer": 1,
+      "why": "It passes off something made up as a fact."
+    },
+    {
+      "text": "A design from AI that you redrew, saying where the idea came from",
+      "answer": 0,
+      "why": "Your own work and an honestly disclosed source."
+    },
+    {
+      "text": "A deepfake video of a classmate as a joke for the group chat",
+      "answer": 1,
+      "why": "Without consent and at their expense. That is bullying."
+    },
+    {
+      "text": "An illustration for a fairy tale: chosen from ten, edited and labelled",
+      "answer": 0,
+      "why": "You decided, and you said so."
+    }
+  ],
+  "debrief": "Fair means disclosing AI, checking what a picture claims, and not taking someone else’s style or face without consent. Whoever published the result is responsible for it."
+}

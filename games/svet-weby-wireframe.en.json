@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "What belongs in a wireframe?",
+  "instruction": "You are drawing a wireframe of the club’s home page. Mark what belongs in it.",
+  "hitLabel": "belongs in the sketch",
+  "missLabel": "left out",
+  "debrief": "A wireframe deals with what is on the page and where. Colours, fonts and real photos come later.",
+  "items": [
+    {
+      "text": "Where the menu is",
+      "hit": true,
+      "why": "The position of the menu is exactly what the sketch is about."
+    },
+    {
+      "text": "How big the main photo is and where it sits",
+      "hit": true,
+      "why": "The place for a photo is drawn as a rectangle with a cross."
+    },
+    {
+      "text": "The exact shade of blue in the header",
+      "hit": false,
+      "why": "A wireframe leaves colours out on purpose."
+    },
+    {
+      "text": "The Sign up for the event button",
+      "hit": true,
+      "why": "A button and its place belong in the sketch."
+    },
+    {
+      "text": "The font of the heading",
+      "hit": false,
+      "why": "The typeface is the look, and that comes later in CSS."
+    },
+    {
+      "text": "Photos from last year’s camp",
+      "hit": false,
+      "why": "Real photos are not in the sketch, only the place where they will go."
+    },
+    {
+      "text": "The order of the sections on the page",
+      "hit": true,
+      "why": "What is at the top and what is at the bottom is the main question of the sketch."
+    }
+  ]
+}

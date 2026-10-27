@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Can the data tell you that?",
+  "instruction": "You are looking at your channel’s statistics. Which conclusions really follow from the data, and which are only a correlation?",
+  "buckets": [
+    "Follows from the data",
+    "Only a correlation; we don’t know the cause"
+  ],
+  "items": [
+    {
+      "text": "Most viewers came from the feed",
+      "answer": 0,
+      "why": "The statistics measure this directly."
+    },
+    {
+      "text": "Videos do better because it is Friday",
+      "answer": 1,
+      "why": "Maybe you posted a better video on Friday."
+    },
+    {
+      "text": "The most watched video was the one about a cat",
+      "answer": 0,
+      "why": "The number of views is measured."
+    },
+    {
+      "text": "I’m gaining followers because I changed my profile picture",
+      "answer": 1,
+      "why": "It happened at the same time, but the cause could be anything else."
+    },
+    {
+      "text": "On my channel, people watch less of longer videos",
+      "answer": 0,
+      "why": "The watch time is in the data for every video."
+    },
+    {
+      "text": "The hashtag #fyp made the video a success",
+      "answer": 1,
+      "why": "Without comparing it with videos without the hashtag, you don’t know."
+    }
+  ],
+  "debrief": "Data shows what happened and how much. Why it happened you often can’t read from it: two things go together, but the cause may lie elsewhere."
+}

@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Komu to právo dát?",
+  "instruction": "Zásada nejmenších práv: každé právo dostane jen role, která ho ke své práci potřebuje. Komu dáš které?",
+  "buckets": [
+    "Žák",
+    "Pokladník",
+    "Učitelka"
+  ],
+  "items": [
+    {
+      "text": "Zapsat, že Eva zaplatila",
+      "answer": 1,
+      "why": "Platby vede pokladník."
+    },
+    {
+      "text": "Vidět svou platbu a program výletu",
+      "answer": 0,
+      "why": "Tohle stačí každému žákovi."
+    },
+    {
+      "text": "Přidělit někomu roli pokladníka",
+      "answer": 2,
+      "why": "O rolích rozhoduje správce."
+    },
+    {
+      "text": "Změnit čas odjezdu",
+      "answer": 2,
+      "why": "Program výletu mění učitelka."
+    },
+    {
+      "text": "Přihlásit se na výlet",
+      "answer": 0,
+      "why": "Za sebe se přihlásí každý žák."
+    },
+    {
+      "text": "Vidět seznam, kdo ještě nezaplatil",
+      "answer": 1,
+      "why": "Pokladník ho potřebuje, aby peníze vybral. Spolužáci ne."
+    }
+  ],
+  "debrief": "Správce může všechno, ale to neznamená, že všechno má dělat on. Každé právo patří tomu, kdo ho potřebuje, a nikomu dalšímu."
+}

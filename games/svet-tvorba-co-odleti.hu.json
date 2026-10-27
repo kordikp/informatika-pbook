@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Mi kerül a szerverre?",
+  "instruction": "Videót készítesz az iskolának. Mi kerül ezek közül a cég szerverére, és mi marad nálad?",
+  "buckets": [
+    "A szerverre kerül",
+    "Nálad marad"
+  ],
+  "items": [
+    {
+      "text": "Prompt egy online képgenerátorban",
+      "answer": 0,
+      "why": "A generátornak a szerveren van rá szüksége, ott számol."
+    },
+    {
+      "text": "Az osztálytársaidról készült fotó, amelyet szerkesztésre feltöltesz",
+      "answer": 0,
+      "why": "A szerkesztés a szerveren zajlik, a fotó ott van."
+    },
+    {
+      "text": "Rajz egy rajzprogramban internet nélkül",
+      "answer": 1,
+      "why": "Semmit sem küldesz el, minden a számítógépen van."
+    },
+    {
+      "text": "A hangod felvétele online hangklónozáshoz",
+      "answer": 0,
+      "why": "A klón a szerveren tanul a felvételedből."
+    },
+    {
+      "text": "Egy offline futó szerkesztőben megvágott videó",
+      "answer": 1,
+      "why": "A szerkesztő a te eszközödön dolgozik."
+    },
+    {
+      "text": "Egy generált kép, amíg le nem töltöd",
+      "answer": 0,
+      "why": "A szerveren készült, és ott van."
+    },
+    {
+      "text": "Egy modell, amely helyben fut a számítógépeden",
+      "answer": 1,
+      "why": "A helyi modell semmit sem küld sehová."
+    }
+  ],
+  "debrief": "Az online eszköz a felhőben számol, így minden, amit megadsz neki, a szerverén van. Nálad csak az marad, amit offline csinálsz."
+}

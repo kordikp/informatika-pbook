@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "Čo prezradí, kde bývaš?",
+  "instruction": "Chystáš sa zverejniť fotku. Označ všetko, z čoho by cudzí človek spoznal, kde bývaš.",
+  "hitLabel": "prezradí to",
+  "missLabel": "neprezradí",
+  "debrief": "Adresu neprezradí len to, čo napíšeš. Stačí pozadie fotky, metadáta a značka miesta.",
+  "items": [
+    {
+      "text": "Meno na zvončeku v pozadí",
+      "hit": true,
+      "why": "Meno a dom: to je skoro adresa."
+    },
+    {
+      "text": "Poloha z GPS v metadátach fotky",
+      "hit": true,
+      "why": "Presné súradnice miesta, kde fotka vznikla."
+    },
+    {
+      "text": "Logo školy na mikine",
+      "hit": true,
+      "why": "Škola zúži okruh na pár ulíc."
+    },
+    {
+      "text": "Fotka oblohy bez ničoho ďalšieho",
+      "hit": false,
+      "why": "Mraky nič neprezradia. Pokiaľ nie sú v metadátach súradnice."
+    },
+    {
+      "text": "Číslo električky za oknom",
+      "hit": true,
+      "why": "Linka a zastávka ukážu štvrť."
+    },
+    {
+      "text": "Kresba, ktorú si nakreslil",
+      "hit": false,
+      "why": "Kresba miesto neukazuje."
+    },
+    {
+      "text": "Značka miesta „doma“ pri príspevku",
+      "hit": true,
+      "why": "Tú si prezradil sám."
+    }
+  ]
+}

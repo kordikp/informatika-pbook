@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Co odletí na server?",
+  "instruction": "Tvoříš video pro školu. Co z toho odletí na server firmy a co zůstane u tebe?",
+  "buckets": [
+    "Odletí na server",
+    "Zůstane u tebe"
+  ],
+  "items": [
+    {
+      "text": "Prompt v online generátoru obrázků",
+      "answer": 0,
+      "why": "Generátor ho potřebuje na serveru, kde počítá."
+    },
+    {
+      "text": "Fotka spolužáků, kterou nahraješ k úpravě",
+      "answer": 0,
+      "why": "Úprava probíhá na serveru, fotka tam je."
+    },
+    {
+      "text": "Kresba v kreslicím programu bez internetu",
+      "answer": 1,
+      "why": "Nic neodesíláš, všechno je v počítači."
+    },
+    {
+      "text": "Nahrávka tvého hlasu pro online klonování hlasu",
+      "answer": 0,
+      "why": "Klon se učí na serveru z tvé nahrávky."
+    },
+    {
+      "text": "Video sestříhané v editoru, který běží offline",
+      "answer": 1,
+      "why": "Editor pracuje v tvém zařízení."
+    },
+    {
+      "text": "Vygenerovaný obrázek, dokud si ho nestáhneš",
+      "answer": 0,
+      "why": "Vznikl na serveru a leží tam."
+    },
+    {
+      "text": "Model, který běží lokálně na tvém počítači",
+      "answer": 1,
+      "why": "Lokální model nikam nic neposílá."
+    }
+  ],
+  "debrief": "Online nástroj počítá v cloudu, takže všechno, co mu dáš, je na jeho serveru. U tebe zůstane jen to, co děláš offline."
+}

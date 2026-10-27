@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Hardver vagy szoftver?",
+  "instruction": "Számítógépet raksz össze MI-vel való alkotáshoz. Mi ezek közül a hardver, és mi a szoftver?",
+  "buckets": [
+    "Hardver",
+    "Szoftver"
+  ],
+  "items": [
+    {
+      "text": "Videókártya",
+      "answer": 0,
+      "why": "Egy chip, amelyet megfoghatsz."
+    },
+    {
+      "text": "Képgeneráló modell",
+      "answer": 1,
+      "why": "Egy program és a számai, a lemezen tárolva."
+    },
+    {
+      "text": "16 GB operatív memória",
+      "answer": 0,
+      "why": "Fizikai memóriachipek."
+    },
+    {
+      "text": "Videószerkesztő",
+      "answer": 1,
+      "why": "Egy alkalmazás, amely a számítógépen fut."
+    },
+    {
+      "text": "A Windows operációs rendszer",
+      "answer": 1,
+      "why": "A rendszer is program."
+    },
+    {
+      "text": "MI-chip a mobilban",
+      "answer": 0,
+      "why": "Egy darab szilícium a mobil belsejében."
+    },
+    {
+      "text": "SSD-meghajtó",
+      "answer": 0,
+      "why": "A tárhely fizikai alkatrész."
+    }
+  ],
+  "debrief": "A hardvert megfoghatod, a szoftver rajta fut. Az MI-modell szoftver, amelynek erős hardver kell."
+}

@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Will encryption hide it?",
+  "instruction": "You are messaging a friend. What does encryption hide, and what doesn’t it?",
+  "buckets": [
+    "Hides it",
+    "Doesn’t hide it"
+  ],
+  "items": [
+    {
+      "text": "The content of a message from people on the same public Wi-Fi",
+      "answer": 0,
+      "why": "On the same network they see only an encrypted jumble."
+    },
+    {
+      "text": "An end-to-end encrypted message from the app’s server",
+      "answer": 0,
+      "why": "The server has no key; it carries only a jumble."
+    },
+    {
+      "text": "A screenshot that your friend forwards",
+      "answer": 1,
+      "why": "On her phone the message is already unlocked."
+    },
+    {
+      "text": "Text turned into numbers using a public table",
+      "answer": 1,
+      "why": "That is encoding. Anyone who knows the table can read it."
+    },
+    {
+      "text": "A password sent to an app over https",
+      "answer": 0,
+      "why": "Nobody can read it on the way."
+    },
+    {
+      "text": "A message that someone reads over your shoulder",
+      "answer": 1,
+      "why": "On the screen the message is unlocked."
+    }
+  ],
+  "debrief": "Encryption protects a message on its way from anyone who doesn’t have the key. It doesn’t protect it from what the recipient does with it."
+}

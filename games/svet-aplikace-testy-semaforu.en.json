@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Does the faulty traffic light pass the test?",
+  "instruction": "You are testing the traffic light from the table with a bug in its last row. Which tests pass, and which reveal the bug?",
+  "buckets": [
+    "Passes",
+    "Reveals the bug"
+  ],
+  "items": [
+    {
+      "text": "A press on red starts the countdown",
+      "answer": 0,
+      "why": "The first row of the table is correct."
+    },
+    {
+      "text": "After the countdown the light turns green",
+      "answer": 0,
+      "why": "The second row is correct."
+    },
+    {
+      "text": "After a while green starts flashing",
+      "answer": 0,
+      "why": "The fourth row is correct."
+    },
+    {
+      "text": "After flashing the light turns red",
+      "answer": 1,
+      "why": "The table sends the light back to green. Here is the bug."
+    },
+    {
+      "text": "A press on green changes nothing",
+      "answer": 0,
+      "why": "Even the row “nothing happens” has to be in the table, and it is."
+    },
+    {
+      "text": "After one press, it is red again within two minutes",
+      "answer": 1,
+      "why": "The light never gets back to red."
+    }
+  ],
+  "debrief": "Only a test that goes through the last transition reveals the bug. That is why tests cover every row of the table, not just the beginning."
+}

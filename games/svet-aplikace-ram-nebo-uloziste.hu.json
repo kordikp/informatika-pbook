@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Operatív memória vagy tárhely?",
+  "instruction": "Hol van ez most a mobilon? Az operatív memóriában, amely bezáráskor felejt, vagy a tárhelyen?",
+  "buckets": [
+    "Operatív memória",
+    "Tárhely"
+  ],
+  "items": [
+    {
+      "text": "Egy félig megírt üzenet, amelyet az app még nem mentett el",
+      "answer": 0,
+      "why": "Egyelőre csak az app memóriájában létezik."
+    },
+    {
+      "text": "Egy fotó a galériában",
+      "answer": 1,
+      "why": "A mentett fotó tartósan a tárhelyen van."
+    },
+    {
+      "text": "Egy játék, amelyet éppen nyitva tartasz",
+      "answer": 0,
+      "why": "A játék állását a játék az operatív memóriában tartja."
+    },
+    {
+      "text": "Egy telepített app",
+      "answer": 1,
+      "why": "Az app akkor is a tárhelyen van, ha nem fut."
+    },
+    {
+      "text": "Egy oldal, amely nyitva van a böngészőben",
+      "answer": 0,
+      "why": "A böngésző a memóriában tartja, ezért bezárás után újra betölti."
+    },
+    {
+      "text": "Egy offline hallgatásra letöltött dal",
+      "answer": 1,
+      "why": "A letöltött dal tartósan a tárhelyen van."
+    }
+  ],
+  "debrief": "Az operatív memóriában csak az van, amin éppen dolgoznak. Aminek túl kell élnie az app bezárását, annak a tárhelyen kell lennie."
+}

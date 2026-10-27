@@ -1,0 +1,58 @@
+{
+  "type": "sort",
+  "title": "HTML, CSS, alebo JavaScript?",
+  "instruction": "Štruktúra, vzhľad, alebo správanie? Roztrieď, do ktorej vrstvy webu čo patrí!",
+  "buckets": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "items": [
+    {
+      "text": "<h1>Nadpis stránky</h1>",
+      "answer": 0,
+      "why": "Značka hovorí, že je to nadpis. To je štruktúra."
+    },
+    {
+      "text": "color: darkblue;",
+      "answer": 1,
+      "why": "Farba textu je vzhľad."
+    },
+    {
+      "text": "po kliknutí zmeň text",
+      "answer": 2,
+      "why": "Reakcia na klik je správanie."
+    },
+    {
+      "text": "<img src=\"pes.jpg\">",
+      "answer": 0,
+      "why": "Vloží do stránky obrázok. To je štruktúra."
+    },
+    {
+      "text": "font-size: 18px;",
+      "answer": 1,
+      "why": "Veľkosť písma je vzhľad."
+    },
+    {
+      "text": "počítaj skóre kliknutí",
+      "answer": 2,
+      "why": "Počítanie pri klikaní je správanie."
+    },
+    {
+      "text": "<a href=…>odkaz</a>",
+      "answer": 0,
+      "why": "Odkaz je súčasť štruktúry stránky."
+    },
+    {
+      "text": "rozloženie do troch stĺpcov",
+      "answer": 1,
+      "why": "Kde čo na stránke stojí, určuje CSS."
+    },
+    {
+      "text": "reaguj na stlačenie klávesu",
+      "answer": 2,
+      "why": "Reakcia na kláves je správanie."
+    }
+  ],
+  "debrief": "Web má tri vrstvy: HTML hovorí, čo na stránke je, CSS, ako to vyzerá, a JavaScript, čo stránka urobí, keď klikneš alebo píšeš."
+}

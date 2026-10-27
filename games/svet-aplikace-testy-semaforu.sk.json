@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Prejde chybný semafor testom?",
+  "instruction": "Testuješ semafor podľa tabuľky s chybou v poslednom riadku. Ktoré testy prejdú a ktoré chybu odhalia?",
+  "buckets": [
+    "Prejde",
+    "Odhalí chybu"
+  ],
+  "items": [
+    {
+      "text": "Stlačenie na červenej spustí odpočet",
+      "answer": 0,
+      "why": "Prvý riadok tabuľky je správne."
+    },
+    {
+      "text": "Po odpočte sa rozsvieti zelená",
+      "answer": 0,
+      "why": "Druhý riadok je správne."
+    },
+    {
+      "text": "Zelená po chvíli začne blikať",
+      "answer": 0,
+      "why": "Štvrtý riadok je správne."
+    },
+    {
+      "text": "Po blikaní sa rozsvieti červená",
+      "answer": 1,
+      "why": "Tabuľka pošle semafor späť na zelenú. Tu je chyba."
+    },
+    {
+      "text": "Stlačenie na zelenej nič nezmení",
+      "answer": 0,
+      "why": "Aj riadok „nič sa nestane“ musí byť v tabuľke, a je tam."
+    },
+    {
+      "text": "Po jednom stlačení je do dvoch minút zase červená",
+      "answer": 1,
+      "why": "Na červenú sa semafor nikdy nevráti."
+    }
+  ],
+  "debrief": "Chybu odhalí len test, ktorý prechádza posledným prechodom. Preto testy pokrývajú každý riadok tabuľky, nie len začiatok."
+}

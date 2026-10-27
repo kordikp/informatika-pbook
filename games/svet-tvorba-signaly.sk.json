@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Pomôže to dosahu?",
+  "instruction": "Odporúčač sleduje, čo diváci s videom robia. Ktoré správanie pošle video ďalej a ktoré ho zabrzdí?",
+  "buckets": [
+    "Pošle video ďalej",
+    "Zabrzdí ho"
+  ],
+  "items": [
+    {
+      "text": "Ľudia video dopozerajú do konca",
+      "answer": 0,
+      "why": "Čas sledovania je najsilnejší signál."
+    },
+    {
+      "text": "Väčšina ho po dvoch sekundách preskočí",
+      "answer": 1,
+      "why": "Preskočenie hovorí: toto nedrží pozornosť."
+    },
+    {
+      "text": "Ľudia ho posielajú kamarátom",
+      "answer": 0,
+      "why": "Zdieľanie privedie nových divákov."
+    },
+    {
+      "text": "Pustia si ho znova",
+      "answer": 0,
+      "why": "Opakované prehranie je silný záujem."
+    },
+    {
+      "text": "Ťuknú na Nemám záujem",
+      "answer": 1,
+      "why": "Výslovný nezáujem."
+    },
+    {
+      "text": "Pod videom sa rozbehne diskusia v komentároch",
+      "answer": 0,
+      "why": "Komentáre držia ľudí pri videu dlhšie, aj keď sa hádajú."
+    }
+  ],
+  "debrief": "Odporúčač počíta hlavne s časom sledovania a s tým, čo diváci urobia potom. Preskočenie je preň jasný signál, že video nedrží pozornosť."
+}

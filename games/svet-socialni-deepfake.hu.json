@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Mi leplezi le a csaló videót?",
+  "instruction": "A hírfolyamodban egy ismert ember videója van, aki pénzt osztogat. Jelöld meg a figyelmeztető jeleket.",
+  "hitLabel": "figyelmeztető jel",
+  "missLabel": "semmit sem bizonyít",
+  "debrief": "Az élethű hang és a sok lájk semmit sem bizonyít, a deepfake erre is képes. Ami figyelmeztet, az a pénz, a sietség és az, hogy a videó nincs a hivatalos fiókon.",
+  "items": [
+    {
+      "text": "Azt akarja, hogy előre küldj pénzt",
+      "hit": true,
+      "why": "Aki osztogat, előre semmit sem kér."
+    },
+    {
+      "text": "Nincs annak az embernek a hivatalos fiókján",
+      "hit": true,
+      "why": "Egy valódi ajánlat ott lenne."
+    },
+    {
+      "text": "Sürget: csak ma",
+      "hit": true,
+      "why": "A sietség arra való, hogy ne ellenőrizd."
+    },
+    {
+      "text": "A hang pontosan olyan, mint azé az emberé",
+      "hit": false,
+      "why": "A klónozott hang is pontosan olyan."
+    },
+    {
+      "text": "A videónak több ezer lájkja van",
+      "hit": false,
+      "why": "Lájkot lehet venni, és a csalás nélkülük is terjed."
+    },
+    {
+      "text": "Megígéri, hogy megduplázza a pénzedet",
+      "hit": true,
+      "why": "A csalók klasszikus ígérete."
+    }
+  ]
+}

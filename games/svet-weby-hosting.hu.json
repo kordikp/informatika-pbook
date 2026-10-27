@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Előny vagy függőség?",
+  "instruction": "A weboldalad egy felhőbeli tárhelyen fut. Mi ebből előny, és mi függés egy idegen cégtől?",
+  "buckets": [
+    "A felhő előnye",
+    "Függés a felhőtől"
+  ],
+  "items": [
+    {
+      "text": "Az oldal akkor is fut, ha kikapcsolod a számítógépedet",
+      "answer": 0,
+      "why": "A szerver éjjel-nappal be van kapcsolva, a saját gépedre ehhez nincs szükség."
+    },
+    {
+      "text": "Egyszerre ezer látogatót is elbír",
+      "answer": 0,
+      "why": "Az adatközpontnak olyan teljesítménye van, amilyen otthon nincs."
+    },
+    {
+      "text": "Ha a cég megszünteti a szolgáltatást, az oldal eltűnik",
+      "answer": 1,
+      "why": "Az oldal nála lakik. Ezért kell máshol biztonsági mentés."
+    },
+    {
+      "text": "A jelentkezések adatai abban az országban vannak, ahol az adatközpont áll",
+      "answer": 1,
+      "why": "Az ottani törvények vonatkoznak rájuk, nem feltétlenül a mieink."
+    },
+    {
+      "text": "A szerver frissítéséről a cég gondoskodik",
+      "answer": 0,
+      "why": "A javításokkal és a karbantartással nem neked kell foglalkoznod."
+    },
+    {
+      "text": "A cég letilthatja a fiókodat",
+      "answer": 1,
+      "why": "Az ő feltételeihez igazodsz. Ha megszeged őket, vagy ha megváltoznak, az oldal eltűnik."
+    },
+    {
+      "text": "A barátod a világ bármely pontjáról megnyitja az oldalt",
+      "answer": 0,
+      "why": "A szerver csatlakozik az internethez, és mindenkinek válaszol."
+    }
+  ],
+  "debrief": "A felhő olyan szervert ad, amely soha nem alszik. Cserébe egy cégtől függsz, ezért a weboldal fájljait tartsd máshol is."
+}

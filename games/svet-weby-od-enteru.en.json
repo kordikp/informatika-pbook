@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "From Enter to the page",
+  "instruction": "Put in order what happens from pressing Enter to the finished page.",
+  "steps": [
+    "You type the address and press Enter",
+    "DNS translates the name into the IP address of the server",
+    "The browser sends the server a request for the page",
+    "The server sends back HTML",
+    "The browser asks for CSS, scripts and pictures",
+    "The browser renders the page"
+  ],
+  "debrief": "Every page is an exchange of requests and responses. First the name to an address, then the HTML, then everything the HTML points to.",
+  "why": [
+    "Everything starts with you: the address is a name, not a number.",
+    "Without the IP address the request would not know where to go.",
+    "Only now does it know where to send the request.",
+    "The response to the first request is the skeleton of the page.",
+    "Only in the HTML does the browser find out which other files the page needs.",
+    "From all the files that arrived, it puts together the picture you see."
+  ]
+}

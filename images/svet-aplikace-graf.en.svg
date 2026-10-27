@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Stejná data, dvě osy: propad, nebo skoro nic?">
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker><marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#EF4444"/></marker><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif">
+  <text x="18" y="26" font-size="17" font-weight="700" fill="#1E1B4B">The same data, two axes</text>
+  <text x="18" y="44" font-size="11" fill="#6B7280">Steps in a week. If the axis doesn’t start at zero, a small gap looks like a cliff.</text>
+  <text x="126" y="68" font-size="11" font-weight="700" fill="#EF4444" text-anchor="middle">axis from 7,000: a slump!</text>
+  <line x1="50" y1="214" x2="238" y2="214" stroke="#9CA3AF" stroke-width="1.5"/>
+  <line x1="50" y1="86" x2="50" y2="214" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="46" y="218" font-size="9" fill="#6B7280" text-anchor="end">7 000</text>
+  <text x="46" y="90" font-size="9" fill="#6B7280" text-anchor="end">9 000</text>
+  <rect x="60" y="86" width="24" height="128" rx="3" fill="#0EA5E9"/>
+  <text x="72" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Mon</text>
+  <rect x="96" y="99" width="24" height="115" rx="3" fill="#0EA5E9"/>
+  <text x="108" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Tue</text>
+  <rect x="132" y="112" width="24" height="102" rx="3" fill="#0EA5E9"/>
+  <text x="144" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Wed</text>
+  <rect x="168" y="150" width="24" height="64" rx="3" fill="#EF4444"/>
+  <text x="180" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Thu</text>
+  <rect x="204" y="92" width="24" height="122" rx="3" fill="#0EA5E9"/>
+  <text x="216" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Fri</text>
+  <text x="382" y="68" font-size="11" font-weight="700" fill="#10B981" text-anchor="middle">axis from zero: almost nothing</text>
+  <line x1="306" y1="214" x2="494" y2="214" stroke="#9CA3AF" stroke-width="1.5"/>
+  <line x1="306" y1="86" x2="306" y2="214" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="302" y="218" font-size="9" fill="#6B7280" text-anchor="end">0</text>
+  <text x="302" y="90" font-size="9" fill="#6B7280" text-anchor="end">9 000</text>
+  <rect x="316" y="86" width="24" height="128" rx="3" fill="#0EA5E9"/>
+  <text x="328" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Mon</text>
+  <rect x="352" y="89" width="24" height="125" rx="3" fill="#0EA5E9"/>
+  <text x="364" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Tue</text>
+  <rect x="388" y="92" width="24" height="122" rx="3" fill="#0EA5E9"/>
+  <text x="400" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Wed</text>
+  <rect x="424" y="100" width="24" height="114" rx="3" fill="#EF4444"/>
+  <text x="436" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Thu</text>
+  <rect x="460" y="87" width="24" height="127" rx="3" fill="#0EA5E9"/>
+  <text x="472" y="230" font-size="9" fill="#6B7280" text-anchor="middle">Fri</text>
+  <text x="260" y="250" font-size="10" fill="#6B7280" text-anchor="middle">On Thursday 8,000 steps instead of 9,000. That is one ninth, not a fall.</text>
+
+  </g>
+</svg>

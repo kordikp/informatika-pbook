@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Working memory or storage?",
+  "instruction": "Where is it on the phone right now? In working memory, which forgets when the app closes, or in storage?",
+  "buckets": [
+    "Working memory",
+    "Storage"
+  ],
+  "items": [
+    {
+      "text": "A message you are writing that the app hasn’t saved yet",
+      "answer": 0,
+      "why": "So far it exists only in the app’s memory."
+    },
+    {
+      "text": "A photo in the gallery",
+      "answer": 1,
+      "why": "A saved photo is permanently in storage."
+    },
+    {
+      "text": "A game in progress that you have open right now",
+      "answer": 0,
+      "why": "The game keeps its state in working memory."
+    },
+    {
+      "text": "An installed app",
+      "answer": 1,
+      "why": "The app sits in storage even when it isn’t running."
+    },
+    {
+      "text": "A page open in the browser",
+      "answer": 0,
+      "why": "The browser keeps it in memory, which is why it loads again after you close it."
+    },
+    {
+      "text": "A song downloaded to listen to offline",
+      "answer": 1,
+      "why": "Once downloaded, it is permanently in storage."
+    }
+  ],
+  "debrief": "Working memory holds only what is being worked on right now. What should survive closing the app has to be in storage."
+}

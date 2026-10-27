@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Active or passive trail?",
+  "instruction": "Sort which trail you leave on purpose, and which appears without you writing anything.",
+  "buckets": [
+    "Active trail",
+    "Passive trail"
+  ],
+  "items": [
+    {
+      "text": "A comment under an article",
+      "answer": 0,
+      "why": "You wrote it yourself, on purpose."
+    },
+    {
+      "text": "An advertising cookie from visiting an online shop",
+      "answer": 1,
+      "why": "It was saved without you writing anything; a visit was enough."
+    },
+    {
+      "text": "A photo you upload to the club’s website",
+      "answer": 0,
+      "why": "You published it."
+    },
+    {
+      "text": "The list of pages you clicked on",
+      "answer": 1,
+      "why": "It appears by itself as you move around the web."
+    },
+    {
+      "text": "The city a website recognises from your IP address",
+      "answer": 1,
+      "why": "You didn’t enter anything, and the website knows."
+    },
+    {
+      "text": "A review of a game that you write",
+      "answer": 0,
+      "why": "Your text, your decision."
+    },
+    {
+      "text": "How long you looked at trainers in an online shop",
+      "answer": 1,
+      "why": "Viewing time is measured without you knowing."
+    }
+  ],
+  "debrief": "You see your active trail, because you make it yourself. The passive one appears quietly, from cookies and from where you click and how long you look."
+}

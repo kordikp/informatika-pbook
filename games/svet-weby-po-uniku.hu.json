@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Mi véd meg egy szivárgás után?",
+  "instruction": "Kiszivárogtak az adatok egy fórumról, ahol fiókod van. Mi véd meg, és mi nem?",
+  "buckets": [
+    "Segít",
+    "Nem segít"
+  ],
+  "items": [
+    {
+      "text": "Minden szolgáltatáson más jelszó",
+      "answer": 0,
+      "why": "A kiszivárgott jelszó akkor csak azt az egy fórumot nyitja meg."
+    },
+    {
+      "text": "2FA az e-mailen",
+      "answer": 0,
+      "why": "A jelszóval rendelkező támadónál nincs ott a mobilod, így nem tud belépni."
+    },
+    {
+      "text": "A Minecraft2023! jelszó minden szolgáltatáson",
+      "answer": 1,
+      "why": "Egy jelszó mindenhol: egy szivárgás mindent megnyit."
+    },
+    {
+      "text": "Jelszókezelő hosszú, véletlenszerű jelszavakkal",
+      "answer": 0,
+      "why": "Minden jelszó más, és egyiket sem lehet kitalálni."
+    },
+    {
+      "text": "Egy egyest írni a jelszó végére",
+      "answer": 1,
+      "why": "A támadók ezeket az apró változtatásokat próbálják ki elsőként."
+    },
+    {
+      "text": "Csak a feltört fórumon megváltoztatni a jelszót, máshol meghagyni",
+      "answer": 1,
+      "why": "A többi szolgáltatáson még mindig a kiszivárgott jelszó érvényes."
+    },
+    {
+      "text": "Több szóból álló mondat jelszóként",
+      "answer": 0,
+      "why": "A hosszú jelszót nehéz kitalálni, még ha a támadó ismeri is az ujjlenyomatát."
+    }
+  ],
+  "debrief": "Egy szolgáltatás szivárgása csak azokat a fiókokat veszélyezteti, amelyeknek ugyanaz a jelszavuk. Az egyedi jelszavak és a 2FA megállítják."
+}

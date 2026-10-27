@@ -100,24 +100,35 @@
    "branches": {
     "explorer": {
      "label": {
-      "cs": "Svět aplikací: automat se schovanou chybou",
-      "en": "World of apps: a machine with a hidden bug",
-      "sk": "Svet aplikácií: automat so skrytou chybou",
-      "hu": "Az alkalmazások világa: automata rejtett hibával"
+      "cs": "Svět aplikací: semafor se schovanou chybou",
+      "en": "World of apps: a traffic light with a hidden bug",
+      "sk": "Svet aplikácií: semafor so skrytou chybou",
+      "hu": "Az alkalmazások világa: közlekedési lámpa rejtett hibával"
      },
      "blocks": [
-      "ch9-worked-logika"
+      "svet-aplikace-over-a-oprav"
      ]
     },
     "creator": {
      "label": {
-      "cs": "Svět aplikací: logika appky",
-      "en": "World of apps: the logic of an app",
-      "sk": "Svet aplikácií: logika apky",
-      "hu": "Az alkalmazások világa: egy app logikája"
+      "cs": "Svět aplikací: appka na papíře",
+      "en": "World of apps: an app on paper",
+      "sk": "Svet aplikácií: apka na papieri",
+      "hu": "Az alkalmazások világa: app papíron"
      },
      "blocks": [
-      "ch9-logika-aplikace"
+      "svet-aplikace-dekompozice"
+     ]
+    },
+    "thinker": {
+     "label": {
+      "cs": "Svět webů: náčrt a mapa webu",
+      "en": "World of websites: a sketch and a site map",
+      "sk": "Svet webov: náčrt a mapa webu",
+      "hu": "A weboldalak világa: vázlat és oldaltérkép"
+     },
+     "blocks": [
+      "svet-weby-abstrakce-a-model"
      ]
     }
    }
@@ -355,24 +366,35 @@
    "branches": {
     "explorer": {
      "label": {
-      "cs": "Svět aplikací: kde appka drží data",
-      "en": "World of apps: where an app keeps its data",
-      "sk": "Svet aplikácií: kde apka drží dáta",
-      "hu": "Az alkalmazások világa: hol tartja az app az adatokat"
+      "cs": "Svět sociálních sítí: co o tobě síť ví",
+      "en": "World of social media: what the network knows about you",
+      "sk": "Svet sociálnych sietí: čo o tebe sieť vie",
+      "hu": "A közösségi média világa: mit tud rólad a hálózat"
      },
      "blocks": [
-      "ch9-co-je-aplikace"
+      "svet-socialni-tabulka-a-evidence"
      ]
     },
     "creator": {
      "label": {
-      "cs": "Svět aplikací: appka bez programování",
-      "en": "World of apps: an app without programming",
-      "sk": "Svet aplikácií: apka bez programovania",
-      "hu": "Az alkalmazások világa: app programozás nélkül"
+      "cs": "Svět aplikací: appka z tabulky",
+      "en": "World of apps: an app made from a spreadsheet",
+      "sk": "Svet aplikácií: apka z tabuľky",
+      "hu": "Az alkalmazások világa: app egy táblázatból"
      },
      "blocks": [
-      "ch9-no-code-low-code"
+      "svet-aplikace-tabulka-a-evidence"
+     ]
+    },
+    "thinker": {
+     "label": {
+      "cs": "Svět sociálních sítí: statistiky tvého videa",
+      "en": "World of social media: your video statistics",
+      "sk": "Svet sociálnych sietí: štatistiky tvojho videa",
+      "hu": "A közösségi média világa: a videód statisztikái"
+     },
+     "blocks": [
+      "svet-socialni-z-dat-informace"
      ]
     }
    }
@@ -477,24 +499,24 @@
    "branches": {
     "explorer": {
      "label": {
-      "cs": "Svět webů: jak funguje web",
-      "en": "World of websites: how the web works",
-      "sk": "Svet webov: ako funguje web",
-      "hu": "A weboldalak világa: hogyan működik a web"
+      "cs": "Svět webů: co se stane, když zmáčkneš Enter",
+      "en": "World of websites: what happens when you press Enter",
+      "sk": "Svet webov: čo sa stane, keď stlačíš Enter",
+      "hu": "A weboldalak világa: mi történik, amikor megnyomod az Entert"
      },
      "blocks": [
-      "ch8-jak-funguje-web"
+      "svet-weby-cesta-dat"
      ]
     },
     "creator": {
      "label": {
-      "cs": "Svět webů: web jde do světa",
-      "en": "World of websites: your site goes live",
-      "sk": "Svet webov: web ide do sveta",
-      "hu": "A weboldalak világa: a weboldal kimegy a világba"
+      "cs": "Svět webů: kde bydlí tvůj web",
+      "en": "World of websites: where your website lives",
+      "sk": "Svet webov: kde býva tvoj web",
+      "hu": "A weboldalak világa: hol lakik a weboldalad"
      },
      "blocks": [
-      "ch8-domena-a-hosting"
+      "svet-weby-cloud-a-server"
      ]
     },
     "thinker": {
@@ -621,13 +643,13 @@
     },
     "creator": {
      "label": {
-      "cs": "Svět tvorby: generativní obraz",
-      "en": "World of creating: generative images",
-      "sk": "Svet tvorby: generatívny obraz",
-      "hu": "Az alkotás világa: generatív kép"
+      "cs": "Svět tvorby s AI: šest prstů a nápis z jiné planety",
+      "en": "World of creating with AI: six fingers and writing from another planet",
+      "sk": "Svet tvorby s AI: šesť prstov a nápis z inej planéty",
+      "hu": "Az MI-vel való alkotás világa: hat ujj és felirat egy másik bolygóról"
      },
      "blocks": [
-      "ch10-generativni-obraz"
+      "svet-tvorba-generativni-model"
      ]
     },
     "thinker": {
@@ -752,15 +774,26 @@
       "vylet-kdo-plati-feed"
      ]
     },
-    "thinker": {
+    "creator": {
      "label": {
-      "cs": "Svět tvorby: autorství a označování",
-      "en": "World of creating: authorship and labelling",
-      "sk": "Svet tvorby: autorstvo a označovanie",
-      "hu": "Az alkotás világa: szerzőség és jelölés"
+      "cs": "Svět sociálních sítí: vyhrál jsi iPhone!",
+      "en": "World of social media: you've won an iPhone!",
+      "sk": "Svet sociálnych sietí: vyhral si iPhone!",
+      "hu": "A közösségi média világa: nyertél egy iPhone-t!"
      },
      "blocks": [
-      "ch10-etika-autorstvi-a-oznacovani"
+      "svet-socialni-podvod-cili-na-cloveka"
+     ]
+    },
+    "thinker": {
+     "label": {
+      "cs": "Svět tvorby s AI: čí je to dílo",
+      "en": "World of creating with AI: whose work is it",
+      "sk": "Svet tvorby s AI: čie je to dielo",
+      "hu": "Az MI-vel való alkotás világa: kié a mű"
+     },
+     "blocks": [
+      "svet-tvorba-rozhodujes-ty"
      ]
     }
    }
@@ -1079,6 +1112,597 @@
    "branches": {}
   },
   {
+   "id": "svet-weby",
+   "title": {
+    "cs": "Postav web",
+    "en": "Build a website",
+    "sk": "Postav web",
+    "hu": "Építs weboldalt"
+   },
+   "icon": "🖥️",
+   "difficulty": "Intermediate",
+   "story": {
+    "cs": "Kroužek potřebuje web: kdo jste, kdy se scházíte a fotky z akcí. Přihlásil ses, že ho postavíš. Projdi svět webů od náčrtu po soukromí návštěvníků a navrhni web, který funguje na mobilu, je bezpečný a neprozradí víc, než má.",
+    "en": "Your club needs a website: who you are, when you meet and photos from your events. You volunteered to build it. Go through the world of websites from the sketch to your visitors’ privacy and design a site that works on a phone, is secure and gives away no more than it should.",
+    "sk": "Krúžok potrebuje web: kto ste, kedy sa stretávate a fotky z akcií. Prihlásil si sa, že ho postavíš. Prejdi svet webov od náčrtu po súkromie návštevníkov a navrhni web, ktorý funguje na mobile, je bezpečný a neprezradí viac, než má.",
+    "hu": "A szakkörnek weboldal kell: kik vagytok, mikor találkoztok, és fotók a programokról. Jelentkeztél, hogy megépíted. Járd végig a weboldalak világát a vázlattól a látogatók magánszférájáig, és tervezz olyan oldalt, amely működik mobilon, biztonságos, és nem árul el többet, mint kellene."
+   },
+   "goal": {
+    "cs": "Navrhnout web kroužku od náčrtu přes HTML, CSS a JavaScript po hosting, https a soukromí návštěvníků",
+    "en": "Design a club website from the sketch through HTML, CSS and JavaScript to hosting, https and the privacy of visitors",
+    "sk": "Navrhnúť web krúžku od náčrtu cez HTML, CSS a JavaScript po hosting, https a súkromie návštevníkov",
+    "hu": "Megtervezni a szakkör weboldalát a vázlattól a HTML-en, a CSS-en és a JavaScripten át a tárhelyig, a https-ig és a látogatók magánszférájáig"
+   },
+   "reward": {
+    "title": {
+     "cs": "Webový tvůrce",
+     "en": "Web maker",
+     "sk": "Webový tvorca",
+     "hu": "Webkészítő"
+    },
+    "xp": 30
+   },
+   "core": [
+    "svet-weby-abstrakce-a-model",
+    "svet-weby-program",
+    "svet-weby-kodovani",
+    "svet-weby-cesta-dat",
+    "svet-weby-cloud-a-server",
+    "svet-weby-sifrovani",
+    "svet-weby-ucet-a-autentizace",
+    "svet-weby-digitalni-stopa"
+   ],
+   "intros": [
+    {
+     "cs": "Model: užitečné zjednodušení. Než napíšou první řádek kódu, nakreslí designéři web tužkou: šedé obdélníky, žádné barvy, žádné fotky. Proč tak ošklivě?",
+     "en": "Model: a useful simplification. Before they write the first line of code, designers draw the website in pencil: grey rectangles, no colours, no photos. Why so ugly?",
+     "sk": "Model: užitočné zjednodušenie. Skôr než napíšu prvý riadok kódu, nakreslia dizajnéri web ceruzkou: sivé obdĺžniky, žiadne farby, žiadne fotky. Prečo tak škaredo?",
+     "hu": "Modell: hasznos egyszerűsítés. Mielőtt megírnák az első kódsort, a tervezők ceruzával rajzolják meg a weboldalt: szürke téglalapok, semmi szín, semmi fotó. Miért ilyen csúnyán?"
+    },
+    {
+     "cs": "Program: vstup → kroky → výstup. Stránka s tlačítkem, které počítá kliknutí, má pět řádků HTML a pět řádků JavaScriptu. Prohlížeč je přečte doslova, odshora dolů.",
+     "en": "Program: input → steps → output. A page with a button that counts clicks has five lines of HTML and five lines of JavaScript. The browser reads them literally, from top to bottom.",
+     "sk": "Program: vstup → kroky → výstup. Stránka s tlačidlom, ktoré počíta kliknutia, má päť riadkov HTML a päť riadkov JavaScriptu. Prehliadač ich prečíta doslova, zhora nadol.",
+     "hu": "Program: bemenet → lépések → kimenet. Egy oldal, amelyen egy gomb számolja a kattintásokat, öt sor HTML-ből és öt sor JavaScriptből áll. A böngésző szó szerint olvassa őket, fentről lefelé."
+    },
+    {
+     "cs": "Všechno jsou čísla. Napíšeš na web „čaj“ a návštěvník vidí „ÄŤaj“. Web se nerozbil. Jen se s prohlížečem nedomluvil, jak má čísla číst.",
+     "en": "Everything is numbers. You write “café” on your website and a visitor sees “cafÃ©”. The website is not broken. It just did not agree with the browser on how to read the numbers.",
+     "sk": "Všetko sú čísla. Napíšeš na web „čaj“ a návštevník vidí „ÄŤaj“. Web sa nepokazil. Len sa s prehliadačom nedohodol, ako má čísla čítať.",
+     "hu": "Minden szám. Kiírod a weboldalra, hogy „körte”, a látogató pedig azt látja, hogy „kĂ¶rte”. Az oldal nem romlott el. Csak nem egyezett meg a böngészővel abban, hogyan olvassa a számokat."
+    },
+    {
+     "cs": "Jak data cestují. Napíšeš nas-krouzek.cz a za půl vteřiny vidíš stránku. Mezitím se tvůj počítač zeptal na cestu, poslal desítky požadavků a dostal stovky balíčků.",
+     "en": "How data travels. You type our-club.org and half a second later you see the page. In the meantime your computer asked for directions, sent dozens of requests and received hundreds of packets.",
+     "sk": "Ako dáta cestujú. Napíšeš nas-kruzok.sk a za pol sekundy vidíš stránku. Medzitým sa tvoj počítač spýtal na cestu, poslal desiatky požiadaviek a dostal stovky balíčkov.",
+     "hu": "Hogyan utaznak az adatok. Beírod, hogy szakkorunk.hu, és fél másodperc múlva látod az oldalt. Közben a számítógéped útbaigazítást kért, több tucat kérést küldött, és több száz csomagot kapott."
+    },
+    {
+     "cs": "Cloud je cizí počítač. Soubor index.html ve tvém počítači si kamarád neotevře. Aby web viděl kdokoli, musí se přestěhovat na počítač, který nikdy nespí.",
+     "en": "The cloud is someone else's computer. A friend cannot open the index.html file on your computer. For anyone to see the website, it has to move to a computer that never sleeps.",
+     "sk": "Cloud je cudzí počítač. Súbor index.html v tvojom počítači si kamarát neotvorí. Aby web videl ktokoľvek, musí sa presťahovať na počítač, ktorý nikdy nespí.",
+     "hu": "A felhő valaki más számítógépe. A számítógépeden lévő index.html fájlt a barátod nem tudja megnyitni. Ahhoz, hogy bárki lássa a weboldalt, át kell költöznie egy olyan számítógépre, amely soha nem alszik."
+    },
+    {
+     "cs": "Šifrování: obálka místo pohlednice. Na školní Wi-Fi zadáš heslo do formuláře. Kdo všechno ho cestou k serveru může přečíst? Záleží na jednom písmenu: s.",
+     "en": "Encryption: an envelope instead of a postcard. On the school Wi-Fi you type a password into a form. Who can read it on its way to the server? It depends on a single letter: s.",
+     "sk": "Šifrovanie: obálka namiesto pohľadnice. Na školskej Wi-Fi zadáš heslo do formulára. Kto všetko ho cestou k serveru môže prečítať? Záleží na jednom písmene: s.",
+     "hu": "Titkosítás: boríték képeslap helyett. Az iskolai wifin beírod a jelszavadat egy űrlapba. Ki mindenki olvashatja el útban a szerver felé? Egyetlen betűn múlik: az s-en."
+    },
+    {
+     "cs": "Účet a heslo. Fórum o Minecraftu, na které jsi chodil před dvěma lety, někdo hackl. Hesla všech uživatelů jsou na internetu. Proč by tě to mělo zajímat, když tam už nechodíš?",
+     "en": "Account and password. Someone hacked a Minecraft forum you used to visit two years ago. The passwords of all its users are on the internet. Why should you care if you don’t go there any more?",
+     "sk": "Účet a heslo. Fórum o Minecrafte, na ktoré si chodil pred dvoma rokmi, niekto hackol. Heslá všetkých používateľov sú na internete. Prečo by ťa to malo zaujímať, keď tam už nechodíš?",
+     "hu": "Fiók és jelszó. Valaki feltörte azt a Minecraft-fórumot, ahová két éve jártál. Minden felhasználó jelszava kint van az interneten. Miért érdekeljen ez, ha már nem jársz oda?"
+    },
+    {
+     "cs": "Digitální stopa. Podíváš se na boty v e-shopu. Pak otevřeš zprávy, video a hru a všude na tebe ty samé boty koukají z reklamy. Jak to ty weby vědí?",
+     "en": "Digital footprint. You look at some trainers in an online shop. Then you open the news, a video and a game, and everywhere the same trainers stare at you from an ad. How do those websites know?",
+     "sk": "Digitálna stopa. Pozrieš sa na topánky v e-shope. Potom otvoríš správy, video a hru a všade na teba tie isté topánky pozerajú z reklamy. Ako to tie weby vedia?",
+     "hu": "Digitális lábnyom. Megnézel egy cipőt egy webáruházban. Aztán megnyitod a híreket, egy videót és egy játékot, és mindenhol ugyanaz a cipő néz rád egy hirdetésből. Honnan tudják ezt azok az oldalak?"
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Popiš web, který postavíš. Jak vypadá jeho náčrt a mapa stránek? Co bude v HTML, co v CSS a co udělá JavaScript? Jak zařídíš, aby se rychle načítal? Kde bude bydlet, co se stane, když návštěvník napíše jeho adresu, a proč potřebuje https? A co uděláš pro to, aby web nesbíral ani neprozradil víc, než musí?",
+     "en": "Describe the website you will build. What do its sketch and site map look like? What goes into the HTML, what into the CSS, and what will JavaScript do? How will you make it load fast? Where will it live, what happens when a visitor types in its address, and why does it need https? And what will you do so that the site neither collects nor gives away more than it has to?",
+     "sk": "Opíš web, ktorý postavíš. Ako vyzerá jeho náčrt a mapa stránok? Čo bude v HTML, čo v CSS a čo urobí JavaScript? Ako zariadiš, aby sa rýchlo načítal? Kde bude bývať, čo sa stane, keď návštevník napíše jeho adresu, a prečo potrebuje https? A čo urobíš pre to, aby web nezbieral ani neprezradil viac, než musí?",
+     "hu": "Írd le a weboldalt, amelyet megépítesz. Hogyan néz ki a vázlata és az oldaltérképe? Mi kerül a HTML-be, mi a CSS-be, és mit csinál a JavaScript? Hogyan éred el, hogy gyorsan betöltődjön? Hol fog lakni, mi történik, amikor egy látogató beírja a címét, és miért kell neki https? És mit teszel azért, hogy az oldal ne gyűjtsön és ne áruljon el többet, mint muszáj?"
+    },
+    "hints": [
+     {
+      "cs": "náčrt a mapa webu",
+      "en": "sketch and site map",
+      "sk": "náčrt a mapa webu",
+      "hu": "vázlat és oldaltérkép"
+     },
+     {
+      "cs": "HTML, CSS a JavaScript",
+      "en": "HTML, CSS and JavaScript",
+      "sk": "HTML, CSS a JavaScript",
+      "hu": "HTML, CSS és JavaScript"
+     },
+     {
+      "cs": "velikost obrázků",
+      "en": "size of the pictures",
+      "sk": "veľkosť obrázkov",
+      "hu": "a képek mérete"
+     },
+     {
+      "cs": "požadavek a odpověď",
+      "en": "request and response",
+      "sk": "požiadavka a odpoveď",
+      "hu": "kérés és válasz"
+     },
+     {
+      "cs": "hosting a https",
+      "en": "hosting and https",
+      "sk": "hosting a https",
+      "hu": "tárhely és https"
+     },
+     {
+      "cs": "cookies a soukromí",
+      "en": "cookies and privacy",
+      "sk": "cookies a súkromie",
+      "hu": "sütik és magánszféra"
+     }
+    ]
+   },
+   "branches": {}
+  },
+  {
+   "id": "svet-aplikace",
+   "title": {
+    "cs": "Postav appku",
+    "en": "Build an app",
+    "sk": "Postav apku",
+    "hu": "Építs appot"
+   },
+   "icon": "📱",
+   "difficulty": "Intermediate",
+   "story": {
+    "cs": "Třída chce appku na služby a vybírání peněz na výlet. Učitelka slíbila, že ji vyzkoušíte, když ji někdo navrhne. Přihlásil ses. Projdi svět aplikací a navrhni appku, která počítá správně, drží data v pořádku a neprozradí víc, než má.",
+    "en": "Your class wants an app for class duties and for collecting money for a school trip. The teacher promised you would try it out if someone designs it. You volunteered. Go through the world of apps and design an app that calculates correctly, keeps the data in order and gives away no more than it should.",
+    "sk": "Trieda chce apku na služby a vyberanie peňazí na výlet. Pani učiteľka sľúbila, že ju vyskúšate, keď ju niekto navrhne. Prihlásil si sa. Prejdi svet aplikácií a navrhni apku, ktorá počíta správne, drží dáta v poriadku a neprezradí viac, než má.",
+    "hu": "Az osztály appot szeretne a hetesi beosztáshoz és az osztálykirándulás pénzének beszedéséhez. A tanárnő megígérte, hogy kipróbáljátok, ha valaki megtervezi. Jelentkeztél. Járd végig az alkalmazások világát, és tervezz olyan appot, amely jól számol, rendben tartja az adatokat, és nem árul el többet, mint kellene."
+   },
+   "goal": {
+    "cs": "Navrhnout třídní appku: postup, obrazovky, stavy a testy, data v tabulce, role, server, oprávnění a ověření kódu od AI",
+    "en": "Design a class app: the method, screens, states and tests, data in a spreadsheet, roles, the server, permissions and checking code from AI",
+    "sk": "Navrhnúť triednu apku: postup, obrazovky, stavy a testy, dáta v tabuľke, roly, server, oprávnenia a overenie kódu od AI",
+    "hu": "Megtervezni az osztály appját: eljárás, képernyők, állapotok és tesztek, adatok egy táblázatban, szerepek, szerver, engedélyek és az MI-től kapott kód ellenőrzése"
+   },
+   "reward": {
+    "title": {
+     "cs": "Tvůrce appek",
+     "en": "App maker",
+     "sk": "Tvorca apiek",
+     "hu": "Appkészítő"
+    },
+    "xp": 30
+   },
+   "core": [
+    "svet-aplikace-algoritmus",
+    "svet-aplikace-dekompozice",
+    "svet-aplikace-over-a-oprav",
+    "svet-aplikace-promenna",
+    "svet-aplikace-tabulka-a-evidence",
+    "svet-aplikace-informacni-system",
+    "svet-aplikace-z-dat-informace",
+    "svet-aplikace-uvnitr-zarizeni",
+    "svet-aplikace-cloud-a-server",
+    "svet-aplikace-rozhodujes-ty",
+    "svet-aplikace-ochrana-zarizeni"
+   ],
+   "intros": [
+    {
+     "cs": "Algoritmus: přesný návod. Pět kamarádů v pizzerii, jedna účtenka, platili jen tři. Appka na dělení útraty to spočítá za vteřinu. Ale jen proto, že ji někdo naučil přesný postup.",
+     "en": "Algorithm: exact instructions. Five friends in a pizzeria, one bill, and only three of them paid. A bill-splitting app works it out in a second. But only because someone taught it an exact method.",
+     "sk": "Algoritmus: presný návod. Päť kamarátov v pizzerii, jeden účet, platili len traja. Apka na delenie útraty to vypočíta za sekundu. Ale len preto, že ju niekto naučil presný postup.",
+     "hu": "Algoritmus: pontos utasítás. Öt barát egy pizzériában, egy számla, és csak hárman fizettek. Egy számlaosztó app ezt egy másodperc alatt kiszámolja. De csak azért, mert valaki megtanította neki a pontos eljárást."
+    },
+    {
+     "cs": "Rozlož problém. Chceš appku pro třídu: služby, hlasování o výletu, vybírání peněz, chat a rozvrh. Když začneš všechno naráz, nedokončíš nic.",
+     "en": "Break the problem down. You want an app for your class: duties, a vote on the school trip, collecting money, a chat and the timetable. If you start everything at once, you finish nothing.",
+     "sk": "Rozlož problém. Chceš apku pre triedu: služby, hlasovanie o výlete, vyberanie peňazí, chat a rozvrh. Keď začneš všetko naraz, nedokončíš nič.",
+     "hu": "Bontsd részekre a problémát. Appot szeretnél az osztálynak: hetesi beosztás, szavazás a kirándulásról, pénzbeszedés, chat és órarend. Ha mindent egyszerre kezdesz el, semmit sem fejezel be."
+    },
+    {
+     "cs": "Ověř a oprav. Navrhneš appku, která řídí semafor pro chodce. Na papíře vypadá hotově. Pak ji projdeš prstem a zjistíš, že se na červenou už nikdy nevrátí.",
+     "en": "Test and fix. You design an app that controls a pedestrian traffic light. On paper it looks finished. Then you go through it with your finger and find out that it never returns to red.",
+     "sk": "Over a oprav. Navrhneš apku, ktorá riadi semafor pre chodcov. Na papieri vyzerá hotovo. Potom ju prejdeš prstom a zistíš, že sa na červenú už nikdy nevráti.",
+     "hu": "Ellenőrizd és javítsd. Megtervezel egy appot, amely egy gyalogos lámpát vezérel. Papíron késznek tűnik. Aztán végigmész rajta az ujjaddal, és rájössz, hogy soha többé nem vált vissza pirosra."
+    },
+    {
+     "cs": "Proměnná: paměť programu. Klepneš v hudební appce na ▶. Jednou začne hrát, jindy se zastaví a jindy chce přihlášení. Appka není rozbitá. Pamatuje si, v jakém je stavu.",
+     "en": "Variable: a program's memory. You tap ▶ in a music app. Once it starts playing, another time it stops, and another time it wants you to log in. The app isn’t broken. It remembers what state it is in.",
+     "sk": "Premenná: pamäť programu. Ťukneš v hudobnej apke na ▶. Raz začne hrať, inokedy sa zastaví a inokedy chce prihlásenie. Apka nie je pokazená. Pamätá si, v akom je stave.",
+     "hu": "Változó: a program memóriája. Egy zenei appban a ▶ gombra koppintasz. Egyszer elkezd játszani, máskor megáll, máskor bejelentkezést kér. Az app nem romlott el. Emlékszik, milyen állapotban van."
+    },
+    {
+     "cs": "Tabulka: data s řádem. Spousta appek je uvnitř obyčejná tabulka. Nástroj jako Glide z ní za odpoledne udělá appku s vyhledáváním, filtrem a tlačítky.",
+     "en": "Table: data in order. Lots of apps are an ordinary spreadsheet inside. A tool like Glide turns one into an app with search, a filter and buttons in an afternoon.",
+     "sk": "Tabuľka: dáta s poriadkom. Množstvo apiek je vnútri obyčajná tabuľka. Nástroj ako Glide z nej za popoludnie urobí apku s vyhľadávaním, filtrom a tlačidlami.",
+     "hu": "Táblázat: rendezett adatok. Rengeteg app belül egy egyszerű táblázat. Egy olyan eszköz, mint a Glide, egy délután alatt keresővel, szűrővel és gombokkal ellátott appot csinál belőle."
+    },
+    {
+     "cs": "Informační systém: kdo smí co. V třídní appce na výlet vidí každý, kolik kdo zaplatil? Smí kdokoli smazat seznam? Nebo jen učitelka? O tom rozhoduje návrh, ne náhoda.",
+     "en": "Information system: who may do what. In the class app for the school trip, can everyone see how much each person paid? Can anyone delete the list? Or only the teacher? That is decided by the design, not by chance.",
+     "sk": "Informačný systém: kto smie čo. V triednej apke na výlet vidí každý, koľko kto zaplatil? Smie ktokoľvek zmazať zoznam? Alebo len pani učiteľka? O tom rozhoduje návrh, nie náhoda.",
+     "hu": "Információs rendszer: ki mit tehet. Az osztálykirándulás appjában mindenki látja, ki mennyit fizetett? Bárki törölheti a listát? Vagy csak a tanárnő? Erről a terv dönt, nem a véletlen."
+    },
+    {
+     "cs": "Z dat informace. Kroková appka ti ukáže graf: ve čtvrtek jako by ses skoro nehnul. Vypadá to jako propad. Je to ale opravdu tak?",
+     "en": "From data to information. A step-counting app shows you a graph: on Thursday it looks as if you hardly moved. It looks like a slump. But is that really so?",
+     "sk": "Z dát informácia. Kroková apka ti ukáže graf: vo štvrtok akoby si sa skoro nepohol. Vyzerá to ako prepad. Je to však naozaj tak?",
+     "hu": "Adatokból információ. A lépésszámláló app mutat egy grafikont: csütörtökön mintha alig mozdultál volna. Visszaesésnek tűnik. De tényleg az?"
+    },
+    {
+     "cs": "Uvnitř zařízení. Píšeš v appce dlouhý referát, odskočíš na chvíli do hry a po návratu je appka prázdná. Mobil ji zavřel. Kam se poděl tvůj text?",
+     "en": "Inside a device. You are writing a long report in an app, pop over to a game for a moment, and when you come back the app is empty. The phone closed it. Where did your text go?",
+     "sk": "Vnútri zariadenia. Píšeš v apke dlhý referát, odskočíš na chvíľu do hry a po návrate je apka prázdna. Mobil ju zavrel. Kam sa podel tvoj text?",
+     "hu": "Egy eszköz belsejében. Hosszú beszámolót írsz egy appban, egy pillanatra átugrasz egy játékba, és mire visszatérsz, az app üres. A mobil bezárta. Hová lett a szöveged?"
+    },
+    {
+     "cs": "Cloud je cizí počítač. Známky v Bakalářích vidíš stejné na mobilu i na počítači. Nejsou totiž ani v jednom z nich.",
+     "en": "The cloud is someone else's computer. Your marks in the school app look the same on your phone and on a computer. That is because they aren’t on either of them.",
+     "sk": "Cloud je cudzí počítač. Známky v EduPage vidíš rovnaké na mobile aj na počítači. Nie sú totiž ani v jednom z nich.",
+     "hu": "A felhő valaki más számítógépe. A jegyeidet a KRÉTÁ-ban ugyanúgy látod a mobilon és a számítógépen. Mert valójában egyiken sincsenek rajta."
+    },
+    {
+     "cs": "Ověřuj a rozhoduj ty. „Vytvoř kvízovou appku o vesmíru: deset otázek, body a vyhodnocení.“ Za minutu ji máš a vypadá hotově. Je ale opravdu hotová?",
+     "en": "Check it, and you decide. “Create a quiz app about space: ten questions, points and a result.” A minute later you have it, and it looks finished. But is it really finished?",
+     "sk": "Overuj a rozhoduj ty. „Vytvor kvízovú apku o vesmíre: desať otázok, body a vyhodnotenie.“ O minútu ju máš a vyzerá hotovo. Je však naozaj hotová?",
+     "hu": "Ellenőrizz, és te dönts. „Készíts egy kvízappot az űrről: tíz kérdés, pontok és kiértékelés.” Egy perc múlva megvan, és késznek látszik. De tényleg kész?"
+    },
+    {
+     "cs": "Ochrana zařízení. Stáhneš si appku baterku. Hned při spuštění chce přístup ke kontaktům, poloze a mikrofonu. Svítit umí i bez nich. Tak proč?",
+     "en": "Protecting your devices. You download a torch app. As soon as it starts, it wants access to your contacts, your location and your microphone. It can shine without them. So why?",
+     "sk": "Ochrana zariadení. Stiahneš si apku baterku. Hneď pri spustení chce prístup ku kontaktom, polohe a mikrofónu. Svietiť vie aj bez nich. Tak prečo?",
+     "hu": "Az eszközök védelme. Letöltesz egy zseblámpa appot. Rögtön indításkor hozzáférést kér a névjegyeidhez, a helyadataidhoz és a mikrofonhoz. Világítani nélkülük is tud. Akkor miért?"
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Popiš appku pro třídu. Jak přesně spočítá, kdo komu kolik dluží? Na jaké obrazovky ji rozložíš a co postavíš jako první? Jaké stavy má a jak otestuješ, že se nezasekne? Jaká data bude držet a kdo z třídy smí co vidět a měnit? Co poběží v mobilu a co na serveru? A když ti kód napíše AI, jak ověříš, že dělá jen to, co má?",
+     "en": "Describe the app for your class. How exactly will it work out who owes whom how much? Which screens will you break it into, and what will you build first? What states does it have, and how will you test that it doesn’t get stuck? What data will it keep, and who in the class may see and change what? What will run on the phone and what on the server? And if AI writes the code for you, how will you check that it does only what it should?",
+     "sk": "Opíš apku pre triedu. Ako presne vypočíta, kto komu koľko dlhuje? Na aké obrazovky ju rozložíš a čo postavíš ako prvé? Aké stavy má a ako otestuješ, že sa nezasekne? Aké dáta bude držať a kto z triedy smie čo vidieť a meniť? Čo pobeží v mobile a čo na serveri? A keď ti kód napíše AI, ako overíš, že robí len to, čo má?",
+     "hu": "Írd le az osztály appját. Pontosan hogyan számolja ki, ki kinek mennyivel tartozik? Milyen képernyőkre bontod, és mit építesz meg elsőként? Milyen állapotai vannak, és hogyan teszteled, hogy nem akad el? Milyen adatokat tárol, és az osztályból ki mit láthat és módosíthat? Mi fut a mobilon, és mi a szerveren? És ha az MI írja meg neked a kódot, hogyan ellenőrzöd, hogy csak azt csinálja, amit kell?"
+    },
+    "hints": [
+     {
+      "cs": "přesný postup",
+      "en": "an exact method",
+      "sk": "presný postup",
+      "hu": "pontos eljárás"
+     },
+     {
+      "cs": "rozklad na obrazovky",
+      "en": "breaking it into screens",
+      "sk": "rozklad na obrazovky",
+      "hu": "képernyőkre bontás"
+     },
+     {
+      "cs": "stavy a testy",
+      "en": "states and tests",
+      "sk": "stavy a testy",
+      "hu": "állapotok és tesztek"
+     },
+     {
+      "cs": "tabulka a role",
+      "en": "spreadsheet and roles",
+      "sk": "tabuľka a roly",
+      "hu": "táblázat és szerepek"
+     },
+     {
+      "cs": "frontend a backend",
+      "en": "frontend and backend",
+      "sk": "frontend a backend",
+      "hu": "frontend és backend"
+     },
+     {
+      "cs": "ověření kódu od AI",
+      "en": "checking code from AI",
+      "sk": "overenie kódu od AI",
+      "hu": "az MI kódjának ellenőrzése"
+     }
+    ]
+   },
+   "branches": {}
+  },
+  {
+   "id": "svet-tvorba",
+   "title": {
+    "cs": "Natoč video s AI",
+    "en": "Make a video with AI",
+    "sk": "Natoč video s AI",
+    "hu": "Forgass videót MI-vel"
+   },
+   "icon": "🎨",
+   "difficulty": "Intermediate",
+   "story": {
+    "cs": "Škola chystá den otevřených dveří a chce krátké video, které pozve budoucí šesťáky. Natočit ho máš ty, s pomocí AI na obrázky, hudbu a titulky. Projdi svět tvorby a navrhni video, které zaujme, nelže a přizná, co dělala AI.",
+    "en": "Your school is getting ready for its open day and wants a short video to invite next year’s new pupils. You are the one making it, with AI helping with pictures, music and captions. Go through the world of creating and design a video that grabs attention, doesn’t lie and says what the AI did.",
+    "sk": "Škola chystá deň otvorených dverí a chce krátke video, ktoré pozve budúcich piatakov. Natočiť ho máš ty, s pomocou AI na obrázky, hudbu a titulky. Prejdi svet tvorby a navrhni video, ktoré zaujme, neklame a prizná, čo robila AI.",
+    "hu": "Az iskola nyílt napra készül, és rövid videót szeretne, amely meghívja a leendő ötödikeseket. Neked kell elkészítened, az MI segítségével a képekhez, a zenéhez és a feliratokhoz. Járd végig az alkotás világát, és tervezz olyan videót, amely megfogja a nézőt, nem hazudik, és bevallja, mit csinált az MI."
+   },
+   "goal": {
+    "cs": "Navrhnout krátké video s AI: vizuální jazyk, prompty, velikost souboru, kde AI běží, kontrola výsledku a přiznání AI",
+    "en": "Design a short video with AI: visual language, prompts, file size, where the AI runs, checking the result and disclosing the AI",
+    "sk": "Navrhnúť krátke video s AI: vizuálny jazyk, prompty, veľkosť súboru, kde AI beží, kontrola výsledku a priznanie AI",
+    "hu": "Rövid videót tervezni MI-vel: vizuális nyelv, promptok, fájlméret, hol fut az MI, az eredmény ellenőrzése és az MI bevallása"
+   },
+   "reward": {
+    "title": {
+     "cs": "Tvůrce s AI",
+     "en": "AI Creator",
+     "sk": "Tvorca s AI",
+     "hu": "MI-alkotó"
+    },
+    "xp": 30
+   },
+   "core": [
+    "svet-tvorba-abstrakce-a-model",
+    "svet-tvorba-kodovani",
+    "svet-tvorba-uvnitr-zarizeni",
+    "svet-tvorba-cloud-a-server",
+    "svet-tvorba-ai-se-uci-z-dat",
+    "svet-tvorba-generativni-model",
+    "svet-tvorba-doporucovac",
+    "svet-tvorba-rozhodujes-ty"
+   ],
+   "intros": [
+    {
+     "cs": "Model: užitečné zjednodušení. Na dveřích záchodu není fotka člověka. Je tam panáček z kolečka a pár čar. A pozná ho každý na světě.",
+     "en": "Model: a useful simplification. There is no photo of a person on a toilet door. There is a little figure made of a circle and a few lines. And everyone in the world knows what it means.",
+     "sk": "Model: užitočné zjednodušenie. Na dverách záchoda nie je fotka človeka. Je tam panáčik z krúžku a pár čiar. A spozná ho každý na svete.",
+     "hu": "Modell: hasznos egyszerűsítés. A mosdó ajtaján nincs fénykép egy emberről. Egy körből és néhány vonalból álló figura van rajta. És a világon mindenki felismeri."
+    },
+    {
+     "cs": "Všechno jsou čísla. Natočíš mobilem minutu videa ve 4K a zabere stovky megabajtů. Tutéž minutu pošleš přes chat a dorazí za pár vteřin. Kam se poděla ta čísla?",
+     "en": "Everything is numbers. You film a minute of 4K video on your phone, and it takes up hundreds of megabytes. You send the same minute over chat, and it arrives in a few seconds. Where did all those numbers go?",
+     "sk": "Všetko sú čísla. Natočíš mobilom minútu videa v 4K a zaberie stovky megabajtov. Tú istú minútu pošleš cez chat a dorazí za pár sekúnd. Kam sa podeli tie čísla?",
+     "hu": "Minden szám. Felveszel a mobiloddal egy perc 4K videót, és több száz megabájtot foglal. Ugyanezt a percet elküldöd chaten, és pár másodperc alatt megérkezik. Hová lettek a számok?"
+    },
+    {
+     "cs": "Uvnitř zařízení. Na webu máš obrázek z AI za deset vteřin. Když si podobný model pustíš na školním notebooku, čekáš deset minut. Nebo nezačne vůbec.",
+     "en": "Inside a device. On the web you get an AI picture in ten seconds. When you run a similar model on a school laptop, you wait ten minutes. Or it doesn’t start at all.",
+     "sk": "Vnútri zariadenia. Na webe máš obrázok z AI za desať sekúnd. Keď si podobný model pustíš na školskom notebooku, čakáš desať minút. Alebo sa nezačne vôbec.",
+     "hu": "Egy eszköz belsejében. A weben tíz másodperc alatt megvan az MI-képed. Ha egy hasonló modellt az iskolai laptopon futtatsz, tíz percet vársz. Vagy el sem indul."
+    },
+    {
+     "cs": "Cloud je cizí počítač. Napíšeš do generátoru „moje třída na výletě v Krkonoších“ a přidáš fotku. Za chvíli je obrázek hotový. Ale kde vlastně vznikl?",
+     "en": "The cloud is someone else's computer. You type “my class on a trip to the mountains” into a generator and add a photo. A moment later the picture is ready. But where was it actually made?",
+     "sk": "Cloud je cudzí počítač. Napíšeš do generátora „moja trieda na výlete v Tatrách“ a pridáš fotku. O chvíľu je obrázok hotový. Ale kde vlastne vznikol?",
+     "hu": "A felhő valaki más számítógépe. Beírod egy generátorba, hogy „az osztályom kiránduláson a Mátrában”, és hozzáteszel egy fotót. Kis idő múlva kész a kép. De hol készült valójában?"
+    },
+    {
+     "cs": "AI se učí z příkladů. Zadáš generátoru „vědec v laboratoři“. Čtyři obrázky a čtyřikrát starší muž v bílém plášti s brýlemi. Nikdo mu to nenaprogramoval.",
+     "en": "AI learns from examples. You ask a generator for “a scientist in a laboratory”. Four pictures, and four times an older man in a white coat with glasses. Nobody programmed it to do that.",
+     "sk": "AI sa učí z príkladov. Zadáš generátoru „vedec v laboratóriu“. Štyri obrázky a štyrikrát starší muž v bielom plášti s okuliarmi. Nikto mu to nenaprogramoval.",
+     "hu": "Az MI példákból tanul. Azt kéred a generátortól: „tudós a laboratóriumban”. Négy kép, és négyszer egy idősebb férfi fehér köpenyben, szemüvegben. Senki sem programozta be neki."
+    },
+    {
+     "cs": "Generativní AI předpovídá. Kamarád zadá „pes“ a dostane obrázek jako z učebnice. Ty zadáš „štěně retrívra skáče do kaluže, západ slunce, záběr zblízka“ a máš plakát. Stejný nástroj, rozdíl je jen ve slovech.",
+     "en": "Generative AI predicts. A friend types “dog” and gets a picture like from a textbook. You type “retriever puppy jumping into a puddle, sunset, close-up” and you have a poster. The same tool; the only difference is the words.",
+     "sk": "Generatívna AI predpovedá. Kamarát zadá „pes“ a dostane obrázok ako z učebnice. Ty zadáš „šteňa retrívera skáče do mláky, západ slnka, záber zblízka“ a máš plagát. Rovnaký nástroj, rozdiel je len v slovách.",
+     "hu": "A generatív MI előre jelez. A barátod beírja, hogy „kutya”, és tankönyvbe illő képet kap. Te azt írod be, hogy „ugró retriever kölyök egy pocsolyában, naplemente, közeli”, és megvan a plakát. Ugyanaz az eszköz, a különbség csak a szavakban van."
+    },
+    {
+     "cs": "Doporučovač a tvůj feed. Nahraješ video, na kterém jsi dělal celý víkend, a vidí ho 200 lidí. Kamarádovo video o ničem vidí 200 tisíc. Kdo o tom rozhodl?",
+     "en": "The recommender and your feed. You upload a video you worked on all weekend, and 200 people see it. Your friend’s video about nothing gets seen by 200,000. Who decided that?",
+     "sk": "Odporúčač a tvoj feed. Nahráš video, na ktorom si robil celý víkend, a vidí ho 200 ľudí. Kamarátovo video o ničom vidí 200 tisíc. Kto o tom rozhodol?",
+     "hu": "Az ajánlórendszer és a hírfolyamod. Feltöltesz egy videót, amelyen az egész hétvégén dolgoztál, és 200-an látják. A barátod semmiről sem szóló videóját 200 ezren. Ki döntött erről?"
+    },
+    {
+     "cs": "Ověřuj a rozhoduj ty. Vygeneroval jsi obrázek na školní plakát a je fakt dobrý. Než ho pustíš do světa, polož si tři otázky. Stejné si dnes kladou umělci, soudy i tvůrci zákonů.",
+     "en": "Check it, and you decide. You generated a picture for a school poster, and it is really good. Before you send it out into the world, ask yourself three questions. Artists, courts and lawmakers are asking themselves the same ones today.",
+     "sk": "Overuj a rozhoduj ty. Vygeneroval si obrázok na školský plagát a je fakt dobrý. Skôr než ho pustíš do sveta, polož si tri otázky. Rovnaké si dnes kladú umelci, súdy aj tvorcovia zákonov.",
+     "hu": "Ellenőrizz, és te dönts. Generáltál egy képet az iskolai plakátra, és tényleg jó. Mielőtt kiengeded a világba, tegyél fel magadnak három kérdést. Ugyanezeket teszik fel ma maguknak a művészek, a bíróságok és a törvényhozók."
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Popiš video, které vytvoříš. Jaký vizuální jazyk zvolíš a co vynecháš? Jak napíšeš prompt na úvodní obrázek a jak výsledek zkontroluješ? Jaká klišé od generátoru čekáš a proč? Kam poletí tvoje prompty a fotky spolužáků? V jakém rozlišení video uložíš a kdo ho podle algoritmu uvidí? A jak přiznáš, co udělala AI?",
+     "en": "Describe the video you will make. What visual language will you choose, and what will you leave out? How will you write the prompt for the opening picture, and how will you check the result? What clichés do you expect from the generator, and why? Where will your prompts and your classmates’ photos go? At what resolution will you save the video, and who will the algorithm show it to? And how will you disclose what the AI did?",
+     "sk": "Opíš video, ktoré vytvoríš. Aký vizuálny jazyk zvolíš a čo vynecháš? Ako napíšeš prompt na úvodný obrázok a ako výsledok skontroluješ? Aké klišé od generátora čakáš a prečo? Kam poletia tvoje prompty a fotky spolužiakov? V akom rozlíšení video uložíš a kto ho podľa algoritmu uvidí? A ako priznáš, čo urobila AI?",
+     "hu": "Írd le a videót, amelyet elkészítesz. Milyen vizuális nyelvet választasz, és mit hagysz ki? Hogyan írod meg a promptot a nyitóképhez, és hogyan ellenőrzöd az eredményt? Milyen kliséket vársz a generátortól, és miért? Hová kerülnek a promptjaid és az osztálytársaid fotói? Milyen felbontásban mented el a videót, és kinek mutatja meg az algoritmus? És hogyan vallod be, mit csinált az MI?"
+    },
+    "hints": [
+     {
+      "cs": "vizuální jazyk",
+      "en": "visual language",
+      "sk": "vizuálny jazyk",
+      "hu": "vizuális nyelv"
+     },
+     {
+      "cs": "prompt a kontrola",
+      "en": "prompt and checking",
+      "sk": "prompt a kontrola",
+      "hu": "prompt és ellenőrzés"
+     },
+     {
+      "cs": "trénovací data a klišé",
+      "en": "training data and clichés",
+      "sk": "trénovacie dáta a klišé",
+      "hu": "tanítóadatok és klisék"
+     },
+     {
+      "cs": "cloud a data",
+      "en": "cloud and data",
+      "sk": "cloud a dáta",
+      "hu": "felhő és adatok"
+     },
+     {
+      "cs": "rozlišení a komprese",
+      "en": "resolution and compression",
+      "sk": "rozlíšenie a kompresia",
+      "hu": "felbontás és tömörítés"
+     },
+     {
+      "cs": "přiznání AI",
+      "en": "disclosing AI",
+      "sk": "priznanie AI",
+      "hu": "az MI bevallása"
+     }
+    ]
+   },
+   "branches": {}
+  },
+  {
+   "id": "svet-socialni",
+   "title": {
+    "cs": "Ovládni svůj feed",
+    "en": "Take control of your feed",
+    "sk": "Ovládni svoj feed",
+    "hu": "Irányítsd a hírfolyamodat"
+   },
+   "icon": "🎬",
+   "difficulty": "Intermediate",
+   "story": {
+    "cs": "Mladší sestřenice dostala první mobil a chce si založit účet na sociální síti. Rodiče se ptají tebe, protože tomu rozumíš. Projdi svět sociálních sítí a sepiš jí průvodce: jak síť funguje, co o ní ví a jak se nenechat ovládat ani okrást.",
+    "en": "Your younger cousin has got her first phone and wants to set up a social media account. Her parents are asking you, because you understand this stuff. Go through the world of social media and write her a guide: how the network works, what it knows about her, and how not to be controlled or robbed.",
+    "sk": "Mladšia sesternica dostala prvý mobil a chce si založiť účet na sociálnej sieti. Rodičia sa pýtajú teba, pretože tomu rozumieš. Prejdi svet sociálnych sietí a spíš jej sprievodcu: ako sieť funguje, čo o nej vie a ako sa nenechať ovládať ani okradnúť.",
+    "hu": "A kisebbik unokatestvéred megkapta az első mobilját, és fiókot szeretne nyitni egy közösségi oldalon. A szülei téged kérdeznek, mert értesz hozzá. Járd végig a közösségi média világát, és írj neki kalauzt: hogyan működik az oldal, mit tud róla, és hogyan ne hagyja, hogy irányítsák vagy kirabolják."
+   },
+   "goal": {
+    "cs": "Sepsat průvodce sociální sítí: feed a signály, data a statistiky, soukromí a zprávy, deepfaky, účet, podvody a stopa",
+    "en": "Write a guide to social media: the feed and signals, data and statistics, privacy and messages, deepfakes, the account, scams and the trail",
+    "sk": "Spísať sprievodcu sociálnou sieťou: feed a signály, dáta a štatistiky, súkromie a správy, deepfaky, účet, podvody a stopa",
+    "hu": "Kalauzt írni a közösségi médiához: hírfolyam és jelek, adatok és statisztikák, magánszféra és üzenetek, deepfake-ek, fiók, csalások és digitális nyom"
+   },
+   "reward": {
+    "title": {
+     "cs": "Průvodce sítěmi",
+     "en": "Social Media Guide",
+     "sk": "Sprievodca sieťami",
+     "hu": "Közösségimédia-kalauz"
+    },
+    "xp": 30
+   },
+   "core": [
+    "svet-socialni-opakovani",
+    "svet-socialni-tabulka-a-evidence",
+    "svet-socialni-informacni-system",
+    "svet-socialni-z-dat-informace",
+    "svet-socialni-sifrovani",
+    "svet-socialni-generativni-model",
+    "svet-socialni-doporucovac",
+    "svet-socialni-ucet-a-autentizace",
+    "svet-socialni-podvod-cili-na-cloveka",
+    "svet-socialni-digitalni-stopa"
+   ],
+   "intros": [
+    {
+     "cs": "Opakování (cyklus). Kniha má poslední stránku. Seriál má poslední díl. Feed nemá konec. To není náhoda. Je to cyklus, který skončit nemá.",
+     "en": "Repetition (loop). A book has a last page. A series has a last episode. A feed has no end. That is no accident. It is a loop that isn’t meant to finish.",
+     "sk": "Opakovanie (cyklus). Kniha má poslednú stranu. Seriál má poslednú časť. Feed nemá koniec. To nie je náhoda. Je to cyklus, ktorý skončiť nemá.",
+     "hu": "Ismétlés (ciklus). A könyvnek van utolsó oldala. A sorozatnak van utolsó része. A hírfolyamnak nincs vége. Ez nem véletlen. Ez egy ciklus, amelynek nem is kell véget érnie."
+    },
+    {
+     "cs": "Tabulka: data s řádem. Každá velká síť ti v EU musí na požádání dát kopii tvých dat. Přijde ti soubor s tabulkami. A v nich je tvůj život po řádcích.",
+     "en": "Table: data in order. In the EU, every big network has to give you a copy of your data if you ask. You get a file with tables. And in them is your life, row by row.",
+     "sk": "Tabuľka: dáta s poriadkom. Každá veľká sieť ti v EÚ musí na požiadanie dať kópiu tvojich dát. Príde ti súbor s tabuľkami. A v nich je tvoj život po riadkoch.",
+     "hu": "Táblázat: rendezett adatok. Az EU-ban minden nagy közösségi oldalnak kérésre ki kell adnia neked az adataid másolatát. Kapsz egy táblázatokkal teli fájlt. Bennük pedig sorról sorra az életed."
+    },
+    {
+     "cs": "Informační systém: kdo smí co. Dáš fotku do příběhu. Vidí ji tvoje parta, nebo celá škola? A co ten neznámý účet, který tě sleduje od minulého týdne?",
+     "en": "Information system: who may do what. You put a photo in your story. Does your group of friends see it, or the whole school? And what about that unknown account that has been following you since last week?",
+     "sk": "Informačný systém: kto smie čo. Dáš fotku do príbehu. Vidí ju tvoja partia, alebo celá škola? A čo ten neznámy účet, ktorý ťa sleduje od minulého týždňa?",
+     "hu": "Információs rendszer: ki mit tehet. Kiteszel egy fotót a történetedbe. A baráti társaságod látja, vagy az egész iskola? És mi a helyzet azzal az ismeretlen fiókkal, amely múlt hét óta követ?"
+    },
+    {
+     "cs": "Z dat informace. Po týdnu má tvůj kanál čísla: zhlédnutí, sledující, čas přehrávání. Hodně čísel, málo jasno. Jak z nich vytáhnout něco užitečného?",
+     "en": "From data to information. After a week your channel has numbers: views, followers, watch time. Lots of numbers, not much clarity. How do you get something useful out of them?",
+     "sk": "Z dát informácia. Po týždni má tvoj kanál čísla: pozretia, sledujúci, čas prehrávania. Veľa čísel, málo jasno. Ako z nich vytiahnuť niečo užitočné?",
+     "hu": "Adatokból információ. Egy hét után a csatornádnak vannak számai: megtekintések, követők, lejátszási idő. Sok szám, kevés világosság. Hogyan hozol ki belőlük valami hasznosat?"
+    },
+    {
+     "cs": "Šifrování: obálka místo pohlednice. Napíšeš kamarádce zprávu. Může ji kromě ní přečíst ještě někdo? Záleží na tom, kde se zpráva zamyká a kdo má klíč.",
+     "en": "Encryption: an envelope instead of a postcard. You send a friend a message. Can anyone apart from her read it? It depends on where the message gets locked and who has the key.",
+     "sk": "Šifrovanie: obálka namiesto pohľadnice. Napíšeš kamarátke správu. Môže ju okrem nej prečítať ešte niekto? Záleží na tom, kde sa správa zamyká a kto má kľúč.",
+     "hu": "Titkosítás: boríték képeslap helyett. Üzenetet írsz egy barátnődnek. Rajta kívül elolvashatja más is? Attól függ, hol zárják le az üzenetet, és kinél van a kulcs."
+    },
+    {
+     "cs": "Generativní AI předpovídá. Ve feedu se objeví video: slavný youtuber slibuje, že každému zdvojnásobí peníze. Mluví jeho hlasem, hýbe ústy, mrká. Jenže nic z toho nikdy neřekl.",
+     "en": "Generative AI predicts. A video appears in your feed: a famous YouTuber promises to double everyone’s money. It speaks in his voice, moves his mouth, blinks. But he never said any of it.",
+     "sk": "Generatívna AI predpovedá. Vo feede sa objaví video: slávny youtuber sľubuje, že každému zdvojnásobí peniaze. Hovorí jeho hlasom, hýbe ústami, žmurká. Lenže nič z toho nikdy nepovedal.",
+     "hu": "A generatív MI előre jelez. Megjelenik egy videó a hírfolyamodban: egy híres youtuber megígéri, hogy mindenkinek megduplázza a pénzét. Az ő hangján beszél, mozog a szája, pislog. Csakhogy ebből soha semmit nem mondott."
+    },
+    {
+     "cs": "Doporučovač a tvůj feed. Třikrát se zastavíš u videa s pejskem. Druhý den máš feed plný pejsků. Nikomu jsi neřekl, že je máš rád. Appka to poznala sama.",
+     "en": "The recommender and your feed. Three times you stop at a video with a puppy. The next day your feed is full of puppies. You never told anyone you like them. The app worked it out by itself.",
+     "sk": "Odporúčač a tvoj feed. Trikrát sa zastavíš pri videu so psíkom. Na druhý deň máš feed plný psíkov. Nikomu si nepovedal, že ich máš rád. Appka to spoznala sama.",
+     "hu": "Az ajánlórendszer és a hírfolyamod. Háromszor megállsz egy kiskutyás videónál. Másnap tele van a hírfolyamod kiskutyákkal. Senkinek sem mondtad, hogy szereted őket. Az app magától rájött."
+    },
+    {
+     "cs": "Účet a heslo. Kamarádce v noci někdo převzal účet. Změnil heslo, e-mail i jméno a teď z jejího profilu píše všem, ať mu pošlou kód, který jim přijde.",
+     "en": "Account and password. Someone took over your friend’s account during the night. They changed the password, the email and the name, and now from her profile they are messaging everyone to send them the code they are about to receive.",
+     "sk": "Účet a heslo. Kamarátke v noci niekto prevzal účet. Zmenil heslo, e-mail aj meno a teraz z jej profilu píše všetkým, nech mu pošlú kód, ktorý im príde.",
+     "hu": "Fiók és jelszó. Valaki éjszaka átvette a barátnőd fiókját. Megváltoztatta a jelszót, az e-mail-címet és a nevet, és most a profiljáról mindenkinek azt írja, hogy küldjék el neki a kódot, amelyet kapni fognak."
+    },
+    {
+     "cs": "Podvod cílí na člověka. „Gratulujeme, vyhrál jsi iPhone! Stačí zaplatit poštovné 49 Kč do 24 hodin.“ Píše účet, který vypadá jako oficiální profil obchodu: logo, fotky, tisíce sledujících.",
+     "en": "Scams target people. “Congratulations, you’ve won an iPhone! Just pay €2 postage within 24 hours.” The message comes from an account that looks like a shop’s official profile: logo, photos, thousands of followers.",
+     "sk": "Podvod mieri na človeka. „Gratulujeme, vyhral si iPhone! Stačí zaplatiť poštovné 2 € do 24 hodín.“ Píše účet, ktorý vyzerá ako oficiálny profil obchodu: logo, fotky, tisíce sledujúcich.",
+     "hu": "A csalás az embert célozza. „Gratulálunk, nyertél egy iPhone-t! Csak 990 Ft postaköltséget kell fizetned 24 órán belül.” Olyan fiók írja, amely egy bolt hivatalos profiljának látszik: logó, fotók, több ezer követő."
+    },
+    {
+     "cs": "Digitální stopa. Fotka z balkonu: západ slunce, nic zvláštního. Kdo se ale podívá pozorně, zjistí, kde bydlíš, do které školy chodíš a kdy nejsi doma.",
+     "en": "Digital footprint. A photo from your balcony: a sunset, nothing special. But anyone who looks carefully will find out where you live, which school you go to and when you are not at home.",
+     "sk": "Digitálna stopa. Fotka z balkóna: západ slnka, nič zvláštne. Kto sa však pozrie pozorne, zistí, kde bývaš, do ktorej školy chodíš a kedy nie si doma.",
+     "hu": "Digitális lábnyom. Egy fotó az erkélyről: naplemente, semmi különös. Aki azonban figyelmesen megnézi, megtudja, hol laksz, melyik iskolába jársz, és mikor nem vagy otthon."
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Napiš sestřenici průvodce. Proč jí feed ukazuje to, co ukazuje, a proč nikdy neskončí? Co o ní síť eviduje a jak se to dozví? Jak si nastaví, kdo vidí její příspěvky, a kdo může číst její zprávy? Jak ochrání účet a jak pozná falešnou soutěž nebo deepfake? A co by na fotku nikdy nedávala?",
+     "en": "Write your cousin a guide. Why does the feed show her what it shows, and why does it never end? What does the network keep on record about her, and how does it find it out? How will she set who sees her posts, and who can read her messages? How will she protect her account, and how will she spot a fake competition or a deepfake? And what would she never put in a photo?",
+     "sk": "Napíš sesternici sprievodcu. Prečo jej feed ukazuje to, čo ukazuje, a prečo nikdy neskončí? Čo o nej sieť eviduje a ako sa to dozvie? Ako si nastaví, kto vidí jej príspevky, a kto môže čítať jej správy? Ako ochráni účet a ako spozná falošnú súťaž alebo deepfake? A čo by na fotku nikdy nedávala?",
+     "hu": "Írj kalauzt az unokatestvérednek. Miért azt mutatja neki a hírfolyam, amit mutat, és miért nem ér soha véget? Mit tart róla nyilván az oldal, és honnan tudja meg? Hogyan állítja be, ki látja a bejegyzéseit, és ki olvashatja az üzeneteit? Hogyan védi meg a fiókját, és hogyan ismeri fel a hamis nyereményjátékot vagy a deepfake-et? És mit nem tenne soha egy fotóra?"
+    },
+    "hints": [
+     {
+      "cs": "signály a bublina",
+      "en": "signals and the bubble",
+      "sk": "signály a bublina",
+      "hu": "jelek és buborék"
+     },
+     {
+      "cs": "nekonečný scroll",
+      "en": "infinite scroll",
+      "sk": "nekonečný scroll",
+      "hu": "végtelen görgetés"
+     },
+     {
+      "cs": "kdo vidí příspěvek",
+      "en": "who sees a post",
+      "sk": "kto vidí príspevok",
+      "hu": "ki látja a bejegyzést"
+     },
+     {
+      "cs": "heslo a 2FA",
+      "en": "password and 2FA",
+      "sk": "heslo a 2FA",
+      "hu": "jelszó és 2FA"
+     },
+     {
+      "cs": "podvod a deepfake",
+      "en": "scams and deepfakes",
+      "sk": "podvod a deepfake",
+      "hu": "csalás és deepfake"
+     },
+     {
+      "cs": "digitální stopa",
+      "en": "digital footprint",
+      "sk": "digitálna stopa",
+      "hu": "digitális nyom"
+     }
+    ]
+   },
+   "branches": {}
+  },
+  {
    "id": "tvurce",
    "title": {
     "cs": "Postav a sdílej",
@@ -1111,70 +1735,70 @@
    },
    "prerequisite": 2,
    "core": [
-    "ch8-jak-funguje-web",
-    "ch8-html",
-    "ch8-css",
-    "ch9-vibecoding",
-    "ch9-ai-nastroje-pro-tvorbu",
-    "ch10-etika-autorstvi-a-oznacovani"
+    "svet-weby-abstrakce-a-model",
+    "svet-weby-program",
+    "svet-aplikace-rozhodujes-ty",
+    "svet-tvorba-generativni-model",
+    "svet-weby-cloud-a-server",
+    "svet-tvorba-rozhodujes-ty"
    ],
    "intros": [
     {
-     "cs": "Než něco postavíš, pochop, jak to funguje: co se stane, když někdo zadá adresu tvého webu?",
-     "en": "Before you build something, understand how it works: what happens when someone types in the address of your website?",
-     "sk": "Skôr než niečo postavíš, pochop, ako to funguje: čo sa stane, keď niekto zadá adresu tvojho webu?",
-     "hu": "Mielőtt bármit építesz, értsd meg, hogyan működik: mi történik, amikor valaki beírja a weboldalad címét?"
+     "cs": "Než něco postavíš, nakresli to: náčrt stránky a mapa webu ti řeknou, co kde bude.",
+     "en": "Before you build something, draw it: a page sketch and a site map tell you what goes where.",
+     "sk": "Skôr než niečo postavíš, nakresli to: náčrt stránky a mapa webu ti povedia, čo bude kde.",
+     "hu": "Mielőtt bármit építesz, rajzold le: az oldal vázlata és az oldaltérkép megmondja, mi hova kerül."
     },
     {
-     "cs": "HTML je kostra stránky: nadpisy, odstavce, obrázky, odkazy.",
-     "en": "HTML is the skeleton of a page: headings, paragraphs, images, links.",
-     "sk": "HTML je kostra stránky: nadpisy, odseky, obrázky, odkazy.",
-     "hu": "A HTML az oldal váza: címsorok, bekezdések, képek, hivatkozások."
+     "cs": "Tři jazyky jedné stránky: HTML je kostra, CSS vzhled a JavaScript chování.",
+     "en": "Three languages of one page: HTML is the skeleton, CSS the look and JavaScript the behaviour.",
+     "sk": "Tri jazyky jednej stránky: HTML je kostra, CSS vzhľad a JavaScript správanie.",
+     "hu": "Egy oldal három nyelve: a HTML a váz, a CSS a kinézet, a JavaScript a viselkedés."
     },
     {
-     "cs": "CSS je styl: barvy, písma, rozložení. Stejná kostra, tisíc podob.",
-     "en": "CSS is the style: colours, fonts, layout. The same skeleton, a thousand looks.",
-     "sk": "CSS je štýl: farby, písma, rozloženie. Rovnaká kostra, tisíc podôb.",
-     "hu": "A CSS a stílus: színek, betűk, elrendezés. Ugyanaz a váz, ezerféle kinézet."
+     "cs": "Teď zrychlíš: popiš AI, co chceš, a pak pečlivě ověř, co ti vrátila. Za výsledek ručíš ty.",
+     "en": "Now speed up: describe to the AI what you want, then check carefully what it gave you back. You answer for the result.",
+     "sk": "Teraz zrýchliš: opíš AI, čo chceš, a potom starostlivo over, čo ti vrátila. Za výsledok ručíš ty.",
+     "hu": "Most gyorsítasz: írd le az MI-nek, mit szeretnél, aztán gondosan ellenőrizd, mit adott vissza. Az eredményért te felelsz."
     },
     {
-     "cs": "Teď zrychlíme: popiš AI, co chceš, a pozorně čti, co ti vrátila. Vibecoding.",
-     "en": "Now let's speed up: tell the AI what you want and read carefully what it gives you back. Vibecoding.",
-     "sk": "Teraz zrýchlime: opíš AI, čo chceš, a pozorne čítaj, čo ti vrátila. Vibecoding.",
-     "hu": "Most gyorsítunk: írd le az MI-nek, mit szeretnél, és figyelmesen olvasd el, mit adott vissza. Vibecoding."
+     "cs": "Web potřebuje obrázky. S AI je máš za chvíli, jen musíš umět popsat, co chceš, a najít chyby.",
+     "en": "A website needs pictures. With AI you have them in no time, you just have to describe what you want and spot the mistakes.",
+     "sk": "Web potrebuje obrázky. S AI ich máš za chvíľu, len musíš vedieť opísať, čo chceš, a nájsť chyby.",
+     "hu": "A weboldalnak képek kellenek. MI-vel pillanatok alatt megvannak, csak le kell tudnod írni, mit szeretnél, és meg kell találnod a hibákat."
     },
     {
-     "cs": "AI nástrojů pro tvorbu je spousta. Který se hodí na co?",
-     "en": "There are lots of AI tools for creating. Which one is good for what?",
-     "sk": "AI nástrojov na tvorbu je veľa. Ktorý sa hodí na čo?",
-     "hu": "Rengeteg MI-eszköz van az alkotáshoz. Melyik mire jó?"
+     "cs": "Stránka zatím žije jen u tebe. Hosting a doména ji pustí do světa.",
+     "en": "So far the page lives only on your computer. Hosting and a domain let it out into the world.",
+     "sk": "Stránka zatiaľ žije len u teba. Hosting a doména ju pustia do sveta.",
+     "hu": "Az oldal egyelőre csak nálad él. A tárhely és a domain kiengedi a világba."
     },
     {
-     "cs": "A než web pustíš do světa: čí je to dílo? Co přiznáš a jak?",
-     "en": "And before you send your site out into the world: whose work is it? What do you own up to, and how?",
-     "sk": "A skôr než web pustíš do sveta: čie je to dielo? Čo priznáš a ako?",
-     "hu": "És mielőtt kiengednéd a weboldalt a világba: kié a mű? Mit vállalsz fel, és hogyan?"
+     "cs": "A než web zveřejníš: čí je to dílo a jak přiznáš, s čím pomohla AI?",
+     "en": "And before you publish the site: whose work is it, and how do you say what AI helped with?",
+     "sk": "A skôr než web zverejníš: čie je to dielo a ako priznáš, s čím pomohla AI?",
+     "hu": "És mielőtt közzéteszed a weboldalt: kié a mű, és hogyan vallod be, miben segített az MI?"
     }
    ],
    "boss": {
     "q": {
-     "cs": "Popiš cestu školního webu od nápadu k publikované stránce: co tvoří HTML a co CSS, s čím pomůže AI, jak její výstup ověříš a co uvedeš o použití AI. Zmiň i to, jak se stránka dostane na internet.",
-     "en": "Describe the journey of a school website from the idea to a published page: what HTML does and what CSS does, what AI helps with, how you check its output and what you say about using AI. Also mention how the page gets onto the internet.",
-     "sk": "Opíš cestu školského webu od nápadu k zverejnenej stránke: čo tvorí HTML a čo CSS, s čím pomôže AI, ako jej výstup overíš a čo uvedieš o použití AI. Spomeň aj to, ako sa stránka dostane na internet.",
-     "hu": "Írd le egy iskolai weboldal útját az ötlettől a közzétett oldalig: mit csinál a HTML és mit a CSS, miben segít az MI, hogyan ellenőrzöd a kimenetét, és mit írsz az MI használatáról. Azt is említsd meg, hogyan kerül fel az oldal az internetre."
+     "cs": "Popiš cestu školního webu od nápadu k publikované stránce: jak vypadá jeho náčrt, co tvoří HTML a co CSS, s čím pomůže AI a jak její výstup ověříš, odkud budou obrázky a co o nich uvedeš. Zmiň i to, jak se stránka dostane na internet.",
+     "en": "Describe the journey of a school website from the idea to a published page: what its sketch looks like, what HTML does and what CSS does, what AI helps with and how you check its output, where the pictures come from and what you say about them. Also mention how the page gets onto the internet.",
+     "sk": "Opíš cestu školského webu od nápadu k zverejnenej stránke: ako vyzerá jeho náčrt, čo tvorí HTML a čo CSS, s čím pomôže AI a ako jej výstup overíš, odkiaľ budú obrázky a čo o nich uvedieš. Spomeň aj to, ako sa stránka dostane na internet.",
+     "hu": "Írd le egy iskolai weboldal útját az ötlettől a közzétett oldalig: hogyan néz ki a vázlata, mit csinál a HTML és mit a CSS, miben segít az MI és hogyan ellenőrzöd a kimenetét, honnan lesznek a képek és mit írsz róluk. Azt is említsd meg, hogyan kerül fel az oldal az internetre."
     },
     "hints": [
      {
-      "cs": "struktura",
-      "en": "structure",
-      "sk": "štruktúra",
-      "hu": "szerkezet"
+      "cs": "náčrt",
+      "en": "sketch",
+      "sk": "náčrt",
+      "hu": "vázlat"
      },
      {
-      "cs": "styl",
-      "en": "style",
-      "sk": "štýl",
-      "hu": "stílus"
+      "cs": "struktura a styl",
+      "en": "structure and style",
+      "sk": "štruktúra a štýl",
+      "hu": "szerkezet és stílus"
      },
      "prompt",
      {
@@ -1200,13 +1824,13 @@
    "branches": {
     "explorer": {
      "label": {
-      "cs": "Doména a hosting",
-      "en": "Domain and hosting",
-      "sk": "Doména a hosting",
-      "hu": "Domain és tárhely"
+      "cs": "Co se stane, když zmáčkneš Enter",
+      "en": "What happens when you press Enter",
+      "sk": "Čo sa stane, keď stlačíš Enter",
+      "hu": "Mi történik, amikor megnyomod az Entert"
      },
      "blocks": [
-      "ch8-domena-a-hosting"
+      "svet-weby-cesta-dat"
      ]
     },
     "creator": {
@@ -1217,19 +1841,20 @@
       "hu": "Adj hozzá interaktivitást"
      },
      "blocks": [
-      "ch8-interaktivita-javascript",
+      "svet-aplikace-promenna",
       "svet-hry"
      ]
     },
     "thinker": {
      "label": {
-      "cs": "Logika aplikace",
-      "en": "App logic",
-      "sk": "Logika aplikácie",
-      "hu": "Az alkalmazás logikája"
+      "cs": "Zabezpeč to",
+      "en": "Make it secure",
+      "sk": "Zabezpeč to",
+      "hu": "Tedd biztonságossá"
      },
      "blocks": [
-      "ch9-logika-aplikace"
+      "svet-weby-sifrovani",
+      "svet-weby-digitalni-stopa"
      ]
     }
    }

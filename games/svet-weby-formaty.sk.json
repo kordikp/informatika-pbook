@@ -1,0 +1,34 @@
+{
+  "type": "pairs",
+  "title": "Ktorý formát na web?",
+  "instruction": "Na web krúžku dávaš text a obrázky. Ku každému nájdi formát alebo kódovanie, ktoré sa hodí najlepšie.",
+  "debrief": "Fotky komprimuj, ostrý text ukladaj bez straty a ikony kresli ako tvary. Správny formát ušetrí megabajty.",
+  "choices": 4,
+  "pairs": [
+    {
+      "a": "JPG",
+      "b": "Fotka zo sústredenia na pozadí stránky",
+      "why": "Fotka znesie kompresiu. Oko vynechané detaily nespozná a súbor je oveľa menší."
+    },
+    {
+      "a": "PNG",
+      "b": "Snímka obrazovky s drobným textom chyby",
+      "why": "Kompresia by text rozmazala. PNG nič nevynechá."
+    },
+    {
+      "a": "SVG",
+      "b": "Ikona domčeka v menu, ostrá na mobile aj na veľkom monitore",
+      "why": "SVG je opis tvarov, takže je ostré v každej veľkosti."
+    },
+    {
+      "a": "UTF-8",
+      "b": "Text stránky s mäkčeňmi, dĺžňami a emoji",
+      "why": "UTF-8 má číslo pre každé písmeno sveta aj pre emoji."
+    },
+    {
+      "a": "WebP",
+      "b": "Galéria dvadsiatich fotiek, ktorá sa má rýchlo načítať na mobile",
+      "why": "WebP fotky komprimuje ešte úspornejšie ako JPG."
+    }
+  ]
+}

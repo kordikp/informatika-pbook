@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Jak vzniká generátor obrázků",
+  "instruction": "Seřaď kroky od hromady obrázků po generátor, kterému se dá věřit.",
+  "steps": [
+    "Sesbírat obrázky s popisky",
+    "Trénovat: model hledá vzory mezi obrázky a slovy",
+    "Otestovat model na obrázcích, které při trénování neviděl",
+    "Pustit generátor k lidem",
+    "Sledovat chyby a klišé a doplnit data, která chyběla"
+  ],
+  "debrief": "Model se naučí, co je v datech. Proto se testuje na obrázcích, které neviděl, a sleduje se, kde chybuje nebo opakuje klišé.",
+  "why": [
+    "Bez příkladů se model nemá z čeho učit.",
+    "Vzory hledá v datech, která dostal.",
+    "Jen nová data ukážou, jestli se nenaučil nazpaměť.",
+    "K lidem až po testu.",
+    "Klišé a díry v datech se ukážou až při používání. Oprava znamená lepší data."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "What gives a scam video away?",
+  "instruction": "In your feed there is a video of a celebrity giving money away. Mark the warning signs.",
+  "hitLabel": "warning sign",
+  "missLabel": "proves nothing",
+  "debrief": "A lifelike voice and lots of likes prove nothing; deepfakes can do those too. What warns you is money, hurry and the fact that the video isn’t on the official account.",
+  "items": [
+    {
+      "text": "It wants you to send money first",
+      "hit": true,
+      "why": "Someone who gives things away doesn’t want anything first."
+    },
+    {
+      "text": "It isn’t on that person’s official account",
+      "hit": true,
+      "why": "A real offer would be there."
+    },
+    {
+      "text": "It pushes you to hurry: today only",
+      "hit": true,
+      "why": "The hurry is meant to stop you from checking."
+    },
+    {
+      "text": "The voice sounds exactly like that person",
+      "hit": false,
+      "why": "A cloned voice sounds exactly right too."
+    },
+    {
+      "text": "The video has thousands of likes",
+      "hit": false,
+      "why": "Likes can be bought, and scams spread even without them."
+    },
+    {
+      "text": "It promises to double your money",
+      "hit": true,
+      "why": "The classic scammer’s promise."
+    }
+  ]
+}

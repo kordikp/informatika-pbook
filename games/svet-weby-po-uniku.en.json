@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "What protects you after a leak?",
+  "instruction": "A forum where you have an account has leaked. What protects you, and what doesn’t?",
+  "buckets": [
+    "Helps",
+    "Doesn’t help"
+  ],
+  "items": [
+    {
+      "text": "A different password for every service",
+      "answer": 0,
+      "why": "Then the leaked password only opens that one forum."
+    },
+    {
+      "text": "2FA on your e-mail",
+      "answer": 0,
+      "why": "An attacker with the password doesn’t have your phone, so they can’t log in."
+    },
+    {
+      "text": "The password Minecraft2023! on every service",
+      "answer": 1,
+      "why": "One password everywhere: one leak opens everything."
+    },
+    {
+      "text": "A password manager with long random passwords",
+      "answer": 0,
+      "why": "Every password is different and none can be guessed."
+    },
+    {
+      "text": "Adding a 1 to the end of your password",
+      "answer": 1,
+      "why": "Attackers try these little changes first."
+    },
+    {
+      "text": "Changing the password only on the hacked forum and leaving it everywhere else",
+      "answer": 1,
+      "why": "On the other services the leaked one still works."
+    },
+    {
+      "text": "A password made of a sentence of several words",
+      "answer": 0,
+      "why": "A long password is hard to guess, even if the attacker knows its fingerprint."
+    }
+  ],
+  "debrief": "A leak from one service only puts at risk the accounts that have the same password. Unique passwords and 2FA stop it."
+}

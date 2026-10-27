@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Hardvér, alebo softvér?",
+  "instruction": "Staviaš si počítač na tvorbu s AI. Čo z toho je hardvér a čo softvér?",
+  "buckets": [
+    "Hardvér",
+    "Softvér"
+  ],
+  "items": [
+    {
+      "text": "Grafická karta",
+      "answer": 0,
+      "why": "Čip, ktorý si môžeš ohmatať."
+    },
+    {
+      "text": "Model na generovanie obrázkov",
+      "answer": 1,
+      "why": "Program a jeho čísla, uložený na disku."
+    },
+    {
+      "text": "Operačná pamäť 16 GB",
+      "answer": 0,
+      "why": "Fyzické pamäťové čipy."
+    },
+    {
+      "text": "Video editor",
+      "answer": 1,
+      "why": "Aplikácia, ktorá beží na počítači."
+    },
+    {
+      "text": "Operačný systém Windows",
+      "answer": 1,
+      "why": "Aj systém je program."
+    },
+    {
+      "text": "Čip na AI v mobile",
+      "answer": 0,
+      "why": "Kus kremíka vnútri mobilu."
+    },
+    {
+      "text": "Disk SSD",
+      "answer": 0,
+      "why": "Úložisko je fyzická súčiastka."
+    }
+  ],
+  "debrief": "Hardvér si ohmatáš, softvér na ňom beží. AI model je softvér, ktorý potrebuje silný hardvér."
+}

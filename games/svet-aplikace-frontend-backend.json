@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Frontend, nebo backend?",
+  "instruction": "Hudební appka a školní systém. Co dělá frontend v tvém mobilu a co backend na serveru?",
+  "buckets": [
+    "Frontend (mobil)",
+    "Backend (server)"
+  ],
+  "items": [
+    {
+      "text": "Tlačítko ▶ a animace přehrávání",
+      "answer": 0,
+      "why": "To vidíš a ovládáš na svém zařízení."
+    },
+    {
+      "text": "Databáze známek celé školy",
+      "answer": 1,
+      "why": "Data všech žáků leží na serveru."
+    },
+    {
+      "text": "Ověření, že heslo sedí",
+      "answer": 1,
+      "why": "Hesla kontroluje server, ne tvůj mobil."
+    },
+    {
+      "text": "Tmavý režim a velikost písma",
+      "answer": 0,
+      "why": "Vzhled obrazovky řeší frontend."
+    },
+    {
+      "text": "Kontrola, že známku smí zapsat jen učitel",
+      "answer": 1,
+      "why": "Pravidla pro všechny hlídá backend."
+    },
+    {
+      "text": "Doporučení písniček podle poslechu milionů lidí",
+      "answer": 1,
+      "why": "Data milionů lidí má jen server."
+    },
+    {
+      "text": "Formulář, do kterého píšeš zprávu",
+      "answer": 0,
+      "why": "Píšeš do něj na svém zařízení."
+    }
+  ],
+  "debrief": "Frontend s tebou mluví, backend drží data a pravidla pro všechny. Proto vidíš stejné známky na každém zařízení."
+}

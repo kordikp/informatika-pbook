@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Build a vote on the school trip",
+  "instruction": "You are adding a vote on the school trip to the class app. Put the parts in order so that each one comes only after what it depends on.",
+  "steps": [
+    "The teacher enters the options: the mountains, the capital, the seaside",
+    "A pupil chooses an option and sends their vote",
+    "The app saves the vote and makes sure everyone votes only once",
+    "The app counts the votes for each option",
+    "The app shows where the class is going"
+  ],
+  "debrief": "Each part stands on the one before it. Without options there is nothing to vote for, and without saved votes there is nothing to count.",
+  "why": [
+    "Without options there is nothing to vote for.",
+    "You can only vote once the options have been entered.",
+    "Only a vote that has arrived can be saved and checked.",
+    "Only saved votes can be counted.",
+    "You show the winner only when the votes have been added up."
+  ]
+}

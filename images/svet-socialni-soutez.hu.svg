@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Falešná soutěž a její varovné znaky">
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker><marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#EF4444"/></marker><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif">
+  <text x="18" y="26" font-size="17" font-weight="700" fill="#1E1B4B">Hamis nyereményjáték</text>
+  <text x="18" y="44" font-size="11" fill="#6B7280">Hivatalosnak látszik. Az leplezi le, amit akar tőled: hogy fizess, és most azonnal.</text>
+  <rect x="150" y="54" width="220" height="196" rx="14" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2"/>
+  <rect x="248.0" y="60" width="24" height="4" rx="2" fill="#9CA3AF"/>
+  <circle cx="176" cy="84" r="12" fill="#D97706"/>
+  <text x="194" y="82" font-size="10" font-weight="700" fill="#1E1B4B">@iphone.nyeremeny.hu</text>
+  <text x="194" y="95" font-size="8" fill="#6B7280">a profil múlt héten készült</text>
+  <rect x="162" y="104" width="196" height="64" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="170" y="120" font-size="9" font-weight="700" fill="#1E1B4B">🎉 Gratulálunk, nyertél egy iPhone-t!</text>
+  <text x="170" y="136" font-size="9" fill="#1E1B4B">Fizess 990 Ft postaköltséget</text>
+  <text x="170" y="150" font-size="9" fill="#1E1B4B">24 órán belül, különben oda a nyeremény.</text>
+  <rect x="162" y="176" width="196" height="24" rx="12" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+  <text x="260" y="192" font-size="10" font-weight="700" fill="#0EA5E9" text-anchor="middle">👉 fizetés kártyával</text>
+  <text x="260" y="222" font-size="10" fill="#6B7280" text-anchor="middle">♥ 2 418   💬 312</text>
+  <text x="18" y="84" font-size="10" font-weight="700" fill="#EF4444">új profil</text>
+  <line x1="86" y1="80" x2="160" y2="88" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="18" y="128" font-size="10" font-weight="700" fill="#EF4444">jutalom</text>
+  <line x1="57" y1="124" x2="166" y2="120" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="18" y="160" font-size="10" font-weight="700" fill="#EF4444">sietség és félelem</text>
+  <line x1="103" y1="156" x2="166" y2="146" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="502" y="150" font-size="10" font-weight="700" fill="#EF4444" text-anchor="end">kártyás fizetést kér</text>
+  <line x1="394" y1="146" x2="360" y2="188" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="502" y="236" font-size="10" font-weight="700" fill="#EF4444" text-anchor="end">a lájk nem bizonyít</text>
+  <line x1="382" y1="232" x2="330" y2="224" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  </g>
+</svg>

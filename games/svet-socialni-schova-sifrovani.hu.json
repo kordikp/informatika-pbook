@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Elrejti ezt a titkosítás?",
+  "instruction": "Egy barátnőddel levelezel. Mit rejt el a titkosítás, és mit nem?",
+  "buckets": [
+    "Elrejti",
+    "Nem rejti el"
+  ],
+  "items": [
+    {
+      "text": "Az üzenet tartalmát az ugyanazon a nyilvános wifin lévők elől",
+      "answer": 0,
+      "why": "Ugyanazon a hálózaton csak titkosított zagyvaságot látnak."
+    },
+    {
+      "text": "A végponttól végpontig titkosított üzenetet az app szervere elől",
+      "answer": 0,
+      "why": "A szervernél nincs kulcs, csak zagyvaságot továbbít."
+    },
+    {
+      "text": "Egy képernyőképet, amelyet a barátnőd továbbküld",
+      "answer": 1,
+      "why": "Az ő mobilján az üzenet már ki van nyitva."
+    },
+    {
+      "text": "Egy nyilvános táblázat alapján számokká alakított szöveget",
+      "answer": 1,
+      "why": "Ez kódolás. Aki ismeri a táblázatot, elolvassa."
+    },
+    {
+      "text": "Egy https-en keresztül az appnak küldött jelszót",
+      "answer": 0,
+      "why": "Útközben senki sem olvassa el."
+    },
+    {
+      "text": "Egy üzenetet, amelyet valaki a válladon át olvas",
+      "answer": 1,
+      "why": "A kijelzőn az üzenet ki van nyitva."
+    }
+  ],
+  "debrief": "A titkosítás útközben megvédi az üzenetet mindenkitől, akinél nincs kulcs. Attól nem védi meg, amit a címzett csinál vele."
+}

@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Co prozradí podvodné video?",
+  "instruction": "Ve feedu je video známé osobnosti, která rozdává peníze. Označ varovné znaky.",
+  "hitLabel": "varovný znak",
+  "missLabel": "nic nedokazuje",
+  "debrief": "Věrný hlas a hodně lajků nic nedokazují, deepfake je umí taky. Varují tě peníze, spěch a to, že video není na oficiálním účtu.",
+  "items": [
+    {
+      "text": "Chce, abys poslal peníze předem",
+      "hit": true,
+      "why": "Kdo rozdává, nic předem nechce."
+    },
+    {
+      "text": "Není na oficiálním účtu toho člověka",
+      "hit": true,
+      "why": "Skutečná nabídka by byla tam."
+    },
+    {
+      "text": "Tlačí na spěch: jen dnes",
+      "hit": true,
+      "why": "Spěch má zabránit tomu, aby sis to ověřil."
+    },
+    {
+      "text": "Hlas zní přesně jako ten člověk",
+      "hit": false,
+      "why": "Klonovaný hlas zní taky přesně."
+    },
+    {
+      "text": "Video má tisíce lajků",
+      "hit": false,
+      "why": "Lajky se dají koupit a podvod se šíří i bez nich."
+    },
+    {
+      "text": "Slibuje, že peníze zdvojnásobí",
+      "hit": true,
+      "why": "Klasický slib podvodníků."
+    }
+  ]
+}

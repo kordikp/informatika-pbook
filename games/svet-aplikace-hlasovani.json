@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Postav hlasování o výletu",
+  "instruction": "Do třídní appky přidáváš hlasování o výletu. Seřaď části tak, aby každá přišla až po tom, na čem závisí.",
+  "steps": [
+    "Učitelka zadá možnosti: Krkonoše, Praha, Brno",
+    "Žák vybere možnost a odešle hlas",
+    "Appka hlas uloží a hlídá, aby každý hlasoval jen jednou",
+    "Appka spočítá hlasy pro každou možnost",
+    "Appka ukáže, kam se pojede"
+  ],
+  "debrief": "Každá část stojí na té předchozí. Bez možností není pro co hlasovat a bez uložených hlasů není co počítat.",
+  "why": [
+    "Bez možností není pro co hlasovat.",
+    "Hlasovat jde, až když jsou možnosti zadané.",
+    "Uložit a pohlídat jde jen hlas, který přišel.",
+    "Počítat jde jen uložené hlasy.",
+    "Vítěze ukážeš, až když jsou hlasy sečtené."
+  ]
+}

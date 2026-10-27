@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "Mi árulja el, hol laksz?",
+  "instruction": "Egy fotót készülsz közzétenni. Jelölj meg mindent, amiből egy idegen kitalálhatná, hol laksz.",
+  "hitLabel": "elárulja",
+  "missLabel": "nem árulja el",
+  "debrief": "Nem csak az árulja el a címedet, amit leírsz. Elég a fotó háttere, a metaadatok és egy helymegjelölés.",
+  "items": [
+    {
+      "text": "A név a csengőn a háttérben",
+      "hit": true,
+      "why": "Egy név és egy ház: ez szinte egy cím."
+    },
+    {
+      "text": "A GPS-helyadat a fotó metaadataiban",
+      "hit": true,
+      "why": "Annak a helynek a pontos koordinátái, ahol a fotó készült."
+    },
+    {
+      "text": "Az iskola logója a pulóvereden",
+      "hit": true,
+      "why": "Az iskola néhány utcára szűkíti a kört."
+    },
+    {
+      "text": "Fotó az égről, semmi mással",
+      "hit": false,
+      "why": "A felhők semmit sem árulnak el. Hacsak nincsenek koordináták a metaadatokban."
+    },
+    {
+      "text": "A villamos száma az ablak előtt",
+      "hit": true,
+      "why": "A vonal és a megálló megmutatja a környéket."
+    },
+    {
+      "text": "Egy rajz, amelyet te rajzoltál",
+      "hit": false,
+      "why": "A rajz nem mutat meg helyet."
+    },
+    {
+      "text": "„Otthon” helymegjelölés a bejegyzésnél",
+      "hit": true,
+      "why": "Ezt te magad árultad el."
+    }
+  ]
+}

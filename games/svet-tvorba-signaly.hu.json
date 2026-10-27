@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Segít ez az elérésnek?",
+  "instruction": "Az ajánlórendszer figyeli, mit csinálnak a nézők a videóval. Melyik viselkedés küldi tovább a videót, és melyik fékezi le?",
+  "buckets": [
+    "Továbbküldi a videót",
+    "Lefékezi"
+  ],
+  "items": [
+    {
+      "text": "Az emberek végignézik a videót",
+      "answer": 0,
+      "why": "A nézési idő a legerősebb jel."
+    },
+    {
+      "text": "A legtöbben két másodperc után átugorják",
+      "answer": 1,
+      "why": "Az átugrás azt üzeni: ez nem köti le a figyelmet."
+    },
+    {
+      "text": "Az emberek elküldik a barátaiknak",
+      "answer": 0,
+      "why": "A megosztás új nézőket hoz."
+    },
+    {
+      "text": "Újra megnézik",
+      "answer": 0,
+      "why": "Az ismételt lejátszás erős érdeklődés."
+    },
+    {
+      "text": "A Nem érdekel gombra koppintanak",
+      "answer": 1,
+      "why": "Kifejezett érdektelenség."
+    },
+    {
+      "text": "A videó alatt beindul a vita a kommentekben",
+      "answer": 0,
+      "why": "A kommentek tovább tartják az embereket a videónál, akkor is, ha veszekednek."
+    }
+  ],
+  "debrief": "Az ajánlórendszer főleg a nézési idővel számol, és azzal, mit csinálnak utána a nézők. Az átugrás számára egyértelmű jel, hogy a videó nem köti le a figyelmet."
+}

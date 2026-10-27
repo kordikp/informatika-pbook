@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Kinek adod ezt a jogot?",
+  "instruction": "A legkisebb jogosultság elve: minden jogot csak az a szerep kap meg, amelynek a munkájához szüksége van rá. Kinek melyiket adod?",
+  "buckets": [
+    "Tanuló",
+    "Pénztáros",
+    "Tanárnő"
+  ],
+  "items": [
+    {
+      "text": "Rögzíteni, hogy Éva fizetett",
+      "answer": 1,
+      "why": "A befizetéseket a pénztáros vezeti."
+    },
+    {
+      "text": "Látni a saját befizetését és a kirándulás programját",
+      "answer": 0,
+      "why": "Ennyi minden tanulónak elég."
+    },
+    {
+      "text": "Valakinek kiosztani a pénztáros szerepét",
+      "answer": 2,
+      "why": "A szerepekről az adminisztrátor dönt."
+    },
+    {
+      "text": "Megváltoztatni az indulás idejét",
+      "answer": 2,
+      "why": "A kirándulás programját a tanárnő módosítja."
+    },
+    {
+      "text": "Jelentkezni a kirándulásra",
+      "answer": 0,
+      "why": "Minden tanuló saját magát jelenti be."
+    },
+    {
+      "text": "Látni a listát arról, ki nem fizetett még",
+      "answer": 1,
+      "why": "A pénztárosnak kell, hogy beszedje a pénzt. Az osztálytársaknak nem."
+    }
+  ],
+  "debrief": "Az adminisztrátor mindent megtehet, de ez nem jelenti azt, hogy mindent neki kell csinálnia. Minden jog azé, akinek szüksége van rá, és senki másé."
+}

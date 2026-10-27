@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Ako vzniká bublina",
+  "instruction": "Zoraď, ako sa z jedného zastavenia pri videu stane feed len o jednej téme.",
+  "steps": [
+    "Zastavíš sa pri videu so psíkom",
+    "Appka zaznamená dlhý čas sledovania",
+    "Ponúkne viac psíkov tebe aj ľuďom s podobným vkusom",
+    "Pozeráš na ne, pretože sú práve vo feede",
+    "Feed je skoro len o psíkoch"
+  ],
+  "debrief": "Bublina vzniká zo slučky: tvoje signály → viac toho istého → viac rovnakých signálov. Rozbiješ ju len inými signálmi.",
+  "why": [
+    "Všetko začína jedným signálom.",
+    "Čas sledovania je pre odporúčač najsilnejší signál.",
+    "Podľa signálu vyberá ďalšie videá.",
+    "Tým posielaš ďalšie signály rovnakým smerom.",
+    "Slučka sa uzavrela: bublina."
+  ]
+}

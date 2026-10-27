@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Does it need that permission?",
+  "instruction": "Apps want these permissions. When does it make sense, and when is it suspicious?",
+  "buckets": [
+    "Makes sense",
+    "Suspicious"
+  ],
+  "items": [
+    {
+      "text": "Maps want your location",
+      "answer": 0,
+      "why": "Without your location they can’t navigate you."
+    },
+    {
+      "text": "A torch wants your contacts",
+      "answer": 1,
+      "why": "It doesn’t need contacts to shine."
+    },
+    {
+      "text": "A video calling app wants the camera and microphone",
+      "answer": 0,
+      "why": "A call doesn’t work without them."
+    },
+    {
+      "text": "A calculator wants to read your text messages",
+      "answer": 1,
+      "why": "A malware classic: verification codes arrive by text message."
+    },
+    {
+      "text": "A QR code scanner wants the camera",
+      "answer": 0,
+      "why": "It has to see the QR code."
+    },
+    {
+      "text": "A wallpaper app wants your location even when you aren’t using it",
+      "answer": 1,
+      "why": "A wallpaper doesn’t need to track you."
+    },
+    {
+      "text": "A game wants access to all your files",
+      "answer": 1,
+      "why": "Playing doesn’t need your documents and photos."
+    }
+  ],
+  "debrief": "A permission should fit what the app does. When it doesn’t fit, the app is most likely collecting data, or it is malware."
+}

@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "What belongs on the poster?",
+  "instruction": "A poster for the school dance has a single purpose: to make people stop and find out when and where. Mark what belongs on it.",
+  "hitLabel": "belongs on the poster",
+  "missLabel": "leave out",
+  "debrief": "A good poster is a model: it keeps only what serves the purpose. Everything else just drowns out what matters.",
+  "items": [
+    {
+      "text": "Date, time and place",
+      "hit": true,
+      "why": "This is exactly what the viewer needs to find out."
+    },
+    {
+      "text": "One striking picture",
+      "hit": true,
+      "why": "The eye lands on one main thing."
+    },
+    {
+      "text": "Five different fonts",
+      "hit": false,
+      "why": "More fonts mean chaos, not interest."
+    },
+    {
+      "text": "The evening’s programme minute by minute",
+      "hit": false,
+      "why": "Nobody reads that much text from the corridor. It belongs on the website or in a leaflet."
+    },
+    {
+      "text": "The name of the event in big letters",
+      "hit": true,
+      "why": "It has to be readable from a distance."
+    },
+    {
+      "text": "A list of everyone who helped with the decorations",
+      "hit": false,
+      "why": "A nice thank-you, but not on the poster."
+    },
+    {
+      "text": "Text in strong contrast to the background",
+      "hit": true,
+      "why": "Without contrast the text gets lost."
+    }
+  ]
+}

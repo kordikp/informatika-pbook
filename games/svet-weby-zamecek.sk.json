@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Čo zámok zaručí?",
+  "instruction": "Web má zámok a https. Čo ti to zaručí a čo nie?",
+  "buckets": [
+    "Zaručí",
+    "Nezaručí"
+  ],
+  "items": [
+    {
+      "text": "Heslo cestou k serveru nikto neprečíta",
+      "answer": 0,
+      "why": "Presne na to šifrovanie slúži."
+    },
+    {
+      "text": "Za webom je poctivá firma",
+      "answer": 1,
+      "why": "Certifikát dostane zadarmo aj podvodník."
+    },
+    {
+      "text": "Na verejnej Wi-Fi nikto nevidí, čo píšeš do formulára",
+      "answer": 0,
+      "why": "V rovnakej sieti je vidieť len šifrovanú zmes."
+    },
+    {
+      "text": "Stránka neobsahuje vírusy",
+      "answer": 1,
+      "why": "Šifrovane sa dá poslať aj škodlivý súbor."
+    },
+    {
+      "text": "Dáta cestou nikto nezmení",
+      "answer": 0,
+      "why": "Šifrovanie spozná, keby do obálky niekto siahol."
+    },
+    {
+      "text": "Web s tvojimi údajmi zaobchádza dobre",
+      "answer": 1,
+      "why": "Čo web s dátami urobí, keď mu dorazia, zámok neovplyvní."
+    }
+  ],
+  "debrief": "Zámok chráni cestu: nikto po nej tvoje dáta neprečíta ani nezmení. O poctivosti webu nehovorí nič."
+}

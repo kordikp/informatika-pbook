@@ -661,6 +661,314 @@
    }
   },
   {
+   "slug": "tvorba-webu-ai-asistovana-tvorba-webu",
+   "title": {
+    "cs": "AI-asistovaná tvorba webu",
+    "en": "AI-assisted web building",
+    "sk": "Tvorba webu s pomocou AI",
+    "hu": "MI-vel támogatott weboldalkészítés"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Nástroje jako v0, Lovable nebo Claude Artifacts vytvoří funkční stránku z pouhého popisu za pár vteřin.",
+    "en": "Tools like v0, Lovable or Claude Artifacts create a working page from a mere description in a few seconds.",
+    "sk": "Nástroje ako v0, Lovable alebo Claude Artifacts vytvoria funkčnú stránku z obyčajného opisu za pár sekúnd.",
+    "hu": "Az olyan eszközök, mint a v0, a Lovable vagy a Claude Artifacts, puszta leírásból néhány másodperc alatt működő oldalt készítenek."
+   },
+   "recallQ": {
+    "cs": "Posoudil bys kvalitu a použitelnost stránky, kterou vytvořila AI, a zdůvodní navržené úpravy?",
+    "en": "What is “AI-assisted web building”, and what is it good for?",
+    "sk": "Čo je „Tvorba webu s pomocou AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „MI-vel támogatott weboldalkészítés”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-webu-frameworky",
+   "title": {
+    "cs": "Frameworky",
+    "en": "Frameworks",
+    "sk": "Frameworky",
+    "hu": "Keretrendszerek"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "U větších webů se nepíše všechno od nuly — frameworky (React a spol.) a knihovny stylů (Tailwind) dávají hotové stavební bloky a řád.",
+    "en": "For bigger websites, not everything is written from scratch: frameworks (React and co.) and style libraries (Tailwind) provide ready-made building blocks and order.",
+    "sk": "Pri väčších weboch sa nepíše všetko od nuly: frameworky (React a spol.) a knižnice štýlov (Tailwind) dávajú hotové stavebné bloky a poriadok.",
+    "hu": "Nagyobb weboldalaknál nem írnak meg mindent a nulláról: a keretrendszerek (React és társai) és a stíluskönyvtárak (Tailwind) kész építőköveket és rendet adnak."
+   },
+   "recallQ": {
+    "cs": "Co je „Frameworky“ a k čemu se ti hodí?",
+    "en": "What is “Frameworks”, and what is it good for?",
+    "sk": "Čo je „Frameworky“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Keretrendszerek”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-webu-nasazeni-webu",
+   "title": {
+    "cs": "Nasazení webu",
+    "en": "Deploying a website",
+    "sk": "Nasadenie webu",
+    "hu": "A weboldal telepítése"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Nasazení (deployment) je krok, kdy se web z tvého počítače dostane na internet.",
+    "en": "Deployment is the step where a website gets from your computer onto the internet.",
+    "sk": "Nasadenie (deployment) je krok, keď sa web z tvojho počítača dostane na internet.",
+    "hu": "A telepítés (deployment) az a lépés, amikor a weboldal a számítógépedről felkerül az internetre."
+   },
+   "recallQ": {
+    "cs": "Co je „Nasazení webu“ a k čemu se ti hodí?",
+    "en": "What is “Deploying a website”, and what is it good for?",
+    "sk": "Čo je „Nasadenie webu“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „A weboldal telepítése”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-webu-pristupnost-a-seo",
+   "title": {
+    "cs": "Přístupnost a SEO",
+    "en": "Accessibility and SEO",
+    "sk": "Prístupnosť a SEO",
+    "hu": "Akadálymentesség és SEO"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Přístupnost (a11y) znamená udělat web použitelný i pro lidi s hendikepem (čtečky obrazovky, ovládání klávesnicí); SEO je péče o to, aby web našly vyhledávače.",
+    "en": "Accessibility (a11y) means making a website usable for people with disabilities too (screen readers, keyboard control); SEO is making sure search engines find the website.",
+    "sk": "Prístupnosť (a11y) znamená urobiť web použiteľný aj pre ľudí s hendikepom (čítačky obrazovky, ovládanie klávesnicou); SEO je starostlivosť o to, aby web našli vyhľadávače.",
+    "hu": "Az akadálymentesség (a11y) azt jelenti, hogy a weboldal fogyatékkal élő emberek számára is használható (képernyőolvasók, billentyűzetes vezérlés); a SEO arról gondoskodik, hogy a keresőmotorok megtalálják az oldalt."
+   },
+   "recallQ": {
+    "cs": "Posoudil bys přístupnost stránky pro uživatele s hendikepem a doporučí konkrétní zlepšení?",
+    "en": "What is “Accessibility and SEO”, and what is it good for?",
+    "sk": "Čo je „Prístupnosť a SEO“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Akadálymentesség és SEO”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-webu-ux-ui-a-design-webu",
+   "title": {
+    "cs": "UX/UI a design webu",
+    "en": "UX/UI and web design",
+    "sk": "UX/UI a dizajn webu",
+    "hu": "UX/UI és webdizájn"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "UI je to, jak web vypadá, UX to, jak se používá.",
+    "en": "UI is how a website looks, UX is how it's used.",
+    "sk": "UI je to, ako web vyzerá, UX to, ako sa používa.",
+    "hu": "Az UI az, ahogyan a weboldal kinéz, az UX az, ahogyan használják."
+   },
+   "recallQ": {
+    "cs": "Co je „UX/UI a design webu“ a k čemu se ti hodí?",
+    "en": "What is “UX/UI and web design”, and what is it good for?",
+    "sk": "Čo je „UX/UI a dizajn webu“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „UX/UI és webdizájn”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-aplikaci-prace-s-api-a-backendem",
+   "title": {
+    "cs": "Práce s API a backendem",
+    "en": "Working with APIs and a backend",
+    "sk": "Práca s API a backendom",
+    "hu": "Munka API-kkal és backenddel"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Aby appka uměla víc než jen zobrazovat, propojí se přes API s dalšími službami a se serverovou částí, která pracuje s daty.",
+    "en": "For an app to do more than just display things, it connects through APIs to other services and to the server side that works with the data.",
+    "sk": "Aby apka vedela viac než len zobrazovať, prepojí sa cez API s ďalšími službami a so serverovou časťou, ktorá pracuje s dátami.",
+    "hu": "Hogy az app többre legyen képes a megjelenítésnél, API-kon keresztül kapcsolódik más szolgáltatásokhoz és az adatokkal dolgozó szerveroldali részhez."
+   },
+   "recallQ": {
+    "cs": "Co je „Práce s API a backendem“ a k čemu se ti hodí?",
+    "en": "What is “Working with APIs and a backend”, and what is it good for?",
+    "sk": "Čo je „Práca s API a backendom“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Munka API-kkal és backenddel”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-aplikaci-databaze-a-autentizace",
+   "title": {
+    "cs": "Databáze a autentizace",
+    "en": "Databases and authentication",
+    "sk": "Databázy a autentifikácia",
+    "hu": "Adatbázisok és hitelesítés"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Appky si pamatují data (databáze) a musí poznat, kdo je kdo (autentizace — přihlašování).",
+    "en": "Apps remember data (a database) and have to know who is who (authentication, that is, logging in).",
+    "sk": "Apky si pamätajú dáta (databáza) a musia spoznať, kto je kto (autentifikácia, teda prihlasovanie).",
+    "hu": "Az appok megjegyzik az adatokat (adatbázis), és tudniuk kell, ki kicsoda (hitelesítés, vagyis bejelentkezés)."
+   },
+   "recallQ": {
+    "cs": "Co je „Databáze a autentizace“ a k čemu se ti hodí?",
+    "en": "What is “Databases and authentication”, and what is it good for?",
+    "sk": "Čo je „Databázy a autentifikácia“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Adatbázisok és hitelesítés”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-aplikaci-zivotni-cyklus-vyvoje",
+   "title": {
+    "cs": "Životní cyklus vývoje",
+    "en": "The development life cycle",
+    "sk": "Životný cyklus vývoja",
+    "hu": "A fejlesztés életciklusa"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Aplikace nevznikne jedním skokem — má cyklus: navrhnout, naprogramovat, otestovat, nasadit a vylepšovat.",
+    "en": "An app isn't made in one leap; it has a cycle: design, program, test, deploy and improve.",
+    "sk": "Aplikácia nevznikne jedným skokom, má cyklus: navrhnúť, naprogramovať, otestovať, nasadiť a vylepšovať.",
+    "hu": "Egy alkalmazás nem egyetlen ugrással készül el, hanem ciklusa van: megtervezni, leprogramozni, tesztelni, telepíteni és fejleszteni."
+   },
+   "recallQ": {
+    "cs": "Popsal bys fáze vývoje aplikace: návrh, programování, testování, nasazení a vylepšování?",
+    "en": "What is “The development life cycle”, and what is it good for?",
+    "sk": "Čo je „Životný cyklus vývoja“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „A fejlesztés életciklusa”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-aplikaci-publikace-do-app-storu",
+   "title": {
+    "cs": "Publikace do app storů",
+    "en": "Publishing to app stores",
+    "sk": "Publikovanie do obchodov s apkami",
+    "hu": "Közzététel az alkalmazás-áruházakban"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Aby se hotová appka dostala k lidem, projde publikací — na webu je to nasazení, u mobilů obchody (App Store, Google Play) s jejich pravidly a schvalováním.",
+    "en": "For a finished app to reach people, it goes through publishing: on the web that means deployment, for phones it means the stores (App Store, Google Play) with their rules and approval.",
+    "sk": "Aby sa hotová apka dostala k ľuďom, prejde publikovaním: na webe je to nasadenie, pri mobiloch obchody (App Store, Google Play) s ich pravidlami a schvaľovaním.",
+    "hu": "Hogy a kész app eljusson az emberekhez, közzé kell tenni: a weben ez a telepítés, a telefonoknál az áruházak (App Store, Google Play) a szabályaikkal és a jóváhagyással."
+   },
+   "recallQ": {
+    "cs": "Vysvětlil bys rozdíl mezi zveřejněním webové aplikace a publikací mobilní aplikace přes obchody se schvalováním?",
+    "en": "What is “Publishing to app stores”, and what is it good for?",
+    "sk": "Čo je „Publikovanie do obchodov s apkami“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Közzététel az alkalmazás-áruházakban”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-obsahu-generativni-video",
+   "title": {
+    "cs": "Generativní video",
+    "en": "Generative video",
+    "sk": "Generatívne video",
+    "hu": "Generatív videó"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "AI dnes vytvoří realistické video z textu nebo obrázku (Sora, Veo, Runway) i se zvukem.",
+    "en": "Today AI creates realistic video from text or an image (Sora, Veo, Runway), even with sound.",
+    "sk": "AI dnes vytvorí realistické video z textu alebo obrázka (Sora, Veo, Runway), aj so zvukom.",
+    "hu": "Az MI ma szövegből vagy képből valósághű videót készít (Sora, Veo, Runway), akár hanggal is."
+   },
+   "recallQ": {
+    "cs": "Co je „Generativní video“ a k čemu se ti hodí?",
+    "en": "What is “Generative video”, and what is it good for?",
+    "sk": "Čo je „Generatívne video“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Generatív videó”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-obsahu-generativni-hudba-a-hlas",
+   "title": {
+    "cs": "Generativní hudba a hlas",
+    "en": "Generative music and voice",
+    "sk": "Generatívna hudba a hlas",
+    "hu": "Generatív zene és hang"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Nástroje jako Suno nebo ElevenLabs složí celou písničku nebo napodobí hlas z krátké ukázky.",
+    "en": "Tools like Suno or ElevenLabs compose a whole song or imitate a voice from a short sample.",
+    "sk": "Nástroje ako Suno alebo ElevenLabs zložia celú pesničku alebo napodobnia hlas z krátkej ukážky.",
+    "hu": "Az olyan eszközök, mint a Suno vagy az ElevenLabs, egész dalt komponálnak, vagy egy rövid mintából utánoznak egy hangot."
+   },
+   "recallQ": {
+    "cs": "Vytvořil bys krátkou skladbu nebo mluvený výstup v generativním nástroji podle zadání?",
+    "en": "What is “Generative music and voice”, and what is it good for?",
+    "sk": "Čo je „Generatívna hudba a hlas“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Generatív zene és hang”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-obsahu-strih-a-postprodukce-s-ai",
+   "title": {
+    "cs": "Střih a postprodukce s AI",
+    "en": "Editing and post-production with AI",
+    "sk": "Strih a postprodukcia s AI",
+    "hu": "Vágás és utómunka MI-vel"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "AI dnes zvládne velkou část dokončovacích prací: automatické titulky, čištění zvuku, výběr nejlepších záběrů nebo úpravu videa přepisem textu (CapCut, Descript).",
+    "en": "Today AI can handle much of the finishing work: automatic subtitles, cleaning up sound, picking the best shots or editing a video by editing its transcript (CapCut, Descript…",
+    "sk": "AI dnes zvládne veľkú časť dokončovacích prác: automatické titulky, čistenie zvuku, výber najlepších záberov alebo úpravu videa prepisom textu (CapCut, Descript…",
+    "hu": "Az MI ma az utómunka nagy részét elvégzi: automatikus feliratok, hangtisztítás, a legjobb felvételek kiválasztása vagy a videó szerkesztése az átirat szerkesztésével (CapCut, Descript…"
+   },
+   "recallQ": {
+    "cs": "Co je „Střih a postprodukce s AI“ a k čemu se ti hodí?",
+    "en": "What is “Editing and post-production with AI”, and what is it good for?",
+    "sk": "Čo je „Strih a postprodukcia s AI“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Vágás és utómunka MI-vel”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-obsahu-kontrola-nad-vysledkem",
+   "title": {
+    "cs": "Kontrola nad výsledkem",
+    "en": "Control over the result",
+    "sk": "Kontrola nad výsledkom",
+    "hu": "Kontroll az eredmény felett"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Vygenerovat jeden hezký obrázek je snadné; těžší je udržet stejnou postavu nebo styl napříč více obrázky a mít nad výsledkem skutečnou kontrolu.",
+    "en": "Generating one nice image is easy; what's harder is keeping the same character or style across several images and having real control over the result.",
+    "sk": "Vygenerovať jeden pekný obrázok je ľahké; ťažšie je udržať rovnakú postavu alebo štýl naprieč viacerými obrázkami a mať nad výsledkom skutočnú kontrolu.",
+    "hu": "Egyetlen szép képet generálni könnyű; nehezebb ugyanazt a szereplőt vagy stílust több képen át megtartani, és valódi kontrollt gyakorolni az eredmény felett."
+   },
+   "recallQ": {
+    "cs": "Použil bys referenční obrázek nebo dokreslování (in/out-painting), aby udržel stejný styl či postavu napříč obrázky?",
+    "en": "What is “Control over the result”, and what is it good for?",
+    "sk": "Čo je „Kontrola nad výsledkom“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Kontroll az eredmény felett”, és mire jó neked?"
+   }
+  },
+  {
+   "slug": "tvorba-obsahu-propojeni-nastroju-obraz-video-zvuk",
+   "title": {
+    "cs": "Propojení nástrojů (obraz, video, zvuk)",
+    "en": "Combining tools (image, video, sound)",
+    "sk": "Prepojenie nástrojov (obraz, video, zvuk)",
+    "hu": "Eszközök összekapcsolása (kép, videó, hang)"
+   },
+   "tema": "ch8-svety",
+   "objective": {
+    "cs": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
+    "en": "Big projects come from combining several tools: you turn an image into a video, compose music for it and add a voice.",
+    "sk": "Veľké projekty vznikajú spojením niekoľkých nástrojov: z obrázka urobíš video, k nemu zložíš hudbu a pridáš hlas.",
+    "hu": "A nagy projektek több eszköz összekapcsolásával készülnek: a képből videót csinálsz, zenét komponálsz hozzá, és hangot adsz hozzá."
+   },
+   "recallQ": {
+    "cs": "Co je „Propojení nástrojů (obraz, video, zvuk)“ a k čemu se ti hodí?",
+    "en": "What is “Combining tools (image, video, sound)”, and what is it good for?",
+    "sk": "Čo je „Prepojenie nástrojov (obraz, video, zvuk)“ a na čo sa ti hodí?",
+    "hu": "Mi az, hogy „Eszközök összekapcsolása (kép, videó, hang)”, és mire jó neked?"
+   }
+  },
+  {
    "slug": "herni-vyvoj-lehke-enginy",
    "title": {
     "cs": "Lehké enginy",
@@ -873,314 +1181,6 @@
     "en": "What is “Communication between devices”, and what is it good for?",
     "sk": "Čo je „Komunikácia medzi zariadeniami“ a na čo sa ti hodí?",
     "hu": "Mi az, hogy „Kommunikáció az eszközök között”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-webu-ai-asistovana-tvorba-webu",
-   "title": {
-    "cs": "AI-asistovaná tvorba webu",
-    "en": "AI-assisted web building",
-    "sk": "Tvorba webu s pomocou AI",
-    "hu": "MI-vel támogatott weboldalkészítés"
-   },
-   "tema": "ch8-tvorba-webu",
-   "objective": {
-    "cs": "Nástroje jako v0, Lovable nebo Claude Artifacts vytvoří funkční stránku z pouhého popisu za pár vteřin.",
-    "en": "Tools like v0, Lovable or Claude Artifacts create a working page from a mere description in a few seconds.",
-    "sk": "Nástroje ako v0, Lovable alebo Claude Artifacts vytvoria funkčnú stránku z obyčajného opisu za pár sekúnd.",
-    "hu": "Az olyan eszközök, mint a v0, a Lovable vagy a Claude Artifacts, puszta leírásból néhány másodperc alatt működő oldalt készítenek."
-   },
-   "recallQ": {
-    "cs": "Posoudil bys kvalitu a použitelnost stránky, kterou vytvořila AI, a zdůvodní navržené úpravy?",
-    "en": "What is “AI-assisted web building”, and what is it good for?",
-    "sk": "Čo je „Tvorba webu s pomocou AI“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „MI-vel támogatott weboldalkészítés”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-webu-frameworky",
-   "title": {
-    "cs": "Frameworky",
-    "en": "Frameworks",
-    "sk": "Frameworky",
-    "hu": "Keretrendszerek"
-   },
-   "tema": "ch8-tvorba-webu",
-   "objective": {
-    "cs": "U větších webů se nepíše všechno od nuly — frameworky (React a spol.) a knihovny stylů (Tailwind) dávají hotové stavební bloky a řád.",
-    "en": "For bigger websites, not everything is written from scratch: frameworks (React and co.) and style libraries (Tailwind) provide ready-made building blocks and order.",
-    "sk": "Pri väčších weboch sa nepíše všetko od nuly: frameworky (React a spol.) a knižnice štýlov (Tailwind) dávajú hotové stavebné bloky a poriadok.",
-    "hu": "Nagyobb weboldalaknál nem írnak meg mindent a nulláról: a keretrendszerek (React és társai) és a stíluskönyvtárak (Tailwind) kész építőköveket és rendet adnak."
-   },
-   "recallQ": {
-    "cs": "Co je „Frameworky“ a k čemu se ti hodí?",
-    "en": "What is “Frameworks”, and what is it good for?",
-    "sk": "Čo je „Frameworky“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Keretrendszerek”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-webu-nasazeni-webu",
-   "title": {
-    "cs": "Nasazení webu",
-    "en": "Deploying a website",
-    "sk": "Nasadenie webu",
-    "hu": "A weboldal telepítése"
-   },
-   "tema": "ch8-tvorba-webu",
-   "objective": {
-    "cs": "Nasazení (deployment) je krok, kdy se web z tvého počítače dostane na internet.",
-    "en": "Deployment is the step where a website gets from your computer onto the internet.",
-    "sk": "Nasadenie (deployment) je krok, keď sa web z tvojho počítača dostane na internet.",
-    "hu": "A telepítés (deployment) az a lépés, amikor a weboldal a számítógépedről felkerül az internetre."
-   },
-   "recallQ": {
-    "cs": "Co je „Nasazení webu“ a k čemu se ti hodí?",
-    "en": "What is “Deploying a website”, and what is it good for?",
-    "sk": "Čo je „Nasadenie webu“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „A weboldal telepítése”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-webu-pristupnost-a-seo",
-   "title": {
-    "cs": "Přístupnost a SEO",
-    "en": "Accessibility and SEO",
-    "sk": "Prístupnosť a SEO",
-    "hu": "Akadálymentesség és SEO"
-   },
-   "tema": "ch8-tvorba-webu",
-   "objective": {
-    "cs": "Přístupnost (a11y) znamená udělat web použitelný i pro lidi s hendikepem (čtečky obrazovky, ovládání klávesnicí); SEO je péče o to, aby web našly vyhledávače.",
-    "en": "Accessibility (a11y) means making a website usable for people with disabilities too (screen readers, keyboard control); SEO is making sure search engines find the website.",
-    "sk": "Prístupnosť (a11y) znamená urobiť web použiteľný aj pre ľudí s hendikepom (čítačky obrazovky, ovládanie klávesnicou); SEO je starostlivosť o to, aby web našli vyhľadávače.",
-    "hu": "Az akadálymentesség (a11y) azt jelenti, hogy a weboldal fogyatékkal élő emberek számára is használható (képernyőolvasók, billentyűzetes vezérlés); a SEO arról gondoskodik, hogy a keresőmotorok megtalálják az oldalt."
-   },
-   "recallQ": {
-    "cs": "Posoudil bys přístupnost stránky pro uživatele s hendikepem a doporučí konkrétní zlepšení?",
-    "en": "What is “Accessibility and SEO”, and what is it good for?",
-    "sk": "Čo je „Prístupnosť a SEO“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Akadálymentesség és SEO”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-webu-ux-ui-a-design-webu",
-   "title": {
-    "cs": "UX/UI a design webu",
-    "en": "UX/UI and web design",
-    "sk": "UX/UI a dizajn webu",
-    "hu": "UX/UI és webdizájn"
-   },
-   "tema": "ch8-tvorba-webu",
-   "objective": {
-    "cs": "UI je to, jak web vypadá, UX to, jak se používá.",
-    "en": "UI is how a website looks, UX is how it's used.",
-    "sk": "UI je to, ako web vyzerá, UX to, ako sa používa.",
-    "hu": "Az UI az, ahogyan a weboldal kinéz, az UX az, ahogyan használják."
-   },
-   "recallQ": {
-    "cs": "Co je „UX/UI a design webu“ a k čemu se ti hodí?",
-    "en": "What is “UX/UI and web design”, and what is it good for?",
-    "sk": "Čo je „UX/UI a dizajn webu“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „UX/UI és webdizájn”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-aplikaci-prace-s-api-a-backendem",
-   "title": {
-    "cs": "Práce s API a backendem",
-    "en": "Working with APIs and a backend",
-    "sk": "Práca s API a backendom",
-    "hu": "Munka API-kkal és backenddel"
-   },
-   "tema": "ch9-tvorba-aplikaci",
-   "objective": {
-    "cs": "Aby appka uměla víc než jen zobrazovat, propojí se přes API s dalšími službami a se serverovou částí, která pracuje s daty.",
-    "en": "For an app to do more than just display things, it connects through APIs to other services and to the server side that works with the data.",
-    "sk": "Aby apka vedela viac než len zobrazovať, prepojí sa cez API s ďalšími službami a so serverovou časťou, ktorá pracuje s dátami.",
-    "hu": "Hogy az app többre legyen képes a megjelenítésnél, API-kon keresztül kapcsolódik más szolgáltatásokhoz és az adatokkal dolgozó szerveroldali részhez."
-   },
-   "recallQ": {
-    "cs": "Co je „Práce s API a backendem“ a k čemu se ti hodí?",
-    "en": "What is “Working with APIs and a backend”, and what is it good for?",
-    "sk": "Čo je „Práca s API a backendom“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Munka API-kkal és backenddel”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-aplikaci-databaze-a-autentizace",
-   "title": {
-    "cs": "Databáze a autentizace",
-    "en": "Databases and authentication",
-    "sk": "Databázy a autentifikácia",
-    "hu": "Adatbázisok és hitelesítés"
-   },
-   "tema": "ch9-tvorba-aplikaci",
-   "objective": {
-    "cs": "Appky si pamatují data (databáze) a musí poznat, kdo je kdo (autentizace — přihlašování).",
-    "en": "Apps remember data (a database) and have to know who is who (authentication, that is, logging in).",
-    "sk": "Apky si pamätajú dáta (databáza) a musia spoznať, kto je kto (autentifikácia, teda prihlasovanie).",
-    "hu": "Az appok megjegyzik az adatokat (adatbázis), és tudniuk kell, ki kicsoda (hitelesítés, vagyis bejelentkezés)."
-   },
-   "recallQ": {
-    "cs": "Co je „Databáze a autentizace“ a k čemu se ti hodí?",
-    "en": "What is “Databases and authentication”, and what is it good for?",
-    "sk": "Čo je „Databázy a autentifikácia“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Adatbázisok és hitelesítés”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-aplikaci-zivotni-cyklus-vyvoje",
-   "title": {
-    "cs": "Životní cyklus vývoje",
-    "en": "The development life cycle",
-    "sk": "Životný cyklus vývoja",
-    "hu": "A fejlesztés életciklusa"
-   },
-   "tema": "ch9-tvorba-aplikaci",
-   "objective": {
-    "cs": "Aplikace nevznikne jedním skokem — má cyklus: navrhnout, naprogramovat, otestovat, nasadit a vylepšovat.",
-    "en": "An app isn't made in one leap; it has a cycle: design, program, test, deploy and improve.",
-    "sk": "Aplikácia nevznikne jedným skokom, má cyklus: navrhnúť, naprogramovať, otestovať, nasadiť a vylepšovať.",
-    "hu": "Egy alkalmazás nem egyetlen ugrással készül el, hanem ciklusa van: megtervezni, leprogramozni, tesztelni, telepíteni és fejleszteni."
-   },
-   "recallQ": {
-    "cs": "Popsal bys fáze vývoje aplikace: návrh, programování, testování, nasazení a vylepšování?",
-    "en": "What is “The development life cycle”, and what is it good for?",
-    "sk": "Čo je „Životný cyklus vývoja“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „A fejlesztés életciklusa”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-aplikaci-publikace-do-app-storu",
-   "title": {
-    "cs": "Publikace do app storů",
-    "en": "Publishing to app stores",
-    "sk": "Publikovanie do obchodov s apkami",
-    "hu": "Közzététel az alkalmazás-áruházakban"
-   },
-   "tema": "ch9-tvorba-aplikaci",
-   "objective": {
-    "cs": "Aby se hotová appka dostala k lidem, projde publikací — na webu je to nasazení, u mobilů obchody (App Store, Google Play) s jejich pravidly a schvalováním.",
-    "en": "For a finished app to reach people, it goes through publishing: on the web that means deployment, for phones it means the stores (App Store, Google Play) with their rules and approval.",
-    "sk": "Aby sa hotová apka dostala k ľuďom, prejde publikovaním: na webe je to nasadenie, pri mobiloch obchody (App Store, Google Play) s ich pravidlami a schvaľovaním.",
-    "hu": "Hogy a kész app eljusson az emberekhez, közzé kell tenni: a weben ez a telepítés, a telefonoknál az áruházak (App Store, Google Play) a szabályaikkal és a jóváhagyással."
-   },
-   "recallQ": {
-    "cs": "Vysvětlil bys rozdíl mezi zveřejněním webové aplikace a publikací mobilní aplikace přes obchody se schvalováním?",
-    "en": "What is “Publishing to app stores”, and what is it good for?",
-    "sk": "Čo je „Publikovanie do obchodov s apkami“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Közzététel az alkalmazás-áruházakban”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-obsahu-generativni-video",
-   "title": {
-    "cs": "Generativní video",
-    "en": "Generative video",
-    "sk": "Generatívne video",
-    "hu": "Generatív videó"
-   },
-   "tema": "ch10-tvorba-obsahu",
-   "objective": {
-    "cs": "AI dnes vytvoří realistické video z textu nebo obrázku (Sora, Veo, Runway) i se zvukem.",
-    "en": "Today AI creates realistic video from text or an image (Sora, Veo, Runway), even with sound.",
-    "sk": "AI dnes vytvorí realistické video z textu alebo obrázka (Sora, Veo, Runway), aj so zvukom.",
-    "hu": "Az MI ma szövegből vagy képből valósághű videót készít (Sora, Veo, Runway), akár hanggal is."
-   },
-   "recallQ": {
-    "cs": "Co je „Generativní video“ a k čemu se ti hodí?",
-    "en": "What is “Generative video”, and what is it good for?",
-    "sk": "Čo je „Generatívne video“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Generatív videó”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-obsahu-generativni-hudba-a-hlas",
-   "title": {
-    "cs": "Generativní hudba a hlas",
-    "en": "Generative music and voice",
-    "sk": "Generatívna hudba a hlas",
-    "hu": "Generatív zene és hang"
-   },
-   "tema": "ch10-tvorba-obsahu",
-   "objective": {
-    "cs": "Nástroje jako Suno nebo ElevenLabs složí celou písničku nebo napodobí hlas z krátké ukázky.",
-    "en": "Tools like Suno or ElevenLabs compose a whole song or imitate a voice from a short sample.",
-    "sk": "Nástroje ako Suno alebo ElevenLabs zložia celú pesničku alebo napodobnia hlas z krátkej ukážky.",
-    "hu": "Az olyan eszközök, mint a Suno vagy az ElevenLabs, egész dalt komponálnak, vagy egy rövid mintából utánoznak egy hangot."
-   },
-   "recallQ": {
-    "cs": "Vytvořil bys krátkou skladbu nebo mluvený výstup v generativním nástroji podle zadání?",
-    "en": "What is “Generative music and voice”, and what is it good for?",
-    "sk": "Čo je „Generatívna hudba a hlas“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Generatív zene és hang”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-obsahu-strih-a-postprodukce-s-ai",
-   "title": {
-    "cs": "Střih a postprodukce s AI",
-    "en": "Editing and post-production with AI",
-    "sk": "Strih a postprodukcia s AI",
-    "hu": "Vágás és utómunka MI-vel"
-   },
-   "tema": "ch10-tvorba-obsahu",
-   "objective": {
-    "cs": "AI dnes zvládne velkou část dokončovacích prací: automatické titulky, čištění zvuku, výběr nejlepších záběrů nebo úpravu videa přepisem textu (CapCut, Descript).",
-    "en": "Today AI can handle much of the finishing work: automatic subtitles, cleaning up sound, picking the best shots or editing a video by editing its transcript (CapCut, Descript…",
-    "sk": "AI dnes zvládne veľkú časť dokončovacích prác: automatické titulky, čistenie zvuku, výber najlepších záberov alebo úpravu videa prepisom textu (CapCut, Descript…",
-    "hu": "Az MI ma az utómunka nagy részét elvégzi: automatikus feliratok, hangtisztítás, a legjobb felvételek kiválasztása vagy a videó szerkesztése az átirat szerkesztésével (CapCut, Descript…"
-   },
-   "recallQ": {
-    "cs": "Co je „Střih a postprodukce s AI“ a k čemu se ti hodí?",
-    "en": "What is “Editing and post-production with AI”, and what is it good for?",
-    "sk": "Čo je „Strih a postprodukcia s AI“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Vágás és utómunka MI-vel”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-obsahu-kontrola-nad-vysledkem",
-   "title": {
-    "cs": "Kontrola nad výsledkem",
-    "en": "Control over the result",
-    "sk": "Kontrola nad výsledkom",
-    "hu": "Kontroll az eredmény felett"
-   },
-   "tema": "ch10-tvorba-obsahu",
-   "objective": {
-    "cs": "Vygenerovat jeden hezký obrázek je snadné; těžší je udržet stejnou postavu nebo styl napříč více obrázky a mít nad výsledkem skutečnou kontrolu.",
-    "en": "Generating one nice image is easy; what's harder is keeping the same character or style across several images and having real control over the result.",
-    "sk": "Vygenerovať jeden pekný obrázok je ľahké; ťažšie je udržať rovnakú postavu alebo štýl naprieč viacerými obrázkami a mať nad výsledkom skutočnú kontrolu.",
-    "hu": "Egyetlen szép képet generálni könnyű; nehezebb ugyanazt a szereplőt vagy stílust több képen át megtartani, és valódi kontrollt gyakorolni az eredmény felett."
-   },
-   "recallQ": {
-    "cs": "Použil bys referenční obrázek nebo dokreslování (in/out-painting), aby udržel stejný styl či postavu napříč obrázky?",
-    "en": "What is “Control over the result”, and what is it good for?",
-    "sk": "Čo je „Kontrola nad výsledkom“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Kontroll az eredmény felett”, és mire jó neked?"
-   }
-  },
-  {
-   "slug": "tvorba-obsahu-propojeni-nastroju-obraz-video-zvuk",
-   "title": {
-    "cs": "Propojení nástrojů (obraz, video, zvuk)",
-    "en": "Combining tools (image, video, sound)",
-    "sk": "Prepojenie nástrojov (obraz, video, zvuk)",
-    "hu": "Eszközök összekapcsolása (kép, videó, hang)"
-   },
-   "tema": "ch10-tvorba-obsahu",
-   "objective": {
-    "cs": "Velké projekty vznikají spojením několika nástrojů: z obrázku uděláš video, k němu složíš hudbu a přidáš hlas.",
-    "en": "Big projects come from combining several tools: you turn an image into a video, compose music for it and add a voice.",
-    "sk": "Veľké projekty vznikajú spojením niekoľkých nástrojov: z obrázka urobíš video, k nemu zložíš hudbu a pridáš hlas.",
-    "hu": "A nagy projektek több eszköz összekapcsolásával készülnek: a képből videót csinálsz, zenét komponálsz hozzá, és hangot adsz hozzá."
-   },
-   "recallQ": {
-    "cs": "Co je „Propojení nástrojů (obraz, video, zvuk)“ a k čemu se ti hodí?",
-    "en": "What is “Combining tools (image, video, sound)”, and what is it good for?",
-    "sk": "Čo je „Prepojenie nástrojov (obraz, video, zvuk)“ a na čo sa ti hodí?",
-    "hu": "Mi az, hogy „Eszközök összekapcsolása (kép, videó, hang)”, és mire jó neked?"
    }
   }
  ]

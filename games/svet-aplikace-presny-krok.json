@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Provede to appka?",
+  "instruction": "Píšeš postup pro appku na dělení útraty. Označ kroky, které appka dokáže provést bez domýšlení.",
+  "hitLabel": "přesný krok",
+  "missLabel": "appka neví jak",
+  "debrief": "Appka provede jen krok, který jde udělat jediným způsobem. „Rozumně“, „fér“ nebo „trochu“ pro ni nic neznamená.",
+  "items": [
+    {
+      "text": "Vyděl součet počtem lidí",
+      "hit": true,
+      "why": "Jasné a proveditelné: jedno číslo vydělíš druhým."
+    },
+    {
+      "text": "Rozpočítej to nějak rozumně",
+      "hit": false,
+      "why": "Co je rozumně? Appka to neví."
+    },
+    {
+      "text": "Zaokrouhli díl dolů na celé koruny a zbytek přičti prvnímu v seznamu",
+      "hit": true,
+      "why": "Přesně řekne, kam jde koruna navíc."
+    },
+    {
+      "text": "Kdo míň jedl, ať zaplatí míň",
+      "hit": false,
+      "why": "Appka neví, kdo kolik jedl ani o kolik méně."
+    },
+    {
+      "text": "Opakuj, dokud nejsou všechny rozdíly nula",
+      "hit": true,
+      "why": "Jasná podmínka konce: postup skončí."
+    },
+    {
+      "text": "Pošli peníze tomu, komu je to fér",
+      "hit": false,
+      "why": "Fér je názor, ne krok."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "order",
+  "title": "Az Entertől az oldalig",
+  "instruction": "Tedd sorba, mi történik az Enter megnyomásától a kész oldalig.",
+  "steps": [
+    "Beírod a címet, és megnyomod az Entert",
+    "A DNS a nevet a szerver IP-címére fordítja",
+    "A böngésző kérést küld a szervernek az oldalért",
+    "A szerver visszaküldi a HTML-t",
+    "A böngésző elkéri a CSS-t, a szkripteket és a képeket",
+    "A böngésző megjeleníti az oldalt"
+  ],
+  "debrief": "Minden oldal kérések és válaszok cseréje. Előbb a névből cím lesz, aztán jön a HTML, aztán minden, amire a HTML hivatkozik.",
+  "why": [
+    "Minden nálad kezdődik: a cím egy név, nem egy szám.",
+    "IP-cím nélkül a kérés nem tudná, merre menjen.",
+    "Csak most tudja, hová küldje a kérést.",
+    "Az első kérésre adott válasz az oldal váza.",
+    "A böngésző csak a HTML-ből tudja meg, milyen további fájlokra van szüksége az oldalnak.",
+    "Az összes beérkezett fájlból összerakja a képet, amelyet látsz."
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Milyen grafikon kell erre a kérdésre?",
+  "instruction": "Minden kérdéshez válaszd ki a grafikont, amely a legjobban felel rá.",
+  "buckets": [
+    "Vonal (változás)",
+    "Oszlop (összehasonlítás)",
+    "Kör (arány)"
+  ],
+  "items": [
+    {
+      "text": "Hogyan változott az alvásom az elmúlt hónapban?",
+      "answer": 0,
+      "why": "Az időbeli változás alakulás."
+    },
+    {
+      "text": "Hétvégén alszom többet, vagy hétköznap?",
+      "answer": 1,
+      "why": "Két csoportot egymás mellett oszlopokkal hasonlítasz össze."
+    },
+    {
+      "text": "A képernyőidőm mekkora részét teszik ki a játékok?",
+      "answer": 2,
+      "why": "Az egész egy része arány."
+    },
+    {
+      "text": "Hogyan nőtt a lépéseim száma szeptembertől decemberig?",
+      "answer": 0,
+      "why": "Az időbeli növekedés alakulás."
+    },
+    {
+      "text": "Hármunk közül ki tett meg a legtöbb lépést ezen a héten?",
+      "answer": 1,
+      "why": "Három ember egymás mellett: összehasonlítás."
+    },
+    {
+      "text": "Miből áll a napom: iskola, alvás, szabadidő?",
+      "answer": 2,
+      "why": "Egyetlen egész, a nap darabjai: arány."
+    }
+  ],
+  "debrief": "Előbb a kérdés, aztán a grafikon. Az időbeli változás vonal, az összehasonlítás oszlop, az egész egy része pedig kör."
+}

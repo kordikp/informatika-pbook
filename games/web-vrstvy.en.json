@@ -1,0 +1,58 @@
+{
+  "type": "sort",
+  "title": "HTML, CSS or JavaScript?",
+  "instruction": "Structure, look or behaviour? Sort which layer of a website each thing belongs to!",
+  "buckets": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "items": [
+    {
+      "text": "<h1>Page heading</h1>",
+      "answer": 0,
+      "why": "The tag says it is a heading. That is structure."
+    },
+    {
+      "text": "color: darkblue;",
+      "answer": 1,
+      "why": "The colour of the text is the look."
+    },
+    {
+      "text": "change the text on click",
+      "answer": 2,
+      "why": "Reacting to a click is behaviour."
+    },
+    {
+      "text": "<img src=\"dog.jpg\">",
+      "answer": 0,
+      "why": "It puts a picture into the page. That is structure."
+    },
+    {
+      "text": "font-size: 18px;",
+      "answer": 1,
+      "why": "The size of the font is the look."
+    },
+    {
+      "text": "count the score of clicks",
+      "answer": 2,
+      "why": "Counting while you click is behaviour."
+    },
+    {
+      "text": "<a href=…>link</a>",
+      "answer": 0,
+      "why": "A link is part of the structure of the page."
+    },
+    {
+      "text": "a layout in three columns",
+      "answer": 1,
+      "why": "Where things stand on the page is decided by CSS."
+    },
+    {
+      "text": "react to a key press",
+      "answer": 2,
+      "why": "Reacting to a key is behaviour."
+    }
+  ],
+  "debrief": "A website has three layers: HTML says what is on the page, CSS how it looks, and JavaScript what the page does when you click or type."
+}

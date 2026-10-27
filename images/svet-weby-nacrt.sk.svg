@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Wireframe úvodní stránky a mapa webu jako graf">
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/></marker><marker id="r" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#EF4444"/></marker><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+  <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif">
+  <text x="18" y="26" font-size="17" font-weight="700" fill="#1E1B4B">Dva modely jedného webu</text>
+  <text x="18" y="44" font-size="11" fill="#6B7280">Wireframe rieši, čo bude kde. Mapa webu rieši, odkiaľ sa kam dostaneš.</text>
+  <rect x="18" y="56" width="226" height="186" rx="8" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="2"/>
+  <rect x="18" y="56" width="226" height="18" rx="8" fill="#F3F4F6"/>
+  <circle cx="30" cy="65" r="3" fill="#9CA3AF"/>
+  <circle cx="40" cy="65" r="3" fill="#9CA3AF"/>
+  <circle cx="50" cy="65" r="3" fill="#9CA3AF"/>
+  <rect x="28" y="82" width="46" height="20" rx="4" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+  <text x="51" y="96" font-size="9" fill="#6B7280" text-anchor="middle">logo</text>
+  <rect x="126" y="89" width="28" height="6" rx="3" fill="#9CA3AF"/>
+  <rect x="162" y="89" width="28" height="6" rx="3" fill="#9CA3AF"/>
+  <text x="234" y="96" font-size="9" font-weight="600" fill="#7C3AED" text-anchor="end">menu</text>
+  <rect x="28" y="110" width="206" height="62" rx="4" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+  <line x1="28" y1="110" x2="234" y2="172" stroke="#9CA3AF" stroke-width="1.5"/>
+  <line x1="234" y1="110" x2="28" y2="172" stroke="#9CA3AF" stroke-width="1.5"/>
+  <rect x="96" y="132" width="70" height="18" rx="4" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="131" y="145" font-size="10" font-weight="600" fill="#7C3AED" text-anchor="middle">fotka</text>
+  <rect x="28" y="182" width="150" height="5" rx="2" fill="#D1D5DB"/>
+  <rect x="28" y="192" width="130" height="5" rx="2" fill="#D1D5DB"/>
+  <rect x="28" y="202" width="142" height="5" rx="2" fill="#D1D5DB"/>
+  <text x="234" y="196" font-size="9" font-weight="600" fill="#7C3AED" text-anchor="end">text</text>
+  <rect x="28" y="216" width="92" height="20" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="74" y="230" font-size="10" font-weight="600" fill="#7C3AED" text-anchor="middle">tlačidlo</text>
+  <line x1="258" y1="60" x2="258" y2="240" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="272" y="72" font-size="13" font-weight="700" fill="#1E1B4B">Mapa webu ako graf</text>
+  <line x1="388" y1="100" x2="300" y2="150" stroke="#9CA3AF" stroke-width="3"/>
+  <line x1="388" y1="100" x2="388" y2="150" stroke="#9CA3AF" stroke-width="3"/>
+  <line x1="388" y1="100" x2="476" y2="150" stroke="#9CA3AF" stroke-width="3"/>
+  <line x1="388" y1="150" x2="372" y2="200" stroke="#9CA3AF" stroke-width="3"/>
+  <line x1="388" y1="150" x2="452" y2="200" stroke="#9CA3AF" stroke-width="3"/>
+  <rect x="354" y="88" width="68" height="24" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="388" y="104" font-size="10" font-weight="600" fill="#1E1B4B" text-anchor="middle">Úvod</text>
+  <rect x="266" y="138" width="68" height="24" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="300" y="154" font-size="10" font-weight="600" fill="#1E1B4B" text-anchor="middle">O nás</text>
+  <rect x="354" y="138" width="68" height="24" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="388" y="154" font-size="10" font-weight="600" fill="#1E1B4B" text-anchor="middle">Akcie</text>
+  <rect x="442" y="138" width="68" height="24" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="476" y="154" font-size="10" font-weight="600" fill="#1E1B4B" text-anchor="middle">Kontakt</text>
+  <rect x="338" y="188" width="68" height="24" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="372" y="204" font-size="10" font-weight="600" fill="#1E1B4B" text-anchor="middle">Akcia 1</text>
+  <rect x="418" y="188" width="68" height="24" rx="12" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+  <text x="452" y="204" font-size="10" font-weight="600" fill="#1E1B4B" text-anchor="middle">Akcia 2</text>
+  <rect x="268" y="186" width="58" height="24" rx="12" fill="#FFFFFF" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="297" y="202" font-size="10" font-weight="600" fill="#EF4444" text-anchor="middle">Archív</text>
+  <text x="297" y="226" font-size="9" fill="#EF4444" text-anchor="middle">sem nevedie hrana</text>
+  <text x="436" y="236" font-size="9" fill="#6B7280" text-anchor="middle">uzol = stránka · hrana = odkaz</text>
+
+  </g>
+</svg>

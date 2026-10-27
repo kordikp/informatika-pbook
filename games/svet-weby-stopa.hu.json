@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Aktív vagy passzív nyom?",
+  "instruction": "Válogasd szét, melyik az a nyom, amelyet tudatosan hagysz, és melyik keletkezik anélkül, hogy bármit írnál.",
+  "buckets": [
+    "Aktív nyom",
+    "Passzív nyom"
+  ],
+  "items": [
+    {
+      "text": "Hozzászólás egy cikk alatt",
+      "answer": 0,
+      "why": "Magad írtad, tudatosan."
+    },
+    {
+      "text": "Hirdetési süti egy webáruház meglátogatásából",
+      "answer": 1,
+      "why": "Anélkül mentődött el, hogy bármit írtál volna, elég volt a látogatás."
+    },
+    {
+      "text": "Egy fotó, amelyet feltöltesz a szakkör weboldalára",
+      "answer": 0,
+      "why": "Te tetted közzé."
+    },
+    {
+      "text": "Azoknak az oldalaknak a listája, amelyekre kattintottál",
+      "answer": 1,
+      "why": "Magától keletkezik, ahogy a weben mozogsz."
+    },
+    {
+      "text": "A város, amelyet a weboldal az IP-címedből felismer",
+      "answer": 1,
+      "why": "Semmit sem adtál meg, mégis tudja."
+    },
+    {
+      "text": "Egy játékról írt értékelésed",
+      "answer": 0,
+      "why": "A te szöveged, a te döntésed."
+    },
+    {
+      "text": "Mennyi ideig nézted a cipőt a webáruházban",
+      "answer": 1,
+      "why": "A nézési időt a tudtod nélkül mérik."
+    }
+  ],
+  "debrief": "Az aktív nyomot látod, mert magad hagyod. A passzív csendben keletkezik, a sütikből, és abból, hová kattintasz és mennyi ideig nézed."
+}

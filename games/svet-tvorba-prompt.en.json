@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Will it help the prompt?",
+  "instruction": "You want a better picture for a poster. What will help in the prompt, and what won’t?",
+  "buckets": [
+    "Helps",
+    "Doesn’t help"
+  ],
+  "items": [
+    {
+      "text": "Add a style: watercolour",
+      "answer": 0,
+      "why": "A specific word that changes the result."
+    },
+    {
+      "text": "Write PLEASE in capital letters",
+      "answer": 1,
+      "why": "Neither politeness nor capitals make the picture better."
+    },
+    {
+      "text": "Describe the light: sunset",
+      "answer": 0,
+      "why": "Light is one of the strongest parameters."
+    },
+    {
+      "text": "Change five words at once and hope",
+      "answer": 1,
+      "why": "Then you don’t know which word did what."
+    },
+    {
+      "text": "Set the shot: close-up",
+      "answer": 0,
+      "why": "The shot decides what will be visible in the picture."
+    },
+    {
+      "text": "Write “do it well”",
+      "answer": 1,
+      "why": "The generator doesn’t know what “well” means to you."
+    },
+    {
+      "text": "Describe the mood: mysterious",
+      "answer": 0,
+      "why": "The mood affects the colours and the light."
+    }
+  ],
+  "debrief": "A generator reads only words, so specific parameters help: style, light, shot, mood. Pleading and changing five things at once don’t."
+}

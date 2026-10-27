@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Hogyan alakul ki a buborék",
+  "instruction": "Tedd sorba, hogyan lesz egyetlen videónál való megállásból egyetlen témáról szóló hírfolyam.",
+  "steps": [
+    "Megállsz egy kiskutyás videónál",
+    "Az app hosszú nézési időt rögzít",
+    "Több kiskutyát kínál neked és a hasonló ízlésű embereknek",
+    "Megnézed őket, mert éppen ott vannak a hírfolyamodban",
+    "A hírfolyam szinte csak kiskutyákról szól"
+  ],
+  "debrief": "A buborék egy hurokból alakul ki: a jeleid → több ugyanabból → több ugyanolyan jel. Csak más jelekkel tudod szétpukkasztani.",
+  "why": [
+    "Minden egyetlen jellel kezdődik.",
+    "Az ajánlórendszer számára a nézési idő a legerősebb jel.",
+    "A jel alapján választja ki a következő videókat.",
+    "Ezzel további jeleket küldesz ugyanabba az irányba.",
+    "A hurok bezárult: buborék."
+  ]
+}

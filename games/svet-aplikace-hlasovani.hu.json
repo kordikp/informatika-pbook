@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "Építs szavazást a kirándulásról",
+  "instruction": "Szavazást adsz hozzá az osztály appjához a kirándulásról. Tedd sorba a részeket úgy, hogy mindegyik csak az után jöjjön, amitől függ.",
+  "steps": [
+    "A tanárnő megadja a lehetőségeket: Mátra, Budapest, Balaton",
+    "A tanuló kiválaszt egy lehetőséget, és elküldi a szavazatát",
+    "Az app elmenti a szavazatot, és vigyáz, hogy mindenki csak egyszer szavazzon",
+    "Az app megszámolja a szavazatokat minden lehetőségre",
+    "Az app megmutatja, hová mennek"
+  ],
+  "debrief": "Minden rész az előzőre épül. Lehetőségek nélkül nincs miről szavazni, elmentett szavazatok nélkül pedig nincs mit számolni.",
+  "why": [
+    "Lehetőségek nélkül nincs miről szavazni.",
+    "Szavazni csak akkor lehet, ha a lehetőségek már meg vannak adva.",
+    "Elmenteni és ellenőrizni csak a beérkezett szavazatot lehet.",
+    "Csak az elmentett szavazatokat lehet megszámolni.",
+    "A győztest csak akkor mutatod meg, ha a szavazatokat összeadtad."
+  ]
+}

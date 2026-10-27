@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Mit garantál a lakat?",
+  "instruction": "Az oldalon van lakat és https. Mit garantál ez neked, és mit nem?",
+  "buckets": [
+    "Garantálja",
+    "Nem garantálja"
+  ],
+  "items": [
+    {
+      "text": "Útban a szerver felé senki sem olvassa el a jelszót",
+      "answer": 0,
+      "why": "Pontosan erre való a titkosítás."
+    },
+    {
+      "text": "Becsületes cég áll az oldal mögött",
+      "answer": 1,
+      "why": "Tanúsítványt egy csaló is kap ingyen."
+    },
+    {
+      "text": "Nyilvános wifin senki sem látja, mit írsz az űrlapba",
+      "answer": 0,
+      "why": "Ugyanazon a hálózaton csak titkosított zagyvaság látszik."
+    },
+    {
+      "text": "Az oldalon nincsenek vírusok",
+      "answer": 1,
+      "why": "Titkosítva egy kártékony fájlt is el lehet küldeni."
+    },
+    {
+      "text": "Útközben senki sem változtatja meg az adatokat",
+      "answer": 0,
+      "why": "A titkosítás észreveszi, ha valaki belenyúlt a borítékba."
+    },
+    {
+      "text": "Az oldal jól bánik az adataiddal",
+      "answer": 1,
+      "why": "Arra, hogy az oldal mit kezd az adatokkal, miután megérkeztek, a lakatnak nincs hatása."
+    }
+  ],
+  "debrief": "A lakat az utat védi: rajta senki sem olvassa el és nem változtatja meg az adataidat. Az oldal becsületességéről semmit sem mond."
+}

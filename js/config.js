@@ -13,7 +13,7 @@ export const CONFIG = {
     lang: 'cs',                              // jazyk, ve kterém je kniha napsaná (originály bloků)
     languages: ['cs', 'en', 'sk', 'hu'],     // přepínač na úvodní obrazovce a v Nastavení; ?lang=en otevře knihu anglicky
     untranslatedTellings: 'hide',            // česká podání ze staré knihy (-podani-) se v jiných jazycích nezobrazí
-    languageFilter: 'strict',                // en/sk/hu jen ve svém jazyce: nepřeložený blok (zatím kap. Weby, Aplikace, Tvorba s AI) v jejich edici není
+    languageFilter: 'strict',                // en/sk/hu jen ve svém jazyce: nepřeložený blok se v jejich edici neukáže
     signature: 'AI dětem',
     signatureRole: { cs: 'vydavatel certifikátu', en: 'issuer of the certificate', sk: 'vydavateľ certifikátu', hu: 'a tanúsítvány kiadója' },
     contactName: AUTHOR,
@@ -69,13 +69,17 @@ export const CONFIG = {
   // Fazety: JAK je koncept vyprávěný, nikdy CO se učí. Jádra jsou pro všechny (lens generic);
   // světy (svety/*.yaml v koncepty-pbook) vyprávějí stejná jádra znovu, s příklady ze svého světa.
   facets: {
-    lens:      { label: 'Example world', values: ['generic', 'hry', 'roboti'],
-                 icons: { generic: '\u{1F310}', hry: '\u{1F579}\u{FE0F}', roboti: '\u{1F916}' },
+    lens:      { label: 'Example world', values: ['generic', 'hry', 'weby', 'aplikace', 'roboti', 'tvorba', 'socialni'],
+                 icons: { generic: '\u{1F310}', hry: '\u{1F579}\u{FE0F}', weby: '\u{1F5A5}\u{FE0F}', aplikace: '\u{1F4F1}', roboti: '\u{1F916}', tvorba: '\u{1F3A8}', socialni: '\u{1F3AC}' },
                  genericHint: { cs: 'Příklady ze školy, z mobilu i z her', en: 'Examples from school, phones and games', sk: 'Príklady zo školy, z mobilu aj z hier', hu: 'Példák az iskolából, a telefonról és a játékokból' },
                  // štítek podání v pruhu „další podání“ a mise každého světa (mapa konceptů ji nabídne)
                  worldLabels: { hry: { cs: '🕹️ ve světě her', en: '🕹️ in the world of games', sk: '🕹️ vo svete hier', hu: '🕹️ a játékok világában' },
-                                roboti: { cs: '🤖 ve světě robotů', en: '🤖 in the world of robots', sk: '🤖 vo svete robotov', hu: '🤖 a robotok világában' } },
-                 missions: { hry: 'svet-hry', roboti: 'svet-roboti' } },
+                                weby: { cs: '🖥️ ve světě webů', en: '🖥️ in the world of websites', sk: '🖥️ vo svete webov', hu: '🖥️ a weboldalak világában' },
+                                aplikace: { cs: '📱 ve světě aplikací', en: '📱 in the world of apps', sk: '📱 vo svete aplikácií', hu: '📱 az alkalmazások világában' },
+                                roboti: { cs: '🤖 ve světě robotů', en: '🤖 in the world of robots', sk: '🤖 vo svete robotov', hu: '🤖 a robotok világában' },
+                                tvorba: { cs: '🎨 ve světě tvorby s AI', en: '🎨 in the world of creating with AI', sk: '🎨 vo svete tvorby s AI', hu: '🎨 az MI-vel való alkotás világában' },
+                                socialni: { cs: '🎬 ve světě sociálních sítí', en: '🎬 in the world of social media', sk: '🎬 vo svete sociálnych sietí', hu: '🎬 a közösségi média világában' } },
+                 missions: { hry: 'svet-hry', weby: 'svet-weby', aplikace: 'svet-aplikace', roboti: 'svet-roboti', tvorba: 'svet-tvorba', socialni: 'svet-socialni' } },
     visuality: { label: 'Visual style', values: ['text-first', 'balanced', 'visual-first'], ordered: true },
     depth:     { label: 'Depth', values: ['intro', 'standard', 'technical', 'research'], ordered: true },
     formalism: { label: 'Formulas', values: ['none', 'light', 'full'], ordered: true },
@@ -90,10 +94,18 @@ export const CONFIG = {
   facetWords: {
     lens:       { generic: 'examples from everywhere',
                   hry: { cs: 'příklady ze světa her', en: 'examples from games', sk: 'príklady zo sveta hier', hu: 'példák a játékok világából' },
-                  roboti: { cs: 'příklady z robotů a micro:bitu', en: 'examples from robots and the micro:bit', sk: 'príklady z robotov a micro:bitu', hu: 'példák a robotok és a micro:bit világából' } },
+                  weby: { cs: 'příklady ze světa webů', en: 'examples from websites', sk: 'príklady zo sveta webov', hu: 'példák a weboldalak világából' },
+                  aplikace: { cs: 'příklady z mobilních aplikací', en: 'examples from mobile apps', sk: 'príklady z mobilných aplikácií', hu: 'példák a mobilalkalmazások világából' },
+                  roboti: { cs: 'příklady z robotů a micro:bitu', en: 'examples from robots and the micro:bit', sk: 'príklady z robotov a micro:bitu', hu: 'példák a robotok és a micro:bit világából' },
+                  tvorba: { cs: 'příklady z tvorby s AI', en: 'examples from creating with AI', sk: 'príklady z tvorby s AI', hu: 'példák az MI-vel való alkotásból' },
+                  socialni: { cs: 'příklady ze sociálních sítí a videí', en: 'examples from social media and video', sk: 'príklady zo sociálnych sietí a videí', hu: 'példák a közösségi médiából és a videókból' } },
     lensShort:  { generic: 'Everywhere',
                   hry: { cs: 'Hry', en: 'Games', sk: 'Hry', hu: 'Játékok' },
-                  roboti: { cs: 'Roboti a micro:bit', en: 'Robots and micro:bit', sk: 'Roboty a micro:bit', hu: 'Robotok és micro:bit' } },
+                  weby: { cs: 'Weby', en: 'Websites', sk: 'Weby', hu: 'Weboldalak' },
+                  aplikace: { cs: 'Aplikace', en: 'Apps', sk: 'Aplikácie', hu: 'Alkalmazások' },
+                  roboti: { cs: 'Roboti a micro:bit', en: 'Robots and micro:bit', sk: 'Roboty a micro:bit', hu: 'Robotok és micro:bit' },
+                  tvorba: { cs: 'Tvorba s AI', en: 'Creating with AI', sk: 'Tvorba s AI', hu: 'Alkotás MI-vel' },
+                  socialni: { cs: 'Sociální sítě a videa', en: 'Social media and video', sk: 'Sociálne siete a videá', hu: 'Közösségi média és videók' } },
     depth:      { intro: 'gentle introduction', standard: 'standard depth', technical: 'technical depth', research: 'research depth' },
     visuality:  { 'text-first': 'mostly text', balanced: 'text and pictures', 'visual-first': 'mostly visual' },
     formalism:  { none: 'no formulas', light: 'a few formulas', full: 'full math' },
@@ -108,12 +120,12 @@ export const CONFIG = {
   goals: {
     understand: { mission: 'postup', label: { cs: 'Pochopit, jak to funguje', en: 'Understand how it works', sk: 'Pochopiť, ako to funguje', hu: 'Megérteni, hogyan működik' },
                   hint: { cs: 'nejdřív srozumitelné vysvětlení', en: 'clear explanations first', sk: 'najprv zrozumiteľné vysvetlenie', hu: 'előbb érthető magyarázat' } },
-    create: { mission: 'program', missions: { hry: 'svet-hry', roboti: 'svet-roboti' },   // se světem jeho mise
+    create: { mission: 'program', missions: { hry: 'svet-hry', weby: 'svet-weby', aplikace: 'svet-aplikace', roboti: 'svet-roboti', tvorba: 'svet-tvorba' },   // se světem jeho mise
               label: { cs: 'Něco vytvořit', en: 'Make something', sk: 'Niečo vytvoriť', hu: 'Valamit alkotni' },
               hint: { cs: 'mise Program: od prvního příkazu k vlastní hře', en: 'the Program mission: from a first command to your own game', sk: 'misia Program: od prvého príkazu k vlastnej hre', hu: 'a Program küldetés: az első utasítástól a saját játékig' } },
-    ai: { mission: 'ai', label: { cs: 'Rozumět AI', en: 'Understand AI', sk: 'Rozumieť AI', hu: 'Érteni az AI-t' },
+    ai: { mission: 'ai', missions: { tvorba: 'svet-tvorba' }, label: { cs: 'Rozumět AI', en: 'Understand AI', sk: 'Rozumieť AI', hu: 'Érteni az MI-t' },
           hint: { cs: 'mise AI: jak se stroj učí a kdy mu nevěřit', en: 'the AI mission: how a machine learns and when not to trust it', sk: 'misia AI: ako sa stroj učí a kedy mu neveriť', hu: 'az AI küldetés: hogyan tanul a gép, és mikor ne higgy neki' } },
-    protect: { mission: 'bezpeci', label: { cs: 'Chránit se na netu', en: 'Stay safe online', sk: 'Chrániť sa na nete', hu: 'Biztonságban a neten' },
+    protect: { mission: 'bezpeci', missions: { socialni: 'svet-socialni' }, label: { cs: 'Chránit se na netu', en: 'Stay safe online', sk: 'Chrániť sa na nete', hu: 'Biztonságban a neten' },
                hint: { cs: 'mise Bezpečí: hesla, podvody a tvoje stopa', en: 'the Safety mission: passwords, scams and your trail', sk: 'misia Bezpečie: heslá, podvody a tvoja stopa', hu: 'a Biztonság küldetés: jelszavak, csalások és a nyomod' } },
   },
 
@@ -164,6 +176,7 @@ export const CONFIG = {
       'Sítě a internet': 'Networks and the internet', 'Umělá inteligence': 'Artificial intelligence', 'Bezpečí': 'Safety',
       'Mistr informatiky': 'Computing master',
       'Svět příkladů': 'Example world', 'nepovinné': 'optional', 'Odevšad': 'Everywhere', 'Hry': 'Games', 'Roboti a micro:bit': 'Robots and micro:bit',
+      'Weby': 'Websites', 'Aplikace': 'Apps', 'Tvorba s AI': 'Creating with AI', 'Sociální sítě a videa': 'Social media and video',
       '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': { one: '<b>{0}</b> where the book has them: {1} core concept today', other: '<b>{0}</b> where the book has them: {1} core concepts today' },
     },
     sk: {
@@ -182,6 +195,7 @@ export const CONFIG = {
       'Sítě a internet': 'Siete a internet', 'Umělá inteligence': 'Umelá inteligencia', 'Bezpečí': 'Bezpečie',
       'Mistr informatiky': 'Majster informatiky',
       'Svět příkladů': 'Svet príkladov', 'nepovinné': 'nepovinné', 'Odevšad': 'Odvšadiaľ', 'Hry': 'Hry', 'Roboti a micro:bit': 'Roboty a micro:bit',
+      'Weby': 'Weby', 'Aplikace': 'Aplikácie', 'Tvorba s AI': 'Tvorba s AI', 'Sociální sítě a videa': 'Sociálne siete a videá',
       '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': { one: '<b>{0}</b> tam, kde ich kniha má: dnes {1} jadro', few: '<b>{0}</b> tam, kde ich kniha má: dnes {1} jadrá', other: '<b>{0}</b> tam, kde ich kniha má: dnes {1} jadier' },
     },
     hu: {
@@ -190,7 +204,7 @@ export const CONFIG = {
       'Základy informatiky a umělé inteligence pro 2. stupeň: 24 klíčových konceptů v 6 kapitolách.': 'Az informatika és a mesterséges intelligencia alapjai felső tagozatosoknak: 24 kulcsfogalom 6 fejezetben.',
       'Pochopit, jak to funguje': 'Megérteni, hogyan működik',
       'Něco vytvořit': 'Valamit alkotni',
-      'Rozumět AI': 'Érteni az AI-t',
+      'Rozumět AI': 'Érteni az MI-t',
       'Chránit se na netu': 'Biztonságban a neten',
       'Příklady ze školy, z mobilu i z her · nejdřív srozumitelné vysvětlení.': 'Példák az iskolából, a telefonról és a játékokból · előbb érthető magyarázat.',
       'credits-map': 'A tartalom gerince: a <a href="https://knowledge-map-glitch.vercel.app/" target="_blank" rel="noopener">Glitch informatikai fogalomtérkép</a>, 24 alapfogalomra átdolgozva. A p-book platformot a <a href="https://kam.fit.cvut.cz" target="_blank" rel="noopener">FIT ČVUT</a> és a <a href="https://recombee.com" target="_blank" rel="noopener">Recombee</a> készítette.',
@@ -200,6 +214,7 @@ export const CONFIG = {
       'Sítě a internet': 'Hálózatok és internet', 'Umělá inteligence': 'Mesterséges intelligencia', 'Bezpečí': 'Biztonság',
       'Mistr informatiky': 'Az informatika mestere',
       'Svět příkladů': 'A példák világa', 'nepovinné': 'nem kötelező', 'Odevšad': 'Bárhonnan', 'Hry': 'Játékok', 'Roboti a micro:bit': 'Robotok és micro:bit',
+      'Weby': 'Weboldalak', 'Aplikace': 'Alkalmazások', 'Tvorba s AI': 'Alkotás MI-vel', 'Sociální sítě a videa': 'Közösségi média és videók',
       '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': '<b>{0}</b> ott, ahol a könyvben van ilyen: ma {1} alapfogalom',
     },
   },

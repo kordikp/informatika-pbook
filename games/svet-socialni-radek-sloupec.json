@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Záznam, nebo vlastnost?",
+  "instruction": "V exportu dat ze sítě: co je jeden záznam (řádek) a co vlastnost (sloupec)?",
+  "buckets": [
+    "Záznam (řádek)",
+    "Vlastnost (sloupec)"
+  ],
+  "items": [
+    {
+      "text": "Jedno zhlédnutí videa ve 21:14",
+      "answer": 0,
+      "why": "Jedna událost, jeden řádek."
+    },
+    {
+      "text": "Doba sledování v sekundách",
+      "answer": 1,
+      "why": "Údaj, který má každé zhlédnutí."
+    },
+    {
+      "text": "Tvůrce videa",
+      "answer": 1,
+      "why": "Vlastnost každého řádku."
+    },
+    {
+      "text": "Jeden lajk pod konkrétní fotkou",
+      "answer": 0,
+      "why": "Jedna událost, jeden záznam."
+    },
+    {
+      "text": "Datum a čas",
+      "answer": 1,
+      "why": "Sloupec, podle kterého se dá řadit."
+    },
+    {
+      "text": "Jedno hledání „skateboard triky“",
+      "answer": 0,
+      "why": "Každé hledání je další řádek."
+    }
+  ],
+  "debrief": "Řádek je jedna věc, která se stala. Sloupec je údaj, který má každý řádek. Díky tomu jde řadit, filtrovat a počítat."
+}

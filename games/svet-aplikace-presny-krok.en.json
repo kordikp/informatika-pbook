@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Can the app do it?",
+  "instruction": "You are writing a method for a bill-splitting app. Mark the steps the app can carry out without guessing.",
+  "hitLabel": "exact step",
+  "missLabel": "the app doesn’t know how",
+  "debrief": "An app can only carry out a step that can be done in one single way. “Sensibly”, “fair” or “a bit” mean nothing to it.",
+  "items": [
+    {
+      "text": "Divide the total by the number of people",
+      "hit": true,
+      "why": "Clear and doable: you divide one number by another."
+    },
+    {
+      "text": "Split it somehow sensibly",
+      "hit": false,
+      "why": "What is sensibly? The app doesn’t know."
+    },
+    {
+      "text": "Round the share down to whole cents and add the remainder to the first person on the list",
+      "hit": true,
+      "why": "It says exactly where the extra cent goes."
+    },
+    {
+      "text": "Whoever ate less should pay less",
+      "hit": false,
+      "why": "The app doesn’t know who ate how much, or how much less."
+    },
+    {
+      "text": "Repeat until all the differences are zero",
+      "hit": true,
+      "why": "A clear end condition: the method will finish."
+    },
+    {
+      "text": "Send the money to whoever it is fair to",
+      "hit": false,
+      "why": "Fair is an opinion, not a step."
+    }
+  ]
+}

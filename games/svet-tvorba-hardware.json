@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Hardware, nebo software?",
+  "instruction": "Stavíš si počítač na tvorbu s AI. Co z toho je hardware a co software?",
+  "buckets": [
+    "Hardware",
+    "Software"
+  ],
+  "items": [
+    {
+      "text": "Grafická karta",
+      "answer": 0,
+      "why": "Čip, který si můžeš osahat."
+    },
+    {
+      "text": "Model na generování obrázků",
+      "answer": 1,
+      "why": "Program a jeho čísla, uložený na disku."
+    },
+    {
+      "text": "Operační paměť 16 GB",
+      "answer": 0,
+      "why": "Fyzické paměťové čipy."
+    },
+    {
+      "text": "Video editor",
+      "answer": 1,
+      "why": "Aplikace, která běží na počítači."
+    },
+    {
+      "text": "Operační systém Windows",
+      "answer": 1,
+      "why": "I systém je program."
+    },
+    {
+      "text": "Čip na AI v mobilu",
+      "answer": 0,
+      "why": "Kus křemíku uvnitř mobilu."
+    },
+    {
+      "text": "Disk SSD",
+      "answer": 0,
+      "why": "Úložiště je fyzická součástka."
+    }
+  ],
+  "debrief": "Hardware si osaháš, software na něm běží. AI model je software, který potřebuje silný hardware."
+}

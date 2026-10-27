@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Projde chybný semafor testem?",
+  "instruction": "Testuješ semafor podle tabulky s chybou v posledním řádku. Které testy projdou a které chybu odhalí?",
+  "buckets": [
+    "Projde",
+    "Odhalí chybu"
+  ],
+  "items": [
+    {
+      "text": "Stisk na červené spustí odpočet",
+      "answer": 0,
+      "why": "První řádek tabulky je správně."
+    },
+    {
+      "text": "Po odpočtu se rozsvítí zelená",
+      "answer": 0,
+      "why": "Druhý řádek je správně."
+    },
+    {
+      "text": "Zelená po chvíli začne blikat",
+      "answer": 0,
+      "why": "Čtvrtý řádek je správně."
+    },
+    {
+      "text": "Po blikání se rozsvítí červená",
+      "answer": 1,
+      "why": "Tabulka pošle semafor zpátky na zelenou. Tady je chyba."
+    },
+    {
+      "text": "Stisk na zelené nic nezmění",
+      "answer": 0,
+      "why": "I řádek „nic se nestane“ musí být v tabulce, a je tam."
+    },
+    {
+      "text": "Po jednom stisku je do dvou minut zase červená",
+      "answer": 1,
+      "why": "Na červenou se semafor nikdy nevrátí."
+    }
+  ],
+  "debrief": "Chybu odhalí jen test, který prochází poslední přechod. Proto testy pokrývají každý řádek tabulky, ne jen začátek."
+}

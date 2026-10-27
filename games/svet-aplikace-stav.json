@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Nastav, nebo změň?",
+  "instruction": "Ke každé chvíli v appce vyber, jestli se proměnná nastaví na novou hodnotu, nebo změní o kus.",
+  "buckets": [
+    "nastav na …",
+    "změň o …"
+  ],
+  "items": [
+    {
+      "text": "Odhlášení: přihlášen bude „ne“",
+      "answer": 0,
+      "why": "Ať bylo předtím cokoli, teď je „ne“."
+    },
+    {
+      "text": "Přišla nová zpráva: nepřečtených o jednu víc",
+      "answer": 1,
+      "why": "K těm, co už jsou, jedna přibude."
+    },
+    {
+      "text": "Otevřel jsi chat: nepřečtených je teď nula",
+      "answer": 0,
+      "why": "Hodnota se přepíše na 0."
+    },
+    {
+      "text": "Klepnutí na + v košíku",
+      "answer": 1,
+      "why": "K počtu kusů, který tam je, přibude jeden."
+    },
+    {
+      "text": "V nastavení vybereš tmavý režim",
+      "answer": 0,
+      "why": "Režim se přepíše na „tmavý“."
+    },
+    {
+      "text": "Tlačítko hlasitosti dolů",
+      "answer": 1,
+      "why": "Z hlasitosti, která je, kousek ubere."
+    }
+  ],
+  "debrief": "Nastav přepíše hodnotu bez ohledu na to, co tam bylo. Změň počítá s tím, co tam už je."
+}

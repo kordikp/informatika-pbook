@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "Mi szegi meg a táblázat szabályait?",
+  "instruction": "Új sorok kerültek a kölcsönzések táblázatába. Jelöld meg azokat, amelyek megszegik a beírás szabályait.",
+  "hitLabel": "megszegi a szabályokat",
+  "missLabel": "rendben van",
+  "debrief": "Egységes formátum, nincsenek ismétlődések, és megvannak a kötelező adatok. Csak így tud az app megbízhatóan szűrni, rendezni és számolni.",
+  "items": [
+    {
+      "text": "Bence · A hobbit · holnap · nem",
+      "hit": true,
+      "why": "A „holnap” nem dátum. Egy hét múlva senki sem tudja, mikor volt."
+    },
+    {
+      "text": "Kovács Bence · A hobbit · 2026. 11. 03. · nem, pedig Bence már szerepel a táblázatban",
+      "hit": true,
+      "why": "Egy tanuló két néven: az app két embert csinál belőle."
+    },
+    {
+      "text": "(név nélkül) · A kis herceg · 2026. 11. 04. · nem",
+      "hit": true,
+      "why": "Hiányzik egy kötelező adat. Kinél van a könyv?"
+    },
+    {
+      "text": "Emma · A kis herceg · 2026. 11. 04. · nem",
+      "hit": false,
+      "why": "Minden adat a helyes formátumban."
+    },
+    {
+      "text": "Éva · A hobbit · 2026. 11. 05. · igen, a megjegyzés üres",
+      "hit": false,
+      "why": "A megjegyzés nem kötelező, lehet üres."
+    },
+    {
+      "text": "Kristóf · a hobbit · 2026. 11. 06. · nem",
+      "hit": true,
+      "why": "Az „a hobbit” és az „A hobbit” az app számára két különböző könyv."
+    }
+  ]
+}

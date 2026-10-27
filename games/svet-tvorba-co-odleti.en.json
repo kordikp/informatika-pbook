@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "What goes to the server?",
+  "instruction": "You are making a video for school. Which of these goes to the company’s server, and which stays with you?",
+  "buckets": [
+    "Goes to the server",
+    "Stays with you"
+  ],
+  "items": [
+    {
+      "text": "A prompt in an online image generator",
+      "answer": 0,
+      "why": "The generator needs it on the server, where it calculates."
+    },
+    {
+      "text": "A photo of your classmates that you upload to be edited",
+      "answer": 0,
+      "why": "The editing happens on the server, so the photo is there."
+    },
+    {
+      "text": "A drawing in a drawing program without the internet",
+      "answer": 1,
+      "why": "You send nothing; everything is in the computer."
+    },
+    {
+      "text": "A recording of your voice for online voice cloning",
+      "answer": 0,
+      "why": "The clone learns from your recording on the server."
+    },
+    {
+      "text": "A video edited in an editor that runs offline",
+      "answer": 1,
+      "why": "The editor works on your device."
+    },
+    {
+      "text": "A generated picture, until you download it",
+      "answer": 0,
+      "why": "It was made on the server and it sits there."
+    },
+    {
+      "text": "A model that runs locally on your computer",
+      "answer": 1,
+      "why": "A local model sends nothing anywhere."
+    }
+  ],
+  "debrief": "An online tool calculates in the cloud, so everything you give it is on its server. Only what you do offline stays with you."
+}

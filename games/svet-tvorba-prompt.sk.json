@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Pomôže to promptu?",
+  "instruction": "Chceš lepší obrázok na plagát. Čo ti v prompte pomôže a čo nie?",
+  "buckets": [
+    "Pomôže",
+    "Nepomôže"
+  ],
+  "items": [
+    {
+      "text": "Pridať štýl: akvarel",
+      "answer": 0,
+      "why": "Konkrétne slovo, ktoré mení výsledok."
+    },
+    {
+      "text": "Napísať PROSÍM veľkými písmenami",
+      "answer": 1,
+      "why": "Zdvorilosť ani veľké písmená obrázok nezlepšia."
+    },
+    {
+      "text": "Opísať svetlo: západ slnka",
+      "answer": 0,
+      "why": "Svetlo je jeden z najsilnejších parametrov."
+    },
+    {
+      "text": "Zmeniť päť slov naraz a dúfať",
+      "answer": 1,
+      "why": "Potom nevieš, ktoré slovo čo spôsobilo."
+    },
+    {
+      "text": "Určiť záber: zblízka",
+      "answer": 0,
+      "why": "Záber rozhodne, čo bude na obrázku vidieť."
+    },
+    {
+      "text": "Napísať „urob to dobre“",
+      "answer": 1,
+      "why": "Generátor nevie, čo je pre teba „dobre“."
+    },
+    {
+      "text": "Opísať náladu: tajomná",
+      "answer": 0,
+      "why": "Nálada ovplyvní farby aj svetlo."
+    }
+  ],
+  "debrief": "Generátor číta len slová, a tak pomáhajú konkrétne parametre: štýl, svetlo, záber, nálada. Prosby a menenie piatich vecí naraz nepomáhajú."
+}

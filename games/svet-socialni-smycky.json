@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Kterou smyčku síť použila?",
+  "instruction": "Ke každé části sociální sítě vyber smyčku, která v ní běží.",
+  "buckets": [
+    "opakuj n×",
+    "opakuj, dokud…",
+    "opakuj stále"
+  ],
+  "items": [
+    {
+      "text": "Ukaž 10 nových příspěvků přátel a pak „To je vše“",
+      "answer": 0,
+      "why": "Počet je známý předem a feed má konec."
+    },
+    {
+      "text": "Pouštěj videa, dokud uživatel nezavře appku",
+      "answer": 1,
+      "why": "Konec záleží jen na tobě."
+    },
+    {
+      "text": "Kolečko načítání se točí, dokud nedorazí data",
+      "answer": 1,
+      "why": "Skončí, až se něco stane: data dorazí."
+    },
+    {
+      "text": "Příběh se třemi fotkami za sebou",
+      "answer": 0,
+      "why": "Přesně tři, známé předem."
+    },
+    {
+      "text": "Pouštěj videa, dokud neuplyne časový limit 30 minut",
+      "answer": 1,
+      "why": "Podmínka ukončení, kterou sis nastavil sám."
+    },
+    {
+      "text": "Logo v rohu pořád pomalu pulzuje",
+      "answer": 2,
+      "why": "Dekorace, která běží celou dobu a nemá kdy skončit."
+    }
+  ],
+  "debrief": "Pevný počet má konec předem, „dokud“ končí podmínkou. Feed bez konce je cyklus, jehož jedinou podmínkou ukončení jsi ty."
+}

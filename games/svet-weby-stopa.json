@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Aktivní, nebo pasivní stopa?",
+  "instruction": "Roztřiď, co je stopa, kterou zanecháš vědomě, a co vznikne bez tvého psaní.",
+  "buckets": [
+    "Aktivní stopa",
+    "Pasivní stopa"
+  ],
+  "items": [
+    {
+      "text": "Komentář pod článkem",
+      "answer": 0,
+      "why": "Napsal jsi ho sám a vědomě."
+    },
+    {
+      "text": "Reklamní cookie z návštěvy e-shopu",
+      "answer": 1,
+      "why": "Uložila se bez tvého psaní, stačila návštěva."
+    },
+    {
+      "text": "Fotka, kterou nahraješ na web kroužku",
+      "answer": 0,
+      "why": "Zveřejnil jsi ji ty."
+    },
+    {
+      "text": "Seznam stránek, na které jsi klikl",
+      "answer": 1,
+      "why": "Vzniká sám, když se pohybuješ po webu."
+    },
+    {
+      "text": "Město, které web pozná z tvé IP adresy",
+      "answer": 1,
+      "why": "Nic jsi nezadal, a web to ví."
+    },
+    {
+      "text": "Recenze hry, kterou napíšeš",
+      "answer": 0,
+      "why": "Tvůj text, tvoje rozhodnutí."
+    },
+    {
+      "text": "Jak dlouho ses díval na boty v e-shopu",
+      "answer": 1,
+      "why": "Doba prohlížení se měří bez tvého vědomí."
+    }
+  ],
+  "debrief": "Aktivní stopu vidíš, protože ji děláš sám. Pasivní vzniká tiše, z cookies a z toho, kam klikáš a jak dlouho se díváš."
+}

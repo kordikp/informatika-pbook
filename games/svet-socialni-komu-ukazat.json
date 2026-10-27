@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Komu to ukázat?",
+  "instruction": "Zásada nejmenších práv: každý příspěvek jen tomu, kdo ho má vidět. Kam patří tyhle?",
+  "buckets": [
+    "Blízkým přátelům",
+    "Všem sledujícím",
+    "Nikomu"
+  ],
+  "items": [
+    {
+      "text": "Fotka z narozeninové oslavy doma",
+      "answer": 0,
+      "why": "Soukromá chvíle pro ty, kdo tam byli."
+    },
+    {
+      "text": "Video z vystoupení kroužku, kde jsi jen ty",
+      "answer": 1,
+      "why": "Nic soukromého na něm není a jsi na něj hrdý."
+    },
+    {
+      "text": "Fotka vstupenky s QR kódem na koncert",
+      "answer": 2,
+      "why": "Kdo kód vyfotí, může jít místo tebe."
+    },
+    {
+      "text": "Selfie, za kterým je vidět jméno na zvonku",
+      "answer": 2,
+      "why": "Prozradí, kde bydlíš."
+    },
+    {
+      "text": "Kresba, kterou ses pochlubil",
+      "answer": 1,
+      "why": "Tvoje dílo, nic citlivého."
+    },
+    {
+      "text": "Vtipné video s kamarádem, který řekl: jen pro partu",
+      "answer": 0,
+      "why": "Jeho souhlas platí jen pro partu."
+    }
+  ],
+  "debrief": "Čím širší okruh, tím menší kontrola. A co obsahuje adresu, kód nebo cizí soukromí, nepatří ven vůbec."
+}

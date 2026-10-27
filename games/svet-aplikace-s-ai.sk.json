@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Použiť AI, alebo radšej nie?",
+  "instruction": "Staviaš triednu apku. Kedy je dobrý nápad pomôcť si AI a kedy radšej nie?",
+  "buckets": [
+    "Hodí sa",
+    "Radšej nie"
+  ],
+  "items": [
+    {
+      "text": "Napísať prvú verziu kvízu podľa tvojho návrhu",
+      "answer": 0,
+      "why": "Ty určuješ, čo má apka robiť, a potom to otestuješ."
+    },
+    {
+      "text": "Vysvetliť kus kódu, ktorému nerozumieš",
+      "answer": 0,
+      "why": "AI vie vysvetľovať. Výsledok si aj tak vyskúšaj."
+    },
+    {
+      "text": "Vložiť do promptu tabuľku s menami a alergiami spolužiakov",
+      "answer": 1,
+      "why": "Citlivé dáta cudzích ľudí do promptu nepatria."
+    },
+    {
+      "text": "Nechať apku rozhodnúť, kto pôjde na výlet",
+      "answer": 1,
+      "why": "O ľuďoch rozhodujú ľudia, ktorí za to zodpovedajú."
+    },
+    {
+      "text": "Vyriešiť úlohu, na ktorej sa máš naučiť cykly",
+      "answer": 1,
+      "why": "Prišiel by si o to, kvôli čomu úlohu robíš."
+    },
+    {
+      "text": "Navrhnúť desať otázok do kvízu, ktoré potom overíš",
+      "answer": 0,
+      "why": "Návrh je v poriadku, keď fakty overíš inde."
+    },
+    {
+      "text": "Poslať apku triede s vetou „AI ju otestovala“",
+      "answer": 1,
+      "why": "Testovať a ručiť za výsledok musíš ty."
+    }
+  ],
+  "debrief": "AI je skvelý pomocník na návrhy a vysvetlenia. Rozhodovanie o ľuďoch, citlivé dáta a učenie, ktoré máš urobiť sám, si nechaj."
+}

@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Ez kiderül az adatokból?",
+  "instruction": "A csatornád statisztikáit nézed. Mely következtetések adódnak tényleg az adatokból, és melyeknél van szó csak korrelációról?",
+  "buckets": [
+    "Az adatokból adódik",
+    "Csak korreláció, az okot nem tudjuk"
+  ],
+  "items": [
+    {
+      "text": "A legtöbb néző a hírfolyamból jött",
+      "answer": 0,
+      "why": "Ezt a statisztika közvetlenül méri."
+    },
+    {
+      "text": "A videók azért sikeresebbek, mert péntek van",
+      "answer": 1,
+      "why": "Lehet, hogy pénteken jobb videót tettél fel."
+    },
+    {
+      "text": "A legnézettebb a macskás videó volt",
+      "answer": 0,
+      "why": "A megtekintések száma mért adat."
+    },
+    {
+      "text": "Azért szaporodnak a követők, mert lecseréltem a profilképemet",
+      "answer": 1,
+      "why": "Egyszerre történt, de bármi más is lehet az oka."
+    },
+    {
+      "text": "A csatornámon a hosszabb videókat kevésbé nézik végig",
+      "answer": 0,
+      "why": "A nézési idő minden videónál benne van az adatokban."
+    },
+    {
+      "text": "A videó sikerét a #fyp hashtag hozta",
+      "answer": 1,
+      "why": "A hashtag nélküli videókkal való összehasonlítás nélkül ezt nem tudhatod."
+    }
+  ],
+  "debrief": "Az adatok megmutatják, mi történt és mennyi. Hogy miért történt, azt gyakran nem olvashatod ki belőlük: két dolog együtt jár, de az ok máshol lehet."
+}

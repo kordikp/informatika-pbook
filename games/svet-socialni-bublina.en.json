@@ -1,0 +1,20 @@
+{
+  "type": "order",
+  "title": "How a bubble forms",
+  "instruction": "Put in order how one stop at a video turns into a feed about just one topic.",
+  "steps": [
+    "You stop at a video with a puppy",
+    "The app records a long watch time",
+    "It offers more puppies to you and to people with similar taste",
+    "You watch them, because they happen to be in your feed",
+    "The feed is almost all puppies"
+  ],
+  "debrief": "A bubble forms from a loop: your signals → more of the same → more of the same signals. You can only break it with different signals.",
+  "why": [
+    "It all starts with one signal.",
+    "For the recommender, watch time is the strongest signal.",
+    "It picks the next videos by the signal.",
+    "That sends more signals in the same direction.",
+    "The loop has closed: a bubble."
+  ]
+}

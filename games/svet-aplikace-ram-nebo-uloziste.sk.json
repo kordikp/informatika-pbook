@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Operačná pamäť, alebo úložisko?",
+  "instruction": "Kde to v mobile práve je? V operačnej pamäti, ktorá po zatvorení zabudne, alebo v úložisku?",
+  "buckets": [
+    "Operačná pamäť",
+    "Úložisko"
+  ],
+  "items": [
+    {
+      "text": "Rozpísaná správa, ktorú apka ešte neuložila",
+      "answer": 0,
+      "why": "Zatiaľ existuje len v pamäti apky."
+    },
+    {
+      "text": "Fotka v galérii",
+      "answer": 1,
+      "why": "Uložená fotka je trvalo v úložisku."
+    },
+    {
+      "text": "Rozohraná hra, ktorú máš práve otvorenú",
+      "answer": 0,
+      "why": "Stav hry drží hra v operačnej pamäti."
+    },
+    {
+      "text": "Nainštalovaná apka",
+      "answer": 1,
+      "why": "Apka leží v úložisku, aj keď ju nemáš spustenú."
+    },
+    {
+      "text": "Stránka otvorená v prehliadači",
+      "answer": 0,
+      "why": "Prehliadač ju drží v pamäti, preto sa po zatvorení načítava znova."
+    },
+    {
+      "text": "Pesnička stiahnutá na počúvanie offline",
+      "answer": 1,
+      "why": "Stiahnutá je trvalo v úložisku."
+    }
+  ],
+  "debrief": "V operačnej pamäti je len to, na čom sa práve pracuje. Čo má prežiť zatvorenie apky, musí byť v úložisku."
+}

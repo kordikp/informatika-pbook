@@ -1,0 +1,58 @@
+{
+  "type": "sort",
+  "title": "HTML, CSS vagy JavaScript?",
+  "instruction": "Szerkezet, kinézet vagy viselkedés? Válogasd szét, mi a weboldal melyik rétegébe tartozik!",
+  "buckets": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "items": [
+    {
+      "text": "<h1>Az oldal címe</h1>",
+      "answer": 0,
+      "why": "A címke azt mondja, hogy ez egy cím. Ez szerkezet."
+    },
+    {
+      "text": "color: darkblue;",
+      "answer": 1,
+      "why": "A szöveg színe kinézet."
+    },
+    {
+      "text": "kattintásra változtasd meg a szöveget",
+      "answer": 2,
+      "why": "A kattintásra adott válasz viselkedés."
+    },
+    {
+      "text": "<img src=\"kutya.jpg\">",
+      "answer": 0,
+      "why": "Képet tesz az oldalba. Ez szerkezet."
+    },
+    {
+      "text": "font-size: 18px;",
+      "answer": 1,
+      "why": "A betűméret kinézet."
+    },
+    {
+      "text": "számold a kattintások pontszámát",
+      "answer": 2,
+      "why": "A kattintás közbeni számolás viselkedés."
+    },
+    {
+      "text": "<a href=…>hivatkozás</a>",
+      "answer": 0,
+      "why": "A hivatkozás az oldal szerkezetének része."
+    },
+    {
+      "text": "elrendezés három oszlopba",
+      "answer": 1,
+      "why": "Hogy mi hol áll az oldalon, azt a CSS határozza meg."
+    },
+    {
+      "text": "reagálj egy billentyű lenyomására",
+      "answer": 2,
+      "why": "A billentyűre adott válasz viselkedés."
+    }
+  ],
+  "debrief": "A weboldalnak három rétege van: a HTML megmondja, mi van az oldalon, a CSS, hogyan néz ki, a JavaScript pedig, mit csinál az oldal, amikor kattintasz vagy gépelsz."
+}

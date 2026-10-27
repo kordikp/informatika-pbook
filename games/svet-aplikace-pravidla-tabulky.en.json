@@ -1,0 +1,40 @@
+{
+  "type": "pop",
+  "title": "What breaks the rules of the spreadsheet?",
+  "instruction": "New rows have been added to the table of loans. Mark the ones that break the rules for entries.",
+  "hitLabel": "breaks the rules",
+  "missLabel": "fine",
+  "debrief": "One format, no duplicates and required fields. Only then can the app reliably filter, sort and count.",
+  "items": [
+    {
+      "text": "Ollie · The Hobbit · tomorrow · no",
+      "hit": true,
+      "why": "“Tomorrow” is not a date. In a week nobody knows when it was."
+    },
+    {
+      "text": "Oliver Smith · The Hobbit · 3 Nov 2026 · no, when Ollie is already in the table",
+      "hit": true,
+      "why": "One pupil under two names: the app turns him into two people."
+    },
+    {
+      "text": "(no name) · The Little Prince · 4 Nov 2026 · no",
+      "hit": true,
+      "why": "A required field is missing. Who has the book?"
+    },
+    {
+      "text": "Emma · The Little Prince · 4 Nov 2026 · no",
+      "hit": false,
+      "why": "All the details in the right format."
+    },
+    {
+      "text": "Eva · The Hobbit · 5 Nov 2026 · yes, note empty",
+      "hit": false,
+      "why": "The note is not required, it may be empty."
+    },
+    {
+      "text": "Jack · the hobbit · 6 Nov 2026 · no",
+      "hit": true,
+      "why": "“the hobbit” and “The Hobbit” are two different books for the app."
+    }
+  ]
+}

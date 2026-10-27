@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Komu to právo dať?",
+  "instruction": "Zásada najmenších práv: každé právo dostane len rola, ktorá ho na svoju prácu potrebuje. Komu dáš ktoré?",
+  "buckets": [
+    "Žiak",
+    "Pokladník",
+    "Pani učiteľka"
+  ],
+  "items": [
+    {
+      "text": "Zapísať, že Eva zaplatila",
+      "answer": 1,
+      "why": "Platby vedie pokladník."
+    },
+    {
+      "text": "Vidieť svoju platbu a program výletu",
+      "answer": 0,
+      "why": "Toto stačí každému žiakovi."
+    },
+    {
+      "text": "Prideliť niekomu rolu pokladníka",
+      "answer": 2,
+      "why": "O rolách rozhoduje správca."
+    },
+    {
+      "text": "Zmeniť čas odchodu",
+      "answer": 2,
+      "why": "Program výletu mení pani učiteľka."
+    },
+    {
+      "text": "Prihlásiť sa na výlet",
+      "answer": 0,
+      "why": "Za seba sa prihlási každý žiak."
+    },
+    {
+      "text": "Vidieť zoznam, kto ešte nezaplatil",
+      "answer": 1,
+      "why": "Pokladník ho potrebuje, aby peniaze vybral. Spolužiaci nie."
+    }
+  ],
+  "debrief": "Správca môže všetko, ale to neznamená, že všetko má robiť on. Každé právo patrí tomu, kto ho potrebuje, a nikomu ďalšiemu."
+}

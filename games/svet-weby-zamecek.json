@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Co zámeček zaručí?",
+  "instruction": "Web má zámeček a https. Co ti to zaručí a co ne?",
+  "buckets": [
+    "Zaručí",
+    "Nezaručí"
+  ],
+  "items": [
+    {
+      "text": "Heslo cestou k serveru nikdo nepřečte",
+      "answer": 0,
+      "why": "Přesně k tomu šifrování slouží."
+    },
+    {
+      "text": "Za webem je poctivá firma",
+      "answer": 1,
+      "why": "Certifikát dostane zdarma i podvodník."
+    },
+    {
+      "text": "Na veřejné Wi-Fi nikdo nevidí, co píšeš do formuláře",
+      "answer": 0,
+      "why": "Ve stejné síti je vidět jen šifrovaná změť."
+    },
+    {
+      "text": "Stránka neobsahuje viry",
+      "answer": 1,
+      "why": "Šifrovaně se dá poslat i škodlivý soubor."
+    },
+    {
+      "text": "Data cestou nikdo nezmění",
+      "answer": 0,
+      "why": "Šifrování pozná, kdyby do obálky někdo sáhl."
+    },
+    {
+      "text": "Web s tvými údaji zachází dobře",
+      "answer": 1,
+      "why": "Co web s daty udělá, až mu dorazí, zámeček neovlivní."
+    }
+  ],
+  "debrief": "Zámeček chrání cestu: nikdo po ní tvoje data nepřečte ani nezmění. O poctivosti webu neříká nic."
+}

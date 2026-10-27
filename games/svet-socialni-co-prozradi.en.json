@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "What gives away where you live?",
+  "instruction": "You are about to post a photo. Mark everything a stranger could use to tell where you live.",
+  "hitLabel": "gives it away",
+  "missLabel": "doesn’t give it away",
+  "debrief": "It isn’t only what you write that gives your address away. The background of a photo, the metadata and a location tag are enough.",
+  "items": [
+    {
+      "text": "The name on the doorbell in the background",
+      "hit": true,
+      "why": "A name and a house: that is almost an address."
+    },
+    {
+      "text": "The GPS location in the photo’s metadata",
+      "hit": true,
+      "why": "The exact coordinates of where the photo was taken."
+    },
+    {
+      "text": "The school logo on your hoodie",
+      "hit": true,
+      "why": "The school narrows it down to a few streets."
+    },
+    {
+      "text": "A photo of the sky with nothing else in it",
+      "hit": false,
+      "why": "Clouds give nothing away. Unless there are coordinates in the metadata."
+    },
+    {
+      "text": "The number of the tram outside the window",
+      "hit": true,
+      "why": "The route and the stop show the neighbourhood."
+    },
+    {
+      "text": "A drawing you made",
+      "hit": false,
+      "why": "A drawing doesn’t show a place."
+    },
+    {
+      "text": "A “home” location tag on the post",
+      "hit": true,
+      "why": "You gave that one away yourself."
+    }
+  ]
+}

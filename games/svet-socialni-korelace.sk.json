@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Dá sa to z dát povedať?",
+  "instruction": "Pozeráš sa na štatistiky svojho kanála. Ktoré závery z dát naozaj vyplývajú a pri ktorých ide len o koreláciu?",
+  "buckets": [
+    "Vyplýva z dát",
+    "Len korelácia, príčinu nevieme"
+  ],
+  "items": [
+    {
+      "text": "Najviac divákov prišlo z feedu",
+      "answer": 0,
+      "why": "To štatistika priamo meria."
+    },
+    {
+      "text": "Videá sú úspešnejšie, pretože je piatok",
+      "answer": 1,
+      "why": "V piatok si možno dal lepšie video."
+    },
+    {
+      "text": "Najsledovanejšie bolo video o mačke",
+      "answer": 0,
+      "why": "Počet pozretí je zmeraný."
+    },
+    {
+      "text": "Sledujúcich pribúda, pretože som zmenil profilovku",
+      "answer": 1,
+      "why": "Stalo sa to súčasne, ale príčinou môže byť čokoľvek iné."
+    },
+    {
+      "text": "Dlhšie videá ľudia v mojom kanáli dopozerajú menej",
+      "answer": 0,
+      "why": "Čas sledovania je v dátach pri každom videu."
+    },
+    {
+      "text": "Úspech videu zaistil hashtag #fyp",
+      "answer": 1,
+      "why": "Bez porovnania s videami bez hashtagu to nevieš."
+    }
+  ],
+  "debrief": "Dáta ukážu, čo sa stalo a koľko. Prečo sa to stalo, z nich často nevyčítaš: dve veci idú spolu, ale príčina môže byť inde."
+}

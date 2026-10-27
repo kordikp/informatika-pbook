@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Aký graf na tú otázku?",
+  "instruction": "Ku každej otázke vyber graf, ktorý na ňu odpovie najlepšie.",
+  "buckets": [
+    "Čiarový (vývoj)",
+    "Stĺpcový (porovnanie)",
+    "Koláč (podiel)"
+  ],
+  "items": [
+    {
+      "text": "Ako sa menil môj spánok za posledný mesiac?",
+      "answer": 0,
+      "why": "Zmena v čase je vývoj."
+    },
+    {
+      "text": "Spím viac cez víkend, alebo cez týždeň?",
+      "answer": 1,
+      "why": "Dve skupiny vedľa seba porovnáš stĺpcami."
+    },
+    {
+      "text": "Akú časť času pri obrazovke tvoria hry?",
+      "answer": 2,
+      "why": "Časť z celku je podiel."
+    },
+    {
+      "text": "Ako rástol počet krokov od septembra do decembra?",
+      "answer": 0,
+      "why": "Rast v čase je vývoj."
+    },
+    {
+      "text": "Kto z nás troch prešiel tento týždeň najviac krokov?",
+      "answer": 1,
+      "why": "Traja ľudia vedľa seba: porovnanie."
+    },
+    {
+      "text": "Z čoho sa skladá môj deň: škola, spánok, voľno?",
+      "answer": 2,
+      "why": "Kusy jedného celku, dňa, sú podiel."
+    }
+  ],
+  "debrief": "Najprv otázka, potom graf. Vývoj v čase je čiara, porovnanie stĺpce a podiel z celku koláč."
+}

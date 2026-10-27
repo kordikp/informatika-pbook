@@ -1,0 +1,43 @@
+{
+  "type": "sort",
+  "title": "Melyik ciklust használta az oldal?",
+  "instruction": "A közösségi oldal minden részéhez válaszd ki a ciklust, amely benne fut.",
+  "buckets": [
+    "ismételd n-szer",
+    "ismételd, amíg…",
+    "ismételd mindig"
+  ],
+  "items": [
+    {
+      "text": "Mutass 10 új bejegyzést a barátoktól, aztán „Mindent láttál”",
+      "answer": 0,
+      "why": "A szám előre ismert, és a hírfolyamnak van vége."
+    },
+    {
+      "text": "Játssz le videókat, amíg a felhasználó be nem zárja az appot",
+      "answer": 1,
+      "why": "A vége csak rajtad múlik."
+    },
+    {
+      "text": "A töltést jelző kerék addig forog, amíg meg nem érkeznek az adatok",
+      "answer": 1,
+      "why": "Akkor ér véget, amikor valami történik: megérkeznek az adatok."
+    },
+    {
+      "text": "Egy történet három egymás utáni fotóval",
+      "answer": 0,
+      "why": "Pontosan három, előre ismert."
+    },
+    {
+      "text": "Játssz le videókat, amíg le nem telik a 30 perces időkorlát",
+      "answer": 1,
+      "why": "Befejezési feltétel, amelyet magad állítottál be."
+    },
+    {
+      "text": "A sarokban lévő logó folyamatosan, lassan lüktet",
+      "answer": 2,
+      "why": "Díszítés, amely végig fut, és nincs mikor véget érnie."
+    }
+  ],
+  "debrief": "A rögzített számú ismétlésnek előre megvan a vége, az „amíg” egy feltétellel ér véget. A vég nélküli hírfolyam olyan ciklus, amelynek egyetlen befejezési feltétele te vagy."
+}

@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "Čo patrí do wireframu?",
+  "instruction": "Kreslíš wireframe úvodnej stránky krúžku. Označ, čo doň patrí.",
+  "hitLabel": "patrí do náčrtu",
+  "missLabel": "vynechá sa",
+  "debrief": "Wireframe rieši, čo na stránke je a kde. Farby, písma a skutočné fotky prídu na rad až potom.",
+  "items": [
+    {
+      "text": "Kde je menu",
+      "hit": true,
+      "why": "Poloha menu je presne to, čo náčrt rieši."
+    },
+    {
+      "text": "Aká veľká je hlavná fotka a kde leží",
+      "hit": true,
+      "why": "Miesto pre fotku sa kreslí ako obdĺžnik s krížikom."
+    },
+    {
+      "text": "Presný odtieň modrej v záhlaví",
+      "hit": false,
+      "why": "Farby wireframe zámerne vynecháva."
+    },
+    {
+      "text": "Tlačidlo Prihlásiť sa na akciu",
+      "hit": true,
+      "why": "Tlačidlo a jeho miesto patria do náčrtu."
+    },
+    {
+      "text": "Písmo nadpisu",
+      "hit": false,
+      "why": "Typ písma je vzhľad, ten príde neskôr v CSS."
+    },
+    {
+      "text": "Fotky z minuloročného sústredenia",
+      "hit": false,
+      "why": "Skutočné fotky v náčrte nie sú, len miesto, kam prídu."
+    },
+    {
+      "text": "Poradie sekcií na stránke",
+      "hit": true,
+      "why": "Čo je hore a čo dole, je hlavná otázka náčrtu."
+    }
+  ]
+}

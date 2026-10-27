@@ -1,0 +1,42 @@
+{
+  "type": "sort",
+  "title": "Rekord vagy tulajdonság?",
+  "instruction": "Egy közösségi oldalról letöltött adatokban: mi egy rekord (sor), és mi egy tulajdonság (oszlop)?",
+  "buckets": [
+    "Rekord (sor)",
+    "Tulajdonság (oszlop)"
+  ],
+  "items": [
+    {
+      "text": "Egy videó egy megtekintése 21:14-kor",
+      "answer": 0,
+      "why": "Egy esemény, egy sor."
+    },
+    {
+      "text": "Nézési idő másodpercben",
+      "answer": 1,
+      "why": "Adat, amely minden megtekintésnél megvan."
+    },
+    {
+      "text": "A videó alkotója",
+      "answer": 1,
+      "why": "Minden sor tulajdonsága."
+    },
+    {
+      "text": "Egy lájk egy adott fotó alatt",
+      "answer": 0,
+      "why": "Egy esemény, egy rekord."
+    },
+    {
+      "text": "Dátum és idő",
+      "answer": 1,
+      "why": "Oszlop, amely szerint rendezni lehet."
+    },
+    {
+      "text": "Egy keresés: „gördeszkás trükkök”",
+      "answer": 0,
+      "why": "Minden keresés egy újabb sor."
+    }
+  ],
+  "debrief": "A sor egy dolog, amely megtörtént. Az oszlop olyan adat, amely minden sorban megvan. Ennek köszönhetően lehet rendezni, szűrni és számolni."
+}

@@ -1,0 +1,34 @@
+{
+  "type": "pairs",
+  "title": "Melyik formátum a webre?",
+  "instruction": "Szöveget és képeket teszel a szakkör weboldalára. Mindegyikhez keresd meg a hozzá legjobban illő formátumot vagy kódolást.",
+  "debrief": "A fotókat tömörítsd, az éles szöveget veszteség nélkül mentsd, az ikonokat pedig alakzatként rajzold. A jó formátum megabájtokat spórol.",
+  "choices": 4,
+  "pairs": [
+    {
+      "a": "JPG",
+      "b": "Egy fotó a táborból az oldal hátterében",
+      "why": "A fotó elviseli a tömörítést. A szem nem veszi észre a kihagyott részleteket, a fájl pedig sokkal kisebb."
+    },
+    {
+      "a": "PNG",
+      "b": "Képernyőkép egy hibaüzenet apró szövegével",
+      "why": "A tömörítés elmosná a szöveget. A PNG semmit sem hagy ki."
+    },
+    {
+      "a": "SVG",
+      "b": "Házikó ikon a menüben, éles mobilon és nagy monitoron is",
+      "why": "Az SVG alakzatok leírása, ezért minden méretben éles."
+    },
+    {
+      "a": "UTF-8",
+      "b": "Az oldal szövege ékezetekkel és emojikkal",
+      "why": "Az UTF-8-ban a világ minden betűjének és az emojiknak is van száma."
+    },
+    {
+      "a": "WebP",
+      "b": "Húszképes galéria, amelynek mobilon gyorsan be kell töltődnie",
+      "why": "A WebP még takarékosabban tömöríti a fotókat, mint a JPG."
+    }
+  ]
+}

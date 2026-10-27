@@ -1,0 +1,48 @@
+{
+  "type": "sort",
+  "title": "Valamit tudsz, vagy valami nálad van?",
+  "instruction": "A kétlépcsős azonosítás két különböző dolgot köt össze. Mit tudsz ezek közül, mi van nálad, és mi egyáltalán nem titok?",
+  "buckets": [
+    "Valamit tudsz",
+    "Valami nálad van",
+    "Nem titok"
+  ],
+  "items": [
+    {
+      "text": "Jelszó",
+      "answer": 0,
+      "why": "A fejedben vagy egy jelszókezelőben van."
+    },
+    {
+      "text": "Kód a mobilodon lévő hitelesítő appból",
+      "answer": 1,
+      "why": "Csak a te mobilodon jön létre."
+    },
+    {
+      "text": "PIN-kód",
+      "answer": 0,
+      "why": "Egy szám, amelyet tudsz."
+    },
+    {
+      "text": "Biztonsági kulcs a kulcstartón",
+      "answer": 1,
+      "why": "Egy fizikai tárgy, amely nálad van."
+    },
+    {
+      "text": "SMS-kód a telefonszámodra",
+      "answer": 1,
+      "why": "Csak a te SIM-kártyádra érkezik."
+    },
+    {
+      "text": "A felhasználóneved",
+      "answer": 2,
+      "why": "Mindenki látja, aki megnézi a profilodat."
+    },
+    {
+      "text": "A kutyád neve, amely benne van a bemutatkozásodban",
+      "answer": 2,
+      "why": "Ami a profilodon van, az nyilvános."
+    }
+  ],
+  "debrief": "A 2FA azért véd, mert a támadónak mindkettőre szüksége lenne: arra, amit tudsz, és arra, ami nálad van. A nyilvános adatok semmit sem védenek."
+}

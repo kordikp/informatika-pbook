@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Use AI or better not?",
+  "instruction": "You are building a class app. When is it a good idea to get help from AI, and when better not?",
+  "buckets": [
+    "Good idea",
+    "Better not"
+  ],
+  "items": [
+    {
+      "text": "Write the first version of the quiz from your design",
+      "answer": 0,
+      "why": "You decide what the app should do, and then you test it."
+    },
+    {
+      "text": "Explain a piece of code you don’t understand",
+      "answer": 0,
+      "why": "AI is good at explaining. Try out the result anyway."
+    },
+    {
+      "text": "Paste a table with your classmates’ names and allergies into the prompt",
+      "answer": 1,
+      "why": "Other people’s sensitive data doesn’t belong in a prompt."
+    },
+    {
+      "text": "Let the app decide who goes on the trip",
+      "answer": 1,
+      "why": "Decisions about people are made by people who answer for them."
+    },
+    {
+      "text": "Solve an assignment that is meant to teach you loops",
+      "answer": 1,
+      "why": "You would miss out on the reason you are doing the assignment."
+    },
+    {
+      "text": "Suggest ten quiz questions that you then check",
+      "answer": 0,
+      "why": "A draft is fine as long as you check the facts elsewhere."
+    },
+    {
+      "text": "Send the app to the class with the sentence “AI tested it”",
+      "answer": 1,
+      "why": "You have to test it and answer for the result yourself."
+    }
+  ],
+  "debrief": "AI is a great helper for drafts and explanations. Keep decisions about people, sensitive data and the learning you are meant to do yourself."
+}

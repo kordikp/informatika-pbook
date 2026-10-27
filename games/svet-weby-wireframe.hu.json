@@ -1,0 +1,45 @@
+{
+  "type": "pop",
+  "title": "Mi kerül a drótvázba?",
+  "instruction": "A szakkör kezdőoldalának drótvázát rajzolod. Jelöld meg, mi kerül bele.",
+  "hitLabel": "a vázlatba kerül",
+  "missLabel": "kimarad",
+  "debrief": "A drótváz azzal foglalkozik, mi van az oldalon, és hol. A színek, a betűtípusok és a valódi fotók csak utána jönnek.",
+  "items": [
+    {
+      "text": "Hol van a menü",
+      "hit": true,
+      "why": "A menü helye pontosan az, amiről a vázlat szól."
+    },
+    {
+      "text": "Mekkora a fő fotó, és hol van",
+      "hit": true,
+      "why": "A fotó helyét áthúzott téglalapként rajzolják."
+    },
+    {
+      "text": "A kék pontos árnyalata a fejlécben",
+      "hit": false,
+      "why": "A színeket a drótváz szándékosan kihagyja."
+    },
+    {
+      "text": "A Jelentkezés a programra gomb",
+      "hit": true,
+      "why": "A gomb és a helye a vázlatba tartozik."
+    },
+    {
+      "text": "A cím betűtípusa",
+      "hit": false,
+      "why": "A betűtípus kinézet, az később jön a CSS-ben."
+    },
+    {
+      "text": "Fotók a tavalyi táborból",
+      "hit": false,
+      "why": "Valódi fotók nincsenek a vázlatban, csak a hely, ahová kerülnek."
+    },
+    {
+      "text": "A részek sorrendje az oldalon",
+      "hit": true,
+      "why": "Hogy mi van fent és mi lent, az a vázlat fő kérdése."
+    }
+  ]
+}

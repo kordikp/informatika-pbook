@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Advantage or dependency?",
+  "instruction": "Your website runs on hosting in the cloud. Which of these is an advantage, and which is a dependency on someone else’s company?",
+  "buckets": [
+    "Advantage of the cloud",
+    "Dependency on the cloud"
+  ],
+  "items": [
+    {
+      "text": "The website runs even when you turn your computer off",
+      "answer": 0,
+      "why": "The server is on non-stop; you don’t need your computer for it."
+    },
+    {
+      "text": "It handles a thousand visitors at once",
+      "answer": 0,
+      "why": "A data centre has power you don’t have at home."
+    },
+    {
+      "text": "When the company shuts the service down, the website disappears",
+      "answer": 1,
+      "why": "The website lives with them. That is why you keep a backup elsewhere."
+    },
+    {
+      "text": "Data from sign-up forms is stored in the country where the data centre stands",
+      "answer": 1,
+      "why": "The local laws apply to it, not necessarily ours."
+    },
+    {
+      "text": "The company takes care of updating the server",
+      "answer": 0,
+      "why": "You don’t have to deal with patches and maintenance yourself."
+    },
+    {
+      "text": "The company can block your account",
+      "answer": 1,
+      "why": "You follow its terms. If you break them, or if they change, the website is gone."
+    },
+    {
+      "text": "A friend can open the website from anywhere in the world",
+      "answer": 0,
+      "why": "The server is connected to the internet and answers everyone."
+    }
+  ],
+  "debrief": "The cloud gives you a server that never sleeps. In return you depend on a company, so keep the files of your website somewhere else too."
+}

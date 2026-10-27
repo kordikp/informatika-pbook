@@ -1,0 +1,47 @@
+{
+  "type": "sort",
+  "title": "Szüksége van erre az engedélyre?",
+  "instruction": "Az appok ezeket az engedélyeket kérik. Mikor van értelme, és mikor gyanús?",
+  "buckets": [
+    "Van értelme",
+    "Gyanús"
+  ],
+  "items": [
+    {
+      "text": "A térkép helyadatot kér",
+      "answer": 0,
+      "why": "Helyadat nélkül nem tud navigálni."
+    },
+    {
+      "text": "A zseblámpa a névjegyeket kéri",
+      "answer": 1,
+      "why": "A világításhoz nincs szüksége névjegyekre."
+    },
+    {
+      "text": "A videohívás app kamerát és mikrofont kér",
+      "answer": 0,
+      "why": "Nélkülük nem megy a hívás."
+    },
+    {
+      "text": "A számológép SMS-eket akar olvasni",
+      "answer": 1,
+      "why": "Klasszikus kártevő: az ellenőrző kódok SMS-ben jönnek."
+    },
+    {
+      "text": "A QR-kód-olvasó kamerát kér",
+      "answer": 0,
+      "why": "Látnia kell a QR-kódot."
+    },
+    {
+      "text": "A háttérkép app helyadatot kér akkor is, amikor nem használod",
+      "answer": 1,
+      "why": "A háttérképnek nem kell követnie téged."
+    },
+    {
+      "text": "Egy játék hozzáférést kér az összes fájlodhoz",
+      "answer": 1,
+      "why": "A játékhoz nem kellenek a dokumentumaid és a fotóid."
+    }
+  ],
+  "debrief": "Az engedélynek illenie kell ahhoz, amit az app csinál. Ha nem illik, az app valószínűleg adatokat gyűjt, vagy kártevő."
+}
