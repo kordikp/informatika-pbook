@@ -23,6 +23,10 @@ status: accepted
 concept: z-dat-informace
 conceptTitle: "Adatokból információ"
 objective: "A telefonod azt írja: „Ezen a héten 40%-kal több idő a képernyő előtt!” Ez sok vagy kevés? És miből számolja?"
+mustCover:
+  - "Az adatciklus kérdéssel kezdődik"
+  - "A diagram kiválasztása a kérdés szerint (változás, összehasonlítás, arány); félrevezető tengelyek"
+  - "A korreláció nem kauzalitás; honnan származnak az adatok, és mi hiányzik belőlük"
 state: core
 highlights:
   - "Az adatciklus kérdéssel kezdődik"

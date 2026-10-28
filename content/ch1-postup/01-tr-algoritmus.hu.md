@@ -23,6 +23,10 @@ status: accepted
 concept: algoritmus
 conceptTitle: "Algoritmus: pontos utasítás"
 objective: "A navigáció a nagymamádhoz vezet. Egy terelésnél egy pillanat alatt kitalál egy másik pontos útvonalat. Miért nem kérdezi meg soha, hogy „és ezt hogy érted?”"
+mustCover:
+  - "Lépések pontos sorrendben; a végrehajtó nem tudja, mire gondolt a szerző (a lépés elemisége)"
+  - "Egyértelműség, végesség, általánosság és helyesség mint próba, hogy a folyamat algoritmus-e"
+  - "Ugyanaz a probléma különböző algoritmusokkal is megoldható"
 state: core
 highlights:
   - "Lépések pontos sorrendben; a végrehajtó nem tudja, mire gondolt a szerző (a lépés elemisége)"

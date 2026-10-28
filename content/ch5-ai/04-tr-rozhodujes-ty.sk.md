@@ -23,6 +23,10 @@ status: accepted
 concept: rozhodujes-ty
 conceptTitle: "Overuj a rozhoduj ty"
 objective: "Do triednej skupiny príde správa „Zajtra sa pre výpadok prúdu neučí! Pošli ďalej.“ Pošleš ju?"
+mustCover:
+  - "Overovanie: druhý nezávislý zdroj; kto to tvrdí, odkiaľ to vie, prečo"
+  - "Kedy AI nepoužiť: keď ťa pripraví o učenie, citlivé dáta, rozhodovanie o ľuďoch"
+  - "Agency a priznanie: rozhoduješ a zodpovedáš ty, použitie AI priznáš"
 state: core
 highlights:
   - "Overovanie: druhý nezávislý zdroj; kto to tvrdí, odkiaľ to vie, prečo"

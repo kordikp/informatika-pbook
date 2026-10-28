@@ -6,3 +6,5 @@ node_modules/
 *.log
 # build output of scripts/build-bundle.mjs (Vercel buildCommand), never committed
 content/bundle.*.json
+# build output of scripts/build-ucitel.mjs (data for ucitel.html), never committed
+content/ucitel.json

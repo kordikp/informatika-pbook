@@ -23,6 +23,10 @@ status: accepted
 concept: over-a-oprav
 conceptTitle: "Test and fix"
 objective: "Your phone offers you an update that “fixes bugs”. How come the makers didn't find them earlier?"
+mustCover:
+  - "Test = input + expected output, prepared in advance"
+  - "Edge cases (0, empty input, maximum)"
+  - "Debugging: spot → cause → fix → test again; efficiency as another measure"
 state: core
 highlights:
   - "Test = input + expected output, prepared in advance"

@@ -23,6 +23,10 @@ status: accepted
 concept: rozhodovani
 conceptTitle: "Rozhodovanie (podmienka)"
 objective: "Niektoré správy ti mobil sám presunie do spamu. Ako sa rozhodne, ktoré?"
+mustCover:
+  - "Podmienka má hodnotu pravda, alebo nepravda"
+  - "Ak–inak: vykoná sa práve jedna vetva"
+  - "Skladanie podmienok (a, alebo, nie)"
 state: core
 highlights:
   - "Podmienka má hodnotu pravda, alebo nepravda"

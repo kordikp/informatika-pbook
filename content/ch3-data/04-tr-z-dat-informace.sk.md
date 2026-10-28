@@ -23,6 +23,10 @@ status: accepted
 concept: z-dat-informace
 conceptTitle: "Z dát informácia"
 objective: "Mobil hlási: „Tento týždeň o 40 % viac času pri obrazovke!“ Je to veľa, alebo málo? A z čoho to počíta?"
+mustCover:
+  - "Dátový cyklus začína otázkou"
+  - "Voľba grafu podľa otázky (vývoj, porovnanie, podiel); zavádzajúce osi"
+  - "Korelácia nie je kauzalita; odkiaľ dáta sú a čo v nich chýba"
 state: core
 highlights:
   - "Dátový cyklus začína otázkou"

@@ -23,6 +23,10 @@ status: accepted
 concept: promenna
 conceptTitle: "Változó: a program memóriája"
 objective: "A csetalkalmazás ikonján 3 olvasatlan üzenet világít. Jön egy negyedik, és a szám megváltozik. Hol tartja számon a telefon ezt a számot?"
+mustCover:
+  - "Név és aktuális érték (pontosan egy)"
+  - "Állítsd be vs. változtasd meg; az értékadás felülírja a régi értéket"
+  - "A változó mint a program állapota (pontszám, életek, mód)"
 state: core
 highlights:
   - "Név és aktuális érték (pontosan egy)"

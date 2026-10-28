@@ -1,0 +1,88 @@
+/* Stránka Pro učitele (ucitel.html). Barvy a písmo bere z css/style.css knihy, i tmavý režim. */
+body.uc { background: var(--bg); color: var(--text); font-family: var(--font-ui); line-height: 1.55; font-size: 1rem; }
+.uc a { color: var(--accent); }
+.uc-top { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: .8em;
+  padding: .6rem max(16px, calc((100% - 760px) / 2)); background: var(--surface); border-bottom: 1px solid var(--border); }
+.uc-brand { font-weight: 700; font-size: .92rem; text-decoration: none; color: var(--text) !important; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.uc-langs { display: flex; gap: .25em; flex-shrink: 0; }
+.uc-lang { font-size: .75rem; font-weight: 700; padding: .3em .55em; border-radius: 6px; border: 1px solid var(--border); color: var(--text-2); }
+.uc-lang[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.uc-main { max-width: 760px; margin: 0 auto; padding: 1.4rem 16px 2rem; }
+.uc-main h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .3em; }
+.uc-lede { color: var(--text-2); margin-bottom: 1em; }
+.uc-nav { display: flex; flex-wrap: wrap; gap: .4em; margin-bottom: 1.6em; }
+.uc-nav a { font-size: .8rem; font-weight: 600; text-decoration: none; padding: .3em .7em; border-radius: 999px; background: var(--accent-bg); }
+.uc-main section { margin: 0 0 2.4em; scroll-margin-top: 4rem; }
+.uc-main h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .35em; }
+.uc-main section > p { color: var(--text-2); margin-bottom: .9em; }
+.uc-muted { color: var(--text-3); font-size: .82rem; }
+.uc-note { font-size: .85rem; color: var(--text-2); background: var(--accent-bg); border-radius: var(--radius-sm); padding: .6em .8em; margin-top: .8em; }
+
+.uc-chips { display: flex; flex-wrap: wrap; gap: .4em; margin-bottom: .9em; }
+.uc-chip { font-size: .85rem; font-weight: 600; padding: .4em .8em; border-radius: 999px; border: 1.5px solid var(--border); background: var(--surface); }
+.uc-chip[aria-pressed="true"], .uc-world[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-bg); }
+
+.uc-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1em 1.1em 1.1em; box-shadow: var(--shadow); }
+.uc-head { display: flex; gap: .8em; align-items: flex-start; margin-bottom: .6em; }
+.uc-head h3 { font-size: 1.15rem; font-weight: 800; margin: .05em 0 .2em; }
+.uc-head p { color: var(--text-2); font-size: .92rem; }
+.uc-ico { font-size: 1.9rem; line-height: 1; flex-shrink: 0; }
+.uc-kicker { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); }
+.uc blockquote { border-left: 3px solid var(--accent); background: var(--bg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: .5em .8em; margin: .4em 0 .2em; font-size: .92rem; }
+
+.uc-plan { list-style: none; margin: .4em 0 .2em; }
+.uc-plan > li { display: grid; grid-template-columns: 5.6em 1fr; gap: .7em; padding: .65em 0; border-top: 1px solid var(--border-light); font-size: .92rem; }
+.uc-min { font-size: .78rem; font-weight: 700; color: var(--accent); padding-top: .15em; }
+.uc-cores { list-style: none; margin-top: .45em; display: grid; gap: .45em; }
+.uc-cores li { background: var(--bg); border-radius: var(--radius-sm); padding: .45em .65em; }
+.uc-cores span { color: var(--text-2); }
+.uc-cores small { display: block; color: var(--text-3); font-size: .76rem; margin-top: .1em; }
+
+.uc-link { border: 1.5px dashed var(--border); border-radius: var(--radius-sm); padding: .7em .8em; margin-top: .9em; }
+.uc-label { display: block; font-size: .8rem; font-weight: 600; color: var(--text-2); margin-bottom: .2em; }
+.uc-url, .uc-input { display: block; width: 100%; font: inherit; font-size: .88rem; font-weight: 400; color: var(--text); background: var(--bg);
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: .45em .6em; margin-top: .25em; }
+.uc-url { font-family: var(--font-mono); font-size: .78rem; }
+.uc-btns { display: flex; flex-wrap: wrap; gap: .4em; margin-top: .55em; }
+.uc-btn { font-size: .85rem; font-weight: 700; padding: .45em .9em; border-radius: var(--radius-sm); background: var(--accent); color: #fff !important; text-decoration: none; border: 1.5px solid var(--accent); }
+.uc-btn.sec { background: transparent; color: var(--accent) !important; }
+.uc-link .uc-muted { margin-top: .5em; }
+
+.uc-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .6em; margin: .8em 0 .5em; }
+.uc-group { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .5em .7em .6em; background: var(--surface); }
+.uc-group legend { font-size: .78rem; font-weight: 700; color: var(--accent); padding: 0 .3em; }
+.uc-check { display: flex; gap: .45em; align-items: flex-start; font-size: .86rem; padding: .18em 0; cursor: pointer; }
+.uc-check input { margin-top: .3em; accent-color: var(--accent); flex-shrink: 0; }
+.uc-check:has(input:disabled) { color: var(--text-3); cursor: default; }
+
+.uc-worlds { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .5em; margin-bottom: .9em; }
+.uc-world { display: flex; flex-direction: column; align-items: flex-start; gap: .15em; text-align: left; padding: .6em .7em; border-radius: var(--radius-sm); border: 1.5px solid var(--border); background: var(--surface); }
+.uc-world .uc-ico { font-size: 1.4rem; }
+.uc-world-name { font-weight: 700; font-size: .88rem; }
+.uc-world small { color: var(--text-3); font-size: .74rem; }
+
+.uc-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
+.uc-row small { display: block; font-weight: 400; margin-top: .25em; }
+
+.uc-tiers { list-style: none; display: grid; gap: .5em; }
+.uc-tiers li { display: flex; gap: .7em; align-items: flex-start; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .6em .8em; font-size: .92rem; }
+.uc-tiers li > span { font-size: 1.4rem; line-height: 1.2; }
+
+.uc-foot { max-width: 760px; margin: 0 auto; padding: 1em 16px 2.5em; border-top: 1px solid var(--border); font-size: .82rem; color: var(--text-3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5em; }
+
+/* QR na projektor: přes celou obrazovku, vždy černá na bílé, ať jde naskenovat i v tmavém režimu */
+.uc-qr-full { position: fixed; inset: 0; z-index: 100; background: rgba(15, 12, 20, .72); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.uc-qr-card { position: relative; background: #fff; color: #111; border-radius: 16px; padding: 1.2em 1.4em 1em; text-align: center; max-width: min(92vw, 640px); max-height: 94vh; overflow: auto; }
+.uc-qr-card h2 { font-size: 1.3rem; font-weight: 800; margin: 0 1.6em .3em; }
+.uc-qr-img svg { width: min(72vmin, 520px); height: auto; display: block; margin: 0 auto; }
+.uc-qr-scan { font-weight: 700; margin-top: .3em; }
+.uc-qr-url { font-family: var(--font-mono); font-size: .8rem; color: #444; word-break: break-all; margin-top: .2em; }
+.uc-x { position: absolute; top: .6em; right: .6em; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #ccc; background: #f5f5f4; color: #111; font-size: 1rem; font-weight: 700; }
+
+@media (max-width: 560px) {
+  .uc-main h1 { font-size: 1.6rem; }
+  .uc-row { grid-template-columns: 1fr; }
+  .uc-plan > li { grid-template-columns: 1fr; gap: .2em; }
+  .uc-worlds { grid-template-columns: 1fr 1fr; }
+}

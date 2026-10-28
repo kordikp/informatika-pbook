@@ -23,6 +23,10 @@ status: accepted
 concept: opakovani
 conceptTitle: "Repetition (loop)"
 objective: "A social media feed never ends. Another video, and another, and another… How do you write that kind of “over and over” into a program?"
+mustCover:
+  - "The body of the loop and the number of repeats"
+  - "Repeat n× vs. repeat until (the stopping condition)"
+  - "Finiteness: a loop must end, otherwise the program gets stuck in an endless loop"
 state: core
 highlights:
   - "The body of the loop and the number of repeats"

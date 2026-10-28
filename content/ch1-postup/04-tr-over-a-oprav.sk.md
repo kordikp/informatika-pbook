@@ -23,6 +23,10 @@ status: accepted
 concept: over-a-oprav
 conceptTitle: "Over a oprav"
 objective: "Mobil ti ponúka aktualizáciu, ktorá „opravuje chyby“. Ako to, že ich autori nenašli skôr?"
+mustCover:
+  - "Test = vstup + očakávaný výstup, pripravený vopred"
+  - "Okrajové prípady (0, prázdny vstup, maximum)"
+  - "Ladenie: miesto → príčina → oprava → nové overenie; efektivita ako ďalšie meradlo"
 state: core
 highlights:
   - "Test = vstup + očakávaný výstup, pripravený vopred"

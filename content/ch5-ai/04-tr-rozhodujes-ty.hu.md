@@ -23,6 +23,10 @@ status: accepted
 concept: rozhodujes-ty
 conceptTitle: "Ellenőrizz, és te dönts"
 objective: "Az osztálycsoportba üzenet érkezik: „Holnap áramszünet miatt nincs tanítás! Küldd tovább.” Továbbküldöd?"
+mustCover:
+  - "Ellenőrzés: egy második, független forrás; ki állítja, honnan tudja, miért"
+  - "Mikor ne használj MI-t: ha megfoszt a tanulástól, érzékeny adatok, emberekről szóló döntések"
+  - "Cselekvőképesség és őszinteség: te döntesz és te felelsz, az MI használatát bevallod"
 state: core
 highlights:
   - "Ellenőrzés: egy második, független forrás; ki állítja, honnan tudja, miért"

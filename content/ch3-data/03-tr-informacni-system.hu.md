@@ -23,6 +23,10 @@ status: accepted
 concept: informacni-system
 conceptTitle: "Információs rendszer: ki mit tehet"
 objective: "A szüleid úgy állították be a telefonodat, hogy a játékok csak este nyolcig működjenek. Te nem tudod kikapcsolni, ők igen. Ki dönt erről?"
+mustCover:
+  - "A rendszer célja: milyen igényt szolgál, és milyen adatokat tart nyilván"
+  - "Szerepek és hozzáférési jogok (olvasó, hozzászóló, szerkesztő, adminisztrátor)"
+  - "A legkisebb jogosultság elve; a „bárki, akinél a link van” megosztás kockázat"
 state: core
 highlights:
   - "A rendszer célja: milyen igényt szolgál, és milyen adatokat tart nyilván"

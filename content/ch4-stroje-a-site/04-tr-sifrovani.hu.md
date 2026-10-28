@@ -23,6 +23,10 @@ status: accepted
 concept: sifrovani
 conceptTitle: "Titkosítás: boríték képeslap helyett"
 objective: "A cset azt írja: „Az üzenetek végponttól végpontig titkosítottak”. Mit jelent ez, és ki nem olvashatja el őket?"
+mustCover:
+  - "Nyílt szöveg, kulcs, titkosított szöveg"
+  - "A kódolás nyilvános szabály, a titkosításhoz titkos kulcs kell"
+  - "https és lakat = titkosított út, nem a becsületesség igazolása; nyilvános wifi"
 state: core
 highlights:
   - "Nyílt szöveg, kulcs, titkosított szöveg"

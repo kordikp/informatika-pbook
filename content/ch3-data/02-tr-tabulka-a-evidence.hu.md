@@ -23,6 +23,10 @@ status: accepted
 concept: tabulka-a-evidence
 conceptTitle: "Táblázat: rendezett adatok"
 objective: "Beírod a névjegyek keresőjébe, hogy „Ja”, és a telefon rögtön megtalálja Janát és Jakubot is. Hogyan csinálja ilyen gyorsan?"
+mustCover:
+  - "Rekord (sor) és tulajdonság (oszlop); strukturált vs. strukturálatlan adatok"
+  - "Szabályok a rekordokhoz: egységes formátum, nincs ismétlődés, kötelező adatok"
+  - "A rendezés, a szűrő és a függvények (összeg, darabszám) válaszolnak a kérdésekre"
 state: core
 highlights:
   - "Rekord (sor) és tulajdonság (oszlop); strukturált vs. strukturálatlan adatok"

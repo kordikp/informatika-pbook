@@ -23,6 +23,10 @@ status: accepted
 concept: uvnitr-zarizeni
 conceptTitle: "Inside a device"
 objective: "Your phone is lagging. Will deleting photos help, or closing apps? It depends on which kind of memory is full."
+mustCover:
+  - "Processor, main memory, storage, peripherals; hardware vs. software"
+  - "Main memory is temporary: unsaved work disappears, full memory slows things down"
+  - "The operating system runs apps and access to the hardware; choosing a device by its features"
 state: core
 highlights:
   - "Processor, main memory, storage, peripherals; hardware vs. software"

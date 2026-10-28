@@ -23,6 +23,10 @@ status: accepted
 concept: opakovani
 conceptTitle: "Ismétlés (ciklus)"
 objective: "A közösségi oldalak hírfolyama sosem ér véget. Még egy videó, még egy, még egy… Hogyan lehet egy ilyen „újra és újra” dolgot beírni egy programba?"
+mustCover:
+  - "A ciklusmag és az ismétlések száma"
+  - "Ismételd n× vs. ismételd, amíg (a leállás feltétele)"
+  - "Végesség: a ciklusnak véget kell érnie, különben a program végtelen ciklusba kerül"
 state: core
 highlights:
   - "A ciklusmag és az ismétlések száma"

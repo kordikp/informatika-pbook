@@ -23,6 +23,10 @@ status: accepted
 concept: podvod-cili-na-cloveka
 conceptTitle: "A csalás az embert célozza"
 objective: "SMS érkezik: „A csomagja 390 Ft pótdíj befizetésére vár.” Épp vársz valamit. Rákattintasz?"
+mustCover:
+  - "Adathalászat és pszichológiai manipuláció: támadás az érzelmek, nem a technika ellen"
+  - "Csalások MI-vel: tökéletes szöveg, klónozott hang, deepfake videó"
+  - "Védekezés: állj meg, ellenőrizd más úton, soha ne add meg a jelszavakat és a kódokat"
 state: core
 highlights:
   - "Adathalászat és pszichológiai manipuláció: támadás az érzelmek, nem a technika ellen"

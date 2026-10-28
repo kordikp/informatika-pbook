@@ -23,6 +23,10 @@ status: accepted
 concept: informacni-system
 conceptTitle: "Information system: who may do what"
 objective: "Your parents set up your phone so games only work until eight in the evening. You can't switch it off, they can. Who decides this?"
+mustCover:
+  - "The purpose of the system: what need it serves and what data it keeps"
+  - "Roles and access rights (viewer, commenter, editor, administrator)"
+  - "The principle of least privilege; an “anyone with the link” link is a risk"
 state: core
 highlights:
   - "The purpose of the system: what need it serves and what data it keeps"

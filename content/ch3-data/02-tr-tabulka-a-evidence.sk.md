@@ -23,6 +23,10 @@ status: accepted
 concept: tabulka-a-evidence
 conceptTitle: "Tabuľka: dáta s poriadkom"
 objective: "Napíšeš do hľadania v kontaktoch „Ja“ a mobil hneď nájde Janu aj Jakuba. Ako to dokáže tak rýchlo?"
+mustCover:
+  - "Záznam (riadok) a vlastnosť (stĺpec); štruktúrované vs. neštruktúrované dáta"
+  - "Pravidlá pre záznamy: jednotný formát, žiadne duplicity, povinné údaje"
+  - "Zoradenie, filter a funkcie (súčet, počet) odpovedajú na otázky"
 state: core
 highlights:
   - "Záznam (riadok) a vlastnosť (stĺpec); štruktúrované vs. neštruktúrované dáta"

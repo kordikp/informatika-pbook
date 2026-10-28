@@ -438,7 +438,8 @@ class PBook {
   // A concept whose anchor was translated is anchored by the translation; its recall card
   // keeps the original id (anchorKey), so the card is the same in every language. The
   // contract speaks the book's language; the translation brings the reader's wording
-  // (conceptTitle, objective, recallQ, recallA in its frontmatter).
+  // (conceptTitle, objective, recallQ, recallA in its frontmatter, and mustCover when it
+  // lists every point of the contract, so the studio never shows the original's points).
   _localizeConcepts() {
     for (const c of Object.values(this.concepts || {})) {
       const to = c.anchor && this._langAlias?.[c.anchor];
@@ -449,6 +450,9 @@ class PBook {
       if (t.conceptTitle) c.title = t.conceptTitle;
       c.contract = { ...(c.contract || {}) };
       for (const k of ['objective', 'recallQ', 'recallA']) if (t[k]) c.contract[k] = t[k];
+      const mc = c.contract.mustCover || [];
+      if (Array.isArray(t.mustCover) && mc.length && t.mustCover.length === mc.length)
+        c.contract.mustCover = mc.map((m, i) => ({ ...(m && typeof m === 'object' ? m : {}), point: String(t.mustCover[i]) }));
     }
   }
 

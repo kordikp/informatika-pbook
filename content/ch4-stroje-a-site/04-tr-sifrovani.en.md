@@ -23,6 +23,10 @@ status: accepted
 concept: sifrovani
 conceptTitle: "Encryption: an envelope instead of a postcard"
 objective: "Your chat says “Messages are end-to-end encrypted”. What does that mean, and who can't read them, then?"
+mustCover:
+  - "Plain text, key, encrypted text"
+  - "Encoding is a public rule, encryption needs a secret key"
+  - "https and the padlock = an encrypted route, not proof of honesty; public Wi-Fi"
 state: core
 highlights:
   - "Plain text, key, encrypted text"

@@ -23,6 +23,10 @@ status: accepted
 concept: ai-se-uci-z-dat
 conceptTitle: "AI sa učí z príkladov"
 objective: "Telefón ťa spozná podľa tváre. Nikto mu pritom nenapísal pravidlo, ako vyzeráš. Ako to teda vie?"
+mustCover:
+  - "AI = softvér, ktorý sa učí z príkladov, nie z ručne písaných pravidiel"
+  - "Trénovanie a testovanie na nových dátach"
+  - "Bias: chýbajúce alebo jednostranné dáta vedú k chybným alebo nespravodlivým výsledkom"
 state: core
 highlights:
   - "AI = softvér, ktorý sa učí z príkladov, nie z ručne písaných pravidiel"

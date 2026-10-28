@@ -23,6 +23,10 @@ status: accepted
 concept: doporucovac
 conceptTitle: "The recommender and your feed"
 objective: "You watch one cat video. Five minutes later your feed is full of cats. Who decided that?"
+mustCover:
+  - "Signals: clicks, watch time, skips, similar users"
+  - "The feedback loop and the filter bubble"
+  - "The attention business model and addictive design (infinite scroll, autoplay)"
 state: core
 highlights:
   - "Signals: clicks, watch time, skips, similar users"

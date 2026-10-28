@@ -23,6 +23,10 @@ status: accepted
 concept: digitalni-stopa
 conceptTitle: "Digital footprint"
 objective: "You take a photo with your phone, and the photo remembers more than you can see. What, for example?"
+mustCover:
+  - "Active and passive footprint (posts × cookies, location, metadata)"
+  - "Who collects the data and what for (third parties, advertising, scammers)"
+  - "Protection and rights: privacy settings, GDPR, don't share on others' behalf"
 state: core
 highlights:
   - "Active and passive footprint (posts × cookies, location, metadata)"

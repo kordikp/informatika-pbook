@@ -23,6 +23,10 @@ status: accepted
 concept: generativni-model
 conceptTitle: "Generatívna AI predpovedá"
 objective: "Klávesnica v mobile ti ponúka ďalšie slovo skôr, než ho napíšeš. Chatbot robí to isté, len oveľa lepšie. A niekedy si pritom vymýšľa."
+mustCover:
+  - "Predpoveď ďalšieho slova (tokenu) podľa pravdepodobnosti"
+  - "Plynulosť nie je pravdivosť: halucinácie"
+  - "To isté pri obrázkoch, hlase a videu (generatívny obraz, deepfake)"
 state: core
 highlights:
   - "Predpoveď ďalšieho slova (tokenu) podľa pravdepodobnosti"

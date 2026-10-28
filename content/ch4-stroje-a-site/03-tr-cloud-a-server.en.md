@@ -23,6 +23,10 @@ status: accepted
 concept: cloud-a-server
 conceptTitle: "The cloud is someone else's computer"
 objective: "Your phone says “Photos backed up to the cloud”. Where are those photos now?"
+mustCover:
+  - "A server provides a service; the cloud = other people's servers"
+  - "Local vs. cloud: advantages and dependences; a backup in a different place"
+  - "The data sits in a data centre in some country; in the EU the GDPR applies"
 state: core
 highlights:
   - "A server provides a service; the cloud = other people's servers"

@@ -23,6 +23,10 @@ status: accepted
 concept: z-dat-informace
 conceptTitle: "From data to information"
 objective: "Your phone says: “40% more screen time this week!” Is that a lot or a little? And what is it calculating it from?"
+mustCover:
+  - "The data cycle starts with a question"
+  - "Choosing a chart by the question (change over time, comparison, share); misleading axes"
+  - "Correlation is not causation; where the data comes from and what is missing from it"
 state: core
 highlights:
   - "The data cycle starts with a question"

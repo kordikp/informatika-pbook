@@ -206,6 +206,7 @@ const server = http.createServer(async (req, res) => {
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
   if (urlPath === '/') urlPath = '/index.html';
   if (urlPath === '/admin') urlPath = '/admin.html';
+  if (urlPath === '/ucitel') urlPath = '/ucitel.html';   // cleanUrls jako na Vercelu
   if (urlPath === '/book') urlPath = '/index.html';
 
   const filePath = path.join(ROOT, urlPath);

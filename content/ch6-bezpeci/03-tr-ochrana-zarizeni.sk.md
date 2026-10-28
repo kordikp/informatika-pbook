@@ -23,6 +23,10 @@ status: accepted
 concept: ochrana-zarizeni
 conceptTitle: "Ochrana zariadení"
 objective: "Mobil chce aktualizáciu a ty práve nemáš čas. Všetko predsa funguje. Prečo na nej tak trvá?"
+mustCover:
+  - "Chyby v programoch, záplaty a aktualizácie"
+  - "Malvér (vírus, trójsky kôň, ransomvér) a bezpečné sťahovanie"
+  - "Oprávnenia aplikácií a záloha podľa pravidla „kópia inde“"
 state: core
 highlights:
   - "Chyby v programoch, záplaty a aktualizácie"

@@ -23,6 +23,10 @@ status: accepted
 concept: cloud-a-server
 conceptTitle: "A felhő valaki más számítógépe"
 objective: "A telefonod azt írja: „A fotók mentve a felhőbe”. Hol vannak most ezek a fotók?"
+mustCover:
+  - "A szerver szolgáltatást nyújt; a felhő = mások szerverei"
+  - "Helyben vs. felhőben: előnyök és függőségek; biztonsági mentés egy másik helyen"
+  - "Az adatok egy adatközpontban vannak valamelyik országban; az EU-ban a GDPR érvényes"
 state: core
 highlights:
   - "A szerver szolgáltatást nyújt; a felhő = mások szerverei"

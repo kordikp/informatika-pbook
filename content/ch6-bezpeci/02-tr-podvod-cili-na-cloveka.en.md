@@ -23,6 +23,10 @@ status: accepted
 concept: podvod-cili-na-cloveka
 conceptTitle: "Scams target people"
 objective: "A text arrives: “Your parcel is waiting for a payment of €1.29.” You happen to be expecting something. Do you click?"
+mustCover:
+  - "Phishing and social engineering: an attack on emotions, not on technology"
+  - "Scams using AI: perfect text, a cloned voice, deepfake video"
+  - "Defence: stop, check another way, never give out passwords and codes"
 state: core
 highlights:
   - "Phishing and social engineering: an attack on emotions, not on technology"

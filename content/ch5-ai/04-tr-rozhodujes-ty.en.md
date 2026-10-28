@@ -23,6 +23,10 @@ status: accepted
 concept: rozhodujes-ty
 conceptTitle: "Check it, and you decide"
 objective: "A message comes into the class group: “No school tomorrow because of a power cut! Pass it on.” Do you pass it on?"
+mustCover:
+  - "Checking: a second, independent source; who says it, how do they know, why"
+  - "When not to use AI: when it robs you of learning, sensitive data, decisions about people"
+  - "Agency and honesty: you decide and you are responsible, you say when you used AI"
 state: core
 highlights:
   - "Checking: a second, independent source; who says it, how do they know, why"

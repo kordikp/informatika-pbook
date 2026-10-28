@@ -23,6 +23,10 @@ status: accepted
 concept: ai-se-uci-z-dat
 conceptTitle: "AI learns from examples"
 objective: "Your phone recognises your face. Yet nobody wrote it a rule about what you look like. So how does it do it?"
+mustCover:
+  - "AI = software that learns from examples, not from hand-written rules"
+  - "Training, and testing on new data"
+  - "Bias: missing or one-sided data leads to wrong or unfair results"
 state: core
 highlights:
   - "AI = software that learns from examples, not from hand-written rules"

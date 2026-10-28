@@ -23,6 +23,10 @@ status: accepted
 concept: ucet-a-autentizace
 conceptTitle: "Account and password"
 objective: "You forget your password and your phone offers “Reset via e-mail”. So whoever gets into your e-mail gets into your phone too?"
+mustCover:
+  - "Account = your identity in a service; authentication = checking that it's really you"
+  - "Password length and uniqueness; a leak from one service puts the others at risk"
+  - "A password manager and 2FA (something you know + something you have)"
 state: core
 highlights:
   - "Account = your identity in a service; authentication = checking that it's really you"

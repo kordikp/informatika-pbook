@@ -23,6 +23,10 @@ status: accepted
 concept: abstrakce-a-model
 conceptTitle: "Modell: hasznos egyszerűsítés"
 objective: "A telefonos térkép útközben csak utcákat és egy nyilat mutat. Fákat és a házak színét nem látod. Miért nem zavar ez?"
+mustCover:
+  - "Absztrakció: hogy mi a lényeges, az a céltól függ"
+  - "A gráf mint modell: csúcsok és élek (metró, barátságok az osztályban, a fejezetek egymásra épülése)"
+  - "Egyik modell sem teljes, mindig választás kérdése"
 state: core
 highlights:
   - "Absztrakció: hogy mi a lényeges, az a céltól függ"

@@ -23,6 +23,10 @@ status: accepted
 concept: uvnitr-zarizeni
 conceptTitle: "Egy eszköz belsejében"
 objective: "Akadozik a telefonod. A fotók törlése segít, vagy az alkalmazások bezárása? Attól függ, melyik fajta memória telt meg."
+mustCover:
+  - "Processzor, memória, tárhely, perifériák; hardver vs. szoftver"
+  - "A memória ideiglenes: a nem mentett munka eltűnik, a megtelt memória lassít"
+  - "Az operációs rendszer irányítja az alkalmazásokat és a hardverhez való hozzáférést; eszköz kiválasztása a tulajdonságai alapján"
 state: core
 highlights:
   - "Processzor, memória, tárhely, perifériák; hardver vs. szoftver"

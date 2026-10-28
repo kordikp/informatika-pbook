@@ -23,6 +23,10 @@ status: accepted
 concept: tabulka-a-evidence
 conceptTitle: "Table: data in order"
 objective: "You type “Ja” into the contacts search and your phone instantly finds Jana and Jakub. How does it manage that so fast?"
+mustCover:
+  - "Record (row) and property (column); structured vs. unstructured data"
+  - "Rules for records: one format, no duplicates, required fields"
+  - "Sorting, filtering and functions (sum, count) answer questions"
 state: core
 highlights:
   - "Record (row) and property (column); structured vs. unstructured data"

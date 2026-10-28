@@ -23,6 +23,10 @@ status: accepted
 concept: ai-se-uci-z-dat
 conceptTitle: "Az MI példákból tanul"
 objective: "A telefonod felismer az arcodról. Pedig senki sem írt neki szabályt arról, hogy nézel ki. Akkor hogyan csinálja?"
+mustCover:
+  - "MI = olyan szoftver, amely példákból tanul, nem kézzel írt szabályokból"
+  - "Tanítás és tesztelés új adatokon"
+  - "Torzítás: a hiányzó vagy egyoldalú adatok hibás vagy igazságtalan eredményekhez vezetnek"
 state: core
 highlights:
   - "MI = olyan szoftver, amely példákból tanul, nem kézzel írt szabályokból"

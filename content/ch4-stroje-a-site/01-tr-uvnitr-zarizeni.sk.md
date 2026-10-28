@@ -23,6 +23,10 @@ status: accepted
 concept: uvnitr-zarizeni
 conceptTitle: "Vnútri zariadenia"
 objective: "Mobil sa seká. Pomôže zmazať fotky, alebo zavrieť aplikácie? Záleží na tom, ktorý druh pamäte je plný."
+mustCover:
+  - "Procesor, operačná pamäť, úložisko, periférie; hardvér vs. softvér"
+  - "Operačná pamäť je dočasná: neuložená práca zmizne, plná pamäť spomaľuje"
+  - "Operačný systém riadi aplikácie a prístup k hardvéru; výber zariadenia podľa vlastností"
 state: core
 highlights:
   - "Procesor, operačná pamäť, úložisko, periférie; hardvér vs. softvér"

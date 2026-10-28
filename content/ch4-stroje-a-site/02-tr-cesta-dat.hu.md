@@ -23,6 +23,10 @@ status: accepted
 concept: cesta-dat
 conceptTitle: "Hogyan utaznak az adatok"
 objective: "Üzenetet küldesz egy barátodnak, aki melletted ül. Mégis átrepülhet egy másik országon. Miért?"
+mustCover:
+  - "Kliens és szerver: kérés és válasz (web, e-mail, streamelés)"
+  - "Csomagok, IP-cím, a DNS a neveket címekre fordítja"
+  - "Az internetnek nincs egyetlen központja: kerülőutak kiesés esetén"
 state: core
 highlights:
   - "Kliens és szerver: kérés és válasz (web, e-mail, streamelés)"

@@ -23,6 +23,10 @@ status: accepted
 concept: kodovani
 conceptTitle: "Everything is numbers"
 objective: "Your phone says “Storage full”. An hour of 4K video takes up more space than a thousand photos. Why is video so big?"
+mustCover:
+  - "Encoding = agreed rules for converting (pixel → number, letter → number)"
+  - "Data size: bit, byte, MB, GB; resolution and quality make a file bigger"
+  - "The file type (extension) says how to read the numbers; compression saves space"
 state: core
 highlights:
   - "Encoding = agreed rules for converting (pixel → number, letter → number)"

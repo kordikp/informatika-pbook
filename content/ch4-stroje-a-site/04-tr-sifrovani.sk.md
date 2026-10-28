@@ -23,6 +23,10 @@ status: accepted
 concept: sifrovani
 conceptTitle: "Šifrovanie: obálka namiesto pohľadnice"
 objective: "Chat píše „Správy sú koncovo šifrované“. Čo to znamená a kto ich teda neprečíta?"
+mustCover:
+  - "Otvorený text, kľúč, šifrovaný text"
+  - "Kódovanie je verejné pravidlo, šifrovanie potrebuje tajný kľúč"
+  - "https a zámok = šifrovaná cesta, nie overenie poctivosti; verejná Wi-Fi"
 state: core
 highlights:
   - "Otvorený text, kľúč, šifrovaný text"

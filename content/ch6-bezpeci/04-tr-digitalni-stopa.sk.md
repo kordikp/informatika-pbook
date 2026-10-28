@@ -23,6 +23,10 @@ status: accepted
 concept: digitalni-stopa
 conceptTitle: "Digitálna stopa"
 objective: "Fotíš mobilom a fotka si pamätá viac, než vidíš. Čo napríklad?"
+mustCover:
+  - "Aktívna a pasívna stopa (príspevky × cookies, poloha, metadáta)"
+  - "Kto dáta zbiera a na čo (tretie strany, reklama, podvodníci)"
+  - "Ochrana a práva: nastavenia súkromia, GDPR, nezdieľať za druhých"
 state: core
 highlights:
   - "Aktívna a pasívna stopa (príspevky × cookies, poloha, metadáta)"

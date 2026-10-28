@@ -23,6 +23,10 @@ status: accepted
 concept: promenna
 conceptTitle: "Premenná: pamäť programu"
 objective: "Na ikone chatu svietia 3 neprečítané správy. Príde štvrtá a číslo sa zmení. Kde si mobil to číslo pamätá?"
+mustCover:
+  - "Názov a aktuálna hodnota (práve jedna)"
+  - "Nastav vs. zmeň o; priradenie prepíše starú hodnotu"
+  - "Premenná ako stav programu (skóre, životy, režim)"
 state: core
 highlights:
   - "Názov a aktuálna hodnota (práve jedna)"

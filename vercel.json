@@ -1,5 +1,5 @@
 {
-  "buildCommand": "node scripts/build-bundle.mjs",
+  "buildCommand": "node scripts/build-bundle.mjs && node scripts/build-ucitel.mjs",
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,

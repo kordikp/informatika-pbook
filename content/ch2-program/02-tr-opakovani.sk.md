@@ -23,6 +23,10 @@ status: accepted
 concept: opakovani
 conceptTitle: "Opakovanie (cyklus)"
 objective: "Feed na sociálnej sieti nikdy neskončí. Ďalšie video, ďalšie, ďalšie… Ako sa také „stále dookola“ zapíše do programu?"
+mustCover:
+  - "Telo cyklu a počet opakovaní"
+  - "Opakuj n× vs. opakuj, kým (podmienka ukončenia)"
+  - "Konečnosť: cyklus musí skončiť, inak sa program zacyklí"
 state: core
 highlights:
   - "Telo cyklu a počet opakovaní"

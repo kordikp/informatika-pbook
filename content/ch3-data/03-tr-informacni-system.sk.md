@@ -23,6 +23,10 @@ status: accepted
 concept: informacni-system
 conceptTitle: "Informačný systém: kto smie čo"
 objective: "Rodičia ti v mobile nastavili, že hry idú len do ôsmej večer. Ty to vypnúť nemôžeš, oni áno. Kto o tom rozhoduje?"
+mustCover:
+  - "Účel systému: akej potrebe slúži a aké dáta eviduje"
+  - "Roly a prístupové práva (čitateľ, komentátor, editor, správca)"
+  - "Zásada najmenších práv; odkaz „pre každého“ je riziko"
 state: core
 highlights:
   - "Účel systému: akej potrebe slúži a aké dáta eviduje"

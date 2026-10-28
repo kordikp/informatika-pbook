@@ -23,6 +23,10 @@ status: accepted
 concept: generativni-model
 conceptTitle: "A generatív MI előre jelez"
 objective: "A telefonod billentyűzete már azelőtt felkínálja a következő szót, hogy beírnád. A chatbot ugyanezt csinálja, csak sokkal jobban. És közben néha kitalál dolgokat."
+mustCover:
+  - "A következő szó (token) előrejelzése valószínűség alapján"
+  - "A gördülékenység nem igazság: hallucinációk"
+  - "Ugyanez a képeknél, a hangnál és a videónál (generatív kép, deepfake)"
 state: core
 highlights:
   - "A következő szó (token) előrejelzése valószínűség alapján"

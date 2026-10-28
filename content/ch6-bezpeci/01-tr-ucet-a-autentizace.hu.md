@@ -23,6 +23,10 @@ status: accepted
 concept: ucet-a-autentizace
 conceptTitle: "Fiók és jelszó"
 objective: "Elfelejted a jelszavadat, és a telefon felajánlja: „Visszaállítás e-mailben”. Aki tehát bejut az e-mailedbe, a telefonodba is bejut?"
+mustCover:
+  - "Fiók = identitás egy szolgáltatásban; hitelesítés = annak ellenőrzése, hogy tényleg te vagy"
+  - "A jelszó hossza és egyedisége; egy szolgáltatásból kiszivárgott jelszó a többit is veszélyezteti"
+  - "Jelszókezelő és 2FA (valami, amit tudsz + valami, ami nálad van)"
 state: core
 highlights:
   - "Fiók = identitás egy szolgáltatásban; hitelesítés = annak ellenőrzése, hogy tényleg te vagy"

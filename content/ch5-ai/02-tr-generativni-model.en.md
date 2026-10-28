@@ -23,6 +23,10 @@ status: accepted
 concept: generativni-model
 conceptTitle: "Generative AI predicts"
 objective: "Your phone keyboard suggests the next word before you type it. A chatbot does the same, only much better. And sometimes it makes things up along the way."
+mustCover:
+  - "Predicting the next word (token) by probability"
+  - "Fluent is not the same as true: hallucinations"
+  - "The same with images, voice and video (generative images, deepfakes)"
 state: core
 highlights:
   - "Predicting the next word (token) by probability"

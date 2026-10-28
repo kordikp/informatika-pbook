@@ -23,6 +23,10 @@ status: accepted
 concept: ochrana-zarizeni
 conceptTitle: "Az eszközök védelme"
 objective: "A telefonod frissítést kér, neked pedig épp nincs időd. Hiszen minden működik. Miért ragaszkodik hozzá ennyire?"
+mustCover:
+  - "Hibák a programokban, foltok és frissítések"
+  - "Kártevők (vírus, trójai faló, zsarolóvírus) és a biztonságos letöltés"
+  - "Alkalmazásengedélyek és biztonsági mentés a „másolat máshol” szabály szerint"
 state: core
 highlights:
   - "Hibák a programokban, foltok és frissítések"

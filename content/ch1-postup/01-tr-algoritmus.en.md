@@ -23,6 +23,10 @@ status: accepted
 concept: algoritmus
 conceptTitle: "Algorithm: exact instructions"
 objective: "Your sat nav is taking you to your gran's. At a diversion it works out a new exact route in a second. Why does it never ask “what do you mean?”"
+mustCover:
+  - "Steps in an exact order; the one carrying them out does not know what the author meant (each step is elementary)"
+  - "Unambiguous, finite, general and correct as the test of whether a process is an algorithm"
+  - "The same problem can be solved by different algorithms"
 state: core
 highlights:
   - "Steps in an exact order; the one carrying them out does not know what the author meant (each step is elementary)"

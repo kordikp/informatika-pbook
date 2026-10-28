@@ -23,6 +23,10 @@ status: accepted
 concept: dekompozice
 conceptTitle: "Rozlož problém"
 objective: "O týždeň píšeš test z troch kapitol. Učiť sa všetko naraz v nedeľu večer nefunguje. Ako to rozdeliť?"
+mustCover:
+  - "Zadanie: východiskový stav, cieľ, obmedzenia"
+  - "Čiastkové úlohy a ich závislosti (čo musí byť hotové skôr)"
+  - "Pomenovaná čiastková úloha je v kóde podprogram"
 state: core
 highlights:
   - "Zadanie: východiskový stav, cieľ, obmedzenia"

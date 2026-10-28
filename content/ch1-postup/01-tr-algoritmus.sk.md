@@ -23,6 +23,10 @@ status: accepted
 concept: algoritmus
 conceptTitle: "Algoritmus: presný návod"
 objective: "Navigácia ťa vedie k babke. Na obchádzke ti za sekundu vymyslí iný presný postup. Prečo sa nikdy nespýta „a ako to myslíš?“"
+mustCover:
+  - "Kroky v presnom poradí; vykonávateľ nevie, čo autor myslel (elementárnosť kroku)"
+  - "Jednoznačnosť, konečnosť, všeobecnosť a správnosť ako test, či je postup algoritmom"
+  - "Ten istý problém sa dá riešiť rôznymi algoritmami"
 state: core
 highlights:
   - "Kroky v presnom poradí; vykonávateľ nevie, čo autor myslel (elementárnosť kroku)"

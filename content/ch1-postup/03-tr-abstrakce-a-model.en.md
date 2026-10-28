@@ -23,6 +23,10 @@ status: accepted
 concept: abstrakce-a-model
 conceptTitle: "Model: a useful simplification"
 objective: "The map on your phone only shows you streets and an arrow on the way. You don't see trees or the colour of the houses. Why doesn't that bother you?"
+mustCover:
+  - "Abstraction: what matters depends on the purpose"
+  - "A graph as a model: nodes and edges (the underground, friends in a class, how chapters follow each other)"
+  - "No model is complete; it is always a choice"
 state: core
 highlights:
   - "Abstraction: what matters depends on the purpose"

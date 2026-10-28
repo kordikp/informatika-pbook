@@ -23,6 +23,10 @@ status: accepted
 concept: podvod-cili-na-cloveka
 conceptTitle: "Podvod mieri na človeka"
 objective: "Príde SMS: „Zásielka čaká na doplatok 1,29 €.“ Práve niečo čakáš. Klikneš?"
+mustCover:
+  - "Phishing a sociálne inžinierstvo: útok na emócie, nie na techniku"
+  - "Podvody s AI: dokonalý text, klonovaný hlas, deepfake video"
+  - "Obrana: zastav sa, over inou cestou, nikdy nehovor heslá a kódy"
 state: core
 highlights:
   - "Phishing a sociálne inžinierstvo: útok na emócie, nie na techniku"

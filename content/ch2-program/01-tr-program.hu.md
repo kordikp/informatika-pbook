@@ -23,6 +23,10 @@ status: accepted
 concept: program
 conceptTitle: "Program: bemenet → lépések → kimenet"
 objective: "Rábökök a „Küldés” gombra, és az üzenet elrepül. A bökés és az elrepülés között parancsok ezrei futottak le. Ki írta őket, és milyen sorrendben?"
+mustCover:
+  - "A kód egy algoritmus leírása programozási nyelven (blokkos és szöveges is)"
+  - "Szekvencia: a parancsok abban a sorrendben futnak le, ahogyan le vannak írva"
+  - "Bemenet → feldolgozás → kimenet; a felhasználói felület az a hely, ahol találkozol velük"
 state: core
 highlights:
   - "A kód egy algoritmus leírása programozási nyelven (blokkos és szöveges is)"

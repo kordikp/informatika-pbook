@@ -23,6 +23,10 @@ status: accepted
 concept: over-a-oprav
 conceptTitle: "Ellenőrizd és javítsd"
 objective: "A telefonod frissítést ajánl, amely „hibákat javít”. Hogy lehet, hogy a készítők nem találták meg őket korábban?"
+mustCover:
+  - "Teszt = bemenet + elvárt kimenet, előre elkészítve"
+  - "Szélső esetek (0, üres bemenet, maximum)"
+  - "Hibakeresés: hely → ok → javítás → újbóli ellenőrzés; a hatékonyság mint további mérce"
 state: core
 highlights:
   - "Teszt = bemenet + elvárt kimenet, előre elkészítve"

@@ -23,6 +23,10 @@ status: accepted
 concept: promenna
 conceptTitle: "Variable: a program's memory"
 objective: "The chat icon shows 3 unread messages. A fourth arrives and the number changes. Where does your phone keep that number?"
+mustCover:
+  - "A name and a current value (exactly one)"
+  - "Set vs. change by; assignment overwrites the old value"
+  - "A variable as the state of a program (score, lives, mode)"
 state: core
 highlights:
   - "A name and a current value (exactly one)"

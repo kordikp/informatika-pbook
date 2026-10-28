@@ -23,6 +23,10 @@ status: accepted
 concept: cesta-dat
 conceptTitle: "Ako dáta cestujú"
 objective: "Pošleš správu kamarátovi, ktorý sedí vedľa teba. Napriek tomu môže letieť cez iný štát. Prečo?"
+mustCover:
+  - "Klient a server: požiadavka a odpoveď (web, e-mail, stream)"
+  - "Balíčky, IP adresa, DNS prekladá mená na adresy"
+  - "Internet nemá jeden stred: obchádzky pri výpadku"
 state: core
 highlights:
   - "Klient a server: požiadavka a odpoveď (web, e-mail, stream)"

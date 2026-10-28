@@ -23,6 +23,10 @@ status: accepted
 concept: kodovani
 conceptTitle: "Všetko sú čísla"
 objective: "Mobil hlási „Úložisko je plné“. Hodina 4K videa zaberie viac miesta ako tisíc fotiek. Prečo je video také veľké?"
+mustCover:
+  - "Kódovanie = dohodnuté pravidlá prevodu (pixel → číslo, písmeno → číslo)"
+  - "Veľkosť dát: bit, bajt, MB, GB; rozlíšenie a kvalita zväčšujú súbor"
+  - "Typ súboru (prípona) hovorí, ako čísla čítať; kompresia šetrí miesto"
 state: core
 highlights:
   - "Kódovanie = dohodnuté pravidlá prevodu (pixel → číslo, písmeno → číslo)"

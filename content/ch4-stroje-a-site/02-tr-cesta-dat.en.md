@@ -23,6 +23,10 @@ status: accepted
 concept: cesta-dat
 conceptTitle: "How data travels"
 objective: "You send a message to a friend sitting next to you. Yet it may fly through another country. Why?"
+mustCover:
+  - "Client and server: request and response (web, e-mail, streaming)"
+  - "Packets, IP address, DNS turns names into addresses"
+  - "The internet has no single centre: detours when something goes down"
 state: core
 highlights:
   - "Client and server: request and response (web, e-mail, streaming)"

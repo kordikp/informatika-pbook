@@ -23,6 +23,10 @@ status: accepted
 concept: ochrana-zarizeni
 conceptTitle: "Protecting your devices"
 objective: "Your phone wants an update and you don't have time right now. Everything works, after all. Why does it keep insisting?"
+mustCover:
+  - "Bugs in programs, patches and updates"
+  - "Malware (virus, Trojan horse, ransomware) and safe downloading"
+  - "App permissions and backups by the rule “a copy somewhere else”"
 state: core
 highlights:
   - "Bugs in programs, patches and updates"

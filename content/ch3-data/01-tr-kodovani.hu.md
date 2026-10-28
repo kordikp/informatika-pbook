@@ -23,6 +23,10 @@ status: accepted
 concept: kodovani
 conceptTitle: "Minden szám"
 objective: "A telefonod azt írja: „Megtelt a tárhely”. Egy óra 4K videó több helyet foglal, mint ezer fotó. Miért ilyen nagy a videó?"
+mustCover:
+  - "Kódolás = megállapodott átalakítási szabályok (pixel → szám, betű → szám)"
+  - "Adatméret: bit, bájt, MB, GB; a felbontás és a minőség növeli a fájlt"
+  - "A fájltípus (kiterjesztés) megmondja, hogyan kell olvasni a számokat; a tömörítés helyet takarít meg"
 state: core
 highlights:
   - "Kódolás = megállapodott átalakítási szabályok (pixel → szám, betű → szám)"

@@ -23,6 +23,10 @@ status: accepted
 concept: dekompozice
 conceptTitle: "Bontsd részekre a problémát"
 objective: "Egy hét múlva dolgozatot írsz három fejezetből. Vasárnap este egyszerre megtanulni mindent nem működik. Hogyan osztod be?"
+mustCover:
+  - "A feladat: kiinduló állapot, cél, korlátok"
+  - "Részfeladatok és függőségeik (mi legyen kész előbb)"
+  - "Egy elnevezett részfeladat a kódban alprogram"
 state: core
 highlights:
   - "A feladat: kiinduló állapot, cél, korlátok"

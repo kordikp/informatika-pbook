@@ -23,6 +23,10 @@ status: accepted
 concept: program
 conceptTitle: "Program: input → steps → output"
 objective: "You tap “Send” and the message flies off. Between the tap and the take-off, thousands of commands ran. Who wrote them, and in what order?"
+mustCover:
+  - "Code is an algorithm written in a programming language (with blocks or with text)"
+  - "Sequence: commands are carried out in the order they are written"
+  - "Input → processing → output; the user interface is where you meet them"
 state: core
 highlights:
   - "Code is an algorithm written in a programming language (with blocks or with text)"

@@ -23,6 +23,10 @@ status: accepted
 concept: doporucovac
 conceptTitle: "Az ajánlórendszer és a hírfolyamod"
 objective: "Megnézel egy cicás videót. Öt perc múlva tele van a hírfolyamod cicákkal. Ki döntött így?"
+mustCover:
+  - "Jelek: kattintások, nézési idő, átugrás, hasonló felhasználók"
+  - "A visszacsatolási hurok és a szűrőbuborék"
+  - "A figyelemre épülő üzleti modell és a függőséget okozó dizájn (végtelen görgetés, automatikus lejátszás)"
 state: core
 highlights:
   - "Jelek: kattintások, nézési idő, átugrás, hasonló felhasználók"

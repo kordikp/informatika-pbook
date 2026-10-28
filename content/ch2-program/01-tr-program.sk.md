@@ -23,6 +23,10 @@ status: accepted
 concept: program
 conceptTitle: "Program: vstup → kroky → výstup"
 objective: "Ťukneš na „Odoslať“ a správa odletí. Medzi ťuknutím a odletom prebehli tisíce príkazov. Kto ich napísal a v akom poradí?"
+mustCover:
+  - "Kód je zápis algoritmu v programovacom jazyku (blokovom aj textovom)"
+  - "Sekvencia: príkazy sa vykonávajú v poradí, v akom sú zapísané"
+  - "Vstup → spracovanie → výstup; používateľské rozhranie je miesto, kde ich stretneš"
 state: core
 highlights:
   - "Kód je zápis algoritmu v programovacom jazyku (blokovom aj textovom)"

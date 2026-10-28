@@ -23,6 +23,10 @@ status: accepted
 concept: ucet-a-autentizace
 conceptTitle: "Účet a heslo"
 objective: "Zabudneš heslo a mobil ponúkne „Obnoviť cez e-mail“. Kto sa dostane do tvojho e-mailu, dostane sa teda aj do mobilu?"
+mustCover:
+  - "Účet = identita v službe; autentifikácia = overenie, že si to ty"
+  - "Dĺžka a jedinečnosť hesla; únik z jednej služby ohrozí ostatné"
+  - "Správca hesiel a 2FA (niečo poznáš + niečo máš)"
 state: core
 highlights:
   - "Účet = identita v službe; autentifikácia = overenie, že si to ty"

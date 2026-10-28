@@ -177,6 +177,7 @@ export const CONFIG = {
       'Mistr informatiky': 'Computing master',
       'Svět příkladů': 'Example world', 'nepovinné': 'optional', 'Odevšad': 'Everywhere', 'Hry': 'Games', 'Roboti a micro:bit': 'Robots and micro:bit',
       'Weby': 'Websites', 'Aplikace': 'Apps', 'Tvorba s AI': 'Creating with AI', 'Sociální sítě a videa': 'Social media and video',
+      'Učíte? Plán hodiny a odkazy pro třídu →': 'Teaching? Lesson plans and links for your class →', 'Pro učitele': 'For teachers',
       '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': { one: '<b>{0}</b> where the book has them: {1} core concept today', other: '<b>{0}</b> where the book has them: {1} core concepts today' },
     },
     sk: {
@@ -196,6 +197,7 @@ export const CONFIG = {
       'Mistr informatiky': 'Majster informatiky',
       'Svět příkladů': 'Svet príkladov', 'nepovinné': 'nepovinné', 'Odevšad': 'Odvšadiaľ', 'Hry': 'Hry', 'Roboti a micro:bit': 'Roboty a micro:bit',
       'Weby': 'Weby', 'Aplikace': 'Aplikácie', 'Tvorba s AI': 'Tvorba s AI', 'Sociální sítě a videa': 'Sociálne siete a videá',
+      'Učíte? Plán hodiny a odkazy pro třídu →': 'Učíte? Plán hodiny a odkazy pre triedu →', 'Pro učitele': 'Pre učiteľov',
       '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': { one: '<b>{0}</b> tam, kde ich kniha má: dnes {1} jadro', few: '<b>{0}</b> tam, kde ich kniha má: dnes {1} jadrá', other: '<b>{0}</b> tam, kde ich kniha má: dnes {1} jadier' },
     },
     hu: {
@@ -215,6 +217,7 @@ export const CONFIG = {
       'Mistr informatiky': 'Az informatika mestere',
       'Svět příkladů': 'A példák világa', 'nepovinné': 'nem kötelező', 'Odevšad': 'Bárhonnan', 'Hry': 'Játékok', 'Roboti a micro:bit': 'Robotok és micro:bit',
       'Weby': 'Weboldalak', 'Aplikace': 'Alkalmazások', 'Tvorba s AI': 'Alkotás MI-vel', 'Sociální sítě a videa': 'Közösségi média és videók',
+      'Učíte? Plán hodiny a odkazy pro třídu →': 'Tanít? Óravázlat és linkek az osztálynak →', 'Pro učitele': 'Tanároknak',
       '<b>{0}</b> where the book has them ({1} section{2} today — any other section can be retold for you)': '<b>{0}</b> ott, ahol a könyvben van ilyen: ma {1} alapfogalom',
     },
   },

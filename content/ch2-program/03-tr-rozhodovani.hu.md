@@ -23,6 +23,10 @@ status: accepted
 concept: rozhodovani
 conceptTitle: "Döntés (feltétel)"
 objective: "A telefonod néhány üzenetet magától áttesz a spambe. Hogyan dönti el, melyiket?"
+mustCover:
+  - "A feltétel értéke igaz vagy hamis"
+  - "Ha–különben: pontosan egy ág fut le"
+  - "Feltételek összekapcsolása (és, vagy, nem)"
 state: core
 highlights:
   - "A feltétel értéke igaz vagy hamis"

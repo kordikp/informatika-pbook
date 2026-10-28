@@ -23,6 +23,10 @@ status: accepted
 concept: abstrakce-a-model
 conceptTitle: "Model: užitočné zjednodušenie"
 objective: "Mapa v mobile ti cestou ukáže len ulice a šípku. Stromy ani farby domov nevidíš. Prečo ti to neprekáža?"
+mustCover:
+  - "Abstrakcia: čo je podstatné, závisí od účelu"
+  - "Graf ako model: uzly a hrany (metro, kamaráti v triede, nadväznosť kapitol)"
+  - "Žiadny model nie je úplný, vždy je to voľba"
 state: core
 highlights:
   - "Abstrakcia: čo je podstatné, závisí od účelu"

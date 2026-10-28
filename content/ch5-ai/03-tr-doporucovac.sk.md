@@ -23,6 +23,10 @@ status: accepted
 concept: doporucovac
 conceptTitle: "Odporúčač a tvoj feed"
 objective: "Pustíš si jedno video s mačkou. O päť minút máš feed plný mačiek. Kto to rozhodol?"
+mustCover:
+  - "Signály: kliky, doba pozerania, preskočenie, podobní používatelia"
+  - "Spätná slučka a filtračná bublina"
+  - "Obchodný model pozornosti a návykový dizajn (nekonečný scroll, autoplay)"
 state: core
 highlights:
   - "Signály: kliky, doba pozerania, preskočenie, podobní používatelia"

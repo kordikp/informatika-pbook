@@ -23,6 +23,10 @@ status: accepted
 concept: digitalni-stopa
 conceptTitle: "Digitális lábnyom"
 objective: "Fotózol a telefonoddal, és a fotó többet jegyez meg, mint amit látsz. Például mit?"
+mustCover:
+  - "Aktív és passzív lábnyom (bejegyzések × sütik, helyadat, metaadatok)"
+  - "Ki gyűjti az adatokat és mire (harmadik felek, reklám, csalók)"
+  - "Védelem és jogok: adatvédelmi beállítások, GDPR, ne ossz meg mások helyett"
 state: core
 highlights:
   - "Aktív és passzív lábnyom (bejegyzések × sütik, helyadat, metaadatok)"

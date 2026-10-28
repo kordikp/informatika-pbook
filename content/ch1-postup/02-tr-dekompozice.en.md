@@ -23,6 +23,10 @@ status: accepted
 concept: dekompozice
 conceptTitle: "Break the problem down"
 objective: "In a week you have a test on three chapters. Learning everything at once on Sunday night doesn't work. How do you split it up?"
+mustCover:
+  - "The task: starting point, goal, limits"
+  - "Smaller tasks and how they depend on each other (what has to be done first)"
+  - "A named smaller task is a subprogram (function) in code"
 state: core
 highlights:
   - "The task: starting point, goal, limits"

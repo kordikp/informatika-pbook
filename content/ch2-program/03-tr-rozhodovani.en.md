@@ -23,6 +23,10 @@ status: accepted
 concept: rozhodovani
 conceptTitle: "Decisions (conditions)"
 objective: "Your phone moves some messages to spam all by itself. How does it decide which ones?"
+mustCover:
+  - "A condition is either true or false"
+  - "If–else: exactly one branch runs"
+  - "Combining conditions (and, or, not)"
 state: core
 highlights:
   - "A condition is either true or false"

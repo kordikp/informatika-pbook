@@ -23,6 +23,10 @@ status: accepted
 concept: cloud-a-server
 conceptTitle: "Cloud je cudzí počítač"
 objective: "Mobil hlási „Fotky zálohované do cloudu“. Kde sú teraz tie fotky?"
+mustCover:
+  - "Server poskytuje službu; cloud = cudzie servery"
+  - "Lokálne vs. cloud: výhody a závislosti; záloha na inom mieste"
+  - "Dáta ležia v dátovom centre v nejakej krajine; v EÚ platí GDPR"
 state: core
 highlights:
   - "Server poskytuje službu; cloud = cudzie servery"
