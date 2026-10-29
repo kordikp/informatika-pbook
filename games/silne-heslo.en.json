@@ -1,52 +1,54 @@
 {
-  "type": "sort",
-  "title": "Strong or weak password?",
-  "instruction": "An attacker first tries well-known passwords and their variations. What holds out?",
-  "buckets": [
-    "Holds out",
-    "Falls quickly"
+  "type": "estimate",
+  "title": "How long until it’s guessed?",
+  "instruction": "An attacker has stolen a database of passwords and tries 10 billion passwords a second: first well-known passwords, then words and their variations, and finally every combination. Estimate how long the password lasts.",
+  "debrief": "The attacker first tries well-known passwords, words and their variations. What lasts is a long password: a sentence of unexpected words, or a long random password from a password manager. A different one for every account, plus two-factor authentication.",
+  "scale": [
+    "instantly",
+    "within a minute",
+    "a few hours",
+    "a few days",
+    "a few years",
+    "thousands of years",
+    "millions of years or more"
   ],
   "items": [
     {
-      "text": "password123",
-      "answer": 1,
-      "why": "It's one of the most common passwords in the world. The attacker tries it straight away."
-    },
-    {
-      "text": "P@ss1",
-      "answer": 1,
-      "why": "Short, and swapping letters for symbols is a well-known trick. Programs try it by themselves."
-    },
-    {
-      "text": "Tr4ctor!",
-      "answer": 1,
-      "why": "One word with the usual swaps. Attackers have dictionaries for that."
-    },
-    {
-      "text": "giraffe eats dumplings on the Moon",
+      "q": "password123",
       "answer": 0,
-      "why": "Long and made of unexpected words. That can't be guessed."
+      "why": "One of the most common passwords in the world. It is on the list the attacker tries first."
     },
     {
-      "text": "minecraft2012",
-      "answer": 1,
-      "why": "A popular game and a year. The attacker tries both among the very first."
-    },
-    {
-      "text": "the blue train rides backwards to Brno",
+      "q": "minecraft2012",
       "answer": 0,
-      "why": "A long sentence that you'll remember but nobody will guess."
+      "tolerance": 1,
+      "why": "A popular game and a year. The attacker tries words with numbers at the end among the very first."
     },
     {
-      "text": "The same long password for a game and for e-mail",
+      "q": "Kitty2012!",
       "answer": 1,
-      "why": "When it leaks from the game, the attacker tries it on your e-mail too."
+      "tolerance": 1,
+      "why": "A word with a capital letter, a year and an exclamation mark at the end. These are exactly the variations the attacker tries right after plain words."
     },
     {
-      "text": "A long password from a password manager + 2FA",
-      "answer": 0,
-      "why": "A random password and an extra second step. Even with the password, the attacker can't log in."
+      "q": "Tr4ctor!",
+      "answer": 1,
+      "why": "One word with the usual substitutions. It falls in under a minute."
+    },
+    {
+      "q": "k#9Lq2!v (8 random characters)",
+      "answer": 3,
+      "why": "There are about 6 quadrillion combinations. At 10 billion a second the attacker gets through them in about a week. Length helps more than special characters."
+    },
+    {
+      "q": "giraffe eats dumplings on the Moon",
+      "answer": 6,
+      "why": "A long sentence of unexpected words. Trying every combination would take about a million years."
+    },
+    {
+      "q": "16 random characters from a password manager",
+      "answer": 6,
+      "why": "Twice the length gives so many combinations that it would take far longer than the universe has existed."
     }
-  ],
-  "debrief": "An attacker first tries well-known passwords, words and their variations. What holds out is a long password made of several unexpected words, or a password from a password manager, different for every account and ideally with 2FA."
+  ]
 }

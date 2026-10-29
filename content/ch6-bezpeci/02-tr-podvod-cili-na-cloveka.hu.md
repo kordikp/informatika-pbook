@@ -39,11 +39,13 @@ SMS érkezik: „A csomagja 390 Ft pótdíj befizetésére vár.” Épp vársz 
 
 A leggyakoribb támadás nem a számítógépet töri fel. **Téged** tör fel. Az üzenet a **sietségre**, a **félelemre**, a **jutalomra** vagy a **bizalomra** játszik, hogy előbb cselekedj, mint gondolkodj. Ezt **pszichológiai manipulációnak** (social engineering) hívják. Az az üzenet, amely jelszavakat és adatokat próbál kicsalni, **adathalászat**.
 
-Dönts az üzenetekről a szöveg alatti minijátékban. Mindegyiknél kérdezd meg: **nyomást gyakorol rám** (sietség, félelem, jutalom, bizalom)? És **jelszót, kódot, pénzt vagy linken keresztüli bejelentkezést kér**?
+A szöveg alatti minijátékban keresd meg, mi árulja el az átverést az egyes üzenetekben. Mindegyiknél kérdezd meg: **nyomást gyakorol rám** (sietség, félelem, jutalom, bizalom)? És **jelszót, kódot, pénzt vagy linken keresztüli bejelentkezést kér**?
 
 A tanács, hogy „a csalást a helyesírási hibákról ismered fel”, már nem érvényes. Az MI hibátlan üzenetet ír, és a hangot is utánozza. Megbízhatóbb jelek a **nyomásgyakorlás** és a jelszó, kód, pénz vagy linken keresztüli bejelentkezés **kérése**.
 
 A védekezésnek három lépése van. **Állj meg.** **Ellenőrizd más úton**: hívj fel egy számot, amelyet ismersz, nyisd meg magad az alkalmazást. És **jelszót vagy kódot soha senkinek ne adj meg**, se az ügyfélszolgálatnak, se egy barátodnak.
+
+Ha valaki **zsarol vagy zaklat** (azzal fenyeget, hogy közzétesz egy fotót, pénzt vagy újabb fotókat kér), ne fizess, és ne küldj semmi mást. **Mentsd el a bizonyítékokat** (képernyőképek), **szólj egy felnőttnek**, akiben megbízol, és jelentsd a fiókot a közösségi oldalon. A **116 111**-es gyermekvonal is segít. A hibás mindig a zsaroló.
 
 **Próbáld ki!** Készíts az osztálytársaiddal „csalásbingót”: sietség, nyeremény, kódkérés, furcsa cím, személytelen megszólítás… Ki gyűjti össze a következő hetekben a legtöbb mezőt valódi kéretlen üzenetekből? (Gyűjteni, nem kattintani!)
 

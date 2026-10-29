@@ -1,22 +1,110 @@
 {
-  "type": "order",
+  "type": "cloze",
   "title": "From Enter to the page",
-  "instruction": "Put in order what happens from pressing Enter to the finished page.",
-  "steps": [
-    "You type the address and press Enter",
-    "DNS translates the name into the IP address of the server",
-    "The browser sends the server a request for the page",
-    "The server sends back HTML",
-    "The browser asks for CSS, scripts and pictures",
-    "The browser renders the page"
-  ],
-  "debrief": "Every page is an exchange of requests and responses. First the name to an address, then the HTML, then everything the HTML points to.",
-  "why": [
-    "Everything starts with you: the address is a name, not a number.",
-    "Without the IP address the request would not know where to go.",
-    "Only now does it know where to send the request.",
-    "The response to the first request is the skeleton of the page.",
-    "Only in the HTML does the browser find out which other files the page needs.",
-    "From all the files that arrived, it puts together the picture you see."
+  "instruction": "Fill in what happens from pressing Enter to the finished page.",
+  "debrief": "Every page is an exchange of requests and responses. First the name becomes an address, then comes the HTML, then everything the HTML points to.",
+  "items": [
+    {
+      "text": "You type our-club.org. Your computer knows only the name, but data needs {0}. The number comes from {1}.",
+      "gaps": [
+        {
+          "options": [
+            "an IP address",
+            "a password",
+            "an e-mail"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "DNS, the phone book of the internet",
+            "the router at home",
+            "the browser on its own"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "The name is for people, the IP address for the network. DNS translates one into the other."
+    },
+    {
+      "text": "The browser, the {0}, sends the server a {1}: send me the home page.",
+      "gaps": [
+        {
+          "options": [
+            "client",
+            "server",
+            "router"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "request",
+            "response",
+            "picture"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "The client asks, the server answers. The language of that conversation is HTTP."
+    },
+    {
+      "text": "The request and the response travel split into {0}. They are passed on by {1}, each one a bit closer.",
+      "gaps": [
+        {
+          "options": [
+            "packets",
+            "whole pages",
+            "single characters"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "routers",
+            "DNS servers",
+            "browsers"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Each packet carries the address of its destination. When a router on the way fails, the others send the packet round it."
+    },
+    {
+      "text": "The server returns {0}. In it the browser finds links to CSS, scripts and pictures, and for each file it sends {1}.",
+      "gaps": [
+        {
+          "options": [
+            "HTML",
+            "a finished picture of the page",
+            "a password"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "another request",
+            "one text message",
+            "nothing, it already has everything"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "HTML is the skeleton of the page. A single news page can easily mean a hundred requests."
+    },
+    {
+      "text": "The page is put together from the files that arrived and drawn by {0}.",
+      "gaps": [
+        {
+          "options": [
+            "your browser",
+            "the server",
+            "DNS"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "The server sends the material; your device puts the picture together. That’s why even a weak device can slow a page down."
+    }
   ]
 }

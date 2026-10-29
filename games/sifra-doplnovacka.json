@@ -1,0 +1,132 @@
+{
+  "type": "cloze",
+  "title": "Zamkni a odemkni",
+  "instruction": "Doplň chybějící slova. Na posouvání písmen si klidně vezmi papír.",
+  "debrief": "Šifra zamkne zprávu klíčem. Slabou šifru s pár klíči rozluštíš zkoušením, dobrou ne. Https šifruje cestu k webu, koncové šifrování zprávu od telefonu k telefonu.",
+  "items": [
+    {
+      "text": "Caesarova šifra s klíčem 3 posune každé písmeno o tři místa dál. Z KINO je {0}.",
+      "gaps": [
+        {
+          "options": [
+            "NLQR",
+            "LJOP",
+            "HFKL"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "K → N, I → L, N → Q, O → R."
+    },
+    {
+      "text": "Zprávu FDV někdo zašifroval klíčem 3. Rozšifruješ ji posunem o tři místa {0} a vyjde {1}.",
+      "gaps": [
+        {
+          "options": [
+            "zpátky",
+            "dál",
+            "náhodně"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "CAS",
+            "IGY",
+            "FDV"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "F → C, D → A, V → S. Kdo zná klíč, posune písmena zpátky."
+    },
+    {
+      "text": "Caesar má jen {0} užitečných klíčů. Kdo klíč nezná, zkouší je jeden po druhém a šifru {1}.",
+      "gaps": [
+        {
+          "options": [
+            "25",
+            "3",
+            "miliardu"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "rozluští za pár minut",
+            "nerozluští nikdy",
+            "musí poslat zpátky"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Posun o 26 písmen vrátí původní abecedu, takže užitečných klíčů je 25. Ty se dají vyzkoušet i ručně."
+    },
+    {
+      "text": "Šifry v mobilu mají klíčů tolik, že je {0} nevyzkouší. Podvodníci proto útočí {1}.",
+      "gaps": [
+        {
+          "options": [
+            "žádný počítač",
+            "jen pomalý počítač",
+            "jen člověk"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "na člověka",
+            "na šifru",
+            "na Wi-Fi router"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Dobrou šifru hádáním neprolomíš. Snazší je vylákat heslo nebo kód od člověka."
+    },
+    {
+      "text": "Zámeček a https šifrují {0}. Neříkají, že je web {1}.",
+      "gaps": [
+        {
+          "options": [
+            "cestu mezi tebou a webem",
+            "celý server i všechna jeho data",
+            "tvůj mobil"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "poctivý",
+            "rychlý",
+            "zdarma"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Zámeček má i podvodný web. Chrání jen to, aby zprávu cestou nikdo nepřečetl."
+    },
+    {
+      "text": "U koncového šifrování mají klíč jen {0}. Server zprávu {1}.",
+      "gaps": [
+        {
+          "options": [
+            "telefony na obou koncích",
+            "server služby",
+            "operátor a Wi-Fi"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "jen předá a nepřečte",
+            "přečte a uloží",
+            "opraví a pošle dál"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Zprávu odemkne až telefon příjemce. Kdo drží jeho telefon, přečte ji ale taky."
+    }
+  ]
+}

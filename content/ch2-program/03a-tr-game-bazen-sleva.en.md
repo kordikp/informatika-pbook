@@ -4,10 +4,10 @@ translationOf: rozhodovani-hra
 lang: en
 type: game
 game: bazen-sleva.en
-title: "Game: Discount or full price?"
+title: "Game: The swimming pool till"
 readingTime: 1
 standalone: true
-teaser: "Children under 15 and people aged 65 and over get a discount."
+teaser: "Children under 15 and people aged 65 and over get a discount. The till decides by a program. Step through it for everyone who comes."
 voice: universal
 parent: null
 diagram: null

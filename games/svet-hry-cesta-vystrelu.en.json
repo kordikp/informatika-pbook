@@ -1,22 +1,48 @@
 {
-  "type": "order",
-  "title": "The trip of a single shot",
-  "instruction": "Put in order what happens from pressing the button to the hit on the screen.",
-  "steps": [
-    "You press the fire button",
-    "The phone wraps the action in a packet with the server’s address",
-    "Routers pass the packet on, all the way to the server",
-    "The server works out whom you hit",
-    "The response travels back to all the players",
-    "Your phone draws the hit"
-  ],
-  "debrief": "Every shot in an online game travels there and back through routers. The longer the trip, the higher the ping and the later you see the hit.",
-  "why": [
-    "Everything starts with input from the player.",
-    "To travel over the network, the action has to be in a packet with an address.",
-    "The packet travels through several routers; each one sends it a bit closer.",
-    "The server decides about the hit, not your phone. Otherwise you could cheat.",
-    "Everyone who is playing has to know the result.",
-    "Only now do you see the hit. The whole trip takes as long as your ping."
+  "type": "estimate",
+  "title": "How fast does a shot travel?",
+  "instruction": "Estimate on the slider. Roughly is enough.",
+  "debrief": "Every shot in an online game travels there and back through routers. Even light in a cable isn't infinitely fast. The further away the server, the higher the ping and the later you see the hit.",
+  "items": [
+    {
+      "q": "About how many kilometres does a signal in an optical cable travel in 1 millisecond (a thousandth of a second)?",
+      "min": 0,
+      "max": 1000,
+      "step": 50,
+      "answer": 200,
+      "tolerance": 50,
+      "unit": "km",
+      "why": "Light in glass travels about 200,000 km a second, so 200 km a millisecond. Data can't travel faster than that."
+    },
+    {
+      "q": "The game server is 1,000 km away. How many milliseconds does the trip there and back take through the cable alone, without delays in routers?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 10,
+      "tolerance": 2,
+      "unit": "ms",
+      "why": "There: 1,000 km in 5 ms, and back another 5 ms. The real ping is higher: the cable doesn't run straight and every router holds the packet up for a moment."
+    },
+    {
+      "q": "A server in Australia is about 16,000 km away. How many ms would the trip there and back take through the cable alone?",
+      "min": 0,
+      "max": 400,
+      "step": 10,
+      "answer": 160,
+      "tolerance": 20,
+      "unit": "ms",
+      "why": "32,000 km there and back divided by 200 km a millisecond is 160 ms. That’s why you play on a server that is close."
+    },
+    {
+      "q": "The game redraws the picture 60 times a second. How many milliseconds does one frame last?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 17,
+      "tolerance": 1,
+      "unit": "ms",
+      "why": "1,000 ms divided by 60 is about 16.7 ms. A ping of 200 ms is a delay of about 12 frames."
+    }
   ]
 }

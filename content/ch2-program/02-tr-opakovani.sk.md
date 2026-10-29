@@ -41,6 +41,8 @@ Keď sa niečo deje znova a znova, nezapisuješ to stokrát. Zapíšeš to **raz
 
 Robot má obísť stĺp a vrátiť sa na štart. Dlhý program má 8 blokov: *choď 3, otoč sa doprava*, a to celé štyrikrát. Rovnaká dvojica sa opakuje, takže stačí **opakuj 4×: choď 3, otoč sa doprava**. Tri bloky namiesto ôsmich. A keď má robot dôjsť k stene v chodbe, ktorej dĺžku nepozná? *Opakuj 5×: choď 1* v krátkej chodbe narazí a v dlhej zastaví priskoro. Funguje **opakuj, kým nie je pred stenou: choď 1**.
 
+⟦obr: images/proklik-opakovani.sk.svg⟧
+
 Cyklus s **pevným počtom** použiješ, keď **vopred vieš, koľkokrát**: štyri strany štvorca. Cyklus **s podmienkou**, keď to závisí od toho, čo sa stane: choď, kým nie si pri stene.
 
 Pozor na dve veci. Podmienka sa kontroluje **na začiatku každého kola**, nie uprostred tela. A cyklus musí raz **skončiť**. Keď podmienka nikdy neprestane platiť, program sa **zacyklí**. Niekedy je to chyba, inokedy zámer: herná slučka alebo nekonečný feed beží schválne stále.

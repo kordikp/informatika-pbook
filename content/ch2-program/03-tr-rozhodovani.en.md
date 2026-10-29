@@ -39,7 +39,7 @@ Your phone moves some messages to spam all by itself. How does it decide which o
 
 A program can **make decisions**. If a **condition** is true, it does one thing, **otherwise** another. A condition is a question whose answer can only be **yes** or **no**: is the age less than 15?
 
-The swimming pool till sorts people into discounted and full price. Children **under 15** and people **aged 65 and over** get a discount. One condition isn't enough, you need two: *if age < 15 **or** age ≥ 65, then discount, otherwise full price.* Sort the queue in the mini-game below the text. Watch out for Tomáš (15) and Karel (65).
+The swimming pool till sorts people into discounted and full price. Children **under 15** and people **aged 65 and over** get a discount. One condition isn't enough, you need two: *if age < 15 **or** age ≥ 65, then discount, otherwise full price.* In the mini-game below the text you step through the till’s program for everyone in the queue. Watch out for Tomáš (15) and Karel (65).
 
 Of the **if** and **else** branches, **exactly one always runs**. A condition can't be “a bit” true: it is either true or not.
 

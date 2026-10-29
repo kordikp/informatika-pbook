@@ -1,37 +1,97 @@
 {
-  "type": "sort",
-  "title": "Will the lamp switch on?",
-  "instruction": "The rule: switch on when it is dark AND the motion sensor detects something.",
-  "buckets": [
-    "On",
-    "Off"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "Does the lamp turn on?",
+  "instruction": "The program of a night lamp on a micro:bit. Step through it for each situation.",
+  "debrief": "With “and” the lamp turns on only when both conditions hold. With “or” one is enough. And the decision has to run in a loop, otherwise it wouldn't react to changes.",
+  "rounds": [
     {
-      "text": "Dark, someone is walking around the room",
-      "answer": 0,
-      "why": "Both parts are true."
+      "code": [
+        "forever:",
+        "    if it is dark and the sensor detects movement:",
+        "        turn the lamp on",
+        "    else:",
+        "        turn the lamp off"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Dark, someone is walking around the room",
+          "q": "What does the lamp do?",
+          "options": [
+            "it’s on",
+            "it’s off"
+          ],
+          "answer": 0,
+          "why": "Both parts hold: it is dark and the sensor detected movement."
+        },
+        {
+          "line": 1,
+          "input": "Dark, nobody in the room",
+          "q": "What does the lamp do?",
+          "options": [
+            "it’s on",
+            "it’s off"
+          ],
+          "answer": 1,
+          "why": "There is no movement. With “and” both parts must hold."
+        },
+        {
+          "line": 1,
+          "input": "Daylight, someone is walking around",
+          "q": "What does the lamp do?",
+          "options": [
+            "it’s on",
+            "it’s off"
+          ],
+          "answer": 1,
+          "why": "It isn't dark, so the first part doesn't hold."
+        },
+        {
+          "line": 1,
+          "input": "Dark, a cat ran past the sensor",
+          "q": "What does the lamp do?",
+          "options": [
+            "it’s on",
+            "it’s off"
+          ],
+          "answer": 0,
+          "why": "A motion sensor can't tell a cat from a person. For the program it is movement."
+        },
+        {
+          "line": 0,
+          "q": "Why is the whole decision inside “forever”?",
+          "options": [
+            "so that it decides only once after switching on",
+            "so that the lamp reacts even if the situation changes a minute later",
+            "because you can't write a condition without a loop"
+          ],
+          "answer": 1,
+          "why": "Without a loop the program would decide once after switching on. It wouldn't react to darkness or movement later."
+        }
+      ]
     },
     {
-      "text": "Dark, nobody in the room",
-      "answer": 1,
-      "why": "There is no movement. With “and”, both parts must be true."
-    },
-    {
-      "text": "Light, someone is walking around",
-      "answer": 1,
-      "why": "It isn’t dark; the first part is not true."
-    },
-    {
-      "text": "Light, nobody in the room",
-      "answer": 1,
-      "why": "Neither part is true."
-    },
-    {
-      "text": "Dark, a cat ran past the sensor",
-      "answer": 0,
-      "why": "A motion sensor can’t tell a cat from a person. To the program it is movement."
+      "title": "Someone changed “and” to “or”",
+      "code": [
+        "forever:",
+        "    if it is dark or the sensor detects movement:",
+        "        turn the lamp on",
+        "    else:",
+        "        turn the lamp off"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Noon, the sun is shining, someone walked past",
+          "q": "What does the lamp do?",
+          "options": [
+            "it’s on",
+            "it’s off"
+          ],
+          "answer": 0,
+          "why": "With “or” one part is enough. Movement is enough, so the lamp is on even at noon and drains the battery."
+        }
+      ]
     }
-  ],
-  "debrief": "With AND, the lamp switches on only when both conditions are true. Otherwise it saves its battery."
+  ]
 }

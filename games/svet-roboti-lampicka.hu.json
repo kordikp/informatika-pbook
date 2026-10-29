@@ -1,37 +1,97 @@
 {
-  "type": "sort",
+  "type": "trace",
   "title": "Felkapcsol a lámpa?",
-  "instruction": "A szabály: kapcsolj fel, ha sötét van, ÉS a mozgásérzékelő érzékel valamit.",
-  "buckets": [
-    "Világít",
-    "Nem világít"
-  ],
-  "items": [
+  "instruction": "Egy micro:biten futó éjszakai lámpa programja. Menj végig rajta minden helyzetben.",
+  "debrief": "Az „és“ kötőszóval a lámpa csak akkor kapcsol fel, ha mindkét feltétel teljesül. A „vagy“ kötőszóval egy is elég. A döntésnek pedig ciklusban kell futnia, különben nem reagálna a változásra.",
+  "rounds": [
     {
-      "text": "Sötét van, valaki járkál a szobában",
-      "answer": 0,
-      "why": "Mindkét rész igaz."
+      "code": [
+        "ismételd örökké:",
+        "    ha sötét van és az érzékelő mozgást észlel:",
+        "        kapcsold be a lámpát",
+        "    különben:",
+        "        kapcsold ki a lámpát"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Sötét van, valaki járkál a szobában",
+          "q": "Mit csinál a lámpa?",
+          "options": [
+            "világít",
+            "nem világít"
+          ],
+          "answer": 0,
+          "why": "Mindkét rész teljesül: sötét van, és az érzékelő mozgást észlelt."
+        },
+        {
+          "line": 1,
+          "input": "Sötét van, senki sincs a szobában",
+          "q": "Mit csinál a lámpa?",
+          "options": [
+            "világít",
+            "nem világít"
+          ],
+          "answer": 1,
+          "why": "Nincs mozgás. Az „és“ esetén mindkét résznek teljesülnie kell."
+        },
+        {
+          "line": 1,
+          "input": "Világos van, valaki járkál",
+          "q": "Mit csinál a lámpa?",
+          "options": [
+            "világít",
+            "nem világít"
+          ],
+          "answer": 1,
+          "why": "Nincs sötét, az első rész nem teljesül."
+        },
+        {
+          "line": 1,
+          "input": "Sötét van, egy macska futott el az érzékelő mellett",
+          "q": "Mit csinál a lámpa?",
+          "options": [
+            "világít",
+            "nem világít"
+          ],
+          "answer": 0,
+          "why": "A mozgásérzékelő nem tudja megkülönböztetni a macskát az embertől. A programnak ez mozgás."
+        },
+        {
+          "line": 0,
+          "q": "Miért van az egész döntés az „ismételd örökké“ belsejében?",
+          "options": [
+            "hogy csak egyszer döntsön bekapcsolás után",
+            "hogy a lámpa akkor is reagáljon, ha a helyzet egy perc múlva megváltozik",
+            "mert ciklus nélkül nem lehet feltételt írni"
+          ],
+          "answer": 1,
+          "why": "Ciklus nélkül a program bekapcsolás után egyszer döntene. A később jövő sötétségre vagy mozgásra már nem reagálna."
+        }
+      ]
     },
     {
-      "text": "Sötét van, senki sincs a szobában",
-      "answer": 1,
-      "why": "Hiányzik a mozgás. Az „és” esetén mindkét résznek igaznak kell lennie."
-    },
-    {
-      "text": "Világos van, valaki járkál",
-      "answer": 1,
-      "why": "Nincs sötét, az első rész nem igaz."
-    },
-    {
-      "text": "Világos van, senki sincs a szobában",
-      "answer": 1,
-      "why": "Egyik rész sem igaz."
-    },
-    {
-      "text": "Sötét van, egy macska futott el az érzékelő mellett",
-      "answer": 0,
-      "why": "A mozgásérzékelő nem tudja megkülönböztetni a macskát az embertől. A programnak ez mozgás."
+      "title": "Valaki az „és“-t „vagy“-ra írta át",
+      "code": [
+        "ismételd örökké:",
+        "    ha sötét van vagy az érzékelő mozgást észlel:",
+        "        kapcsold be a lámpát",
+        "    különben:",
+        "        kapcsold ki a lámpát"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Dél van, süt a nap, valaki elment mellette",
+          "q": "Mit csinál a lámpa?",
+          "options": [
+            "világít",
+            "nem világít"
+          ],
+          "answer": 0,
+          "why": "A „vagy“ esetén egy rész is elég. A mozgás elég, így a lámpa délben is világít, és meríti az elemet."
+        }
+      ]
     }
-  ],
-  "debrief": "ÉS esetén a lámpa csak akkor kapcsol fel, ha mindkét feltétel igaz. Különben kíméli az elemet."
+  ]
 }

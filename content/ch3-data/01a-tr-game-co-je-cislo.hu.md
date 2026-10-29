@@ -4,10 +4,10 @@ translationOf: kodovani-hra
 lang: hu
 type: game
 game: co-je-cislo.hu
-title: "Játék: Kódolás vagy titkosítás?"
+title: "Játék: Minden szám"
 readingTime: 1
 standalone: true
-teaser: "Olyan szabály, amelyet minden program ismer, vagy olyan zár, amelynek a kulcsa csak valakinél van?"
+teaser: "Írd be a hiányzó szavakat."
 voice: universal
 parent: null
 diagram: null

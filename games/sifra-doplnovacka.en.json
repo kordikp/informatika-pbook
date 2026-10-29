@@ -1,0 +1,132 @@
+{
+  "type": "cloze",
+  "title": "Lock and unlock",
+  "instruction": "Fill in the missing words. Feel free to use paper for shifting the letters.",
+  "debrief": "A cipher locks a message with a key. A weak cipher with only a few keys can be cracked by trying them; a good one can't. Https encrypts the route to a website, end-to-end encryption a message from phone to phone.",
+  "items": [
+    {
+      "text": "The Caesar cipher with key 3 shifts each letter three places on. CAT becomes {0}.",
+      "gaps": [
+        {
+          "options": [
+            "FDW",
+            "DBU",
+            "ZXQ"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "C → F, A → D, T → W."
+    },
+    {
+      "text": "Someone encrypted the message GRJ with key 3. You decrypt it by shifting three places {0}, and you get {1}.",
+      "gaps": [
+        {
+          "options": [
+            "back",
+            "forward",
+            "at random"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "DOG",
+            "JUM",
+            "GRJ"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "G → D, R → O, J → G. Anyone who knows the key shifts the letters back."
+    },
+    {
+      "text": "Caesar has only {0} useful keys. Someone who doesn't know the key tries them one after another and {1}.",
+      "gaps": [
+        {
+          "options": [
+            "25",
+            "3",
+            "a billion"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "cracks the cipher in a few minutes",
+            "never cracks the cipher",
+            "has to send it back"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "A shift of 26 letters gives back the original alphabet, so there are 25 useful keys. You can try those even by hand."
+    },
+    {
+      "text": "The ciphers in your phone have so many keys that {0} could try them all. That's why scammers attack {1}.",
+      "gaps": [
+        {
+          "options": [
+            "no computer",
+            "only a slow computer",
+            "only a person"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "the person",
+            "the cipher",
+            "the Wi-Fi router"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "You can't break a good cipher by guessing. It's easier to get the password or the code out of a person."
+    },
+    {
+      "text": "The padlock and https encrypt {0}. They don't say the website is {1}.",
+      "gaps": [
+        {
+          "options": [
+            "the route between you and the website",
+            "the whole server and all its data",
+            "your phone"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "honest",
+            "fast",
+            "free"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Scam websites have a padlock too. It only makes sure nobody reads the message on the way."
+    },
+    {
+      "text": "With end-to-end encryption only {0} have the key. The server {1}.",
+      "gaps": [
+        {
+          "options": [
+            "the phones at both ends",
+            "the service's server",
+            "the operator and the Wi-Fi"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "just passes the message on, unread",
+            "reads the message and stores it",
+            "corrects the message and sends it on"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Only the recipient's phone unlocks the message. But whoever holds that phone can read it too."
+    }
+  ]
+}

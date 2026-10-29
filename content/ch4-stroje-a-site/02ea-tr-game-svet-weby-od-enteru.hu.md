@@ -7,7 +7,7 @@ game: svet-weby-od-enteru.hu
 title: "Játék: Az Entertől az oldalig"
 readingTime: 1
 standalone: true
-teaser: "Tedd sorba, mi történik az Enter megnyomásától a kész oldalig."
+teaser: "Írd be, mi történik az Enter lenyomásától a kész oldalig."
 voice: universal
 parent: svet-weby-cesta-dat-hu
 diagram: null

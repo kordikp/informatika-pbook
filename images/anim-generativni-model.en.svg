@@ -6,7 +6,8 @@
   <!-- rozepsaná věta -->
   <rect x="40" y="60" width="440" height="44" rx="9" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
   <text x="60" y="88" font-family="system-ui, sans-serif" font-size="15" fill="#1E1B4B">The wolf dressed up as</text>
-  <text x="268" y="88" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#7C3AED">granny<animate attributeName="opacity" values="0;0;0;1;1;0" dur="5s" repeatCount="indefinite"/>
+  <text x="268" y="88" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#7C3AED">granny
+    <animate attributeName="opacity" values="0;0;0;1;1;0" dur="5s" repeatCount="indefinite"/>
   </text>
   <text x="336" y="88" font-family="system-ui, sans-serif" font-size="15" fill="#6B7280">▌<animate attributeName="opacity" values="1;0.2;1;0.2;1;1" dur="5s" repeatCount="indefinite"/></text>
 

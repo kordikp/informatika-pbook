@@ -14,7 +14,7 @@ core: true
 recallQ: "Mit árulhat el rólad egy hétköznapi fotó, még ha nem is vagy rajta?"
 recallA: "A metaadatokat (időpont, hely, telefontípus) és a hátteret (iskola, utca, ablak). Néhány fotóból össze lehet rakni, hol laksz, és mikor nem vagy otthon."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -39,11 +39,15 @@ Fotózol a telefonoddal, és a fotó többet jegyez meg, mint amit látsz. Péld
 
 Mindaz, amit online teszel, **nyomot** hagy. Egy részét tudatosan hagyod: bejegyzések, fotók, hozzászólások. Ez az **aktív lábnyom**. Egy részét nem látod: a helyadatot egy fotóban, a **sütiket**, az előzményeket. Ez a **passzív lábnyom**.
 
-Klára kitalált személy, és van három teljesen hétköznapi bejegyzése: „Megint a kilencessel a suliba, minden nap 7:40-kor” egy kirakatról készült fotóval, „Végre saját szobám! Micsoda kilátás” egy ablakból készült fotóval, és „Holnaptól az egész család egy hétig a tengernél, senki sem lesz otthon”. Egy nyomozó ebből kideríti: a *klara.bastya.2012* becenév elárulja a nevét, az iskoláját és a születési évét. A kirakat tükröződésében a Bástya utcai iskola látszik, az ablak előtti táblán a Malom utca, a fotó pedig néhány méter pontosságú GPS-helyadatot hordoz. Minden hétköznap 7:40-kor úton van. A lakás pedig egy hétig üres lesz.
+Klára kitalált személy, és van három teljesen hétköznapi bejegyzése: „Megint a kilencessel a suliba, minden nap 7:40-kor” egy kirakatról készült fotóval, „Végre saját szobám! Micsoda kilátás” egy ablakból készült fotóval, és „Holnaptól az egész család egy hétig a tengernél, senki sem lesz otthon”. Egy nyomozó ebből kideríti: a *klara.bastya.2012* becenév elárulja a nevét, az iskoláját és a születési évét. A kirakat tükröződésében a Bástya utcai iskola látszik, az ablak előtti táblán a Malom utca. Az eredeti fotó pedig, amelyet fájlként küldött el egy barátnőjének, néhány méter pontosságú GPS-helyadatot hordoz. Minden hétköznap 7:40-kor úton van. A lakás pedig egy hétig üres lesz.
+
+⟦obr: images/proklik-digitalni-stopa.hu.svg⟧
 
 Minden egyes nyom önmagában ártatlan. Együtt viszont kirajzolják az életed térképét. A rólad szóló adatok értékesek: a cégeknek a reklám miatt, a csalóknak miattad.
 
 **A törölt nem jelenti azt, hogy eltűnt.** Valaki képernyőképet készíthetett. A „csak ismerősök” nem jelenti, hogy csak az ismerősök, mert az ismerősök továbbküldhetik a bejegyzést. És a „nincs mit rejtegetnem” sem igaz. A címét és az üres lakását mindenki rejtegeti.
+
+A nagy közösségi oldalak feltöltéskor általában törlik a helyadatot a fotóból. A fájlként, e-mailben vagy felhőn át küldött eredeti viszont továbbviszi. A helyadat mentését a kamerában ki is kapcsolhatod.
 
 Az Európai Unióban a **GDPR** szerint jogaid vannak: megkérdezheted egy cégtől, mit tud rólad, és kérheted a törlést. És ne ossz meg mások helyett. Az ő fotóik, az ő beleegyezésük.
 

@@ -14,7 +14,7 @@ core: true
 recallQ: "Prečo má fotka s väčším rozlíšením väčší súbor?"
 recallA: "Skladá sa z viacerých pixelov a každý pixel je zakódovaný číslami. Viac pixelov znamená viac čísel, teda viac bajtov."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -32,29 +32,26 @@ highlights:
   - "Kódovanie = dohodnuté pravidlá prevodu (pixel → číslo, písmeno → číslo)"
   - "Veľkosť dát: bit, bajt, MB, GB; rozlíšenie a kvalita zväčšujú súbor"
   - "Typ súboru (prípona) hovorí, ako čísla čítať; kompresia šetrí miesto"
-carriers: prose|code
+carriers: prose|formula
 ---
 
 Mobil hlási „Úložisko je plné“. Hodina 4K videa zaberie viac miesta ako tisíc fotiek. Prečo je video také veľké?
 
 Počítač vie uložiť a poslať **len čísla**, nakoniec nuly a jednotky. Aby čísla znamenali obrázok, text alebo zvuk, potrebuješ **kódovanie**: dohodnuté pravidlo, ako čo previesť na čísla.
 
-Srdiečko 8 × 8 pixelov je pre počítač tabuľka núl a jednotiek. Každý riadok je jeden riadok pixelov:
+Srdiečko 8 × 8 pixelov je pre počítač tabuľka núl a jednotiek. Každý riadok pixelov je jeden riadok čísel:
 
-```
-0 1 1 0 0 1 1 0
-1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1
-0 1 1 1 1 1 1 0
-0 0 1 1 1 1 0 0
-0 0 0 1 1 0 0 0
-0 0 0 0 0 0 0 0
-```
+⟦obr: images/proklik-kodovani.sk.svg⟧
 
 Dvojnásobné rozlíšenie je 16 × 16 = 256 pixelov namiesto 64. Dvakrát viac na šírku aj na výšku dáva štyrikrát viac čísel, a teda štyrikrát väčší súbor. Preto je 4K video také veľké.
 
 Farebný pixel potrebuje viac čísel, zvyčajne tri: koľko je v ňom červenej, zelenej a modrej. Aj písmeno má číslo: **A** je 65. Veľkosť dát sa meria v **bitoch** a **bajtoch** (1 bajt = 8 bitov), väčšie dáta v **kB, MB a GB**.
+
+Každé z troch čísel farby zaberie jeden bajt. Veľkosť fotky bez kompresie teda vypočítaš ľahko:
+
+$$\text{veľkosť} = \text{šírka} \times \text{výška} \times 3\ \text{B}$$
+
+Fotka z mobilu má 4000 × 3000 pixelov: 4000 × 3000 × 3 B = 36 000 000 B, teda asi **36 MB**. Kompresia JPG ju zmenší zhruba na desatinu.
 
 **Prípona súboru** (.png, .mp3, .txt) hovorí programu, podľa akého pravidla má čísla čítať. **Kompresia** šetrí miesto: namiesto „00000000“ zapíše „8×0“. JPG a MP3 navyše zahodia detaily, ktoré skoro nevidíš a nepočuješ.
 

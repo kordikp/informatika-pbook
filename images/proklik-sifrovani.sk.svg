@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img" aria-label="Caesarova šifra krok za krokem: posunutá abeceda, zašifrovaný vzkaz a zkoušení klíčů">
+  <defs>
+    <marker id="sfP" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto"><path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#7C3AED"/></marker>
+  </defs>
+  <rect x="1" y="1" width="518" height="298" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">Caesarova šifra: posunutá abeceda</text>
+  <text x="18" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Každé písmeno posunieš v abecede o niekoľko miest. Počet miest je kľúč.</text>
+  <text x="26" y="59" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#6B7280">otvorený text</text>
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" font-weight="700" text-anchor="middle">
+    <rect x="26" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="34.5" y="79.5" fill="#1E1B4B">A</text>
+    <rect x="44" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="52.5" y="79.5" fill="#1E1B4B">B</text>
+    <rect x="62" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="70.5" y="79.5" fill="#1E1B4B">C</text>
+    <rect x="80" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="88.5" y="79.5" fill="#1E1B4B">D</text>
+    <rect x="98" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="106.5" y="79.5" fill="#1E1B4B">E</text>
+    <rect x="116" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="124.5" y="79.5" fill="#1E1B4B">F</text>
+    <rect x="134" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="142.5" y="79.5" fill="#1E1B4B">G</text>
+    <rect x="152" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="160.5" y="79.5" fill="#1E1B4B">H</text>
+    <rect x="170" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="178.5" y="79.5" fill="#1E1B4B">I</text>
+    <rect x="188" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="196.5" y="79.5" fill="#1E1B4B">J</text>
+    <rect x="206" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="214.5" y="79.5" fill="#1E1B4B">K</text>
+    <rect x="224" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="232.5" y="79.5" fill="#1E1B4B">L</text>
+    <rect x="242" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="250.5" y="79.5" fill="#1E1B4B">M</text>
+    <rect x="260" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="268.5" y="79.5" fill="#1E1B4B">N</text>
+    <rect x="278" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="286.5" y="79.5" fill="#1E1B4B">O</text>
+    <rect x="296" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="304.5" y="79.5" fill="#1E1B4B">P</text>
+    <rect x="314" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="322.5" y="79.5" fill="#1E1B4B">Q</text>
+    <rect x="332" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="340.5" y="79.5" fill="#1E1B4B">R</text>
+    <rect x="350" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="358.5" y="79.5" fill="#1E1B4B">S</text>
+    <rect x="368" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="376.5" y="79.5" fill="#1E1B4B">T</text>
+    <rect x="386" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="394.5" y="79.5" fill="#1E1B4B">U</text>
+    <rect x="404" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="412.5" y="79.5" fill="#1E1B4B">V</text>
+    <rect x="422" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="430.5" y="79.5" fill="#1E1B4B">W</text>
+    <rect x="440" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="448.5" y="79.5" fill="#1E1B4B">X</text>
+    <rect x="458" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="466.5" y="79.5" fill="#1E1B4B">Y</text>
+    <rect x="476" y="64" width="17" height="22" rx="3" fill="#FFFFFF" stroke="#E5E7EB"/><text x="484.5" y="79.5" fill="#1E1B4B">Z</text>
+  </g>
+  <!-- krok 1: abeceda posunutá o 3 -->
+  <g data-krok="1">
+    <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" font-weight="700" text-anchor="middle">
+      <rect x="26" y="106" width="17" height="22" rx="3" fill="#EDE9FE" stroke="#7C3AED"/><text x="34.5" y="121.5" fill="#6D28D9">D</text>
+      <rect x="44" y="106" width="17" height="22" rx="3" fill="#EDE9FE" stroke="#7C3AED"/><text x="52.5" y="121.5" fill="#6D28D9">E</text>
+      <rect x="62" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="70.5" y="121.5" fill="#6D28D9">F</text>
+      <rect x="80" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="88.5" y="121.5" fill="#6D28D9">G</text>
+      <rect x="98" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="106.5" y="121.5" fill="#6D28D9">H</text>
+      <rect x="116" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="124.5" y="121.5" fill="#6D28D9">I</text>
+      <rect x="134" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="142.5" y="121.5" fill="#6D28D9">J</text>
+      <rect x="152" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="160.5" y="121.5" fill="#6D28D9">K</text>
+      <rect x="170" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="178.5" y="121.5" fill="#6D28D9">L</text>
+      <rect x="188" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="196.5" y="121.5" fill="#6D28D9">M</text>
+      <rect x="206" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="214.5" y="121.5" fill="#6D28D9">N</text>
+      <rect x="224" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="232.5" y="121.5" fill="#6D28D9">O</text>
+      <rect x="242" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="250.5" y="121.5" fill="#6D28D9">P</text>
+      <rect x="260" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="268.5" y="121.5" fill="#6D28D9">Q</text>
+      <rect x="278" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="286.5" y="121.5" fill="#6D28D9">R</text>
+      <rect x="296" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="304.5" y="121.5" fill="#6D28D9">S</text>
+      <rect x="314" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="322.5" y="121.5" fill="#6D28D9">T</text>
+      <rect x="332" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="340.5" y="121.5" fill="#6D28D9">U</text>
+      <rect x="350" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="358.5" y="121.5" fill="#6D28D9">V</text>
+      <rect x="368" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="376.5" y="121.5" fill="#6D28D9">W</text>
+      <rect x="386" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="394.5" y="121.5" fill="#6D28D9">X</text>
+      <rect x="404" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="412.5" y="121.5" fill="#6D28D9">Y</text>
+      <rect x="422" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="430.5" y="121.5" fill="#6D28D9">Z</text>
+      <rect x="440" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="448.5" y="121.5" fill="#6D28D9">A</text>
+      <rect x="458" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="466.5" y="121.5" fill="#6D28D9">B</text>
+      <rect x="476" y="106" width="17" height="22" rx="3" fill="#F5F3FF" stroke="#DDD6FE"/><text x="484.5" y="121.5" fill="#6D28D9">C</text>
+    </g>
+    <rect x="26" y="64" width="17" height="22" rx="3" fill="none" stroke="#7C3AED" stroke-width="2"/>
+    <path d="M34.5 89 V100" stroke="#7C3AED" stroke-width="2" marker-end="url(#sfP)"/>
+    <rect x="44" y="64" width="17" height="22" rx="3" fill="none" stroke="#7C3AED" stroke-width="2"/>
+    <path d="M52.5 89 V100" stroke="#7C3AED" stroke-width="2" marker-end="url(#sfP)"/>
+    <text x="26" y="146" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#7C3AED">šifrovaný text, kľúč 3: pod A je D, pod B je E</text>
+  </g>
+  <!-- krok 2: vzkaz -->
+  <g data-krok="2">
+    <rect x="26" y="158" width="224" height="46" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+    <text x="42" y="189" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="22" font-weight="700" fill="#1E1B4B">AHOJ</text>
+    <path d="M116 182 H148" stroke="#7C3AED" stroke-width="2.5" marker-end="url(#sfP)"/>
+    <text x="160" y="189" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="22" font-weight="700" fill="#7C3AED">DKRM</text>
+  </g>
+  <!-- krok 3: bez klíče se zkouší -->
+  <g data-krok="3">
+    <rect x="262" y="158" width="232" height="90" rx="10" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+    <text x="276" y="178" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1E1B4B">Kto kľúč nemá, skúša:</text>
+    <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#6B7280">
+      <text x="276" y="198">kľúč 1 → CJQL</text>
+      <text x="276" y="216">kľúč 2 → BIPK</text>
+      <text x="276" y="234" font-weight="700" fill="#047857">kľúč 3 → AHOJ ✓</text>
+    </g>
+  </g>
+  <!-- krok 4: šifry v mobilu -->
+  <g data-krok="4">
+    <rect x="26" y="210" width="224" height="40" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="38" y="226" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#047857">🔒 Šifra v mobile má kľúčov viac,</text>
+    <text x="38" y="242" font-family="system-ui, sans-serif" font-size="11" fill="#047857">než je zrniek piesku na Zemi.</text>
+  </g>
+  <rect x="14" y="258" width="492" height="30" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <g font-family="system-ui, sans-serif" font-size="12" fill="#1E1B4B">
+    <text x="26" y="278" data-until="2">Hore je abeceda. Kľúč hovorí, o koľko miest sa posunie.</text>
+    <text x="26" y="278" data-krok="1" data-until="3"><tspan font-weight="700">1 ·</tspan> Kľúč 3: každé písmeno nahradí to, ktoré je o tri ďalej.</text>
+    <text x="26" y="278" data-krok="2" data-until="4"><tspan font-weight="700">2 ·</tspan> Odkaz AHOJ sa písmeno po písmene zmení na DKRM.</text>
+    <text x="26" y="278" data-krok="3" data-until="5"><tspan font-weight="700">3 ·</tspan> Caesar má len 25 kľúčov. Dajú sa vyskúšať jeden po druhom.</text>
+    <text x="26" y="278" data-krok="4"><tspan font-weight="700">4 ·</tspan> Šifry v mobile majú kľúčov toľko, že ich žiadny počítač nevyskúša.</text>
+  </g>
+</svg>

@@ -4,7 +4,7 @@ translationOf: generativni-model
 lang: hu
 type: spine
 title: "A generatív MI előre jelez"
-readingTime: 1
+readingTime: 2
 standalone: true
 teaser: "A telefonod billentyűzete már azelőtt felkínálja a következő szót, hogy beírnád. A chatbot ugyanezt csinálja, csak sokkal jobban. És közben néha kitalál dolgokat."
 voice: universal
@@ -43,7 +43,7 @@ Játszd el, hogy te vagy a modell. A mondat így kezdődik: „A győri Varga K�
 
 Minden szó valószínű volt, ezért hangzik hihetően a mondat. De sehol sem volt olyan lépés, hogy „ellenőrizd, igaz-e”. Így születnek a **hallucinációk**: gördülékeny, magabiztos válaszok, amelyek nem igazak.
 
-Maga a modell semmit sem keres ki. Egyes chatbotok ezen felül a weben is tudnak keresni, erről szól az **Egy chatbot belsejében** kirándulás. A kép- és hanggenerátorok ugyanígy jeleznek előre, csak szavak helyett pixeleket és hangokat raknak össze.
+Maga a modell semmit sem keres ki. Egyes chatbotok ezen felül a weben is tudnak keresni, erről szól az **Egy chatbot belsejében** kirándulás. A képgenerátorok is rengeteg példából tanultak, csak másképp dolgoznak: véletlen zajból indulnak, és lépésről lépésre tisztítják, amíg a kérésnek megfelelő kép nem lesz belőle. Ők sem ellenőriznek semmit, ezért tudnak hatujjú kezet is rajzolni.
 
 **Próbáld ki!** Játszd el, hogy te vagy a modell: egy barátod mond három szót, te pedig mindig hozzáteszed a legvalószínűbb következőt. Gördülékeny mondat születik, pedig semmit sem „tudtál”, csak becsültél. Pontosan így születik a chatbot minden válasza, a hibás is.
 

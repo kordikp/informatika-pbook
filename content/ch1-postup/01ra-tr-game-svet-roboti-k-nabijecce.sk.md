@@ -7,7 +7,7 @@ game: svet-roboti-k-nabijecce.sk
 title: "Hra: Dovez robota k nabíjačke"
 readingTime: 1
 standalone: true
-teaser: "Robot stojí vľavo dole a pozerá sa hore. Nabíjačka je o 2 políčka vyššie a 3 políčka vpravo. Zoraď kroky."
+teaser: "Poskladaj program z krokov a otočení. Robot ho vykoná doslova."
 voice: universal
 parent: svet-roboti-algoritmus-sk
 diagram: null

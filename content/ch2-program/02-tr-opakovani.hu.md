@@ -41,6 +41,8 @@ Ha valami újra és újra megtörténik, nem írod le százszor. **Egyszer** ír
 
 A robotnak meg kell kerülnie egy oszlopot, és vissza kell térnie a startra. A hosszú program 8 blokkból áll: *menj 3-at, fordulj jobbra*, és ez az egész négyszer. Ugyanaz a pár ismétlődik, így elég ennyi: **ismételd 4×: menj 3-at, fordulj jobbra**. Nyolc helyett három blokk. És ha a robotnak egy olyan folyosó faláig kell eljutnia, amelynek nem ismeri a hosszát? Az *ismételd 5×: menj 1-et* egy rövid folyosón falnak megy, egy hosszúban túl korán megáll. Ez működik: **ismételd, amíg nincs a fal előtt: menj 1-et**.
 
+⟦obr: images/proklik-opakovani.hu.svg⟧
+
 **Rögzített számú** ciklust akkor használsz, ha **előre tudod, hányszor**: egy négyzet négy oldala. **Feltételes** ciklust, ha attól függ, mi történik: menj, amíg el nem éred a falat.
 
 Két dologra figyelj. A feltételt **minden kör elején** ellenőrzi a gép, nem a ciklusmag közepén. És a ciklusnak egyszer **véget kell érnie**. Ha a feltétel sosem szűnik meg teljesülni, a program **végtelen ciklusba kerül**. Ez néha hiba, néha szándékos: egy játékciklus vagy egy végtelen hírfolyam szándékosan fut folyamatosan.

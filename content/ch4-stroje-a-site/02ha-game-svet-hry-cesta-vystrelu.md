@@ -2,10 +2,10 @@
 id: svet-hry-cesta-dat-hra
 type: game
 game: svet-hry-cesta-vystrelu
-title: "Hra: Cesta jednoho výstřelu"
+title: "Hra: Jak rychle letí výstřel?"
 readingTime: 1
 standalone: true
-teaser: "Seřaď, co se stane od stisku tlačítka po zásah na obrazovce."
+teaser: "Odhadni na posuvníku. Stačí přibližně."
 voice: universal
 parent: svet-hry-cesta-dat
 diagram: null

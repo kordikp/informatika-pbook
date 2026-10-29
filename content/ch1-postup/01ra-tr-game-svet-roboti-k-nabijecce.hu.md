@@ -4,10 +4,10 @@ translationOf: svet-roboti-algoritmus-hra
 lang: hu
 type: game
 game: svet-roboti-k-nabijecce.hu
-title: "Játék: Juttasd el a robotot a töltőhöz"
+title: "Játék: Vezesd a robotot a töltőhöz"
 readingTime: 1
 standalone: true
-teaser: "A robot bal alul áll, és felfelé néz. A töltő 2 mezővel feljebb és 3 mezővel jobbra van. Rendezd sorba a lépéseket."
+teaser: "Rakj össze egy programot lépésekből és fordulásokból. A robot szó szerint hajtja végre."
 voice: universal
 parent: svet-roboti-algoritmus-hu
 diagram: null

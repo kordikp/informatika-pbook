@@ -37,7 +37,7 @@ Zahraj si na model. Věta začíná „Nejznámější kniha spisovatele Karla V
 
 Každé slovo bylo pravděpodobné, a proto věta zní věrohodně. Nikde ale nebyl krok „ověř, jestli je to pravda“. Tak vznikají **halucinace**: plynulé, sebejisté odpovědi, které nejsou pravdivé.
 
-Samotný model nic nevyhledává. Některé chatboty umí navíc hledat na webu, o tom je výlet **Uvnitř chatbota**. Stejně předpovídají i generátory obrázků a hlasu, jen místo slov skládají pixely a zvuky.
+Samotný model nic nevyhledává. Některé chatboty umí navíc hledat na webu, o tom je výlet **Uvnitř chatbota**. Generátory obrázků se taky učily na obrovském množství příkladů, jen pracují jinak: začnou od náhodného šumu a krok za krokem ho čistí, až vyjde obrázek podle zadání. Ani ony nic neověřují, a tak umí namalovat ruku se šesti prsty.
 
 **Zkus to!** Zahraj si na model: kamarád řekne tři slova a ty vždycky doplň nejpravděpodobnější další. Vznikne plynulá věta, a přitom jsi nic „nevěděl“, jen odhadoval. Přesně takhle vzniká každá odpověď chatbota, i ta chybná.
 

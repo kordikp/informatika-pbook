@@ -2,11 +2,11 @@
   <title id="clt">A photo's journey “to the cloud”</title>
   <desc id="cld">The photo travels from the phone through the home router and the internet to a data centre, where it really sits. In green, the way back: downloading it on another device, such as a laptop.</desc>
   <defs>
-    <marker id="cl-ap" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    <marker id="cl-ap" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#7C3AED"/>
     </marker>
-    <marker id="cl-ag" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    <marker id="cl-ag" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#10B981"/>
     </marker>
   </defs>
 

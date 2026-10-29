@@ -4,10 +4,10 @@ translationOf: digitalni-stopa-hra
 lang: sk
 type: game
 game: aktivni-pasivni-stopa.sk
-title: "Hra: Aktívna, alebo pasívna stopa?"
+title: "Hra: Čo prezradí Matej?"
 readingTime: 1
 standalone: true
-teaser: "Zanechal si ju vedome, alebo vznikla bez toho, aby si to videl?"
+teaser: "Vymyslený Matej a jeho obyčajný profil. Ťukni na každú časť, z ktorej cudzí človek spozná, kto je, kde býva alebo kedy nebude doma."
 voice: universal
 parent: null
 diagram: null

@@ -1,0 +1,76 @@
+{
+  "type": "hotspot",
+  "title": "Where does it go wrong?",
+  "instruction": "Each set of instructions failed one test. Tap the step that caused the bug.",
+  "debrief": "The bug hides in a step that didn't expect a tricky input: zero, nothing at all, an edge. Find that step, fix it and then run all the tests again.",
+  "items": [
+    {
+      "label": "Launch countdown · test: counting down from 5 in twos → the rocket never launches",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "set time to 5"
+        },
+        {
+          "text": "repeat until time is 0: change time by -2",
+          "hit": true,
+          "why": "Time goes 5, 3, 1, -1… and skips zero. It is never exactly 0, so the loop never ends. It should be “until time is 0 or less”."
+        },
+        {
+          "text": "launch the rocket"
+        }
+      ]
+    },
+    {
+      "label": "Grade average · test: no grades → the program crashes",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "add up all the grades"
+        },
+        {
+          "text": "divide the sum by the number of grades",
+          "hit": true,
+          "why": "No grades means dividing by zero. The instructions must first check whether there are any grades."
+        },
+        {
+          "text": "write the result on the school report"
+        }
+      ]
+    },
+    {
+      "label": "Cinema entry for 15 and over · test: Tomáš is exactly 15 → he isn't let in",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "ask for the age"
+        },
+        {
+          "text": "is the age greater than 15? If yes, let them in",
+          "hit": true,
+          "why": "“15 and over” includes exactly 15. The right check is “15 or more”. The edge is the most common place for a bug."
+        },
+        {
+          "text": "otherwise say the film is for 15 and over"
+        }
+      ]
+    },
+    {
+      "label": "Club sign-up · test: empty name → a person with no name is saved to the list",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "read the name from the form"
+        },
+        {
+          "text": "save the name to the list",
+          "hit": true,
+          "why": "Before saving, there's no check that the field isn't empty. Empty input is a tricky case."
+        },
+        {
+          "text": "show “Thank you for signing up”"
+        }
+      ]
+    }
+  ]
+}

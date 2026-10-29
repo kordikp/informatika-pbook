@@ -38,7 +38,7 @@
   <!-- Panel 2 -->
   <g>
     <rect x="430" y="74" width="172" height="43" rx="9" fill="#D1FAE5" stroke="#10B981"/>
-    <text x="444" y="100" font-size="12.5" fill="#1E1B4B">Háromból három. És most?</text>
+    <text x="444" y="100" font-size="12.5" fill="#1E1B4B">Mind a három. És most?</text>
 
     <circle cx="502" cy="166" r="10" fill="#10B981"/>
     <path d="M502 177 L502 219 M502 188 L484 202 M502 188 L531 181 M502 219 L489 242 M502 219 L516 242" fill="none" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>

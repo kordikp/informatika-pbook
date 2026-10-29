@@ -1,47 +1,88 @@
 {
-  "type": "sort",
-  "title": "Aktivní, nebo pasivní stopa?",
-  "instruction": "Nechal jsi ji vědomě, nebo vznikla, aniž bys to viděl?",
-  "buckets": [
-    "Aktivní (vědomě)",
-    "Pasivní (nevidíš ji)"
-  ],
+  "type": "hotspot",
+  "title": "Co prozradí Matěj?",
+  "instruction": "Smyšlený Matěj a jeho obyčejný profil. Ťukni na každou část, ze které cizí člověk pozná, kdo je, kde bývá nebo kdy nebude doma.",
+  "debrief": "Každá stopa sama o sobě je nevinná. Dohromady prozradí jméno, ulici, kdy chodí na trénink i to, že doma celé prázdniny nikdo nebude. Než něco sdílíš, zeptej se: co z toho pozná cizí člověk?",
   "items": [
     {
-      "text": "Fotka, kterou zveřejníš",
-      "answer": 0,
-      "why": "Rozhodl ses ji sdílet, je to aktivní stopa."
+      "label": "Přezdívka",
+      "segments": [
+        {
+          "text": "matej",
+          "hit": true,
+          "why": "Křestní jméno."
+        },
+        {
+          "text": "nadrazni",
+          "hit": true,
+          "why": "Název ulice, kde bydlí."
+        },
+        {
+          "text": "2011",
+          "hit": true,
+          "why": "Rok narození, a tedy i věk."
+        },
+        {
+          "text": "⚽ fotbal · 🎧 hudba"
+        }
+      ]
     },
     {
-      "text": "GPS poloha uložená ve fotce",
-      "answer": 1,
-      "why": "Mobil ji do fotky zapíše sám. Na fotce ji nevidíš."
+      "label": "Příspěvek",
+      "segments": [
+        {
+          "text": "Trénink jako vždycky"
+        },
+        {
+          "text": "v úterý a ve čtvrtek od 17:00",
+          "hit": true,
+          "why": "Kdy pravidelně není doma, a kde ho najdeš."
+        },
+        {
+          "text": "📷 fotka ze šatny, na dresu je název klubu i městské části",
+          "hit": true,
+          "why": "Kde trénuje, a tedy i ve které části města bydlí."
+        },
+        {
+          "text": "#fotbal"
+        }
+      ]
     },
     {
-      "text": "Komentář pod videem",
-      "answer": 0,
-      "why": "Napsal jsi ho vědomě a vidí ho ostatní."
+      "label": "Příspěvek",
+      "segments": [
+        {
+          "text": "Nové kolo! 🚲"
+        },
+        {
+          "text": "📷 fotka před domem, je vidět číslo domu",
+          "hit": true,
+          "why": "Přesná adresa."
+        },
+        {
+          "text": "📍 poloha: zapnutá",
+          "hit": true,
+          "why": "Příspěvek s polohou ukáže přesné místo."
+        }
+      ]
     },
     {
-      "text": "Cookies z navštíveného webu",
-      "answer": 1,
-      "why": "Web si je uloží do prohlížeče, i když na nic neklikneš."
-    },
-    {
-      "text": "Historie toho, co hledáš",
-      "answer": 1,
-      "why": "Ukládá se sama a dá se z ní poznat, co tě zajímá."
-    },
-    {
-      "text": "Příspěvek o dovolené",
-      "answer": 0,
-      "why": "Sdílel jsi ho sám. Pozor, prozradí i to, že nejsi doma."
-    },
-    {
-      "text": "Jak dlouho se díváš na které video",
-      "answer": 1,
-      "why": "Aplikace to potichu měří a podle toho ti vybírá další videa."
+      "label": "Příspěvek",
+      "segments": [
+        {
+          "text": "Celé prázdniny u babičky na horách,",
+          "hit": true,
+          "why": "Kdy nebude doma, a jak dlouho."
+        },
+        {
+          "text": "doma jen kočka 🐈",
+          "hit": true,
+          "why": "Byt bude prázdný."
+        },
+        {
+          "text": "🌲⛰️"
+        }
+      ]
     }
-  ],
-  "debrief": "Aktivní stopu vidíš, protože ji vytváříš sám. Pasivní vzniká potichu: poloha, cookies, historie a čas u videí. Často o tobě prozradí víc než to, co sdílíš."
+  ]
 }

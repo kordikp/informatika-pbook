@@ -1,0 +1,132 @@
+{
+  "type": "cloze",
+  "title": "Zárd le és nyisd ki",
+  "instruction": "Írd be a hiányzó szavakat. A betűk eltolásához nyugodtan vegyél elő egy papírt.",
+  "debrief": "A titkosítás kulccsal zárja le az üzenetet. A kevés kulcsú gyenge titkosítást próbálgatással feltöröd, a jót nem. A https a weboldalhoz vezető utat titkosítja, a végponttól végpontig tartó titkosítás pedig az üzenetet telefontól telefonig.",
+  "items": [
+    {
+      "text": "A 3-as kulcsú Caesar-titkosítás minden betűt három hellyel arrébb tol. A MOZI szóból {0} lesz.",
+      "gaps": [
+        {
+          "options": [
+            "PRCL",
+            "NPAJ",
+            "JLWF"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "M → P, O → R, Z → C, I → L."
+    },
+    {
+      "text": "Valaki a KDO üzenetet 3-as kulccsal titkosította. Úgy fejted meg, hogy a betűket három hellyel {0} tolod, és {1} jön ki.",
+      "gaps": [
+        {
+          "options": [
+            "vissza",
+            "előre",
+            "véletlenszerűen"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "HAL",
+            "NGR",
+            "KDO"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "K → H, D → A, O → L. Aki ismeri a kulcsot, visszatolja a betűket."
+    },
+    {
+      "text": "A Caesar-titkosításnak csak {0} hasznos kulcsa van. Aki nem ismeri a kulcsot, egymás után kipróbálja őket, és a titkosítást {1}.",
+      "gaps": [
+        {
+          "options": [
+            "25",
+            "3",
+            "egymilliárd"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "néhány perc alatt feltöri",
+            "soha nem töri fel",
+            "vissza kell küldenie"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "A 26 betűs eltolás visszaadja az eredeti ábécét, így 25 hasznos kulcs van. Ezeket akár kézzel is ki lehet próbálni."
+    },
+    {
+      "text": "A mobilodban lévő titkosításoknak annyi kulcsa van, hogy {0} nem tudja mindet kipróbálni. Ezért a csalók {1} támadnak.",
+      "gaps": [
+        {
+          "options": [
+            "egyetlen számítógép sem",
+            "csak egy lassú számítógép",
+            "csak egy ember"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "az emberre",
+            "a titkosításra",
+            "a Wi-Fi routerre"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Egy jó titkosítást találgatással nem lehet feltörni. Könnyebb kicsalni a jelszót vagy a kódot az embertől."
+    },
+    {
+      "text": "A lakat és a https {0} titkosítja. Nem mondja meg, hogy a weboldal {1}.",
+      "gaps": [
+        {
+          "options": [
+            "a közted és a weboldal közötti utat",
+            "az egész szervert és minden adatát",
+            "a mobilodat"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "becsületes",
+            "gyors",
+            "ingyenes"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Egy csaló weboldalnak is lehet lakatja. Csak azt védi, hogy útközben senki ne olvassa el az üzenetet."
+    },
+    {
+      "text": "A végponttól végpontig tartó titkosításnál csak {0} van meg a kulcs. A szerver az üzenetet {1}.",
+      "gaps": [
+        {
+          "options": [
+            "a két végén lévő telefonnál",
+            "a szolgáltatás szerverénél",
+            "a szolgáltatónál és a Wi-Finél"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "csak továbbítja, de nem olvassa el",
+            "elolvassa és elmenti",
+            "kijavítja és továbbküldi"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Az üzenetet csak a címzett telefonja nyitja ki. Aki viszont a telefonját tartja a kezében, az is el tudja olvasni."
+    }
+  ]
+}

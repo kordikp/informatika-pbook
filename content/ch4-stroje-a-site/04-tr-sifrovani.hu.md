@@ -14,7 +14,7 @@ core: true
 recallQ: "Egy weboldalon van lakat és https. Ez azt jelenti, hogy megbízható?"
 recallA: "Nem. A lakat csak azt mondja, hogy a közted és a weboldal közötti út titkosított. Egy csaló oldalnak is lehet https-e."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -41,9 +41,13 @@ A cset azt írja: „Az üzenetek végponttól végpontig titkosítottak”. Mit
 
 A 3-as kulcsú Caesar-titkosírás minden betűt három hellyel told el: A → D, B → E, S → V. A SZIA üzenetből VCLD lesz. Aki ismeri a kulcsot, visszatolja a betűket. És aki nem ismeri? Elfogod az AHSP H QHAZGVALYLU VARVY üzenetet, és egyenként próbálgatod a kulcsokat. A 7-es kulccsal ez jön ki: TALI A JATSZOTEREN OTKOR. A Caesar-féle titkosírásnak csak 25 kulcsa van, így próbálgatással megfejthető. A telefonodban lévő titkosításoknak annyi kulcsa van, hogy egyetlen számítógép sem tudná mindet kipróbálni.
 
+⟦obr: images/proklik-sifrovani.hu.svg⟧
+
 A **nyílt szöveg** és a **kulcs** együtt adja a **titkosított szöveget**. Akinél a kulcs van, kinyitja az üzenetet. Akinél nincs, csak zagyvaságot lát.
 
 A böngészőben a **lakat és a https** azt jelenti, hogy a közted és a weboldal közötti **út** titkosított. Azt nem mondja, hogy a weboldal **becsületes**. Egy csaló oldalnak is lehet lakatja.
+
+A csevegők **végponttól végpontig tartó titkosítása** ennél is tovább megy. A https esetén az üzenet a szolgáltató szerverén kinyílik, és a szolgáltató elolvashatja. Végponttól végpontig tartó titkosításnál csak a **két végen lévő telefonoknál** van kulcs. A szerver csak továbbítja az üzenetet, maga nem tudja elolvasni. Elolvashatja viszont bárki, akinél a címzett telefonja van. Egy képernyőkép pedig továbbküldi.
 
 A titkosítás nem kódolás. A kódolás szabálya nyilvános, a titkosírás kulcsa titkos.
 
@@ -51,4 +55,4 @@ A titkosítás nem kódolás. A kódolás szabálya nyilvános, a titkosírás k
 
 > **Vigyázz, gyakori tévedés:** „A böngészőben lévő lakat azt jelenti, hogy a weboldal biztonságos.” A lakat csak azt jelenti, hogy a kapcsolat titkosított, és útközben senki sem olvassa el. Egy csaló oldalnak is lehet lakatja.
 
-**Tovább:** A titkosítást nem lehet feltörni, ezért a csalók az embert támadják. Még egy adathalász oldalnak is lehet lakatja. A 6. fejezetben látod majd. → [A csalás az embert célozza](#c/podvod-cili-na-cloveka)
+**Tovább:** A jó titkosítást találgatással nem lehet feltörni, ezért a csalók az embert támadják. Még egy adathalász oldalnak is lehet lakatja. A 6. fejezetben látod majd. → [A csalás az embert célozza](#c/podvod-cili-na-cloveka)

@@ -1,42 +1,113 @@
 {
-  "type": "sort",
-  "title": "Set or change?",
-  "instruction": "For each moment in the app, choose whether the variable is set to a new value or changed by a bit.",
-  "buckets": [
-    "set to …",
-    "change by …"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "What does the app show?",
+  "instruction": "The app remembers its state in variables. Go through what happens and say what it shows.",
+  "debrief": "Set overwrites the value, no matter what was there. Change works with what is already there.",
+  "rounds": [
     {
-      "text": "Logging out: loggedIn becomes “no”",
-      "answer": 0,
-      "why": "Whatever it was before, now it is “no”."
+      "title": "The unread messages badge",
+      "code": [
+        "on start: set unread to 0",
+        "when a message arrives: change unread by 1",
+        "when you open the chat: set unread to 0"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "The app started and 2 messages arrived.",
+          "q": "What does the badge show?",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "answer": 2,
+          "state": "unread = 2",
+          "why": "From zero, one more, twice."
+        },
+        {
+          "line": 1,
+          "input": "A third message arrived.",
+          "q": "What does the badge show?",
+          "options": [
+            "1",
+            "3",
+            "2",
+            "0"
+          ],
+          "answer": 1,
+          "state": "unread = 3",
+          "why": "One more is added to the two."
+        },
+        {
+          "line": 2,
+          "input": "You open the chat.",
+          "q": "What does the badge show?",
+          "options": [
+            "3",
+            "2",
+            "0",
+            "1"
+          ],
+          "answer": 2,
+          "state": "unread = 0",
+          "why": "Opening the chat overwrites the value with 0. It doesn't count how many there were."
+        }
+      ]
     },
     {
-      "text": "A new message arrived: one more unread",
-      "answer": 1,
-      "why": "One is added to those already there."
-    },
-    {
-      "text": "You opened the chat: there are now zero unread",
-      "answer": 0,
-      "why": "The value is overwritten with 0."
-    },
-    {
-      "text": "Tapping + in the basket",
-      "answer": 1,
-      "why": "One is added to the number of items already there."
-    },
-    {
-      "text": "In the settings you choose dark mode",
-      "answer": 0,
-      "why": "The mode is overwritten with “dark”."
-    },
-    {
-      "text": "The volume down button",
-      "answer": 1,
-      "why": "It takes a little off the volume that is there."
+      "title": "A basket in an online shop",
+      "code": [
+        "after adding an item: set quantity to 1",
+        "when you tap +: change quantity by 1",
+        "when you tap −: change quantity by -1",
+        "when you tap Remove: set quantity to 0"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "You add an item and tap + twice.",
+          "q": "How many are in the basket?",
+          "options": [
+            "2",
+            "3",
+            "1",
+            "4"
+          ],
+          "answer": 1,
+          "state": "quantity = 3",
+          "why": "1 + 1 + 1 = 3."
+        },
+        {
+          "line": 2,
+          "input": "You tap − once.",
+          "q": "How many are in the basket?",
+          "options": [
+            "2",
+            "1",
+            "3",
+            "0"
+          ],
+          "answer": 0,
+          "state": "quantity = 2",
+          "why": "One of the three is taken away."
+        },
+        {
+          "line": 3,
+          "input": "You tap Remove.",
+          "q": "How many are in the basket?",
+          "options": [
+            "1",
+            "0",
+            "-1",
+            "2"
+          ],
+          "answer": 1,
+          "state": "quantity = 0",
+          "why": "Remove overwrites the value with 0, whatever was there."
+        }
+      ]
     }
-  ],
-  "debrief": "Set overwrites the value regardless of what was there. Change works with what is already there."
+  ]
 }

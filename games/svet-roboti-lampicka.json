@@ -1,37 +1,97 @@
 {
-  "type": "sort",
+  "type": "trace",
   "title": "Rozsvítí se lampička?",
-  "instruction": "Pravidlo: rozsviť, když je tma A senzor pohybu něco zachytí.",
-  "buckets": [
-    "Svítí",
-    "Nesvítí"
-  ],
-  "items": [
+  "instruction": "Program noční lampičky na micro:bitu. Projdi ho pro každou situaci.",
+  "debrief": "Se spojkou „a“ se lampička rozsvítí, jen když platí obě podmínky. Se spojkou „nebo“ stačí jedna. A rozhodování musí běžet v cyklu, jinak by na změnu nereagovalo.",
+  "rounds": [
     {
-      "text": "Tma, v pokoji někdo chodí",
-      "answer": 0,
-      "why": "Platí obě části."
+      "code": [
+        "opakuj pořád:",
+        "    když je tma a senzor zachytí pohyb:",
+        "        rozsviť lampičku",
+        "    jinak:",
+        "        zhasni lampičku"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Tma, v pokoji někdo chodí",
+          "q": "Co udělá lampička?",
+          "options": [
+            "svítí",
+            "nesvítí"
+          ],
+          "answer": 0,
+          "why": "Platí obě části: je tma a senzor zachytil pohyb."
+        },
+        {
+          "line": 1,
+          "input": "Tma, v pokoji nikdo není",
+          "q": "Co udělá lampička?",
+          "options": [
+            "svítí",
+            "nesvítí"
+          ],
+          "answer": 1,
+          "why": "Chybí pohyb. U „a“ musí platit obě části."
+        },
+        {
+          "line": 1,
+          "input": "Světlo, někdo chodí",
+          "q": "Co udělá lampička?",
+          "options": [
+            "svítí",
+            "nesvítí"
+          ],
+          "answer": 1,
+          "why": "Není tma, první část neplatí."
+        },
+        {
+          "line": 1,
+          "input": "Tma, kolem senzoru proběhla kočka",
+          "q": "Co udělá lampička?",
+          "options": [
+            "svítí",
+            "nesvítí"
+          ],
+          "answer": 0,
+          "why": "Senzor pohybu kočku od člověka nerozliší. Pro program je to pohyb."
+        },
+        {
+          "line": 0,
+          "q": "Proč je celé rozhodování uvnitř „opakuj pořád“?",
+          "options": [
+            "aby se rozhodlo jen jednou po zapnutí",
+            "aby lampička reagovala, i když se situace za minutu změní",
+            "protože podmínku bez cyklu napsat nejde"
+          ],
+          "answer": 1,
+          "why": "Bez cyklu by se program rozhodl jednou po zapnutí. Na pozdější tmu ani pohyb by už nereagoval."
+        }
+      ]
     },
     {
-      "text": "Tma, v pokoji nikdo není",
-      "answer": 1,
-      "why": "Chybí pohyb. U „a“ musí platit obě části."
-    },
-    {
-      "text": "Světlo, někdo chodí",
-      "answer": 1,
-      "why": "Není tma, první část neplatí."
-    },
-    {
-      "text": "Světlo, v pokoji nikdo není",
-      "answer": 1,
-      "why": "Neplatí ani jedna část."
-    },
-    {
-      "text": "Tma, kolem senzoru proběhla kočka",
-      "answer": 0,
-      "why": "Senzor pohybu kočku od člověka nerozliší. Pro program je to pohyb."
+      "title": "Někdo přepsal „a“ na „nebo“",
+      "code": [
+        "opakuj pořád:",
+        "    když je tma nebo senzor zachytí pohyb:",
+        "        rozsviť lampičku",
+        "    jinak:",
+        "        zhasni lampičku"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Poledne, svítí slunce, někdo prošel kolem",
+          "q": "Co udělá lampička?",
+          "options": [
+            "svítí",
+            "nesvítí"
+          ],
+          "answer": 0,
+          "why": "U „nebo“ stačí jedna část. Pohyb stačí, a tak lampička svítí i v poledne a vybíjí baterii."
+        }
+      ]
     }
-  ],
-  "debrief": "Se spojkou A se lampička rozsvítí, jen když platí obě podmínky. Jinak šetří baterii."
+  ]
 }

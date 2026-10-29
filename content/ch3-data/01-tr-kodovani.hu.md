@@ -14,7 +14,7 @@ core: true
 recallQ: "Miért nagyobb a nagyobb felbontású fotó fájlja?"
 recallA: "Több pixelből áll, és minden pixel számokkal van kódolva. Több pixel több számot jelent, vagyis több bájtot."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -32,29 +32,26 @@ highlights:
   - "Kódolás = megállapodott átalakítási szabályok (pixel → szám, betű → szám)"
   - "Adatméret: bit, bájt, MB, GB; a felbontás és a minőség növeli a fájlt"
   - "A fájltípus (kiterjesztés) megmondja, hogyan kell olvasni a számokat; a tömörítés helyet takarít meg"
-carriers: prose|code
+carriers: prose|formula
 ---
 
 A telefonod azt írja: „Megtelt a tárhely”. Egy óra 4K videó több helyet foglal, mint ezer fotó. Miért ilyen nagy a videó?
 
 A számítógép **csak számokat** tud tárolni és küldeni, végső soron nullákat és egyeseket. Ahhoz, hogy a számok képet, szöveget vagy hangot jelentsenek, **kódolás** kell: megállapodott szabály arról, mit hogyan alakítunk számokká.
 
-A számítógép számára egy 8 × 8 pixeles szív nullák és egyesek táblázata. Minden sor a pixelek egy sora:
+A számítógép számára egy 8 × 8 pixeles szív nullák és egyesek táblázata. A pixelek minden sora a számok egy sora:
 
-```
-0 1 1 0 0 1 1 0
-1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1
-0 1 1 1 1 1 1 0
-0 0 1 1 1 1 0 0
-0 0 0 1 1 0 0 0
-0 0 0 0 0 0 0 0
-```
+⟦obr: images/proklik-kodovani.hu.svg⟧
 
 A kétszeres felbontás 16 × 16 = 256 pixel 64 helyett. Kétszer annyi szélességben és magasságban is négyszer annyi számot ad, vagyis négyszer nagyobb fájlt. Ezért olyan nagy a 4K videó.
 
 Egy színes pixelhez több szám kell, általában három: mennyi benne a vörös, a zöld és a kék. Még a betűknek is van számuk: az **A** a 65. Az adatok méretét **bitekben** és **bájtokban** mérjük (1 bájt = 8 bit), a nagyobb adatokat **kB-ban, MB-ban és GB-ban**.
+
+A szín mindhárom száma egy-egy bájtot foglal. Egy tömörítetlen fotó méretét így könnyű kiszámolni:
+
+$$\text{méret} = \text{szélesség} \times \text{magasság} \times 3\ \text{B}$$
+
+Egy telefonos fotó 4000 × 3000 pixeles: 4000 × 3000 × 3 B = 36 000 000 B, vagyis nagyjából **36 MB**. A JPG-tömörítés körülbelül a tizedére zsugorítja.
 
 A **fájl kiterjesztése** (.png, .mp3, .txt) megmondja a programnak, milyen szabály szerint olvassa a számokat. A **tömörítés** helyet takarít meg: a „00000000” helyett azt írja, hogy „8×0”. A JPG és az MP3 ráadásul eldobja azokat a részleteket, amelyeket alig látsz vagy hallasz.
 

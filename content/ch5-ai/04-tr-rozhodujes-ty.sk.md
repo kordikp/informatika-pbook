@@ -4,7 +4,7 @@ translationOf: rozhodujes-ty
 lang: sk
 type: spine
 title: "Overuj a rozhoduj ty"
-readingTime: 1
+readingTime: 2
 standalone: true
 teaser: "Do triednej skupiny príde správa „Zajtra sa pre výpadok prúdu neučí! Pošli ďalej.“ Pošleš ju?"
 voice: universal
@@ -41,9 +41,11 @@ Chatbot je skvelý pomocník. Vysvetlí, navrhne, skontroluje. Lenže **AI je n�
 
 1. **Over.** Dôležité tvrdenie skontroluj v inom, nezávislom zdroji. Pýtaj sa: kto to tvrdí, odkiaľ to vie a prečo to hovorí?
 2. **Chráň.** Do AI nedávaj, čo nesmie von: heslá, adresu ani fotky a údaje druhých bez ich súhlasu.
-3. **Priznaj.** Keď ti AI pomohla, povedz s čím. Za výsledok zodpovedáš ty.
+3. **Priznaj.** Keď ti AI pomohla, povedz s čím. Za výsledok zodpovedáš ty. To isté platí pre cudzie diela: hudbu, obrázky a texty druhých použi, len keď to dovolí ich **licencia** (napríklad Creative Commons), a autora uveď.
 
-Štyri situácie a ako ich rozhodnúť. **Zajtra odovzdávaš sloh a chatbot ho napíše celý**: osnovu alebo kontrolu pravopisu áno, text píšeš ty a pomoc priznáš. **Nerozumieš zlomkom**: nech ti ich AI vysvetlí inak, výsledky si over. **Už tretí deň ťa bolí brucho**: o zdraví rozhoduje dospelý a lekár, nie chatbot. **Chceš z fotky kamarátky urobiť vtipný AI obrázok**: fotky a údaje druhých do AI nedávaj bez ich súhlasu.
+Najprv tá správa z triednej skupiny. **Kto to tvrdí?** Nikto podpísaný. **Odkiaľ to vie?** Nehovorí. **Prečo to hovorí?** Veta „Pošli ďalej“ chce hlavne, aby sa šírila. Over si to na webe školy alebo v školskej aplikácii. Kým to neoveríš, ďalej to neposielaj.
+
+S AI je to rovnaké. Štyri situácie a ako ich rozhodnúť. **Zajtra odovzdávaš sloh a chatbot ho napíše celý**: osnovu alebo kontrolu pravopisu áno, text píšeš ty a pomoc priznáš. **Nerozumieš zlomkom**: nech ti ich AI vysvetlí inak, výsledky si over. **Už tretí deň ťa bolí brucho**: o zdraví rozhoduje dospelý a lekár, nie chatbot. **Chceš z fotky kamarátky urobiť vtipný AI obrázok**: fotky a údaje druhých do AI nedávaj bez ich súhlasu.
 
 Neexistuje jedno pravidlo „AI vždy“ ani „AI nikdy“. Rozhoduje, či ťa AI pripraví o učenie, či ide o citlivé veci a kto nesie zodpovednosť. **Rozhoduješ ty.**
 

@@ -39,7 +39,7 @@ Niektoré správy ti mobil sám presunie do spamu. Ako sa rozhodne, ktoré?
 
 Program sa vie **rozhodnúť**. Keď platí **podmienka**, urobí jedno, **inak** druhé. Podmienka je otázka, na ktorú je odpoveď len **áno**, alebo **nie**: je vek menší ako 15?
 
-Pokladňa na kúpalisku triedi ľudí na zľavu a plné vstupné. Zľavu majú deti **mladšie ako 15** a ľudia **od 65 rokov**. Jedna podmienka nestačí, potrebuješ dve: *ak vek < 15 **alebo** vek ≥ 65, potom zľava, inak plné vstupné.* Roztrieď rad v minihre pod textom. Pozor na Tomáša (15) a Karola (65).
+Pokladňa na kúpalisku triedi ľudí na zľavu a plné vstupné. Zľavu majú deti **mladšie ako 15** a ľudia **od 65 rokov**. Jedna podmienka nestačí, potrebuješ dve: *ak vek < 15 **alebo** vek ≥ 65, potom zľava, inak plné vstupné.* V minihre pod textom prejdeš program pokladne pre každého v rade. Pozor na Tomáša (15) a Karola (65).
 
 Z vetiev **ak** a **inak** prebehne **vždy práve jedna**. Podmienka nemôže platiť „trochu“: buď je pravdivá, alebo nie.
 

@@ -7,7 +7,7 @@ game: svet-roboti-lampicka.hu
 title: "Játék: Felkapcsol a lámpa?"
 readingTime: 1
 standalone: true
-teaser: "A szabály: kapcsolj fel, ha sötét van, ÉS a mozgásérzékelő érzékel valamit."
+teaser: "Egy micro:biten futó éjszakai lámpa programja. Menj végig rajta minden helyzetben."
 voice: universal
 parent: svet-roboti-rozhodovani-hu
 diagram: null

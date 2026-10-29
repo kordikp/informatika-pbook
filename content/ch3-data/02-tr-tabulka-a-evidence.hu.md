@@ -53,7 +53,7 @@ Az „okt. 28. előtt kell visszahozni” szűrő rögtön hármat talál: Petrt
 
 A jegyzetekből csak találgatni lehetett a választ. A rendbe tett táblázatban a **szűrő** azonnal megtalálta. A szűrő egy feltétel, amelyet minden sornak felteszünk: korábbi a visszahozás dátuma, mint a mai nap?
 
-A táblázat **rendezni** és **számolni** is tud: hány könyv van Emánál, hány kölcsönzés járt le. Ez azonban csak akkor működik, ha mindenki ugyanazok szerint a szabályok szerint ír: ugyanaz a formátum, nincs ismétlődés, semmi sem hiányzik.
+A táblázat **rendezni** és **számolni** is tud. A számolást **függvények** végzik: a `=COUNTIF(A2:A6; "Ema")` képlet (a magyar Excelben DARABTELI) végignézi a Tanuló oszlopot, és megszámolja, hány kölcsönzése van Emának. A rendbe tett táblázatban 1 jön ki. A füzetben, ahol Ema kétszer szerepel, 2 jönne ki, és az hibás. Ez azonban csak akkor működik, ha mindenki ugyanazok szerint a szabályok szerint ír: ugyanaz a formátum, nincs ismétlődés, semmi sem hiányzik.
 
 Több oszlop nem jelent jobb nyilvántartást. Egy oszlopnak akkor van értelme, ha kérdezni fogsz róla.
 

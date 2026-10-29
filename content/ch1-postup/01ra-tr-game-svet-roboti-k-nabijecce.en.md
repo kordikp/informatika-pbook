@@ -4,10 +4,10 @@ translationOf: svet-roboti-algoritmus-hra
 lang: en
 type: game
 game: svet-roboti-k-nabijecce.en
-title: "Game: Get the robot to the charger"
+title: "Game: Drive the robot to the charger"
 readingTime: 1
 standalone: true
-teaser: "The robot stands bottom left, facing up. The charger is 2 squares higher and 3 squares to the right. Put the steps in order."
+teaser: "Build a program from moves and turns. The robot carries it out literally."
 voice: universal
 parent: svet-roboti-algoritmus-en
 diagram: null

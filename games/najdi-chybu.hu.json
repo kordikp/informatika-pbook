@@ -1,0 +1,76 @@
+{
+  "type": "hotspot",
+  "title": "Hol romlik el?",
+  "instruction": "Mindegyik útmutató megbukott egy teszten. Koppints arra a lépésre, amelyik a hibát okozta.",
+  "debrief": "A hiba abban a lépésben bújik meg, amelyik nem számolt egy alattomos bemenettel: a nullával, az ürességgel, a határral. Keresd meg ezt a lépést, javítsd ki, aztán futtasd le újra az összes tesztet.",
+  "items": [
+    {
+      "label": "Visszaszámlálás · teszt: visszaszámlálás 5-től kettesével → a rakéta sosem indul el",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "állítsd az időt 5-re"
+        },
+        {
+          "text": "ismételd, amíg az idő nem 0: változtasd meg az időt -2-vel",
+          "hit": true,
+          "why": "Az idő 5, 3, 1, -1… és átugorja a nullát. A „nem 0“ feltétel így folyton teljesül. Helyesen: „amíg az idő nagyobb 0-nál“."
+        },
+        {
+          "text": "indítsd el a rakétát"
+        }
+      ]
+    },
+    {
+      "label": "Jegyek átlaga · teszt: egy jegy sincs → a program összeomlik",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "add össze az összes jegyet"
+        },
+        {
+          "text": "oszd el az összeget a jegyek számával",
+          "hit": true,
+          "why": "Ha nincs jegy, nullával kellene osztani. Az útmutatónak előbb ellenőriznie kell, van-e egyáltalán jegy."
+        },
+        {
+          "text": "írd be az eredményt a bizonyítványba"
+        }
+      ]
+    },
+    {
+      "label": "Mozi 15 éven felülieknek · teszt: Tomáš pontosan 15 éves → nem engedi be",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "kérdezd meg az életkort"
+        },
+        {
+          "text": "nagyobb az életkor 15-nél? Ha igen, engedd be",
+          "hit": true,
+          "why": "A „15 éven felülieknek“ a pontosan 15 éveseket is jelenti. Helyesen: „15 vagy több“. A határ a leggyakoribb hibaforrás."
+        },
+        {
+          "text": "különben mondd meg, hogy a film 15 éven felülieknek szól"
+        }
+      ]
+    },
+    {
+      "label": "Jelentkezés szakkörre · teszt: üres név → a listára név nélküli ember kerül",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "olvasd be a nevet az űrlapról"
+        },
+        {
+          "text": "mentsd el a nevet a listára",
+          "hit": true,
+          "why": "Mentés előtt hiányzik az ellenőrzés, hogy a mező nem üres-e. Az üres bemenet alattomos eset."
+        },
+        {
+          "text": "mutasd: „Köszönjük a jelentkezést“"
+        }
+      ]
+    }
+  ]
+}

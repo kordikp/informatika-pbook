@@ -4,7 +4,7 @@ translationOf: rozhodujes-ty
 lang: hu
 type: spine
 title: "Ellenőrizz, és te dönts"
-readingTime: 1
+readingTime: 2
 standalone: true
 teaser: "Az osztálycsoportba üzenet érkezik: „Holnap áramszünet miatt nincs tanítás! Küldd tovább.” Továbbküldöd?"
 voice: universal
@@ -41,9 +41,11 @@ A chatbot remek segítő. Elmagyaráz, javasol, ellenőriz. Csakhogy **az MI jav
 
 1. **Ellenőrizd.** A fontos állítást nézd meg egy másik, független forrásban. Kérdezd meg: ki állítja, honnan tudja, és miért mondja?
 2. **Védd.** Ne adj meg az MI-nek semmit, aminek nem szabad kikerülnie: jelszavakat, a címedet, se mások fotóit és adatait a beleegyezésük nélkül.
-3. **Valld be.** Ha az MI segített, mondd meg, miben. Az eredményért te felelsz.
+3. **Valld be.** Ha az MI segített, mondd meg, miben. Az eredményért te felelsz. Ugyanez érvényes mások műveire: mások zenéjét, képeit és szövegeit csak akkor használd, ha a **licencük** megengedi (például a Creative Commons), és tüntesd fel a szerzőt.
 
-Négy helyzet, és hogyan döntsd el őket. **Holnap kell beadnod a fogalmazást, és a chatbot megírja az egészet**: vázlatra vagy helyesírás-ellenőrzésre igen, de a szöveget te írod, és bevallod a segítséget. **Nem érted a törteket**: magyaráztasd el őket másképp az MI-vel, az eredményeket ellenőrizd. **Már harmadik napja fáj a hasad**: az egészségről felnőtt és orvos dönt, nem chatbot. **Egy barátnőd fotójából vicces MI-képet akarsz csinálni**: mások fotóit és adatait ne add meg az MI-nek a beleegyezésük nélkül.
+Először az az üzenet az osztálycsoportban. **Ki állítja?** Senki, aki aláírta volna. **Honnan tudja?** Nem mondja meg. **Miért mondja?** A „Küldd tovább” főleg azt akarja, hogy terjedjen. Nézd meg az iskola honlapján vagy az iskolai alkalmazásban. Amíg nem ellenőrizted, ne küldd tovább.
+
+Az MI-vel is így van. Négy helyzet, és hogyan döntsd el őket. **Holnap kell beadnod a fogalmazást, és a chatbot megírja az egészet**: vázlatra vagy helyesírás-ellenőrzésre igen, de a szöveget te írod, és bevallod a segítséget. **Nem érted a törteket**: magyaráztasd el őket másképp az MI-vel, az eredményeket ellenőrizd. **Már harmadik napja fáj a hasad**: az egészségről felnőtt és orvos dönt, nem chatbot. **Egy barátnőd fotójából vicces MI-képet akarsz csinálni**: mások fotóit és adatait ne add meg az MI-nek a beleegyezésük nélkül.
 
 Nincs egyetlen szabály, hogy „mindig MI” vagy „soha MI”. Az számít, hogy az MI megfoszt-e a tanulástól, érzékeny dolgokról van-e szó, és ki viseli a felelősséget. **Te döntesz.**
 

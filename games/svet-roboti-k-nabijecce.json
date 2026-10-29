@@ -1,20 +1,45 @@
 {
-  "type": "order",
+  "type": "grid",
   "title": "Dovez robota k nabíječce",
-  "instruction": "Robot stojí vlevo dole a dívá se nahoru. Nabíječka je o 2 políčka výš a 3 políčka vpravo. Seřaď kroky.",
-  "steps": [
-    "Baterie hlásí méně než 20 %, vyraz",
-    "Jeď dopředu o 2 políčka",
-    "Otoč se vpravo o 90°",
-    "Jeď dopředu o 3 políčka",
-    "Zastav a připoj se k nabíječce"
-  ],
-  "why": [
-    "Program čeká, až je co dělat: vyrazí, když baterie dochází.",
-    "Robot se dívá nahoru, takže nejdřív jede nahoru o 2.",
-    "Teď se musí natočit k nabíječce. Bez otočení by jel dál nahoru.",
-    "Po otočení míří doprava a nabíječka je 3 políčka daleko.",
-    "Postup musí skončit: robot zastaví v cíli."
-  ],
-  "debrief": "Robot nic nedomýšlí. Každý krok musí být jednoznačný a pořadí přesné, jinak skončí jinde."
+  "instruction": "Poskládej program z kroků a otočení. Robot ho vykoná doslova.",
+  "goalIcon": "🔌",
+  "debrief": "Robot nic nedomýšlí. Každý krok musí být jednoznačný a pořadí přesné. K cíli vede víc správných algoritmů a opakování program zkrátí.",
+  "levels": [
+    {
+      "map": [
+        "...G",
+        "....",
+        "S..."
+      ],
+      "dir": "N",
+      "max": 8,
+      "instruction": "Robot se dívá nahoru. Nabíječka je o 2 políčka výš a o 3 vpravo.",
+      "why": "Nahoru o 2, otočit vpravo, doprava o 3. Nebo naopak: nejdřív doprava, pak nahoru. Oba algoritmy jsou správné."
+    },
+    {
+      "map": [
+        "...G",
+        "#...",
+        "S..."
+      ],
+      "dir": "N",
+      "max": 8,
+      "instruction": "Cesta nahoru je zatarasená. Zkus to jinudy.",
+      "why": "Když je jedna cesta zavřená, pomůže druhý algoritmus: nejdřív doprava, pak nahoru."
+    },
+    {
+      "map": [
+        "....G",
+        ".....",
+        ".....",
+        ".....",
+        "S...."
+      ],
+      "dir": "N",
+      "max": 6,
+      "repeat": true,
+      "instruction": "Delší cesta, ale program smí mít jen 6 příkazů. Použij opakování.",
+      "why": "4× krok vpřed, otočit vpravo, 4× krok vpřed: pět příkazů místo devíti. Opakování program zkrátí."
+    }
+  ]
 }

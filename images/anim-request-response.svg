@@ -2,11 +2,11 @@
   <title id="rrTitle">Požadavek a odpověď</title>
   <desc id="rrDesc">Prohlížeč (klient) pošle přes internet požadavek serveru, server vrátí HTML, CSS a obrázky a prohlížeč z nich poskládá stránku.</desc>
   <defs>
-    <marker id="rrArrP" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    <marker id="rrArrP" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#7C3AED"/>
     </marker>
-    <marker id="rrArrG" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    <marker id="rrArrG" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#10B981"/>
     </marker>
   </defs>
 

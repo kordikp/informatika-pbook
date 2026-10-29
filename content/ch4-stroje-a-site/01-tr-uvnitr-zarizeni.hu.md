@@ -14,7 +14,7 @@ core: true
 recallQ: "Miért tűnik el a nem mentett dokumentum, ha elmegy az áram, a mentett pedig nem?"
 recallA: "A nem mentett csak a memóriában létezik, amely áram nélkül felejt. A mentett a tárhelyen van, amely tartósan megőrzi."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -32,7 +32,7 @@ highlights:
   - "Processzor, memória, tárhely, perifériák; hardver vs. szoftver"
   - "A memória ideiglenes: a nem mentett munka eltűnik, a megtelt memória lassít"
   - "Az operációs rendszer irányítja az alkalmazásokat és a hardverhez való hozzáférést; eszköz kiválasztása a tulajdonságai alapján"
-carriers: prose
+carriers: prose|table
 ---
 
 Akadozik a telefonod. A fotók törlése segít, vagy az alkalmazások bezárása? Attól függ, melyik fajta memória telt meg.
@@ -46,9 +46,18 @@ A számítógép, a telefon és a micro:bit belsejében ugyanazok a részek dolg
 
 Nyiss meg egy játékot, 40 lapot, a fotóidat és egy kiselőadást. A pult megtelik, és a műszakvezetőnek dolgokat kell a kamrába tennie, aztán újra visszahoznia. Ez időbe telik, ezért akadozik a túlterhelt telefon. Írsz pár mondatot a kiselőadásból, és mielőtt elmentenéd, elmegy az áram. Bekapcsolás után a pult üres.
 
+⟦obr: images/proklik-uvnitr-zarizeni.hu.svg⟧
+
 A nem mentett kiselőadás csak a pulton volt, a **memóriában**. Az áram nélkül felejt. A mentett a kamrában van, a **tárhelyen**, és ott megmarad.
 
 Amikor a telefon azt írja, hogy „128 GB”, a tárhelyre gondol. Memóriája talán csak 8 GB. A megtelt memória lassít, a megtelt tárhely pedig nem enged semmi újat menteni.
+
+| | Memória (munkapult) | Tárhely (kamra) |
+|---|---|---|
+| Mi van rajta | ami éppen fut | fájlok és alkalmazások |
+| Méret egy telefonban | például 8 GB | például 128 GB |
+| Sebesség | nagyon gyors | lassabb |
+| Kikapcsolás után | elfelejt mindent | megőriz mindent |
 
 A konyhát a pulttal és a szakáccsal **hardvernek** hívják: olyan dolgok, amelyeket megérinthetsz. A receptek, vagyis a programok, a **szoftver**.
 

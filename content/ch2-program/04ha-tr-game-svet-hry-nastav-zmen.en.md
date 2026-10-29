@@ -4,10 +4,10 @@ translationOf: svet-hry-promenna-hra
 lang: en
 type: game
 game: svet-hry-nastav-zmen.en
-title: "Game: Set or change?"
+title: "Game: How many points does the player have?"
 readingTime: 1
 standalone: true
-teaser: "For each moment in the game, pick the block that fits."
+teaser: "Step through the game’s code. What value does the variable have now?"
 voice: universal
 parent: svet-hry-promenna-en
 diagram: null

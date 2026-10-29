@@ -41,9 +41,11 @@ A chatbot is a great helper. It explains, suggests, checks. But **AI is a sugges
 
 1. **Check.** Check an important claim in another, independent source. Ask: who says it, how do they know, and why are they saying it?
 2. **Protect.** Don't put anything into AI that mustn't get out: passwords, your address, or other people's photos and details without their consent.
-3. **Own up.** When AI helped you, say what with. You are responsible for the result.
+3. **Own up.** When AI helped you, say what with. You are responsible for the result. The same goes for other people's work: use their music, pictures and texts only when their **licence** allows it (for example Creative Commons), and name the author.
 
-Four situations and how to decide them. **Your essay is due tomorrow and the chatbot writes the whole thing**: an outline or a spelling check yes, but you write the text and say where you got help. **You don't understand fractions**: let AI explain them a different way, and check the results. **Your tummy has hurt for three days now**: decisions about health are for an adult and a doctor, not a chatbot. **You want to turn a friend's photo into a funny AI picture**: don't put other people's photos and details into AI without their consent.
+First, that message in the class group. **Who says it?** Nobody who signed it. **How do they know?** It doesn't say. **Why are they saying it?** “Pass it on” mainly wants it to spread. Check it on the school website or in the school app. Until you have checked it, don't pass it on.
+
+With AI it's the same. Four situations and how to decide them. **Your essay is due tomorrow and the chatbot writes the whole thing**: an outline or a spelling check yes, but you write the text and say where you got help. **You don't understand fractions**: let AI explain them a different way, and check the results. **Your tummy has hurt for three days now**: decisions about health are for an adult and a doctor, not a chatbot. **You want to turn a friend's photo into a funny AI picture**: don't put other people's photos and details into AI without their consent.
 
 There is no single rule “always AI” or “never AI”. What matters is whether AI robs you of learning, whether sensitive things are involved and who is responsible. **You decide.**
 

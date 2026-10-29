@@ -2,10 +2,10 @@
 id: svet-hry-promenna-hra
 type: game
 game: svet-hry-nastav-zmen
-title: "Hra: Nastav, nebo změň?"
+title: "Hra: Kolik má hráč bodů?"
 readingTime: 1
 standalone: true
-teaser: "Ke každé chvíli ve hře vyber blok, který se tam hodí."
+teaser: "Projdi kód hry krok po kroku. Jakou hodnotu má proměnná teď?"
 voice: universal
 parent: svet-hry-promenna
 diagram: null

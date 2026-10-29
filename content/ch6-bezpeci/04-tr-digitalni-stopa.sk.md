@@ -14,7 +14,7 @@ core: true
 recallQ: "Čo môže o tebe prezradiť obyčajná fotka, aj keď na nej nie si?"
 recallA: "Metadáta (čas, poloha, typ mobilu) a pozadie (škola, ulica, okno). Z niekoľkých fotiek sa dá poskladať, kde bývaš a kedy nie si doma."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -39,11 +39,15 @@ Fotíš mobilom a fotka si pamätá viac, než vidíš. Čo napríklad?
 
 Všetko, čo online urobíš, zanechá **stopu**. Časť zanecháš vedome: príspevky, fotky, komentáre. To je **aktívna stopa**. Časť nevidíš: polohu vo fotke, **cookies**, históriu. To je **pasívna stopa**.
 
-Klára je vymyslená a má tri úplne obyčajné príspevky: „Zase deviatkou do školy, každý deň o 7:40“ s fotkou výkladu, „Konečne vlastná izba! Ten výhľad“ s fotkou z okna a „Od zajtra celá rodina týždeň pri mori, doma nikto nebude“. Detektív z nich zistí: prezývka *klara.hradobna.2012* prezradí meno, školu a rok narodenia. Odraz vo výklade ukazuje ZŠ Hradobná, tabuľa za oknom Mlynskú ulicu a fotka nesie GPS polohu s presnosťou na pár metrov. Každý všedný deň o 7:40 je na ceste. A byt bude týždeň prázdny.
+Klára je vymyslená a má tri úplne obyčajné príspevky: „Zase deviatkou do školy, každý deň o 7:40“ s fotkou výkladu, „Konečne vlastná izba! Ten výhľad“ s fotkou z okna a „Od zajtra celá rodina týždeň pri mori, doma nikto nebude“. Detektív z nich zistí: prezývka *klara.hradobna.2012* prezradí meno, školu a rok narodenia. Odraz vo výklade ukazuje ZŠ Hradobná, tabuľa za oknom Mlynskú ulicu. A originál fotky, ktorý poslala kamarátke ako súbor, nesie GPS polohu s presnosťou na pár metrov. Každý všedný deň o 7:40 je na ceste. A byt bude týždeň prázdny.
+
+⟦obr: images/proklik-digitalni-stopa.sk.svg⟧
 
 Každá stopa sama osebe je nevinná. Dohromady skladajú mapu tvojho života. Dáta o tebe majú cenu: pre firmy kvôli reklame, pre podvodníkov kvôli tebe.
 
 **Zmazané neznamená zmiznuté.** Niekto si mohol urobiť snímku obrazovky. „Len pre priateľov“ neznamená len pre priateľov, pretože priatelia môžu príspevok preposlať. A „nemám čo skrývať“ neplatí. Adresu a prázdny byt skrýva každý.
+
+Veľké sociálne siete polohu z fotky pri nahraní zvyčajne zmažú. Originál poslaný ako súbor, e-mailom alebo cez cloud ju nesie ďalej. Ukladanie polohy môžeš vo fotoaparáte vypnúť.
 
 V Európskej únii máš práva podľa **GDPR**: môžeš sa firmy opýtať, čo o tebe vie, a požiadať o vymazanie. A nezdieľaj za druhých. Ich fotky, ich súhlas.
 

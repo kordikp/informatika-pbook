@@ -1202,7 +1202,8 @@ pre code { font-family: var(--font-mono); font-size: .82rem; line-height: 1.5; b
 /* Reader edits: a changed/added REGION (markers on their own lines, so lists and
    tables inside it render normally) and diagrams inserted right where asked. */
 .rx-region { position: relative; background: rgba(217, 119, 6, .10); border-left: 3px solid #D97706; border-radius: 0 6px 6px 0; padding: .35em .7em .35em .8em; margin: .8em 0; }
-.rx-region::before { content: "your edit"; position: absolute; top: -.62em; left: .7em; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: #B45309; background: var(--card, #fff); padding: 0 .35em; border-radius: 4px; }
+.rx-region::before { content: attr(data-label); position: absolute; top: -.62em; left: .7em; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: #B45309; background: var(--card, #fff); padding: 0 .35em; border-radius: 4px; }
+.rx-region:not([data-label])::before { display: none; }
 .rx-region > :first-child { margin-top: 0; }
 .rx-region > :last-child { margin-bottom: 0; }
 .md-figure.diagram-inline { margin: .9em 0; }

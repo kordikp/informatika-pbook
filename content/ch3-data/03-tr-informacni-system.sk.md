@@ -14,7 +14,7 @@ core: true
 recallQ: "Prečo v školskom systéme nevidíš známky spolužiakov, ale učiteľ áno?"
 recallA: "Systém prideľuje práva podľa rolí. Učiteľ potrebuje známky triedy na svoju prácu, žiak len svoje. Každá rola dostane len to, čo potrebuje."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -32,7 +32,7 @@ highlights:
   - "Účel systému: akej potrebe slúži a aké dáta eviduje"
   - "Roly a prístupové práva (čitateľ, komentátor, editor, správca)"
   - "Zásada najmenších práv; odkaz „pre každého“ je riziko"
-carriers: prose
+carriers: prose|table
 ---
 
 Rodičia ti v mobile nastavili, že hry idú len do ôsmej večer. Ty to vypnúť nemôžeš, oni áno. Kto o tom rozhoduje?
@@ -42,6 +42,15 @@ Rodičia ti v mobile nastavili, že hry idú len do ôsmej večer. Ty to vypnú�
 V školskom systéme vidí každý niečo iné. **Ján** vidí svoje známky a rozvrh, známky spolužiakov nie. **Jánova mama** vidí Jánove známky a píše ospravedlnenky. **Triedna učiteľka** známky zapisuje, pretože je to jej práca. **Riaditeľ** vidí všetko a rozhoduje o rozvrhu a rolách, ale známky nemení. Rovnaké dáta, štyri rôzne obrazovky. A pri zdieľaní dokumentu si správca ty: komu dáš aké právo?
 
 Systém vie, kto si, a podľa tvojej roly ti ukáže len to, čo potrebuješ. Tomu sa hovorí **zásada najmenších práv**: každý dostane len toľko práv, koľko na svoju prácu potrebuje.
+
+V školskom systéme to vyzerá takto:
+
+| Kto | Čo vidí | Čo smie meniť |
+|---|---|---|
+| **Ján**, žiak | svoje známky a rozvrh | nič |
+| **Jánova mama** | Jánove známky | ospravedlnenky |
+| **triedna učiteľka** | známky celej triedy | známky |
+| **riaditeľ** | všetko | rozvrh a roly, známky nie |
 
 Pri zdieľaní dokumentu si správca ty. Odkaz **pre každého** sa môže dostať ku komukoľvek. Preto zdieľaj menovite a dávaj len tie práva, ktoré sú potrebné.
 

@@ -43,6 +43,8 @@ The photo is split into small **packets**. Each one carries the **IP address** o
 
 First the phone asks **DNS**, the phone book of the internet: what is the address of chat.example? DNS answers 203.0.113.7, because routers only understand numbers. The photo then sets off in six packets. One goes through router A and C, another through B and D. If router A goes down, the packets go through B and D and the photo arrives anyway.
 
+⟦obr: images/proklik-cesta-dat.en.svg⟧
+
 The internet is a **network of networks** and has no single centre. When a router goes down, the others send the packets on a **detour**. A lost packet is sent again, not the whole photo.
 
 Your phone is a **client**: it sends a **request**. The server sends a **response**. That is how the web, e-mail and streaming work.

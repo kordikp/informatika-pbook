@@ -2,14 +2,14 @@
   <title id="rtTitle">Riadenie toku v akcii</title>
   <desc id="rtDesc">Bodka predstavuje beh programu: prejde sekvenciou, na vetvení Prší? sa vydá vetvou áno, trikrát obehne cyklus Zíď schod a skončí. Rozsvietená cesta ukazuje, kade beh šiel.</desc>
   <defs>
-    <marker id="rtArrP" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    <marker id="rtArrP" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#7C3AED"/>
     </marker>
-    <marker id="rtArrG" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    <marker id="rtArrG" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#10B981"/>
     </marker>
-    <marker id="rtArrA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#D97706"/>
+    <marker id="rtArrA" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#D97706"/>
     </marker>
   </defs>
 
@@ -22,10 +22,10 @@
   <path d="M80 99 L204 99" fill="none" stroke="#7C3AED" stroke-width="5" stroke-linecap="round" opacity="0">
     <animate attributeName="opacity" values="0;0;0.3;0.3;0" keyTimes="0;0.10;0.12;0.955;1" dur="6s" repeatCount="indefinite"/>
   </path>
-  <path d="M296 116 L330 146" fill="none" stroke="#10B981" stroke-width="5" stroke-linecap="round" opacity="0">
+  <path d="M318 99 H340 V146" fill="none" stroke="#10B981" stroke-width="5" stroke-linecap="round" opacity="0">
     <animate attributeName="opacity" values="0;0;0.35;0.35;0" keyTimes="0;0.20;0.22;0.955;1" dur="6s" repeatCount="indefinite"/>
   </path>
-  <path d="M340 188 L298 210" fill="none" stroke="#7C3AED" stroke-width="5" stroke-linecap="round" opacity="0">
+  <path d="M340 190 V200 H262 V212" fill="none" stroke="#7C3AED" stroke-width="5" stroke-linecap="round" opacity="0">
     <animate attributeName="opacity" values="0;0;0.3;0.3;0" keyTimes="0;0.30;0.32;0.955;1" dur="6s" repeatCount="indefinite"/>
   </path>
   <path d="M262 258 C262 284 168 284 162 254 C158 238 172 232 181 232" fill="none" stroke="#10B981" stroke-width="5" stroke-linecap="round" opacity="0">
@@ -45,7 +45,7 @@
     <animate attributeName="fill" values="#FFFFFF;#FFFFFF;#EDE9FE;#EDE9FE;#FFFFFF;#FFFFFF" keyTimes="0;0.015;0.03;0.075;0.095;1" dur="6s" repeatCount="indefinite"/>
   </rect>
   <text x="144" y="115" text-anchor="middle" font-size="12" fill="#1E1B4B">Obleč sa</text>
-  <text x="144" y="137" text-anchor="middle" font-size="11" font-weight="700" fill="#7C3AED">1 · sekvencia</text>
+  <text x="144" y="76" text-anchor="middle" font-size="11" font-weight="700" fill="#7C3AED">1 · sekvencia</text>
   <path d="M188 99 L200 99" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rtArrP)"/>
 
   <!-- větvení -->
@@ -54,12 +54,12 @@
     <animate attributeName="stroke-width" values="2;2;3.5;3.5;2;2" keyTimes="0;0.105;0.12;0.17;0.19;1" dur="6s" repeatCount="indefinite"/>
   </path>
   <text x="262" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#1E1B4B">Prší?</text>
-  <text x="262" y="143" text-anchor="middle" font-size="11" font-weight="700" fill="#D97706">2 · vetvenie</text>
+  <text x="326" y="84" font-size="11" font-weight="700" fill="#D97706">2 · vetvenie</text>
 
-  <text x="336" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="#10B981">áno<animate attributeName="opacity" values="1;1;0.25;1;0.25;1;1" keyTimes="0;0.13;0.145;0.16;0.175;0.19;1" dur="6s" repeatCount="indefinite"/></text>
-  <text x="213" y="127" text-anchor="end" font-size="11" font-weight="700" fill="#D97706">nie</text>
-  <path d="M296 116 L326 143" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#rtArrG)"/>
-  <path d="M228 116 L194 143" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#rtArrA)"/>
+  <text x="346" y="128" font-size="11" font-weight="700" fill="#10B981">áno<animate attributeName="opacity" values="1;1;0.25;1;0.25;1;1" keyTimes="0;0.13;0.145;0.16;0.175;0.19;1" dur="6s" repeatCount="indefinite"/></text>
+  <text x="214" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#D97706">nie</text>
+  <path d="M318 99 H334 Q340 99 340 105 V144" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#rtArrG)"/>
+  <path d="M262 128 V132 Q262 138 256 138 H182 Q176 138 176 142 V144" fill="none" stroke="#D97706" stroke-width="2" marker-end="url(#rtArrA)"/>
 
   <!-- větve -->
   <rect x="130" y="148" width="92" height="40" rx="9" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
@@ -69,8 +69,8 @@
   </rect>
   <text x="340" y="172" text-anchor="middle" font-size="12" fill="#1E1B4B">🧥 Nasaď kapucňu</text>
 
-  <path d="M176 188 L224 208" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rtArrP)"/>
-  <path d="M340 188 L300 208" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rtArrP)"/>
+  <path d="M176 188 V200 H262" fill="none" stroke="#7C3AED" stroke-width="2"/>
+  <path d="M340 188 V200 H262 V210" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#rtArrP)"/>
 
   <!-- cyklus -->
   <rect x="187" y="214" width="150" height="44" rx="9" fill="#FFFFFF" stroke="#10B981" stroke-width="2">
@@ -98,7 +98,7 @@
 
   <!-- tečka = běh programu -->
   <circle r="6" fill="#7C3AED" stroke="#FFFFFF" stroke-width="1.5">
-    <animateMotion path="M80 99 L262 99 L340 165 C340 196 262 192 262 214 L262 236 L262 258 C262 284 168 284 162 254 C158 238 172 232 185 232 L262 236 L262 258 C262 284 168 284 162 254 C158 238 172 232 185 232 L262 236 L404 236" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.92;1" dur="6s" repeatCount="indefinite"/>
+    <animateMotion path="M80 99 L262 99 L340 99 L340 146 L340 190 L340 200 L262 200 L262 214 L262 236 L262 258 C262 284 168 284 162 254 C158 238 172 232 185 232 L262 236 L262 258 C262 284 168 284 162 254 C158 238 172 232 185 232 L262 236 L404 236" calcMode="linear" keyPoints="0;0.16203;0.27331;0.31248;0.40328;1;1" keyTimes="0;0.1591;0.22;0.255;0.3341;0.92;1" dur="6s" repeatCount="indefinite"/>
     <animate attributeName="opacity" values="1;1;0;0;1;1;0;0;1;1;0;0;1;1;0;0;1;1;0;0;1;1;0;0" keyTimes="0;0.10;0.11;0.18;0.19;0.21;0.22;0.255;0.265;0.325;0.335;0.365;0.375;0.505;0.515;0.59;0.60;0.73;0.74;0.855;0.865;0.91;0.92;1" dur="6s" repeatCount="indefinite"/>
   </circle>
 

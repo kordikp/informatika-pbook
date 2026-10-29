@@ -4,10 +4,10 @@ translationOf: kodovani-hra
 lang: en
 type: game
 game: co-je-cislo.en
-title: "Game: Encoding or encryption?"
+title: "Game: Everything is numbers"
 readingTime: 1
 standalone: true
-teaser: "A rule every program knows, or a lock that only someone has the key to?"
+teaser: "Fill in the missing words."
 voice: universal
 parent: null
 diagram: null

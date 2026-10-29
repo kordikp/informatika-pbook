@@ -4,10 +4,10 @@ translationOf: svet-aplikace-promenna-hra
 lang: hu
 type: game
 game: svet-aplikace-stav.hu
-title: "Játék: Beállítás vagy változtatás?"
+title: "Játék: Mit mutat az app?"
 readingTime: 1
 standalone: true
-teaser: "Az app minden pillanatára válaszd ki, hogy a változó új értéket kap, vagy egy kicsit változik."
+teaser: "Az app változókban jegyzi meg az állapotát. Kövesd végig, mi történik, és mondd meg, mit mutat."
 voice: universal
 parent: svet-aplikace-promenna-hu
 diagram: null

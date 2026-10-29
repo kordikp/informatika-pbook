@@ -1,0 +1,143 @@
+{
+  "type": "trace",
+  "title": "Lépésenként a ciklusban",
+  "instruction": "Menj végig a programon lépésről lépésre, ahogy a számítógép. Mi történik a kiemelt sorban?",
+  "debrief": "A rögzített számú ciklus pontosan annyiszor fut le, ahányszor mondod. A feltételes ciklus minden kör elején ellenőrzi a feltételt. Ha pedig a feltétel sosem változik meg, a program végtelen ciklusba kerül.",
+  "rounds": [
+    {
+      "title": "A robot megkerüli az oszlopot",
+      "code": [
+        "ismételd 4×:",
+        "    menj 3-at",
+        "    fordulj jobbra",
+        "sípolj"
+      ],
+      "steps": [
+        {
+          "line": [
+            1,
+            2
+          ],
+          "q": "Hányszor fut le a 2. és a 3. sor, a ciklus magja?",
+          "options": [
+            "1×",
+            "3×",
+            "4×",
+            "12×"
+          ],
+          "answer": 2,
+          "why": "Az „ismételd 4×“ négy kört jelent. A robot minden körben végrehajtja a mag mindkét parancsát."
+        },
+        {
+          "line": 1,
+          "q": "Összesen hány mezőt tesz meg a robot?",
+          "options": [
+            "3",
+            "4",
+            "7",
+            "12"
+          ],
+          "answer": 3,
+          "why": "Négy kör, mindegyikben három mező: 4 × 3 = 12."
+        },
+        {
+          "line": 3,
+          "q": "Hányszor sípol a robot?",
+          "options": [
+            "egyszer sem",
+            "egyszer",
+            "négyszer",
+            "ötször"
+          ],
+          "answer": 1,
+          "why": "A sípolás nincs beljebb húzva, ezért nem tartozik a ciklus magjához. Egyszer fut le, amikor a ciklus véget ért."
+        }
+      ]
+    },
+    {
+      "title": "Ismeretlen hosszú folyosó",
+      "code": [
+        "ismételd, amíg nincs a fal előtt:",
+        "    menj 1-et",
+        "állj meg"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "A robot előtt 3 szabad mező van, aztán fal.",
+          "q": "Hol áll meg a robot?",
+          "options": [
+            "rögtön a starton",
+            "közvetlenül a fal előtt",
+            "a falban",
+            "nem áll meg, megy tovább"
+          ],
+          "answer": 1,
+          "why": "Három lépés után a fal előtt áll. A feltétel már nem teljesül, a ciklus véget ér, és a robot megáll."
+        },
+        {
+          "line": 0,
+          "input": "A robot előtt 3 szabad mező van, aztán fal.",
+          "q": "Hányszor ellenőrzi a program az 1. sor feltételét?",
+          "options": [
+            "3×",
+            "4×",
+            "egyszer",
+            "újra és újra, végtelenül"
+          ],
+          "answer": 1,
+          "why": "Minden kör előtt egyszer. Háromszor teljesül, és a robot lép, negyedszer a fal előtt áll, és a ciklus véget ér. Három kör, négy ellenőrzés."
+        }
+      ]
+    },
+    {
+      "title": "Elromlott jelzőlámpa",
+      "code": [
+        "ismételd, amíg nem zöld a lámpa:",
+        "    várj 1 másodpercet",
+        "menj át az úttesten"
+      ],
+      "steps": [
+        {
+          "line": 0,
+          "input": "A jelzőlámpa elromlott, és folyton pirosat mutat.",
+          "q": "Mikor ér véget a ciklus?",
+          "options": [
+            "1 másodperc után",
+            "csak amikor a lámpa tényleg zöldre vált",
+            "10 kör után",
+            "azonnal, mert piros"
+          ],
+          "answer": 1,
+          "why": "A „nem zöld a lámpa“ feltétel újra és újra teljesül. Amíg a lámpát meg nem javítják, a program végtelen ciklusban vár."
+        }
+      ]
+    },
+    {
+      "title": "A szemetes",
+      "code": [
+        "ismételd, amíg nincs tele a kuka:",
+        "    dobj be egy papírt",
+        "    dobj be egy papírt"
+      ],
+      "steps": [
+        {
+          "line": [
+            1,
+            2
+          ],
+          "input": "A kuka megteléséhez egy papír hiányzik.",
+          "q": "Hány papírt dob be a program?",
+          "options": [
+            "egyet",
+            "kettőt",
+            "egyet sem",
+            "végtelen sokat"
+          ],
+          "answer": 1,
+          "why": "A feltételt csak a kör elején ellenőrzi. A kör elején a kuka még nincs tele, ezért az egész kör lefut: két papír. A kuka túlcsordul, és a ciklus csak ezután veszi észre, hogy tele van."
+        }
+      ]
+    }
+  ]
+}

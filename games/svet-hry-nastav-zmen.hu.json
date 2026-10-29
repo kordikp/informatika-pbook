@@ -1,42 +1,124 @@
 {
-  "type": "sort",
-  "title": "Állítsd vagy változtasd?",
-  "instruction": "A játék minden pillanatához válaszd ki az odaillő blokkot.",
-  "buckets": [
-    "állítsd …-ra",
-    "változtasd …-val"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "Hány pontja van a játékosnak?",
+  "instruction": "Menj végig a játék kódján lépésről lépésre. Mennyi most a változó értéke?",
+  "debrief": "Az „állítsd“ felülírja az értéket, a „változtasd meg“ hozzáad ahhoz, ami már ott van. A játék elejére az „állítsd“ való, az érme felvételéhez a „változtasd meg“.",
+  "rounds": [
     {
-      "text": "A játék eleje: a pontszám nulláról indul",
-      "answer": 0,
-      "why": "Bármi volt benne, 0-nak kell lennie. Ez a beállítás."
+      "code": [
+        "a játék elején: állítsd a pontszámot 0-ra",
+        "a játék elején: állítsd az életeket 3-ra",
+        "amikor a játékos felvesz egy érmét: változtasd meg a pontszámot 1-gyel",
+        "amikor a figura ütközik: változtasd meg az életeket -1-gyel",
+        "amikor új pálya kezdődik: állítsd az életeket 3-ra"
+      ],
+      "steps": [
+        {
+          "line": 0,
+          "input": "A játék most kezdődött.",
+          "q": "Mennyi a pontszám?",
+          "options": [
+            "0",
+            "1",
+            "3",
+            "nem lehet tudni"
+          ],
+          "answer": 0,
+          "state": "pontszám = 0, életek = 3",
+          "why": "Az „állítsd“ 0-ra írja felül az értéket, bármi volt is ott."
+        },
+        {
+          "line": 2,
+          "input": "A játékos felvett 3 érmét.",
+          "q": "Mennyi a pontszám?",
+          "options": [
+            "1",
+            "3",
+            "4",
+            "0"
+          ],
+          "answer": 1,
+          "state": "pontszám = 3, életek = 3",
+          "why": "Minden érme 1-et ad hozzá ahhoz, ami ott van: 0 + 1 + 1 + 1 = 3."
+        },
+        {
+          "line": 3,
+          "input": "A figura nekiment egy ellenségnek.",
+          "q": "Hány élete van?",
+          "options": [
+            "3",
+            "2",
+            "-1",
+            "0"
+          ],
+          "answer": 1,
+          "state": "pontszám = 3, életek = 2",
+          "why": "A -1-gyel való változtatás elvesz egyet a háromból."
+        },
+        {
+          "line": 3,
+          "input": "Még egyszer nekiment.",
+          "q": "Hány élete van?",
+          "options": [
+            "2",
+            "-2",
+            "1",
+            "0"
+          ],
+          "answer": 2,
+          "state": "pontszám = 3, életek = 1",
+          "why": "A kettőből egy elfogy."
+        },
+        {
+          "line": 4,
+          "input": "Kezdődik a 2. pálya.",
+          "q": "Hány élete van?",
+          "options": [
+            "1",
+            "4",
+            "0",
+            "3"
+          ],
+          "answer": 3,
+          "state": "pontszám = 3, életek = 3",
+          "why": "Az „állítsd“ 3-ra írja felül az értéket, függetlenül attól, mennyi maradt."
+        },
+        {
+          "line": 4,
+          "input": "Kezdődik a 2. pálya.",
+          "q": "Mennyi a pontszám?",
+          "options": [
+            "0",
+            "3",
+            "4",
+            "1"
+          ],
+          "answer": 1,
+          "why": "Az 5. sor csak az életeket változtatja. A pontszámot senki sem írta felül, 3 maradt."
+        }
+      ]
     },
     {
-      "text": "A játékos felvett egy érmét",
-      "answer": 1,
-      "why": "A meglévő pontjaihoz egy hozzájön."
-    },
-    {
-      "text": "A figura nekiment egy ellenségnek",
-      "answer": 1,
-      "why": "A meglévő életeiből egy elvész: változtasd -1-gyel."
-    },
-    {
-      "text": "Az új szint ismét három élettel indul",
-      "answer": 0,
-      "why": "Az érték 3-ra íródik felül, függetlenül attól, mennyi maradt."
-    },
-    {
-      "text": "Kombó: minden sorozatban felvett érméért eggyel több pont",
-      "answer": 1,
-      "why": "A pontok hozzáadódnak ahhoz, ami már megvan."
-    },
-    {
-      "text": "A játékos megnyomta az „Új játék” gombot, és a mód ismét „játék”",
-      "answer": 0,
-      "why": "A mód új értékre íródik felül."
+      "title": "A programozó tévedett",
+      "code": [
+        "a játék elején: állítsd a pontszámot 0-ra",
+        "amikor a játékos felvesz egy érmét: állítsd a pontszámot 1-re"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "A játékos felvett 3 érmét.",
+          "q": "Mennyi a pontszám?",
+          "options": [
+            "3",
+            "1",
+            "0",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Az „állítsd 1-re“ minden alkalommal 1-re írja felül az értéket. Akárhány érmét vesz fel a játékos, a pontszám mindig 1. Oda „változtasd meg 1-gyel“ kellene."
+        }
+      ]
     }
-  ],
-  "debrief": "Az állítsd felülírja az értéket, a változtasd hozzáad ahhoz, ami benne van. A játék elejére az állítsd való, az érme elkapásához a változtasd."
+  ]
 }

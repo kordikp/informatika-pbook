@@ -43,7 +43,7 @@ Zahraj sa na model. Veta sa začína „Najznámejšia kniha spisovateľa Karola
 
 Každé slovo bolo pravdepodobné, a preto veta znie vierohodne. Nikde však nebol krok „over, či je to pravda“. Tak vznikajú **halucinácie**: plynulé, sebaisté odpovede, ktoré nie sú pravdivé.
 
-Samotný model nič nevyhľadáva. Niektoré chatboty vedia navyše hľadať na webe, o tom je výlet **Vnútri chatbota**. Rovnako predpovedajú aj generátory obrázkov a hlasu, len namiesto slov skladajú pixely a zvuky.
+Samotný model nič nevyhľadáva. Niektoré chatboty vedia navyše hľadať na webe, o tom je výlet **Vnútri chatbota**. Generátory obrázkov sa tiež učili na obrovskom množstve príkladov, len pracujú inak: začnú od náhodného šumu a krok za krokom ho čistia, až vyjde obrázok podľa zadania. Ani ony nič neoverujú, a tak vedia namaľovať ruku so šiestimi prstami.
 
 **Vyskúšaj to!** Zahraj sa na model: kamarát povie tri slová a ty vždy doplň najpravdepodobnejšie ďalšie. Vznikne plynulá veta, a pritom si nič „nevedel“, len odhadoval. Presne takto vzniká každá odpoveď chatbota, aj tá chybná.
 

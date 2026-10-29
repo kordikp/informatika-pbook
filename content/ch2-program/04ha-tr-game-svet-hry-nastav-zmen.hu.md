@@ -4,10 +4,10 @@ translationOf: svet-hry-promenna-hra
 lang: hu
 type: game
 game: svet-hry-nastav-zmen.hu
-title: "Játék: Állítsd vagy változtasd?"
+title: "Játék: Hány pontja van a játékosnak?"
 readingTime: 1
 standalone: true
-teaser: "A játék minden pillanatához válaszd ki az odaillő blokkot."
+teaser: "Menj végig a játék kódján lépésről lépésre. Mennyi most a változó értéke?"
 voice: universal
 parent: svet-hry-promenna-hu
 diagram: null

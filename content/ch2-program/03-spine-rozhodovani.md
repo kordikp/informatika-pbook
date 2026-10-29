@@ -33,7 +33,7 @@ Některé zprávy ti mobil sám přesune do spamu. Jak se rozhodne, kterou?
 
 Program se umí **rozhodnout**. Když platí **podmínka**, udělá jedno, **jinak** druhé. Podmínka je otázka, na kterou je odpověď jen **ano**, nebo **ne**: je věk menší než 15?
 
-Pokladna v bazénu třídí lidi na slevu a plné vstupné. Slevu mají děti **mladší 15** a lidé **od 65 let**. Jedna podmínka nestačí, potřebuješ dvě: *když věk < 15 **nebo** věk ≥ 65, pak sleva, jinak plné vstupné.* Roztřiď frontu v minihře pod textem. Pozor na Tomáše (15) a Karla (65).
+Pokladna v bazénu třídí lidi na slevu a plné vstupné. Slevu mají děti **mladší 15** a lidé **od 65 let**. Jedna podmínka nestačí, potřebuješ dvě: *když věk < 15 **nebo** věk ≥ 65, pak sleva, jinak plné vstupné.* V minihře pod textem projdeš program pokladny pro každého ve frontě. Pozor na Tomáše (15) a Karla (65).
 
 Z větví **když** a **jinak** proběhne **vždycky právě jedna**. Podmínka nemůže platit „trochu“: buď je pravdivá, nebo ne.
 

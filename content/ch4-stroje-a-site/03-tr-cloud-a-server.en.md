@@ -41,7 +41,7 @@ A **server** is a computer that provides a service to others: it sends websites,
 
 A photo of a dog “in the cloud” travels like this: from the **phone's** storage through the **Wi-Fi router** at home to the internet provider, then along an **optical cable** for hundreds of kilometres, maybe along the sea bed, to a **data centre**, a giant hall full of servers, cooling and backup power. In the end it sits on the **disk of someone else's computer**, perhaps in Ireland or the USA.
 
-The cloud gives you your data everywhere and an extra copy. But you depend on the **connection**, on the **company** and your account with it, and on the **laws of the country** where the server is. In the European Union, personal data is protected by the GDPR.
+The cloud gives you your data everywhere and an extra copy. But you depend on the **connection**, on the **company** and your account with it, and on the **laws of the country** where the server is. What rights you have to your data, you'll see in chapter 6.
 
 A **backup** is two copies in two different places. If the only copy is in the cloud, that isn't a backup.
 

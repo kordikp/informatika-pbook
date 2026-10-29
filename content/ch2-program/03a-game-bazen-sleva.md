@@ -2,10 +2,10 @@
 id: rozhodovani-hra
 type: game
 game: bazen-sleva
-title: "Hra: Sleva, nebo plné vstupné?"
+title: "Hra: Pokladna bazénu"
 readingTime: 1
 standalone: true
-teaser: "Slevu mají děti mladší 15 let a lidé od 65 let."
+teaser: "Slevu mají děti mladší 15 let a lidé od 65 let. Pokladna rozhoduje podle programu. Projdi ho pro každého, kdo přijde."
 voice: universal
 parent: null
 diagram: null

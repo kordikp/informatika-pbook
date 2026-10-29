@@ -4,10 +4,10 @@ translationOf: svet-hry-promenna-hra
 lang: sk
 type: game
 game: svet-hry-nastav-zmen.sk
-title: "Hra: Nastav, alebo zmeň?"
+title: "Hra: Koľko má hráč bodov?"
 readingTime: 1
 standalone: true
-teaser: "Ku každej chvíli v hre vyber blok, ktorý sa tam hodí."
+teaser: "Prejdi kód hry krok po kroku. Akú hodnotu má premenná teraz?"
 voice: universal
 parent: svet-hry-promenna-sk
 diagram: null

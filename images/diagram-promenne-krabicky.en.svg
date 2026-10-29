@@ -2,8 +2,8 @@
   <title id="title">A variable is a labelled box</title>
   <desc id="desc">Three labelled boxes: score = 1250 (a number), name = "Kuba" (text), playing = True (true/false). By the score, an arrow +10 for a coin shows the new value 1260.</desc>
   <defs>
-    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    <marker id="arrow-green" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#10B981"/>
     </marker>
   </defs>
 

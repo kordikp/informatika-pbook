@@ -13,7 +13,7 @@ recallQ: "Proč instalovat aktualizace, i když appka funguje?"
 recallA: "Aktualizace často opravují bezpečnostní chyby, které útočníci znají a zneužívají. Neaktualizované zařízení má otevřené díry."
 lang: cs
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -26,7 +26,7 @@ highlights:
   - "Chyby v programech, záplaty a aktualizace"
   - "Malware (virus, trojský kůň, ransomware) a bezpečné stahování"
   - "Oprávnění aplikací a záloha podle pravidla „kopie jinde“"
-carriers: prose
+carriers: prose|table
 ---
 
 Mobil chce aktualizaci a ty zrovna nemáš čas. Všechno přece funguje. Proč na ní tolik trvá?
@@ -35,9 +35,16 @@ Každý program má **chyby** a útočníci je hledají. Škodlivým programům 
 
 Tvoje zařízení je hrad. **Hradby** jsou aktualizace, **brána** oprávnění aplikací, **stráž** pouští jen ověřené zdroje a **druhý hrad** je záloha jinde. Ke každému útoku v minihře najdi část hradu, která ho zastaví.
 
+| Část hradu | V zařízení | Proti čemu chrání |
+|---|---|---|
+| 🧱 hradby | aktualizace | díry v programech, o kterých útočníci vědí |
+| 🚪 brána | oprávnění aplikací | appky, které chtějí víc, než potřebují |
+| 💂 stráž | jen ověřené zdroje | podvržené programy a trojské koně |
+| 🏰 druhý hrad | záloha jinde | ztráta dat a ransomware |
+
 Jedna obrana nestačí. Antivirus nechytí všechno a mobil viry mít může. Proto **vrstvy**. Aktualizace zalátají díry, ověřené zdroje nepustí trojského koně, oprávnění drží aplikace v mezích a **záloha jinde** zachrání data, i když všechno ostatní selže.
 
-Záloha na stejném disku záloha není. Když disk odejde, odejde s ním i ona.
+Proti ransomwaru pomůže jen záloha, na kterou útok nedosáhne: na disku, který po zálohování odpojíš, nebo v cloudu, který si pamatuje starší verze souborů. Že záloha jsou dvě kopie na dvou místech, víš z kapitoly 4.
 
 **Zkus to!** Udělej si pětiminutový audit mobilu: ✅ aktualizace automaticky? ✅ všechny appky z oficiálního obchodu? ✅ fotky zálohované jinam? ✅ zámek obrazovky? Co nemá fajfku, oprav ještě dnes.
 

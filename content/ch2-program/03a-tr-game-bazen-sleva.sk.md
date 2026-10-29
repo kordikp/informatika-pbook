@@ -4,10 +4,10 @@ translationOf: rozhodovani-hra
 lang: sk
 type: game
 game: bazen-sleva.sk
-title: "Hra: Zľava, alebo plné vstupné?"
+title: "Hra: Pokladňa na kúpalisku"
 readingTime: 1
 standalone: true
-teaser: "Zľavu majú deti mladšie ako 15 rokov a ľudia od 65 rokov."
+teaser: "Zľavu majú deti mladšie ako 15 rokov a ľudia od 65 rokov. Pokladňa rozhoduje podľa programu. Prejdi ho pre každého, kto príde."
 voice: universal
 parent: null
 diagram: null

@@ -4,10 +4,10 @@ translationOf: svet-aplikace-promenna-hra
 lang: sk
 type: game
 game: svet-aplikace-stav.sk
-title: "Hra: Nastav, alebo zmeň?"
+title: "Hra: Čo ukáže appka?"
 readingTime: 1
 standalone: true
-teaser: "Ku každej chvíli v apke vyber, či sa premenná nastaví na novú hodnotu, alebo zmení o kúsok."
+teaser: "Appka si pamätá stav v premenných. Prejdi, čo sa stane, a povedz, čo ukáže."
 voice: universal
 parent: svet-aplikace-promenna-sk
 diagram: null

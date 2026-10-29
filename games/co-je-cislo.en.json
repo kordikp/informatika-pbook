@@ -1,47 +1,132 @@
 {
-  "type": "sort",
-  "title": "Encoding or encryption?",
-  "instruction": "A rule every program knows, or a lock that only someone has the key to?",
-  "buckets": [
-    "Encoding (public rule)",
-    "Encryption (secret key)"
-  ],
+  "type": "cloze",
+  "title": "Everything is numbers",
+  "instruction": "Fill in the missing words.",
+  "debrief": "A computer stores everything as numbers made of bits: letters, colours, pictures and sounds. The coding rule is public, which is why data works across devices. Encryption is something else: it locks data with a key.",
   "items": [
     {
-      "text": "The letter A is stored as 65",
-      "answer": 0,
-      "why": "Every computer knows the character table. Nothing is secret."
+      "text": "The smallest piece of information is {0}. It has only two values: {1}.",
+      "gaps": [
+        {
+          "options": [
+            "a bit",
+            "a byte",
+            "a pixel"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "0 and 1",
+            "1 to 10",
+            "A to Z"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "A bit is a zero or a one. Everything else is made of bits."
     },
     {
-      "text": "A photo saved as .png",
-      "answer": 0,
-      "why": "The PNG format is public. Any image viewer can open it."
+      "text": "Eight bits make {0}. It can hold {1} different values.",
+      "gaps": [
+        {
+          "options": [
+            "1 byte",
+            "1 kilobyte",
+            "1 pixel"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "8",
+            "16",
+            "256"
+          ],
+          "answer": 2
+        }
+      ],
+      "why": "Each extra bit doubles the number of values: 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 = 256."
     },
     {
-      "text": "A chat message only the recipient can read",
-      "answer": 1,
-      "why": "The message is locked with a key only the recipient has. That's encryption."
+      "text": "In a computer the letter A is stored as the number {0}. The character table is known to {1}.",
+      "gaps": [
+        {
+          "options": [
+            "1",
+            "65",
+            "100"
+          ],
+          "answer": 1
+        },
+        {
+          "options": [
+            "only your phone",
+            "every computer",
+            "only whoever has the key"
+          ],
+          "answer": 1
+        }
+      ],
+      "why": "In the character table capital A is number 65. The table is public, so texts work on different computers too."
     },
     {
-      "text": "A pixel as three numbers: red, green, blue",
-      "answer": 0,
-      "why": "A public rule for writing a colour as numbers."
+      "text": "You write the colour of a pixel with three numbers: how much {0} it contains.",
+      "gaps": [
+        {
+          "options": [
+            "red, green and blue",
+            "black, white and grey",
+            "light, shadow and sharpness"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Each pixel has three numbers from 0 to 255. A photo from a phone has millions of them."
     },
     {
-      "text": "The padlock and https in your browser",
-      "answer": 1,
-      "why": "The connection to the website is encrypted, so nobody on the way can read it."
+      "text": "A picture of 8 × 8 pixels has {0} pixels. At 16 × 16 there are {1}.",
+      "gaps": [
+        {
+          "options": [
+            "16",
+            "32",
+            "64"
+          ],
+          "answer": 2
+        },
+        {
+          "options": [
+            "128",
+            "256",
+            "512"
+          ],
+          "answer": 1
+        }
+      ],
+      "why": "Twice as many across and down is four times as many numbers, and so a file four times as big."
     },
     {
-      "text": "A song saved as .mp3",
-      "answer": 0,
-      "why": "MP3 is a public format. Any player can play it."
-    },
-    {
-      "text": "A Caesar cipher with a key of 3",
-      "answer": 1,
-      "why": "Without the key (a shift of 3) you can't read the message. It's a cipher, if a weak one."
+      "text": "Coding is a {0} rule for writing data as numbers. Encryption locks data {1}.",
+      "gaps": [
+        {
+          "options": [
+            "public",
+            "secret",
+            "random"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "with a key only someone has",
+            "with a rule everyone knows",
+            "with the Wi-Fi password"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Anyone can open a PNG or an MP3, because the rule is public. Only someone with the key can open an encrypted message."
     }
-  ],
-  "debrief": "Encoding is a public rule for writing data as numbers. Every program knows it. Encryption locks the data, and only someone with the key can read it."
+  ]
 }

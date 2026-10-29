@@ -1,47 +1,88 @@
 {
-  "type": "sort",
-  "title": "Aktív vagy passzív lábnyom?",
-  "instruction": "Tudatosan hagytad, vagy úgy keletkezett, hogy nem láttad?",
-  "buckets": [
-    "Aktív (tudatosan)",
-    "Passzív (nem látod)"
-  ],
+  "type": "hotspot",
+  "title": "Mit árul el Matěj?",
+  "instruction": "A kitalált Matěj és a hétköznapi profilja. Koppints minden részre, amelyből egy idegen megtudja, ki ő, hol szokott lenni, vagy mikor nem lesz otthon.",
+  "debrief": "Minden nyom önmagában ártatlan. Együtt elárulják a nevét, az utcáját, hogy mikor jár edzésre, és azt is, hogy a nyári szünetben senki sem lesz otthon. Mielőtt megosztasz valamit, kérdezd meg: mit tud meg ebből egy idegen?",
   "items": [
     {
-      "text": "Egy fotó, amelyet közzéteszel",
-      "answer": 0,
-      "why": "Úgy döntöttél, hogy megosztod, ez aktív lábnyom."
+      "label": "Becenév",
+      "segments": [
+        {
+          "text": "matej",
+          "hit": true,
+          "why": "A keresztneve."
+        },
+        {
+          "text": "nadrazni",
+          "hit": true,
+          "why": "Az utca neve, ahol lakik."
+        },
+        {
+          "text": "2011",
+          "hit": true,
+          "why": "A születési éve, és így az életkora is."
+        },
+        {
+          "text": "⚽ foci · 🎧 zene"
+        }
+      ]
     },
     {
-      "text": "A fotóban tárolt GPS-helyadat",
-      "answer": 1,
-      "why": "A telefon magától írja bele a fotóba. A képen nem látod."
+      "label": "Bejegyzés",
+      "segments": [
+        {
+          "text": "Edzés, mint mindig"
+        },
+        {
+          "text": "kedden és csütörtökön 17:00-tól",
+          "hit": true,
+          "why": "Mikor nincs rendszeresen otthon, és hol lehet megtalálni."
+        },
+        {
+          "text": "📷 fotó az öltözőből, a mezen ott a klub és a városrész neve",
+          "hit": true,
+          "why": "Hol edz, és így azt is, melyik városrészben lakik."
+        },
+        {
+          "text": "#foci"
+        }
+      ]
     },
     {
-      "text": "Hozzászólás egy videó alatt",
-      "answer": 0,
-      "why": "Tudatosan írtad, és mások is látják."
+      "label": "Bejegyzés",
+      "segments": [
+        {
+          "text": "Új bicaj! 🚲"
+        },
+        {
+          "text": "📷 fotó a ház előtt, látszik a házszám",
+          "hit": true,
+          "why": "A pontos cím."
+        },
+        {
+          "text": "📍 helymeghatározás: bekapcsolva",
+          "hit": true,
+          "why": "A helyadattal ellátott bejegyzés megmutatja a pontos helyet."
+        }
+      ]
     },
     {
-      "text": "Sütik egy meglátogatott weboldalról",
-      "answer": 1,
-      "why": "A weboldal a böngésződbe menti őket, akkor is, ha semmire sem kattintasz."
-    },
-    {
-      "text": "Az előzmények arról, mit keresel",
-      "answer": 1,
-      "why": "Magától mentődik, és kiderül belőle, mi érdekel."
-    },
-    {
-      "text": "Bejegyzés a nyaralásodról",
-      "answer": 0,
-      "why": "Te magad osztottad meg. Vigyázz, azt is elárulja, hogy nem vagy otthon."
-    },
-    {
-      "text": "Hogy melyik videót mennyi ideig nézed",
-      "answer": 1,
-      "why": "Az alkalmazás csendben méri, és ez alapján választja ki a következő videóidat."
+      "label": "Bejegyzés",
+      "segments": [
+        {
+          "text": "Az egész nyári szünet a nagyinál a hegyekben,",
+          "hit": true,
+          "why": "Mikor nem lesz otthon, és meddig."
+        },
+        {
+          "text": "otthon csak a macska 🐈",
+          "hit": true,
+          "why": "A lakás üres lesz."
+        },
+        {
+          "text": "🌲⛰️"
+        }
+      ]
     }
-  ],
-  "debrief": "Az aktív lábnyomot látod, mert te magad hozod létre. A passzív csendben keletkezik: helyadat, sütik, előzmények és a videóknál töltött idő. Gyakran többet árul el rólad, mint amit megosztasz."
+  ]
 }

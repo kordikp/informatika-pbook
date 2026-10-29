@@ -1,0 +1,143 @@
+{
+  "type": "trace",
+  "title": "Krokuj cyklus",
+  "instruction": "Prejdi program krok po kroku ako počítač. Čo sa stane na zvýraznenom riadku?",
+  "debrief": "Cyklus s pevným počtom prebehne presne toľkokrát, koľko povieš. Cyklus s podmienkou ju kontroluje na začiatku každého kola. A keď podmienka nikdy neprestane platiť, program sa zacyklí.",
+  "rounds": [
+    {
+      "title": "Robot obchádza stĺp",
+      "code": [
+        "opakuj 4×:",
+        "    choď 3",
+        "    otoč sa doprava",
+        "pípni"
+      ],
+      "steps": [
+        {
+          "line": [
+            1,
+            2
+          ],
+          "q": "Koľkokrát sa vykonajú riadky 2 a 3, telo cyklu?",
+          "options": [
+            "1×",
+            "3×",
+            "4×",
+            "12×"
+          ],
+          "answer": 2,
+          "why": "Opakuj 4× znamená štyri kolá. V každom kole robot urobí oba príkazy tela."
+        },
+        {
+          "line": 1,
+          "q": "Koľko políčok robot celkovo prejde?",
+          "options": [
+            "3",
+            "4",
+            "7",
+            "12"
+          ],
+          "answer": 3,
+          "why": "Štyri kolá po troch políčkach: 4 × 3 = 12."
+        },
+        {
+          "line": 3,
+          "q": "Koľkokrát robot pípne?",
+          "options": [
+            "ani raz",
+            "raz",
+            "štyrikrát",
+            "päťkrát"
+          ],
+          "answer": 1,
+          "why": "Pípnutie nie je odsadené, takže nepatrí do tela cyklu. Vykoná sa raz, až keď cyklus skončí."
+        }
+      ]
+    },
+    {
+      "title": "Chodba neznámej dĺžky",
+      "code": [
+        "opakuj, kým nie je pred stenou:",
+        "    choď 1",
+        "zastav"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "Pred robotom sú 3 voľné políčka, potom stena.",
+          "q": "Kde robot zastaví?",
+          "options": [
+            "hneď na štarte",
+            "tesne pred stenou",
+            "v stene",
+            "nezastaví, ide ďalej"
+          ],
+          "answer": 1,
+          "why": "Po troch krokoch je pred stenou. Podmienka už neplatí, cyklus skončí a robot zastaví."
+        },
+        {
+          "line": 0,
+          "input": "Pred robotom sú 3 voľné políčka, potom stena.",
+          "q": "Koľkokrát sa skontroluje podmienka na riadku 1?",
+          "options": [
+            "3×",
+            "4×",
+            "raz",
+            "stále dookola"
+          ],
+          "answer": 1,
+          "why": "Pred každým kolom raz. Trikrát platí a robot ide, štvrtýkrát je pred stenou a cyklus skončí. Tri kolá, štyri kontroly."
+        }
+      ]
+    },
+    {
+      "title": "Pokazený semafor",
+      "code": [
+        "opakuj, kým nesvieti zelená:",
+        "    čakaj 1 sekundu",
+        "prejdi cez cestu"
+      ],
+      "steps": [
+        {
+          "line": 0,
+          "input": "Semafor je pokazený a svieti stále červená.",
+          "q": "Kedy cyklus skončí?",
+          "options": [
+            "po 1 sekunde",
+            "až keď semafor naozaj rozsvieti zelenú",
+            "po 10 kolách",
+            "hneď, lebo svieti červená"
+          ],
+          "answer": 1,
+          "why": "Podmienka „nesvieti zelená“ platí ďalej a ďalej. Kým semafor neopravia, program sa zacyklí a čaká."
+        }
+      ]
+    },
+    {
+      "title": "Odpadkový kôš",
+      "code": [
+        "opakuj, kým nie je kôš plný:",
+        "    hoď papier",
+        "    hoď papier"
+      ],
+      "steps": [
+        {
+          "line": [
+            1,
+            2
+          ],
+          "input": "Do plného koša chýba jeden papier.",
+          "q": "Koľko papierov program hodí?",
+          "options": [
+            "jeden",
+            "dva",
+            "žiadny",
+            "nekonečne veľa"
+          ],
+          "answer": 1,
+          "why": "Podmienka sa kontroluje len na začiatku kola. Kôš na začiatku plný nie je, takže prebehne celé kolo: dva papiere. Kôš pretečie a až potom cyklus zistí, že je plný."
+        }
+      ]
+    }
+  ]
+}

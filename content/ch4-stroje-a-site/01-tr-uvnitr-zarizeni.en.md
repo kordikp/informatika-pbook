@@ -14,7 +14,7 @@ core: true
 recallQ: "Why does an unsaved document disappear when the power goes off, but a saved one doesn't?"
 recallA: "The unsaved one exists only in the main memory, which forgets without power. The saved one is in storage, which remembers permanently."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -32,7 +32,7 @@ highlights:
   - "Processor, main memory, storage, peripherals; hardware vs. software"
   - "Main memory is temporary: unsaved work disappears, full memory slows things down"
   - "The operating system runs apps and access to the hardware; choosing a device by its features"
-carriers: prose
+carriers: prose|table
 ---
 
 Your phone is lagging. Will deleting photos help, or closing apps? It depends on which kind of memory is full.
@@ -46,9 +46,18 @@ Inside a computer, a phone and a micro:bit, the same parts are at work. Imagine 
 
 Open a game, 40 tabs, your photos and a report. The worktop fills up and the shift manager has to put things away in the pantry and then fetch them back again. That takes time, which is why an overloaded phone lags. You write a few sentences of the report, and before you save them, the power goes off. When it's switched back on, the worktop is empty.
 
+⟦obr: images/proklik-uvnitr-zarizeni.en.svg⟧
+
 The unsaved report was only on the worktop, in the **main memory**. Without power it forgets. The saved one is in the pantry, in **storage**, and there it lasts.
 
 When a phone says “128 GB”, it means storage. It may have only 8 GB of main memory. A full main memory slows things down, a full storage won't let you save anything new.
+
+| | Main memory (worktop) | Storage (pantry) |
+|---|---|---|
+| What's there | whatever is running right now | files and apps |
+| Size in a phone | for example 8 GB | for example 128 GB |
+| Speed | very fast | slower |
+| After switching off | forgets | remembers |
 
 The kitchen with its worktop and cook is called **hardware**: things you can touch. The recipes, that is, the programs, are **software**.
 

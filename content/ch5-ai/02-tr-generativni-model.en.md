@@ -43,7 +43,7 @@ Play the model. The sentence starts “The best-known book by the writer Karel V
 
 Every word was likely, which is why the sentence sounds believable. But nowhere was there a step “check whether it's true”. That's how **hallucinations** happen: fluent, confident answers that aren't true.
 
-The model itself doesn't look anything up. Some chatbots can also search the web, which is what the trip **Inside a chatbot** is about. Image and voice generators predict in the same way, only they put together pixels and sounds instead of words.
+The model itself doesn't look anything up. Some chatbots can also search the web, which is what the trip **Inside a chatbot** is about. Image generators also learned from a huge number of examples, but they work differently: they start from random noise and clean it up step by step until a picture matching the prompt comes out. They don't check anything either, which is how they can paint a hand with six fingers.
 
 **Try it!** Play the model: a friend says three words and each time you add the most likely next one. You get a fluent sentence, and yet you didn't “know” anything, you only guessed. That is exactly how every chatbot answer is made, the wrong ones too.
 

@@ -7,7 +7,7 @@ game: svet-weby-od-enteru.en
 title: "Game: From Enter to the page"
 readingTime: 1
 standalone: true
-teaser: "Put in order what happens from pressing Enter to the finished page."
+teaser: "Fill in what happens from pressing Enter to the finished page."
 voice: universal
 parent: svet-weby-cesta-dat-en
 diagram: null

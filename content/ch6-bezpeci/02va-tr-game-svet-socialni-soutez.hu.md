@@ -4,10 +4,10 @@ translationOf: svet-socialni-podvod-cili-na-cloveka-hra
 lang: hu
 type: game
 game: svet-socialni-soutez.hu
-title: "Játék: Csalás vagy rendben van?"
+title: "Játék: Mi árulja el a hamis nyereményjátékot?"
 readingTime: 1
 standalone: true
-teaser: "Ezeket az üzeneteket és ajánlatokat kaptad egy közösségi oldalon. Melyik csalás?"
+teaser: "Üzenetek és ajánlatok egy közösségi oldalról. Koppints minden részre, amely átverést árul el. Ha az ajánlat rendben van, ne jelölj meg semmit."
 voice: universal
 parent: svet-socialni-podvod-cili-na-cloveka-hu
 diagram: null

@@ -4,10 +4,10 @@ translationOf: svet-hry-cesta-dat-hra
 lang: hu
 type: game
 game: svet-hry-cesta-vystrelu.hu
-title: "Játék: Egyetlen lövés útja"
+title: "Játék: Milyen gyorsan repül a lövés?"
 readingTime: 1
 standalone: true
-teaser: "Rendezd sorba, mi történik a gomb megnyomásától a találatig a képernyőn."
+teaser: "Becsüld meg a csúszkán. Elég nagyjából."
 voice: universal
 parent: svet-hry-cesta-dat-hu
 diagram: null

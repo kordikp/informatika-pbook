@@ -41,7 +41,7 @@ A **program** olyan nyelven leírt algoritmus, amelyet a számítógép megért.
 
 Minden program három dolgot csinál: fogad egy **bemenetet** (kattintás, érzékelő, szöveg), **feldolgozza**, és **kimenetet** ad (kép, hang, fény).
 
-A robotnak el kell jutnia a csillagig, és a célban fel kell kapcsolnia egy lámpát. A program **bemenettel** kezdődik: *amikor megnyomják az A gombot*. Utána jön a **feldolgozás**, vagyis a blokkok sorrendben: *menj előre 3-at, fordulj balra, menj előre 2-t*. A végén a **kimenet**: *kapcsold fel a lámpát*. Ha felcseréled a *menj előre 3-at* és a *menj előre 2-t*, a robot túl korán fordul, nekimegy a falnak, és nem éri el a csillagot.
+A robotnak el kell jutnia a csillagig, és a célban fel kell kapcsolnia egy lámpát. A program **bemenettel** kezdődik: *amikor megnyomják az A gombot*. Az ilyen indítót **eseménynek** hívják: a program vár, amíg bekövetkezik, aztán elindul. Utána jön a **feldolgozás**, vagyis a blokkok sorrendben: *menj előre 3-at, fordulj balra, menj előre 2-t*. A végén a **kimenet**: *kapcsold fel a lámpát*. Ha felcseréled a *menj előre 3-at* és a *menj előre 2-t*, a robot túl korán fordul, nekimegy a falnak, és nem éri el a csillagot.
 
 Elég volt felcserélni két blokkot, és a robot máshová ment. **A parancsok sorrendje a program része.** A számítógép nem tudja, mire gondoltál. Csak azt tudja, mit írtál.
 

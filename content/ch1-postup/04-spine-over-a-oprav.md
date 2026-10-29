@@ -2,7 +2,7 @@
 id: over-a-oprav
 type: spine
 title: "Ověř a oprav"
-readingTime: 1
+readingTime: 2
 standalone: true
 teaser: "Mobil ti nabízí aktualizaci, která „opravuje chyby“. Jak to, že je autoři nenašli dřív?"
 voice: universal
@@ -26,7 +26,7 @@ highlights:
   - "Test = vstup + očekávaný výstup, připravený předem"
   - "Okrajové případy (0, prázdný vstup, maximum)"
   - "Ladění: místo → příčina → oprava → nové ověření; efektivita jako další měřítko"
-carriers: prose|image|code
+carriers: prose|image
 ---
 
 Mobil ti nabízí aktualizaci, která „opravuje chyby“. Jak to, že je autoři nenašli dřív?
@@ -35,17 +35,9 @@ Mobil ti nabízí aktualizaci, která „opravuje chyby“. Jak to, že je auto�
 
 Dobrý **test** má dvě části: **vstup** a **výsledek, který čekáš**. Ten si připravíš předem.
 
-Školní automat prodává lístky do kina po 30 Kč. Testy si připravíš předem: 1 člověk → 1 lístek a 30 Kč, 2 lidé → 60 Kč, 3 lidé → 90 Kč, 5 lidí → 150 Kč. Všechny projdou. Pak zkusíš záludný vstup, **0 lidí**. Čekáš, že automat nic nevytiskne. Vytiskne ale lístek za 0 Kč. Program totiž nejdřív tiskne a teprve potom se ptá, jestli má pokračovat:
+Školní automat prodává lístky do kina po 30 Kč. Jeho návod zní: *zjisti, kolik lidí přišlo → vytiskni lístek → chybí ještě někomu lístek? Pokud ano, vytiskni další → nakonec vytiskni účtenku za všechny*. Testy si připravíš předem: 1 člověk → 1 lístek a 30 Kč, 2 lidé → 60 Kč, 3 lidé → 90 Kč, 5 lidí → 150 Kč. Všechny projdou. Pak zkusíš záludný vstup, **0 lidí**. Čekáš, že automat nic nevytiskne. Vytiskne ale lístek za 0 Kč. Návod totiž nejdřív tiskne a teprve potom se ptá, jestli lístek někomu chybí.
 
-```
-vytištěno = 0
-opakuj:
-    vytiskni lístek
-    vytištěno = vytištěno + 1
-dokud vytištěno < počet lidí
-```
-
-Oprava: zkontroluj podmínku **na začátku** (*opakuj, dokud vytištěno < počet lidí*). Pro nula lidí se cyklus neprovede ani jednou.
+Oprava: zeptej se **předem** (*chybí někomu lístek? Pokud ano, vytiskni ho a zeptej se znovu*). Pro nula lidí se nevytiskne nic. A pak znovu pusť všechny testy, i ty pro 1, 2, 3 a 5 lidí.
 
 ![Ověř a oprav](images/comic-brouk.svg)
 
@@ -53,7 +45,7 @@ Automat fungoval pro 1, 2, 3 i 5 lidí. Chyba se ukázala až u **nuly**: vytisk
 
 Ladění má čtyři kroky: **najdi místo, kde se to kazí → pochop příčinu → oprav → ověř znovu všemi testy**. Poslední krok je důležitý. Oprava, která rozbije jiné testy, není oprava.
 
-Když fungují dvě řešení, můžeš porovnat i **efektivitu**: které potřebuje méně kroků nebo méně paměti.
+Když fungují dvě řešení, můžeš porovnat i **efektivitu**: které potřebuje méně kroků nebo méně paměti. Kamarád si myslí číslo od 1 do 100 a na každý tip řekne jen „víc“, nebo „míň“. Když zkoušíš 1, 2, 3 a tak dál, můžeš potřebovat až 100 pokusů. Když tipneš vždycky doprostřed toho, co zbývá (50, pak 25 nebo 75…), stačí ti nejvýš 7. Obě řešení číslo najdou. Druhé je mnohem rychlejší.
 
 **Zkus to!** Vezmi návod, který jsi napsal (třeba ten na chleba), a zkus ho rozbít. Co když je chleba už nakrájený? Co když došlo máslo? Každý vstup, na kterém návod selže, je chyba, kterou jsi našel dřív než ten, kdo ho použije. Oprav návod, ať zvládne i tohle.
 

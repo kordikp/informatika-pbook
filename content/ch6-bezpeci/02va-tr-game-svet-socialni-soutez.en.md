@@ -4,10 +4,10 @@ translationOf: svet-socialni-podvod-cili-na-cloveka-hra
 lang: en
 type: game
 game: svet-socialni-soutez.en
-title: "Game: Scam or fine?"
+title: "Game: What gives a fake competition away?"
 readingTime: 1
 standalone: true
-teaser: "You got these messages and offers on social media. Which are scams?"
+teaser: "Messages and offers from a social network. Tap every part that gives a scam away. If the offer is fine, mark nothing."
 voice: universal
 parent: svet-socialni-podvod-cili-na-cloveka-en
 diagram: null

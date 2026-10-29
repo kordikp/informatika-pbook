@@ -41,7 +41,7 @@ carriers: prose|diagram
 
 Každý program robí tri veci: prijme **vstup** (klik, senzor, text), **spracuje** ho a vydá **výstup** (obrázok, zvuk, svetlo).
 
-Robot má dôjsť k hviezde a v cieli rozsvietiť svetlo. Program začína **vstupom**: *po stlačení tlačidla A*. Potom nasleduje **spracovanie**, teda bloky v poradí: *choď dopredu 3, otoč sa doľava, choď dopredu 2*. Na konci je **výstup**: *rozsvieť svetlo*. Keď prehodíš *choď dopredu 3* a *choď dopredu 2*, robot zatočí priskoro, narazí do steny a k hviezde nedôjde.
+Robot má dôjsť k hviezde a v cieli rozsvietiť svetlo. Program začína **vstupom**: *po stlačení tlačidla A*. Takémuto spúšťaču sa hovorí **udalosť**: program čaká, kým nastane, a potom sa rozbehne. Potom nasleduje **spracovanie**, teda bloky v poradí: *choď dopredu 3, otoč sa doľava, choď dopredu 2*. Na konci je **výstup**: *rozsvieť svetlo*. Keď prehodíš *choď dopredu 3* a *choď dopredu 2*, robot zatočí priskoro, narazí do steny a k hviezde nedôjde.
 
 Stačilo prehodiť dva bloky a robot išiel inam. **Poradie príkazov je súčasť programu.** Počítač nevie, čo si myslel. Vie len, čo si napísal.
 

@@ -41,6 +41,8 @@ When something happens again and again, you don't write it a hundred times. You 
 
 The robot has to drive round a pillar and come back to the start. The long program has 8 blocks: *move 3, turn right*, and all of that four times. The same pair repeats, so **repeat 4×: move 3, turn right** is enough. Three blocks instead of eight. And what if the robot has to drive to the wall of a corridor whose length it doesn't know? *Repeat 5×: move 1* crashes in a short corridor and stops too early in a long one. What works is **repeat until in front of the wall: move 1**.
 
+⟦obr: images/proklik-opakovani.en.svg⟧
+
 You use a loop with a **fixed count** when you **know in advance how many times**: the four sides of a square. A loop **with a condition** when it depends on what happens: drive until you reach the wall.
 
 Watch out for two things. The condition is checked **at the start of every round**, not in the middle of the body. And a loop has to **end** at some point. If the condition never stops being true, the program gets **stuck in an endless loop**. Sometimes that's a bug, sometimes it's on purpose: a game loop or an endless feed keeps running deliberately.

@@ -41,7 +41,7 @@ A **program** is an algorithm written in a language a computer understands. It c
 
 Every program does three things: it takes an **input** (a click, a sensor, text), **processes** it and produces an **output** (a picture, a sound, a light).
 
-The robot has to drive to the star and switch on a light at the finish. The program starts with an **input**: *when button A is pressed*. Then comes the **processing**, the blocks in order: *move forward 3, turn left, move forward 2*. At the end is the **output**: *switch on the light*. If you swap *move forward 3* and *move forward 2*, the robot turns too early, hits the wall and never reaches the star.
+The robot has to drive to the star and switch on a light at the finish. The program starts with an **input**: *when button A is pressed*. A trigger like this is called an **event**: the program waits for it to happen and then gets going. Then comes the **processing**, the blocks in order: *move forward 3, turn left, move forward 2*. At the end is the **output**: *switch on the light*. If you swap *move forward 3* and *move forward 2*, the robot turns too early, hits the wall and never reaches the star.
 
 Swapping two blocks was enough to send the robot somewhere else. **The order of the commands is part of the program.** The computer doesn't know what you meant. It only knows what you wrote.
 

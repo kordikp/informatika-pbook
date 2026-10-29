@@ -4,10 +4,10 @@ translationOf: kodovani-hra
 lang: sk
 type: game
 game: co-je-cislo.sk
-title: "Hra: Kódovanie, alebo šifrovanie?"
+title: "Hra: Všetko sú čísla"
 readingTime: 1
 standalone: true
-teaser: "Pravidlo, ktoré pozná každý program, alebo zámok, ku ktorému má kľúč len niekto?"
+teaser: "Doplň chýbajúce slová."
 voice: universal
 parent: null
 diagram: null

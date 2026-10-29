@@ -33,11 +33,13 @@ Přijde SMS: „Zásilka čeká na doplatek 19 Kč.“ Zrovna něco čekáš. Kl
 
 Nejčastější útok neláme počítač. Láme **tebe**. Zpráva hraje na **spěch**, **strach**, **odměnu** nebo **důvěru**, abys jednal dřív, než přemýšlíš. Tomu se říká **sociální inženýrství**. Zpráva, která láká hesla a údaje, je **phishing**.
 
-Rozhodni zprávy v minihře pod textem. U každé se zeptej: **tlačí na mě** (spěch, strach, odměna, důvěra)? A **chce heslo, kód, peníze nebo přihlášení přes odkaz**?
+V minihře pod textem najdi, co v každé zprávě prozrazuje podvod. U každé se zeptej: **tlačí na mě** (spěch, strach, odměna, důvěra)? A **chce heslo, kód, peníze nebo přihlášení přes odkaz**?
 
 Rada „podvod poznáš podle chyb v češtině“ už neplatí. AI napíše zprávu bez chyb a napodobí i hlas. Spolehlivější znaky jsou **nátlak** a **žádost** o heslo, kód, peníze nebo přihlášení přes odkaz.
 
 Obrana má tři kroky. **Zastav se.** **Ověř si to jinou cestou**: zavolej na číslo, které znáš, otevři aplikaci sám. A **hesla ani kódy nikomu nesděluj**, ani podpoře, ani kamarádovi.
+
+Když tě někdo **vydírá nebo šikanuje** (hrozí, že zveřejní fotku, chce peníze nebo další fotky), neplať a nic dalšího neposílej. **Ulož si důkazy** (snímky obrazovky), **řekni to dospělému**, kterému věříš, a účet nahlas na síti. Pomůže i linka pro děti **116 111**. Vina je vždycky na tom, kdo vydírá.
 
 **Zkus to!** Sestav se spolužáky „podvodné bingo“: spěch, výhra, žádost o kód, divná adresa, neosobní oslovení… Kdo v příštích týdnech nasbírá ze skutečného spamu nejvíc políček? (Sbírat, ne klikat!)
 

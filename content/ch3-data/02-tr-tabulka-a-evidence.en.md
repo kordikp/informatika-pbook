@@ -53,7 +53,7 @@ The filter “due back is earlier than 28 Oct” finds three at once: Petr, Ema 
 
 From the notes, the answer was just a guess. In the tidy table a **filter** found it at once. A filter is a condition asked of every row: is the return date earlier than today?
 
-A table can also **sort** and **count**: how many books Ema has, how many loans are overdue. But this only works if everyone writes by the same rules: the same format, no duplicates, nothing missing.
+A table can also **sort** and **count**. **Functions** do the counting: the formula `=COUNTIF(A2:A6, "Ema")` goes through the Pupil column and counts how many loans Ema has. In the tidy table the answer is 1. In the notebook where Ema appears twice it would be 2, and that's wrong. But this only works if everyone writes by the same rules: the same format, no duplicates, nothing missing.
 
 More columns don't make better records. A column makes sense when you will ask questions about it.
 

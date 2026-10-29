@@ -4,10 +4,10 @@ translationOf: digitalni-stopa-hra
 lang: en
 type: game
 game: aktivni-pasivni-stopa.en
-title: "Game: Active or passive footprint?"
+title: "Game: What does Matěj give away?"
 readingTime: 1
 standalone: true
-teaser: "Did you leave it knowingly, or did it appear without you seeing it?"
+teaser: "Matěj is made up and has an ordinary profile. Tap every part from which a stranger can tell who he is, where he spends his time or when he won't be at home."
 voice: universal
 parent: null
 diagram: null

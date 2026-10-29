@@ -1,0 +1,143 @@
+{
+  "type": "trace",
+  "title": "Krokuj cyklus",
+  "instruction": "Projdi program krok po kroku jako počítač. Co se stane na zvýrazněném řádku?",
+  "debrief": "Cyklus s pevným počtem proběhne přesně tolikrát, kolik řekneš. Cyklus s podmínkou ji kontroluje na začátku každého kola. A když podmínka nikdy nepřestane platit, program se zacyklí.",
+  "rounds": [
+    {
+      "title": "Robot objíždí sloup",
+      "code": [
+        "opakuj 4×:",
+        "    jdi 3",
+        "    otoč se vpravo",
+        "pípni"
+      ],
+      "steps": [
+        {
+          "line": [
+            1,
+            2
+          ],
+          "q": "Kolikrát se provedou řádky 2 a 3, tělo cyklu?",
+          "options": [
+            "1×",
+            "3×",
+            "4×",
+            "12×"
+          ],
+          "answer": 2,
+          "why": "Opakuj 4× znamená čtyři kola. V každém kole robot udělá oba příkazy těla."
+        },
+        {
+          "line": 1,
+          "q": "Kolik políček robot celkem ujde?",
+          "options": [
+            "3",
+            "4",
+            "7",
+            "12"
+          ],
+          "answer": 3,
+          "why": "Čtyři kola po třech políčkách: 4 × 3 = 12."
+        },
+        {
+          "line": 3,
+          "q": "Kolikrát robot pípne?",
+          "options": [
+            "ani jednou",
+            "jednou",
+            "čtyřikrát",
+            "pětkrát"
+          ],
+          "answer": 1,
+          "why": "Pípnutí není odsazené, takže nepatří do těla cyklu. Provede se jednou, až cyklus skončí."
+        }
+      ]
+    },
+    {
+      "title": "Chodba neznámé délky",
+      "code": [
+        "opakuj, dokud není před zdí:",
+        "    jdi 1",
+        "zastav"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "Před robotem jsou 3 volná políčka, pak zeď.",
+          "q": "Kde robot zastaví?",
+          "options": [
+            "hned na startu",
+            "těsně před zdí",
+            "ve zdi",
+            "nezastaví, jede dál"
+          ],
+          "answer": 1,
+          "why": "Po třech krocích je před zdí. Podmínka už neplatí, cyklus skončí a robot zastaví."
+        },
+        {
+          "line": 0,
+          "input": "Před robotem jsou 3 volná políčka, pak zeď.",
+          "q": "Kolikrát se zkontroluje podmínka na řádku 1?",
+          "options": [
+            "3×",
+            "4×",
+            "jednou",
+            "pořád dokola"
+          ],
+          "answer": 1,
+          "why": "Před každým kolem jednou. Třikrát platí a robot jde, počtvrté je před zdí a cyklus skončí. Tři kola, čtyři kontroly."
+        }
+      ]
+    },
+    {
+      "title": "Rozbitý semafor",
+      "code": [
+        "opakuj, dokud nesvítí zelená:",
+        "    čekej 1 sekundu",
+        "přejdi silnici"
+      ],
+      "steps": [
+        {
+          "line": 0,
+          "input": "Semafor je rozbitý a svítí pořád červená.",
+          "q": "Kdy cyklus skončí?",
+          "options": [
+            "po 1 sekundě",
+            "až semafor opravdu rozsvítí zelenou",
+            "po 10 kolech",
+            "hned, protože svítí červená"
+          ],
+          "answer": 1,
+          "why": "Podmínka „nesvítí zelená“ platí dál a dál. Dokud se semafor neopraví, program se zacyklí a čeká."
+        }
+      ]
+    },
+    {
+      "title": "Odpadkový koš",
+      "code": [
+        "opakuj, dokud není koš plný:",
+        "    vhoď papír",
+        "    vhoď papír"
+      ],
+      "steps": [
+        {
+          "line": [
+            1,
+            2
+          ],
+          "input": "Do plného koše chybí jeden papír.",
+          "q": "Kolik papírů program vhodí?",
+          "options": [
+            "jeden",
+            "dva",
+            "žádný",
+            "nekonečně mnoho"
+          ],
+          "answer": 1,
+          "why": "Podmínka se kontroluje jen na začátku kola. Koš na začátku plný není, takže proběhne celé kolo: dva papíry. Koš přeteče a teprve pak cyklus zjistí, že je plný."
+        }
+      ]
+    }
+  ]
+}

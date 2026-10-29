@@ -1,52 +1,54 @@
 {
-  "type": "sort",
-  "title": "Silné, alebo slabé heslo?",
-  "instruction": "Útočník skúša najprv známe heslá a ich obmeny. Čo vydrží?",
-  "buckets": [
-    "Vydrží",
-    "Padne rýchlo"
+  "type": "estimate",
+  "title": "Za ako dlho ho uhádne?",
+  "instruction": "Útočník ukradol databázu hesiel a skúša 10 miliárd hesiel za sekundu: najprv známe heslá, potom slová a ich obmeny, nakoniec všetky kombinácie. Odhadni, ako dlho heslo vydrží.",
+  "debrief": "Útočník skúša najprv známe heslá, slová a ich obmeny. Vydrží dlhé heslo: veta z nečakaných slov, alebo dlhé náhodné heslo zo správcu hesiel. Pre každý účet iné, a k tomu dvojfázové overenie.",
+  "scale": [
+    "hneď",
+    "do minúty",
+    "pár hodín",
+    "pár dní",
+    "pár rokov",
+    "tisíce rokov",
+    "milióny rokov a viac"
   ],
   "items": [
     {
-      "text": "heslo123",
-      "answer": 1,
-      "why": "Patrí medzi najčastejšie heslá na svete. Útočník ho skúsi hneď."
-    },
-    {
-      "text": "P@ss1",
-      "answer": 1,
-      "why": "Krátke, a zámena písmen za znaky je známy trik. Programy ju skúšajú samy."
-    },
-    {
-      "text": "Tr4ktor!",
-      "answer": 1,
-      "why": "Jedno slovo s obvyklými zámenami. Na to majú útočníci slovníky."
-    },
-    {
-      "text": "žirafa je knedle na Mesiaci",
+      "q": "heslo123",
       "answer": 0,
-      "why": "Dlhé a z nečakaných slov. To sa uhádnuť nedá."
+      "why": "Patrí medzi najčastejšie heslá na svete. Je v zozname, ktorý útočník skúša ako prvý."
     },
     {
-      "text": "minecraft2012",
-      "answer": 1,
-      "why": "Obľúbená hra a rok. Oboje útočník skúša medzi prvými."
-    },
-    {
-      "text": "modrý vlak ide dozadu do Košíc",
+      "q": "minecraft2012",
       "answer": 0,
-      "why": "Dlhá veta, ktorú si zapamätáš, ale nikto ju neuhádne."
+      "tolerance": 1,
+      "why": "Obľúbená hra a rok. Slová s číslami na konci útočník skúša medzi prvými."
     },
     {
-      "text": "Rovnaké dlhé heslo na hru aj e-mail",
+      "q": "Macka2012!",
       "answer": 1,
-      "why": "Keď unikne z hry, útočník ho skúsi aj na e-mail."
+      "tolerance": 1,
+      "why": "Slovo s veľkým písmenom, rok a výkričník na konci. Presne tieto obmeny útočník skúša hneď po slovách."
     },
     {
-      "text": "Dlhé heslo zo správcu hesiel + 2FA",
-      "answer": 0,
-      "why": "Náhodné heslo a druhý krok navyše. Ani s heslom sa útočník neprihlási."
+      "q": "Tr4ktor!",
+      "answer": 1,
+      "why": "Jedno slovo s obvyklými zámenami. Padne za necelú minútu."
+    },
+    {
+      "q": "k#9Lq2!v (8 náhodných znakov)",
+      "answer": 3,
+      "why": "Kombinácií je asi 6 biliárd. Pri 10 miliardách za sekundu ich útočník prejde zhruba za týždeň. Dĺžka pomáha viac než znaky."
+    },
+    {
+      "q": "žirafa je knedle na Mesiaci",
+      "answer": 6,
+      "why": "Dlhá veta z nečakaných slov. Skúšaním všetkých kombinácií by to trvalo asi milión rokov."
+    },
+    {
+      "q": "16 náhodných znakov zo správcu hesiel",
+      "answer": 6,
+      "why": "Dvojnásobná dĺžka dá toľko kombinácií, že by to trvalo oveľa dlhšie, než existuje vesmír."
     }
-  ],
-  "debrief": "Útočník skúša najprv známe heslá, slová a ich obmeny. Vydrží dlhé heslo z niekoľkých nečakaných slov alebo heslo zo správcu hesiel, pre každý účet iné a najlepšie s 2FA."
+  ]
 }

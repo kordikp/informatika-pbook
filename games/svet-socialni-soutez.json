@@ -1,42 +1,103 @@
 {
-  "type": "sort",
-  "title": "Podvod, nebo v pořádku?",
-  "instruction": "Na sociální síti ti přišly tyhle zprávy a nabídky. Které jsou podvod?",
-  "buckets": [
-    "Podvod",
-    "V pořádku"
-  ],
+  "type": "hotspot",
+  "title": "Co prozradí falešná soutěž?",
+  "instruction": "Zprávy a nabídky ze sociální sítě. Ťukni na každou část, která prozrazuje podvod. Když je nabídka v pořádku, neoznač nic.",
+  "debrief": "Podvod prozradí, co chce: peníze, kartu, heslo nebo kód, a to hned. Skutečná soutěž ani kamarád nic z toho nepotřebují.",
   "items": [
     {
-      "text": "Vyhrál jsi, zaplať poštovné 49 Kč do 24 hodin",
-      "answer": 0,
-      "why": "Za skutečnou výhru se neplatí, a už vůbec ne ve spěchu."
+      "label": "Zpráva · „Výherní oddělení“",
+      "segments": [
+        {
+          "text": "Gratulujeme, vyhráváš nový mobil!"
+        },
+        {
+          "text": "Zaplať jen poštovné 49 Kč",
+          "hit": true,
+          "why": "Za skutečnou výhru se neplatí."
+        },
+        {
+          "text": "do 24 hodin,",
+          "hit": true,
+          "why": "Spěch."
+        },
+        {
+          "text": "jinak výhra propadne.",
+          "hit": true,
+          "why": "Strach, že o něco přijdeš."
+        }
+      ]
     },
     {
-      "text": "Soutěž na ověřeném profilu kina: napiš do komentáře, na jaký film bys šel",
-      "answer": 1,
-      "why": "Nic po tobě nechce a pořadatel je skutečný."
+      "label": "Ověřený profil kina",
+      "why": "Nic po tobě nechce a pořadatel je skutečný.",
+      "segments": [
+        {
+          "text": "Soutěž o dva lístky!"
+        },
+        {
+          "text": "Napiš do komentáře svůj nejoblíbenější film."
+        },
+        {
+          "text": "Vítěze vylosujeme v pátek."
+        }
+      ]
     },
     {
-      "text": "Kamarádka: pošli mi kód, co ti přišel, omylem jsem ho dala na tvoje číslo",
-      "answer": 0,
-      "why": "Kód je klíč k tvému účtu. A její účet je nejspíš ukradený."
+      "label": "Zpráva · kamarádka Klára",
+      "segments": [
+        {
+          "text": "Ahoj, omylem jsem dala tvoje číslo místo svého."
+        },
+        {
+          "text": "Pošli mi prosím kód, co ti teď přišel.",
+          "hit": true,
+          "why": "Kód je klíč k tvému účtu. A Klářin účet je nejspíš ukradený."
+        },
+        {
+          "text": "Díky! ❤️"
+        }
+      ]
     },
     {
-      "text": "Známý youtuber ve videu: pošli mi 500 Kč, vrátím ti tisíc",
-      "answer": 0,
-      "why": "Deepfake se slibem zdvojnásobení peněz."
+      "label": "Video · známý youtuber",
+      "segments": [
+        {
+          "text": "Kamarádi, dneska rozdávám!"
+        },
+        {
+          "text": "Pošli mi 500 Kč",
+          "hit": true,
+          "why": "Chce peníze."
+        },
+        {
+          "text": "a já ti hned vrátím tisíc.",
+          "hit": true,
+          "why": "Zdvojnásobení peněz je klasický podvod. Hlas i obličej mohou být deepfake."
+        }
+      ]
     },
     {
-      "text": "Obchod ti v oficiální appce ukáže slevový kód",
-      "answer": 1,
-      "why": "Sleva přímo v appce obchodu, nic nezadáváš."
-    },
-    {
-      "text": "Profil se jménem banky: ověř účet, jinak bude zablokován",
-      "answer": 0,
-      "why": "Strach a spěch. Banka se ti ozve v aplikaci banky, ne na sociální síti."
+      "label": "Profil se jménem banky",
+      "segments": [
+        {
+          "text": "Ověř svůj účet,",
+          "hit": true,
+          "why": "Banka po tobě ověření na sociální síti nikdy nechce."
+        },
+        {
+          "text": "jinak bude do hodiny zablokován:",
+          "hit": true,
+          "why": "Strach a spěch."
+        },
+        {
+          "text": "banka-overeni.example",
+          "hit": true,
+          "why": "Cizí odkaz. Banka se ti ozve v aplikaci banky."
+        },
+        {
+          "text": "🏦"
+        }
+      ]
     }
-  ],
-  "debrief": "Podvod prozradí, co chce: peníze, kartu, heslo nebo kód, a to hned. Skutečná soutěž ani kamarád nic z toho nepotřebují."
+  ]
 }

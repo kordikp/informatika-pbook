@@ -1,20 +1,45 @@
 {
-  "type": "order",
-  "title": "Get the robot to the charger",
-  "instruction": "The robot stands bottom left, facing up. The charger is 2 squares higher and 3 squares to the right. Put the steps in order.",
-  "steps": [
-    "The battery reports less than 20 %, set off",
-    "Move forward 2 squares",
-    "Turn right 90°",
-    "Move forward 3 squares",
-    "Stop and connect to the charger"
-  ],
-  "why": [
-    "The program waits until there is something to do: it sets off when the battery is running low.",
-    "The robot is facing up, so first it moves up 2.",
-    "Now it has to turn towards the charger. Without turning it would keep going up.",
-    "After the turn it faces right, and the charger is 3 squares away.",
-    "The process has to end: the robot stops at the goal."
-  ],
-  "debrief": "A robot fills in nothing by itself. Every step must be unambiguous and the order exact, or it ends up somewhere else."
+  "type": "grid",
+  "title": "Drive the robot to the charger",
+  "instruction": "Build a program from moves and turns. The robot carries it out literally.",
+  "goalIcon": "🔌",
+  "debrief": "The robot doesn't work anything out for itself. Every step must be unambiguous and the order exact. More than one correct algorithm leads to the goal, and repeating makes the program shorter.",
+  "levels": [
+    {
+      "map": [
+        "...G",
+        "....",
+        "S..."
+      ],
+      "dir": "N",
+      "max": 8,
+      "instruction": "The robot faces up. The charger is 2 squares up and 3 to the right.",
+      "why": "Up 2, turn right, right 3. Or the other way round: first right, then up. Both algorithms are correct."
+    },
+    {
+      "map": [
+        "...G",
+        "#...",
+        "S..."
+      ],
+      "dir": "N",
+      "max": 8,
+      "instruction": "The way up is blocked. Try another way.",
+      "why": "When one way is closed, the other algorithm helps: first right, then up."
+    },
+    {
+      "map": [
+        "....G",
+        ".....",
+        ".....",
+        ".....",
+        "S...."
+      ],
+      "dir": "N",
+      "max": 6,
+      "repeat": true,
+      "instruction": "A longer way, but the program may have only 6 commands. Use repeat.",
+      "why": "4× forward, turn right, 4× forward: five commands instead of nine. Repeating makes the program shorter."
+    }
+  ]
 }

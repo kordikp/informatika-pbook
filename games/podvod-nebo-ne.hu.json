@@ -1,42 +1,139 @@
 {
-  "type": "sort",
-  "title": "Csalás vagy rendben van?",
-  "instruction": "Csalás vagy rendben van?",
-  "buckets": [
-    "Csalás",
-    "Rendben van"
-  ],
+  "type": "hotspot",
+  "title": "Mi árulja el az átverést?",
+  "instruction": "Koppints az üzenet minden olyan részére, amely átverést árul el: nyomásgyakorlást (sietség, félelem, jutalom, bizalom), vagy pénz, kód, jelszó kérését, illetve linken keresztüli bejelentkezést. Ha az üzenet rendben van, ne jelölj meg semmit.",
+  "debrief": "Az átverést a nyomásgyakorlás és az árulja el, amit akar: pénzt, kódot, jelszót vagy linken keresztüli bejelentkezést. Ha nem tudod ellenőrizni, állj meg, és ellenőrizd más úton: az alkalmazásban, az iskolában vagy egy általad ismert számon.",
   "items": [
     {
-      "text": "SMS (ismeretlen szám): A csomagja 390 Ft vámpótdíj befizetésére vár. Befizetés nélkül ma visszaküldjük. Fizessen itt: csomag-befizetes.example",
-      "answer": 0,
-      "why": "A sietségre („ma”) és egy kis összegre céloz, amely nem tűnik gyanúsnak."
+      "label": "SMS · ismeretlen szám",
+      "segments": [
+        {
+          "text": "A csomagja vár"
+        },
+        {
+          "text": "490 Ft vámdíj befizetésére.",
+          "hit": true,
+          "why": "Pénzt akar. A kis összegnek ártatlannak kell tűnnie."
+        },
+        {
+          "text": "Fizetés nélkül még ma visszaküldjük.",
+          "hit": true,
+          "why": "Sietség és félelem: „még ma“, különben elveszíted a csomagot."
+        },
+        {
+          "text": "Fizessen itt:"
+        },
+        {
+          "text": "csomag-befizetes.example",
+          "hit": true,
+          "why": "Idegen link. A csomagot a futárszolgálat alkalmazásában vagy az általad ismert weboldalán ellenőrzöd."
+        }
+      ]
     },
     {
-      "text": "E-mail (Osztályfőnök · iskolai cím): Jó napot, pénteken tanulmányi kirándulásra megyünk. Találkozó 8:00-kor az iskola előtt, tízórait és innivalót hozzatok. A részleteket a KRÉTA-ban találjátok.",
-      "answer": 1,
-      "why": "Semmit sem kér: se linket, se adatokat, se sietséget."
+      "label": "E-mail · osztályfőnök, iskolai cím",
+      "why": "Semmit sem kér tőled: se linket, se adatokat, se sietséget. A részleteket az általad ismert iskolai rendszerben találod.",
+      "segments": [
+        {
+          "text": "Jó napot, pénteken tanulmányi kirándulásra megyünk."
+        },
+        {
+          "text": "Találkozó 8:00-kor az iskola előtt,"
+        },
+        {
+          "text": "tízórait és innivalót hozzatok."
+        },
+        {
+          "text": "A részleteket az iskolai rendszerben találják."
+        }
+      ]
     },
     {
-      "text": "E-mail (Játékcsapat): Gratulálunk! 2000 drágakövet nyertél a versenyen. A nyereményt 24 órán belül vedd át, a játékfiókoddal bejelentkezve: jatek-jutalmak.example",
-      "answer": 0,
-      "why": "A jutalomra és a sietségre céloz. A szövegben egyetlen hiba sincs. Az MI írta."
+      "label": "E-mail · Játékcsapat",
+      "segments": [
+        {
+          "text": "Gratulálunk!"
+        },
+        {
+          "text": "Egy versenyen 2000 drágakő vár rád.",
+          "hit": true,
+          "why": "Jutalom egy versenyért, amelyről semmit sem tudsz."
+        },
+        {
+          "text": "Vedd át a nyereményed 24 órán belül",
+          "hit": true,
+          "why": "Sietség, hogy ne legyen időd gondolkodni."
+        },
+        {
+          "text": "a játékfiókoddal bejelentkezve:",
+          "hit": true,
+          "why": "Linken keresztüli bejelentkezést kér. Így lopják el a fiókokat."
+        },
+        {
+          "text": "jatek-jutalmak.example",
+          "hit": true,
+          "why": "Idegen cím. Egy valódi nyereményt a játék közvetlenül a játékban mutatna meg."
+        }
+      ]
     },
     {
-      "text": "Hívás (Anya · ismeretlen szám): „Szia, én vagyok. Elromlott a telefonom, másikéról hívlak. Kapsz egy SMS-t egy kóddal, olvasd fel, gyorsan. Otthon elmagyarázom.”",
-      "answer": 0,
-      "why": "A bizalomra és egy közeli hozzátartozóért érzett félelemre céloz. A hangot klónozhatta az MI."
+      "label": "Hívás · „anya“ ismeretlen számról",
+      "segments": [
+        {
+          "text": "„Szia, én vagyok."
+        },
+        {
+          "text": "Elromlott a mobilom, másvalakiéről hívlak.",
+          "hit": true,
+          "why": "Megmagyarázza, miért hív ismeretlen számról. Pontosan így kezdődnek a mesterséges intelligenciával klónozott hanggal elkövetett csalások."
+        },
+        {
+          "text": "Kapsz egy SMS-t egy kóddal, olvasd fel nekem,",
+          "hit": true,
+          "why": "A kódot akarja. Az SMS-ben kapott kód a fiók kulcsa, és senkire sem tartozik, még anyára sem."
+        },
+        {
+          "text": "gyorsan.",
+          "hit": true,
+          "why": "Sietség."
+        },
+        {
+          "text": "Otthon elmagyarázom.“"
+        }
+      ]
     },
     {
-      "text": "SMS (Játék): (Épp most jelentkezel be a játékba.) Bejelentkezési kód: 482913. Senkinek ne add meg, az ügyfélszolgálatnak sem.",
-      "answer": 1,
-      "why": "A kód azért jött, mert épp te jelentkezel be. Csak a bejelentkezési ablakba való."
+      "label": "SMS · Játék (éppen most jelentkezel be)",
+      "why": "A kód azért jött, mert éppen te jelentkezel be. Csak a játék bejelentkezési ablakába való.",
+      "segments": [
+        {
+          "text": "Bejelentkezési kód: 482913."
+        },
+        {
+          "text": "Ne add meg senkinek,"
+        },
+        {
+          "text": "az ügyfélszolgálatnak sem."
+        }
+      ]
     },
     {
-      "text": "Cset (Tomáš, a barátod): Figyi, szavazz rám légyszi egy versenyen! Csak jelentkezz be a fiókoddal itt: verseny-szavazas.example 🙏",
-      "answer": 0,
-      "why": "A barátságra céloz. Tomáš fiókját már egy csaló irányíthatja."
+      "label": "Cset · Tomáš barátod",
+      "segments": [
+        {
+          "text": "Figyi, szavazz rám légyszi egy versenyen!"
+        },
+        {
+          "text": "Csak jelentkezz be a fiókoddal itt:",
+          "hit": true,
+          "why": "Linken keresztüli bejelentkezést kér. Tomáš fiókját már egy csaló irányíthatja."
+        },
+        {
+          "text": "verseny-szavazas.example 🙏",
+          "hit": true,
+          "why": "Idegen link, még ha baráttól jön is. Ellenőrizd vele más úton, például hívd fel."
+        }
+      ]
     }
-  ],
-  "debrief": "A csalást a sietségről, az idegen linkről és a kód, jelszó vagy fizetés kéréséről ismered fel. Ha nem vagy biztos benne, ellenőrizd más úton: az alkalmazásban, egy tanárnál vagy egy ismert számon."
+  ]
 }

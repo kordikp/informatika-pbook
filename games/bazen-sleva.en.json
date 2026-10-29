@@ -1,52 +1,121 @@
 {
-  "type": "sort",
-  "title": "Discount or full price?",
-  "instruction": "Children under 15 and people aged 65 and over get a discount.",
-  "buckets": [
-    "Discount",
-    "Full price"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "The swimming pool till",
+  "instruction": "Children under 15 and people aged 65 and over get a discount. The till decides by a program. Step through it for everyone who comes.",
+  "debrief": "A condition decides exactly, even at the edge: a 15-year-old no longer gets the discount, a 65-year-old does. Edges and mixing up “and” with “or” are where conditions most often go wrong.",
+  "rounds": [
     {
-      "text": "Ema, 9",
-      "answer": 0,
-      "why": "9 is less than 15, so the discount applies."
+      "code": [
+        "read age",
+        "if age < 15 or age ≥ 65:",
+        "    print a discounted ticket",
+        "else:",
+        "    print a full-price ticket"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Ema, 9 years old",
+          "q": "Which ticket does the till print?",
+          "options": [
+            "discounted",
+            "full price"
+          ],
+          "answer": 0,
+          "why": "9 < 15 holds. With “or”, one true part is enough."
+        },
+        {
+          "line": 1,
+          "input": "Tomáš, 15 years old",
+          "q": "Which ticket does the till print?",
+          "options": [
+            "discounted",
+            "full price"
+          ],
+          "answer": 1,
+          "why": "Watch the edge: 15 < 15 does not hold. And 15 ≥ 65 doesn't either."
+        },
+        {
+          "line": 1,
+          "input": "Věra, 71 years old",
+          "q": "Which ticket does the till print?",
+          "options": [
+            "discounted",
+            "full price"
+          ],
+          "answer": 0,
+          "why": "71 ≥ 65 holds, and that's enough."
+        },
+        {
+          "line": 1,
+          "input": "Karel, 65 years old",
+          "q": "Which ticket does the till print?",
+          "options": [
+            "discounted",
+            "full price"
+          ],
+          "answer": 0,
+          "why": "≥ means “greater than or equal to”. 65 ≥ 65 holds."
+        },
+        {
+          "line": 1,
+          "input": "Lucie, 64 years old",
+          "q": "Which ticket does the till print?",
+          "options": [
+            "discounted",
+            "full price"
+          ],
+          "answer": 1,
+          "why": "64 isn't under 15 and isn't 65 yet."
+        }
+      ]
     },
     {
-      "text": "Tomáš, 15",
-      "answer": 1,
-      "why": "Watch the edge: 15 is not less than 15. Full price."
+      "title": "Someone has changed the program",
+      "code": [
+        "read age",
+        "if age < 15 or age > 65:",
+        "    print a discounted ticket",
+        "else:",
+        "    print a full-price ticket"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Karel, 65 years old",
+          "q": "Which ticket does Karel get now?",
+          "options": [
+            "discounted",
+            "full price"
+          ],
+          "answer": 1,
+          "why": "65 > 65 doesn't hold. Karel pays full price even though he should get the discount. The mistake is a single character: it should be ≥."
+        }
+      ]
     },
     {
-      "text": "Věra, 71",
-      "answer": 0,
-      "why": "71 is more than 65, so the discount applies."
-    },
-    {
-      "text": "Jan, 34",
-      "answer": 1,
-      "why": "34 is not less than 15, and it isn't 65 or more either."
-    },
-    {
-      "text": "Petra, 14",
-      "answer": 0,
-      "why": "14 is less than 15, so the discount applies."
-    },
-    {
-      "text": "Karel, 65",
-      "answer": 0,
-      "why": "Watch the edge: “65 and over” includes exactly 65. The discount applies."
-    },
-    {
-      "text": "Ondřej, 40",
-      "answer": 1,
-      "why": "40 is not less than 15, and it isn't 65 or more either."
-    },
-    {
-      "text": "Lucie, 64",
-      "answer": 1,
-      "why": "64 is still less than 65. Full price."
+      "title": "And one more change",
+      "code": [
+        "read age",
+        "if age < 15 and age ≥ 65:",
+        "    print a discounted ticket",
+        "else:",
+        "    print a full-price ticket"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "q": "Someone wrote “and” instead of “or”. Who gets the discount now?",
+          "options": [
+            "only children",
+            "only seniors",
+            "nobody",
+            "everybody"
+          ],
+          "answer": 2,
+          "why": "Nobody can be under 15 and 65 or older at the same time. With “and” both parts must hold, so the condition never does."
+        }
+      ]
     }
-  ],
-  "debrief": "The condition “under 15 or 65 and over” decides exactly, even at the edge. A 15-year-old no longer gets the discount, a 65-year-old does. The edge is where conditions most often go wrong."
+  ]
 }

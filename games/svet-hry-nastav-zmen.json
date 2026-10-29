@@ -1,42 +1,124 @@
 {
-  "type": "sort",
-  "title": "Nastav, nebo změň?",
-  "instruction": "Ke každé chvíli ve hře vyber blok, který se tam hodí.",
-  "buckets": [
-    "nastav na …",
-    "změň o …"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "Kolik má hráč bodů?",
+  "instruction": "Projdi kód hry krok po kroku. Jakou hodnotu má proměnná teď?",
+  "debrief": "Nastav přepíše hodnotu, změň přičte k té, co tam je. Na začátek hry patří nastav, k chycení mince změň.",
+  "rounds": [
     {
-      "text": "Začátek hry: skóre začíná od nuly",
-      "answer": 0,
-      "why": "Ať tam bylo cokoli, má tam být 0. To je nastavení."
+      "code": [
+        "na začátku hry: nastav skóre na 0",
+        "na začátku hry: nastav životy na 3",
+        "když hráč sebere minci: změň skóre o 1",
+        "když postava narazí: změň životy o -1",
+        "když začne nový level: nastav životy na 3"
+      ],
+      "steps": [
+        {
+          "line": 0,
+          "input": "Hra právě začala.",
+          "q": "Kolik je skóre?",
+          "options": [
+            "0",
+            "1",
+            "3",
+            "nedá se říct"
+          ],
+          "answer": 0,
+          "state": "skóre = 0, životy = 3",
+          "why": "Nastav přepíše hodnotu na 0, ať tam bylo cokoli."
+        },
+        {
+          "line": 2,
+          "input": "Hráč sebral 3 mince.",
+          "q": "Kolik je skóre?",
+          "options": [
+            "1",
+            "3",
+            "4",
+            "0"
+          ],
+          "answer": 1,
+          "state": "skóre = 3, životy = 3",
+          "why": "Každá mince přičte 1 k tomu, co tam je: 0 + 1 + 1 + 1 = 3."
+        },
+        {
+          "line": 3,
+          "input": "Postava narazila do nepřítele.",
+          "q": "Kolik má životů?",
+          "options": [
+            "3",
+            "2",
+            "-1",
+            "0"
+          ],
+          "answer": 1,
+          "state": "skóre = 3, životy = 2",
+          "why": "Změň o -1 ubere jeden ze tří."
+        },
+        {
+          "line": 3,
+          "input": "Narazila ještě jednou.",
+          "q": "Kolik má životů?",
+          "options": [
+            "2",
+            "-2",
+            "1",
+            "0"
+          ],
+          "answer": 2,
+          "state": "skóre = 3, životy = 1",
+          "why": "Ze dvou ubude jeden."
+        },
+        {
+          "line": 4,
+          "input": "Začíná level 2.",
+          "q": "Kolik má životů?",
+          "options": [
+            "1",
+            "4",
+            "0",
+            "3"
+          ],
+          "answer": 3,
+          "state": "skóre = 3, životy = 3",
+          "why": "Nastav přepíše hodnotu na 3 bez ohledu na to, kolik jich zbylo."
+        },
+        {
+          "line": 4,
+          "input": "Začíná level 2.",
+          "q": "Kolik je skóre?",
+          "options": [
+            "0",
+            "3",
+            "4",
+            "1"
+          ],
+          "answer": 1,
+          "why": "Řádek 5 mění jen životy. Skóre nikdo nepřepsal, zůstalo 3."
+        }
+      ]
     },
     {
-      "text": "Hráč sebral minci",
-      "answer": 1,
-      "why": "K bodům, které už má, jeden přibude."
-    },
-    {
-      "text": "Postava narazila do nepřítele",
-      "answer": 1,
-      "why": "Z životů, které má, jeden ubude: změň o -1."
-    },
-    {
-      "text": "Nový level začíná zase se třemi životy",
-      "answer": 0,
-      "why": "Hodnota se přepíše na 3 bez ohledu na to, kolik jich zbylo."
-    },
-    {
-      "text": "Combo: za každou minci v řadě o bod víc",
-      "answer": 1,
-      "why": "Body se přičítají k tomu, co už je."
-    },
-    {
-      "text": "Hráč zmáčkl „Hrát znovu“ a režim je zase „hraje se“",
-      "answer": 0,
-      "why": "Režim se přepíše na novou hodnotu."
+      "title": "Programátor se spletl",
+      "code": [
+        "na začátku hry: nastav skóre na 0",
+        "když hráč sebere minci: nastav skóre na 1"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Hráč sebral 3 mince.",
+          "q": "Kolik je skóre?",
+          "options": [
+            "3",
+            "1",
+            "0",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Nastav na 1 přepíše hodnotu pokaždé na 1. Ať hráč sebere mincí kolik chce, skóre je pořád 1. Má tam být změň o 1."
+        }
+      ]
     }
-  ],
-  "debrief": "Nastav přepíše hodnotu, změň přičte k té, co tam je. Na začátek hry patří nastav, k chycení mince změň."
+  ]
 }

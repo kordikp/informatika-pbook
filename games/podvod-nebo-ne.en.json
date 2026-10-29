@@ -1,42 +1,139 @@
 {
-  "type": "sort",
-  "title": "Scam or OK?",
-  "instruction": "Scam or OK?",
-  "buckets": [
-    "Scam",
-    "OK"
-  ],
+  "type": "hotspot",
+  "title": "What gives the scam away?",
+  "instruction": "Tap every part of the message that gives a scam away: pressure (hurry, fear, reward, trust) or a request for money, a code, a password or logging in through a link. If the message is fine, mark nothing.",
+  "debrief": "A scam gives itself away by pressure and by what it wants: money, a code, a password or logging in through a link. If you can't check it, stop and check it another way: in the app, at school or on a number you know.",
   "items": [
     {
-      "text": "Text (unknown number): Your parcel is waiting for a customs payment of €1.29. Without payment it will be returned today. Pay here: parcel-payment.example",
-      "answer": 0,
-      "why": "It aims at hurry (“today”) and a small amount that doesn't look suspicious."
+      "label": "Text message · unknown number",
+      "segments": [
+        {
+          "text": "Your parcel is waiting"
+        },
+        {
+          "text": "for an extra payment of €1.50 customs duty.",
+          "hit": true,
+          "why": "It wants money. The small amount is meant to look innocent."
+        },
+        {
+          "text": "Without payment it will be returned today.",
+          "hit": true,
+          "why": "Hurry and fear: “today”, or you lose the parcel."
+        },
+        {
+          "text": "Pay here:"
+        },
+        {
+          "text": "parcel-payment.example",
+          "hit": true,
+          "why": "A strange link. You check a parcel in the courier’s app or on its website that you know."
+        }
+      ]
     },
     {
-      "text": "E-mail (Class teacher · school address): Hello, on Friday we're going on a school trip. Meet at 8:00 in front of the school, bring a snack and a drink. You'll find the details in the school system.",
-      "answer": 1,
-      "why": "It doesn't want anything: no link, no details, no hurry."
+      "label": "E-mail · class teacher, school address",
+      "why": "It wants nothing from you: no link, no details, no hurry. You find the details in the school system you know.",
+      "segments": [
+        {
+          "text": "Hello, on Friday we are going on a school trip."
+        },
+        {
+          "text": "We meet at 8:00 in front of the school,"
+        },
+        {
+          "text": "bring a snack and a drink."
+        },
+        {
+          "text": "You will find the details in the school system."
+        }
+      ]
     },
     {
-      "text": "E-mail (Game team): Congratulations! You've won 2,000 gems in the contest. Collect your prize within 24 hours by logging in with your game account: game-rewards.example",
-      "answer": 0,
-      "why": "It aims at reward and hurry. The text doesn't have a single mistake. AI wrote it."
+      "label": "E-mail · Game team",
+      "segments": [
+        {
+          "text": "Congratulations!"
+        },
+        {
+          "text": "2,000 gems are waiting for you in a competition.",
+          "hit": true,
+          "why": "A reward for a competition you know nothing about."
+        },
+        {
+          "text": "Claim your prize within 24 hours",
+          "hit": true,
+          "why": "Hurry, so you don't have time to think."
+        },
+        {
+          "text": "by logging in with your game account:",
+          "hit": true,
+          "why": "It wants you to log in through a link. That’s how accounts get stolen."
+        },
+        {
+          "text": "game-rewards.example",
+          "hit": true,
+          "why": "A strange address. A real prize would show up right in the game."
+        }
+      ]
     },
     {
-      "text": "Call (Mum · unknown number): “Hi, it's me. My phone broke, I'm calling from someone else's. You'll get a text with a code, read it out to me, quickly. I'll explain at home.”",
-      "answer": 0,
-      "why": "It aims at trust and fear for someone close. The voice may be cloned by AI."
+      "label": "Call · “Mum” from an unknown number",
+      "segments": [
+        {
+          "text": "“Hi, it’s me."
+        },
+        {
+          "text": "My phone broke, I’m calling from someone else’s.",
+          "hit": true,
+          "why": "It explains why the call comes from an unknown number. That is exactly how scams with a voice cloned by AI begin."
+        },
+        {
+          "text": "You’ll get a text with a code, read it out to me,",
+          "hit": true,
+          "why": "It wants the code. A code from a text message is the key to an account and belongs to nobody else, not even Mum."
+        },
+        {
+          "text": "quickly.",
+          "hit": true,
+          "why": "Hurry."
+        },
+        {
+          "text": "I’ll explain at home.”"
+        }
+      ]
     },
     {
-      "text": "Text (Game): (You are logging in to the game right now.) Login code: 482913. Don't give it to anyone, not even support.",
-      "answer": 1,
-      "why": "The code came because you are the one logging in right now. It belongs only in the login window."
+      "label": "Text message · Game (you are logging in right now)",
+      "why": "The code came because you are logging in right now. It belongs only in the game’s login window.",
+      "segments": [
+        {
+          "text": "Login code: 482913."
+        },
+        {
+          "text": "Don’t share it with anyone,"
+        },
+        {
+          "text": "not even support."
+        }
+      ]
     },
     {
-      "text": "Chat (Your friend Tomáš): Hey, please vote for me in a contest! Just log in with your account here: contest-vote.example 🙏",
-      "answer": 0,
-      "why": "It aims at friendship. Tomáš's account may already be controlled by a scammer."
+      "label": "Chat · your friend Tomáš",
+      "segments": [
+        {
+          "text": "Hey, please vote for me in a competition!"
+        },
+        {
+          "text": "Just log in with your account here:",
+          "hit": true,
+          "why": "It wants you to log in through a link. A scammer may already control Tomáš’s account."
+        },
+        {
+          "text": "competition-vote.example 🙏",
+          "hit": true,
+          "why": "A strange link, even from a friend. Check with him another way, for example call him."
+        }
+      ]
     }
-  ],
-  "debrief": "You can spot a scam by hurry, an unfamiliar link and a request for a code, a password or a payment. When you're not sure, check it another way: in the app, with a teacher or on a number you know."
+  ]
 }

@@ -14,7 +14,7 @@ core: true
 recallQ: "What can an ordinary photo give away about you, even if you aren't in it?"
 recallA: "The metadata (time, location, phone model) and the background (school, street, window). From a few photos you can piece together where you live and when you're not at home."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -39,11 +39,15 @@ You take a photo with your phone, and the photo remembers more than you can see.
 
 Everything you do online leaves a **trace**. Some of it you leave knowingly: posts, photos, comments. That's your **active footprint**. Some of it you can't see: the location in a photo, **cookies**, your history. That's your **passive footprint**.
 
-Klára is made up and has three completely ordinary posts: “On the number 9 to school again, every day at 7:40” with a photo of a shop window, “Finally my own room! The view” with a photo from the window, and “From tomorrow the whole family is at the seaside for a week, nobody will be at home”. A detective finds out: the nickname *klara.hradebni.2012* gives away her name, her school and her year of birth. The reflection in the shop window shows Hradební School, the sign outside the window shows Mlýnská Street and the photo carries a GPS location accurate to a few metres. Every weekday at 7:40 she is on her way. And the flat will be empty for a week.
+Klára is made up and has three completely ordinary posts: “On the number 9 to school again, every day at 7:40” with a photo of a shop window, “Finally my own room! The view” with a photo from the window, and “From tomorrow the whole family is at the seaside for a week, nobody will be at home”. A detective finds out: the nickname *klara.hradebni.2012* gives away her name, her school and her year of birth. The reflection in the shop window shows Hradební School, the sign outside the window shows Mlýnská Street. And the original photo, which she sent to a friend as a file, carries a GPS location accurate to a few metres. Every weekday at 7:40 she is on her way. And the flat will be empty for a week.
+
+⟦obr: images/proklik-digitalni-stopa.en.svg⟧
 
 Each trace on its own is innocent. Together they put together a map of your life. Data about you is worth something: to companies because of advertising, to scammers because of you.
 
 **Deleted doesn't mean gone.** Someone may have taken a screenshot. “Friends only” doesn't mean friends only, because friends can forward the post. And “I have nothing to hide” doesn't hold. Everyone hides their address and an empty flat.
+
+Big social networks usually strip the location from a photo when you upload it. An original sent as a file, by e-mail or through the cloud still carries it. You can turn off saving the location in the camera.
 
 In the European Union you have rights under the **GDPR**: you can ask a company what it knows about you and ask it to delete it. And don't share on others' behalf. Their photos, their consent.
 

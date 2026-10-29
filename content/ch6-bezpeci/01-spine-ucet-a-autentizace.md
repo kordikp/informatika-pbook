@@ -2,7 +2,7 @@
 id: ucet-a-autentizace
 type: spine
 title: "Účet a heslo"
-readingTime: 1
+readingTime: 2
 standalone: true
 teaser: "Zapomeneš heslo a mobil nabídne „Obnovit přes e-mail“. Kdo se dostane do tvého e-mailu, dostane se tedy i do mobilu?"
 voice: universal
@@ -26,7 +26,7 @@ highlights:
   - "Účet = identita ve službě; autentizace = ověření, že jsi to ty"
   - "Délka a jedinečnost hesla; únik z jedné služby ohrozí ostatní"
   - "Správce hesel a 2FA (něco znáš + něco máš)"
-carriers: prose|animation
+carriers: prose|table|animation|formula
 ---
 
 Zapomeneš heslo a mobil nabídne „Obnovit přes e-mail“. Kdo se dostane do tvého e-mailu, dostane se tedy i do mobilu?
@@ -35,11 +35,26 @@ Zapomeneš heslo a mobil nabídne „Obnovit přes e-mail“. Kdo se dostane do 
 
 Útočník, který ukradl databázi hesel, zkouší 10 miliard hesel za sekundu. Nejdřív známá hesla, pak slova a jejich obměny, nakonec všechny kombinace. **heslo123** uhodne okamžitě. **P@ss1** taky. **Tr4mvaj!** vypadá složitě, ale padne za necelou minutu. Věta **žirafa jí knedlíky na Měsíci** by mu trvala asi milion let.
 
+| Heslo | Jak ho útočník hádá | Jak dlouho mu to trvá |
+|---|---|---|
+| heslo123 | je v seznamu nejčastějších hesel | okamžitě |
+| P@ss1 | jen 5 znaků, zkusí všechny kombinace | necelou sekundu |
+| Tr4mvaj! | slovo „tramvaj“ s obvyklými obměnami | necelou minutu |
+| žirafa jí knedlíky na Měsíci | 5 slov, každé z desítek tisíc | asi milion let |
+
 Silné heslo je hlavně **dlouhé**. Věta z několika slov porazí krátké heslo se znaky. Obměny jako P@ss nebo Tr4mvaj útočník zkouší mezi prvními.
+
+Proč délka vyhrává, ukáže jednoduchý vzorec:
+
+$$\text{počet hesel} = (\text{počet znaků})^{\text{délka}}$$
+
+Každý znak navíc vynásobí počet hesel znovu. Osm znaků ze všech 95 na klávesnici dá $95^8$, asi 7 biliard hesel, a útočník je projde zhruba za týden. Šestnáct malých písmen dá $26^{16}$ a hádal by přes 100 000 let.
 
 Ke **každé službě jiné heslo**. Když unikne heslo z hry, útočník ho hned zkusí na e-mail.
 
 Pamatovat si je nemusíš. **Správce hesel** je trezor, který je pamatuje za tebe. A k tomu **dvoufázové ověření (2FA)**: něco znáš (heslo) a něco máš (mobil).
+
+Čím dál víc služeb nabízí i **přístupový klíč** (passkey). Místo hesla tě ověří mobil otiskem prstu, obličejem nebo PINem. Klíč zůstává v zařízení a podvodnému webu nic nedá, takže ho podvodník nevyláká.
 
 **Zkus to!** Dnes večer: 1) zjisti, kolik služeb máš na stejné heslo (upřímně!), 2) zapni dvoufázové ověření na svém e-mailu, 3) na haveibeenpwned.com si ověř, jestli se tvůj e-mail neobjevil ve známém úniku dat.
 

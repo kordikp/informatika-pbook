@@ -14,7 +14,7 @@ core: true
 recallQ: "Prečo inštalovať aktualizácie, aj keď apka funguje?"
 recallA: "Aktualizácie často opravujú bezpečnostné chyby, ktoré útočníci poznajú a zneužívajú. Neaktualizované zariadenie má otvorené diery."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -32,7 +32,7 @@ highlights:
   - "Chyby v programoch, záplaty a aktualizácie"
   - "Malvér (vírus, trójsky kôň, ransomvér) a bezpečné sťahovanie"
   - "Oprávnenia aplikácií a záloha podľa pravidla „kópia inde“"
-carriers: prose
+carriers: prose|table
 ---
 
 Mobil chce aktualizáciu a ty práve nemáš čas. Všetko predsa funguje. Prečo na nej tak trvá?
@@ -41,9 +41,16 @@ Každý program má **chyby** a útočníci ich hľadajú. Škodlivým programom
 
 Tvoje zariadenie je hrad. **Hradby** sú aktualizácie, **brána** oprávnenia aplikácií, **stráž** púšťa len overené zdroje a **druhý hrad** je záloha inde. Ku každému útoku v minihre nájdi časť hradu, ktorá ho zastaví.
 
+| Časť hradu | V zariadení | Pred čím chráni |
+|---|---|---|
+| 🧱 hradby | aktualizácie | diery v programoch, o ktorých útočníci vedia |
+| 🚪 brána | oprávnenia aplikácií | appky, ktoré chcú viac, než potrebujú |
+| 💂 stráž | len overené zdroje | podvrhnuté programy a trójske kone |
+| 🏰 druhý hrad | záloha inde | strata dát a ransomware |
+
 Jedna obrana nestačí. Antivírus nechytí všetko a mobil vírusy mať môže. Preto **vrstvy**. Aktualizácie zaplátajú diery, overené zdroje nepustia trójskeho koňa, oprávnenia držia aplikácie v medziach a **záloha inde** zachráni dáta, aj keď všetko ostatné zlyhá.
 
-Záloha na rovnakom disku záloha nie je. Keď disk odíde, odíde s ním aj ona.
+Proti ransomvéru pomôže len záloha, na ktorú útok nedosiahne: na disku, ktorý po zálohovaní odpojíš, alebo v cloude, ktorý si pamätá staršie verzie súborov. Že záloha sú dve kópie na dvoch miestach, vieš z kapitoly 4.
 
 **Vyskúšaj to!** Urob si päťminútový audit mobilu: ✅ aktualizácie automaticky? ✅ všetky apky z oficiálneho obchodu? ✅ fotky zálohované inam? ✅ zámka obrazovky? Čo nemá fajku, oprav ešte dnes.
 

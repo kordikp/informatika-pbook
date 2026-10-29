@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="system-ui,sans-serif" role="img" aria-label="Komiks: Dva spolužáci, každý ve své informační bublině">
   <defs>
-    <marker id="bublArwP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7C3AED"/></marker>
-    <marker id="bublArwA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#D97706"/></marker>
+    <marker id="bublArwP" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#7C3AED"/></marker>
+    <marker id="bublArwA" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#D97706"/></marker>
   </defs>
   <rect width="800" height="640" rx="14" fill="#FAFAF7" stroke="#E5E7EB"/>
   <text x="400" y="38" text-anchor="middle" font-size="21" font-weight="700" fill="#1E1B4B">Bydlím v bublině. S krásným výhledem na sebe.</text>

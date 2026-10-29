@@ -1,42 +1,103 @@
 {
-  "type": "sort",
-  "title": "Csalás vagy rendben van?",
-  "instruction": "Ezeket az üzeneteket és ajánlatokat kaptad egy közösségi oldalon. Melyik csalás?",
-  "buckets": [
-    "Csalás",
-    "Rendben van"
-  ],
+  "type": "hotspot",
+  "title": "Mi árulja el a hamis nyereményjátékot?",
+  "instruction": "Üzenetek és ajánlatok egy közösségi oldalról. Koppints minden részre, amely átverést árul el. Ha az ajánlat rendben van, ne jelölj meg semmit.",
+  "debrief": "Az átverést az árulja el, amit akar: pénzt, kártyát, jelszót vagy kódot, ráadásul azonnal. Egy valódi nyereményjátéknak vagy egy barátnak ezek közül egyikre sincs szüksége.",
   "items": [
     {
-      "text": "Nyertél, fizess 990 Ft postaköltséget 24 órán belül",
-      "answer": 0,
-      "why": "Egy valódi nyereményért nem kell fizetni, főleg nem sietve."
+      "label": "Üzenet · „Nyereményosztály“",
+      "segments": [
+        {
+          "text": "Gratulálunk, egy új mobilt nyertél!"
+        },
+        {
+          "text": "Csak a 790 Ft postaköltséget fizesd ki",
+          "hit": true,
+          "why": "Egy valódi nyereményért nem kell fizetni."
+        },
+        {
+          "text": "24 órán belül,",
+          "hit": true,
+          "why": "Sietség."
+        },
+        {
+          "text": "különben a nyeremény elvész.",
+          "hit": true,
+          "why": "Félelem, hogy elveszítesz valamit."
+        }
+      ]
     },
     {
-      "text": "Nyereményjáték egy mozi hitelesített profilján: írd meg kommentben, melyik filmre mennél el",
-      "answer": 1,
-      "why": "Semmit sem kér tőled, és a szervező valódi."
+      "label": "A mozi hitelesített profilja",
+      "why": "Semmit sem kér tőled, és a szervező valódi.",
+      "segments": [
+        {
+          "text": "Nyereményjáték két jegyért!"
+        },
+        {
+          "text": "Írd meg kommentben a kedvenc filmedet."
+        },
+        {
+          "text": "A nyertest pénteken sorsoljuk ki."
+        }
+      ]
     },
     {
-      "text": "Egy barátnőd: küldd el a kódot, amit kaptál, véletlenül a te számodat adtam meg",
-      "answer": 0,
-      "why": "A kód a fiókod kulcsa. Az ő fiókját pedig valószínűleg ellopták."
+      "label": "Üzenet · Klára barátnőd",
+      "segments": [
+        {
+          "text": "Szia, véletlenül a te számodat adtam meg a sajátom helyett."
+        },
+        {
+          "text": "Küldd el légyszi a kódot, ami most jött.",
+          "hit": true,
+          "why": "A kód a fiókod kulcsa. Klára fiókját pedig nagy valószínűséggel ellopták."
+        },
+        {
+          "text": "Köszi! ❤️"
+        }
+      ]
     },
     {
-      "text": "Egy ismert youtuber egy videóban: küldj 5000 Ft-ot, és visszaadok 10 000-et",
-      "answer": 0,
-      "why": "Deepfake a pénz megduplázásának ígéretével."
+      "label": "Videó · egy ismert youtuber",
+      "segments": [
+        {
+          "text": "Barátaim, ma osztogatok!"
+        },
+        {
+          "text": "Küldj nekem 8000 Ft-ot",
+          "hit": true,
+          "why": "Pénzt akar."
+        },
+        {
+          "text": "és rögtön visszaküldök 16 000-et.",
+          "hit": true,
+          "why": "A pénz megduplázása klasszikus átverés. A hang és az arc is lehet deepfake."
+        }
+      ]
     },
     {
-      "text": "Egy bolt a hivatalos appjában kuponkódot mutat neked",
-      "answer": 1,
-      "why": "Kedvezmény közvetlenül a bolt appjában, semmit sem kell megadnod."
-    },
-    {
-      "text": "Egy bank nevét viselő profil: erősítsd meg a fiókodat, különben letiltják",
-      "answer": 0,
-      "why": "Félelem és sietség. A bank a banki appban keres meg, nem egy közösségi oldalon."
+      "label": "Profil egy bank nevével",
+      "segments": [
+        {
+          "text": "Erősítsd meg a fiókodat,",
+          "hit": true,
+          "why": "A bank soha nem kér tőled megerősítést egy közösségi oldalon."
+        },
+        {
+          "text": "különben egy órán belül letiltjuk:",
+          "hit": true,
+          "why": "Félelem és sietség."
+        },
+        {
+          "text": "bank-megerosites.example",
+          "hit": true,
+          "why": "Idegen link. A bankod a bank alkalmazásában keres meg."
+        },
+        {
+          "text": "🏦"
+        }
+      ]
     }
-  ],
-  "debrief": "A csalást az leplezi le, amit akar: pénzt, kártyát, jelszót vagy kódot, és azonnal. Egy valódi nyereményjátéknak és egy igazi barátnak egyikre sincs szüksége."
+  ]
 }

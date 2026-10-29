@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img" aria-label="Srdíčko 8 × 8 pixelů krok za krokem: mřížka, čísla 0 a 1, 64 bitů a dvojnásobné rozlišení">
+  <rect x="1" y="1" width="518" height="298" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
+  <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">A kép számok táblázata</text>
+  <text x="18" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Fekete-fehér szabály: minden pixel egy szám, 0 = fehér, 1 = fekete.</text>
+
+  <!-- srdíčko: pixely bez mezer, jako obrázek -->
+  <rect x="24" y="58" width="176" height="176" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <rect x="46" y="58" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="68" y="58" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="134" y="58" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="156" y="58" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="24" y="80" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="46" y="80" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="68" y="80" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="90" y="80" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="112" y="80" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="134" y="80" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="156" y="80" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="178" y="80" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="24" y="102" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="46" y="102" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="68" y="102" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="90" y="102" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="112" y="102" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="134" y="102" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="156" y="102" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="178" y="102" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="24" y="124" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="46" y="124" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="68" y="124" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="90" y="124" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="112" y="124" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="134" y="124" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="156" y="124" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="178" y="124" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="46" y="146" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="68" y="146" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="90" y="146" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="112" y="146" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="134" y="146" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="156" y="146" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="68" y="168" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="90" y="168" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="112" y="168" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="134" y="168" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="90" y="190" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <rect x="112" y="190" width="22" height="22" fill="#1E1B4B" shape-rendering="crispEdges"/>
+  <!-- krok 1: mřížka -->
+  <path data-krok="1" d="M24 80 H200 M24 102 H200 M24 124 H200 M24 146 H200 M24 168 H200 M24 190 H200 M24 212 H200 M46 58 V234 M68 58 V234 M90 58 V234 M112 58 V234 M134 58 V234 M156 58 V234 M178 58 V234" stroke="#94A3B8" stroke-width="1"/>
+  <!-- krok 2: čísla v pixelech -->
+  <g data-krok="2" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">
+    <text x="35" y="73" fill="#9CA3AF">0</text><text x="57" y="73" fill="#FFFFFF">1</text><text x="79" y="73" fill="#FFFFFF">1</text><text x="101" y="73" fill="#9CA3AF">0</text><text x="123" y="73" fill="#9CA3AF">0</text><text x="145" y="73" fill="#FFFFFF">1</text><text x="167" y="73" fill="#FFFFFF">1</text><text x="189" y="73" fill="#9CA3AF">0</text>
+    <text x="35" y="95" fill="#FFFFFF">1</text><text x="57" y="95" fill="#FFFFFF">1</text><text x="79" y="95" fill="#FFFFFF">1</text><text x="101" y="95" fill="#FFFFFF">1</text><text x="123" y="95" fill="#FFFFFF">1</text><text x="145" y="95" fill="#FFFFFF">1</text><text x="167" y="95" fill="#FFFFFF">1</text><text x="189" y="95" fill="#FFFFFF">1</text>
+    <text x="35" y="117" fill="#FFFFFF">1</text><text x="57" y="117" fill="#FFFFFF">1</text><text x="79" y="117" fill="#FFFFFF">1</text><text x="101" y="117" fill="#FFFFFF">1</text><text x="123" y="117" fill="#FFFFFF">1</text><text x="145" y="117" fill="#FFFFFF">1</text><text x="167" y="117" fill="#FFFFFF">1</text><text x="189" y="117" fill="#FFFFFF">1</text>
+    <text x="35" y="139" fill="#FFFFFF">1</text><text x="57" y="139" fill="#FFFFFF">1</text><text x="79" y="139" fill="#FFFFFF">1</text><text x="101" y="139" fill="#FFFFFF">1</text><text x="123" y="139" fill="#FFFFFF">1</text><text x="145" y="139" fill="#FFFFFF">1</text><text x="167" y="139" fill="#FFFFFF">1</text><text x="189" y="139" fill="#FFFFFF">1</text>
+    <text x="35" y="161" fill="#9CA3AF">0</text><text x="57" y="161" fill="#FFFFFF">1</text><text x="79" y="161" fill="#FFFFFF">1</text><text x="101" y="161" fill="#FFFFFF">1</text><text x="123" y="161" fill="#FFFFFF">1</text><text x="145" y="161" fill="#FFFFFF">1</text><text x="167" y="161" fill="#FFFFFF">1</text><text x="189" y="161" fill="#9CA3AF">0</text>
+    <text x="35" y="183" fill="#9CA3AF">0</text><text x="57" y="183" fill="#9CA3AF">0</text><text x="79" y="183" fill="#FFFFFF">1</text><text x="101" y="183" fill="#FFFFFF">1</text><text x="123" y="183" fill="#FFFFFF">1</text><text x="145" y="183" fill="#FFFFFF">1</text><text x="167" y="183" fill="#9CA3AF">0</text><text x="189" y="183" fill="#9CA3AF">0</text>
+    <text x="35" y="205" fill="#9CA3AF">0</text><text x="57" y="205" fill="#9CA3AF">0</text><text x="79" y="205" fill="#9CA3AF">0</text><text x="101" y="205" fill="#FFFFFF">1</text><text x="123" y="205" fill="#FFFFFF">1</text><text x="145" y="205" fill="#9CA3AF">0</text><text x="167" y="205" fill="#9CA3AF">0</text><text x="189" y="205" fill="#9CA3AF">0</text>
+    <text x="35" y="227" fill="#9CA3AF">0</text><text x="57" y="227" fill="#9CA3AF">0</text><text x="79" y="227" fill="#9CA3AF">0</text><text x="101" y="227" fill="#9CA3AF">0</text><text x="123" y="227" fill="#9CA3AF">0</text><text x="145" y="227" fill="#9CA3AF">0</text><text x="167" y="227" fill="#9CA3AF">0</text><text x="189" y="227" fill="#9CA3AF">0</text>
+  </g>
+  <!-- krok 3: řádky jako bity -->
+  <g data-krok="3" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#1E1B4B">
+    <text x="214" y="73">01100110</text>
+    <text x="214" y="95">11111111</text>
+    <text x="214" y="117">11111111</text>
+    <text x="214" y="139">11111111</text>
+    <text x="214" y="161">01111110</text>
+    <text x="214" y="183">00111100</text>
+    <text x="214" y="205">00011000</text>
+    <text x="214" y="227">00000000</text>
+  </g>
+  <g data-krok="3">
+    <rect x="300" y="58" width="206" height="92" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+    <text x="314" y="84" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#1E1B4B">64 pixel = 64 bit</text>
+    <text x="314" y="108" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#7C3AED">= 8 bájt</text>
+    <text x="314" y="134" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">1 bájt = 8 bit, vagyis egy sor</text>
+  </g>
+  <g data-krok="4">
+    <rect x="300" y="160" width="206" height="74" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+    <text x="314" y="182" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#047857">Kétszeres felbontás</text>
+    <text x="314" y="201" font-family="system-ui, sans-serif" font-size="12" fill="#1E1B4B">16 × 16 = 256 pixel</text>
+    <text x="314" y="221" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1E1B4B">4× annyi szám, 4× nagyobb fájl</text>
+  </g>
+
+  <!-- popisek kroku -->
+  <rect x="14" y="258" width="492" height="30" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <g font-family="system-ui, sans-serif" font-size="12" fill="#1E1B4B">
+    <text x="26" y="278" data-until="2">Egy 8 × 8 pixeles szív. Neked kép. És a számítógépnek?</text>
+    <text x="26" y="278" data-krok="1" data-until="3"><tspan font-weight="700">1 ·</tspan> Rácsra osztod: 8 × 8 = 64 pixel.</text>
+    <text x="26" y="278" data-krok="2" data-until="4"><tspan font-weight="700">2 ·</tspan> Minden pixel egy szám: 0 = fehér, 1 = fekete.</text>
+    <text x="26" y="278" data-krok="3" data-until="5"><tspan font-weight="700">3 ·</tspan> Soronként ez 64 nulla és egyes.</text>
+    <text x="26" y="278" data-krok="4"><tspan font-weight="700">4 ·</tspan> A kétszer sűrűbb rács 4× annyi számot ad. Ezért nagy a 4K videó.</text>
+  </g>
+</svg>

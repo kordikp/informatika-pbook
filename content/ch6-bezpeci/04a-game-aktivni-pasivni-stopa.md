@@ -2,10 +2,10 @@
 id: digitalni-stopa-hra
 type: game
 game: aktivni-pasivni-stopa
-title: "Hra: Aktivní, nebo pasivní stopa?"
+title: "Hra: Co prozradí Matěj?"
 readingTime: 1
 standalone: true
-teaser: "Nechal jsi ji vědomě, nebo vznikla, aniž bys to viděl?"
+teaser: "Smyšlený Matěj a jeho obyčejný profil. Ťukni na každou část, ze které cizí člověk pozná, kdo je, kde bývá nebo kdy nebude doma."
 voice: universal
 parent: null
 diagram: null

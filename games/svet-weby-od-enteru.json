@@ -1,22 +1,110 @@
 {
-  "type": "order",
+  "type": "cloze",
   "title": "Od Enteru ke stránce",
-  "instruction": "Seřaď, co se děje od zmáčknutí Enteru po hotovou stránku.",
-  "steps": [
-    "Napíšeš adresu a zmáčkneš Enter",
-    "DNS přeloží jméno na IP adresu serveru",
-    "Prohlížeč pošle serveru požadavek na stránku",
-    "Server pošle zpátky HTML",
-    "Prohlížeč si řekne o CSS, skripty a obrázky",
-    "Prohlížeč stránku vykreslí"
-  ],
+  "instruction": "Doplň, co se děje od zmáčknutí Enteru po hotovou stránku.",
   "debrief": "Každá stránka je výměna požadavků a odpovědí. Nejdřív jméno na adresu, pak HTML, pak všechno, na co HTML odkazuje.",
-  "why": [
-    "Všechno začíná u tebe: adresa je jméno, ne číslo.",
-    "Bez IP adresy by požadavek nevěděl, kam jet.",
-    "Až teď ví, kam požadavek poslat.",
-    "Odpověď na první požadavek je kostra stránky.",
-    "Teprve v HTML prohlížeč zjistí, jaké další soubory stránka potřebuje.",
-    "Ze všech došlých souborů poskládá obraz, který vidíš."
+  "items": [
+    {
+      "text": "Napíšeš nas-krouzek.cz. Počítač zná jen jméno, ale data potřebují {0}. Číslo mu řekne {1}.",
+      "gaps": [
+        {
+          "options": [
+            "IP adresu",
+            "heslo",
+            "e-mail"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "DNS, telefonní seznam internetu",
+            "router u vás doma",
+            "prohlížeč sám od sebe"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Jméno je pro lidi, IP adresa pro síť. DNS přeloží jedno na druhé."
+    },
+    {
+      "text": "Prohlížeč, tedy {0}, pošle serveru {1}: pošli mi úvodní stránku.",
+      "gaps": [
+        {
+          "options": [
+            "klient",
+            "server",
+            "router"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "požadavek",
+            "odpověď",
+            "obrázek"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Klient se ptá, server odpovídá. Řečí té domluvy je HTTP."
+    },
+    {
+      "text": "Požadavek i odpověď cestují rozdělené na {0}. Dál je posílají {1}, každý o kus blíž.",
+      "gaps": [
+        {
+          "options": [
+            "balíčky",
+            "celé stránky",
+            "jednotlivé znaky"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "routery",
+            "DNS servery",
+            "prohlížeče"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Každý balíček nese adresu cíle. Když router po cestě vypadne, ostatní ho pošlou objížďkou."
+    },
+    {
+      "text": "Server vrátí {0}. Prohlížeč v něm najde odkazy na CSS, skripty a obrázky a o každý soubor pošle {1}.",
+      "gaps": [
+        {
+          "options": [
+            "HTML",
+            "hotový obrázek stránky",
+            "heslo"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "další požadavek",
+            "jednu SMS",
+            "nic, už má všechno"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "HTML je kostra stránky. Jedna zpravodajská stránka je klidně sto požadavků."
+    },
+    {
+      "text": "Stránku z došlých souborů poskládá a vykreslí {0}.",
+      "gaps": [
+        {
+          "options": [
+            "tvůj prohlížeč",
+            "server",
+            "DNS"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Server posílá materiál, obraz poskládá až tvoje zařízení. I slabé zařízení proto umí stránku zpomalit."
+    }
   ]
 }

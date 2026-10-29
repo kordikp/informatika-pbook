@@ -43,6 +43,8 @@ A fotó kis **csomagokra** bomlik. Mindegyik a cél **IP-címét** viszi magáva
 
 A telefon először a **DNS**-t, az internet telefonkönyvét kérdezi meg: mi a chat.example címe? A DNS azt válaszolja: 203.0.113.7, mert a routerek csak a számokat értik. A fotó aztán hat csomagban indul útnak. Az egyik az A és a C routeren át megy, egy másik a B-n és a D-n át. Ha az A router kiesik, a csomagok a B-n és a D-n át mennek, és a fotó így is megérkezik.
 
+⟦obr: images/proklik-cesta-dat.hu.svg⟧
+
 Az internet **hálózatok hálózata**, és nincs egyetlen központja. Ha egy router kiesik, a többiek **kerülőúton** küldik a csomagokat. Az elveszett csomagot újra elküldik, nem az egész fotót.
 
 A telefonod a **kliens**: **kérést** küld. A szerver **választ** küld. Így működik a web, az e-mail és a streamelés is.

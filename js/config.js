@@ -140,15 +140,37 @@ export const CONFIG = {
   },
   levelTitles: [null, null, null, 'Mistr informatiky'],
 
-  // Certifikát vydává AI dětem. Úrovně počítá engine (pokrytí jader, mise, opakování); kniha je jen pojmenuje.
+  // Mechaniky na dokončení (js/completion.js): nic nezamykají, jen ukazují cíl a nabízejí kontrolu.
+  completion: {
+    goalLine: true,      // pod jádrem a na Procházet: kolik zbývá k dalšímu stupni certifikátu
+    knowIt: true,        // „Už to znám → kontrola“ u nepřečteného jádra
+    bridges: true,       // pod jádrem mini otázka na dřívější jádro, na které staví
+    doneForToday: 4,     // po 4 nových jádrech v jednom sezení karta „Na dnes dobré místo na pauzu“
+  },
+
+  // Certifikát vydává AI dětem. Co který stupeň chce, říká requirements (engine to počítá a ukazuje).
   certificate: {
     tiers: {
       foundations: { title: { cs: 'Průzkumník', en: 'Explorer', sk: 'Prieskumník', hu: 'Felfedező' },
-                     subtitle: { cs: 'Rozumí 24 jádrům informatiky', en: 'Understands the 24 core concepts of computing', sk: 'Rozumie 24 jadrám informatiky', hu: 'Érti az informatika 24 alapfogalmát' } },
+                     subtitle: { cs: 'Všech 24 jader informatiky a 6 kapitol s poraženým bossem', en: 'All 24 core concepts of computing and 6 chapter bosses beaten', sk: 'Všetkých 24 jadier informatiky a 6 kapitol s porazeným bossom', hu: 'Az informatika mind a 24 alapfogalma és 6 legyőzött fejezet-főellenség' } },
       practitioner: { title: { cs: 'Řešitel', en: 'Solver', sk: 'Riešiteľ', hu: 'Megoldó' },
-                      subtitle: { cs: 'Bossové poraženi ve dvou misích', en: 'Beat the boss in two missions', sk: 'Bossovia porazení v dvoch misiách', hu: 'Két küldetésben legyőzte a főellenséget' } },
+                      subtitle: { cs: 'Porozumění jádrům ověřené a projekt ve světě hotový', en: 'Understanding of the cores checked and a project in a world finished', sk: 'Porozumenie jadrám overené a projekt vo svete hotový', hu: 'Igazolt tudás az alapfogalmakból és egy kész projekt egy világban' } },
       guru: { title: { cs: 'Mistr', en: 'Master', sk: 'Majster', hu: 'Mester' },
-              subtitle: { cs: 'Vlastní projekt hotový, jádra udržovaná opakováním', en: 'Finished an own project and keeps the cores by recall', sk: 'Vlastný projekt hotový, jadrá udržiavané opakovaním', hu: 'Befejezte a saját projektjét, és ismétléssel megtartja a tudást' } },
+              subtitle: { cs: 'Závěrečný projekt hotový a jádra udržená opakováním', en: 'The final project finished and the cores kept by recall', sk: 'Záverečný projekt hotový a jadrá udržané opakovaním', hu: 'Kész záróprojekt és ismétléssel megtartott alapfogalmak' } },
+    },
+    requirements: {
+      foundations: [
+        { cores: 'read', label: { cs: 'prošlá jádra ({0}/{1})', en: 'core concepts read ({0}/{1})', sk: 'prejdené jadrá ({0}/{1})', hu: 'elolvasott alapfogalmak ({0}/{1})' } },
+        { missions: { group: 'chapter' }, label: { cs: 'mise kapitol s poraženým bossem ({0}/{1})', en: 'chapter missions with the boss beaten ({0}/{1})', sk: 'misie kapitol s porazeným bossom ({0}/{1})', hu: 'fejezetküldetés legyőzött főellenséggel ({0}/{1})' } },
+      ],
+      practitioner: [
+        { cores: 'understood', label: { cs: 'jádra ověřená kontrolou nebo hrou ({0}/{1})', en: 'core concepts checked by a quiz or a game ({0}/{1})', sk: 'jadrá overené kontrolou alebo hrou ({0}/{1})', hu: 'ellenőrzéssel vagy játékkal igazolt alapfogalmak ({0}/{1})' } },
+        { missions: { group: 'world', count: 1 }, label: { cs: 'projekt ve světě ({0}/{1})', en: 'a project in a world ({0}/{1})', sk: 'projekt vo svete ({0}/{1})', hu: 'projekt egy világban ({0}/{1})' } },
+      ],
+      guru: [
+        { missions: { group: 'project' }, label: { cs: 'závěrečná mise Postav a sdílej ({0}/{1})', en: 'the final mission Build and share ({0}/{1})', sk: 'záverečná misia Postav a zdieľaj ({0}/{1})', hu: 'az Építsd meg és oszd meg záróküldetés ({0}/{1})' } },
+        { cores: 'kept', label: { cs: 'jádra udržená opakováním po pár dnech ({0}/{1})', en: 'core concepts kept by recall days later ({0}/{1})', sk: 'jadrá udržané opakovaním po pár dňoch ({0}/{1})', hu: 'napokkal később is felidézett alapfogalmak ({0}/{1})' } },
+      ],
     },
     completed: { cs: 'má za sebou jádro informatiky: od algoritmu po umělou inteligenci a bezpečí na síti', en: 'went through the core of computing: from algorithms to AI and online safety', sk: 'má za sebou jadro informatiky: od algoritmu po umelú inteligenciu a bezpečie na sieti', hu: 'végigment az informatika magján: az algoritmustól a mesterséges intelligenciáig és a netes biztonságig' },
     topic: { cs: 'Informatika a AI', en: 'Computing and AI', sk: 'Informatika a AI', hu: 'Informatika és AI' },

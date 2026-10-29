@@ -2,10 +2,10 @@
 id: svet-aplikace-promenna-hra
 type: game
 game: svet-aplikace-stav
-title: "Hra: Nastav, nebo změň?"
+title: "Hra: Co ukáže appka?"
 readingTime: 1
 standalone: true
-teaser: "Ke každé chvíli v appce vyber, jestli se proměnná nastaví na novou hodnotu, nebo změní o kus."
+teaser: "Appka si pamatuje stav v proměnných. Projdi, co se stane, a řekni, co ukáže."
 voice: universal
 parent: svet-aplikace-promenna
 diagram: null

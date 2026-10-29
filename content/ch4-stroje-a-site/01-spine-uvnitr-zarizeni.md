@@ -2,7 +2,7 @@
 id: uvnitr-zarizeni
 type: spine
 title: "Uvnitř zařízení"
-readingTime: 1
+readingTime: 2
 standalone: true
 teaser: "Mobil se seká. Pomůže smazat fotky, nebo zavřít aplikace? Záleží na tom, který druh paměti je plný."
 voice: universal
@@ -13,7 +13,7 @@ recallQ: "Proč zmizí neuložený dokument, když vypadne proud, a uložený ne
 recallA: "Neuložený existuje jen v operační paměti, která bez proudu zapomene. Uložený je na úložišti, které pamatuje trvale."
 lang: cs
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -26,7 +26,7 @@ highlights:
   - "Procesor, operační paměť, úložiště, periferie; hardware vs. software"
   - "Operační paměť je dočasná: neuložená práce zmizí, plná paměť zpomaluje"
   - "Operační systém řídí aplikace a přístup k hardwaru; výběr zařízení podle vlastností"
-carriers: prose
+carriers: prose|table
 ---
 
 Mobil se seká. Pomůže smazat fotky, nebo zavřít aplikace? Záleží na tom, který druh paměti je plný.
@@ -40,9 +40,18 @@ Uvnitř počítače, mobilu i micro:bitu pracují stejné části. Představ si 
 
 Otevři hru, 40 záložek, fotky a referát. Deska se zaplní a vedoucí směny musí věci odkládat do spíže a zase je nosit zpátky. To zdržuje, a proto se přeplněný mobil seká. Napíšeš pár vět referátu, a než je uložíš, vypadne proud. Po zapnutí je deska prázdná.
 
+⟦obr: images/proklik-uvnitr-zarizeni.svg⟧
+
 Neuložený referát byl jen na desce, v **operační paměti**. Ta bez proudu zapomene. Uložený je ve spíži, na **úložišti**, a tam vydrží.
 
 Když mobil hlásí „128 GB“, myslí úložiště. Operační paměti má třeba jen 8 GB. Plná operační paměť zpomaluje, plné úložiště ti nedovolí uložit nic nového.
+
+| | Operační paměť (deska) | Úložiště (spíž) |
+|---|---|---|
+| Co tam leží | to, co právě běží | soubory a aplikace |
+| Velikost v mobilu | třeba 8 GB | třeba 128 GB |
+| Rychlost | velmi rychlá | pomalejší |
+| Po vypnutí | zapomene | pamatuje si |
 
 Kuchyni s deskou a kuchařem se říká **hardware**: věci, na které si sáhneš. Recepty, tedy programy, jsou **software**.
 

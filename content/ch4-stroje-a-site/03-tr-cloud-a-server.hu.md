@@ -41,7 +41,7 @@ A **szerver** olyan számítógép, amely szolgáltatást nyújt másoknak: webo
 
 Egy kutyás fotó „a felhőben” így utazik: a **telefon** tárhelyéről az otthoni **wifi-routeren** át az internetszolgáltatóhoz, aztán **optikai kábelen** több száz kilométert, akár a tengerfenéken, egy **adatközpontba**, egy szerverekkel, hűtéssel és tartalék áramforrásokkal teli óriási csarnokba. Végül **valaki más számítógépének lemezén** van, például Írországban vagy az USA-ban.
 
-A felhő mindenhol elérhetővé teszi az adataidat, és ad egy plusz másolatot. De függsz a **kapcsolattól**, a **cégtől** és a nála lévő fiókodtól, valamint annak az **országnak a törvényeitől**, ahol a szerver áll. Az Európai Unióban a személyes adatokat a GDPR rendelet védi.
+A felhő mindenhol elérhetővé teszi az adataidat, és ad egy plusz másolatot. De függsz a **kapcsolattól**, a **cégtől** és a nála lévő fiókodtól, valamint annak az **országnak a törvényeitől**, ahol a szerver áll. Hogy milyen jogaid vannak az adataidhoz, a 6. fejezetben látod majd.
 
 A **biztonsági mentés** két másolat két különböző helyen. Ha az egyetlen másolat a felhőben van, az nem biztonsági mentés.
 

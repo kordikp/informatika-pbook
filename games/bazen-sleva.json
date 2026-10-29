@@ -1,52 +1,121 @@
 {
-  "type": "sort",
-  "title": "Sleva, nebo plné vstupné?",
-  "instruction": "Slevu mají děti mladší 15 let a lidé od 65 let.",
-  "buckets": [
-    "Sleva",
-    "Plné vstupné"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "Pokladna bazénu",
+  "instruction": "Slevu mají děti mladší 15 let a lidé od 65 let. Pokladna rozhoduje podle programu. Projdi ho pro každého, kdo přijde.",
+  "debrief": "Podmínka rozhoduje přesně, i na hranici: patnáctiletý už slevu nemá, pětašedesátiletý ji má. Hranice a záměna „a“ za „nebo“ jsou u podmínek nejčastější místa chyb.",
+  "rounds": [
     {
-      "text": "Ema, 9 let",
-      "answer": 0,
-      "why": "9 je méně než 15, sleva platí."
+      "code": [
+        "přečti věk",
+        "když věk < 15 nebo věk ≥ 65:",
+        "    vytiskni lístek se slevou",
+        "jinak:",
+        "    vytiskni lístek za plnou cenu"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Ema, 9 let",
+          "q": "Jaký lístek pokladna vytiskne?",
+          "options": [
+            "se slevou",
+            "za plnou cenu"
+          ],
+          "answer": 0,
+          "why": "9 < 15 platí. U „nebo“ stačí jedna platná část."
+        },
+        {
+          "line": 1,
+          "input": "Tomáš, 15 let",
+          "q": "Jaký lístek pokladna vytiskne?",
+          "options": [
+            "se slevou",
+            "za plnou cenu"
+          ],
+          "answer": 1,
+          "why": "Pozor na hranici: 15 < 15 neplatí. A 15 ≥ 65 taky ne."
+        },
+        {
+          "line": 1,
+          "input": "Věra, 71 let",
+          "q": "Jaký lístek pokladna vytiskne?",
+          "options": [
+            "se slevou",
+            "za plnou cenu"
+          ],
+          "answer": 0,
+          "why": "71 ≥ 65 platí, a to stačí."
+        },
+        {
+          "line": 1,
+          "input": "Karel, 65 let",
+          "q": "Jaký lístek pokladna vytiskne?",
+          "options": [
+            "se slevou",
+            "za plnou cenu"
+          ],
+          "answer": 0,
+          "why": "≥ znamená „větší nebo rovno“. 65 ≥ 65 platí."
+        },
+        {
+          "line": 1,
+          "input": "Lucie, 64 let",
+          "q": "Jaký lístek pokladna vytiskne?",
+          "options": [
+            "se slevou",
+            "za plnou cenu"
+          ],
+          "answer": 1,
+          "why": "64 není mladší 15 a ještě to není 65."
+        }
+      ]
     },
     {
-      "text": "Tomáš, 15 let",
-      "answer": 1,
-      "why": "Pozor na hranici: 15 není méně než 15. Plné vstupné."
+      "title": "Někdo program přepsal",
+      "code": [
+        "přečti věk",
+        "když věk < 15 nebo věk > 65:",
+        "    vytiskni lístek se slevou",
+        "jinak:",
+        "    vytiskni lístek za plnou cenu"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Karel, 65 let",
+          "q": "Jaký lístek teď Karel dostane?",
+          "options": [
+            "se slevou",
+            "za plnou cenu"
+          ],
+          "answer": 1,
+          "why": "65 > 65 neplatí. Karel zaplatí plnou cenu, i když má mít slevu. Chyba je v jediném znaku: má tam být ≥."
+        }
+      ]
     },
     {
-      "text": "Věra, 71 let",
-      "answer": 0,
-      "why": "71 je víc než 65, sleva platí."
-    },
-    {
-      "text": "Jan, 34 let",
-      "answer": 1,
-      "why": "34 není méně než 15, ani to není 65 a víc."
-    },
-    {
-      "text": "Petra, 14 let",
-      "answer": 0,
-      "why": "14 je méně než 15, sleva platí."
-    },
-    {
-      "text": "Karel, 65 let",
-      "answer": 0,
-      "why": "Pozor na hranici: „od 65“ znamená i přesně 65. Sleva platí."
-    },
-    {
-      "text": "Ondřej, 40 let",
-      "answer": 1,
-      "why": "40 není méně než 15, ani to není 65 a víc."
-    },
-    {
-      "text": "Lucie, 64 let",
-      "answer": 1,
-      "why": "64 je pořád méně než 65. Plné vstupné."
+      "title": "A ještě jedna změna",
+      "code": [
+        "přečti věk",
+        "když věk < 15 a věk ≥ 65:",
+        "    vytiskni lístek se slevou",
+        "jinak:",
+        "    vytiskni lístek za plnou cenu"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "q": "Někdo napsal „a“ místo „nebo“. Kdo teď dostane slevu?",
+          "options": [
+            "jen děti",
+            "jen senioři",
+            "nikdo",
+            "všichni"
+          ],
+          "answer": 2,
+          "why": "Nikdo nemůže být zároveň mladší 15 a starší 65. S „a“ musí platit obě části, takže podmínka neplatí nikdy."
+        }
+      ]
     }
-  ],
-  "debrief": "Podmínka „mladší 15 nebo od 65“ rozhoduje přesně, i na hranici. Patnáctiletý už slevu nemá, pětašedesátiletý ji má. Hranice je u podmínek nejčastější místo chyby."
+  ]
 }

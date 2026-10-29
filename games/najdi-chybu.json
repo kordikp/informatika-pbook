@@ -1,0 +1,76 @@
+{
+  "type": "hotspot",
+  "title": "Kde se to pokazí?",
+  "instruction": "Každý návod neprošel jedním testem. Ťukni na krok, který chybu způsobil.",
+  "debrief": "Chyba se schovává v kroku, který nepočítal se záludným vstupem: s nulou, s prázdnem, s hranicí. Najdi ten krok, oprav ho a pak pusť znovu všechny testy.",
+  "items": [
+    {
+      "label": "Odpočet startu · test: odpočet od 5 po dvou → raketa nikdy neodstartuje",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "nastav čas na 5"
+        },
+        {
+          "text": "opakuj, dokud čas není 0: změň čas o -2",
+          "hit": true,
+          "why": "Čas jde 5, 3, 1, -1… a nulu přeskočí. Podmínka „není 0“ platí pořád dál. Správně je „dokud je čas větší než 0“."
+        },
+        {
+          "text": "odstartuj raketu"
+        }
+      ]
+    },
+    {
+      "label": "Průměr známek · test: žádná známka → program spadne",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "sečti všechny známky"
+        },
+        {
+          "text": "vyděl součet počtem známek",
+          "hit": true,
+          "why": "Žádná známka znamená dělit nulou. Návod musí nejdřív zkontrolovat, jestli nějaká známka je."
+        },
+        {
+          "text": "zapiš výsledek na vysvědčení"
+        }
+      ]
+    },
+    {
+      "label": "Vstup do kina od 15 let · test: Tomáš má přesně 15 → nepustí ho",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "zeptej se na věk"
+        },
+        {
+          "text": "je věk větší než 15? Pokud ano, pusť dál",
+          "hit": true,
+          "why": "„Od 15 let“ znamená i přesně 15. Správně je „15 nebo víc“. Hranice je nejčastější místo chyby."
+        },
+        {
+          "text": "jinak řekni, že film je od 15 let"
+        }
+      ]
+    },
+    {
+      "label": "Přihláška na kroužek · test: prázdné jméno → do seznamu se uloží člověk bez jména",
+      "form": "lines",
+      "segments": [
+        {
+          "text": "přečti jméno z formuláře"
+        },
+        {
+          "text": "ulož jméno do seznamu",
+          "hit": true,
+          "why": "Před uložením chybí kontrola, jestli pole není prázdné. Prázdný vstup je záludný případ."
+        },
+        {
+          "text": "ukaž „Děkujeme za přihlášku“"
+        }
+      ]
+    }
+  ]
+}

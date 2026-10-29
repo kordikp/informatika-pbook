@@ -2,10 +2,10 @@
 id: svet-socialni-podvod-cili-na-cloveka-hra
 type: game
 game: svet-socialni-soutez
-title: "Hra: Podvod, nebo v pořádku?"
+title: "Hra: Co prozradí falešná soutěž?"
 readingTime: 1
 standalone: true
-teaser: "Na sociální síti ti přišly tyhle zprávy a nabídky. Které jsou podvod?"
+teaser: "Zprávy a nabídky ze sociální sítě. Ťukni na každou část, která prozrazuje podvod. Když je nabídka v pořádku, neoznač nic."
 voice: universal
 parent: svet-socialni-podvod-cili-na-cloveka
 diagram: null

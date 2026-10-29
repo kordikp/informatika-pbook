@@ -5,7 +5,7 @@ game: svet-weby-od-enteru
 title: "Hra: Od Enteru ke stránce"
 readingTime: 1
 standalone: true
-teaser: "Seřaď, co se děje od zmáčknutí Enteru po hotovou stránku."
+teaser: "Doplň, co se děje od zmáčknutí Enteru po hotovou stránku."
 voice: universal
 parent: svet-weby-cesta-dat
 diagram: null

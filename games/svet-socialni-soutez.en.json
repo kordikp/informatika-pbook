@@ -1,42 +1,103 @@
 {
-  "type": "sort",
-  "title": "Scam or fine?",
-  "instruction": "You got these messages and offers on social media. Which are scams?",
-  "buckets": [
-    "Scam",
-    "Fine"
-  ],
+  "type": "hotspot",
+  "title": "What gives a fake competition away?",
+  "instruction": "Messages and offers from a social network. Tap every part that gives a scam away. If the offer is fine, mark nothing.",
+  "debrief": "A scam gives itself away by what it wants: money, a card, a password or a code, and right now. A real competition or a friend needs none of that.",
   "items": [
     {
-      "text": "You’ve won; pay €2 postage within 24 hours",
-      "answer": 0,
-      "why": "You never pay for a real prize, and certainly not in a hurry."
+      "label": "Message · “Prize department”",
+      "segments": [
+        {
+          "text": "Congratulations, you’ve won a new phone!"
+        },
+        {
+          "text": "Just pay €2 postage",
+          "hit": true,
+          "why": "You never pay for a real prize."
+        },
+        {
+          "text": "within 24 hours,",
+          "hit": true,
+          "why": "Hurry."
+        },
+        {
+          "text": "or the prize will expire.",
+          "hit": true,
+          "why": "Fear of losing something."
+        }
+      ]
     },
     {
-      "text": "A competition on a cinema’s verified profile: write in the comments which film you would go to",
-      "answer": 1,
-      "why": "It wants nothing from you, and the organiser is real."
+      "label": "Verified cinema profile",
+      "why": "It wants nothing from you and the organiser is real.",
+      "segments": [
+        {
+          "text": "Competition for two tickets!"
+        },
+        {
+          "text": "Write your favourite film in the comments."
+        },
+        {
+          "text": "We’ll draw the winner on Friday."
+        }
+      ]
     },
     {
-      "text": "A friend: send me the code you just got, I put in your number by mistake",
-      "answer": 0,
-      "why": "The code is the key to your account. And her account has most likely been stolen."
+      "label": "Message · your friend Klára",
+      "segments": [
+        {
+          "text": "Hi, I gave your number instead of mine by mistake."
+        },
+        {
+          "text": "Please send me the code you just got.",
+          "hit": true,
+          "why": "The code is the key to your account. And Klára’s account has most likely been stolen."
+        },
+        {
+          "text": "Thanks! ❤️"
+        }
+      ]
     },
     {
-      "text": "A well-known YouTuber in a video: send me €20 and I’ll send you back 40",
-      "answer": 0,
-      "why": "A deepfake with a promise to double your money."
+      "label": "Video · a well-known YouTuber",
+      "segments": [
+        {
+          "text": "Friends, today I’m giving money away!"
+        },
+        {
+          "text": "Send me €20",
+          "hit": true,
+          "why": "It wants money."
+        },
+        {
+          "text": "and I’ll send you back €40 right away.",
+          "hit": true,
+          "why": "Doubling your money is a classic scam. The voice and the face may be a deepfake."
+        }
+      ]
     },
     {
-      "text": "A shop shows you a discount code in its official app",
-      "answer": 1,
-      "why": "A discount right in the shop’s app; you enter nothing."
-    },
-    {
-      "text": "A profile with a bank’s name: verify your account or it will be blocked",
-      "answer": 0,
-      "why": "Fear and hurry. Your bank will contact you in the bank’s app, not on social media."
+      "label": "Profile with a bank’s name",
+      "segments": [
+        {
+          "text": "Verify your account,",
+          "hit": true,
+          "why": "A bank never asks you to verify your account on a social network."
+        },
+        {
+          "text": "or it will be blocked within an hour:",
+          "hit": true,
+          "why": "Fear and hurry."
+        },
+        {
+          "text": "bank-verification.example",
+          "hit": true,
+          "why": "A strange link. Your bank contacts you in the bank’s app."
+        },
+        {
+          "text": "🏦"
+        }
+      ]
     }
-  ],
-  "debrief": "A scam gives itself away by what it wants: money, your card, a password or a code, and right now. A real competition and a real friend need none of these."
+  ]
 }

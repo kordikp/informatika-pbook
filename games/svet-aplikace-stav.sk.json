@@ -1,42 +1,113 @@
 {
-  "type": "sort",
-  "title": "Nastav, alebo zmeň?",
-  "instruction": "Ku každej chvíli v apke vyber, či sa premenná nastaví na novú hodnotu, alebo zmení o kúsok.",
-  "buckets": [
-    "nastav na …",
-    "zmeň o …"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "Čo ukáže appka?",
+  "instruction": "Appka si pamätá stav v premenných. Prejdi, čo sa stane, a povedz, čo ukáže.",
+  "debrief": "Nastav prepíše hodnotu bez ohľadu na to, čo tam bolo. Zmeň počíta s tým, čo tam už je.",
+  "rounds": [
     {
-      "text": "Odhlásenie: prihlaseny bude „nie“",
-      "answer": 0,
-      "why": "Nech bolo predtým čokoľvek, teraz je „nie“."
+      "title": "Odznak neprečítaných správ",
+      "code": [
+        "pri spustení: nastav neprečítané na 0",
+        "keď príde správa: zmeň neprečítané o 1",
+        "keď otvoríš chat: nastav neprečítané na 0"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Appka sa spustila a prišli 2 správy.",
+          "q": "Koľko ukáže odznak?",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "answer": 2,
+          "state": "neprečítané = 2",
+          "why": "Od nuly dvakrát o jednu viac."
+        },
+        {
+          "line": 1,
+          "input": "Prišla tretia správa.",
+          "q": "Koľko ukáže odznak?",
+          "options": [
+            "1",
+            "3",
+            "2",
+            "0"
+          ],
+          "answer": 1,
+          "state": "neprečítané = 3",
+          "why": "K dvom jedna pribudne."
+        },
+        {
+          "line": 2,
+          "input": "Otvoríš chat.",
+          "q": "Koľko ukáže odznak?",
+          "options": [
+            "3",
+            "2",
+            "0",
+            "1"
+          ],
+          "answer": 2,
+          "state": "neprečítané = 0",
+          "why": "Otvorenie chatu hodnotu prepíše na 0. Nepočíta, koľko ich bolo."
+        }
+      ]
     },
     {
-      "text": "Prišla nová správa: neprečítaných o jednu viac",
-      "answer": 1,
-      "why": "K tým, čo už sú, jedna pribudne."
-    },
-    {
-      "text": "Otvoril si chat: neprečítaných je teraz nula",
-      "answer": 0,
-      "why": "Hodnota sa prepíše na 0."
-    },
-    {
-      "text": "Ťuknutie na + v košíku",
-      "answer": 1,
-      "why": "K počtu kusov, ktorý tam je, pribudne jeden."
-    },
-    {
-      "text": "V nastaveniach vyberieš tmavý režim",
-      "answer": 0,
-      "why": "Režim sa prepíše na „tmavý“."
-    },
-    {
-      "text": "Tlačidlo hlasitosti nadol",
-      "answer": 1,
-      "why": "Z hlasitosti, ktorá je, kúsok uberie."
+      "title": "Košík v e-shope",
+      "code": [
+        "po vložení tovaru: nastav kusy na 1",
+        "keď ťukneš na +: zmeň kusy o 1",
+        "keď ťukneš na −: zmeň kusy o -1",
+        "keď ťukneš na Odobrať: nastav kusy na 0"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Vložíš tovar a ťukneš 2× na +.",
+          "q": "Koľko kusov je v košíku?",
+          "options": [
+            "2",
+            "3",
+            "1",
+            "4"
+          ],
+          "answer": 1,
+          "state": "kusy = 3",
+          "why": "1 + 1 + 1 = 3."
+        },
+        {
+          "line": 2,
+          "input": "Ťukneš 1× na −.",
+          "q": "Koľko kusov je v košíku?",
+          "options": [
+            "2",
+            "1",
+            "3",
+            "0"
+          ],
+          "answer": 0,
+          "state": "kusy = 2",
+          "why": "Z troch jeden ubudne."
+        },
+        {
+          "line": 3,
+          "input": "Ťukneš na Odobrať.",
+          "q": "Koľko kusov je v košíku?",
+          "options": [
+            "1",
+            "0",
+            "-1",
+            "2"
+          ],
+          "answer": 1,
+          "state": "kusy = 0",
+          "why": "Odobrať hodnotu prepíše na 0, nech tam bolo čokoľvek."
+        }
+      ]
     }
-  ],
-  "debrief": "Nastav prepíše hodnotu bez ohľadu na to, čo tam bolo. Zmeň počíta s tým, čo tam už je."
+  ]
 }

@@ -4,10 +4,10 @@ translationOf: ucet-a-autentizace-hra
 lang: hu
 type: game
 game: silne-heslo.hu
-title: "Játék: Erős vagy gyenge jelszó?"
+title: "Játék: Mennyi idő alatt találja ki?"
 readingTime: 1
 standalone: true
-teaser: "A támadó először az ismert jelszavakat és változataikat próbálja. Mi áll ellen?"
+teaser: "A támadó ellopott egy jelszóadatbázist, és másodpercenként 10 milliárd jelszót próbál ki: először az ismert jelszavakat, aztán a szavakat és változataikat, végül az összes kombinációt. Becsüld meg, meddig bírja a jelszó."
 voice: universal
 parent: null
 diagram: null

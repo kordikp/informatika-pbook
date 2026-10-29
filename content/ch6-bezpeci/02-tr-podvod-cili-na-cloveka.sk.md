@@ -39,11 +39,13 @@ Príde SMS: „Zásielka čaká na doplatok 1,29 €.“ Práve niečo čakáš.
 
 Najčastejší útok neláme počítač. Láme **teba**. Správa hrá na **zhon**, **strach**, **odmenu** alebo **dôveru**, aby si konal skôr, než premýšľaš. Tomu sa hovorí **sociálne inžinierstvo**. Správa, ktorá láka heslá a údaje, je **phishing**.
 
-Rozhodni správy v minihre pod textom. Pri každej sa opýtaj: **tlačí na mňa** (zhon, strach, odmena, dôvera)? A **chce heslo, kód, peniaze alebo prihlásenie cez odkaz**?
+V minihre pod textom nájdi, čo v každej správe prezrádza podvod. Pri každej sa opýtaj: **tlačí na mňa** (zhon, strach, odmena, dôvera)? A **chce heslo, kód, peniaze alebo prihlásenie cez odkaz**?
 
 Rada „podvod spoznáš podľa chýb v slovenčine“ už neplatí. AI napíše správu bez chýb a napodobní aj hlas. Spoľahlivejšie znaky sú **nátlak** a **žiadosť** o heslo, kód, peniaze alebo prihlásenie cez odkaz.
 
 Obrana má tri kroky. **Zastav sa.** **Over si to inou cestou**: zavolaj na číslo, ktoré poznáš, otvor aplikáciu sám. A **heslá ani kódy nikomu nehovor**, ani podpore, ani kamarátovi.
+
+Keď ťa niekto **vydiera alebo šikanuje** (hrozí, že zverejní fotku, chce peniaze alebo ďalšie fotky), neplať a nič ďalšie neposielaj. **Ulož si dôkazy** (snímky obrazovky), **povedz to dospelému**, ktorému veríš, a účet nahlás na sieti. Pomôže aj linka pre deti **116 111**. Vina je vždy na tom, kto vydiera.
 
 **Vyskúšaj to!** Zostav so spolužiakmi „podvodné bingo“: zhon, výhra, žiadosť o kód, divná adresa, neosobné oslovenie… Kto v nasledujúcich týždňoch nazbiera zo skutočného spamu najviac políčok? (Zbierať, nie klikať!)
 

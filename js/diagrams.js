@@ -91,7 +91,8 @@ const diagramCache = {};
 export async function getDiagram(name) {
   if (diagramCache[name]) return diagramCache[name];
 
-  const file = DIAGRAM_FILES[name];
+  // registrovaný klíč, nebo přímá cesta (značka ⟦obr: images/x.svg⟧ v textu bloku)
+  const file = DIAGRAM_FILES[name] || (/^images\/[\w.-]+\.(svg|png|jpg|jpeg|webp|gif)$/i.test(name) ? name : null);
   if (file) {
     // For raster images (PNG, JPG, WEBP), return <img> tag
     if (/\.(png|jpg|jpeg|webp|gif)$/i.test(file)) {

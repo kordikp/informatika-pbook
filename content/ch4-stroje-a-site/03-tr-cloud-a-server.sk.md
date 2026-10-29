@@ -41,7 +41,7 @@ Mobil hlási „Fotky zálohované do cloudu“. Kde sú teraz tie fotky?
 
 Fotka psa „v cloude“ cestuje takto: z úložiska **mobilu** cez **Wi-Fi router** doma k poskytovateľovi internetu, potom **optickým káblom** stovky kilometrov, pokojne po dne mora, do **dátového centra**, obrovskej haly plnej serverov, chladenia a záložných zdrojov. Nakoniec leží na **disku cudzieho počítača**, napríklad v Írsku alebo v USA.
 
-Cloud ti dá dáta všade a kópiu navyše. Ale závisíš od **pripojenia**, od **firmy** a svojho účtu u nej a od **zákonov krajiny**, kde server stojí. V Európskej únii chráni osobné údaje nariadenie GDPR.
+Cloud ti dá dáta všade a kópiu navyše. Ale závisíš od **pripojenia**, od **firmy** a svojho účtu u nej a od **zákonov krajiny**, kde server stojí. Aké práva k dátam máš, uvidíš v kapitole 6.
 
 **Záloha** sú dve kópie na dvoch rôznych miestach. Keď je jediná kópia v cloude, záloha to nie je.
 

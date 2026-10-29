@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img" aria-label="Herní smyčka: načti vstup, přepočítej svět, vykresli — 60krát za sekundu">
   <defs>
-    <marker id="hp" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker>
+    <marker id="hp" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto"><path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#7C3AED"/></marker>
   </defs>
   <rect x="1" y="1" width="518" height="298" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
   <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">Herní smyčka</text>
@@ -9,10 +9,10 @@
   <!-- fáze 1 -->
   <g>
     <rect x="60" y="70" width="130" height="66" rx="11" fill="#FFFFFF" stroke="#10B981" stroke-width="2">
-      <animate attributeName="stroke-width" values="2;4;2;2;2;2" dur="3.6s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="4;4;2;2;4" keyTimes="0;0.2;0.24;0.96;1" dur="3.6s" repeatCount="indefinite"/>
     </rect>
     <rect x="60" y="70" width="130" height="66" rx="11" fill="#D1FAE5" opacity="0.25">
-      <animate attributeName="opacity" values="0.55;0.15;0.15;0.15;0.15;0.55" dur="3.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.55;0.55;0.15;0.15;0.55" keyTimes="0;0.2;0.24;0.96;1" dur="3.6s" repeatCount="indefinite"/>
     </rect>
     <text x="125" y="97" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15">🎮</text>
     <text x="125" y="117" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1E1B4B">1. Načti vstup</text>
@@ -22,10 +22,10 @@
   <!-- fáze 2 -->
   <g>
     <rect x="330" y="70" width="130" height="66" rx="11" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2">
-      <animate attributeName="stroke-width" values="2;2;4;2;2;2" dur="3.6s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;4;4;2;2" keyTimes="0;0.293;0.333;0.533;0.573;1" dur="3.6s" repeatCount="indefinite"/>
     </rect>
     <rect x="330" y="70" width="130" height="66" rx="11" fill="#EDE9FE" opacity="0.25">
-      <animate attributeName="opacity" values="0.15;0.15;0.55;0.15;0.15;0.15" dur="3.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.15;0.15;0.55;0.55;0.15;0.15" keyTimes="0;0.293;0.333;0.533;0.573;1" dur="3.6s" repeatCount="indefinite"/>
     </rect>
     <text x="395" y="97" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15">🧮</text>
     <text x="395" y="117" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1E1B4B">2. Přepočítej svět</text>
@@ -35,10 +35,10 @@
   <!-- fáze 3 -->
   <g>
     <rect x="195" y="180" width="130" height="66" rx="11" fill="#FFFFFF" stroke="#D97706" stroke-width="2">
-      <animate attributeName="stroke-width" values="2;2;2;2;4;2" dur="3.6s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;4;4;2;2" keyTimes="0;0.627;0.667;0.867;0.907;1" dur="3.6s" repeatCount="indefinite"/>
     </rect>
     <rect x="195" y="180" width="130" height="66" rx="11" fill="#FEF3C7" opacity="0.25">
-      <animate attributeName="opacity" values="0.15;0.15;0.15;0.15;0.55;0.15" dur="3.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.15;0.15;0.55;0.55;0.15;0.15" keyTimes="0;0.627;0.667;0.867;0.907;1" dur="3.6s" repeatCount="indefinite"/>
     </rect>
     <text x="260" y="207" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15">🖼</text>
     <text x="260" y="227" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1E1B4B">3. Vykresli</text>
@@ -51,8 +51,9 @@
   <path d="M192 208 C150 196 122 166 122 142" fill="none" stroke="#7C3AED" stroke-width="2" marker-end="url(#hp)"/>
 
   <!-- oběžná tečka -->
-  <circle r="6" fill="#7C3AED">
-    <animateMotion dur="3.6s" repeatCount="indefinite" path="M125 66 C220 46 320 46 395 66 C430 130 400 170 330 206 C280 232 220 226 180 206 C120 176 95 130 125 66"/>
+  <circle r="6" fill="#7C3AED" stroke="#FFFFFF" stroke-width="1.5">
+    <animateMotion dur="3.6s" repeatCount="indefinite" path="M125 103 L192 103 L326 103 L395 103 L400 138 C398 162 360 188 330 200 L260 213 L192 208 C150 196 122 166 122 142" calcMode="linear" keyPoints="0;0.1041;0.3122;0.4743;0.6250;0.8415;1" keyTimes="0;0.2;0.333;0.533;0.667;0.867;1"/>
+    <animate attributeName="opacity" values="0;1;0;1;0;1" keyTimes="0;0.2;0.333;0.533;0.667;0.867" calcMode="discrete" dur="3.6s" repeatCount="indefinite"/>
   </circle>
 
   <!-- počítadlo -->
@@ -64,7 +65,7 @@
   <!-- běžící postavička dole -->
   <g>
     <text x="0" y="0" font-family="system-ui, sans-serif" font-size="16">🏃</text>
-    <animateMotion dur="3.6s" repeatCount="indefinite" path="M60 278 L120 278 L180 278 L240 278 L300 278 L360 278 L420 278 L60 278"/>
+    <animateTransform attributeName="transform" type="translate" calcMode="discrete" values="60 278;120 278;180 278;240 278;300 278;360 278;420 278" keyTimes="0;0.1111;0.2778;0.4444;0.6111;0.7778;0.9444" dur="21.6s" repeatCount="indefinite"/>
   </g>
   <text x="260" y="292" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9.5" fill="#6B7280">postava se „hýbe“ = každý průchod smyčky ji vykreslí o kousek vedle</text>
 </svg>

@@ -6,7 +6,7 @@
 // (content/bundle.<lang>.json or every content file, games, the interface pack — app.js
 // _offlineCopy) and they are stored here. Install used to download all 299 content files
 // a second time while the first visit was still loading them.
-const CACHE_NAME = 'pbook-informatika-v55';
+const CACHE_NAME = 'pbook-informatika-v74';
 
 // Fetch + store one URL; returns the live Response (body still readable) or null
 async function precacheOne(cache, url) {
@@ -75,8 +75,14 @@ self.addEventListener('activate', event => {
   })());
 });
 
+// The worker this one replaced may still be storing a response it fetched just before the
+// switch, which re-creates its cache after activate dropped it: sweep once more a little later.
+let _swept = false;
+const sweepOld = () => caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))));
+
 // Fetch: API = network only; everything else = cache first, update in background
 self.addEventListener('fetch', event => {
+  if (!_swept) { _swept = true; event.waitUntil(new Promise(r => setTimeout(r, 10000)).then(sweepOld)); }
   const url = new URL(event.request.url);
   if (url.pathname.startsWith('/.netlify/') || url.pathname.startsWith('/api/')) {
     event.respondWith(fetch(event.request).catch(() =>

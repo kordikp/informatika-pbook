@@ -1,22 +1,48 @@
 {
-  "type": "order",
-  "title": "Egyetlen lövés útja",
-  "instruction": "Rendezd sorba, mi történik a gomb megnyomásától a találatig a képernyőn.",
-  "steps": [
-    "Megnyomod a lövés gombját",
-    "A telefon a műveletet a szerver címével ellátott csomagba teszi",
-    "A routerek továbbküldik a csomagot egészen a szerverig",
-    "A szerver kiszámolja, kit találtál el",
-    "A válasz visszautazik minden játékoshoz",
-    "A telefonod kirajzolja a találatot"
-  ],
-  "debrief": "Egy online játékban minden lövés oda-vissza utazik a routereken át. Minél hosszabb az út, annál nagyobb a ping, és annál később látod a találatot.",
-  "why": [
-    "Minden a játékos bemenetével kezdődik.",
-    "Ahhoz, hogy a művelet a hálózaton utazhasson, címmel ellátott csomagba kell kerülnie.",
-    "A csomag több routeren halad át, mindegyik egy kicsit közelebb küldi.",
-    "A találatról a szerver dönt, nem a telefonod. Különben csalni lehetne.",
-    "Az eredményt mindenkinek tudnia kell, aki játszik.",
-    "Csak most látod a találatot. Az egész út annyi ideig tart, amennyi a pinged."
+  "type": "estimate",
+  "title": "Milyen gyorsan repül a lövés?",
+  "instruction": "Becsüld meg a csúszkán. Elég nagyjából.",
+  "debrief": "Egy online játékban minden lövés oda-vissza utazik a routereken át. Még a kábelben haladó fény sem végtelenül gyors. Minél messzebb van a szerver, annál nagyobb a ping, és annál később látod a találatot.",
+  "items": [
+    {
+      "q": "Nagyjából hány kilométert tesz meg a jel optikai kábelben 1 milliszekundum (egy ezredmásodperc) alatt?",
+      "min": 0,
+      "max": 1000,
+      "step": 50,
+      "answer": 200,
+      "tolerance": 50,
+      "unit": "km",
+      "why": "A fény üvegben másodpercenként kb. 200 000 km-t tesz meg, vagyis milliszekundumonként 200 km-t. Az adatok ennél gyorsabban nem utaznak."
+    },
+    {
+      "q": "A játékszerver 1000 km-re van. Hány milliszekundumig tart az út oda és vissza csak kábelen, a routerekben töltött késés nélkül?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 10,
+      "tolerance": 2,
+      "unit": "ms",
+      "why": "Oda 1000 km 5 ms alatt, vissza újabb 5 ms. A valódi ping nagyobb: a kábel nem egyenesen fut, és minden router egy pillanatra feltartja a csomagot."
+    },
+    {
+      "q": "Egy ausztráliai szerver kb. 16 000 km-re van. Hány ms-ig tartana az út oda és vissza csak kábelen?",
+      "min": 0,
+      "max": 400,
+      "step": 10,
+      "answer": 160,
+      "tolerance": 20,
+      "unit": "ms",
+      "why": "32 000 km oda-vissza osztva milliszekundumonkénti 200 km-rel 160 ms. Ezért közeli szerveren játszunk."
+    },
+    {
+      "q": "A játék másodpercenként 60-szor rajzolja újra a képet. Hány milliszekundumig tart egy képkocka?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 17,
+      "tolerance": 1,
+      "unit": "ms",
+      "why": "1000 ms osztva 60-nal kb. 16,7 ms. A 200 ms-os ping tehát nagyjából 12 képkockányi késés."
+    }
   ]
 }

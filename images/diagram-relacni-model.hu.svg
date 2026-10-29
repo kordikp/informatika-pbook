@@ -1,53 +1,64 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Relační model: tabulky Kamarádi a Půjčky propojené klíčem">
   <defs>
-    <marker id="kp" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/></marker>
+    <marker id="kp" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto"><path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#7C3AED"/></marker>
   </defs>
   <rect x="1" y="1" width="518" height="258" rx="14" fill="#FAFAF7" stroke="#E5E7EB" stroke-width="2"/>
   <text x="18" y="26" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1E1B4B">Relációs modell: táblák és kulcs</text>
   <text x="18" y="44" font-family="system-ui, sans-serif" font-size="11" fill="#6B7280">Egy adat egy helyen lakik, máshol csak rámutatnak.</text>
 
-  <!-- Tabulka Kamarádi -->
+  <!-- Tabulka Kamarádi: sloupec id je klíč -->
   <g font-family="system-ui, sans-serif" font-size="11">
-    <text x="42" y="72" font-size="12" font-weight="700" fill="#1E1B4B">Barátok</text>
-    <rect x="30" y="80" width="200" height="24" rx="4" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
-    <text x="52" y="96" font-weight="700" fill="#1E1B4B">id</text>
-    <text x="92" y="96" font-weight="700" fill="#1E1B4B">név</text>
-    <text x="162" y="96" font-weight="700" fill="#1E1B4B">telefon</text>
-    <rect x="30" y="104" width="200" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
-    <text x="52" y="120" fill="#1E1B4B" font-weight="700">1</text>
-    <text x="92" y="120" fill="#1E1B4B">Kuba</text>
-    <text x="162" y="120" fill="#6B7280">777 123…</text>
-    <rect x="30" y="128" width="200" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
-    <text x="52" y="144" fill="#1E1B4B">2</text>
-    <text x="92" y="144" fill="#1E1B4B">Eliška</text>
-    <text x="162" y="144" fill="#6B7280">606 987…</text>
-    <line x1="44" y1="80" x2="44" y2="152" stroke="#10B981" stroke-width="2"/>
-    <text x="42" y="170" font-size="10" fill="#10B981" font-weight="700">↑ kulcs: egyedi id</text>
+    <text x="30" y="72" font-size="12" font-weight="700" fill="#1E1B4B">Barátok</text>
+    <rect x="30" y="80" width="170" height="24" rx="4" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="40" y="96" font-weight="700" fill="#047857">id</text>
+    <text x="72" y="96" font-weight="700" fill="#1E1B4B">név</text>
+    <text x="132" y="96" font-weight="700" fill="#1E1B4B">telefon</text>
+    <rect x="30" y="104" width="170" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <rect x="30" y="128" width="170" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <rect x="30.5" y="104.5" width="31" height="47" fill="#ECFDF5"/>
+    <text x="40" y="120" fill="#047857" font-weight="700">1</text>
+    <text x="72" y="120" fill="#1E1B4B">Kuba</text>
+    <text x="132" y="120" fill="#6B7280">777 123…</text>
+    <text x="40" y="144" fill="#047857" font-weight="700">2</text>
+    <text x="72" y="144" fill="#1E1B4B">Eliška</text>
+    <text x="132" y="144" fill="#6B7280">606 987…</text>
+    <text data-krok="2" x="30" y="170" font-size="10" fill="#047857" font-weight="700">↑ kulcs: egyedi id</text>
   </g>
 
-  <!-- Tabulka Půjčky -->
+  <!-- Tabulka Půjčky: kamarad_id ukazuje do Kamarádů -->
   <g font-family="system-ui, sans-serif" font-size="11">
-    <text x="292" y="72" font-size="12" font-weight="700" fill="#1E1B4B">Kölcsönök</text>
-    <rect x="280" y="80" width="216" height="24" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
-    <text x="290" y="96" font-weight="700" fill="#1E1B4B">játék</text>
-    <text x="378" y="96" font-weight="700" fill="#7C3AED">barat_id</text>
-    <text x="462" y="96" font-weight="700" fill="#1E1B4B">mióta</text>
-    <rect x="280" y="104" width="216" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
-    <text x="290" y="120" fill="#1E1B4B">Zelda</text>
-    <text x="404" y="120" fill="#7C3AED" font-weight="700">1</text>
-    <text x="454" y="120" fill="#6B7280">3. 5.</text>
-    <rect x="280" y="128" width="216" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
-    <text x="290" y="144" fill="#1E1B4B">Mario Kart</text>
-    <text x="404" y="144" fill="#7C3AED">2</text>
-    <text x="454" y="144" fill="#6B7280">10. 5.</text>
+    <text x="300" y="72" font-size="12" font-weight="700" fill="#1E1B4B">Kölcsönök</text>
+    <rect x="300" y="80" width="196" height="24" rx="4" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+    <text x="310" y="96" font-weight="700" fill="#7C3AED">barat_id</text>
+    <text x="388" y="96" font-weight="700" fill="#1E1B4B">játék</text>
+    <text x="456" y="96" font-weight="700" fill="#1E1B4B">mióta</text>
+    <rect x="300" y="104" width="196" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <rect x="300" y="128" width="196" height="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+    <rect x="300.5" y="104.5" width="77" height="47" fill="#F5F3FF"/>
+    <text x="339" y="120" text-anchor="middle" fill="#7C3AED" font-weight="700">1</text>
+    <text x="388" y="120" fill="#1E1B4B">Zelda</text>
+    <text x="456" y="120" fill="#6B7280">3. 5.</text>
+    <text x="339" y="144" text-anchor="middle" fill="#7C3AED" font-weight="700">2</text>
+    <text x="388" y="144" fill="#1E1B4B">Mario Kart</text>
+    <text x="456" y="144" fill="#6B7280">10. 5.</text>
   </g>
 
-  <!-- propojení klíčem -->
-  <path d="M400 112 C330 60 120 60 60 106" fill="none" stroke="#7C3AED" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#kp)"/>
-  <text x="235" y="60" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7C3AED" font-weight="700">barat_id = 1 → az 1-es id sora</text>
+  <!-- propojení: každý řádek půjčky ukazuje na jeden řádek kamaráda -->
+  <g data-krok="1">
+  <g stroke="#7C3AED" stroke-width="2" fill="none" marker-end="url(#kp)">
+    <path d="M298 116 H206"/>
+    <path d="M298 140 H206"/>
+  </g>
+  <circle cx="300" cy="116" r="2.5" fill="#7C3AED"/>
+  <circle cx="300" cy="140" r="2.5" fill="#7C3AED"/>
+  <text x="250" y="107" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#7C3AED">erre mutat</text>
+  </g>
+  <text data-krok="2" x="300" y="170" font-family="system-ui, sans-serif" font-size="10" fill="#7C3AED" font-weight="700">barat_id = 1 → az 1-es id sora</text>
 
   <!-- výhoda -->
+  <g data-krok="3">
   <rect x="30" y="188" width="466" height="52" rx="9" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
-  <text x="46" y="210" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">📱 Kuba telefont cserél? Kijavítasz<tspan font-weight="700">egy sort</tspan>a Barátok táblában,</text>
+  <text x="46" y="210" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">📱 Kuba telefont cserél? Kijavítasz <tspan font-weight="700">egy sort</tspan> a Barátok táblában,</text>
   <text x="46" y="228" font-family="system-ui, sans-serif" font-size="11" fill="#1E1B4B">és minden kölcsön helyesen mutat rá. Nincs több elfelejtett másolat.</text>
+  </g>
 </svg>

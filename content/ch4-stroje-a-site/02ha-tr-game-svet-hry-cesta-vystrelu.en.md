@@ -4,10 +4,10 @@ translationOf: svet-hry-cesta-dat-hra
 lang: en
 type: game
 game: svet-hry-cesta-vystrelu.en
-title: "Game: The trip of a single shot"
+title: "Game: How fast does a shot travel?"
 readingTime: 1
 standalone: true
-teaser: "Put in order what happens from pressing the button to the hit on the screen."
+teaser: "Estimate on the slider. Roughly is enough."
 voice: universal
 parent: svet-hry-cesta-dat-en
 diagram: null

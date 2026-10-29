@@ -5,7 +5,7 @@ game: svet-roboti-lampicka
 title: "Hra: Rozsvítí se lampička?"
 readingTime: 1
 standalone: true
-teaser: "Pravidlo: rozsviť, když je tma A senzor pohybu něco zachytí."
+teaser: "Program noční lampičky na micro:bitu. Projdi ho pro každou situaci."
 voice: universal
 parent: svet-roboti-rozhodovani
 diagram: null

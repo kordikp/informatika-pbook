@@ -4,10 +4,10 @@ translationOf: ucet-a-autentizace-hra
 lang: en
 type: game
 game: silne-heslo.en
-title: "Game: Strong or weak password?"
+title: "Game: How long until it’s guessed?"
 readingTime: 1
 standalone: true
-teaser: "An attacker first tries well-known passwords and their variations. What holds out?"
+teaser: "An attacker has stolen a database of passwords and tries 10 billion passwords a second: first well-known passwords, then words and their variations, and finally every combination. Estimate how long the password lasts."
 voice: universal
 parent: null
 diagram: null

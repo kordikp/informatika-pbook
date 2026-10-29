@@ -1,22 +1,110 @@
 {
-  "type": "order",
+  "type": "cloze",
   "title": "Az Entertől az oldalig",
-  "instruction": "Tedd sorba, mi történik az Enter megnyomásától a kész oldalig.",
-  "steps": [
-    "Beírod a címet, és megnyomod az Entert",
-    "A DNS a nevet a szerver IP-címére fordítja",
-    "A böngésző kérést küld a szervernek az oldalért",
-    "A szerver visszaküldi a HTML-t",
-    "A böngésző elkéri a CSS-t, a szkripteket és a képeket",
-    "A böngésző megjeleníti az oldalt"
-  ],
+  "instruction": "Írd be, mi történik az Enter lenyomásától a kész oldalig.",
   "debrief": "Minden oldal kérések és válaszok cseréje. Előbb a névből cím lesz, aztán jön a HTML, aztán minden, amire a HTML hivatkozik.",
-  "why": [
-    "Minden nálad kezdődik: a cím egy név, nem egy szám.",
-    "IP-cím nélkül a kérés nem tudná, merre menjen.",
-    "Csak most tudja, hová küldje a kérést.",
-    "Az első kérésre adott válasz az oldal váza.",
-    "A böngésző csak a HTML-ből tudja meg, milyen további fájlokra van szüksége az oldalnak.",
-    "Az összes beérkezett fájlból összerakja a képet, amelyet látsz."
+  "items": [
+    {
+      "text": "Beírod: szakkorunk.hu. A géped csak a nevet ismeri, de az adatoknak {0} kell. A számot {1} mondja meg neki.",
+      "gaps": [
+        {
+          "options": [
+            "IP-cím",
+            "jelszó",
+            "e-mail"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "a DNS, az internet telefonkönyve",
+            "az otthoni router",
+            "maga a böngésző"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "A név az embereknek szól, az IP-cím a hálózatnak. A DNS lefordítja az egyiket a másikra."
+    },
+    {
+      "text": "A böngésző, vagyis a {0}, {1} küld a szervernek: küldd el a kezdőlapot.",
+      "gaps": [
+        {
+          "options": [
+            "kliens",
+            "szerver",
+            "router"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "kérést",
+            "választ",
+            "képet"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "A kliens kérdez, a szerver válaszol. Ennek a megbeszélésnek a nyelve a HTTP."
+    },
+    {
+      "text": "A kérés és a válasz {0} bontva utazik. Tovább {1} küldik, mindegyik egy kicsit közelebb.",
+      "gaps": [
+        {
+          "options": [
+            "csomagokra",
+            "teljes oldalakra",
+            "egyes karakterekre"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "a routerek",
+            "a DNS-szerverek",
+            "a böngészők"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Minden csomag magával viszi a cél címét. Ha útközben kiesik egy router, a többiek kerülőúton küldik tovább."
+    },
+    {
+      "text": "A szerver {0} küld vissza. A böngésző ebben CSS-re, szkriptekre és képekre mutató hivatkozásokat talál, és minden fájlért {1} küld.",
+      "gaps": [
+        {
+          "options": [
+            "HTML-t",
+            "kész képet az oldalról",
+            "jelszót"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "újabb kérést",
+            "egy SMS-t",
+            "semmit, mert már mindene megvan"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "A HTML az oldal váza. Egyetlen hírportál-oldal akár száz kérés is lehet."
+    },
+    {
+      "text": "Az oldalt a beérkezett fájlokból {0} rakja össze és rajzolja ki.",
+      "gaps": [
+        {
+          "options": [
+            "a böngésződ",
+            "a szerver",
+            "a DNS"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "A szerver az anyagot küldi, a képet a te eszközöd rakja össze. Ezért egy gyenge eszköz is le tudja lassítani az oldalt."
+    }
   ]
 }

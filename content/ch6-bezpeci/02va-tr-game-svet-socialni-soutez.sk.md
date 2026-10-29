@@ -4,10 +4,10 @@ translationOf: svet-socialni-podvod-cili-na-cloveka-hra
 lang: sk
 type: game
 game: svet-socialni-soutez.sk
-title: "Hra: Podvod, alebo v poriadku?"
+title: "Hra: Čo prezradí falošná súťaž?"
 readingTime: 1
 standalone: true
-teaser: "Na sociálnej sieti ti prišli tieto správy a ponuky. Ktoré sú podvod?"
+teaser: "Správy a ponuky zo sociálnej siete. Ťukni na každú časť, ktorá prezrádza podvod. Keď je ponuka v poriadku, neoznač nič."
 voice: universal
 parent: svet-socialni-podvod-cili-na-cloveka-sk
 diagram: null

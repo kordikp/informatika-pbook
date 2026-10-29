@@ -4,10 +4,10 @@ translationOf: digitalni-stopa-hra
 lang: hu
 type: game
 game: aktivni-pasivni-stopa.hu
-title: "Játék: Aktív vagy passzív lábnyom?"
+title: "Játék: Mit árul el Matěj?"
 readingTime: 1
 standalone: true
-teaser: "Tudatosan hagytad, vagy úgy keletkezett, hogy nem láttad?"
+teaser: "A kitalált Matěj és a hétköznapi profilja. Koppints minden részre, amelyből egy idegen megtudja, ki ő, hol szokott lenni, vagy mikor nem lesz otthon."
 voice: universal
 parent: null
 diagram: null

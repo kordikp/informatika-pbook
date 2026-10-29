@@ -1,42 +1,113 @@
 {
-  "type": "sort",
-  "title": "Nastav, nebo změň?",
-  "instruction": "Ke každé chvíli v appce vyber, jestli se proměnná nastaví na novou hodnotu, nebo změní o kus.",
-  "buckets": [
-    "nastav na …",
-    "změň o …"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "Co ukáže appka?",
+  "instruction": "Appka si pamatuje stav v proměnných. Projdi, co se stane, a řekni, co ukáže.",
+  "debrief": "Nastav přepíše hodnotu bez ohledu na to, co tam bylo. Změň počítá s tím, co tam už je.",
+  "rounds": [
     {
-      "text": "Odhlášení: přihlášen bude „ne“",
-      "answer": 0,
-      "why": "Ať bylo předtím cokoli, teď je „ne“."
+      "title": "Odznak nepřečtených zpráv",
+      "code": [
+        "při spuštění: nastav nepřečtené na 0",
+        "když přijde zpráva: změň nepřečtené o 1",
+        "když otevřeš chat: nastav nepřečtené na 0"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Appka se spustila a přišly 2 zprávy.",
+          "q": "Kolik ukáže odznak?",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "answer": 2,
+          "state": "nepřečtené = 2",
+          "why": "Od nuly dvakrát o jednu víc."
+        },
+        {
+          "line": 1,
+          "input": "Přišla třetí zpráva.",
+          "q": "Kolik ukáže odznak?",
+          "options": [
+            "1",
+            "3",
+            "2",
+            "0"
+          ],
+          "answer": 1,
+          "state": "nepřečtené = 3",
+          "why": "Ke dvěma jedna přibude."
+        },
+        {
+          "line": 2,
+          "input": "Otevřeš chat.",
+          "q": "Kolik ukáže odznak?",
+          "options": [
+            "3",
+            "2",
+            "0",
+            "1"
+          ],
+          "answer": 2,
+          "state": "nepřečtené = 0",
+          "why": "Otevření chatu hodnotu přepíše na 0. Nepočítá, kolik jich bylo."
+        }
+      ]
     },
     {
-      "text": "Přišla nová zpráva: nepřečtených o jednu víc",
-      "answer": 1,
-      "why": "K těm, co už jsou, jedna přibude."
-    },
-    {
-      "text": "Otevřel jsi chat: nepřečtených je teď nula",
-      "answer": 0,
-      "why": "Hodnota se přepíše na 0."
-    },
-    {
-      "text": "Klepnutí na + v košíku",
-      "answer": 1,
-      "why": "K počtu kusů, který tam je, přibude jeden."
-    },
-    {
-      "text": "V nastavení vybereš tmavý režim",
-      "answer": 0,
-      "why": "Režim se přepíše na „tmavý“."
-    },
-    {
-      "text": "Tlačítko hlasitosti dolů",
-      "answer": 1,
-      "why": "Z hlasitosti, která je, kousek ubere."
+      "title": "Košík v e-shopu",
+      "code": [
+        "po vložení zboží: nastav kusy na 1",
+        "když klepneš na +: změň kusy o 1",
+        "když klepneš na −: změň kusy o -1",
+        "když klepneš na Odebrat: nastav kusy na 0"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Vložíš zboží a klepneš 2× na +.",
+          "q": "Kolik kusů je v košíku?",
+          "options": [
+            "2",
+            "3",
+            "1",
+            "4"
+          ],
+          "answer": 1,
+          "state": "kusy = 3",
+          "why": "1 + 1 + 1 = 3."
+        },
+        {
+          "line": 2,
+          "input": "Klepneš 1× na −.",
+          "q": "Kolik kusů je v košíku?",
+          "options": [
+            "2",
+            "1",
+            "3",
+            "0"
+          ],
+          "answer": 0,
+          "state": "kusy = 2",
+          "why": "Ze tří jeden ubude."
+        },
+        {
+          "line": 3,
+          "input": "Klepneš na Odebrat.",
+          "q": "Kolik kusů je v košíku?",
+          "options": [
+            "1",
+            "0",
+            "-1",
+            "2"
+          ],
+          "answer": 1,
+          "state": "kusy = 0",
+          "why": "Odebrat hodnotu přepíše na 0, ať tam bylo cokoli."
+        }
+      ]
     }
-  ],
-  "debrief": "Nastav přepíše hodnotu bez ohledu na to, co tam bylo. Změň počítá s tím, co tam už je."
+  ]
 }

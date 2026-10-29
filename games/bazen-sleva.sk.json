@@ -1,52 +1,121 @@
 {
-  "type": "sort",
-  "title": "Zľava, alebo plné vstupné?",
-  "instruction": "Zľavu majú deti mladšie ako 15 rokov a ľudia od 65 rokov.",
-  "buckets": [
-    "Zľava",
-    "Plné vstupné"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "Pokladňa na kúpalisku",
+  "instruction": "Zľavu majú deti mladšie ako 15 rokov a ľudia od 65 rokov. Pokladňa rozhoduje podľa programu. Prejdi ho pre každého, kto príde.",
+  "debrief": "Podmienka rozhoduje presne, aj na hranici: pätnásťročný už zľavu nemá, šesťdesiatpäťročný ju má. Hranica a zámena „a“ za „alebo“ sú pri podmienkach najčastejšie miesta chýb.",
+  "rounds": [
     {
-      "text": "Ema, 9 rokov",
-      "answer": 0,
-      "why": "9 je menej ako 15, zľava platí."
+      "code": [
+        "prečítaj vek",
+        "ak vek < 15 alebo vek ≥ 65:",
+        "    vytlač lístok so zľavou",
+        "inak:",
+        "    vytlač lístok za plnú cenu"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Ema, 9 rokov",
+          "q": "Aký lístok pokladňa vytlačí?",
+          "options": [
+            "so zľavou",
+            "za plnú cenu"
+          ],
+          "answer": 0,
+          "why": "9 < 15 platí. Pri „alebo“ stačí jedna platná časť."
+        },
+        {
+          "line": 1,
+          "input": "Tomáš, 15 rokov",
+          "q": "Aký lístok pokladňa vytlačí?",
+          "options": [
+            "so zľavou",
+            "za plnú cenu"
+          ],
+          "answer": 1,
+          "why": "Pozor na hranicu: 15 < 15 neplatí. A 15 ≥ 65 tiež nie."
+        },
+        {
+          "line": 1,
+          "input": "Vera, 71 rokov",
+          "q": "Aký lístok pokladňa vytlačí?",
+          "options": [
+            "so zľavou",
+            "za plnú cenu"
+          ],
+          "answer": 0,
+          "why": "71 ≥ 65 platí, a to stačí."
+        },
+        {
+          "line": 1,
+          "input": "Karol, 65 rokov",
+          "q": "Aký lístok pokladňa vytlačí?",
+          "options": [
+            "so zľavou",
+            "za plnú cenu"
+          ],
+          "answer": 0,
+          "why": "≥ znamená „väčší alebo rovný“. 65 ≥ 65 platí."
+        },
+        {
+          "line": 1,
+          "input": "Lucia, 64 rokov",
+          "q": "Aký lístok pokladňa vytlačí?",
+          "options": [
+            "so zľavou",
+            "za plnú cenu"
+          ],
+          "answer": 1,
+          "why": "64 nie je menej ako 15 a ešte to nie je 65."
+        }
+      ]
     },
     {
-      "text": "Tomáš, 15 rokov",
-      "answer": 1,
-      "why": "Pozor na hranicu: 15 nie je menej ako 15. Plné vstupné."
+      "title": "Niekto program prepísal",
+      "code": [
+        "prečítaj vek",
+        "ak vek < 15 alebo vek > 65:",
+        "    vytlač lístok so zľavou",
+        "inak:",
+        "    vytlač lístok za plnú cenu"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Karol, 65 rokov",
+          "q": "Aký lístok teraz Karol dostane?",
+          "options": [
+            "so zľavou",
+            "za plnú cenu"
+          ],
+          "answer": 1,
+          "why": "65 > 65 neplatí. Karol zaplatí plnú cenu, hoci má mať zľavu. Chyba je v jedinom znaku: má tam byť ≥."
+        }
+      ]
     },
     {
-      "text": "Věra, 71 rokov",
-      "answer": 0,
-      "why": "71 je viac ako 65, zľava platí."
-    },
-    {
-      "text": "Jan, 34 rokov",
-      "answer": 1,
-      "why": "34 nie je menej ako 15 a nie je to ani 65 a viac."
-    },
-    {
-      "text": "Petra, 14 rokov",
-      "answer": 0,
-      "why": "14 je menej ako 15, zľava platí."
-    },
-    {
-      "text": "Karel, 65 rokov",
-      "answer": 0,
-      "why": "Pozor na hranicu: „od 65“ znamená aj presne 65. Zľava platí."
-    },
-    {
-      "text": "Ondřej, 40 rokov",
-      "answer": 1,
-      "why": "40 nie je menej ako 15 a nie je to ani 65 a viac."
-    },
-    {
-      "text": "Lucie, 64 rokov",
-      "answer": 1,
-      "why": "64 je stále menej ako 65. Plné vstupné."
+      "title": "A ešte jedna zmena",
+      "code": [
+        "prečítaj vek",
+        "ak vek < 15 a vek ≥ 65:",
+        "    vytlač lístok so zľavou",
+        "inak:",
+        "    vytlač lístok za plnú cenu"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "q": "Niekto napísal „a“ namiesto „alebo“. Kto teraz dostane zľavu?",
+          "options": [
+            "len deti",
+            "len seniori",
+            "nikto",
+            "všetci"
+          ],
+          "answer": 2,
+          "why": "Nikto nemôže mať zároveň menej ako 15 a 65 či viac rokov. Pri „a“ musia platiť obe časti, takže podmienka neplatí nikdy."
+        }
+      ]
     }
-  ],
-  "debrief": "Podmienka „mladší ako 15 alebo od 65“ rozhoduje presne, aj na hranici. Pätnásťročný už zľavu nemá, šesťdesiatpäťročný ju má. Hranica je pri podmienkach najčastejšie miesto chyby."
+  ]
 }

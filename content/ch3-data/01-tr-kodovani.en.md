@@ -14,7 +14,7 @@ core: true
 recallQ: "Why does a photo with a higher resolution make a bigger file?"
 recallA: "It is made of more pixels, and every pixel is encoded as numbers. More pixels mean more numbers, which means more bytes."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -32,29 +32,26 @@ highlights:
   - "Encoding = agreed rules for converting (pixel → number, letter → number)"
   - "Data size: bit, byte, MB, GB; resolution and quality make a file bigger"
   - "The file type (extension) says how to read the numbers; compression saves space"
-carriers: prose|code
+carriers: prose|formula
 ---
 
 Your phone says “Storage full”. An hour of 4K video takes up more space than a thousand photos. Why is video so big?
 
 A computer can store and send **only numbers**, in the end zeros and ones. For numbers to mean a picture, text or sound, you need **encoding**: an agreed rule for turning things into numbers.
 
-For a computer, an 8 × 8 pixel heart is a table of zeros and ones. Each line is one row of pixels:
+For a computer, an 8 × 8 pixel heart is a table of zeros and ones. Each row of pixels is one row of numbers:
 
-```
-0 1 1 0 0 1 1 0
-1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1
-0 1 1 1 1 1 1 0
-0 0 1 1 1 1 0 0
-0 0 0 1 1 0 0 0
-0 0 0 0 0 0 0 0
-```
+⟦obr: images/proklik-kodovani.en.svg⟧
 
 Double the resolution is 16 × 16 = 256 pixels instead of 64. Twice as many across and twice as many down gives four times as many numbers, and so a file four times as big. That's why 4K video is so big.
 
 A colour pixel needs more numbers, usually three: how much red, green and blue it has. Even a letter has a number: **A** is 65. Data size is measured in **bits** and **bytes** (1 byte = 8 bits), and bigger data in **kB, MB and GB**.
+
+Each of the three colour numbers takes up one byte. So working out the size of an uncompressed photo is easy:
+
+$$\text{size} = \text{width} \times \text{height} \times 3\ \text{B}$$
+
+A phone photo has 4000 × 3000 pixels: 4000 × 3000 × 3 B = 36,000,000 B, so about **36 MB**. JPG compression shrinks it to roughly a tenth.
 
 The **file extension** (.png, .mp3, .txt) tells a program which rule to use to read the numbers. **Compression** saves space: instead of “00000000” it writes “8×0”. JPG and MP3 also throw away details you can hardly see or hear.
 

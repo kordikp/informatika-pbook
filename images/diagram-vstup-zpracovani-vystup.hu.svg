@@ -2,14 +2,14 @@
   <title id="d1t">Bemenet → feldolgozás → kimenet</title>
   <desc id="d1d">A bemenet–feldolgozás–kimenet ciklus egy telefon példáján: koppintás a kijelzőn, a processzor számol, a képernyő és a hang megmutatja az eredményt. Lent ugyanez egy számológépen: beírod, hogy 2 + 3, a processzor számol, és kiírja: 5.</desc>
   <defs>
-    <marker id="d1-ag" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#10B981"/>
+    <marker id="d1-ag" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#10B981"/>
     </marker>
-    <marker id="d1-ap" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    <marker id="d1-ap" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#7C3AED"/>
     </marker>
-    <marker id="d1-ab" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 Z" fill="#0EA5E9"/>
+    <marker id="d1-ab" viewBox="0 0 10 10" markerWidth="4.5" markerHeight="4.5" refX="7" refY="5" orient="auto">
+      <path d="M0 1 L10 5 L0 9 L2 5 Z" fill="#0EA5E9"/>
     </marker>
   </defs>
 

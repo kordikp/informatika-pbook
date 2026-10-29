@@ -1,0 +1,143 @@
+{
+  "type": "trace",
+  "title": "Step through the loop",
+  "instruction": "Go through the program step by step, like a computer. What happens on the highlighted line?",
+  "debrief": "A loop with a fixed count runs exactly as many times as you say. A loop with a condition checks it at the start of every round. And when the condition never changes, the program gets stuck in an endless loop.",
+  "rounds": [
+    {
+      "title": "The robot drives round a pillar",
+      "code": [
+        "repeat 4×:",
+        "    move 3",
+        "    turn right",
+        "beep"
+      ],
+      "steps": [
+        {
+          "line": [
+            1,
+            2
+          ],
+          "q": "How many times do lines 2 and 3, the body of the loop, run?",
+          "options": [
+            "1×",
+            "3×",
+            "4×",
+            "12×"
+          ],
+          "answer": 2,
+          "why": "Repeat 4× means four rounds. In each round the robot does both commands of the body."
+        },
+        {
+          "line": 1,
+          "q": "How many squares does the robot move in total?",
+          "options": [
+            "3",
+            "4",
+            "7",
+            "12"
+          ],
+          "answer": 3,
+          "why": "Four rounds of three squares: 4 × 3 = 12."
+        },
+        {
+          "line": 3,
+          "q": "How many times does the robot beep?",
+          "options": [
+            "not at all",
+            "once",
+            "four times",
+            "five times"
+          ],
+          "answer": 1,
+          "why": "The beep isn't indented, so it isn't part of the loop body. It runs once, after the loop has finished."
+        }
+      ]
+    },
+    {
+      "title": "A corridor of unknown length",
+      "code": [
+        "repeat until in front of the wall:",
+        "    move 1",
+        "stop"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "There are 3 free squares in front of the robot, then a wall.",
+          "q": "Where does the robot stop?",
+          "options": [
+            "right at the start",
+            "just in front of the wall",
+            "in the wall",
+            "it doesn't stop, it keeps going"
+          ],
+          "answer": 1,
+          "why": "After three moves it is in front of the wall. That ends the loop and the robot stops."
+        },
+        {
+          "line": 0,
+          "input": "There are 3 free squares in front of the robot, then a wall.",
+          "q": "How many times is the check on line 1 made?",
+          "options": [
+            "3×",
+            "4×",
+            "once",
+            "over and over"
+          ],
+          "answer": 1,
+          "why": "Once before every round. Three times the way is free and the robot moves; the fourth time it is in front of the wall and the loop ends. Three rounds, four checks."
+        }
+      ]
+    },
+    {
+      "title": "A broken traffic light",
+      "code": [
+        "repeat until the light is green:",
+        "    wait 1 second",
+        "cross the road"
+      ],
+      "steps": [
+        {
+          "line": 0,
+          "input": "The traffic light is broken and stays red.",
+          "q": "When does the loop end?",
+          "options": [
+            "after 1 second",
+            "only when the light really turns green",
+            "after 10 rounds",
+            "straight away, because it's red"
+          ],
+          "answer": 1,
+          "why": "The light never turns green, so the loop goes on and on. Until the light is fixed, the program is stuck waiting in an endless loop."
+        }
+      ]
+    },
+    {
+      "title": "The waste bin",
+      "code": [
+        "repeat until the bin is full:",
+        "    throw in a piece of paper",
+        "    throw in a piece of paper"
+      ],
+      "steps": [
+        {
+          "line": [
+            1,
+            2
+          ],
+          "input": "The bin is one piece of paper short of full.",
+          "q": "How many pieces of paper does the program throw in?",
+          "options": [
+            "one",
+            "two",
+            "none",
+            "infinitely many"
+          ],
+          "answer": 1,
+          "why": "The check happens only at the start of a round. At the start the bin isn't full, so the whole round runs: two pieces of paper. The bin overflows, and only then does the loop find out it's full."
+        }
+      ]
+    }
+  ]
+}

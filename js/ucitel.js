@@ -145,22 +145,28 @@ const S = {
   },
 
   certIntro: {
-    cs: 'Certifikát vydává AI dětem. Žák ho najde v záložce Ty, kde také vidí, co mu ke kterému stupni chybí, a může si ho vytisknout.',
-    en: 'The certificate is issued by AI dětem. Pupils find it in the You tab, where they also see what is still missing for each level, and they can print it.',
-    sk: 'Certifikát vydáva AI dětem. Žiak ho nájde v záložke Ty, kde tiež vidí, čo mu ku ktorému stupňu chýba, a môže si ho vytlačiť.',
-    hu: 'A tanúsítványt az AI dětem adja ki. A diák a Te fülön találja meg, ott azt is látja, mi hiányzik még az egyes szintekhez, és ki is nyomtathatja.',
+    cs: 'Certifikát vydává AI dětem. Žák ho najde v záložce Ty, kde také vidí, co mu ke kterému stupni chybí, a může si ho vytisknout. Kniha nikoho nehoní, nemá série ani odpočty: pod jádry jen ukazuje, co k dalšímu stupni chybí, a po čtyřech jádrech za jedno sezení nabídne dobré místo na pauzu.',
+    en: 'The certificate is issued by AI dětem. Pupils find it in the You tab, where they also see what is still missing for each level, and they can print it. The book doesn’t push anyone, with no streaks or countdowns: under the core concepts it just shows what the next level still needs, and after four core concepts in one sitting it suggests a good place to stop.',
+    sk: 'Certifikát vydáva AI dětem. Žiak ho nájde v záložke Ty, kde tiež vidí, čo mu ku ktorému stupňu chýba, a môže si ho vytlačiť. Kniha nikoho nenaháňa, nemá série ani odpočty: pod jadrami len ukazuje, čo k ďalšiemu stupňu chýba, a po štyroch jadrách za jedno sedenie ponúkne dobré miesto na prestávku.',
+    hu: 'A tanúsítványt az AI dětem adja ki. A diák a Te fülön találja meg, ott azt is látja, mi hiányzik még az egyes szintekhez, és ki is nyomtathatja. A könyv senkit sem hajt, nincsenek sorozatok vagy visszaszámlálások: az alapfogalmak alatt csak azt mutatja, mi kell még a következő szinthez, és egy ülésben négy alapfogalom után jó pontot ajánl a szünetre.',
   },
   tierF: {
-    cs: 'Přečtených všech 24 jader, v jakémkoli podání.', en: 'All 24 core concepts read, in any telling.',
-    sk: 'Prečítaných všetkých 24 jadier, v akomkoľvek podaní.', hu: 'Mind a 24 alapfogalom elolvasva, bármelyik változatban.',
+    cs: 'Všech 24 jader prošlých (přečtených, nebo ověřených tlačítkem „Už to znám“) a 6 misí kapitol s poraženým bossem.',
+    en: 'All 24 core concepts done (read, or checked with the “I know this” button) and the 6 chapter missions with the boss beaten.',
+    sk: 'Všetkých 24 jadier prejdených (prečítaných alebo overených tlačidlom „Už to poznám“) a 6 misií kapitol s porazeným bossom.',
+    hu: 'Mind a 24 alapfogalom kész (elolvasva, vagy az „Ezt már tudom” gombbal ellenőrizve) és a 6 fejezetküldetés legyőzött főellenséggel.',
   },
   tierP: {
-    cs: 'Navíc dvě dokončené mise s bossem: z kapitol i ze světů.', en: 'Plus two missions completed, boss included: chapter or world missions.',
-    sk: 'Navyše dve dokončené misie s bossom: z kapitol aj zo svetov.', hu: 'Ezen felül két teljesített küldetés a főellenséggel együtt: fejezet- vagy világküldetés.',
+    cs: 'Navíc porozumění všem jádrům ověřené rychlou kontrolou, opakováním nebo hrou a jeden projekt ve světě s poraženým bossem.',
+    en: 'Plus understanding of every core concept checked by a quick check, a recall or a game, and one world project with the boss beaten.',
+    sk: 'Navyše porozumenie všetkým jadrám overené rýchlou kontrolou, opakovaním alebo hrou a jeden projekt vo svete s porazeným bossom.',
+    hu: 'Ezen felül minden alapfogalom megértése igazolva gyors ellenőrzéssel, ismétléssel vagy játékkal, és egy világprojekt legyőzött főellenséggel.',
   },
   tierG: {
-    cs: 'Navíc poražený boss projektu „{0}“ a 10 opakování kartiček.', en: 'Plus the boss of the “{0}” project beaten and 10 flashcard reviews.',
-    sk: 'Navyše porazený boss projektu „{0}“ a 10 opakovaní kartičiek.', hu: 'Ezen felül legyőzött főellenség a haladó projektben („{0}”) és 10 kártyaismétlés.',
+    cs: 'Navíc poražený boss závěrečného projektu „{0}“ a všechna jádra udržená: kartička k opakování zodpovězená správně i s odstupem aspoň dvou dnů.',
+    en: 'Plus the boss of the final project “{0}” beaten and every core concept kept: its recall card answered correctly again after a gap of at least two days.',
+    sk: 'Navyše porazený boss záverečného projektu „{0}“ a všetky jadrá udržané: kartička na opakovanie zodpovedaná správne aj s odstupom aspoň dvoch dní.',
+    hu: 'Ezen felül legyőzött főellenség a „{0}” záróprojektben, és minden alapfogalom megtartva: az ismétlőkártyára legalább kétnapos szünet után is helyes a válasz.',
   },
   credits: { cs: 'Knihu i certifikát vydává <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a>.' },
   loadErr: {

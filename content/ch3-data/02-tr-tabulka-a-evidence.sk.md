@@ -53,7 +53,7 @@ Filter „vrátiť do je skôr ako 28. 10.“ nájde hneď troch: Petra, Emu a O
 
 Z poznámok sa odpoveď len hádala. V upratanej tabuľke ju **filter** našiel hneď. Filter je podmienka položená každému riadku: je dátum vrátenia skôr ako dnes?
 
-Tabuľka vie aj **zoraďovať** a **počítať**: koľko kníh má Ema, koľko výpožičiek je po termíne. Funguje to však len vtedy, keď všetci píšu podľa rovnakých pravidiel: rovnaký formát, žiadne duplicity, nič nechýba.
+Tabuľka vie aj **zoraďovať** a **počítať**. Počítajú **funkcie**: vzorec `=COUNTIF(A2:A6; "Ema")` prejde stĺpec Žiak a spočíta, koľko výpožičiek má Ema. V upratanej tabuľke vyjde 1. V zošite, kde je Ema dvakrát, by vyšlo 2, a to je zle. Funguje to však len vtedy, keď všetci píšu podľa rovnakých pravidiel: rovnaký formát, žiadne duplicity, nič nechýba.
 
 Viac stĺpcov neznamená lepšiu evidenciu. Stĺpec má zmysel, keď sa naň budeš pýtať.
 

@@ -1,42 +1,124 @@
 {
-  "type": "sort",
-  "title": "Set or change?",
-  "instruction": "For each moment in the game, pick the block that fits.",
-  "buckets": [
-    "set to …",
-    "change by …"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "How many points does the player have?",
+  "instruction": "Step through the game’s code. What value does the variable have now?",
+  "debrief": "Set overwrites the value, change adds to whatever is there. Set belongs at the start of the game, change belongs to catching a coin.",
+  "rounds": [
     {
-      "text": "Start of the game: the score starts from zero",
-      "answer": 0,
-      "why": "Whatever was there, it should be 0. That’s setting."
+      "code": [
+        "when the game starts: set score to 0",
+        "when the game starts: set lives to 3",
+        "when the player picks up a coin: change score by 1",
+        "when the character crashes: change lives by -1",
+        "when a new level starts: set lives to 3"
+      ],
+      "steps": [
+        {
+          "line": 0,
+          "input": "The game has just started.",
+          "q": "What is the score?",
+          "options": [
+            "0",
+            "1",
+            "3",
+            "can’t tell"
+          ],
+          "answer": 0,
+          "state": "score = 0, lives = 3",
+          "why": "Set overwrites the value with 0, whatever was there."
+        },
+        {
+          "line": 2,
+          "input": "The player picked up 3 coins.",
+          "q": "What is the score?",
+          "options": [
+            "1",
+            "3",
+            "4",
+            "0"
+          ],
+          "answer": 1,
+          "state": "score = 3, lives = 3",
+          "why": "Each coin adds 1 to what is there: 0 + 1 + 1 + 1 = 3."
+        },
+        {
+          "line": 3,
+          "input": "The character crashed into an enemy.",
+          "q": "How many lives are left?",
+          "options": [
+            "3",
+            "2",
+            "-1",
+            "0"
+          ],
+          "answer": 1,
+          "state": "score = 3, lives = 2",
+          "why": "Change by -1 takes one of the three away."
+        },
+        {
+          "line": 3,
+          "input": "It crashed once more.",
+          "q": "How many lives are left?",
+          "options": [
+            "2",
+            "-2",
+            "1",
+            "0"
+          ],
+          "answer": 2,
+          "state": "score = 3, lives = 1",
+          "why": "One of the two is taken away."
+        },
+        {
+          "line": 4,
+          "input": "Level 2 begins.",
+          "q": "How many lives are left?",
+          "options": [
+            "1",
+            "4",
+            "0",
+            "3"
+          ],
+          "answer": 3,
+          "state": "score = 3, lives = 3",
+          "why": "Set overwrites the value with 3, no matter how many were left."
+        },
+        {
+          "line": 4,
+          "input": "Level 2 begins.",
+          "q": "What is the score?",
+          "options": [
+            "0",
+            "3",
+            "4",
+            "1"
+          ],
+          "answer": 1,
+          "why": "Line 5 only changes the lives. Nothing overwrote the score, so it stayed at 3."
+        }
+      ]
     },
     {
-      "text": "The player picked up a coin",
-      "answer": 1,
-      "why": "One more point is added to the ones they already have."
-    },
-    {
-      "text": "The character ran into an enemy",
-      "answer": 1,
-      "why": "One life is taken from the ones it has: change by -1."
-    },
-    {
-      "text": "A new level starts again with three lives",
-      "answer": 0,
-      "why": "The value is overwritten with 3, no matter how many were left."
-    },
-    {
-      "text": "Combo: one point more for each coin in a row",
-      "answer": 1,
-      "why": "The points are added to what is already there."
-    },
-    {
-      "text": "The player pressed “Play again” and the mode is “playing” again",
-      "answer": 0,
-      "why": "The mode is overwritten with a new value."
+      "title": "The programmer made a mistake",
+      "code": [
+        "when the game starts: set score to 0",
+        "when the player picks up a coin: set score to 1"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "The player picked up 3 coins.",
+          "q": "What is the score?",
+          "options": [
+            "3",
+            "1",
+            "0",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Set to 1 overwrites the value with 1 every time. However many coins the player picks up, the score is always 1. It should be change by 1."
+        }
+      ]
     }
-  ],
-  "debrief": "Set overwrites the value, change adds to what is there. Set belongs at the start of the game, change belongs to catching a coin."
+  ]
 }

@@ -1,22 +1,48 @@
 {
-  "type": "order",
-  "title": "Cesta jednoho výstřelu",
-  "instruction": "Seřaď, co se stane od stisku tlačítka po zásah na obrazovce.",
-  "steps": [
-    "Stiskneš tlačítko střelby",
-    "Mobil zabalí akci do balíčku s adresou serveru",
-    "Routery posílají balíček dál, až k serveru",
-    "Server spočítá, koho jsi zasáhl",
-    "Odpověď putuje zpátky ke všem hráčům",
-    "Tvůj mobil vykreslí zásah"
-  ],
-  "debrief": "Každý výstřel v online hře cestuje tam a zpátky přes routery. Čím delší cesta, tím vyšší ping a tím později vidíš zásah.",
-  "why": [
-    "Všechno začíná vstupem od hráče.",
-    "Aby akce mohla cestovat sítí, musí být v balíčku s adresou.",
-    "Balíček putuje přes několik routerů, každý ho pošle o kus blíž.",
-    "O zásahu rozhoduje server, ne tvůj mobil. Jinak by šlo podvádět.",
-    "Výsledek musí vědět všichni, kdo hrají.",
-    "Až teď uvidíš zásah. Celá cesta trvá tolik, kolik je tvůj ping."
+  "type": "estimate",
+  "title": "Jak rychle letí výstřel?",
+  "instruction": "Odhadni na posuvníku. Stačí přibližně.",
+  "debrief": "Každý výstřel v online hře cestuje tam a zpátky přes routery. Ani světlo v kabelu není nekonečně rychlé. Čím dál je server, tím vyšší ping a tím později vidíš zásah.",
+  "items": [
+    {
+      "q": "Signál v optickém kabelu urazí za 1 milisekundu (tisícinu sekundy) asi kolik kilometrů?",
+      "min": 0,
+      "max": 1000,
+      "step": 50,
+      "answer": 200,
+      "tolerance": 50,
+      "unit": "km",
+      "why": "Světlo ve skle letí asi 200 000 km za sekundu, tedy 200 km za milisekundu. Rychleji data necestují."
+    },
+    {
+      "q": "Herní server je 1 000 km daleko. Kolik milisekund trvá cesta tam a zpátky jen kabelem, bez zdržení v routerech?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 10,
+      "tolerance": 2,
+      "unit": "ms",
+      "why": "Tam 1 000 km za 5 ms a zpátky dalších 5 ms. Skutečný ping je vyšší: kabel nevede rovně a každý router balíček chvilku zdrží."
+    },
+    {
+      "q": "Server v Austrálii je asi 16 000 km daleko. Kolik ms by trvala cesta tam a zpátky jen kabelem?",
+      "min": 0,
+      "max": 400,
+      "step": 10,
+      "answer": 160,
+      "tolerance": 20,
+      "unit": "ms",
+      "why": "32 000 km tam a zpátky děleno 200 km za milisekundu je 160 ms. Proto se hraje na serveru, který je blízko."
+    },
+    {
+      "q": "Hra překreslí obraz 60× za sekundu. Kolik milisekund má jeden snímek?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 17,
+      "tolerance": 1,
+      "unit": "ms",
+      "why": "1 000 ms děleno 60 je asi 16,7 ms. Ping 200 ms je tedy zpoždění asi 12 snímků."
+    }
   ]
 }

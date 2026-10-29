@@ -1,42 +1,139 @@
 {
-  "type": "sort",
-  "title": "Podvod, alebo v poriadku?",
-  "instruction": "Podvod, alebo v poriadku?",
-  "buckets": [
-    "Podvod",
-    "V poriadku"
-  ],
+  "type": "hotspot",
+  "title": "Čo prezradí podvod?",
+  "instruction": "Ťukni na každú časť správy, ktorá prezrádza podvod: nátlak (zhon, strach, odmena, dôvera) alebo žiadosť o peniaze, kód, heslo či prihlásenie cez odkaz. Keď je správa v poriadku, neoznač nič.",
+  "debrief": "Podvod prezradí nátlak a to, čo chce: peniaze, kód, heslo alebo prihlásenie cez odkaz. Keď si to nemôžeš overiť, zastav sa a over si to inou cestou: v aplikácii, v škole alebo na čísle, ktoré poznáš.",
   "items": [
     {
-      "text": "SMS (neznáme číslo): Vaša zásielka čaká na doplatok 1,29 € za clo. Bez platby bude dnes vrátená. Zaplaťte tu: zasielka-doplatok.example",
-      "answer": 0,
-      "why": "Mieri na zhon („dnes“) a malú sumu, ktorá nevyzerá podozrivo."
+      "label": "SMS · neznáme číslo",
+      "segments": [
+        {
+          "text": "Vaša zásielka čaká"
+        },
+        {
+          "text": "na doplatok 1,50 € za clo.",
+          "hit": true,
+          "why": "Chce peniaze. Malá suma má vyzerať nevinne."
+        },
+        {
+          "text": "Bez platby bude dnes vrátená.",
+          "hit": true,
+          "why": "Zhon a strach: „dnes“, inak o zásielku prídeš."
+        },
+        {
+          "text": "Zaplaťte tu:"
+        },
+        {
+          "text": "zasielka-doplatok.example",
+          "hit": true,
+          "why": "Cudzí odkaz. Zásielku overíš v aplikácii prepravcu alebo na jeho webe, ktorý poznáš."
+        }
+      ]
     },
     {
-      "text": "E-mail (Triedna učiteľka · školská adresa): Dobrý deň, v piatok ideme na exkurziu. Zraz o 8:00 pred školou, desiatu a pitie so sebou. Podrobnosti nájdete v EduPage.",
-      "answer": 1,
-      "why": "Nič nechce: žiadny odkaz, žiadne údaje, žiadny zhon."
+      "label": "E-mail · triedna učiteľka, školská adresa",
+      "why": "Nič od teba nechce: žiadny odkaz, žiadne údaje, žiadny zhon. Podrobnosti si nájdeš v školskom systéme, ktorý poznáš.",
+      "segments": [
+        {
+          "text": "Dobrý deň, v piatok ideme na exkurziu."
+        },
+        {
+          "text": "Zraz o 8:00 pred školou,"
+        },
+        {
+          "text": "desiatu a pitie so sebou."
+        },
+        {
+          "text": "Podrobnosti nájdete v školskom systéme."
+        }
+      ]
     },
     {
-      "text": "E-mail (Herný tím): Gratulujeme! V súťaži si vyhral 2 000 drahokamov. Výhru si vyzdvihni do 24 hodín prihlásením svojím herným účtom: odmeny-hra.example",
-      "answer": 0,
-      "why": "Mieri na odmenu a zhon. Text je bez jedinej chyby. Napísala ho AI."
+      "label": "E-mail · Herný tím",
+      "segments": [
+        {
+          "text": "Gratulujeme!"
+        },
+        {
+          "text": "V súťaži na teba čaká 2 000 drahokamov.",
+          "hit": true,
+          "why": "Odmena za súťaž, o ktorej nič nevieš."
+        },
+        {
+          "text": "Výhru si vyzdvihni do 24 hodín",
+          "hit": true,
+          "why": "Zhon, aby nebol čas premýšľať."
+        },
+        {
+          "text": "prihlásením svojím herným účtom:",
+          "hit": true,
+          "why": "Chce prihlásenie cez odkaz. Takto sa kradnú účty."
+        },
+        {
+          "text": "odmeny-hra.example",
+          "hit": true,
+          "why": "Cudzia adresa. Skutočnú výhru by ti hra ukázala priamo v hre."
+        }
+      ]
     },
     {
-      "text": "Hovor (Mama · neznáme číslo): „Ahoj, to som ja. Pokazil sa mi mobil, volám z cudzieho. Príde ti SMS s kódom, prečítaj mi ho, rýchlo. Vysvetlím ti to doma.“",
-      "answer": 0,
-      "why": "Mieri na dôveru a strach o blízkeho. Hlas môže byť naklonovaný AI."
+      "label": "Hovor · „mama“ z neznámeho čísla",
+      "segments": [
+        {
+          "text": "„Ahoj, to som ja."
+        },
+        {
+          "text": "Pokazil sa mi mobil, volám z cudzieho.",
+          "hit": true,
+          "why": "Vysvetľuje, prečo volá z neznámeho čísla. Presne tak sa začínajú podvody s hlasom naklonovaným AI."
+        },
+        {
+          "text": "Príde ti SMS s kódom, prečítaj mi ho,",
+          "hit": true,
+          "why": "Chce kód. Kód z SMS je kľúč k účtu a nepatrí nikomu, ani mame."
+        },
+        {
+          "text": "rýchlo.",
+          "hit": true,
+          "why": "Zhon."
+        },
+        {
+          "text": "Vysvetlím ti to doma.“"
+        }
+      ]
     },
     {
-      "text": "SMS (Hra): (Práve sa prihlasuješ do hry.) Kód na prihlásenie: 482913. Nikomu ho nehovor, ani podpore.",
-      "answer": 1,
-      "why": "Kód prišiel, pretože sa práve prihlasuješ ty. Patrí len do prihlasovacieho okna."
+      "label": "SMS · Hra (práve sa do nej prihlasuješ)",
+      "why": "Kód prišiel, lebo sa práve prihlasuješ ty. Patrí len do prihlasovacieho okna hry.",
+      "segments": [
+        {
+          "text": "Kód na prihlásenie: 482913."
+        },
+        {
+          "text": "Nikomu ho neoznamuj,"
+        },
+        {
+          "text": "ani podpore."
+        }
+      ]
     },
     {
-      "text": "Chat (Kamarát Tomáš): Hele, hlasuj prosím za mňa v súťaži! Stačí sa prihlásiť svojím účtom tu: sutaz-hlasovanie.example 🙏",
-      "answer": 0,
-      "why": "Mieri na priateľstvo. Tomášov účet už môže ovládať podvodník."
+      "label": "Chat · kamarát Tomáš",
+      "segments": [
+        {
+          "text": "Hele, hlasuj prosím za mňa v súťaži!"
+        },
+        {
+          "text": "Stačí sa prihlásiť svojím účtom tu:",
+          "hit": true,
+          "why": "Chce prihlásenie cez odkaz. Tomášov účet už môže ovládať podvodník."
+        },
+        {
+          "text": "sutaz-hlasovanie.example 🙏",
+          "hit": true,
+          "why": "Cudzí odkaz aj od kamaráta. Over si to s ním inou cestou, napríklad mu zavolaj."
+        }
+      ]
     }
-  ],
-  "debrief": "Podvod spoznáš podľa zhonu, cudzieho odkazu a žiadosti o kód, heslo alebo platbu. Keď si nie si istý, over si to inou cestou: v aplikácii, u učiteľa alebo na známom čísle."
+  ]
 }

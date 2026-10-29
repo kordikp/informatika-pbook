@@ -4,10 +4,10 @@ translationOf: podvod-cili-na-cloveka-hra
 lang: en
 type: game
 game: podvod-nebo-ne.en
-title: "Game: Scam or OK?"
+title: "Game: What gives the scam away?"
 readingTime: 1
 standalone: true
-teaser: "Scam or OK?"
+teaser: "Tap every part of the message that gives a scam away: pressure (hurry, fear, reward, trust) or a request for money, a code, a password or logging in through a link. If the message is fine, mark nothing."
 voice: universal
 parent: null
 diagram: null

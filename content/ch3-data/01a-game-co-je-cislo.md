@@ -2,10 +2,10 @@
 id: kodovani-hra
 type: game
 game: co-je-cislo
-title: "Hra: Kódování, nebo šifrování?"
+title: "Hra: Všechno jsou čísla"
 readingTime: 1
 standalone: true
-teaser: "Pravidlo, které zná každý program, nebo zámek, ke kterému má klíč jen někdo?"
+teaser: "Doplň chybějící slova."
 voice: universal
 parent: null
 diagram: null

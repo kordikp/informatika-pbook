@@ -39,7 +39,7 @@ A telefonod néhány üzenetet magától áttesz a spambe. Hogyan dönti el, mel
 
 A program **tud dönteni**. Ha egy **feltétel** teljesül, az egyiket csinálja, **különben** a másikat. A feltétel olyan kérdés, amelyre csak **igen** vagy **nem** a válasz: kisebb az életkor 15-nél?
 
-Az uszoda pénztára kedvezményes és teljes árú jegyre válogatja az embereket. Kedvezményt kapnak a **15 év alatti** gyerekek és a **65 éves és idősebb** emberek. Egy feltétel nem elég, kettő kell: *ha életkor < 15 **vagy** életkor ≥ 65, akkor kedvezmény, különben teljes ár.* Válogasd szét a sort a szöveg alatti minijátékban. Figyelj Tomášra (15) és Karelre (65).
+Az uszoda pénztára kedvezményes és teljes árú jegyre válogatja az embereket. Kedvezményt kapnak a **15 év alatti** gyerekek és a **65 éves és idősebb** emberek. Egy feltétel nem elég, kettő kell: *ha életkor < 15 **vagy** életkor ≥ 65, akkor kedvezmény, különben teljes ár.* A szöveg alatti minijátékban végigléped a pénztár programját mindenkire a sorban. Figyelj Tomášra (15) és Karelre (65).
 
 A **ha** és a **különben** ágak közül **mindig pontosan egy** fut le. Egy feltétel nem teljesülhet „egy kicsit”: vagy igaz, vagy nem.
 

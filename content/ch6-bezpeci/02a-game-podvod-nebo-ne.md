@@ -2,10 +2,10 @@
 id: podvod-cili-na-cloveka-hra
 type: game
 game: podvod-nebo-ne
-title: "Hra: Podvod, nebo v pořádku?"
+title: "Hra: Co prozradí podvod?"
 readingTime: 1
 standalone: true
-teaser: "Podvod, nebo v pořádku?"
+teaser: "Ťukni na každou část zprávy, která prozrazuje podvod: nátlak (spěch, strach, odměna, důvěra) nebo žádost o peníze, kód, heslo či přihlášení přes odkaz. Když je zpráva v pořádku, neoznač nic."
 voice: universal
 parent: null
 diagram: null

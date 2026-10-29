@@ -37,6 +37,8 @@ Fotka se rozdělí na malé **balíčky**. Každý nese **IP adresu** cíle, č�
 
 Mobil se nejdřív zeptá **DNS**, telefonního seznamu internetu: jakou adresu má chat.example? DNS odpoví 203.0.113.7, protože routery rozumějí jen číslům. Fotka pak odjede v šesti balíčcích. Jeden jede přes router A a C, jiný přes B a D. Když router A vypadne, balíčky pojedou přes B a D a fotka dorazí stejně.
 
+⟦obr: images/proklik-cesta-dat.svg⟧
+
 Internet je **síť sítí** a nemá jeden střed. Když vypadne router, ostatní pošlou balíčky **objížďkou**. Ztracený balíček se pošle znovu a celá fotka ne.
 
 Tvůj mobil je **klient**: posílá **požadavek**. Server posílá **odpověď**. Tak funguje web, e-mail i stream.

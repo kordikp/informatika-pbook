@@ -2,10 +2,10 @@
 id: ucet-a-autentizace-hra
 type: game
 game: silne-heslo
-title: "Hra: Silné, nebo slabé heslo?"
+title: "Hra: Za jak dlouho ho uhodne?"
 readingTime: 1
 standalone: true
-teaser: "Útočník zkouší nejdřív známá hesla a jejich obměny. Co vydrží?"
+teaser: "Útočník ukradl databázi hesel a zkouší 10 miliard hesel za sekundu: nejdřív známá hesla, pak slova a jejich obměny, nakonec všechny kombinace. Odhadni, jak dlouho heslo vydrží."
 voice: universal
 parent: null
 diagram: null

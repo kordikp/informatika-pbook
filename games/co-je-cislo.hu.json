@@ -1,47 +1,132 @@
 {
-  "type": "sort",
-  "title": "Kódolás vagy titkosítás?",
-  "instruction": "Olyan szabály, amelyet minden program ismer, vagy olyan zár, amelynek a kulcsa csak valakinél van?",
-  "buckets": [
-    "Kódolás (nyilvános szabály)",
-    "Titkosítás (titkos kulcs)"
-  ],
+  "type": "cloze",
+  "title": "Minden szám",
+  "instruction": "Írd be a hiányzó szavakat.",
+  "debrief": "A számítógép mindent bitekből álló számként tárol: betűket, színeket, képeket és hangokat is. A kódolás szabálya nyilvános, ezért értik egymás adatait a különböző eszközök. A titkosítás más: az adatokat kulccsal zárja le.",
   "items": [
     {
-      "text": "Az A betű 65-ként tárolódik",
-      "answer": 0,
-      "why": "A karaktertáblát minden számítógép ismeri. Semmi sem titkos."
+      "text": "Az információ legkisebb darabja a {0}. Csak két értéke van: {1}.",
+      "gaps": [
+        {
+          "options": [
+            "bit",
+            "bájt",
+            "pixel"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "0 és 1",
+            "1-től 10-ig",
+            "A-tól Z-ig"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "A bit nulla vagy egy. Bitekből épül fel minden más."
     },
     {
-      "text": ".png formátumban mentett fotó",
-      "answer": 0,
-      "why": "A PNG formátum nyilvános. Bármelyik képnézegető megnyitja."
+      "text": "Nyolc bit {0}. {1} különböző értéket lehet bele írni.",
+      "gaps": [
+        {
+          "options": [
+            "1 bájt",
+            "1 kilobájt",
+            "1 pixel"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "8",
+            "16",
+            "256"
+          ],
+          "answer": 2
+        }
+      ],
+      "why": "Minden újabb bit megduplázza az értékek számát: 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 = 256."
     },
     {
-      "text": "Csetüzenet, amelyet csak a címzett olvashat el",
-      "answer": 1,
-      "why": "Az üzenetet olyan kulcs zárja, amely csak a címzettnél van. Ez titkosítás."
+      "text": "Az A betűt a számítógép a {0} számként tárolja. A karaktertáblát {1} ismeri.",
+      "gaps": [
+        {
+          "options": [
+            "1",
+            "65",
+            "100"
+          ],
+          "answer": 1
+        },
+        {
+          "options": [
+            "csak a te mobilod",
+            "minden számítógép",
+            "csak az, akinél a kulcs van"
+          ],
+          "answer": 1
+        }
+      ],
+      "why": "A karaktertáblában a nagy A a 65-ös szám. A tábla nyilvános, így a különböző számítógépek is értik egymás szövegeit."
     },
     {
-      "text": "A pixel mint három szám: vörös, zöld, kék",
-      "answer": 0,
-      "why": "Nyilvános szabály arról, hogyan írjunk le egy színt számokkal."
+      "text": "Egy pixel színét három számmal írod le: mennyi van benne {0}.",
+      "gaps": [
+        {
+          "options": [
+            "pirosból, zöldből és kékből",
+            "feketéből, fehérből és szürkéből",
+            "fényből, árnyékból és élességből"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "Minden pixelnek három száma van 0-tól 255-ig. Egy mobilos fotóban milliónyi van belőlük."
     },
     {
-      "text": "A lakat és a https a böngészőben",
-      "answer": 1,
-      "why": "A kapcsolat a weboldallal titkosított, útközben senki sem olvassa el."
+      "text": "Egy 8 × 8 pixeles képnek {0} pixele van. 16 × 16-os felbontásnál {1}.",
+      "gaps": [
+        {
+          "options": [
+            "16",
+            "32",
+            "64"
+          ],
+          "answer": 2
+        },
+        {
+          "options": [
+            "128",
+            "256",
+            "512"
+          ],
+          "answer": 1
+        }
+      ],
+      "why": "Kétszer annyi szélességben és magasságban négyszer annyi szám, és így négyszer akkora fájl."
     },
     {
-      "text": ".mp3 formátumban mentett dal",
-      "answer": 0,
-      "why": "Az MP3 nyilvános formátum. Bármelyik lejátszó lejátssza."
-    },
-    {
-      "text": "Caesar-titkosírás 3-as kulccsal",
-      "answer": 1,
-      "why": "Kulcs (3-mal való eltolás) nélkül nem olvashatod el az üzenetet. Ez titkosírás, még ha gyenge is."
+      "text": "A kódolás {0} szabály arra, hogyan írjuk le az adatokat számokkal. A titkosítás az adatokat {1} zárja le.",
+      "gaps": [
+        {
+          "options": [
+            "nyilvános",
+            "titkos",
+            "véletlenszerű"
+          ],
+          "answer": 0
+        },
+        {
+          "options": [
+            "olyan kulccsal, amely csak valakinél van meg",
+            "olyan szabállyal, amelyet mindenki ismer",
+            "a Wi-Fi jelszavával"
+          ],
+          "answer": 0
+        }
+      ],
+      "why": "A PNG-t és az MP3-at bárki megnyitja, mert a szabály nyilvános. A titkosított üzenetet csak az nyitja meg, akinél a kulcs van."
     }
-  ],
-  "debrief": "A kódolás nyilvános szabály arról, hogyan írjuk le az adatokat számokkal. Minden program ismeri. A titkosítás bezárja az adatokat, és csak az olvashatja el őket, akinél a kulcs van."
+  ]
 }

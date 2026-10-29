@@ -4,7 +4,7 @@ translationOf: sifrovani
 lang: sk
 type: spine
 title: "Šifrovanie: obálka namiesto pohľadnice"
-readingTime: 1
+readingTime: 2
 standalone: true
 teaser: "Chat píše „Správy sú koncovo šifrované“. Čo to znamená a kto ich teda neprečíta?"
 voice: universal
@@ -14,7 +14,7 @@ core: true
 recallQ: "Web má zámok a https. Znamená to, že je dôveryhodný?"
 recallA: "Nie. Zámok hovorí len to, že cesta medzi tebou a webom je šifrovaná. Podvodný web môže mať https tiež."
 lens: generic
-visuality: text-first
+visuality: balanced
 depth: intro
 formalism: none
 lengthBand: standard
@@ -41,9 +41,13 @@ Každý router po ceste drží balíček v ruke. Nešifrovaná správa je ako **
 
 Caesarova šifra s kľúčom 3 posunie každé písmeno o tri miesta: A → D, B → E, H → K. Odkaz AHOJ sa zmení na DKRM. Kto pozná kľúč, posunie písmená späť. A kto ho nepozná? Zachytíš správu GYHG WYP POYPZRB V WPHALQ a skúšaš kľúče jeden po druhom. S kľúčom 7 vyjde ZRAZ PRI IHRISKU O PIATEJ. Caesar má len 25 kľúčov, a tak sa dá rozlúštiť skúšaním. Šifry v mobile majú kľúčov toľko, že by ich žiadny počítač nevyskúšal.
 
+⟦obr: images/proklik-sifrovani.sk.svg⟧
+
 **Otvorený text** a **kľúč** dajú **šifrovaný text**. Kto kľúč má, správu odomkne. Kto ho nemá, vidí len zmes.
 
 **Zámok a https** v prehliadači znamenajú, že **cesta** medzi tebou a webom je šifrovaná. Nehovoria, že web je **poctivý**. Podvodný web môže mať zámok tiež.
+
+**Koncové šifrovanie** v chate ide ďalej. Pri https sa správa na serveri služby odomkne a služba ju môže prečítať. Pri koncovom šifrovaní majú kľúč len **telefóny na oboch koncoch**. Server správu len odovzdá a sám ju neprečíta. Prečíta ju však každý, kto drží telefón príjemcu. A snímka obrazovky ju pošle ďalej.
 
 Šifrovanie nie je kódovanie. Pravidlo kódovania je verejné, kľúč šifry je tajný.
 
@@ -51,4 +55,4 @@ Caesarova šifra s kľúčom 3 posunie každé písmeno o tri miesta: A → D, B
 
 > **Pozor, častý omyl:** „Zámok v prehliadači znamená, že web je bezpečný.“ Zámok znamená len to, že spojenie je šifrované a cestou ho nikto neprečíta. Podvodný web môže mať zámok tiež.
 
-**Ďalej:** Šifru prelomiť nejde, a tak podvodníci útočia na človeka. Zámok má pokojne aj phishingový web. Uvidíš v kapitole 6. → [Podvod mieri na človeka](#c/podvod-cili-na-cloveka)
+**Ďalej:** Dobrú šifru hádaním neprelomíš, a tak podvodníci útočia na človeka. Zámok má pokojne aj phishingový web. Uvidíš v kapitole 6. → [Podvod mieri na človeka](#c/podvod-cili-na-cloveka)

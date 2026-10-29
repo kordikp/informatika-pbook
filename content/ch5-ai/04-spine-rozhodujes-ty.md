@@ -2,7 +2,7 @@
 id: rozhodujes-ty
 type: spine
 title: "Ověřuj a rozhoduj ty"
-readingTime: 1
+readingTime: 2
 standalone: true
 teaser: "Do třídní skupiny přijde zpráva „Zítra se kvůli výpadku proudu neučí! Pošli dál.“ Pošleš ji?"
 voice: universal
@@ -35,9 +35,11 @@ Chatbot je skvělý pomocník. Vysvětlí, navrhne, zkontroluje. Jenže **AI je 
 
 1. **Ověř.** Důležité tvrzení zkontroluj v jiném, nezávislém zdroji. Ptej se: kdo to tvrdí, odkud to ví a proč to říká?
 2. **Chraň.** Do AI nedávej, co nesmí ven: hesla, adresu ani fotky a údaje druhých bez jejich souhlasu.
-3. **Přiznej.** Když ti AI pomohla, řekni s čím. Za výsledek odpovídáš ty.
+3. **Přiznej.** Když ti AI pomohla, řekni s čím. Za výsledek odpovídáš ty. Totéž platí pro cizí díla: hudbu, obrázky a texty druhých použij, jen když to dovolí jejich **licence** (třeba Creative Commons), a autora uveď.
 
-Čtyři situace a jak je rozhodnout. **Zítra odevzdáváš sloh a chatbot ho napíše celý**: osnovu nebo kontrolu pravopisu ano, text píšeš ty a pomoc přiznáš. **Nerozumíš zlomkům**: ať ti je AI vysvětlí jinak, výsledky si ověř. **Už třetí den tě bolí břicho**: o zdraví rozhoduje dospělý a lékař, ne chatbot. **Chceš z fotky kamarádky udělat vtipný AI obrázek**: fotky a údaje druhých do AI nedávej bez jejich souhlasu.
+Nejdřív ta zpráva ze třídní skupiny. **Kdo to tvrdí?** Nikdo podepsaný. **Odkud to ví?** Neříká. **Proč to říká?** Věta „Pošli dál“ chce hlavně, aby se šířila. Ověř si to na webu školy nebo ve školní aplikaci. Dokud to neověříš, dál to neposílej.
+
+S AI je to stejné. Čtyři situace a jak je rozhodnout. **Zítra odevzdáváš sloh a chatbot ho napíše celý**: osnovu nebo kontrolu pravopisu ano, text píšeš ty a pomoc přiznáš. **Nerozumíš zlomkům**: ať ti je AI vysvětlí jinak, výsledky si ověř. **Už třetí den tě bolí břicho**: o zdraví rozhoduje dospělý a lékař, ne chatbot. **Chceš z fotky kamarádky udělat vtipný AI obrázek**: fotky a údaje druhých do AI nedávej bez jejich souhlasu.
 
 Neexistuje jedno pravidlo „AI vždycky“ ani „AI nikdy“. Rozhoduje, jestli tě AI připraví o učení, jestli jde o citlivé věci a kdo nese odpovědnost. **Rozhoduješ ty.**
 

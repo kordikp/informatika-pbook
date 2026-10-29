@@ -1,42 +1,139 @@
 {
-  "type": "sort",
-  "title": "Podvod, nebo v pořádku?",
-  "instruction": "Podvod, nebo v pořádku?",
-  "buckets": [
-    "Podvod",
-    "V pořádku"
-  ],
+  "type": "hotspot",
+  "title": "Co prozradí podvod?",
+  "instruction": "Ťukni na každou část zprávy, která prozrazuje podvod: nátlak (spěch, strach, odměna, důvěra) nebo žádost o peníze, kód, heslo či přihlášení přes odkaz. Když je zpráva v pořádku, neoznač nic.",
+  "debrief": "Podvod prozradí nátlak a to, co chce: peníze, kód, heslo nebo přihlášení přes odkaz. Když si to nemůžeš ověřit, zastav se a ověř si to jinou cestou: v aplikaci, ve škole nebo na čísle, které znáš.",
   "items": [
     {
-      "text": "SMS (neznámé číslo): Vaše zásilka čeká na doplatek 19 Kč za clo. Bez platby bude dnes vrácena. Zaplaťte zde: zasilka-doplatek.example",
-      "answer": 0,
-      "why": "Cílí na spěch („dnes“) a malou částku, která nevypadá podezřele."
+      "label": "SMS · neznámé číslo",
+      "segments": [
+        {
+          "text": "Vaše zásilka čeká"
+        },
+        {
+          "text": "na doplatek 19 Kč za clo.",
+          "hit": true,
+          "why": "Chce peníze. Malá částka má vypadat nevinně."
+        },
+        {
+          "text": "Bez platby bude dnes vrácena.",
+          "hit": true,
+          "why": "Spěch a strach: „dnes“, jinak o zásilku přijdeš."
+        },
+        {
+          "text": "Zaplaťte zde:"
+        },
+        {
+          "text": "zasilka-doplatek.example",
+          "hit": true,
+          "why": "Cizí odkaz. Zásilku ověříš v aplikaci dopravce nebo na jeho webu, který znáš."
+        }
+      ]
     },
     {
-      "text": "E-mail (Třídní učitelka · školní adresa): Dobrý den, v pátek jedeme na exkurzi. Sraz v 8:00 před školou, svačinu a pití s sebou. Podrobnosti najdete ve školním systému.",
-      "answer": 1,
-      "why": "Nic nechce: žádný odkaz, žádné údaje, žádný spěch."
+      "label": "E-mail · třídní učitelka, školní adresa",
+      "why": "Nic po tobě nechce: žádný odkaz, žádné údaje, žádný spěch. Podrobnosti si najdeš ve školním systému, který znáš.",
+      "segments": [
+        {
+          "text": "Dobrý den, v pátek jedeme na exkurzi."
+        },
+        {
+          "text": "Sraz v 8:00 před školou,"
+        },
+        {
+          "text": "svačinu a pití s sebou."
+        },
+        {
+          "text": "Podrobnosti najdete ve školním systému."
+        }
+      ]
     },
     {
-      "text": "E-mail (Herní tým): Gratulujeme! V soutěži jsi vyhrál 2 000 drahokamů. Výhru si vyzvedni do 24 hodin přihlášením svým herním účtem: odmeny-hra.example",
-      "answer": 0,
-      "why": "Cílí na odměnu a spěch. Text je bez jediné chyby. Napsala ho AI."
+      "label": "E-mail · Herní tým",
+      "segments": [
+        {
+          "text": "Gratulujeme!"
+        },
+        {
+          "text": "V soutěži na tebe čeká 2 000 drahokamů.",
+          "hit": true,
+          "why": "Odměna za soutěž, o které nic nevíš."
+        },
+        {
+          "text": "Výhru si vyzvedni do 24 hodin",
+          "hit": true,
+          "why": "Spěch, ať nestihneš přemýšlet."
+        },
+        {
+          "text": "přihlášením svým herním účtem:",
+          "hit": true,
+          "why": "Chce přihlášení přes odkaz. Takhle se kradou účty."
+        },
+        {
+          "text": "odmeny-hra.example",
+          "hit": true,
+          "why": "Cizí adresa. Skutečnou výhru by ti hra ukázala přímo ve hře."
+        }
+      ]
     },
     {
-      "text": "Hovor (Máma · neznámé číslo): „Ahoj, to jsem já. Rozbil se mi mobil, volám z cizího. Přijde ti SMS s kódem, přečti mi ho, rychle. Vysvětlím ti to doma.“",
-      "answer": 0,
-      "why": "Cílí na důvěru a strach o blízkého. Hlas může být naklonovaný AI."
+      "label": "Hovor · „máma“ z neznámého čísla",
+      "segments": [
+        {
+          "text": "„Ahoj, to jsem já."
+        },
+        {
+          "text": "Rozbil se mi mobil, volám z cizího.",
+          "hit": true,
+          "why": "Vysvětluje, proč volá z neznámého čísla. Přesně tak začínají podvody s hlasem naklonovaným AI."
+        },
+        {
+          "text": "Přijde ti SMS s kódem, přečti mi ho,",
+          "hit": true,
+          "why": "Chce kód. Kód z SMS je klíč k účtu a nepatří nikomu, ani mámě."
+        },
+        {
+          "text": "rychle.",
+          "hit": true,
+          "why": "Spěch."
+        },
+        {
+          "text": "Vysvětlím ti to doma.“"
+        }
+      ]
     },
     {
-      "text": "SMS (Hra): (Právě se přihlašuješ do hry.) Kód pro přihlášení: 482913. Nikomu ho nesděluj, ani podpoře.",
-      "answer": 1,
-      "why": "Kód přišel, protože se právě přihlašuješ ty. Patří jen do přihlašovacího okna."
+      "label": "SMS · Hra (právě se do ní přihlašuješ)",
+      "why": "Kód přišel, protože se právě přihlašuješ ty. Patří jen do přihlašovacího okna hry.",
+      "segments": [
+        {
+          "text": "Kód pro přihlášení: 482913."
+        },
+        {
+          "text": "Nikomu ho nesděluj,"
+        },
+        {
+          "text": "ani podpoře."
+        }
+      ]
     },
     {
-      "text": "Chat (Kamarád Tomáš): Hele, hlasuj prosím pro mě v soutěži! Stačí se přihlásit svým účtem tady: soutez-hlasovani.example 🙏",
-      "answer": 0,
-      "why": "Cílí na přátelství. Tomášův účet už může ovládat podvodník."
+      "label": "Chat · kamarád Tomáš",
+      "segments": [
+        {
+          "text": "Hele, hlasuj prosím pro mě v soutěži!"
+        },
+        {
+          "text": "Stačí se přihlásit svým účtem tady:",
+          "hit": true,
+          "why": "Chce přihlášení přes odkaz. Tomášův účet už může ovládat podvodník."
+        },
+        {
+          "text": "soutez-hlasovani.example 🙏",
+          "hit": true,
+          "why": "Cizí odkaz i od kamaráda. Ověř si to s ním jinou cestou, třeba mu zavolej."
+        }
+      ]
     }
-  ],
-  "debrief": "Podvod poznáš podle spěchu, cizího odkazu a žádosti o kód, heslo nebo platbu. Když si nejsi jistý, ověř si to jinou cestou: v aplikaci, u učitele nebo na známém čísle."
+  ]
 }

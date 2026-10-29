@@ -4,10 +4,10 @@ translationOf: ucet-a-autentizace-hra
 lang: sk
 type: game
 game: silne-heslo.sk
-title: "Hra: Silné, alebo slabé heslo?"
+title: "Hra: Za ako dlho ho uhádne?"
 readingTime: 1
 standalone: true
-teaser: "Útočník skúša najprv známe heslá a ich obmeny. Čo vydrží?"
+teaser: "Útočník ukradol databázu hesiel a skúša 10 miliárd hesiel za sekundu: najprv známe heslá, potom slová a ich obmeny, nakoniec všetky kombinácie. Odhadni, ako dlho heslo vydrží."
 voice: universal
 parent: null
 diagram: null

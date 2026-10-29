@@ -1,42 +1,103 @@
 {
-  "type": "sort",
-  "title": "Podvod, alebo v poriadku?",
-  "instruction": "Na sociálnej sieti ti prišli tieto správy a ponuky. Ktoré sú podvod?",
-  "buckets": [
-    "Podvod",
-    "V poriadku"
-  ],
+  "type": "hotspot",
+  "title": "Čo prezradí falošná súťaž?",
+  "instruction": "Správy a ponuky zo sociálnej siete. Ťukni na každú časť, ktorá prezrádza podvod. Keď je ponuka v poriadku, neoznač nič.",
+  "debrief": "Podvod prezradí, čo chce: peniaze, kartu, heslo alebo kód, a to hneď. Skutočná súťaž ani kamarát nič z toho nepotrebujú.",
   "items": [
     {
-      "text": "Vyhral si, zaplať poštovné 2 € do 24 hodín",
-      "answer": 0,
-      "why": "Za skutočnú výhru sa neplatí, a už vôbec nie v náhlení."
+      "label": "Správa · „Výherné oddelenie“",
+      "segments": [
+        {
+          "text": "Gratulujeme, vyhrávaš nový mobil!"
+        },
+        {
+          "text": "Zaplať len poštovné 2 €",
+          "hit": true,
+          "why": "Za skutočnú výhru sa neplatí."
+        },
+        {
+          "text": "do 24 hodín,",
+          "hit": true,
+          "why": "Zhon."
+        },
+        {
+          "text": "inak výhra prepadne.",
+          "hit": true,
+          "why": "Strach, že o niečo prídeš."
+        }
+      ]
     },
     {
-      "text": "Súťaž na overenom profile kina: napíš do komentára, na aký film by si išiel",
-      "answer": 1,
-      "why": "Nič od teba nechce a organizátor je skutočný."
+      "label": "Overený profil kina",
+      "why": "Nič od teba nechce a organizátor je skutočný.",
+      "segments": [
+        {
+          "text": "Súťaž o dva lístky!"
+        },
+        {
+          "text": "Napíš do komentára svoj najobľúbenejší film."
+        },
+        {
+          "text": "Víťaza vyžrebujeme v piatok."
+        }
+      ]
     },
     {
-      "text": "Kamarátka: pošli mi kód, čo ti prišiel, omylom som ho dala na tvoje číslo",
-      "answer": 0,
-      "why": "Kód je kľúč k tvojmu účtu. A jej účet je najskôr ukradnutý."
+      "label": "Správa · kamarátka Klára",
+      "segments": [
+        {
+          "text": "Ahoj, omylom som dala tvoje číslo namiesto svojho."
+        },
+        {
+          "text": "Pošli mi prosím kód, čo ti teraz prišiel.",
+          "hit": true,
+          "why": "Kód je kľúč k tvojmu účtu. A Klárin účet je najskôr ukradnutý."
+        },
+        {
+          "text": "Vďaka! ❤️"
+        }
+      ]
     },
     {
-      "text": "Známy youtuber vo videu: pošli mi 20 €, vrátim ti 40",
-      "answer": 0,
-      "why": "Deepfake so sľubom zdvojnásobenia peňazí."
+      "label": "Video · známy youtuber",
+      "segments": [
+        {
+          "text": "Kamaráti, dnes rozdávam!"
+        },
+        {
+          "text": "Pošli mi 20 €",
+          "hit": true,
+          "why": "Chce peniaze."
+        },
+        {
+          "text": "a ja ti hneď vrátim 40.",
+          "hit": true,
+          "why": "Zdvojnásobenie peňazí je klasický podvod. Hlas aj tvár môžu byť deepfake."
+        }
+      ]
     },
     {
-      "text": "Obchod ti v oficiálnej appke ukáže zľavový kód",
-      "answer": 1,
-      "why": "Zľava priamo v appke obchodu, nič nezadávaš."
-    },
-    {
-      "text": "Profil s menom banky: over účet, inak bude zablokovaný",
-      "answer": 0,
-      "why": "Strach a náhlenie. Banka sa ti ozve v aplikácii banky, nie na sociálnej sieti."
+      "label": "Profil s menom banky",
+      "segments": [
+        {
+          "text": "Over svoj účet,",
+          "hit": true,
+          "why": "Banka od teba overenie na sociálnej sieti nikdy nechce."
+        },
+        {
+          "text": "inak bude do hodiny zablokovaný:",
+          "hit": true,
+          "why": "Strach a zhon."
+        },
+        {
+          "text": "banka-overenie.example",
+          "hit": true,
+          "why": "Cudzí odkaz. Banka sa ti ozve v aplikácii banky."
+        },
+        {
+          "text": "🏦"
+        }
+      ]
     }
-  ],
-  "debrief": "Podvod prezradí, čo chce: peniaze, kartu, heslo alebo kód, a to hneď. Skutočná súťaž ani kamarát nič z toho nepotrebujú."
+  ]
 }

@@ -1,42 +1,113 @@
 {
-  "type": "sort",
-  "title": "Beállítás vagy változtatás?",
-  "instruction": "Az app minden pillanatára válaszd ki, hogy a változó új értéket kap, vagy egy kicsit változik.",
-  "buckets": [
-    "legyen …",
-    "változtasd …-vel"
-  ],
-  "items": [
+  "type": "trace",
+  "title": "Mit mutat az app?",
+  "instruction": "Az app változókban jegyzi meg az állapotát. Kövesd végig, mi történik, és mondd meg, mit mutat.",
+  "debrief": "Az „állítsd“ felülírja az értéket, függetlenül attól, mi volt ott. A „változtasd meg“ azzal számol, ami már ott van.",
+  "rounds": [
     {
-      "text": "Kijelentkezés: a bejelentkezve értéke „nem” lesz",
-      "answer": 0,
-      "why": "Bármi volt is előtte, most „nem”."
+      "title": "Az olvasatlan üzenetek jelvénye",
+      "code": [
+        "indításkor: állítsd az olvasatlant 0-ra",
+        "amikor üzenet érkezik: változtasd meg az olvasatlant 1-gyel",
+        "amikor megnyitod a csetet: állítsd az olvasatlant 0-ra"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Az app elindult, és érkezett 2 üzenet.",
+          "q": "Mit mutat a jelvény?",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "answer": 2,
+          "state": "olvasatlan = 2",
+          "why": "Nulláról kétszer eggyel több."
+        },
+        {
+          "line": 1,
+          "input": "Megjött a harmadik üzenet.",
+          "q": "Mit mutat a jelvény?",
+          "options": [
+            "1",
+            "3",
+            "2",
+            "0"
+          ],
+          "answer": 1,
+          "state": "olvasatlan = 3",
+          "why": "A kettőhöz hozzájön egy."
+        },
+        {
+          "line": 2,
+          "input": "Megnyitod a csetet.",
+          "q": "Mit mutat a jelvény?",
+          "options": [
+            "3",
+            "2",
+            "0",
+            "1"
+          ],
+          "answer": 2,
+          "state": "olvasatlan = 0",
+          "why": "A cset megnyitása 0-ra írja felül az értéket. Nem számolja, hány volt."
+        }
+      ]
     },
     {
-      "text": "Új üzenet jött: eggyel több olvasatlan",
-      "answer": 1,
-      "why": "A meglévőkhöz hozzájön még egy."
-    },
-    {
-      "text": "Megnyitottad a chatet: most nulla az olvasatlan",
-      "answer": 0,
-      "why": "Az érték 0-ra íródik felül."
-    },
-    {
-      "text": "Koppintás a + gombra a kosárban",
-      "answer": 1,
-      "why": "A meglévő darabszámhoz hozzájön egy."
-    },
-    {
-      "text": "A beállításokban kiválasztod a sötét módot",
-      "answer": 0,
-      "why": "A mód „sötét”-re íródik felül."
-    },
-    {
-      "text": "A hangerő le gomb",
-      "answer": 1,
-      "why": "A meglévő hangerőből elvesz egy kicsit."
+      "title": "Kosár egy webáruházban",
+      "code": [
+        "a termék hozzáadása után: állítsd a darabot 1-re",
+        "ha a + gombra koppintasz: változtasd meg a darabot 1-gyel",
+        "ha a − gombra koppintasz: változtasd meg a darabot -1-gyel",
+        "ha az Eltávolítás gombra koppintasz: állítsd a darabot 0-ra"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "Beteszel egy terméket, és kétszer koppintasz a + gombra.",
+          "q": "Hány darab van a kosárban?",
+          "options": [
+            "2",
+            "3",
+            "1",
+            "4"
+          ],
+          "answer": 1,
+          "state": "darab = 3",
+          "why": "1 + 1 + 1 = 3."
+        },
+        {
+          "line": 2,
+          "input": "Egyszer koppintasz a − gombra.",
+          "q": "Hány darab van a kosárban?",
+          "options": [
+            "2",
+            "1",
+            "3",
+            "0"
+          ],
+          "answer": 0,
+          "state": "darab = 2",
+          "why": "A háromból egy elfogy."
+        },
+        {
+          "line": 3,
+          "input": "Koppintasz az Eltávolítás gombra.",
+          "q": "Hány darab van a kosárban?",
+          "options": [
+            "1",
+            "0",
+            "-1",
+            "2"
+          ],
+          "answer": 1,
+          "state": "darab = 0",
+          "why": "Az Eltávolítás 0-ra írja felül az értéket, bármi volt is ott."
+        }
+      ]
     }
-  ],
-  "debrief": "A beállítás felülírja az értéket, függetlenül attól, mi volt ott. A változtatás azzal számol, ami már ott van."
+  ]
 }

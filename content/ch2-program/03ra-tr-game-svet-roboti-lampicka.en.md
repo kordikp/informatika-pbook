@@ -4,10 +4,10 @@ translationOf: svet-roboti-rozhodovani-hra
 lang: en
 type: game
 game: svet-roboti-lampicka.en
-title: "Game: Will the lamp switch on?"
+title: "Game: Does the lamp turn on?"
 readingTime: 1
 standalone: true
-teaser: "The rule: switch on when it is dark AND the motion sensor detects something."
+teaser: "The program of a night lamp on a micro:bit. Step through it for each situation."
 voice: universal
 parent: svet-roboti-rozhodovani-en
 diagram: null

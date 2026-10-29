@@ -35,6 +35,8 @@ Když se něco děje znovu a znovu, nezapisuješ to stokrát. Zapíšeš to **je
 
 Robot má objet sloup a vrátit se na start. Dlouhý program má 8 bloků: *jdi 3, otoč se vpravo*, a to celé čtyřikrát. Stejná dvojice se opakuje, takže stačí **opakuj 4×: jdi 3, otoč se vpravo**. Tři bloky místo osmi. A když má robot dojet ke zdi v chodbě, jejíž délku nezná? *Opakuj 5×: jdi 1* v krátké chodbě narazí a v dlouhé zastaví moc brzy. Funguje **opakuj, dokud není před zdí: jdi 1**.
 
+⟦obr: images/proklik-opakovani.svg⟧
+
 Cyklus s **pevným počtem** použiješ, když **předem víš, kolikrát**: čtyři strany čtverce. Cyklus **s podmínkou**, když to záleží na tom, co se stane: jeď, dokud nejsi u zdi.
 
 Pozor na dvě věci. Podmínka se kontroluje **na začátku každého kola**, ne uprostřed těla. A cyklus musí jednou **skončit**. Když podmínka nikdy nepřestane platit, program se **zacyklí**. Někdy je to chyba, jindy záměr: herní smyčka nebo nekonečný feed běží schválně pořád.

@@ -1,20 +1,45 @@
 {
-  "type": "order",
-  "title": "Juttasd el a robotot a töltőhöz",
-  "instruction": "A robot bal alul áll, és felfelé néz. A töltő 2 mezővel feljebb és 3 mezővel jobbra van. Rendezd sorba a lépéseket.",
-  "steps": [
-    "Az elem 20 % alatt van, indulj",
-    "Menj előre 2 mezőt",
-    "Fordulj jobbra 90°-ot",
-    "Menj előre 3 mezőt",
-    "Állj meg, és csatlakozz a töltőhöz"
-  ],
-  "why": [
-    "A program vár, amíg dolga nem lesz: elindul, amikor merül az elem.",
-    "A robot felfelé néz, ezért először 2 mezőt megy felfelé.",
-    "Most a töltő felé kell fordulnia. Fordulás nélkül tovább menne felfelé.",
-    "A fordulás után jobbra néz, és a töltő 3 mezőnyire van.",
-    "Az eljárásnak véget kell érnie: a robot a célban megáll."
-  ],
-  "debrief": "A robot semmit sem gondol hozzá. Minden lépésnek egyértelműnek, a sorrendnek pontosnak kell lennie, különben máshol köt ki."
+  "type": "grid",
+  "title": "Vezesd a robotot a töltőhöz",
+  "instruction": "Rakj össze egy programot lépésekből és fordulásokból. A robot szó szerint hajtja végre.",
+  "goalIcon": "🔌",
+  "debrief": "A robot semmit sem gondol ki magától. Minden lépésnek egyértelműnek, a sorrendnek pontosnak kell lennie. A célhoz több helyes algoritmus is vezet, és az ismétlés lerövidíti a programot.",
+  "levels": [
+    {
+      "map": [
+        "...G",
+        "....",
+        "S..."
+      ],
+      "dir": "N",
+      "max": 8,
+      "instruction": "A robot felfelé néz. A töltő 2 mezővel feljebb és 3-mal jobbra van.",
+      "why": "Fel 2-t, fordulj jobbra, jobbra 3-at. Vagy fordítva: előbb jobbra, aztán fel. Mindkét algoritmus helyes."
+    },
+    {
+      "map": [
+        "...G",
+        "#...",
+        "S..."
+      ],
+      "dir": "N",
+      "max": 8,
+      "instruction": "A felfelé vezető út el van torlaszolva. Próbáld meg máshol.",
+      "why": "Ha az egyik út le van zárva, a másik algoritmus segít: előbb jobbra, aztán fel."
+    },
+    {
+      "map": [
+        "....G",
+        ".....",
+        ".....",
+        ".....",
+        "S...."
+      ],
+      "dir": "N",
+      "max": 6,
+      "repeat": true,
+      "instruction": "Hosszabb út, de a programban csak 6 parancs lehet. Használd az ismétlést.",
+      "why": "4× előre, fordulj jobbra, 4× előre: kilenc helyett öt parancs. Az ismétlés lerövidíti a programot."
+    }
+  ]
 }

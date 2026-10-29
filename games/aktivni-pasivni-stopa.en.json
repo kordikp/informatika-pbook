@@ -1,47 +1,88 @@
 {
-  "type": "sort",
-  "title": "Active or passive footprint?",
-  "instruction": "Did you leave it knowingly, or did it appear without you seeing it?",
-  "buckets": [
-    "Active (knowingly)",
-    "Passive (you can't see it)"
-  ],
+  "type": "hotspot",
+  "title": "What does Matěj give away?",
+  "instruction": "Matěj is made up and has an ordinary profile. Tap every part from which a stranger can tell who he is, where he spends his time or when he won't be at home.",
+  "debrief": "Each trace on its own is harmless. Together they give away his name, his street, when he goes to training and that nobody will be at home for the whole summer holidays. Before you share something, ask: what can a stranger tell from this?",
   "items": [
     {
-      "text": "A photo you post",
-      "answer": 0,
-      "why": "You decided to share it, so it's an active footprint."
+      "label": "Nickname",
+      "segments": [
+        {
+          "text": "matej",
+          "hit": true,
+          "why": "His first name."
+        },
+        {
+          "text": "nadrazni",
+          "hit": true,
+          "why": "The name of the street where he lives."
+        },
+        {
+          "text": "2011",
+          "hit": true,
+          "why": "His year of birth, and so his age."
+        },
+        {
+          "text": "⚽ football · 🎧 music"
+        }
+      ]
     },
     {
-      "text": "A GPS location saved in a photo",
-      "answer": 1,
-      "why": "The phone writes it into the photo by itself. You can't see it in the photo."
+      "label": "Post",
+      "segments": [
+        {
+          "text": "Training as usual"
+        },
+        {
+          "text": "on Tuesdays and Thursdays from 5 pm",
+          "hit": true,
+          "why": "When he is regularly away from home, and where to find him."
+        },
+        {
+          "text": "📷 photo from the changing room, the shirt shows the club’s name and the part of town",
+          "hit": true,
+          "why": "Where he trains, and so which part of town he lives in."
+        },
+        {
+          "text": "#football"
+        }
+      ]
     },
     {
-      "text": "A comment under a video",
-      "answer": 0,
-      "why": "You wrote it knowingly and others can see it."
+      "label": "Post",
+      "segments": [
+        {
+          "text": "New bike! 🚲"
+        },
+        {
+          "text": "📷 photo in front of the house, the house number is visible",
+          "hit": true,
+          "why": "His exact address."
+        },
+        {
+          "text": "📍 location: on",
+          "hit": true,
+          "why": "A post with a location shows the exact place."
+        }
+      ]
     },
     {
-      "text": "Cookies from a website you visited",
-      "answer": 1,
-      "why": "The website saves them in your browser, even if you don't click on anything."
-    },
-    {
-      "text": "The history of what you search for",
-      "answer": 1,
-      "why": "It saves itself, and it shows what you're interested in."
-    },
-    {
-      "text": "A post about your holiday",
-      "answer": 0,
-      "why": "You shared it yourself. Careful, it also gives away that you're not at home."
-    },
-    {
-      "text": "How long you watch which video",
-      "answer": 1,
-      "why": "The app quietly measures it and uses it to pick your next videos."
+      "label": "Post",
+      "segments": [
+        {
+          "text": "The whole summer holidays at Grandma’s in the mountains,",
+          "hit": true,
+          "why": "When he won't be at home, and for how long."
+        },
+        {
+          "text": "only the cat at home 🐈",
+          "hit": true,
+          "why": "The flat will be empty."
+        },
+        {
+          "text": "🌲⛰️"
+        }
+      ]
     }
-  ],
-  "debrief": "You can see your active footprint because you create it yourself. The passive one forms quietly: location, cookies, history and time spent on videos. It often gives away more about you than what you share."
+  ]
 }

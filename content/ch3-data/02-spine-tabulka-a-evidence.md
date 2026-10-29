@@ -47,7 +47,7 @@ Filtr „vrátit do je dřív než 28. 10.“ najde hned tři: Petra, Emu a Ondr
 
 Z poznámek se odpověď jen hádala. V uklizené tabulce ji **filtr** našel hned. Filtr je podmínka položená každému řádku: je datum vrácení dřív než dnes?
 
-Tabulka umí také **řadit** a **počítat**: kolik knih má Ema, kolik výpůjček je po termínu. Funguje to ale jen tehdy, když všichni píšou podle stejných pravidel: stejný formát, žádné duplicity, nic nechybí.
+Tabulka umí také **řadit** a **počítat**. Počítají **funkce**: vzorec `=COUNTIF(A2:A6; "Ema")` projde sloupec Žák a spočítá, kolik výpůjček má Ema. V uklizené tabulce vyjde 1. V sešitu, kde je Ema dvakrát, by vyšlo 2, a to je špatně. Funguje to ale jen tehdy, když všichni píšou podle stejných pravidel: stejný formát, žádné duplicity, nic nechybí.
 
 Víc sloupců neznamená lepší evidenci. Sloupec má smysl, když se na něj budeš ptát.
 
