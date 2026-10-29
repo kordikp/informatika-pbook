@@ -1,0 +1,78 @@
+{
+  "type": "estimate",
+  "title": "Mennyit nyom a kép és a hang",
+  "instruction": "Számold ki, vagy legalább becsüld meg jól. 1 bájt = 8 bit, 1 MB = 1 000 000 bájt, 1 GB = 1000 MB. Egy színes pixel tömörítés nélkül 3 bájt (R, G, B).",
+  "items": [
+    {
+      "q": "Egy tömörítetlen Full HD képkocka (1920 × 1080 pixel). Hány MB?",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "answer": 6.2,
+      "tolerance": 0.5,
+      "unit": "MB",
+      "why": "1920 × 1080 = 2 073 600 pixel, × 3 bájt = 6 220 800 B ≈ 6,2 MB."
+    },
+    {
+      "q": "Egy perc tömörítetlen Full HD videó, másodpercenként 30 képkockával. Hány GB?",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "answer": 11,
+      "tolerance": 1,
+      "unit": "GB",
+      "why": "60 × 30 = 1800 képkocka × 6,2 MB ≈ 11 200 MB ≈ 11 GB. Percenként!"
+    },
+    {
+      "q": "Ugyanez a perc 4K-ban (3840 × 2160). Hány GB?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 45,
+      "tolerance": 3,
+      "unit": "GB",
+      "why": "A 4K-ban szélességben és magasságban is kétszer annyi pixel van, vagyis összesen négyszer annyi: 4 × 11,2 ≈ 45 GB."
+    },
+    {
+      "q": "A mobil egy perc 4K-t 350 MB-ba ment el. Hányszor kisebb a fájl, mint a tömörítetlen változat?",
+      "min": 0,
+      "max": 500,
+      "step": 5,
+      "answer": 130,
+      "tolerance": 15,
+      "unit": "×",
+      "why": "44 800 MB : 350 MB ≈ 128. A tömörítés eldobja a képkockák közötti ismétlést és azokat a részleteket, amelyeket a szem nem vesz észre."
+    },
+    {
+      "q": "A 4:2:0 trükk: fényereje minden pixelnek van, színe csak minden pixelnégyesnek. Így egy pixel átlagosan 24 helyett 12 bitet foglal. Hány MB most egy Full HD képkocka?",
+      "min": 0,
+      "max": 10,
+      "step": 0.1,
+      "answer": 3.1,
+      "tolerance": 0.3,
+      "unit": "MB",
+      "why": "Feleannyi bit, vagyis 6,2 : 2 ≈ 3,1 MB. A szem érzékenyebb a fényerőre, mint a színre, és ezt használja ki a videó."
+    },
+    {
+      "q": "Egy perc CD-minőségű hang: másodpercenként 44 100 minta, 16 bit, 2 csatorna. Hány MB?",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "answer": 10.5,
+      "tolerance": 1,
+      "unit": "MB",
+      "why": "44 100 × 2 B × 2 csatorna × 60 s = 10 584 000 B ≈ 10,6 MB."
+    },
+    {
+      "q": "A videó adatsebessége 8 Mb/s (megabit másodpercenként). Hány MB-ot foglal egy perc?",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "answer": 60,
+      "tolerance": 5,
+      "unit": "MB",
+      "why": "8 Mb/s × 60 s = 480 Mb, osztva 8-cal = 60 MB. Figyelj a kis b-re (bit) és a nagy B-re (bájt)."
+    }
+  ],
+  "debrief": "A nyers videó óriási: egy perc 4K tízgigabájtokat foglalna. Száz megabájtokra a tömörítés nyomja le, amely eldobja az ismétlést és azt, amit a szem nem vesz észre. És ha „Mb/s”-t látsz, ossz nyolccal."
+}

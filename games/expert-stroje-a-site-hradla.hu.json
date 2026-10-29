@@ -1,0 +1,216 @@
+{
+  "type": "gates",
+  "title": "Hogyan számol a szakács",
+  "instruction": "A processzor semmi mást nem tud, csak kapukat összekötni. A megengedett kapukból építs olyan áramkört, amely teljesíti a táblázatot. Csillagot a legkevesebb kapuért kapsz.",
+  "levels": [
+    {
+      "story": "A szakácsnak tudnia kell, hogy két bit egyforma-e. Az E kimenet akkor világít, ha A és B értéke ugyanaz.",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "E": "not (A xor B)"
+      },
+      "allow": [
+        "XOR",
+        "NOT"
+      ],
+      "max": 2,
+      "why": "A XOR akkor világít, ha a bitek különböznek. A NOT ezt megfordítja. Így hasonlítja össze a processzor a számokat bitről bitre.",
+      "solution": {
+        "gates": [
+          [
+            "XOR",
+            "A",
+            "B"
+          ],
+          [
+            "NOT",
+            "g0"
+          ]
+        ],
+        "outputs": {
+          "E": "g1"
+        }
+      }
+    },
+    {
+      "story": "Adj össze két bitet. Az S kimenet az eredmény számjegye, a C kimenet az átvitel a magasabb helyiértékre, ugyanúgy, mint amikor papíron összeadod: 5 + 7.",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "S": "A xor B",
+        "C": "A and B"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "XOR"
+      ],
+      "max": 2,
+      "why": "1 + 1 = 10 kettes számrendszerben: a számjegy 0, az átvitel 1. Ezt az áramkört félösszeadónak hívják, és minden számológép első lépése.",
+      "solution": {
+        "gates": [
+          [
+            "XOR",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "A",
+            "B"
+          ]
+        ],
+        "outputs": {
+          "S": "g0",
+          "C": "g1"
+        }
+      }
+    },
+    {
+      "story": "A szakács a munkapultról két dolog közül az egyikért nyúl. Az S vezérlőbit mondja meg, melyikért: S = 0 az A-t választja, S = 1 a B-t.",
+      "inputs": [
+        "A",
+        "B",
+        "S"
+      ],
+      "outputs": {
+        "Y": "(A and not S) or (B and S)"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT"
+      ],
+      "max": 4,
+      "why": "Ezt az áramkört multiplexernek hívják. Sok ilyen kapcsolóból áll össze a memóriacella kiválasztása: a cím határozza meg, melyik hely olvasódik ki.",
+      "solution": {
+        "gates": [
+          [
+            "NOT",
+            "S"
+          ],
+          [
+            "AND",
+            "A",
+            "g0"
+          ],
+          [
+            "AND",
+            "B",
+            "S"
+          ],
+          [
+            "OR",
+            "g1",
+            "g2"
+          ]
+        ],
+        "outputs": {
+          "Y": "g3"
+        }
+      }
+    },
+    {
+      "story": "Három hőmérséklet-érzékelő szavaz arról, hogy túlmelegszik-e a processzor. Az M kimenet akkor világít, ha legalább két érzékelő világít. Így egyetlen elromlott érzékelő nem indít el semmit.",
+      "inputs": [
+        "A",
+        "B",
+        "C"
+      ],
+      "outputs": {
+        "M": "(A and B) or (C and (A or B))"
+      },
+      "allow": [
+        "AND",
+        "OR"
+      ],
+      "max": 4,
+      "why": "A többségi szavazás a megbízható gépek trükkje: az űrszondákban háromszoros a számítógép, és a többségnek hisznek. Az egyenes megoldásnak, (A and B) or (A and C) or (B and C), 5 kapu kell, az okosabbnak csak 4.",
+      "solution": {
+        "gates": [
+          [
+            "AND",
+            "A",
+            "B"
+          ],
+          [
+            "OR",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "C",
+            "g1"
+          ],
+          [
+            "OR",
+            "g0",
+            "g2"
+          ]
+        ],
+        "outputs": {
+          "M": "g3"
+        }
+      }
+    },
+    {
+      "story": "Igazi összeadás: az A és B bit mellett az alacsonyabb helyiértékről érkező C átvitel is bejön. Építs teljes összeadót S kimenettel és K átvitellel.",
+      "inputs": [
+        "A",
+        "B",
+        "C"
+      ],
+      "outputs": {
+        "S": "A xor B xor C",
+        "K": "(A and B) or (C and (A xor B))"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "XOR"
+      ],
+      "max": 5,
+      "why": "Az A xor B kaput kétszer használod: az összeghez és az átvitelhez is. Ha 64 ilyen összeadót kötsz egymás után, megvan a 64 bites számok összeadója, mint a mobilod processzorában.",
+      "solution": {
+        "gates": [
+          [
+            "XOR",
+            "A",
+            "B"
+          ],
+          [
+            "XOR",
+            "g0",
+            "C"
+          ],
+          [
+            "AND",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "C",
+            "g0"
+          ],
+          [
+            "OR",
+            "g2",
+            "g3"
+          ]
+        ],
+        "outputs": {
+          "S": "g1",
+          "K": "g4"
+        }
+      }
+    }
+  ],
+  "debrief": "Az „Egy eszköz belsejében” alapfogalom szakácsa a valóságban milliárdnyi kapu. Az összehasonlítás, az összeadás és a memóriából való kiválasztás is ugyanazokból a kis kockákból áll. Folytasd a nandgame.com oldalon, ahol egy egész számítógépet építhetsz belőlük."
+}

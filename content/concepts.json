@@ -36,7 +36,27 @@
         "svet-aplikace-algoritmus-hra-sk",
         "svet-aplikace-algoritmus-hra-hu",
         "ch2-algoritmus",
-        "ch2-story-algoritmus"
+        "ch2-story-algoritmus",
+        "expert-postup-pulky-hra",
+        "expert-postup-pulky-hra-en",
+        "expert-postup-pulky-hra-sk",
+        "expert-postup-pulky-hra-hu",
+        "expert-postup-zelva-hra",
+        "expert-postup-zelva-hra-en",
+        "expert-postup-zelva-hra-sk",
+        "expert-postup-zelva-hra-hu",
+        "vyzva-postup-algoritmus",
+        "vyzva-postup-algoritmus-en",
+        "vyzva-postup-algoritmus-sk",
+        "vyzva-postup-algoritmus-hu",
+        "expert-roboti-schody-hra",
+        "expert-roboti-schody-hra-en",
+        "expert-roboti-schody-hra-sk",
+        "expert-roboti-schody-hra-hu",
+        "vyzva-aplikace-algoritmus",
+        "vyzva-aplikace-algoritmus-en",
+        "vyzva-aplikace-algoritmus-sk",
+        "vyzva-aplikace-algoritmus-hu"
       ],
       "contract": {
         "objective": "Navigace tě vede k babičce. Na objížďce ti během vteřiny vymyslí jiný přesný postup. Proč se nikdy nezeptá „a jak to myslíš?“",
@@ -103,7 +123,23 @@
         "svet-aplikace-dekompozice-hra-hu",
         "ch2-dekompozice",
         "ch2-worked-dekompozice",
-        "ch3-funkce-a-procedury"
+        "ch3-funkce-a-procedury",
+        "vyzva-postup-dekompozice",
+        "vyzva-postup-dekompozice-en",
+        "vyzva-postup-dekompozice-sk",
+        "vyzva-postup-dekompozice-hu",
+        "expert-roboti-hradla-hra",
+        "expert-roboti-hradla-hra-en",
+        "expert-roboti-hradla-hra-sk",
+        "expert-roboti-hradla-hra-hu",
+        "vyzva-roboti-dekompozice",
+        "vyzva-roboti-dekompozice-en",
+        "vyzva-roboti-dekompozice-sk",
+        "vyzva-roboti-dekompozice-hu",
+        "expert-aplikace-cesta-k-tlacitku-hra",
+        "expert-aplikace-cesta-k-tlacitku-hra-en",
+        "expert-aplikace-cesta-k-tlacitku-hra-sk",
+        "expert-aplikace-cesta-k-tlacitku-hra-hu"
       ],
       "contract": {
         "objective": "Za týden píšeš test ze tří kapitol. Učit se všechno najednou v neděli večer nefunguje. Jak to rozdělit?",
@@ -181,7 +217,31 @@
         "svet-tvorba-abstrakce-a-model-hra-sk",
         "svet-tvorba-abstrakce-a-model-hra-hu",
         "ch2-abstrakce",
-        "ch2-rozpoznavani-vzoru"
+        "ch2-rozpoznavani-vzoru",
+        "expert-postup-cesty-hra",
+        "expert-postup-cesty-hra-en",
+        "expert-postup-cesty-hra-sk",
+        "expert-postup-cesty-hra-hu",
+        "vyzva-postup-abstrakce-a-model",
+        "vyzva-postup-abstrakce-a-model-en",
+        "vyzva-postup-abstrakce-a-model-sk",
+        "vyzva-postup-abstrakce-a-model-hu",
+        "expert-hry-srazka-hra",
+        "expert-hry-srazka-hra-en",
+        "expert-hry-srazka-hra-sk",
+        "expert-hry-srazka-hra-hu",
+        "expert-weby-poslepu-hra",
+        "expert-weby-poslepu-hra-en",
+        "expert-weby-poslepu-hra-sk",
+        "expert-weby-poslepu-hra-hu",
+        "vyzva-weby-abstrakce-a-model",
+        "vyzva-weby-abstrakce-a-model-en",
+        "vyzva-weby-abstrakce-a-model-sk",
+        "vyzva-weby-abstrakce-a-model-hu",
+        "expert-tvorba-zelva-hra",
+        "expert-tvorba-zelva-hra-en",
+        "expert-tvorba-zelva-hra-sk",
+        "expert-tvorba-zelva-hra-hu"
       ],
       "contract": {
         "objective": "Mapa v mobilu ti při cestě ukáže jen ulice a šipku. Stromy ani barvy domů nevidíš. Proč ti to nevadí?",
@@ -247,7 +307,15 @@
         "svet-aplikace-over-a-oprav-hra-sk",
         "svet-aplikace-over-a-oprav-hra-hu",
         "ch3-ladeni-a-testovani",
-        "ch3-q-projekt"
+        "ch3-q-projekt",
+        "vyzva-postup-over-a-oprav",
+        "vyzva-postup-over-a-oprav-en",
+        "vyzva-postup-over-a-oprav-sk",
+        "vyzva-postup-over-a-oprav-hu",
+        "vyzva-hry-over-a-oprav",
+        "vyzva-hry-over-a-oprav-en",
+        "vyzva-hry-over-a-oprav-sk",
+        "vyzva-hry-over-a-oprav-hu"
       ],
       "contract": {
         "objective": "Mobil ti nabízí aktualizaci, která „opravuje chyby“. Jak to, že je autoři nenašli dřív?",
@@ -308,7 +376,15 @@
         "svet-weby-program-hra-en",
         "svet-weby-program-hra-sk",
         "svet-weby-program-hra-hu",
-        "ch2-rizeni-toku"
+        "ch2-rizeni-toku",
+        "expert-program-chyby-hra",
+        "expert-program-chyby-hra-en",
+        "expert-program-chyby-hra-sk",
+        "expert-program-chyby-hra-hu",
+        "vyzva-program-program",
+        "vyzva-program-program-en",
+        "vyzva-program-program-sk",
+        "vyzva-program-program-hu"
       ],
       "contract": {
         "objective": "Ťukneš na „Odeslat“ a zpráva odletí. Mezi ťuknutím a odletem proběhly tisíce příkazů. Kdo je napsal a v jakém pořadí?",
@@ -378,7 +454,27 @@
         "svet-socialni-opakovani-hra-sk",
         "svet-socialni-opakovani-hra-hu",
         "ch3-cykly-v-kodu",
-        "ch3-code-cykly"
+        "ch3-code-cykly",
+        "expert-program-krokovani-hra",
+        "expert-program-krokovani-hra-en",
+        "expert-program-krokovani-hra-sk",
+        "expert-program-krokovani-hra-hu",
+        "expert-program-zelva-hra",
+        "expert-program-zelva-hra-en",
+        "expert-program-zelva-hra-sk",
+        "expert-program-zelva-hra-hu",
+        "vyzva-program-opakovani",
+        "vyzva-program-opakovani-en",
+        "vyzva-program-opakovani-sk",
+        "vyzva-program-opakovani-hu",
+        "expert-hry-zelva-hra",
+        "expert-hry-zelva-hra-en",
+        "expert-hry-zelva-hra-sk",
+        "expert-hry-zelva-hra-hu",
+        "vyzva-hry-opakovani",
+        "vyzva-hry-opakovani-en",
+        "vyzva-hry-opakovani-sk",
+        "vyzva-hry-opakovani-hu"
       ],
       "contract": {
         "objective": "Feed na sociální síti nikdy neskončí. Další video, další, další… Jak se takové „pořád dokola“ zapíše do programu?",
@@ -440,7 +536,27 @@
         "svet-roboti-rozhodovani-hra-sk",
         "svet-roboti-rozhodovani-hra-hu",
         "ch3-podminky-v-kodu",
-        "ch3-code-podminky"
+        "ch3-code-podminky",
+        "vyzva-program-rozhodovani",
+        "vyzva-program-rozhodovani-en",
+        "vyzva-program-rozhodovani-sk",
+        "vyzva-program-rozhodovani-hu",
+        "expert-hry-automat-hra",
+        "expert-hry-automat-hra-en",
+        "expert-hry-automat-hra-sk",
+        "expert-hry-automat-hra-hu",
+        "vyzva-hry-rozhodovani",
+        "vyzva-hry-rozhodovani-en",
+        "vyzva-hry-rozhodovani-sk",
+        "vyzva-hry-rozhodovani-hu",
+        "expert-roboti-pamet-hra",
+        "expert-roboti-pamet-hra-en",
+        "expert-roboti-pamet-hra-sk",
+        "expert-roboti-pamet-hra-hu",
+        "vyzva-roboti-rozhodovani",
+        "vyzva-roboti-rozhodovani-en",
+        "vyzva-roboti-rozhodovani-sk",
+        "vyzva-roboti-rozhodovani-hu"
       ],
       "contract": {
         "objective": "Některé zprávy ti mobil sám přesune do spamu. Jak se rozhodne, kterou?",
@@ -506,7 +622,23 @@
         "svet-aplikace-promenna-hra-sk",
         "svet-aplikace-promenna-hra-hu",
         "ch3-promenne-a-datove-typy",
-        "ch3-worked-promenne"
+        "ch3-worked-promenne",
+        "vyzva-program-promenna",
+        "vyzva-program-promenna-en",
+        "vyzva-program-promenna-sk",
+        "vyzva-program-promenna-hu",
+        "vyzva-roboti-promenna",
+        "vyzva-roboti-promenna-en",
+        "vyzva-roboti-promenna-sk",
+        "vyzva-roboti-promenna-hu",
+        "expert-aplikace-prechody-hra",
+        "expert-aplikace-prechody-hra-en",
+        "expert-aplikace-prechody-hra-sk",
+        "expert-aplikace-prechody-hra-hu",
+        "vyzva-aplikace-promenna",
+        "vyzva-aplikace-promenna-en",
+        "vyzva-aplikace-promenna-sk",
+        "vyzva-aplikace-promenna-hu"
       ],
       "contract": {
         "objective": "Na ikoně chatu svítí 3 nepřečtené zprávy. Přijde čtvrtá a číslo se změní. Kde si mobil to číslo pamatuje?",
@@ -583,7 +715,31 @@
         "svet-tvorba-kodovani-hra-en",
         "svet-tvorba-kodovani-hra-sk",
         "svet-tvorba-kodovani-hra-hu",
-        "ch1-data-a-informace"
+        "ch1-data-a-informace",
+        "expert-data-velikost-hra",
+        "expert-data-velikost-hra-en",
+        "expert-data-velikost-hra-sk",
+        "expert-data-velikost-hra-hu",
+        "vyzva-data-kodovani",
+        "vyzva-data-kodovani-en",
+        "vyzva-data-kodovani-sk",
+        "vyzva-data-kodovani-hu",
+        "expert-weby-mojibake-hra",
+        "expert-weby-mojibake-hra-en",
+        "expert-weby-mojibake-hra-sk",
+        "expert-weby-mojibake-hra-hu",
+        "vyzva-weby-kodovani",
+        "vyzva-weby-kodovani-en",
+        "vyzva-weby-kodovani-sk",
+        "vyzva-weby-kodovani-hu",
+        "expert-tvorba-bity-hra",
+        "expert-tvorba-bity-hra-en",
+        "expert-tvorba-bity-hra-sk",
+        "expert-tvorba-bity-hra-hu",
+        "vyzva-tvorba-kodovani",
+        "vyzva-tvorba-kodovani-en",
+        "vyzva-tvorba-kodovani-sk",
+        "vyzva-tvorba-kodovani-hu"
       ],
       "contract": {
         "objective": "Mobil hlásí „Úložiště je plné“. Hodina 4K videa zabere víc místa než tisíc fotek. Proč je video tak velké?",
@@ -646,7 +802,15 @@
         "svet-socialni-tabulka-a-evidence-hra-hu",
         "ch4-strukturovana-vs-nestrukturovana-data",
         "ch4-tabulky-a-relacni-model",
-        "ch4-worked-tabulky"
+        "ch4-worked-tabulky",
+        "expert-data-krokuj-hra",
+        "expert-data-krokuj-hra-en",
+        "expert-data-krokuj-hra-sk",
+        "expert-data-krokuj-hra-hu",
+        "vyzva-data-tabulka-a-evidence",
+        "vyzva-data-tabulka-a-evidence-en",
+        "vyzva-data-tabulka-a-evidence-sk",
+        "vyzva-data-tabulka-a-evidence-hu"
       ],
       "contract": {
         "objective": "Napíšeš do hledání v kontaktech „Ja“ a mobil hned najde Janu i Jakuba. Jak to dokáže tak rychle?",
@@ -706,7 +870,11 @@
         "svet-socialni-informacni-system-hra",
         "svet-socialni-informacni-system-hra-en",
         "svet-socialni-informacni-system-hra-sk",
-        "svet-socialni-informacni-system-hra-hu"
+        "svet-socialni-informacni-system-hra-hu",
+        "vyzva-data-informacni-system",
+        "vyzva-data-informacni-system-en",
+        "vyzva-data-informacni-system-sk",
+        "vyzva-data-informacni-system-hu"
       ],
       "contract": {
         "objective": "Rodiče ti v mobilu nastavili, že hry jdou jen do osmi večer. Ty to vypnout nemůžeš, oni ano. Kdo o tom rozhoduje?",
@@ -773,7 +941,15 @@
         "ch4-datovy-cyklus",
         "ch4-tldr-datovy-cyklus",
         "ch4-vizualizace-a-volba-grafu",
-        "ch4-worked-graf"
+        "ch4-worked-graf",
+        "expert-data-pricina-hra",
+        "expert-data-pricina-hra-en",
+        "expert-data-pricina-hra-sk",
+        "expert-data-pricina-hra-hu",
+        "vyzva-data-z-dat-informace",
+        "vyzva-data-z-dat-informace-en",
+        "vyzva-data-z-dat-informace-sk",
+        "vyzva-data-z-dat-informace-hu"
       ],
       "contract": {
         "objective": "Mobil hlásí: „Tento týden o 40 % víc času u obrazovky!“ Je to hodně, nebo málo? A z čeho to počítá?",
@@ -835,7 +1011,15 @@
         "svet-tvorba-uvnitr-zarizeni-hra-sk",
         "svet-tvorba-uvnitr-zarizeni-hra-hu",
         "ch1-hardware-a-software",
-        "ch1-tldr-hardware"
+        "ch1-tldr-hardware",
+        "expert-stroje-a-site-hradla-hra",
+        "expert-stroje-a-site-hradla-hra-en",
+        "expert-stroje-a-site-hradla-hra-sk",
+        "expert-stroje-a-site-hradla-hra-hu",
+        "vyzva-stroje-a-site-uvnitr-zarizeni",
+        "vyzva-stroje-a-site-uvnitr-zarizeni-en",
+        "vyzva-stroje-a-site-uvnitr-zarizeni-sk",
+        "vyzva-stroje-a-site-uvnitr-zarizeni-hu"
       ],
       "contract": {
         "objective": "Mobil se seká. Pomůže smazat fotky, nebo zavřít aplikace? Záleží na tom, který druh paměti je plný.",
@@ -904,7 +1088,27 @@
         "svet-weby-cesta-dat-hra-en",
         "svet-weby-cesta-dat-hra-sk",
         "svet-weby-cesta-dat-hra-hu",
-        "ch1-internet-a-sit"
+        "ch1-internet-a-sit",
+        "expert-stroje-a-site-ping-hra",
+        "expert-stroje-a-site-ping-hra-en",
+        "expert-stroje-a-site-ping-hra-sk",
+        "expert-stroje-a-site-ping-hra-hu",
+        "expert-stroje-a-site-cesta-hra",
+        "expert-stroje-a-site-cesta-hra-en",
+        "expert-stroje-a-site-cesta-hra-sk",
+        "expert-stroje-a-site-cesta-hra-hu",
+        "vyzva-stroje-a-site-cesta-dat",
+        "vyzva-stroje-a-site-cesta-dat-en",
+        "vyzva-stroje-a-site-cesta-dat-sk",
+        "vyzva-stroje-a-site-cesta-dat-hu",
+        "expert-weby-cesta-hra",
+        "expert-weby-cesta-hra-en",
+        "expert-weby-cesta-hra-sk",
+        "expert-weby-cesta-hra-hu",
+        "vyzva-weby-cesta-dat",
+        "vyzva-weby-cesta-dat-en",
+        "vyzva-weby-cesta-dat-sk",
+        "vyzva-weby-cesta-dat-hu"
       ],
       "contract": {
         "objective": "Pošleš zprávu kamarádovi, který sedí vedle tebe. Přesto může letět přes jiný stát. Proč?",
@@ -978,7 +1182,15 @@
         "ch1-story-cloud",
         "ch1-api",
         "ch1-tldr-api",
-        "comic-ch1-api"
+        "comic-ch1-api",
+        "vyzva-stroje-a-site-cloud-a-server",
+        "vyzva-stroje-a-site-cloud-a-server-en",
+        "vyzva-stroje-a-site-cloud-a-server-sk",
+        "vyzva-stroje-a-site-cloud-a-server-hu",
+        "vyzva-aplikace-cloud-a-server",
+        "vyzva-aplikace-cloud-a-server-en",
+        "vyzva-aplikace-cloud-a-server-sk",
+        "vyzva-aplikace-cloud-a-server-hu"
       ],
       "contract": {
         "objective": "Mobil hlásí „Fotky zálohovány do cloudu“. Kde teď ty fotky jsou?",
@@ -1038,7 +1250,19 @@
         "svet-socialni-sifrovani-hra",
         "svet-socialni-sifrovani-hra-en",
         "svet-socialni-sifrovani-hra-sk",
-        "svet-socialni-sifrovani-hra-hu"
+        "svet-socialni-sifrovani-hra-hu",
+        "vyzva-stroje-a-site-sifrovani",
+        "vyzva-stroje-a-site-sifrovani-en",
+        "vyzva-stroje-a-site-sifrovani-sk",
+        "vyzva-stroje-a-site-sifrovani-hu",
+        "expert-socialni-co-schova-sifra-hra",
+        "expert-socialni-co-schova-sifra-hra-en",
+        "expert-socialni-co-schova-sifra-hra-sk",
+        "expert-socialni-co-schova-sifra-hra-hu",
+        "vyzva-socialni-sifrovani",
+        "vyzva-socialni-sifrovani-en",
+        "vyzva-socialni-sifrovani-sk",
+        "vyzva-socialni-sifrovani-hu"
       ],
       "contract": {
         "objective": "Chat píše „Zprávy jsou koncově šifrované“. Co to znamená a kdo je tedy nepřečte?",
@@ -1103,7 +1327,19 @@
         "ch5-tldr-co-je-ai",
         "ch5-ai-se-uci-z-dat",
         "ch5-story-uceni-z-dat",
-        "ch5-bias-a-ferovost"
+        "ch5-bias-a-ferovost",
+        "expert-ai-neuron-hra",
+        "expert-ai-neuron-hra-en",
+        "expert-ai-neuron-hra-sk",
+        "expert-ai-neuron-hra-hu",
+        "vyzva-ai-ai-se-uci-z-dat",
+        "vyzva-ai-ai-se-uci-z-dat-en",
+        "vyzva-ai-ai-se-uci-z-dat-sk",
+        "vyzva-ai-ai-se-uci-z-dat-hu",
+        "vyzva-tvorba-ai-se-uci-z-dat",
+        "vyzva-tvorba-ai-se-uci-z-dat-en",
+        "vyzva-tvorba-ai-se-uci-z-dat-sk",
+        "vyzva-tvorba-ai-se-uci-z-dat-hu"
       ],
       "contract": {
         "objective": "Telefon tě pozná podle obličeje. Nikdo mu přitom nenapsal pravidlo, jak vypadáš. Jak to tedy umí?",
@@ -1167,7 +1403,19 @@
         "ch5-jak-funguje-generativni-model",
         "ch5-comic-halucinace",
         "ch5-prompt-a-promptova-gramotnost",
-        "ch5-worked-prompt"
+        "ch5-worked-prompt",
+        "expert-ai-krokuj-hra",
+        "expert-ai-krokuj-hra-en",
+        "expert-ai-krokuj-hra-sk",
+        "expert-ai-krokuj-hra-hu",
+        "vyzva-ai-generativni-model",
+        "vyzva-ai-generativni-model-en",
+        "vyzva-ai-generativni-model-sk",
+        "vyzva-ai-generativni-model-hu",
+        "vyzva-socialni-generativni-model",
+        "vyzva-socialni-generativni-model-en",
+        "vyzva-socialni-generativni-model-sk",
+        "vyzva-socialni-generativni-model-hu"
       ],
       "contract": {
         "objective": "Klávesnice v mobilu ti nabízí další slovo dřív, než ho napíšeš. Chatbot dělá totéž, jen mnohem lépe. A někdy si přitom vymýšlí.",
@@ -1234,7 +1482,19 @@
         "ch7-comic-bublina",
         "ch7-digitalni-wellbeing",
         "ch7-q-wellbeing",
-        "ch7-story-wellbeing"
+        "ch7-story-wellbeing",
+        "vyzva-ai-doporucovac",
+        "vyzva-ai-doporucovac-en",
+        "vyzva-ai-doporucovac-sk",
+        "vyzva-ai-doporucovac-hu",
+        "expert-socialni-krokuj-feed-hra",
+        "expert-socialni-krokuj-feed-hra-en",
+        "expert-socialni-krokuj-feed-hra-sk",
+        "expert-socialni-krokuj-feed-hra-hu",
+        "vyzva-socialni-doporucovac",
+        "vyzva-socialni-doporucovac-en",
+        "vyzva-socialni-doporucovac-sk",
+        "vyzva-socialni-doporucovac-hu"
       ],
       "contract": {
         "objective": "Pustíš si jedno video s kočkou. Za pět minut máš feed plný koček. Kdo to rozhodl?",
@@ -1302,7 +1562,23 @@
         "ch5-q-ai-postoj",
         "ch5-soukromi-pri-praci-s-ai",
         "ch7-kriticke-mysleni-online",
-        "ch7-dezinformace-a-manipulace"
+        "ch7-dezinformace-a-manipulace",
+        "expert-ai-cisla-hra",
+        "expert-ai-cisla-hra-en",
+        "expert-ai-cisla-hra-sk",
+        "expert-ai-cisla-hra-hu",
+        "vyzva-ai-rozhodujes-ty",
+        "vyzva-ai-rozhodujes-ty-en",
+        "vyzva-ai-rozhodujes-ty-sk",
+        "vyzva-ai-rozhodujes-ty-hu",
+        "expert-tvorba-licence-hra",
+        "expert-tvorba-licence-hra-en",
+        "expert-tvorba-licence-hra-sk",
+        "expert-tvorba-licence-hra-hu",
+        "vyzva-tvorba-rozhodujes-ty",
+        "vyzva-tvorba-rozhodujes-ty-en",
+        "vyzva-tvorba-rozhodujes-ty-sk",
+        "vyzva-tvorba-rozhodujes-ty-hu"
       ],
       "contract": {
         "objective": "Do třídní skupiny přijde zpráva „Zítra se kvůli výpadku proudu neučí! Pošli dál.“ Pošleš ji?",
@@ -1364,7 +1640,19 @@
         "svet-socialni-ucet-a-autentizace-hra-sk",
         "svet-socialni-ucet-a-autentizace-hra-hu",
         "ch6-hesla-a-2fa",
-        "ch6-tldr-hesla"
+        "ch6-tldr-hesla",
+        "expert-bezpeci-otisk-hra",
+        "expert-bezpeci-otisk-hra-en",
+        "expert-bezpeci-otisk-hra-sk",
+        "expert-bezpeci-otisk-hra-hu",
+        "expert-bezpeci-sifry-hra",
+        "expert-bezpeci-sifry-hra-en",
+        "expert-bezpeci-sifry-hra-sk",
+        "expert-bezpeci-sifry-hra-hu",
+        "vyzva-bezpeci-ucet-a-autentizace",
+        "vyzva-bezpeci-ucet-a-autentizace-en",
+        "vyzva-bezpeci-ucet-a-autentizace-sk",
+        "vyzva-bezpeci-ucet-a-autentizace-hu"
       ],
       "contract": {
         "objective": "Zapomeneš heslo a mobil nabídne „Obnovit přes e-mail“. Kdo se dostane do tvého e-mailu, dostane se tedy i do mobilu?",
@@ -1427,7 +1715,19 @@
         "svet-socialni-podvod-cili-na-cloveka-hra-hu",
         "ch6-phishing-a-socialni-inzenyrstvi",
         "ch6-comic-phishing",
-        "ch6-story-phishing"
+        "ch6-story-phishing",
+        "expert-bezpeci-adresy-hra",
+        "expert-bezpeci-adresy-hra-en",
+        "expert-bezpeci-adresy-hra-sk",
+        "expert-bezpeci-adresy-hra-hu",
+        "vyzva-bezpeci-podvod-cili-na-cloveka",
+        "vyzva-bezpeci-podvod-cili-na-cloveka-en",
+        "vyzva-bezpeci-podvod-cili-na-cloveka-sk",
+        "vyzva-bezpeci-podvod-cili-na-cloveka-hu",
+        "expert-socialni-bot-nebo-clovek-hra",
+        "expert-socialni-bot-nebo-clovek-hra-en",
+        "expert-socialni-bot-nebo-clovek-hra-sk",
+        "expert-socialni-bot-nebo-clovek-hra-hu"
       ],
       "contract": {
         "objective": "Přijde SMS: „Zásilka čeká na doplatek 19 Kč.“ Zrovna něco čekáš. Klikneš?",
@@ -1488,7 +1788,15 @@
         "svet-aplikace-ochrana-zarizeni-hra-en",
         "svet-aplikace-ochrana-zarizeni-hra-sk",
         "svet-aplikace-ochrana-zarizeni-hra-hu",
-        "ch6-zakladni-hygiena"
+        "ch6-zakladni-hygiena",
+        "vyzva-bezpeci-ochrana-zarizeni",
+        "vyzva-bezpeci-ochrana-zarizeni-en",
+        "vyzva-bezpeci-ochrana-zarizeni-sk",
+        "vyzva-bezpeci-ochrana-zarizeni-hu",
+        "expert-aplikace-temne-vzory-hra",
+        "expert-aplikace-temne-vzory-hra-en",
+        "expert-aplikace-temne-vzory-hra-sk",
+        "expert-aplikace-temne-vzory-hra-hu"
       ],
       "contract": {
         "objective": "Mobil chce aktualizaci a ty zrovna nemáš čas. Všechno přece funguje. Proč na ní tolik trvá?",
@@ -1552,7 +1860,11 @@
         "ch6-soukromi-a-digitalni-stopa",
         "ch6-bezpecne-chovani-na-sitich",
         "comic-ch6-bezpecne-chovani-na-sitich",
-        "ch7-digitalni-stopa-a-soukromi"
+        "ch7-digitalni-stopa-a-soukromi",
+        "vyzva-bezpeci-digitalni-stopa",
+        "vyzva-bezpeci-digitalni-stopa-en",
+        "vyzva-bezpeci-digitalni-stopa-sk",
+        "vyzva-bezpeci-digitalni-stopa-hu"
       ],
       "contract": {
         "objective": "Fotíš mobilem a fotka si pamatuje víc, než vidíš. Co třeba?",
@@ -1871,6 +2183,3300 @@
         "mustCover": [],
         "recallQ": "Proč je sociální síť zdarma a co o tobě při používání zjišťuje?",
         "recallA": "Platí za ni inzerenti, kteří kupují tvou pozornost. Síť sleduje signály (co koukáš, jak dlouho, co přeskočíš, kde jsi) a skládá z nich, co tě zajímá. Data o tobě mají cenu.",
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice",
+      "title": "Expedice: pro ty, kdo chtějí víc",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice",
+      "anchorPath": "ch9-expedice/01-spine-expedice.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice",
+        "expedice-en",
+        "expedice-sk",
+        "expedice-hu"
+      ],
+      "contract": {
+        "objective": "Kniha ti ukázala jádra. Expedice tě vezmou dál, ke skutečným nástrojům, soutěžím a lidem, které baví totéž co tebe.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup",
+      "title": "Dvanáct prosincových hádanek",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-postup",
+      "anchorPath": "ch9-expedice/02-spine-expedice-postup.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup",
+        "expedice-postup-en",
+        "expedice-postup-sk",
+        "expedice-postup-hu"
+      ],
+      "contract": {
+        "objective": "V prosinci vyhlásí Tomáš na kroužku informatiky výzvu: dvanáct večerů, každý večer jedna hádanka.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program",
+      "title": "Dvanáct hvězd",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-program",
+      "anchorPath": "ch9-expedice/03-spine-expedice-program.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program",
+        "expedice-program-en",
+        "expedice-program-sk",
+        "expedice-program-hu"
+      ],
+      "contract": {
+        "objective": "Je prosinec a Tomáš ti po kroužku ukáže Advent of Code: od 1.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data",
+      "title": "Případ zpožděného autobusu",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-data",
+      "anchorPath": "ch9-expedice/04-spine-expedice-data.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data",
+        "expedice-data-en",
+        "expedice-data-sk",
+        "expedice-data-hu"
+      ],
+      "contract": {
+        "objective": "O podzimních prázdninách Ema tvrdí, že autobus číslo 7 jezdí pozdě hlavně, když prší.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site",
+      "title": "Internet na chatě",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-stroje-a-site",
+      "anchorPath": "ch9-expedice/05-spine-expedice-stroje-a-site.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site",
+        "expedice-stroje-a-site-en",
+        "expedice-stroje-a-site-sk",
+        "expedice-stroje-a-site-hu"
+      ],
+      "contract": {
+        "objective": "O jarních prázdninách jedeš s Ondrou na chatu jeho dědy, kam skoro nedosáhne signál.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai",
+      "title": "Model od krmítka",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-ai",
+      "anchorPath": "ch9-expedice/06-spine-expedice-ai.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai",
+        "expedice-ai-en",
+        "expedice-ai-sk",
+        "expedice-ai-hu"
+      ],
+      "contract": {
+        "objective": "O jarních prázdninách má knihovna AI dílnu a Ema chce natrénovat model, který pozná ptáky u krmítka za oknem.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci",
+      "title": "Operace Vlajka",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-bezpeci",
+      "anchorPath": "ch9-expedice/07-spine-expedice-bezpeci.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci",
+        "expedice-bezpeci-en",
+        "expedice-bezpeci-sk",
+        "expedice-bezpeci-hu"
+      ],
+      "contract": {
+        "objective": "Ondrovi kdysi ukradli herní účet a od té doby ho zajímá, jak útočníci přemýšlejí.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry",
+      "title": "Víkend, kdy vznikla hra",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-hry",
+      "anchorPath": "ch9-expedice/08-spine-expedice-hry.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry",
+        "expedice-hry-en",
+        "expedice-hry-sk",
+        "expedice-hry-hu"
+      ],
+      "contract": {
+        "objective": "V pátek v šest večer vyhlásí víkendový game jam téma „Všechno se zrychluje“.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti",
+      "title": "Vozítko, které nespadne ze stolu",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-roboti",
+      "anchorPath": "ch9-expedice/09-spine-expedice-roboti.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti",
+        "expedice-roboti-en",
+        "expedice-roboti-sk",
+        "expedice-roboti-hu"
+      ],
+      "contract": {
+        "objective": "Na podzimním víkendu ve fablabu donese Ema krabici: micro:bit, dva motory a kartonový podvozek.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby",
+      "title": "Sto kilobajtů",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-weby",
+      "anchorPath": "ch9-expedice/10-spine-expedice-weby.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby",
+        "expedice-weby-en",
+        "expedice-weby-sk",
+        "expedice-weby-hu"
+      ],
+      "contract": {
+        "objective": "Na podzimní prázdniny vymyslí Ema sázku: kdo postaví lepší osobní web, který má celý pod 100 kilobajtů, otevře se i na starém mobilu a přečte ho i čtečka obraz…",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace",
+      "title": "Appathon za jeden víkend",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-aplikace",
+      "anchorPath": "ch9-expedice/11-spine-expedice-aplikace.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace",
+        "expedice-aplikace-en",
+        "expedice-aplikace-sk",
+        "expedice-aplikace-hu"
+      ],
+      "contract": {
+        "objective": "Kroužek informatiky pořádá o podzimních prázdninách v knihovně víkendový mini-appathon: dva dny, jedna appka, žádné známky.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba",
+      "title": "Znělka pro filmový večer",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-tvorba",
+      "anchorPath": "ch9-expedice/12-spine-expedice-tvorba.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba",
+        "expedice-tvorba-en",
+        "expedice-tvorba-sk",
+        "expedice-tvorba-hu"
+      ],
+      "contract": {
+        "objective": "Kroužek digitální tvorby v Domě dětí chystá na konci prázdnin promítání krátkých filmů a potřebuje dvacetivteřinovou znělku.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni",
+      "title": "Ověřovací tým",
+      "chapter": "ch9-expedice",
+      "anchor": "expedice-socialni",
+      "anchorPath": "ch9-expedice/13-spine-expedice-socialni.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni",
+        "expedice-socialni-en",
+        "expedice-socialni-sk",
+        "expedice-socialni-hu"
+      ],
+      "contract": {
+        "objective": "Je sobota a v knihovně běží wiki-editathon: lidé spolu vylepšují články na Wikipedii.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "bezpecne-v-komunitach",
+      "title": "Bezpečně v komunitách",
+      "chapter": "ch9-expedice",
+      "anchor": "bezpecne-v-komunitach",
+      "anchorPath": "ch9-expedice/14-spine-bezpecne-v-komunitach.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "bezpecne-v-komunitach",
+        "bezpecne-v-komunitach-en",
+        "bezpecne-v-komunitach-sk",
+        "bezpecne-v-komunitach-hu"
+      ],
+      "contract": {
+        "objective": "Soutěže, fóra a kluby jsou skvělé místo, kde najdeš lidi se stejným koníčkem. Tady je, jak se k nim přidat a neprozradit o sobě víc, než chceš.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup-1",
+      "title": "Večer první: Hanojské věže",
+      "chapter": "ch10-expedice-postup",
+      "anchor": "expedice-postup-1",
+      "anchorPath": "ch10-expedice-postup/01-spine-expedice-postup-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup-1",
+        "expedice-postup-1-en",
+        "expedice-postup-1-sk",
+        "expedice-postup-1-hu"
+      ],
+      "contract": {
+        "objective": "Pravidla: věž přestěhuješ z levého kolíku na pravý.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup-2",
+      "title": "Víkend: bludiště v Blockly Games",
+      "chapter": "ch10-expedice-postup",
+      "anchor": "expedice-postup-2",
+      "anchorPath": "ch10-expedice-postup/02-spine-expedice-postup-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup-2",
+        "expedice-postup-2-en",
+        "expedice-postup-2-sk",
+        "expedice-postup-2-hu"
+      ],
+      "contract": {
+        "objective": "Blockly Games je sada her v prohlížeči.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup-3",
+      "title": "Rozbor: dva třídicí algoritmy ve VisuAlgo",
+      "chapter": "ch10-expedice-postup",
+      "anchor": "expedice-postup-3",
+      "anchorPath": "ch10-expedice-postup/03-spine-expedice-postup-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup-3",
+        "expedice-postup-3-en",
+        "expedice-postup-3-sk",
+        "expedice-postup-3-hu"
+      ],
+      "contract": {
+        "objective": "VisuAlgo je web z National University of Singapore, který krok za krokem animuje algoritmy.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup-4",
+      "title": "Parta: Advent of Code s celým kroužkem",
+      "chapter": "ch10-expedice-postup",
+      "anchor": "expedice-postup-4",
+      "anchorPath": "ch10-expedice-postup/04-spine-expedice-postup-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup-4",
+        "expedice-postup-4-en",
+        "expedice-postup-4-sk",
+        "expedice-postup-4-hu"
+      ],
+      "contract": {
+        "objective": "Advent of Code je každoroční adventní kalendář programátorských hádanek.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup-5",
+      "title": "Vlastní sbírka tří hádanek",
+      "chapter": "ch10-expedice-postup",
+      "anchor": "expedice-postup-5",
+      "anchorPath": "ch10-expedice-postup/05-spine-expedice-postup-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup-5",
+        "expedice-postup-5-en",
+        "expedice-postup-5-sk",
+        "expedice-postup-5-hu"
+      ],
+      "contract": {
+        "objective": "Vymysli tři vlastní algoritmické hádanky ve stylu Advent of Code: lehkou, střední a těžkou.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup-explorer",
+      "title": "Bez počítače: třídicí síť na chodníku",
+      "chapter": "ch10-expedice-postup",
+      "anchor": "expedice-postup-explorer",
+      "anchorPath": "ch10-expedice-postup/06-spine-expedice-postup-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup-explorer",
+        "expedice-postup-explorer-en",
+        "expedice-postup-explorer-sk",
+        "expedice-postup-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Třídicí síť třídí čísla tak, že několik dvojic se porovnává najednou.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup-creator",
+      "title": "Soutěžní programování s USACO Guide",
+      "chapter": "ch10-expedice-postup",
+      "anchor": "expedice-postup-creator",
+      "anchorPath": "ch10-expedice-postup/07-spine-expedice-postup-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup-creator",
+        "expedice-postup-creator-en",
+        "expedice-postup-creator-sk",
+        "expedice-postup-creator-hu"
+      ],
+      "contract": {
+        "objective": "USACO Guide je volná, otevřená učebnice soutěžního programování, kterou sepsali studenti.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup-thinker",
+      "title": "Project Euler",
+      "chapter": "ch10-expedice-postup",
+      "anchor": "expedice-postup-thinker",
+      "anchorPath": "ch10-expedice-postup/08-spine-expedice-postup-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup-thinker",
+        "expedice-postup-thinker-en",
+        "expedice-postup-thinker-sk",
+        "expedice-postup-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Project Euler je sbírka úloh, ve kterých chytrý postup porazí hrubou sílu.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-postup-rozcestnik",
+      "title": "Rozcestník: Postup",
+      "chapter": "ch10-expedice-postup",
+      "anchor": "expedice-postup-rozcestnik",
+      "anchorPath": "ch10-expedice-postup/09-spine-expedice-postup-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-postup-rozcestnik",
+        "expedice-postup-rozcestnik-en",
+        "expedice-postup-rozcestnik-sk",
+        "expedice-postup-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program-1",
+      "title": "Dílna: první program za 30 minut",
+      "chapter": "ch11-expedice-program",
+      "anchor": "expedice-program-1",
+      "anchorPath": "ch11-expedice-program/01-spine-expedice-program-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program-1",
+        "expedice-program-1-en",
+        "expedice-program-1-sk",
+        "expedice-program-1-hu"
+      ],
+      "contract": {
+        "objective": "Thonny je editor Pythonu pro začátečníky, zdarma pro Windows, macOS i Linux.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program-2",
+      "title": "Výzva: teploměr na chatě",
+      "chapter": "ch11-expedice-program",
+      "anchor": "expedice-program-2",
+      "anchorPath": "ch11-expedice-program/02-spine-expedice-program-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program-2",
+        "expedice-program-2-en",
+        "expedice-program-2-sk",
+        "expedice-program-2-hu"
+      ],
+      "contract": {
+        "objective": "Na chatě visí teploměr a každou hodinu zapíše teplotu: teploty = [-3, -1, 2, 5, 4, 0, -2, -6] Hranaté závorky jsou seznam: řada hodnot v jedné krabičce.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program-3",
+      "title": "Rozbor: historie skutečného projektu",
+      "chapter": "ch11-expedice-program",
+      "anchor": "expedice-program-3",
+      "anchorPath": "ch11-expedice-program/03-spine-expedice-program-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program-3",
+        "expedice-program-3-en",
+        "expedice-program-3-sk",
+        "expedice-program-3-hu"
+      ],
+      "contract": {
+        "objective": "Git je program, který si pamatuje každou verzi kódu.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program-4",
+      "title": "Parta: Advent of Code bezpečně",
+      "chapter": "ch11-expedice-program",
+      "anchor": "expedice-program-4",
+      "anchorPath": "ch11-expedice-program/04-spine-expedice-program-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program-4",
+        "expedice-program-4-en",
+        "expedice-program-4-sk",
+        "expedice-program-4-hu"
+      ],
+      "contract": {
+        "objective": "Advent of Code je zdarma, anglicky a od roku 2025 má 12 hádanek, od 1.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program-5",
+      "title": "Projekt: tvoje vlastní hádanka",
+      "chapter": "ch11-expedice-program",
+      "anchor": "expedice-program-5",
+      "anchorPath": "ch11-expedice-program/05-spine-expedice-program-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program-5",
+        "expedice-program-5-en",
+        "expedice-program-5-sk",
+        "expedice-program-5-hu"
+      ],
+      "contract": {
+        "objective": "Vymysli hádanku ve stylu adventu pro Tomáše nebo pro kohokoli z kroužku.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program-explorer",
+      "title": "Stejný kód v JavaScriptu",
+      "chapter": "ch11-expedice-program",
+      "anchor": "expedice-program-explorer",
+      "anchorPath": "ch11-expedice-program/06-spine-expedice-program-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program-explorer",
+        "expedice-program-explorer-en",
+        "expedice-program-explorer-sk",
+        "expedice-program-explorer-hu"
+      ],
+      "contract": {
+        "objective": "JavaScript je jazyk, který umí každý prohlížeč.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program-creator",
+      "title": "Opravdový Git na tvém počítači",
+      "chapter": "ch11-expedice-program",
+      "anchor": "expedice-program-creator",
+      "anchorPath": "ch11-expedice-program/07-spine-expedice-program-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program-creator",
+        "expedice-program-creator-en",
+        "expedice-program-creator-sk",
+        "expedice-program-creator-hu"
+      ],
+      "contract": {
+        "objective": "Dohraj v Learn Git Branching celou úvodní sadu a v pískovišti si zkus větev: vytvoř pokus, udělej na ní dva commity a spoj ji zpátky.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program-thinker",
+      "title": "Ladění jako detektivka",
+      "chapter": "ch11-expedice-program",
+      "anchor": "expedice-program-thinker",
+      "anchorPath": "ch11-expedice-program/08-spine-expedice-program-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program-thinker",
+        "expedice-program-thinker-en",
+        "expedice-program-thinker-sk",
+        "expedice-program-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Když program dělá něco divného, nehádej.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-program-rozcestnik",
+      "title": "Rozcestník: Program",
+      "chapter": "ch11-expedice-program",
+      "anchor": "expedice-program-rozcestnik",
+      "anchorPath": "ch11-expedice-program/09-spine-expedice-program-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-program-rozcestnik",
+        "expedice-program-rozcestnik-en",
+        "expedice-program-rozcestnik-sk",
+        "expedice-program-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data-1",
+      "title": "Pět dní nestačí",
+      "chapter": "ch12-expedice-data",
+      "anchor": "expedice-data-1",
+      "anchorPath": "ch12-expedice-data/01-spine-expedice-data-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data-1",
+        "expedice-data-1-en",
+        "expedice-data-1-sk",
+        "expedice-data-1-hu"
+      ],
+      "contract": {
+        "objective": "Ema zapsala zpoždění autobusu v minutách a počasí: | den | zpoždění | počasí | |---|---|---| | 1 | 1 | sucho | | 2 | 0 | sucho | | 3 | 2 | déšť | | 4 | 2 | suc…",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data-2",
+      "title": "Dílna: CODAP za 30 minut",
+      "chapter": "ch12-expedice-data",
+      "anchor": "expedice-data-2",
+      "anchorPath": "ch12-expedice-data/02-spine-expedice-data-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data-2",
+        "expedice-data-2-en",
+        "expedice-data-2-sk",
+        "expedice-data-2-hu"
+      ],
+      "contract": {
+        "objective": "CODAP je bezplatná webová aplikace na zkoumání dat pro školáky.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data-3",
+      "title": "Rozbor: proč spolu souvisí sýr a prostěradla",
+      "chapter": "ch12-expedice-data",
+      "anchor": "expedice-data-3",
+      "anchorPath": "ch12-expedice-data/03-spine-expedice-data-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data-3",
+        "expedice-data-3-en",
+        "expedice-data-3-sk",
+        "expedice-data-3-hu"
+      ],
+      "contract": {
+        "objective": "Část 1: Spurious Correlations.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data-4",
+      "title": "Parta: soutěž plakátů a občanská věda",
+      "chapter": "ch12-expedice-data",
+      "anchor": "expedice-data-4",
+      "anchorPath": "ch12-expedice-data/04-spine-expedice-data-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data-4",
+        "expedice-data-4-en",
+        "expedice-data-4-sk",
+        "expedice-data-4-hu"
+      ],
+      "contract": {
+        "objective": "Soutěž ISLP (International Statistical Literacy Project) je mezinárodní soutěž statistických plakátů pro školáky.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data-5",
+      "title": "Projekt: poctivý plakát",
+      "chapter": "ch12-expedice-data",
+      "anchor": "expedice-data-5",
+      "anchorPath": "ch12-expedice-data/05-spine-expedice-data-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data-5",
+        "expedice-data-5-en",
+        "expedice-data-5-sk",
+        "expedice-data-5-hu"
+      ],
+      "contract": {
+        "objective": "1.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data-explorer",
+      "title": "Data pro vědu a pro AI",
+      "chapter": "ch12-expedice-data",
+      "anchor": "expedice-data-explorer",
+      "anchorPath": "ch12-expedice-data/06-spine-expedice-data-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data-explorer",
+        "expedice-data-explorer-en",
+        "expedice-data-explorer-sk",
+        "expedice-data-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Vědci mají milióny fotek z fotopastí a nikdo je nestihne projít.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data-creator",
+      "title": "Moje obec v otevřených datech",
+      "chapter": "ch12-expedice-data",
+      "anchor": "expedice-data-creator",
+      "anchorPath": "ch12-expedice-data/07-spine-expedice-data-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data-creator",
+        "expedice-data-creator-en",
+        "expedice-data-creator-sk",
+        "expedice-data-creator-hu"
+      ],
+      "contract": {
+        "objective": "Stát a obce zveřejňují tisíce otevřených dat: kdo je smí použít a jak.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data-thinker",
+      "title": "Databáze a SQL",
+      "chapter": "ch12-expedice-data",
+      "anchor": "expedice-data-thinker",
+      "anchorPath": "ch12-expedice-data/08-spine-expedice-data-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data-thinker",
+        "expedice-data-thinker-en",
+        "expedice-data-thinker-sk",
+        "expedice-data-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Tabulka s tisíci řádky a několika propojenými tabulkami už se v tabulkovém procesoru špatně ovládá.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-data-rozcestnik",
+      "title": "Rozcestník: Data",
+      "chapter": "ch12-expedice-data",
+      "anchor": "expedice-data-rozcestnik",
+      "anchorPath": "ch12-expedice-data/09-spine-expedice-data-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-data-rozcestnik",
+        "expedice-data-rozcestnik-en",
+        "expedice-data-rozcestnik-sk",
+        "expedice-data-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site-1",
+      "title": "Kolik adres se vejde do chaty",
+      "chapter": "ch13-expedice-stroje-a-site",
+      "anchor": "expedice-stroje-a-site-1",
+      "anchorPath": "ch13-expedice-stroje-a-site/01-spine-expedice-stroje-a-site-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site-1",
+        "expedice-stroje-a-site-1-en",
+        "expedice-stroje-a-site-1-sk",
+        "expedice-stroje-a-site-1-hu"
+      ],
+      "contract": {
+        "objective": "Adresa IPv4 jsou čtyři čísla od 0 do 255, třeba 192.168.1.10.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site-2",
+      "title": "Dílna: první síť ve Filiu",
+      "chapter": "ch13-expedice-stroje-a-site",
+      "anchor": "expedice-stroje-a-site-2",
+      "anchorPath": "ch13-expedice-stroje-a-site/02-spine-expedice-stroje-a-site-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site-2",
+        "expedice-stroje-a-site-2-en",
+        "expedice-stroje-a-site-2-sk",
+        "expedice-stroje-a-site-2-hu"
+      ],
+      "contract": {
+        "objective": "Filius je simulátor sítí pro školy.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site-3",
+      "title": "Rozbor: kudy jede balíček přes oceán",
+      "chapter": "ch13-expedice-stroje-a-site",
+      "anchor": "expedice-stroje-a-site-3",
+      "anchorPath": "ch13-expedice-stroje-a-site/03-spine-expedice-stroje-a-site-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site-3",
+        "expedice-stroje-a-site-3-en",
+        "expedice-stroje-a-site-3-sk",
+        "expedice-stroje-a-site-3-hu"
+      ],
+      "contract": {
+        "objective": "Takhle by mohl vypadat výpis cesty z Prahy k serveru ve Washingtonu (zjednodušený): | Skok | Čas | Router | |---|---|---| | 1 | 1 ms | 192.168.1.1 (domácí rout…",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site-4",
+      "title": "Parta: tvůj kód na vesmírné stanici",
+      "chapter": "ch13-expedice-stroje-a-site",
+      "anchor": "expedice-stroje-a-site-4",
+      "anchorPath": "ch13-expedice-stroje-a-site/04-spine-expedice-stroje-a-site-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site-4",
+        "expedice-stroje-a-site-4-en",
+        "expedice-stroje-a-site-4-sk",
+        "expedice-stroje-a-site-4-hu"
+      ],
+      "contract": {
+        "objective": "European Astro Pi Challenge pořádá Evropská kosmická agentura s nadací Raspberry Pi.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site-5",
+      "title": "Projekt: síť chaty",
+      "chapter": "ch13-expedice-stroje-a-site",
+      "anchor": "expedice-stroje-a-site-5",
+      "anchorPath": "ch13-expedice-stroje-a-site/05-spine-expedice-stroje-a-site-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site-5",
+        "expedice-stroje-a-site-5-en",
+        "expedice-stroje-a-site-5-sk",
+        "expedice-stroje-a-site-5-hu"
+      ],
+      "contract": {
+        "objective": "Zadání: ve Filiu postav síť chaty s těmito částmi: - Herní síť 192.168.1.0/24: dva notebooky a switch.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site-explorer",
+      "title": "Linux v prohlížeči",
+      "chapter": "ch13-expedice-stroje-a-site",
+      "anchor": "expedice-stroje-a-site-explorer",
+      "anchorPath": "ch13-expedice-stroje-a-site/06-spine-expedice-stroje-a-site-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site-explorer",
+        "expedice-stroje-a-site-explorer-en",
+        "expedice-stroje-a-site-explorer-sk",
+        "expedice-stroje-a-site-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Router i server z expedice běží ve skutečnosti na Linuxu.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site-creator",
+      "title": "Postav počítač z hradel",
+      "chapter": "ch13-expedice-stroje-a-site",
+      "anchor": "expedice-stroje-a-site-creator",
+      "anchorPath": "ch13-expedice-stroje-a-site/07-spine-expedice-stroje-a-site-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site-creator",
+        "expedice-stroje-a-site-creator-en",
+        "expedice-stroje-a-site-creator-sk",
+        "expedice-stroje-a-site-creator-hu"
+      ],
+      "contract": {
+        "objective": "Až tě hra navíc „Jak kuchař počítá“ chytne, jdi na nandgame.com.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site-thinker",
+      "title": "Síť jako profík",
+      "chapter": "ch13-expedice-stroje-a-site",
+      "anchor": "expedice-stroje-a-site-thinker",
+      "anchorPath": "ch13-expedice-stroje-a-site/08-spine-expedice-stroje-a-site-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site-thinker",
+        "expedice-stroje-a-site-thinker-en",
+        "expedice-stroje-a-site-thinker-sk",
+        "expedice-stroje-a-site-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Filius ti ukázal princip.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-stroje-a-site-rozcestnik",
+      "title": "Rozcestník: Stroje a sítě",
+      "chapter": "ch13-expedice-stroje-a-site",
+      "anchor": "expedice-stroje-a-site-rozcestnik",
+      "anchorPath": "ch13-expedice-stroje-a-site/09-spine-expedice-stroje-a-site-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-stroje-a-site-rozcestnik",
+        "expedice-stroje-a-site-rozcestnik-en",
+        "expedice-stroje-a-site-rozcestnik-sk",
+        "expedice-stroje-a-site-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai-1",
+      "title": "Model má 83 %. U koho?",
+      "chapter": "ch14-expedice-ai",
+      "anchor": "expedice-ai-1",
+      "anchorPath": "ch14-expedice-ai/01-spine-expedice-ai-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai-1",
+        "expedice-ai-1-en",
+        "expedice-ai-1-sk",
+        "expedice-ai-1-hu"
+      ],
+      "contract": {
+        "objective": "Celková přesnost umí schovat, kde model selhává.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai-2",
+      "title": "Dílna: první model za 30 minut",
+      "chapter": "ch14-expedice-ai",
+      "anchor": "expedice-ai-2",
+      "anchorPath": "ch14-expedice-ai/02-spine-expedice-ai-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai-2",
+        "expedice-ai-2-en",
+        "expedice-ai-2-sk",
+        "expedice-ai-2-hu"
+      ],
+      "contract": {
+        "objective": "Ptáci za oknem nečekají, tak začni s věcmi na stole.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai-3",
+      "title": "Rozbor: 50 milionů čmáranic",
+      "chapter": "ch14-expedice-ai",
+      "anchor": "expedice-ai-3",
+      "anchorPath": "ch14-expedice-ai/03-spine-expedice-ai-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai-3",
+        "expedice-ai-3-en",
+        "expedice-ai-3-sk",
+        "expedice-ai-3-hu"
+      ],
+      "contract": {
+        "objective": "Quick, Draw!",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai-4",
+      "title": "Parta: s kým trénovat dál",
+      "chapter": "ch14-expedice-ai",
+      "anchor": "expedice-ai-4",
+      "anchorPath": "ch14-expedice-ai/04-spine-expedice-ai-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai-4",
+        "expedice-ai-4-en",
+        "expedice-ai-4-sk",
+        "expedice-ai-4-hu"
+      ],
+      "contract": {
+        "objective": "Model se nejlíp vylepšuje s lidmi, kteří ho rozbijí.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai-5",
+      "title": "Projekt: model s kartou",
+      "chapter": "ch14-expedice-ai",
+      "anchor": "expedice-ai-5",
+      "anchorPath": "ch14-expedice-ai/05-spine-expedice-ai-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai-5",
+        "expedice-ai-5-en",
+        "expedice-ai-5-sk",
+        "expedice-ai-5-hu"
+      ],
+      "contract": {
+        "objective": "Postav malý projekt, ve kterém model něco dělá: - hra ve Scratchi, která reaguje na tvoje gesta nebo slova, přes Machine Learning for Kids (rozhraní česky); - …",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai-explorer",
+      "title": "Neuronová síť naostro",
+      "chapter": "ch14-expedice-ai",
+      "anchor": "expedice-ai-explorer",
+      "anchorPath": "ch14-expedice-ai/06-spine-expedice-ai-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai-explorer",
+        "expedice-ai-explorer-en",
+        "expedice-ai-explorer-sk",
+        "expedice-ai-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Otevři TensorFlow Playground (anglicky, bez účtu).",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai-creator",
+      "title": "Férový model",
+      "chapter": "ch14-expedice-ai",
+      "anchor": "expedice-ai-creator",
+      "anchorPath": "ch14-expedice-ai/07-spine-expedice-ai-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai-creator",
+        "expedice-ai-creator-en",
+        "expedice-ai-creator-sk",
+        "expedice-ai-creator-hu"
+      ],
+      "contract": {
+        "objective": "Model z dílny otestuj po skupinách.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai-thinker",
+      "title": "Uvnitř GPT-2",
+      "chapter": "ch14-expedice-ai",
+      "anchor": "expedice-ai-thinker",
+      "anchorPath": "ch14-expedice-ai/08-spine-expedice-ai-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai-thinker",
+        "expedice-ai-thinker-en",
+        "expedice-ai-thinker-sk",
+        "expedice-ai-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Vezmi svůj model ze tří vět z výzvy u generativního modelu a porovnej ho se skutečným.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-ai-rozcestnik",
+      "title": "Rozcestník: Umělá inteligence",
+      "chapter": "ch14-expedice-ai",
+      "anchor": "expedice-ai-rozcestnik",
+      "anchorPath": "ch14-expedice-ai/09-spine-expedice-ai-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-ai-rozcestnik",
+        "expedice-ai-rozcestnik-en",
+        "expedice-ai-rozcestnik-sk",
+        "expedice-ai-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci-1",
+      "title": "Tři vrstvy",
+      "chapter": "ch15-expedice-bezpeci",
+      "anchor": "expedice-bezpeci-1",
+      "anchorPath": "ch15-expedice-bezpeci/01-spine-expedice-bezpeci-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci-1",
+        "expedice-bezpeci-1-en",
+        "expedice-bezpeci-1-sk",
+        "expedice-bezpeci-1-hu"
+      ],
+      "contract": {
+        "objective": "Tady je zpráva: 59 4F 44 4D 4E 44 7B 4B 55 44 47 2D 50 44 2D 59 55 56 57 59 42 7D Na první pohled šum.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci-2",
+      "title": "Kuchyně CyberChef",
+      "chapter": "ch15-expedice-bezpeci",
+      "anchor": "expedice-bezpeci-2",
+      "anchorPath": "ch15-expedice-bezpeci/02-spine-expedice-bezpeci-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci-2",
+        "expedice-bezpeci-2-en",
+        "expedice-bezpeci-2-sk",
+        "expedice-bezpeci-2-hu"
+      ],
+      "contract": {
+        "objective": "CyberChef je bezplatný nástroj od britské zpravodajské služby GCHQ.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci-3",
+      "title": "Heslo, které nikdo nevidí",
+      "chapter": "ch15-expedice-bezpeci",
+      "anchor": "expedice-bezpeci-3",
+      "anchorPath": "ch15-expedice-bezpeci/03-spine-expedice-bezpeci-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci-3",
+        "expedice-bezpeci-3-en",
+        "expedice-bezpeci-3-sk",
+        "expedice-bezpeci-3-hu"
+      ],
+      "contract": {
+        "objective": "Služba Have I Been Pwned sbírá hesla z veřejných úniků, stovky milionů hesel.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci-4",
+      "title": "Najdi svou soutěž",
+      "chapter": "ch15-expedice-bezpeci",
+      "anchor": "expedice-bezpeci-4",
+      "anchorPath": "ch15-expedice-bezpeci/04-spine-expedice-bezpeci-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci-4",
+        "expedice-bezpeci-4-en",
+        "expedice-bezpeci-4-sk",
+        "expedice-bezpeci-4-hu"
+      ],
+      "contract": {
+        "objective": "CTF se hraje po celém světě a některé soutěže jsou přímo pro školáky.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci-5",
+      "title": "Postav CTF pro 7.B",
+      "chapter": "ch15-expedice-bezpeci",
+      "anchor": "expedice-bezpeci-5",
+      "anchorPath": "ch15-expedice-bezpeci/05-spine-expedice-bezpeci-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci-5",
+        "expedice-bezpeci-5-en",
+        "expedice-bezpeci-5-sk",
+        "expedice-bezpeci-5-hu"
+      ],
+      "contract": {
+        "objective": "Postavit úlohu, která jde vyřešit jedním správným postupem a ne náhodou, je těžší než ji vyřešit.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci-explorer",
+      "title": "Obránce domova: bezpečnostní audit rodiny",
+      "chapter": "ch15-expedice-bezpeci",
+      "anchor": "expedice-bezpeci-explorer",
+      "anchorPath": "ch15-expedice-bezpeci/06-spine-expedice-bezpeci-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci-explorer",
+        "expedice-bezpeci-explorer-en",
+        "expedice-bezpeci-explorer-sk",
+        "expedice-bezpeci-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Útočit na úlohy je zábava, ale skutečná práce v bezpečnosti je hlavně obrana.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci-creator",
+      "title": "Stezka terminálu: OverTheWire Bandit",
+      "chapter": "ch15-expedice-bezpeci",
+      "anchor": "expedice-bezpeci-creator",
+      "anchorPath": "ch15-expedice-bezpeci/07-spine-expedice-bezpeci-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci-creator",
+        "expedice-bezpeci-creator-en",
+        "expedice-bezpeci-creator-sk",
+        "expedice-bezpeci-creator-hu"
+      ],
+      "contract": {
+        "objective": "Bandit je „wargame“ pro úplné začátečníky.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci-thinker",
+      "title": "Matematika šifer: RSA v malém a CryptoHack",
+      "chapter": "ch15-expedice-bezpeci",
+      "anchor": "expedice-bezpeci-thinker",
+      "anchorPath": "ch15-expedice-bezpeci/08-spine-expedice-bezpeci-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci-thinker",
+        "expedice-bezpeci-thinker-en",
+        "expedice-bezpeci-thinker-sk",
+        "expedice-bezpeci-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Jak si můžou poslat tajnou zprávu dva lidé, kteří se nikdy neviděli a nemají společný klíč?",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-bezpeci-rozcestnik",
+      "title": "Rozcestník: Bezpečí a ty",
+      "chapter": "ch15-expedice-bezpeci",
+      "anchor": "expedice-bezpeci-rozcestnik",
+      "anchorPath": "ch15-expedice-bezpeci/09-spine-expedice-bezpeci-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-bezpeci-rozcestnik",
+        "expedice-bezpeci-rozcestnik-en",
+        "expedice-bezpeci-rozcestnik-sk",
+        "expedice-bezpeci-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry-1",
+      "title": "⭐ Náhoda, která hraje fér",
+      "chapter": "ch16-expedice-hry",
+      "anchor": "expedice-hry-1",
+      "anchorPath": "ch16-expedice-hry/01-spine-expedice-hry-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry-1",
+        "expedice-hry-1-en",
+        "expedice-hry-1-sk",
+        "expedice-hry-1-hu"
+      ],
+      "contract": {
+        "objective": "Počítač nemá kostku.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry-2",
+      "title": "🛠️ První hra v Godotu za 30 minut",
+      "chapter": "ch16-expedice-hry",
+      "anchor": "expedice-hry-2",
+      "anchorPath": "ch16-expedice-hry/02-spine-expedice-hry-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry-2",
+        "expedice-hry-2-en",
+        "expedice-hry-2-sk",
+        "expedice-hry-2-hu"
+      ],
+      "contract": {
+        "objective": "Godot je profesionální herní engine zdarma a bez účtu.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry-3",
+      "title": "🤝 Jam, ke kterému se můžeš přidat",
+      "chapter": "ch16-expedice-hry",
+      "anchor": "expedice-hry-3",
+      "anchorPath": "ch16-expedice-hry/03-spine-expedice-hry-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry-3",
+        "expedice-hry-3-en",
+        "expedice-hry-3-sk",
+        "expedice-hry-3-hu"
+      ],
+      "contract": {
+        "objective": "Game jam je soutěž, ve které za pár dní vznikne hra na zadané téma.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry-4",
+      "title": "🔍 Rozbor: jak skáče Celeste",
+      "chapter": "ch16-expedice-hry",
+      "anchor": "expedice-hry-4",
+      "anchorPath": "ch16-expedice-hry/04-spine-expedice-hry-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry-4",
+        "expedice-hry-4-en",
+        "expedice-hry-4-sk",
+        "expedice-hry-4-hu"
+      ],
+      "contract": {
+        "objective": "Celeste je slavná plošinovka.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry-5",
+      "title": "🎮 Hra do neděle večer",
+      "chapter": "ch16-expedice-hry",
+      "anchor": "expedice-hry-5",
+      "anchorPath": "ch16-expedice-hry/05-spine-expedice-hry-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry-5",
+        "expedice-hry-5-en",
+        "expedice-hry-5-sk",
+        "expedice-hry-5-hu"
+      ],
+      "contract": {
+        "objective": "Teď postavíš vlastní hru na téma „Všechno se zrychluje“.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry-explorer",
+      "title": "Hra pro malý počítač",
+      "chapter": "ch16-expedice-hry",
+      "anchor": "expedice-hry-explorer",
+      "anchorPath": "ch16-expedice-hry/06-spine-expedice-hry-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry-explorer",
+        "expedice-hry-explorer-en",
+        "expedice-hry-explorer-sk",
+        "expedice-hry-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Fantasy konzole je vymyšlený počítač s přísnými omezeními.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry-creator",
+      "title": "Nepřítel, který přemýšlí",
+      "chapter": "ch16-expedice-hry",
+      "anchor": "expedice-hry-creator",
+      "anchorPath": "ch16-expedice-hry/07-spine-expedice-hry-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry-creator",
+        "expedice-hry-creator-en",
+        "expedice-hry-creator-sk",
+        "expedice-hry-creator-hu"
+      ],
+      "contract": {
+        "objective": "Nepřítel, který jen chodí sem a tam, je nuda.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry-thinker",
+      "title": "Pevný krok fyziky",
+      "chapter": "ch16-expedice-hry",
+      "anchor": "expedice-hry-thinker",
+      "anchorPath": "ch16-expedice-hry/08-spine-expedice-hry-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry-thinker",
+        "expedice-hry-thinker-en",
+        "expedice-hry-thinker-sk",
+        "expedice-hry-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Omezené dt hru ochrání, ale fyzika pořád počítá s různými kroky.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-hry-rozcestnik",
+      "title": "Rozcestník: Svět her",
+      "chapter": "ch16-expedice-hry",
+      "anchor": "expedice-hry-rozcestnik",
+      "anchorPath": "ch16-expedice-hry/09-spine-expedice-hry-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-hry-rozcestnik",
+        "expedice-hry-rozcestnik-en",
+        "expedice-hry-rozcestnik-sk",
+        "expedice-hry-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti-1",
+      "title": "Vozítko za 30 minut v MakeCode",
+      "chapter": "ch17-expedice-roboti",
+      "anchor": "expedice-roboti-1",
+      "anchorPath": "ch17-expedice-roboti/01-spine-expedice-roboti-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti-1",
+        "expedice-roboti-1-en",
+        "expedice-roboti-1-sk",
+        "expedice-roboti-1-hu"
+      ],
+      "contract": {
+        "objective": "Otevři MakeCode, dej Nový projekt a pojmenuj ho „vozitko“.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti-2",
+      "title": "Ostrá zatáčka a paměť",
+      "chapter": "ch17-expedice-roboti",
+      "anchor": "expedice-roboti-2",
+      "anchorPath": "ch17-expedice-roboti/02-spine-expedice-roboti-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti-2",
+        "expedice-roboti-2-en",
+        "expedice-roboti-2-sk",
+        "expedice-roboti-2-hu"
+      ],
+      "contract": {
+        "objective": "Čára zmizela oběma senzorům.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti-3",
+      "title": "Jak přemýšlí robotický vysavač",
+      "chapter": "ch17-expedice-roboti",
+      "anchor": "expedice-roboti-3",
+      "anchorPath": "ch17-expedice-roboti/03-spine-expedice-roboti-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti-3",
+        "expedice-roboti-3-en",
+        "expedice-roboti-3-sk",
+        "expedice-roboti-3-hu"
+      ],
+      "contract": {
+        "objective": "Pozoruj.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti-4",
+      "title": "Na soutěž s partou",
+      "chapter": "ch17-expedice-roboti",
+      "anchor": "expedice-roboti-4",
+      "anchorPath": "ch17-expedice-roboti/04-spine-expedice-roboti-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti-4",
+        "expedice-roboti-4-en",
+        "expedice-roboti-4-sk",
+        "expedice-roboti-4-hu"
+      ],
+      "contract": {
+        "objective": "Robotika je týmový sport.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti-5",
+      "title": "Okruh, který projedeš třikrát za sebou",
+      "chapter": "ch17-expedice-roboti",
+      "anchor": "expedice-roboti-5",
+      "anchorPath": "ch17-expedice-roboti/05-spine-expedice-roboti-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti-5",
+        "expedice-roboti-5-en",
+        "expedice-roboti-5-sk",
+        "expedice-roboti-5-hu"
+      ],
+      "contract": {
+        "objective": "Postav vlastní okruh a udělej z vozítka spolehlivý stroj.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti-explorer",
+      "title": "Arduino bez pájení ve Wokwi",
+      "chapter": "ch17-expedice-roboti",
+      "anchor": "expedice-roboti-explorer",
+      "anchorPath": "ch17-expedice-roboti/06-spine-expedice-roboti-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti-explorer",
+        "expedice-roboti-explorer-en",
+        "expedice-roboti-explorer-sk",
+        "expedice-roboti-explorer-hu"
+      ],
+      "contract": {
+        "objective": "micro:bit je pohodlný, ale spousta robotů na světě běží na deskách Arduino, ESP32 nebo Raspberry Pi Pico.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti-creator",
+      "title": "LEGO roboti a Python s Pybricks",
+      "chapter": "ch17-expedice-roboti",
+      "anchor": "expedice-roboti-creator",
+      "anchorPath": "ch17-expedice-roboti/07-spine-expedice-roboti-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti-creator",
+        "expedice-roboti-creator-en",
+        "expedice-roboti-creator-sk",
+        "expedice-roboti-creator-hu"
+      ],
+      "contract": {
+        "objective": "Má škola nebo kroužek LEGO SPIKE nebo Mindstorms?",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti-thinker",
+      "title": "Plynulá jízda místo cukání",
+      "chapter": "ch17-expedice-roboti",
+      "anchor": "expedice-roboti-thinker",
+      "anchorPath": "ch17-expedice-roboti/08-spine-expedice-roboti-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti-thinker",
+        "expedice-roboti-thinker-en",
+        "expedice-roboti-thinker-sk",
+        "expedice-roboti-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Tvoje vozítko se rozhoduje jen mezi 0 a 1, a proto cuká zleva doprava.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-roboti-rozcestnik",
+      "title": "Rozcestník: Svět robotů a micro:bitu",
+      "chapter": "ch17-expedice-roboti",
+      "anchor": "expedice-roboti-rozcestnik",
+      "anchorPath": "ch17-expedice-roboti/09-spine-expedice-roboti-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-roboti-rozcestnik",
+        "expedice-roboti-rozcestnik-en",
+        "expedice-roboti-rozcestnik-sk",
+        "expedice-roboti-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby-1",
+      "title": "První adresa za 30 minut",
+      "chapter": "ch18-expedice-weby",
+      "anchor": "expedice-weby-1",
+      "anchorPath": "ch18-expedice-weby/01-spine-expedice-weby-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby-1",
+        "expedice-weby-1-en",
+        "expedice-weby-1-sk",
+        "expedice-weby-1-hu"
+      ],
+      "contract": {
+        "objective": "Krok 1: kostra (10 minut).",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby-2",
+      "title": "Rozpočet 100 kilobajtů",
+      "chapter": "ch18-expedice-weby",
+      "anchor": "expedice-weby-2",
+      "anchorPath": "ch18-expedice-weby/02-spine-expedice-weby-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby-2",
+        "expedice-weby-2-en",
+        "expedice-weby-2-sk",
+        "expedice-weby-2-hu"
+      ],
+      "contract": {
+        "objective": "Emin návrh: | soubor | velikost | |---|---| | index.html | 8 kB | | styl.css | 6 kB | | písmo z internetu, 2 řezy | 2 × 25 kB | | fotka z mobilu | 3,2 MB | | k…",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby-3",
+      "title": "Rozeber web, který funguje dvacet let",
+      "chapter": "ch18-expedice-weby",
+      "anchor": "expedice-weby-3",
+      "anchorPath": "ch18-expedice-weby/03-spine-expedice-weby-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby-3",
+        "expedice-weby-3-en",
+        "expedice-weby-3-sk",
+        "expedice-weby-3-hu"
+      ],
+      "contract": {
+        "objective": "Vyber si tři weby: českou příručku Jak psát web, jeden článek na Wikipedii a libovolný velký zpravodajský web.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby-4",
+      "title": "Kde stavějí ostatní",
+      "chapter": "ch18-expedice-weby",
+      "anchor": "expedice-weby-4",
+      "anchorPath": "ch18-expedice-weby/04-spine-expedice-weby-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby-4",
+        "expedice-weby-4-en",
+        "expedice-weby-4-sk",
+        "expedice-weby-4-hu"
+      ],
+      "contract": {
+        "objective": "Kam se dá přidat: - js13kGames: každý rok od srpna do září.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby-5",
+      "title": "Tvůj web do 100 kB",
+      "chapter": "ch18-expedice-weby",
+      "anchor": "expedice-weby-5",
+      "anchorPath": "ch18-expedice-weby/05-spine-expedice-weby-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby-5",
+        "expedice-weby-5-en",
+        "expedice-weby-5-sk",
+        "expedice-weby-5-hu"
+      ],
+      "contract": {
+        "objective": "Co postavit: cokoli, co tě baví.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby-explorer",
+      "title": "Týden se čtečkou",
+      "chapter": "ch18-expedice-weby",
+      "anchor": "expedice-weby-explorer",
+      "anchorPath": "ch18-expedice-weby/06-spine-expedice-weby-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby-explorer",
+        "expedice-weby-explorer-en",
+        "expedice-weby-explorer-sk",
+        "expedice-weby-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Zapni si čtečku obrazovky, kterou už máš: VoiceOver na iPhonu a Macu, TalkBack na Androidu, Předčítání ve Windows.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby-creator",
+      "title": "Rozvržení a tmavý režim",
+      "chapter": "ch18-expedice-weby",
+      "anchor": "expedice-weby-creator",
+      "anchorPath": "ch18-expedice-weby/07-spine-expedice-weby-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby-creator",
+        "expedice-weby-creator-en",
+        "expedice-weby-creator-sk",
+        "expedice-weby-creator-hu"
+      ],
+      "contract": {
+        "objective": "Projdi celou hru Flexbox Froggy a pak Grid Garden, obě s českým zadáním.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby-thinker",
+      "title": "100 bodů v Lighthouse",
+      "chapter": "ch18-expedice-weby",
+      "anchor": "expedice-weby-thinker",
+      "anchorPath": "ch18-expedice-weby/08-spine-expedice-weby-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby-thinker",
+        "expedice-weby-thinker-en",
+        "expedice-weby-thinker-sk",
+        "expedice-weby-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Lighthouse najdeš v F12 jako samostatnou záložku.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-weby-rozcestnik",
+      "title": "Rozcestník: Svět webů",
+      "chapter": "ch18-expedice-weby",
+      "anchor": "expedice-weby-rozcestnik",
+      "anchorPath": "ch18-expedice-weby/09-spine-expedice-weby-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-weby-rozcestnik",
+        "expedice-weby-rozcestnik-en",
+        "expedice-weby-rozcestnik-sk",
+        "expedice-weby-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace-1",
+      "title": "Rozeber appku, která už to umí",
+      "chapter": "ch19-expedice-aplikace",
+      "anchor": "expedice-aplikace-1",
+      "anchorPath": "ch19-expedice-aplikace/01-spine-expedice-aplikace-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace-1",
+        "expedice-aplikace-1-en",
+        "expedice-aplikace-1-sk",
+        "expedice-aplikace-1-hu"
+      ],
+      "contract": {
+        "objective": "Spliit je appka na dělení společných výdajů.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace-2",
+      "title": "První appka za 30 minut",
+      "chapter": "ch19-expedice-aplikace",
+      "anchor": "expedice-aplikace-2",
+      "anchorPath": "ch19-expedice-aplikace/02-spine-expedice-aplikace-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace-2",
+        "expedice-aplikace-2-en",
+        "expedice-aplikace-2-sk",
+        "expedice-aplikace-2-hu"
+      ],
+      "contract": {
+        "objective": "Co potřebuješ: počítač s prohlížečem, Android mobil s appkou MIT AI2 Companion a Google účet.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace-3",
+      "title": "Kolik lidí stačí na test",
+      "chapter": "ch19-expedice-aplikace",
+      "anchor": "expedice-aplikace-3",
+      "anchorPath": "ch19-expedice-aplikace/03-spine-expedice-aplikace-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace-3",
+        "expedice-aplikace-3-en",
+        "expedice-aplikace-3-sk",
+        "expedice-aplikace-3-hu"
+      ],
+      "contract": {
+        "objective": "Test použitelnosti znamená, že někdo, kdo appku nezná, dostane úkol (třeba „zapiš výdaj 150 Kč za autobus“) a ty jen mlčky sleduješ, kde zaváhá.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace-4",
+      "title": "Najdi svůj appathon",
+      "chapter": "ch19-expedice-aplikace",
+      "anchor": "expedice-aplikace-4",
+      "anchorPath": "ch19-expedice-aplikace/04-spine-expedice-aplikace-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace-4",
+        "expedice-aplikace-4-en",
+        "expedice-aplikace-4-sk",
+        "expedice-aplikace-4-hu"
+      ],
+      "contract": {
+        "objective": "Appku z víkendu můžeš poslat do skutečné soutěže.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace-5",
+      "title": "Verze 2 pro skutečné lidi",
+      "chapter": "ch19-expedice-aplikace",
+      "anchor": "expedice-aplikace-5",
+      "anchorPath": "ch19-expedice-aplikace/05-spine-expedice-aplikace-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace-5",
+        "expedice-aplikace-5-en",
+        "expedice-aplikace-5-sk",
+        "expedice-aplikace-5-hu"
+      ],
+      "contract": {
+        "objective": "Postav druhou verzi appky pro skupinu, kterou znáš: oddíl, kroužek, kapelu, sportovní tým.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace-explorer",
+      "title": "Návrh rozhraní",
+      "chapter": "ch19-expedice-aplikace",
+      "anchor": "expedice-aplikace-explorer",
+      "anchorPath": "ch19-expedice-aplikace/06-spine-expedice-aplikace-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace-explorer",
+        "expedice-aplikace-explorer-en",
+        "expedice-aplikace-explorer-sk",
+        "expedice-aplikace-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Návrháři rozhraní kreslí appku dřív, než vznikne první blok.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace-creator",
+      "title": "Z bloků do kódu",
+      "chapter": "ch19-expedice-aplikace",
+      "anchor": "expedice-aplikace-creator",
+      "anchorPath": "ch19-expedice-aplikace/07-spine-expedice-aplikace-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace-creator",
+        "expedice-aplikace-creator-en",
+        "expedice-aplikace-creator-sk",
+        "expedice-aplikace-creator-hu"
+      ],
+      "contract": {
+        "objective": "Bloky mají strop: složitější výpočty se v nich ztrácejí.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace-thinker",
+      "title": "Appka pro každého",
+      "chapter": "ch19-expedice-aplikace",
+      "anchor": "expedice-aplikace-thinker",
+      "anchorPath": "ch19-expedice-aplikace/08-spine-expedice-aplikace-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace-thinker",
+        "expedice-aplikace-thinker-en",
+        "expedice-aplikace-thinker-sk",
+        "expedice-aplikace-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Zkus svou appku ovládat se zavřenýma očima.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-aplikace-rozcestnik",
+      "title": "Rozcestník: Svět aplikací",
+      "chapter": "ch19-expedice-aplikace",
+      "anchor": "expedice-aplikace-rozcestnik",
+      "anchorPath": "ch19-expedice-aplikace/09-spine-expedice-aplikace-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-aplikace-rozcestnik",
+        "expedice-aplikace-rozcestnik-en",
+        "expedice-aplikace-rozcestnik-sk",
+        "expedice-aplikace-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba-1",
+      "title": "Hvězda, která se zavře",
+      "chapter": "ch20-expedice-tvorba",
+      "anchor": "expedice-tvorba-1",
+      "anchorPath": "ch20-expedice-tvorba/01-spine-expedice-tvorba-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba-1",
+        "expedice-tvorba-1-en",
+        "expedice-tvorba-1-sk",
+        "expedice-tvorba-1-hu"
+      ],
+      "contract": {
+        "objective": "V knize kreslí želva hvězdu příkazem opakuj n [dopředu 100 vpravo úhel].",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba-2",
+      "title": "Pozadí z kódu za 30 minut",
+      "chapter": "ch20-expedice-tvorba",
+      "anchor": "expedice-tvorba-2",
+      "anchorPath": "ch20-expedice-tvorba/02-spine-expedice-tvorba-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba-2",
+        "expedice-tvorba-2-en",
+        "expedice-tvorba-2-sk",
+        "expedice-tvorba-2-hu"
+      ],
+      "contract": {
+        "objective": "1.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba-3",
+      "title": "Film, který si můžeš rozebrat",
+      "chapter": "ch20-expedice-tvorba",
+      "anchor": "expedice-tvorba-3",
+      "anchorPath": "ch20-expedice-tvorba/03-spine-expedice-tvorba-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba-3",
+        "expedice-tvorba-3-en",
+        "expedice-tvorba-3-sk",
+        "expedice-tvorba-3-hu"
+      ],
+      "contract": {
+        "objective": "Otevři stránku filmu Sprite Fright a pusť si film.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba-4",
+      "title": "Ukaž to světu, bezpečně",
+      "chapter": "ch20-expedice-tvorba",
+      "anchor": "expedice-tvorba-4",
+      "anchorPath": "ch20-expedice-tvorba/04-spine-expedice-tvorba-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba-4",
+        "expedice-tvorba-4-en",
+        "expedice-tvorba-4-sk",
+        "expedice-tvorba-4-hu"
+      ],
+      "contract": {
+        "objective": "Genuary (genuary.art) je výzva generativního umění: každý leden 31 témat, na každý den jedno.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba-5",
+      "title": "Znělka",
+      "chapter": "ch20-expedice-tvorba",
+      "anchor": "expedice-tvorba-5",
+      "anchorPath": "ch20-expedice-tvorba/05-spine-expedice-tvorba-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba-5",
+        "expedice-tvorba-5-en",
+        "expedice-tvorba-5-sk",
+        "expedice-tvorba-5-hu"
+      ],
+      "contract": {
+        "objective": "1.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba-explorer",
+      "title": "Hudba: člověk proti stroji",
+      "chapter": "ch20-expedice-tvorba",
+      "anchor": "expedice-tvorba-explorer",
+      "anchorPath": "ch20-expedice-tvorba/06-spine-expedice-tvorba-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba-explorer",
+        "expedice-tvorba-explorer-en",
+        "expedice-tvorba-explorer-sk",
+        "expedice-tvorba-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Udělej slepý test.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba-creator",
+      "title": "Maskot ve 3D",
+      "chapter": "ch20-expedice-tvorba",
+      "anchor": "expedice-tvorba-creator",
+      "anchorPath": "ch20-expedice-tvorba/07-spine-expedice-tvorba-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba-creator",
+        "expedice-tvorba-creator-en",
+        "expedice-tvorba-creator-sk",
+        "expedice-tvorba-creator-hu"
+      ],
+      "contract": {
+        "objective": "Pixelový maskot je vlastně mapa kostiček.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba-thinker",
+      "title": "Pohyb z kódu",
+      "chapter": "ch20-expedice-tvorba",
+      "anchor": "expedice-tvorba-thinker",
+      "anchorPath": "ch20-expedice-tvorba/08-spine-expedice-tvorba-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba-thinker",
+        "expedice-tvorba-thinker-en",
+        "expedice-tvorba-thinker-sk",
+        "expedice-tvorba-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Statické pozadí rozpohybuj tak, aby se znělka dala pouštět dokola bez škubnutí.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-tvorba-rozcestnik",
+      "title": "Rozcestník: Svět tvorby s AI",
+      "chapter": "ch20-expedice-tvorba",
+      "anchor": "expedice-tvorba-rozcestnik",
+      "anchorPath": "ch20-expedice-tvorba/09-spine-expedice-tvorba-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-tvorba-rozcestnik",
+        "expedice-tvorba-rozcestnik-en",
+        "expedice-tvorba-rozcestnik-sk",
+        "expedice-tvorba-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni-1",
+      "title": "Kroupy, které nepadaly",
+      "chapter": "ch21-expedice-socialni",
+      "anchor": "expedice-socialni-1",
+      "anchorPath": "ch21-expedice-socialni/01-spine-expedice-socialni-1.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni-1",
+        "expedice-socialni-1-en",
+        "expedice-socialni-1-sk",
+        "expedice-socialni-1-hu"
+      ],
+      "contract": {
+        "objective": "Ondra s Emou za půl hodiny posbírají pět stop.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni-2",
+      "title": "Rentgen na video",
+      "chapter": "ch21-expedice-socialni",
+      "anchor": "expedice-socialni-2",
+      "anchorPath": "ch21-expedice-socialni/02-spine-expedice-socialni-2.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni-2",
+        "expedice-socialni-2-en",
+        "expedice-socialni-2-sk",
+        "expedice-socialni-2-hu"
+      ],
+      "contract": {
+        "objective": "Nástroj: plugin InVID-WeVerify (v obchodě prohlížeče se jmenuje „Fake news debunker by InVID & WeVerify“).",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni-3",
+      "title": "Wikiklub: komunita, která chce zdroj",
+      "chapter": "ch21-expedice-socialni",
+      "anchor": "expedice-socialni-3",
+      "anchorPath": "ch21-expedice-socialni/03-spine-expedice-socialni-3.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni-3",
+        "expedice-socialni-3-en",
+        "expedice-socialni-3-sk",
+        "expedice-socialni-3-hu"
+      ],
+      "contract": {
+        "objective": "Kdo to je: Wikimedia Česká republika pořádá Wikikluby (Praha, Plzeň, České Budějovice) a editathony, setkání, kde lidé spolu píšou a opravují články.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni-4",
+      "title": "Pod kapotou opravdového feedu",
+      "chapter": "ch21-expedice-socialni",
+      "anchor": "expedice-socialni-4",
+      "anchorPath": "ch21-expedice-socialni/04-spine-expedice-socialni-4.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni-4",
+        "expedice-socialni-4-en",
+        "expedice-socialni-4-sk",
+        "expedice-socialni-4-hu"
+      ],
+      "contract": {
+        "objective": "Podle blogu, který kód tehdy doprovázel, má feed tři patra: 1.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni-5",
+      "title": "Spravedlivý feed",
+      "chapter": "ch21-expedice-socialni",
+      "anchor": "expedice-socialni-5",
+      "anchorPath": "ch21-expedice-socialni/05-spine-expedice-socialni-5.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni-5",
+        "expedice-socialni-5-en",
+        "expedice-socialni-5-sk",
+        "expedice-socialni-5-hu"
+      ],
+      "contract": {
+        "objective": "Úkol: navrhni pravidla feedu pro dvanáctiletou uživatelku a otestuj je na papíře nebo v tabulce.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni-explorer",
+      "title": "Fotky, které Wikipedii chybí",
+      "chapter": "ch21-expedice-socialni",
+      "anchor": "expedice-socialni-explorer",
+      "anchorPath": "ch21-expedice-socialni/06-spine-expedice-socialni-explorer.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni-explorer",
+        "expedice-socialni-explorer-en",
+        "expedice-socialni-explorer-sk",
+        "expedice-socialni-explorer-hu"
+      ],
+      "contract": {
+        "objective": "Spousta článků o památkách v tvém okolí nemá fotku.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni-creator",
+      "title": "Vlastní feed doopravdy",
+      "chapter": "ch21-expedice-socialni",
+      "anchor": "expedice-socialni-creator",
+      "anchorPath": "ch21-expedice-socialni/07-spine-expedice-socialni-creator.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni-creator",
+        "expedice-socialni-creator-en",
+        "expedice-socialni-creator-sk",
+        "expedice-socialni-creator-hu"
+      ],
+      "contract": {
+        "objective": "Papír je za tebou, teď se feed dá postavit naostro.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni-thinker",
+      "title": "Navrhni očkovací hru",
+      "chapter": "ch21-expedice-socialni",
+      "anchor": "expedice-socialni-thinker",
+      "anchorPath": "ch21-expedice-socialni/08-spine-expedice-socialni-thinker.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni-thinker",
+        "expedice-socialni-thinker-en",
+        "expedice-socialni-thinker-sk",
+        "expedice-socialni-thinker-hu"
+      ],
+      "contract": {
+        "objective": "Vědci z Cambridge zjistili, že kdo si triky dezinformací vyzkouší ve hře, pozná je pak líp.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
+        "forbidden": [
+          "invented statistics or benchmark numbers",
+          "invented citations, URLs, or paper titles",
+          "claiming a single method fully solves the problem"
+        ]
+      }
+    },
+    {
+      "id": "expedice-socialni-rozcestnik",
+      "title": "Rozcestník: Svět sociálních sítí a videí",
+      "chapter": "ch21-expedice-socialni",
+      "anchor": "expedice-socialni-rozcestnik",
+      "anchorPath": "ch21-expedice-socialni/09-spine-expedice-socialni-rozcestnik.md",
+      "provenance": "anchored",
+      "parents": [],
+      "blocks": [
+        "expedice-socialni-rozcestnik",
+        "expedice-socialni-rozcestnik-en",
+        "expedice-socialni-rozcestnik-sk",
+        "expedice-socialni-rozcestnik-hu"
+      ],
+      "contract": {
+        "objective": "Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat.",
+        "objectiveSource": "teaser-bootstrap",
+        "mustCover": [],
+        "recallQ": null,
+        "recallA": null,
         "forbidden": [
           "invented statistics or benchmark numbers",
           "invented citations, URLs, or paper titles",

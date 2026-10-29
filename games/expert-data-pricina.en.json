@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "What is behind this link?",
+  "instruction": "Each sentence describes two things that go together. Sort them by what is most likely behind it. Careful: only one box means a real cause.",
+  "buckets": [
+    "A cause, checked by an experiment",
+    "A hidden third thing",
+    "Reversed cause",
+    "Chance from digging through data"
+  ],
+  "items": [
+    {
+      "text": "On days when more ice cream is sold, more people drown.",
+      "answer": 1,
+      "why": "Both are caused by hot weather. Ice cream doesn’t drown anyone."
+    },
+    {
+      "text": "Children with bigger shoe sizes read faster.",
+      "answer": 1,
+      "why": "The third thing is age. Older children have bigger feet and read more."
+    },
+    {
+      "text": "An app randomly showed half of 50,000 people a green button and the other half a blue one. 12% more people clicked the green one.",
+      "answer": 0,
+      "why": "Random splitting is an experiment (an A/B test). Otherwise the two groups are the same, so the colour makes the difference."
+    },
+    {
+      "text": "People who often go to the doctor are more often ill.",
+      "answer": 2,
+      "why": "The doctor doesn’t cause the illness. The illness is the reason they go there."
+    },
+    {
+      "text": "Towns with more police officers have more crime.",
+      "answer": 2,
+      "why": "Where there is more crime, the town hires more police officers. The cause runs the opposite way to what the sentence suggests."
+    },
+    {
+      "text": "For years, the number of computer science doctorates in the USA and the number of bee colonies rose and fell together.",
+      "answer": 3,
+      "why": "When you compare thousands of pairs of series, some will look alike purely by chance. That is exactly how the examples on the Spurious Correlations website come about."
+    },
+    {
+      "text": "Out of 200 tracked facts about your gaming, one showed that you win more on days with the letter “t” in their name.",
+      "answer": 3,
+      "why": "Out of 200 tests, a few will “come out” just by chance. Without checking again on different data, it means nothing."
+    },
+    {
+      "text": "A school randomly drew which classes would start their first lesson 30 minutes later. The drawn classes were late less often over the term.",
+      "answer": 0,
+      "why": "The draw decided who got the change, so the classes don’t differ in any other way. The later start caused the difference."
+    }
+  ],
+  "debrief": "A link has four possible explanations: a cause, a hidden third thing, the reverse direction and chance. A cause is mainly proved honestly by an experiment with random splitting. When an experiment isn’t possible, look for a third thing and ask how many pairs someone dug through before finding the “interesting” one."
+}

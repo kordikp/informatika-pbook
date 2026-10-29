@@ -1,0 +1,68 @@
+{
+  "type": "estimate",
+  "title": "Čísla, která AI prozradí",
+  "instruction": "Odhadni, nebo radši spočítej. Tady intuice často klame.",
+  "items": [
+    {
+      "q": "Ve třídě je 100 žáků, 5 z nich má chřipku. Líný model vždycky odpoví „zdravý“. Jakou má přesnost?",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "answer": 95,
+      "tolerance": 0,
+      "unit": "%",
+      "why": "Trefí všech 95 zdravých. Nemocného nenajde ani jednoho, a přesto má 95 %. Samotná přesnost nestačí, musíš se dívat i na to, koho model mine."
+    },
+    {
+      "q": "Model nejbližšího souseda otestuješ na jeho vlastních trénovacích datech (žádné dva příklady nejsou stejné). Jakou přesnost naměříš?",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "answer": 100,
+      "tolerance": 0,
+      "unit": "%",
+      "why": "Každý příklad je sám sobě nejbližší, se vzdáleností 0. Stoprocentní výsledek nic neříká o nových datech. Proto se testuje na datech, která model nikdy neviděl."
+    },
+    {
+      "q": "Jazykový model píše větu o 5 slovech. U každého slova je šance 90 %, že bude pravdivé. Jaká je šance, že je pravdivá celá věta?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 59,
+      "tolerance": 3,
+      "unit": "%",
+      "why": "0,9 × 0,9 × 0,9 × 0,9 × 0,9 ≈ 0,59. Malé nejistoty se násobí. Čím delší odpověď, tím víc míst, kde může ujet."
+    },
+    {
+      "q": "Detektor deepfaků chytí 99 % falešných videí a 99 % pravých videí správně pustí. Ve feedu je 1 falešné video z 1000. Detektor právě označil video jako falešné. Jaká je šance, že opravdu je?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 9,
+      "tolerance": 3,
+      "unit": "%",
+      "why": "Z 1000 videí je 1 falešné a detektor ho skoro jistě označí. Z 999 pravých ale omylem označí asi 10. Z 11 poplachů je pravý jen 1, tedy asi 9 %. Když je něco vzácné, většina poplachů je planá."
+    },
+    {
+      "q": "Video má 20 sekund a síť ukáže reklamu po každých 5 videích. Kolik reklam uvidíš za 40 minut scrollování?",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "answer": 24,
+      "tolerance": 2,
+      "unit": "reklam",
+      "why": "40 minut je 2400 sekund, to je 120 videí a 120 : 5 = 24 reklam. Každá minuta navíc je pro síť peníze. Proto feed nemá konec."
+    },
+    {
+      "q": "Šest webů tvrdí totéž. Pět z nich to opsalo od šestého, který uvádí vlastní měření. Kolik máš nezávislých zdrojů?",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "answer": 1,
+      "tolerance": 0,
+      "unit": "zdroj",
+      "why": "Opisy nejsou potvrzení. Počítá se, kolik zdrojů to zjistilo samo, ne kolikrát se to opakuje."
+    }
+  ],
+  "debrief": "AI a internet pracují s pravděpodobnostmi a čísla umí oklamat. Vysoká přesnost může skrývat model, který nic nenajde. I spolehlivý detektor často hlásí planý poplach. A šest webů může být jediný zdroj. Když počítáš, nedáš se zmást."
+}

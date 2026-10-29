@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Korytnačka maľuje: hviezdy, kvety a rozety",
+  "instruction": "Nakresli cieľový obrázok čo najkratším programom. Za program v limite príkazov dostaneš hviezdu.",
+  "levels": [
+    {
+      "goal": "Päťcípa hviezda jedným ťahom, strana 100",
+      "target": "opakuj 5 [dopředu 100 vpravo 144]",
+      "max": 3,
+      "hint": "Pri kreslení hviezdy obíde korytnačka stred dvakrát. O koľko stupňov sa otočí celkovo a koľkokrát zatáča?",
+      "why": "Korytnačka sa za celú hviezdu otočí o 2 × 360 = 720°. Päť rovnakých zatáčok: 720 : 5 = 144°."
+    },
+    {
+      "goal": "Deväťcípa ostrá hviezda jedným ťahom: korytnačka pri nej obkrúži stred štyrikrát",
+      "target": "opakuj 9 [dopředu 100 vpravo 160]",
+      "max": 3,
+      "hint": "Použi rovnaké pravidlo ako pri päťcípej hviezde, len s inými číslami.",
+      "why": "Celkové otočenie je 4 × 360 = 1440°, deväť zatáčok po 1440 : 9 = 160°. Všeobecne: n cípov, k obehov, uhol 360 · k : n."
+    },
+    {
+      "goal": "Čiarkovaný kruh: 36 čiarok dlhých 5, medzi nimi medzery 5, korytnačka skončí tam, kde začala",
+      "target": "opakuj 36 [pero dolů dopředu 5 pero nahoru dopředu 5 vpravo 10]",
+      "max": 7,
+      "hint": "Jeden diel kruhu je čiarka, medzera a malá zatáčka. Koľko stupňov na diel, keď ich je 36?",
+      "why": "Kruh je mnohouholník s veľmi krátkymi stranami. 36 dielov × 10° = 360°, takže sa korytnačka vráti na štart."
+    },
+    {
+      "goal": "Rozeta: 12 štvorcov so stranou 80, každý pootočený o 30° okolo spoločného rohu",
+      "target": "nauč čtverec :s [opakuj 4 [dopředu :s vpravo 90]] opakuj 12 [čtverec 80 vpravo 30]",
+      "max": 7,
+      "hint": "Najprv korytnačku nauč nový príkaz „štvorec“. Štvorec skončí tam, kde začal, a to je celé kúzlo.",
+      "why": "Procedúra je abstrakcia: raz opíšeš, čo je štvorec, a ďalej ho používaš ako jedno slovo. 12 × 30° = 360°, rozeta sa uzavrie."
+    },
+    {
+      "goal": "Kvet z 8 lupeňov; každý lupeň je kosoštvorec so stranou 60 a ostrým uhlom 45° pri strede",
+      "target": "nauč lístek :s [opakuj 2 [dopředu :s vpravo 45 dopředu :s vpravo 135]] opakuj 8 [lístek 60 vpravo 45]",
+      "max": 9,
+      "hint": "Korytnačka sa v rohu otáča o doplnok vnútorného uhla do 180°. Ostrý roh 45° znamená zatáčku 135°, tupý roh 135° zatáčku 45°.",
+      "why": "Jeden lupeň: 2 × (45 + 135) = 360°, takže sa uzavrie. Lupeň má pri strede 45° a 8 × 45° = 360°, lupene do seba presne zapadnú."
+    }
+  ],
+  "debrief": "Generatívne umenie často nevzniká z tisícov čiar, ale z jedného pravidla, ktoré sa opakuje. Kľúčom je súčet zatáčok: keď je to celý počet otočiek, obrázok sa uzavrie. To isté pravidlo nájdeš v p5.js, v Blenderi pri poli objektov aj v každej mandale."
+}

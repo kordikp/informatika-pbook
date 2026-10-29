@@ -1,0 +1,308 @@
+{
+  "type": "neuron",
+  "title": "Egy neuron, egy egyenes",
+  "instruction": "Állítsd be a súlyokat és a küszöböt úgy, hogy az egyenes elválassza a pontok két csoportját. A neuron azt mondja: „második csoport”, ha súly₁ · x + súly₂ · y nagyobb a küszöbnél.",
+  "levels": [
+    {
+      "story": "A háziállat-felismerő ismeri az állat tömegét és magasságát. Válaszd el a macskákat a kutyáktól.",
+      "labels": [
+        "macska",
+        "kutya"
+      ],
+      "axes": [
+        "tömeg kg",
+        "magasság cm"
+      ],
+      "points": [
+        [
+          3,
+          25,
+          0
+        ],
+        [
+          4,
+          23,
+          0
+        ],
+        [
+          5,
+          28,
+          0
+        ],
+        [
+          4,
+          30,
+          0
+        ],
+        [
+          6,
+          26,
+          0
+        ],
+        [
+          2,
+          20,
+          0
+        ],
+        [
+          20,
+          50,
+          1
+        ],
+        [
+          25,
+          55,
+          1
+        ],
+        [
+          30,
+          60,
+          1
+        ],
+        [
+          12,
+          40,
+          1
+        ],
+        [
+          18,
+          45,
+          1
+        ],
+        [
+          9,
+          35,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "Egy tulajdonság is elég: itt a kutyák nehezebbek. Ha a magasság súlyát nullára állítod, az egyenes függőleges, és így is működik."
+    },
+    {
+      "story": "A spamszűrő a felkiáltójeleket és a linkeket számolja. Egyik tulajdonság sem elég önmagában. Keress ferde egyenest.",
+      "labels": [
+        "normál e-mail",
+        "spam"
+      ],
+      "axes": [
+        "felkiáltójelek",
+        "linkek"
+      ],
+      "points": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          4,
+          1,
+          0
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          2,
+          4,
+          0
+        ],
+        [
+          5,
+          3,
+          1
+        ],
+        [
+          3,
+          5,
+          1
+        ],
+        [
+          6,
+          2,
+          1
+        ],
+        [
+          2,
+          6,
+          1
+        ],
+        [
+          7,
+          4,
+          1
+        ],
+        [
+          4,
+          4,
+          1
+        ],
+        [
+          4,
+          3,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "A spamben együtt sok a felkiáltójel és a link. Mindkét súlynak pozitívnak és nagyjából egyformának kell lennie, a küszöb 6 és 7 között. Egyetlen tulajdonság alapján legfeljebb kb. 79%-ot érsz el."
+    },
+    {
+      "story": "A micro:bit a mozdulat ereje és sebessége alapján különbözteti meg az integetést a tapsolástól. Két felvétel azonban elromlott. Próbálj 100%-ot elérni.",
+      "labels": [
+        "integetés",
+        "tapsolás"
+      ],
+      "axes": [
+        "a mozdulat ereje",
+        "a változás sebessége"
+      ],
+      "points": [
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          7,
+          8,
+          0
+        ],
+        [
+          6,
+          7,
+          1
+        ],
+        [
+          7,
+          6,
+          1
+        ],
+        [
+          8,
+          7,
+          1
+        ],
+        [
+          6,
+          8,
+          1
+        ],
+        [
+          8,
+          8,
+          1
+        ],
+        [
+          7,
+          9,
+          1
+        ],
+        [
+          2,
+          2,
+          1
+        ]
+      ],
+      "goal": 0.85,
+      "why": "100% nem megy: két pont a másik csoport közepén van. A legjobb egyenes 14-ből 12-t talál el, vagyis 86%-ot. A hibás adatokat nem kell hajszolni. Csak úgy javíthatók, ha újra elkészíted a felvételeket."
+    },
+    {
+      "story": "Lépcsőházi kapcsoló: a lámpa akkor ég, ha az egyik kapcsoló fent, a másik lent van. A tengelyek az alsó és a felső kapcsoló állását mutatják (0 = lent, 10 = fent). Meg tudja ezt tanulni egyetlen neuron?",
+      "labels": [
+        "nem ég",
+        "ég"
+      ],
+      "axes": [
+        "alsó kapcsoló",
+        "felső kapcsoló"
+      ],
+      "points": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          8,
+          8,
+          0
+        ],
+        [
+          9,
+          9,
+          0
+        ],
+        [
+          1,
+          9,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ],
+        [
+          8,
+          2,
+          1
+        ],
+        [
+          9,
+          1,
+          1
+        ]
+      ],
+      "goal": 0.75,
+      "why": "Az égő pontok két szemközti sarokban vannak. Egy egyenes nem választja el őket a nem égőktől, legjobb esetben 8-ból 6-ot találsz el. Ezt hívják XOR-problémának. Két neuron kell, meg egy harmadik, amely összekapcsolja az eredményeiket. Ez a neurális hálózat rejtett rétege."
+    }
+  ],
+  "debrief": "Egy neuron csak egyet tud: egyenest húzni. Ahol az egyenes elég, gyorsan tanul. Ahol az adatok hazudnak, 100% nem megy. És ahol több egyenes kell, újabb neuronréteg kerül hozzá. Az egész neurális hálózat csak rengeteg ilyen, egymásra rakott egyenes."
+}

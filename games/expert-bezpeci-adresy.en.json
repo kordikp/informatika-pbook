@@ -1,0 +1,50 @@
+{
+  "type": "pop",
+  "title": "Who owns this address?",
+  "instruction": "Eight links that might come to you in a message. Tap the ones that DON’T belong to the service they pretend to be. Only the real owner of the domain decides, not how the address looks.",
+  "hitLabel": "scam",
+  "missLabel": "real",
+  "items": [
+    {
+      "text": "https://login.seznam.cz.overeni-uctu.top/prihlaseni",
+      "hit": true,
+      "why": "You read the domain from the right, up to the first slash: the end is overeni-uctu.top. Everything to the left of it was written by the owner of that domain themselves, even the word seznam.cz."
+    },
+    {
+      "text": "https://email.seznam.cz/",
+      "hit": false,
+      "why": "The end before the slash is seznam.cz. The word email on the left is just a subdomain that Seznam set up on its own domain. A real address."
+    },
+    {
+      "text": "https://seznam.cz@prihlas-se.top/login",
+      "hit": true,
+      "why": "The browser treats everything before the @ sign as a username, not as an address. You actually connect to prihlas-se.top."
+    },
+    {
+      "text": "https://www.seznarn.info/",
+      "hit": true,
+      "why": "Look closely: r and n next to each other look like m. A domain like this belongs to whoever bought it, and in small print on a phone you can hardly tell it apart."
+    },
+    {
+      "text": "https://accounts.google.com/signin",
+      "hit": false,
+      "why": "The end before the slash is google.com; the word accounts is a Google subdomain. It looks technical, but it’s real."
+    },
+    {
+      "text": "https://steamcommunity.com-darky.top/trade",
+      "hit": true,
+      "why": "The hyphen joins com and darky into one word. The domain is com-darky.top; Steam has nothing to do with it."
+    },
+    {
+      "text": "https://login.microsoftonline.com/",
+      "hit": false,
+      "why": "It looks suspiciously long, but microsoftonline.com is Microsoft’s real login domain. A strange look doesn’t prove a scam. The owner decides."
+    },
+    {
+      "text": "https://steamcommunity.com/id/ondra",
+      "hit": false,
+      "why": "The domain is steamcommunity.com, and that’s Steam’s real community. The part after the slash (/id/ondra) only decides the page inside the website."
+    }
+  ],
+  "debrief": "A rule that always works: find the first single slash after https://, throw away everything before the @ sign and read the last two parts from the right (for .cz, .com, .top). That’s the owner. The padlock (HTTPS) won’t save you: it only proves that the connection is encrypted with the owner of that domain. Even a scammer can get a certificate for free."
+}

@@ -1,0 +1,53 @@
+{
+  "type": "sort",
+  "title": "Smíš to dát do videa se sponzorem?",
+  "instruction": "Školní video poběží na YouTube a na konci ukáže logo místní firmy, která za to zaplatila. To je komerční užití. Rozhodni o každém kousku.",
+  "buckets": [
+    "Smíš, stačí uvést autora (nebo ani to ne)",
+    "Smíš, ale celé video pak musí mít licenci CC BY-SA",
+    "Nesmíš"
+  ],
+  "items": [
+    {
+      "text": "Fotka hradu z Wikimedia Commons s licencí CC BY",
+      "answer": 0,
+      "why": "CC BY dovoluje cokoli, i komerčně, když uvedeš autora, licenci a odkaz na zdroj."
+    },
+    {
+      "text": "Hudba s licencí CC BY-SA jako podkres celého videa",
+      "answer": 1,
+      "why": "Hudba spojená s obrazem je podle CC úprava díla. SA znamená „sdílej stejně“: tvoje video musí dostat stejnou licenci."
+    },
+    {
+      "text": "Skladba s licencí CC BY-NC",
+      "answer": 2,
+      "why": "NC zakazuje komerční užití. Sponzor platí za zobrazení loga, takže video je komerční."
+    },
+    {
+      "text": "Ilustrace s licencí CC BY-ND, do které dokreslíš logo školy",
+      "answer": 2,
+      "why": "ND zakazuje úpravy. Dokreslené logo je úprava, i když je malé."
+    },
+    {
+      "text": "Záběr z filmu Sprite Fright, (CC) Blender Foundation, licence CC BY",
+      "answer": 0,
+      "why": "Otevřené filmy Blender Studia mají CC BY. Stačí uvést „(CC) Blender Foundation | studio.blender.org“."
+    },
+    {
+      "text": "Zvuk potlesku s licencí CC0",
+      "answer": 0,
+      "why": "CC0 znamená, že se autor vzdal práv. Uvést ho nemusíš, ale je to slušné."
+    },
+    {
+      "text": "Obrázek z vyhledávače, u kterého žádná licence není",
+      "answer": 2,
+      "why": "Bez licence platí „všechna práva vyhrazena“. To, že je obrázek na internetu, neznamená, že je volný."
+    },
+    {
+      "text": "Obrázek z AI generátoru, na kterém je skoro přesně známá postavička z animáku",
+      "answer": 2,
+      "why": "Podmínky generátoru ti můžou výstup „dát“, ale postavička patří studiu. Práva k ní generátor rozdávat nemůže."
+    }
+  ],
+  "debrief": "Licence Creative Commons jsou stavebnice ze čtyř dílků: BY (uveď autora), SA (sdílej stejně), NC (jen nekomerčně), ND (neupravuj). CC0 je úplně volná. Když chybí licence, nesmíš skoro nic. A AI výstup není automaticky volný: hlídej, co je na něm."
+}

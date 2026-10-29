@@ -1,0 +1,36 @@
+{
+  "type": "turtle",
+  "title": "Stairs for the drawing robot",
+  "instruction": "The drawing robot drives over paper and draws a line behind it with a marker. Draw the target with the shortest program you can. Every command counts, including repeat and learn. Without repeating you won’t fit within the limit for a star: find the pattern that repeats and wrap it in a loop.",
+  "levels": [
+    {
+      "goal": "Stairs going up: four steps, each 30 high and 30 wide.",
+      "target": "opakuj 4 [ dopředu 30 vpravo 90 dopředu 30 vlevo 90 ]",
+      "max": 5,
+      "hint": "Draw one step: up, turn, straight on, turn back. How many times do those four commands repeat?",
+      "why": "The pattern is forward, right, forward, left. Repeat it 4×. Without a loop it would be 16 commands, with a loop 5."
+    },
+    {
+      "goal": "A castle wall with battlements: four teeth 20 high and 20 wide, each followed by a gap of 20.",
+      "target": "opakuj 4 [ dopředu 20 vpravo 90 dopředu 20 vpravo 90 dopředu 20 vlevo 90 dopředu 20 vlevo 90 ]",
+      "max": 9,
+      "hint": "One tooth and one gap are four lines and four turns. After the gap, the robot has to face the same way as at the start.",
+      "why": "The pattern is longer, eight commands, but it’s still just one. A loop only works if the robot ends up facing the same way as at the start: twice right and twice left cancel out. Without a loop it would be 32 commands."
+    },
+    {
+      "goal": "A pyramid: three steps up and straight away three down, each step 20 high and 20 wide.",
+      "target": "opakuj 2 [ opakuj 3 [ dopředu 20 vpravo 90 dopředu 20 vlevo 90 ] vpravo 90 ]",
+      "max": 11,
+      "hint": "One loop isn’t enough. Write a loop going up, then a turn and then a loop going down.",
+      "why": "Longer programs are made of several loops one after another: up, turn, down. And now the best part: the way down is the same pattern as the way up, just turned by 90°. If you notice that, you can wrap the loop in another loop and fit into 7 commands."
+    },
+    {
+      "goal": "Stairs that grow: two steps 10 × 10, two steps 20 × 20 and two steps 30 × 30, one after another.",
+      "target": "nauč schody :s [ opakuj 2 [ dopředu :s vpravo 90 dopředu :s vlevo 90 ] ] schody 10 schody 20 schody 30",
+      "max": 9,
+      "hint": "The three loops differ only in a number. Teach the robot a new command stairs and pass it the size of the step as the parameter :s.",
+      "why": "A procedure is a pattern with a variable: the same commands, a different number each time. Three loops one after another cost 15 commands, a procedure and three calls only 9. Programs for robots are built from exactly these small named pieces."
+    }
+  ],
+  "debrief": "The robot can’t come up with the route. You can: you find the pattern and wrap it in a loop. The shorter the program, the fewer places for a mistake. That’s why the repeat block is used so often in MakeCode. And the first turtle of the Logo language really was a robot: it drove around on the floor and drew on paper with a pen."
+}

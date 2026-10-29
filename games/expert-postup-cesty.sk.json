@@ -1,0 +1,322 @@
+{
+  "type": "route",
+  "title": "Najrýchlejšia cesta mestom",
+  "instruction": "Zlož cestu zo štartu do cieľa s čo najmenším súčtom minút. Pozor na lákavú krátku prvú hranu: najkratší krok teraz nemusí viesť k najkratšej ceste.",
+  "levels": [
+    {
+      "story": "Ideš z domu na tréning. K samoobsluhe sú to len 2 minúty, tak tam vyrazíš. Je to dobrý nápad?",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Domov",
+          "x": 3,
+          "y": 47
+        },
+        {
+          "id": "S",
+          "label": "Samoobsluha",
+          "x": 31,
+          "y": 0
+        },
+        {
+          "id": "P",
+          "label": "Park",
+          "x": 30,
+          "y": 100
+        },
+        {
+          "id": "M",
+          "label": "Most",
+          "x": 66,
+          "y": 98
+        },
+        {
+          "id": "T",
+          "label": "Tréning",
+          "x": 97,
+          "y": 48
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "S",
+          2
+        ],
+        [
+          "S",
+          "T",
+          12
+        ],
+        [
+          "D",
+          "P",
+          5
+        ],
+        [
+          "P",
+          "M",
+          3
+        ],
+        [
+          "M",
+          "T",
+          3
+        ],
+        [
+          "S",
+          "P",
+          4
+        ]
+      ],
+      "from": "D",
+      "to": "T",
+      "metric": "min",
+      "why": "Najkratšia je Domov → Park → Most → Tréning, 11 minút. Kto vždy vyberie najbližšie miesto, ide cez samoobsluhu a dôjde za 12 alebo 14 minút. Taký nenásytný postup je rýchly na vymyslenie, ale nemusí dať najlepší výsledok."
+    },
+    {
+      "story": "Zo školy idete s Emou do zoo. Ema chce čo najmenej zastávok. Ty chceš čo najmenej minút. Nájdi cestu s najmenším súčtom.",
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Škola",
+          "x": 3,
+          "y": 51
+        },
+        {
+          "id": "B",
+          "label": "Knižnica",
+          "x": 20,
+          "y": 1
+        },
+        {
+          "id": "C",
+          "label": "Námestie",
+          "x": 22,
+          "y": 48
+        },
+        {
+          "id": "D",
+          "label": "Kino",
+          "x": 25,
+          "y": 96
+        },
+        {
+          "id": "E",
+          "label": "Stanica",
+          "x": 55,
+          "y": 20
+        },
+        {
+          "id": "F",
+          "label": "Kúpalisko",
+          "x": 53,
+          "y": 80
+        },
+        {
+          "id": "G",
+          "label": "Štadión",
+          "x": 83,
+          "y": 4
+        },
+        {
+          "id": "H",
+          "label": "Zoo",
+          "x": 99,
+          "y": 58
+        }
+      ],
+      "edges": [
+        [
+          "A",
+          "B",
+          4
+        ],
+        [
+          "A",
+          "C",
+          2
+        ],
+        [
+          "A",
+          "D",
+          6
+        ],
+        [
+          "B",
+          "C",
+          3
+        ],
+        [
+          "B",
+          "E",
+          5
+        ],
+        [
+          "C",
+          "E",
+          8
+        ],
+        [
+          "C",
+          "F",
+          4
+        ],
+        [
+          "D",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "G",
+          3
+        ],
+        [
+          "F",
+          "H",
+          11
+        ],
+        [
+          "G",
+          "H",
+          4
+        ],
+        [
+          "E",
+          "H",
+          8
+        ]
+      ],
+      "from": "A",
+      "to": "H",
+      "metric": "min",
+      "why": "Najrýchlejšia je Škola → Námestie → Kúpalisko → Stanica → Štadión → Zoo, 15 minút. Má najviac zastávok, a predsa vyhráva. Cesta Kúpalisko → Zoo vyzerá priamo, ale trvá 11 minút. Navigácia v mobile počíta práve takto: od štartu si pamätá najkratšiu známu cestu ku každému miestu (Dijkstrov algoritmus)."
+    },
+    {
+      "story": "Lávka medzi kúpaliskom a stanicou je zatvorená pre opravu. Model sa zmenil o jednu hranu. Zmení sa celá cesta?",
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Škola",
+          "x": 1,
+          "y": 48
+        },
+        {
+          "id": "B",
+          "label": "Knižnica",
+          "x": 21,
+          "y": 1
+        },
+        {
+          "id": "C",
+          "label": "Námestie",
+          "x": 30,
+          "y": 52
+        },
+        {
+          "id": "D",
+          "label": "Kino",
+          "x": 18,
+          "y": 100
+        },
+        {
+          "id": "E",
+          "label": "Stanica",
+          "x": 57,
+          "y": 24
+        },
+        {
+          "id": "F",
+          "label": "Kúpalisko",
+          "x": 57,
+          "y": 80
+        },
+        {
+          "id": "G",
+          "label": "Štadión",
+          "x": 88,
+          "y": 0
+        },
+        {
+          "id": "H",
+          "label": "Zoo",
+          "x": 98,
+          "y": 57
+        }
+      ],
+      "edges": [
+        [
+          "A",
+          "B",
+          4
+        ],
+        [
+          "A",
+          "C",
+          2
+        ],
+        [
+          "A",
+          "D",
+          6
+        ],
+        [
+          "B",
+          "C",
+          3
+        ],
+        [
+          "B",
+          "E",
+          5
+        ],
+        [
+          "C",
+          "E",
+          8
+        ],
+        [
+          "C",
+          "F",
+          4
+        ],
+        [
+          "D",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "G",
+          3
+        ],
+        [
+          "F",
+          "H",
+          11
+        ],
+        [
+          "G",
+          "H",
+          4
+        ],
+        [
+          "E",
+          "H",
+          8
+        ]
+      ],
+      "from": "A",
+      "to": "H",
+      "metric": "min",
+      "why": "Teraz vedie najrýchlejšia cesta úplne inade: Škola → Knižnica → Stanica → Štadión → Zoo, 16 minút. Jedna zatvorená hrana zmenila skoro všetko. Preto navigácia prepočíta celú trasu vždy, keď sa zmení model, a nespolieha sa na starý výsledok."
+    }
+  ],
+  "debrief": "Mapa uzlov a hrán je model: vynechá domy, stromy aj farby a nechá len to, čo je potrebné na výpočet cesty. Na tomto modeli potom beží algoritmus, ktorý preverí všetky možnosti múdro, nie naslepo. Nenásytná voľba najbližšieho suseda ťa zavedie zle už v prvej úrovni."
+}

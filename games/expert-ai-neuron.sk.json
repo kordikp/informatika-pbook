@@ -1,0 +1,308 @@
+{
+  "type": "neuron",
+  "title": "Jeden neurón, jedna priamka",
+  "instruction": "Nastav váhy a prah tak, aby priamka oddelila dve skupiny bodov. Neurón povie „druhá skupina“, keď váha₁ · x + váha₂ · y je väčšie ako prah.",
+  "levels": [
+    {
+      "story": "Rozpoznávač domácich miláčikov pozná hmotnosť a výšku zvieraťa. Oddeľ mačky od psov.",
+      "labels": [
+        "mačka",
+        "pes"
+      ],
+      "axes": [
+        "hmotnosť kg",
+        "výška cm"
+      ],
+      "points": [
+        [
+          3,
+          25,
+          0
+        ],
+        [
+          4,
+          23,
+          0
+        ],
+        [
+          5,
+          28,
+          0
+        ],
+        [
+          4,
+          30,
+          0
+        ],
+        [
+          6,
+          26,
+          0
+        ],
+        [
+          2,
+          20,
+          0
+        ],
+        [
+          20,
+          50,
+          1
+        ],
+        [
+          25,
+          55,
+          1
+        ],
+        [
+          30,
+          60,
+          1
+        ],
+        [
+          12,
+          40,
+          1
+        ],
+        [
+          18,
+          45,
+          1
+        ],
+        [
+          9,
+          35,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "Stačí jedna vlastnosť: psy sú tu ťažšie. Ak nastavíš váhu výšky na nulu, priamka je zvislá a stále to funguje."
+    },
+    {
+      "story": "Spamový filter počíta výkričníky a odkazy. Žiadna z vlastností sama nestačí. Nájdi priamku našikmo.",
+      "labels": [
+        "bežný e-mail",
+        "spam"
+      ],
+      "axes": [
+        "výkričníky",
+        "odkazy"
+      ],
+      "points": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          4,
+          1,
+          0
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          2,
+          4,
+          0
+        ],
+        [
+          5,
+          3,
+          1
+        ],
+        [
+          3,
+          5,
+          1
+        ],
+        [
+          6,
+          2,
+          1
+        ],
+        [
+          2,
+          6,
+          1
+        ],
+        [
+          7,
+          4,
+          1
+        ],
+        [
+          4,
+          4,
+          1
+        ],
+        [
+          4,
+          3,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "Spam má veľa výkričníkov a odkazov dohromady. Obe váhy musia byť kladné a približne rovnaké, prah medzi 6 a 7. Podľa jednej vlastnosti dosiahneš najviac asi 79 %."
+    },
+    {
+      "story": "micro:bit rozlišuje mávanie a tlieskanie podľa sily a rýchlosti pohybu. Dve nahrávky sa však pokazili. Skús 100 %.",
+      "labels": [
+        "mávanie",
+        "tlieskanie"
+      ],
+      "axes": [
+        "sila pohybu",
+        "rýchlosť zmien"
+      ],
+      "points": [
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          7,
+          8,
+          0
+        ],
+        [
+          6,
+          7,
+          1
+        ],
+        [
+          7,
+          6,
+          1
+        ],
+        [
+          8,
+          7,
+          1
+        ],
+        [
+          6,
+          8,
+          1
+        ],
+        [
+          8,
+          8,
+          1
+        ],
+        [
+          7,
+          9,
+          1
+        ],
+        [
+          2,
+          2,
+          1
+        ]
+      ],
+      "goal": 0.85,
+      "why": "100 % nejde: dva body ležia uprostred cudzej skupiny. Najlepšia priamka trafí 12 zo 14, teda 86 %. Chybné dáta sa nemajú naháňať. Opraviť sa dajú len tak, že nahrávky urobíš znova."
+    },
+    {
+      "story": "Schodiskový vypínač: svetlo svieti, keď je jeden vypínač hore a druhý dole. Osi ukazujú polohu dolného a horného vypínača (0 = dole, 10 = hore). Dokážeš to naučiť jeden neurón?",
+      "labels": [
+        "nesvieti",
+        "svieti"
+      ],
+      "axes": [
+        "dolný vypínač",
+        "horný vypínač"
+      ],
+      "points": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          8,
+          8,
+          0
+        ],
+        [
+          9,
+          9,
+          0
+        ],
+        [
+          1,
+          9,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ],
+        [
+          8,
+          2,
+          1
+        ],
+        [
+          9,
+          1,
+          1
+        ]
+      ],
+      "goal": 0.75,
+      "why": "Svietiace body sú v dvoch protiľahlých rohoch. Jedna priamka ich od nesvietiacich neoddelí, najlepšie trafíš 6 z 8. Tomu sa hovorí problém XOR. Potrebuješ dva neuróny a tretí, ktorý ich výsledky spojí. To je skrytá vrstva neurónovej siete."
+    }
+  ],
+  "debrief": "Jeden neurón vie len jedno: nakresliť priamku. Kde priamka stačí, naučí sa rýchlo. Kde dáta klamú, 100 % nejde. A kde treba viac priamok, pridá sa ďalšia vrstva neurónov. Celé neurónové siete sú len kopa takých priamok poskladaných na seba."
+}

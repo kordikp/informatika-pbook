@@ -1,0 +1,78 @@
+{
+  "type": "estimate",
+  "title": "Kde se ztrácí ping",
+  "instruction": "Odhadni výsledek. Světlo letí ve vakuu 300 000 km/s, ve skleněném vlákně asi 200 000 km/s. Ping je čas tam a zpátky.",
+  "items": [
+    {
+      "q": "Kolik kilometrů urazí signál ve vlákně za 1 milisekundu?",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "answer": 200,
+      "tolerance": 10,
+      "unit": "km",
+      "why": "200 000 km za sekundu je 200 km za tisícinu sekundy. Každých 100 km kabelu tedy přidá k pingu 1 ms: půl milisekundy tam a půl zpátky."
+    },
+    {
+      "q": "Nejmenší možný ping z Prahy do New Yorku (asi 6 600 km), kdyby vlákno vedlo přímo.",
+      "min": 0,
+      "max": 300,
+      "step": 2,
+      "answer": 66,
+      "tolerance": 6,
+      "unit": "ms",
+      "why": "Tam a zpátky je to 13 200 km a 13 200 : 200 000 = 0,066 s. Skutečný ping bývá kolem 100 ms, protože kabel nevede rovně a routery balíček chvíli drží."
+    },
+    {
+      "q": "Internet přes geostacionární satelit ve výšce 36 000 km. Jaký ping přidá samotná cesta? Signál letí nahoru a dolů tam, pak nahoru a dolů zpátky.",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "answer": 480,
+      "tolerance": 30,
+      "unit": "ms",
+      "why": "4 × 36 000 = 144 000 km rychlostí 300 000 km/s je 0,48 s. Na rychlou střílečku je to beznadějné, i kdyby byl satelit jinak dokonalý."
+    },
+    {
+      "q": "Satelit na nízké dráze ve výšce 550 km. Kolik milisekund přidá cesta nahoru a dolů tam i zpátky?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 7,
+      "tolerance": 1,
+      "unit": "ms",
+      "why": "4 × 550 = 2 200 km, děleno 300 000 km/s je asi 0,007 s. Proto mají sítě nízkých satelitů ping podobný kabelu. Za to jich musí obíhat tisíce, protože každý je nad tebou jen pár minut."
+    },
+    {
+      "q": "Hra běží na 60 snímků za sekundu. Kolik milisekund má jeden snímek?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 17,
+      "tolerance": 1,
+      "unit": "ms",
+      "why": "1 000 ms : 60 ≈ 16,7 ms. Za tu dobu musí hra spočítat fyziku a vykreslit celý obraz."
+    },
+    {
+      "q": "Máš ping 100 ms a hra běží na 60 snímků za sekundu. O kolik snímků později se server dozví o tvém výstřelu?",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "answer": 3,
+      "tolerance": 0,
+      "unit": "snímky",
+      "why": "K serveru vede jen polovina pingu, tedy 50 ms. 50 : 16,7 = 3 snímky. Proto hry pohyb předpovídají a server zpětně dopočítá, kde soupeř stál ve chvíli výstřelu."
+    },
+    {
+      "q": "Stream ve 4K potřebuje 25 Mb/s (megabitů za sekundu). Kolik MB (megabajtů) stáhneš za minutu? 1 bajt = 8 bitů.",
+      "min": 0,
+      "max": 1000,
+      "step": 5,
+      "answer": 190,
+      "tolerance": 10,
+      "unit": "MB",
+      "why": "25 : 8 = 3,125 MB/s, krát 60 je 187,5 MB. Rychlost v Mb/s a zpoždění v ms jsou dvě různé věci: širší dálnice cestu do Austrálie nezkrátí."
+    }
+  ],
+  "debrief": "Zpoždění má tvrdou spodní hranici: rychlost světla krát délka kabelu. Nad ní přidávají čas routery, fronty a server. Rychlejší připojení ti dá víc dat za sekundu, ale ping nezkrátí. Ten zkrátí jen server blíž k tobě."
+}

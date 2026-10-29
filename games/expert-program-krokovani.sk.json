@@ -1,0 +1,161 @@
+{
+  "type": "trace",
+  "title": "Krokuj ako ladiaci program",
+  "instruction": "Štyri krátke programy, každý s jednou pascou. Prejdi ich riadok po riadku a pri každej otázke si najprv napíš trasovaciu tabuľku: čo je po každom kroku v škatuľkách.",
+  "rounds": [
+    {
+      "code": [
+        "celkom = 0",
+        "opakuj pre i od 1 do 3:",
+        "    opakuj i×:",
+        "        celkom = celkom + i",
+        "vypíš celkom"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "bez vstupu",
+          "q": "Koľkokrát spolu prebehne riadok 4?",
+          "options": [
+            "3×",
+            "6×",
+            "9×"
+          ],
+          "answer": 1,
+          "why": "Vnútorný cyklus beží zakaždým inak dlho: pre i = 1 raz, pre i = 2 dvakrát, pre i = 3 trikrát. 1 + 2 + 3 = 6."
+        },
+        {
+          "line": 3,
+          "input": "bez vstupu",
+          "q": "Koľko je v škatuľke celkom po skončení kola i = 2?",
+          "options": [
+            "3",
+            "5",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Po kole i = 1 je tam 1. V kole i = 2 sa dvakrát pripočíta 2: 1 + 2 + 2 = 5."
+        },
+        {
+          "line": 4,
+          "input": "bez vstupu",
+          "q": "Čo program vypíše?",
+          "options": [
+            "6",
+            "14",
+            "12"
+          ],
+          "answer": 1,
+          "why": "V kole i = 3 sa trikrát pripočíta 3: 5 + 9 = 14. Šestka je počet kôl vnútorného cyklu, nie súčet."
+        }
+      ]
+    },
+    {
+      "code": [
+        "energia = 10",
+        "kola = 0",
+        "kým energia > 0:",
+        "    energia = energia - 4",
+        "    vypíš energia",
+        "    kola = kola + 1",
+        "vypíš kola"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "bez vstupu",
+          "q": "Vypíše program niekedy záporné číslo?",
+          "options": [
+            "Nie, cyklus skončí skôr",
+            "Áno, vypíše −2"
+          ],
+          "answer": 1,
+          "why": "Podmienka sa kontroluje len na začiatku kola. V treťom kole platí 2 > 0, telo prebehne celé, energia klesne na −2 a vypíše sa. Až potom podmienka neplatí."
+        },
+        {
+          "line": 6,
+          "input": "bez vstupu",
+          "q": "Čo vypíše posledný riadok?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Energia ide 10 → 6 → 2 → −2. Prebehli tri kolá."
+        }
+      ]
+    },
+    {
+      "code": [
+        "a = 3",
+        "b = 7",
+        "a = b",
+        "b = a",
+        "a = a + b",
+        "vypíš a, b"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "bez vstupu",
+          "q": "Čo je v škatuľke b po riadku 4?",
+          "options": [
+            "3",
+            "7",
+            "10"
+          ],
+          "answer": 1,
+          "why": "Riadok 3 prepísal a na 7 a trojka zmizla. Riadok 4 potom do b uloží tú sedmičku. Výmena sa nepodarila."
+        },
+        {
+          "line": 5,
+          "input": "bez vstupu",
+          "q": "Čo program vypíše?",
+          "options": [
+            "10, 3",
+            "14, 7",
+            "10, 7"
+          ],
+          "answer": 1,
+          "why": "Obe škatuľky držia 7, takže a = 7 + 7 = 14 a b zostáva 7."
+        }
+      ]
+    },
+    {
+      "code": [
+        "skóre = 12",
+        "životy = 0",
+        "ak skóre > 10 alebo životy == 0 a skóre < 5:",
+        "    vypíš \"koniec\"",
+        "inak:",
+        "    vypíš \"hraj ďalej\""
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "skóre = 12, životy = 0",
+          "q": "Rovnako ako v Pythone sa „a“ vyhodnotí skôr ako „alebo“. Čo program vypíše?",
+          "options": [
+            "koniec",
+            "hraj ďalej"
+          ],
+          "answer": 0,
+          "why": "Podmienka sa číta ako: skóre > 10 alebo (životy == 0 a skóre < 5). Zátvorka je nepravda, lebo 12 < 5 neplatí. Ale skóre > 10 platí a pri „alebo“ stačí jedna pravdivá časť."
+        },
+        {
+          "line": 2,
+          "input": "skóre = 12, životy = 0",
+          "q": "Keby boli zátvorky takto: (skóre > 10 alebo životy == 0) a skóre < 5, čo by program vypísal?",
+          "options": [
+            "koniec",
+            "hraj ďalej"
+          ],
+          "answer": 1,
+          "why": "Zátvorka je pravda, ale skóre < 5 neplatí a pri „a“ musia platiť obe časti. Rovnaké symboly, iné zátvorky, iný výsledok. Keď poradie nevieš isto, napíš zátvorky."
+        }
+      ]
+    }
+  ],
+  "debrief": "Vnorený cyklus sa násobí, podmienka cyklu sa stráži len na začiatku kola, priradenie prepíše starú hodnotu a „a“ má prednosť pred „alebo“. Všetky štyri pasce chytíš rovnako: trasovacou tabuľkou, krok po kroku."
+}

@@ -1,0 +1,478 @@
+{
+  "type": "route",
+  "title": "Which way your website flies",
+  "instruction": "Build the route from your computer to the server. The numbers on the edges are the milliseconds of a one-way trip. You get a star for the fastest route.",
+  "levels": [
+    {
+      "story": "The club’s website lives on a server in Prague and you are at home in Brno. The data goes through your home Wi-Fi and your provider’s network.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "Your laptop",
+          "x": 4,
+          "y": 45
+        },
+        {
+          "id": "W",
+          "label": "Wi-Fi router",
+          "x": 19,
+          "y": 18
+        },
+        {
+          "id": "B",
+          "label": "Provider Brno",
+          "x": 42,
+          "y": 55
+        },
+        {
+          "id": "V",
+          "label": "Vienna",
+          "x": 58,
+          "y": 97
+        },
+        {
+          "id": "P",
+          "label": "Prague",
+          "x": 68,
+          "y": 2
+        },
+        {
+          "id": "S",
+          "label": "Server in Prague",
+          "x": 100,
+          "y": 0
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "W",
+          3
+        ],
+        [
+          "W",
+          "B",
+          5
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "P",
+          6
+        ],
+        [
+          "P",
+          "S",
+          1
+        ],
+        [
+          "V",
+          "S",
+          9
+        ]
+      ],
+      "from": "N",
+      "to": "S",
+      "metric": "ms",
+      "why": "The fastest is laptop → Wi-Fi → Brno → Prague → server, 13 ms. The side trip through Vienna starts with the shortest edge, but costs 18 ms in total. A tempting first step doesn’t mean the best route."
+    },
+    {
+      "story": "Now you are playing a game whose server is in Virginia in the USA. Cables across the Atlantic run from both London and Amsterdam.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "Your laptop",
+          "x": 0,
+          "y": 75
+        },
+        {
+          "id": "W",
+          "label": "Wi-Fi router",
+          "x": 2,
+          "y": 50
+        },
+        {
+          "id": "B",
+          "label": "Provider Brno",
+          "x": 20,
+          "y": 87
+        },
+        {
+          "id": "V",
+          "label": "Vienna",
+          "x": 43,
+          "y": 90
+        },
+        {
+          "id": "P",
+          "label": "Prague",
+          "x": 18,
+          "y": 41
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 42,
+          "y": 56
+        },
+        {
+          "id": "A",
+          "label": "Amsterdam",
+          "x": 32,
+          "y": 2
+        },
+        {
+          "id": "L",
+          "label": "London",
+          "x": 62,
+          "y": 13
+        },
+        {
+          "id": "Y",
+          "label": "New York",
+          "x": 86,
+          "y": 10
+        },
+        {
+          "id": "U",
+          "label": "Server in Virginia",
+          "x": 90,
+          "y": 36
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "W",
+          3
+        ],
+        [
+          "W",
+          "B",
+          5
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "P",
+          "F",
+          8
+        ],
+        [
+          "V",
+          "F",
+          10
+        ],
+        [
+          "F",
+          "A",
+          7
+        ],
+        [
+          "P",
+          "A",
+          16
+        ],
+        [
+          "A",
+          "L",
+          5
+        ],
+        [
+          "F",
+          "L",
+          11
+        ],
+        [
+          "L",
+          "Y",
+          34
+        ],
+        [
+          "A",
+          "Y",
+          40
+        ],
+        [
+          "Y",
+          "U",
+          6
+        ]
+      ],
+      "from": "N",
+      "to": "U",
+      "metric": "ms",
+      "why": "The best is 71 ms: Prague → Frankfurt → London → New York → server. Two other routes take 72 ms. In a big network there are often several almost equally good routes, and that’s why the internet survives when one goes down. The direct jump from Prague to Amsterdam looks like a shortcut, but it’s slower."
+    },
+    {
+      "story": "A digger in Germany has cut the Prague–Frankfurt cable. The edge has disappeared. Find the new fastest route.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "Your laptop",
+          "x": 0,
+          "y": 74
+        },
+        {
+          "id": "W",
+          "label": "Wi-Fi router",
+          "x": 4,
+          "y": 50
+        },
+        {
+          "id": "B",
+          "label": "Provider Brno",
+          "x": 21,
+          "y": 86
+        },
+        {
+          "id": "V",
+          "label": "Vienna",
+          "x": 45,
+          "y": 87
+        },
+        {
+          "id": "P",
+          "label": "Prague",
+          "x": 24,
+          "y": 40
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 40,
+          "y": 50
+        },
+        {
+          "id": "A",
+          "label": "Amsterdam",
+          "x": 33,
+          "y": 9
+        },
+        {
+          "id": "L",
+          "label": "London",
+          "x": 54,
+          "y": 12
+        },
+        {
+          "id": "Y",
+          "label": "New York",
+          "x": 87,
+          "y": 1
+        },
+        {
+          "id": "U",
+          "label": "Server in Virginia",
+          "x": 93,
+          "y": 39
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "W",
+          3
+        ],
+        [
+          "W",
+          "B",
+          5
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "F",
+          10
+        ],
+        [
+          "F",
+          "A",
+          7
+        ],
+        [
+          "P",
+          "A",
+          16
+        ],
+        [
+          "A",
+          "L",
+          5
+        ],
+        [
+          "F",
+          "L",
+          11
+        ],
+        [
+          "L",
+          "Y",
+          34
+        ],
+        [
+          "A",
+          "Y",
+          40
+        ],
+        [
+          "Y",
+          "U",
+          6
+        ]
+      ],
+      "from": "N",
+      "to": "U",
+      "metric": "ms",
+      "why": "The new best route goes from Brno through Vienna to Frankfurt and on through London: 72 ms. The outage cost you only 1 ms. That’s exactly what routers do: when a line disappears, they work out the route again and you don’t notice a thing."
+    },
+    {
+      "story": "You are at a holiday cottage. The router can send data through a geostationary satellite 36,000 km above the Earth, or through a mobile mast and then along cables.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "Your laptop",
+          "x": 11,
+          "y": 41
+        },
+        {
+          "id": "T",
+          "label": "Cottage router",
+          "x": 12,
+          "y": 71
+        },
+        {
+          "id": "SAT",
+          "label": "Satellite in orbit",
+          "x": 65,
+          "y": 26
+        },
+        {
+          "id": "O",
+          "label": "Mobile mast",
+          "x": 13,
+          "y": 100
+        },
+        {
+          "id": "B",
+          "label": "Provider Brno",
+          "x": 44,
+          "y": 100
+        },
+        {
+          "id": "P",
+          "label": "Prague",
+          "x": 38,
+          "y": 78
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 60,
+          "y": 81
+        },
+        {
+          "id": "L",
+          "label": "London",
+          "x": 55,
+          "y": 55
+        },
+        {
+          "id": "Y",
+          "label": "New York",
+          "x": 74,
+          "y": 56
+        },
+        {
+          "id": "U",
+          "label": "Server in Virginia",
+          "x": 100,
+          "y": 74
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "T",
+          2
+        ],
+        [
+          "T",
+          "SAT",
+          140
+        ],
+        [
+          "SAT",
+          "U",
+          140
+        ],
+        [
+          "T",
+          "O",
+          6
+        ],
+        [
+          "O",
+          "B",
+          9
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "P",
+          "F",
+          8
+        ],
+        [
+          "F",
+          "L",
+          11
+        ],
+        [
+          "L",
+          "Y",
+          34
+        ],
+        [
+          "Y",
+          "U",
+          6
+        ]
+      ],
+      "from": "N",
+      "to": "U",
+      "metric": "ms",
+      "why": "Through the satellite it’s only 3 hops, but 282 ms. Over land there are 8 hops and only 80 ms. The signal to the satellite and back travels over 72,000 km, and not even light can do that quickly. The number of hops doesn’t decide, the total delay does."
+    }
+  ],
+  "debrief": "The route isn’t found by the browser, but by the routers along the way. They use the same idea as you: they look for the smallest total. This method is called Dijkstra’s algorithm. And that’s why big websites put copies of their files on servers close to people (CDN): the fastest cable across the ocean is the one you never have to use."
+}

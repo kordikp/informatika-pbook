@@ -1,0 +1,78 @@
+{
+  "type": "estimate",
+  "title": "Koľko to váži? Počítaj, nehádaj",
+  "instruction": "Každý údaj sa dá spočítať z rozlíšenia, počtu bajtov na pixel alebo vzorku a času. Počítaj s 1 kB = 1 000 B a 1 MB = 1 000 000 B. Kalkulačka je povolená.",
+  "items": [
+    {
+      "q": "Čiernobiely obrázok 1920 × 1080 pixelov, každý pixel 1 bit, bez kompresie. Koľko kB?",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "answer": 260,
+      "tolerance": 15,
+      "unit": "kB",
+      "why": "1920 × 1080 = 2 073 600 bitov. Delené 8 je 259 200 bajtov, teda asi 259 kB."
+    },
+    {
+      "q": "Farebná fotka z mobilu 4000 × 3000 pixelov, každý pixel 3 bajty (R, G, B), bez kompresie. Koľko MB?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 36,
+      "tolerance": 2,
+      "unit": "MB",
+      "why": "12 miliónov pixelov × 3 bajty = 36 000 000 B = 36 MB. Rovnaká fotka v JPG máva 3 až 5 MB: kompresia zahodila to, čo oko nezbadá."
+    },
+    {
+      "q": "Jedna minúta hudby vo WAV: 44 100 vzoriek za sekundu, 2 bajty na vzorku, 2 kanály (stereo). Koľko MB?",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "answer": 10.5,
+      "tolerance": 1,
+      "unit": "MB",
+      "why": "44 100 × 2 × 2 × 60 = 10 584 000 B, asi 10,6 MB. Preto má trojminútová pieseň vo WAV okolo 32 MB."
+    },
+    {
+      "q": "Tá istá pieseň dlhá 3 minúty v MP3 s dátovým tokom 128 kbit/s. Koľko MB?",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "answer": 2.9,
+      "tolerance": 0.3,
+      "unit": "MB",
+      "why": "128 000 bitov × 180 s = 23 040 000 bitov, delené 8 je 2 880 000 B, asi 2,9 MB. MP3 je asi 11× menšia než WAV."
+    },
+    {
+      "q": "Jedna sekunda nekomprimovaného Full HD videa: 1920 × 1080 pixelov, 3 bajty na pixel, 30 snímok za sekundu. Koľko MB?",
+      "min": 0,
+      "max": 500,
+      "step": 1,
+      "answer": 187,
+      "tolerance": 15,
+      "unit": "MB",
+      "why": "1920 × 1080 × 3 × 30 = 186 624 000 B, asi 187 MB za jedinú sekundu. Bez kompresie by hodina videa mala vyše 670 GB."
+    },
+    {
+      "q": "Koľko textových správ po 100 znakov (bez diakritiky, 1 bajt na znak) sa zmestí do 1 MB?",
+      "min": 0,
+      "max": 50000,
+      "step": 500,
+      "answer": 10000,
+      "tolerance": 1000,
+      "unit": "správ",
+      "why": "1 000 000 B / 100 B = 10 000 správ. Text je oproti obrázkom a videu skoro nič."
+    },
+    {
+      "q": "Slovo „Čau“ uložené v kódovaní UTF-8. Koľko bajtov?",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "answer": 4,
+      "tolerance": 0,
+      "unit": "B",
+      "why": "„a“ a „u“ majú po 1 bajte, ale „Č“ v ASCII nie je, a tak v UTF-8 zaberie 2 bajty. Spolu 4 B. Keď program číta UTF-8 ako iné kódovanie, z „Č“ sa stanú dva divné znaky."
+    }
+  ],
+  "debrief": "Veľkosť dát nie je záhada: rozlíšenie × hĺbka (bajty na pixel alebo vzorku) × čas. Kompresia potom rozhoduje, koľko z toho naozaj uložíš. Video je obrovské, lebo je to 30 fotiek za sekundu."
+}

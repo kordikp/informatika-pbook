@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Co schová koncové šifrování",
+  "instruction": "Koncové (end-to-end) šifrování zamyká zprávu u tebe a odemyká ji až u příjemce. Co tím ale opravdu schováš? Roztřiď. Pozor, některé položky jsou zrádné.",
+  "buckets": [
+    "Uvidíš jen ty a příjemce",
+    "Může vidět i někdo další"
+  ],
+  "items": [
+    {
+      "text": "Text zprávy v chatu s koncovým šifrováním",
+      "answer": 0,
+      "why": "Klíč mají jen vaše zařízení. Server přenáší jen nečitelnou změť znaků."
+    },
+    {
+      "text": "Fotka poslaná v chatu s koncovým šifrováním",
+      "answer": 0,
+      "why": "Příloha se šifruje stejně jako text."
+    },
+    {
+      "text": "Komu píšeš, v kolik hodin a jak často",
+      "answer": 1,
+      "why": "To jsou metadata, údaje o zprávě. Server je potřebuje, aby zprávu doručil, a šifrování obsahu je neschová."
+    },
+    {
+      "text": "Tvoje veřejná profilová fotka a jméno",
+      "answer": 1,
+      "why": "Profil není zpráva. Kdo vidí profil, určuje nastavení soukromí, ne šifrování."
+    },
+    {
+      "text": "Záloha chatu do cloudu, u které není zapnuté šifrování zálohy",
+      "answer": 1,
+      "why": "Zprávy jsou na cestě zamčené, ale v záloze leží odemčené. Provozovatel cloudu je může číst."
+    },
+    {
+      "text": "Zpráva, kterou si příjemce vyfotí na screenshot a pošle dál",
+      "answer": 1,
+      "why": "Šifrování chrání cestu, ne člověka na druhém konci. Jakmile zprávu přečte, může s ní udělat cokoli."
+    },
+    {
+      "text": "Zpráva v appce, kde si nikdo nezkontroloval bezpečnostní kód a server podvrhl klíč",
+      "answer": 1,
+      "why": "Útok „člověk uprostřed“: server dá každému z vás svůj klíč a zprávy si cestou odemyká. Porovnání bezpečnostního kódu tohle odhalí."
+    },
+    {
+      "text": "Zpráva v obyčejném chatu na síti, která koncové šifrování nemá",
+      "answer": 1,
+      "why": "Zpráva je zamčená jen na cestě k serveru. Server ji odemkne a přečíst ji může provozovatel."
+    }
+  ],
+  "debrief": "Koncové šifrování schová obsah, ale ne metadata, ne zálohy bez šifrování a ne to, co udělá příjemce. A funguje jen tehdy, když opravdu mluvíš s tím, s kým myslíš. Proto appky nabízejí bezpečnostní kód k porovnání."
+}

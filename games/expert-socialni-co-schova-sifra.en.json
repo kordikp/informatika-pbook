@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "What end-to-end encryption hides",
+  "instruction": "End-to-end encryption locks a message on your side and only unlocks it at the recipient’s. But what do you really hide that way? Sort them. Careful, some items are tricky.",
+  "buckets": [
+    "Only you and the recipient will see it",
+    "Someone else may see it too"
+  ],
+  "items": [
+    {
+      "text": "The text of a message in an end-to-end encrypted chat",
+      "answer": 0,
+      "why": "Only your devices have the key. The server only carries an unreadable jumble of characters."
+    },
+    {
+      "text": "A photo sent in an end-to-end encrypted chat",
+      "answer": 0,
+      "why": "An attachment is encrypted just like text."
+    },
+    {
+      "text": "Who you are writing to, at what time and how often",
+      "answer": 1,
+      "why": "That is metadata, information about the message. The server needs it to deliver the message, and encrypting the content doesn’t hide it."
+    },
+    {
+      "text": "Your public profile picture and name",
+      "answer": 1,
+      "why": "A profile is not a message. Who sees your profile is decided by your privacy settings, not by encryption."
+    },
+    {
+      "text": "A chat backup to the cloud without backup encryption turned on",
+      "answer": 1,
+      "why": "The messages are locked on the way, but in the backup they sit unlocked. The cloud operator can read them."
+    },
+    {
+      "text": "A message the recipient takes a screenshot of and forwards",
+      "answer": 1,
+      "why": "Encryption protects the journey, not the person at the other end. Once they have read the message, they can do anything with it."
+    },
+    {
+      "text": "A message in an app where nobody checked the safety code and the server swapped in a fake key",
+      "answer": 1,
+      "why": "A “man-in-the-middle” attack: the server gives each of you its own key and unlocks the messages on the way. Comparing the safety code uncovers this."
+    },
+    {
+      "text": "A message in an ordinary chat on a network that has no end-to-end encryption",
+      "answer": 1,
+      "why": "The message is only locked on its way to the server. The server unlocks it and the operator can read it."
+    }
+  ],
+  "debrief": "End-to-end encryption hides the content, but not the metadata, not unencrypted backups and not what the recipient does. And it only works if you really are talking to the person you think you are. That is why apps offer a safety code to compare."
+}

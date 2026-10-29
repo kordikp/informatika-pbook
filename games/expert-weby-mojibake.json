@@ -1,0 +1,44 @@
+{
+  "type": "pairs",
+  "title": "Detektiv rozsypaných znaků",
+  "instruction": "Každý rozsypaný text vznikl tak, že prohlížeč četl bajty v jiném kódování, než v jakém je web uložil. Přiřaď k němu původní slovo. Vodítko: v UTF-8 má každé české písmeno s háčkem nebo čárkou dva bajty, Windows-1250 čte každý bajt jako jeden znak.",
+  "choices": 4,
+  "pairs": [
+    {
+      "a": "ÄŤaj",
+      "b": "čaj",
+      "why": "Písmeno č je v UTF-8 dvojice bajtů C4 8D. Windows-1250 čte C4 jako Ä a 8D jako Ť. Písmena a, j mají v obou kódováních stejný bajt, a tak přežila."
+    },
+    {
+      "a": "Ĺľirafa",
+      "b": "žirafa",
+      "why": "ž = C5 BE. Ve Windows-1250 je C5 znak Ĺ a BE znak ľ. Ze dvou bajtů jsou dva znaky."
+    },
+    {
+      "a": "Ĺ™eka",
+      "b": "řeka",
+      "why": "ř = C5 99 a bajt 99 je ve Windows-1250 značka ™. Proto rozsypané ř vypadá jako ochranná známka."
+    },
+    {
+      "a": "Ĺˇkola",
+      "b": "škola",
+      "why": "š = C5 A1 a A1 je samotný háček ˇ. Všimni si: ř, ž, š i ů začínají stejným bajtem C5, proto všechna začínají znakem Ĺ."
+    },
+    {
+      "a": "dĂ˝nÄ›",
+      "b": "dýně",
+      "why": "ý = C3 BD (Ă˝) a ě = C4 9B (Ä›). Ze čtyř písmen je najednou šest znaků."
+    },
+    {
+      "a": "dĹŻm",
+      "b": "dům",
+      "why": "ů = C5 AF a AF je ve Windows-1250 písmeno Ż."
+    },
+    {
+      "a": "�aj",
+      "b": "čaj uložený ve Windows-1250, čtený jako UTF-8",
+      "why": "Opačný směr. Windows-1250 uloží č jako jediný bajt E8. Pro UTF-8 je E8 začátek trojice bajtů, jenže hned za ním stojí obyčejné a. Taková řada bajtů v UTF-8 neplatí, a tak prohlížeč ukáže náhradní znak �."
+    }
+  ],
+  "debrief": "Rozsypané znaky nejsou náhoda, každý vzor prozradí, kde se kódování neshodla. Ä a Ĺ na začátku skupinek znamenají: uloženo v UTF-8, čteno jako Windows-1250. Otazník v kosočtverci znamená opak. Lék je jeden řádek v hlavičce stránky, <meta charset=\"utf-8\">, a soubor uložený v UTF-8."
+}

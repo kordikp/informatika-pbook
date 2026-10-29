@@ -1,0 +1,53 @@
+{
+  "type": "sort",
+  "title": "Beteheted egy szponzorált videóba?",
+  "instruction": "Az iskolai videó a YouTube-on fut majd, és a végén megjelenik egy helyi cég logója, amely fizetett érte. Ez kereskedelmi felhasználás. Dönts minden darabról.",
+  "buckets": [
+    "Szabad, elég feltüntetni a szerzőt (vagy még azt sem)",
+    "Szabad, de akkor az egész videónak CC BY-SA licencet kell kapnia",
+    "Nem szabad"
+  ],
+  "items": [
+    {
+      "text": "Egy vár fotója a Wikimedia Commonsról CC BY licenccel",
+      "answer": 0,
+      "why": "A CC BY bármit megenged, kereskedelmi célra is, ha feltünteted a szerzőt, a licencet és a forrás linkjét."
+    },
+    {
+      "text": "CC BY-SA licencű zene az egész videó aláfestéseként",
+      "answer": 1,
+      "why": "A képpel összekapcsolt zene a CC szerint a mű módosítása. Az SA azt jelenti, „oszd meg ugyanígy”: a videódnak ugyanazt a licencet kell kapnia."
+    },
+    {
+      "text": "CC BY-NC licencű zeneszám",
+      "answer": 2,
+      "why": "Az NC tiltja a kereskedelmi felhasználást. A szponzor a logó megjelenítéséért fizet, tehát a videó kereskedelmi."
+    },
+    {
+      "text": "CC BY-ND licencű illusztráció, amelybe belerajzolod az iskola logóját",
+      "answer": 2,
+      "why": "Az ND tiltja a módosítást. A belerajzolt logó módosítás, még ha kicsi is."
+    },
+    {
+      "text": "Felvétel a Sprite Fright filmből, (CC) Blender Foundation, CC BY licenc",
+      "answer": 0,
+      "why": "A Blender Studio nyílt filmjei CC BY licencűek. Elég feltüntetni: „(CC) Blender Foundation | studio.blender.org”."
+    },
+    {
+      "text": "Tapshang CC0 licenccel",
+      "answer": 0,
+      "why": "A CC0 azt jelenti, hogy a szerző lemondott a jogairól. Nem kell feltüntetned, de illik."
+    },
+    {
+      "text": "Kép a keresőből, amelyhez semmilyen licenc nem tartozik",
+      "answer": 2,
+      "why": "Licenc nélkül a „minden jog fenntartva” érvényes. Attól, hogy egy kép fent van az interneten, még nem szabad felhasználni."
+    },
+    {
+      "text": "Kép egy MI-generátorból, amelyen szinte pontosan egy ismert rajzfilmfigura látható",
+      "answer": 2,
+      "why": "A generátor feltételei „neked adhatják” az eredményt, de a figura a stúdióé. A hozzá fűződő jogokat a generátor nem osztogathatja."
+    }
+  ],
+  "debrief": "A Creative Commons licencek négy elemből álló építőkészletek: BY (tüntesd fel a szerzőt), SA (oszd meg ugyanígy), NC (csak nem kereskedelmi célra), ND (ne módosítsd). A CC0 teljesen szabad. Ha nincs licenc, szinte semmit sem szabad. És az MI eredménye sem automatikusan szabad: figyeld, mi van rajta."
+}

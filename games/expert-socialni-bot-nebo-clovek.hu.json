@@ -1,0 +1,338 @@
+{
+  "type": "neuron",
+  "title": "Bot vagy ember?",
+  "instruction": "A csúszkákkal állítsd be a súlyokat és a küszöböt úgy, hogy az elválasztó egyenes kettéválassza a fiókok két csoportját. Érd el a kért pontosságot.",
+  "levels": [
+    {
+      "story": "Bára unokatestvér videója alatt percenként 40 hozzászólás jelent meg. Emberek vagy botok? Kezdd két jelzéssel: mennyit ír a fiók, és milyen régi.",
+      "labels": [
+        "ember",
+        "bot"
+      ],
+      "axes": [
+        "bejegyzés naponta",
+        "a fiók kora (hónap)"
+      ],
+      "points": [
+        [
+          2,
+          24,
+          0
+        ],
+        [
+          5,
+          48,
+          0
+        ],
+        [
+          1,
+          12,
+          0
+        ],
+        [
+          8,
+          36,
+          0
+        ],
+        [
+          3,
+          6,
+          0
+        ],
+        [
+          6,
+          60,
+          0
+        ],
+        [
+          4,
+          18,
+          0
+        ],
+        [
+          60,
+          1,
+          1
+        ],
+        [
+          85,
+          2,
+          1
+        ],
+        [
+          40,
+          1,
+          1
+        ],
+        [
+          70,
+          3,
+          1
+        ],
+        [
+          35,
+          0,
+          1
+        ],
+        [
+          90,
+          1,
+          1
+        ],
+        [
+          55,
+          2,
+          1
+        ]
+      ],
+      "goal": 0.9,
+      "why": "Itt egyetlen jelzés is elég: a botok naponta több tucat bejegyzést írnak. Az egyenes lehet függőleges, a fiók korának súlya majdnem nulla."
+    },
+    {
+      "story": "A botok tanulnak. Némelyik lassabban ír, mások régi, ellopott fiókokon tombolnak, mint az, amelyet valaki egyszer elvett Ondrától. És van itt egy igazi youtuberlány is, aki naponta 25-ször ír.",
+      "labels": [
+        "ember",
+        "bot"
+      ],
+      "axes": [
+        "bejegyzés naponta",
+        "a fiók kora (hónap)"
+      ],
+      "points": [
+        [
+          2,
+          24,
+          0
+        ],
+        [
+          5,
+          48,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          25,
+          30,
+          0
+        ],
+        [
+          6,
+          60,
+          0
+        ],
+        [
+          4,
+          18,
+          0
+        ],
+        [
+          60,
+          1,
+          1
+        ],
+        [
+          85,
+          2,
+          1
+        ],
+        [
+          20,
+          2,
+          1
+        ],
+        [
+          50,
+          40,
+          1
+        ],
+        [
+          70,
+          30,
+          1
+        ],
+        [
+          35,
+          0,
+          1
+        ],
+        [
+          45,
+          12,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "A függőleges egyenes már nem elég: a youtuberlány többet ír, mint a lassú bot. A ferde egyenes mindkét jelzést kombinálja: egy új fiók, amely sokat ír, gyanús, egy régi fiók többet megengedhet magának. Az ellopott régi fiókok viszont a korukkal megtévesztenek, ezért a bejegyzések száma is kell."
+    },
+    {
+      "story": "Hamis iPhone-nyereményjátékok. A csaló profilja általában fiatal, a követőit pedig megveszi. Csakhogy létezik új, valódi bolt is, és régi fiók is, amelyet egy csaló ellopott és átnevezett.",
+      "labels": [
+        "valódi bolt",
+        "csalás"
+      ],
+      "axes": [
+        "a profil kora (hónap)",
+        "követők (ezer)"
+      ],
+      "points": [
+        [
+          1,
+          50,
+          1
+        ],
+        [
+          2,
+          15,
+          1
+        ],
+        [
+          0,
+          80,
+          1
+        ],
+        [
+          3,
+          5,
+          1
+        ],
+        [
+          1,
+          30,
+          1
+        ],
+        [
+          30,
+          12,
+          1
+        ],
+        [
+          48,
+          40,
+          0
+        ],
+        [
+          72,
+          90,
+          0
+        ],
+        [
+          36,
+          8,
+          0
+        ],
+        [
+          60,
+          20,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          24,
+          3,
+          0
+        ]
+      ],
+      "goal": 0.9,
+      "why": "Száz százalékos pontosság itt nem lehetséges: az ellopott régi profil úgy néz ki, mint egy valódi bolt. Két szám nem elég, és az embernek másképp is ellenőriznie kell, például a bolt hivatalos weboldalán. A követők száma önmagában szinte semmit sem mond, mert meg lehet venni őket."
+    },
+    {
+      "story": "Most a másik oldalon állsz: te vagy az ajánlórendszer. Meg kell becsülnöd, hogy a néző végignézi-e a videót. Ismered a videó hosszát, és azt, mennyire hasonlít ahhoz, amit már végignézett.",
+      "labels": [
+        "átugorja",
+        "végignézi"
+      ],
+      "axes": [
+        "a videó hossza (mp)",
+        "hasonlóság a végignézett videókhoz (%)"
+      ],
+      "points": [
+        [
+          15,
+          90,
+          1
+        ],
+        [
+          30,
+          80,
+          1
+        ],
+        [
+          10,
+          60,
+          1
+        ],
+        [
+          45,
+          95,
+          1
+        ],
+        [
+          20,
+          70,
+          1
+        ],
+        [
+          60,
+          85,
+          1
+        ],
+        [
+          120,
+          30,
+          0
+        ],
+        [
+          90,
+          20,
+          0
+        ],
+        [
+          30,
+          10,
+          0
+        ],
+        [
+          150,
+          60,
+          0
+        ],
+        [
+          200,
+          90,
+          0
+        ],
+        [
+          60,
+          40,
+          0
+        ],
+        [
+          8,
+          25,
+          0
+        ],
+        [
+          100,
+          70,
+          0
+        ]
+      ],
+      "goal": 1.0,
+      "why": "A rövid és hasonló videót végignézik, a hosszút vagy idegent átugorják. Pontosan ilyen becslést végez a hírfolyam minden videónál, csak két jelzés helyett több ezerrel. És mivel a hasonlóság működik a legjobban, mindig ugyanazt kínálja neked."
+    }
+  ],
+  "debrief": "A perceptron a gépi tanulás legegyszerűbb modellje: a jelzéseket megszorozza a súlyokkal, összeadja őket, és összeveti a küszöbbel. Ugyanez az elv, csak sokkal nagyobban, válogatja szét a fiókokat botokra, és dönt a hírfolyamodról. És ugyanúgy, mint itt, soha nem tökéletes: mindig van olyan fiók, amely másnak látszik, mint ami."
+}

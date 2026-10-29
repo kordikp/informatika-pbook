@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Želví dílna pro pokročilé",
+  "instruction": "Nakresli cíl co nejkratším programem. Každý příkaz se počítá, i opakuj, nauč a volání procedury. Hvězdu dostaneš, když se vejdeš do limitu.",
+  "levels": [
+    {
+      "goal": "Rovnostranný trojúhelník se stranou 100.",
+      "target": "opakuj 3 [ dopředu 100 vpravo 120 ]",
+      "max": 3,
+      "hint": "Vnitřní úhel trojúhelníku je 60°. Želva se ale neotáčí o vnitřní úhel, otáčí se o to, o kolik změní směr.",
+      "why": "Za celou obchůzku se želva otočí o 360°. Tři otočky: 360 / 3 = 120°. S otočkou 60° by nakreslila kus šestiúhelníku."
+    },
+    {
+      "goal": "Pěticípá hvězda jedním tahem, strana 150.",
+      "target": "opakuj 5 [ dopředu 150 vpravo 144 ]",
+      "max": 3,
+      "hint": "Při kreslení hvězdy želva obejde střed dvakrát. Kolik stupňů to je celkem?",
+      "why": "Dvě obchůzky jsou 720°. 720 / 5 = 144°. U pětiúhelníku by stačilo 72°. Větší otočka posílá želvu přes střed, a proto se čáry kříží."
+    },
+    {
+      "goal": "Rozeta: 12 čtverců se stranou 80, každý pootočený o 30° kolem stejného rohu.",
+      "target": "opakuj 12 [ opakuj 4 [ dopředu 80 vpravo 90 ] vpravo 30 ]",
+      "max": 5,
+      "hint": "Nakresli jeden čtverec cyklem. Celý čtverec i s pootočením pak zabal do dalšího cyklu.",
+      "why": "Vnořený cyklus: vnitřní kreslí čtverec, vnější ho otáčí. 12 × 30° = 360°, takže se rozeta uzavře. Bez cyklů by to bylo 108 příkazů."
+    },
+    {
+      "goal": "Tři čtverce se společným rohem: strany 30, 60 a 90.",
+      "target": "nauč ctverec :s [ opakuj 4 [ dopředu :s vpravo 90 ] ] ctverec 30 ctverec 60 ctverec 90",
+      "max": 7,
+      "hint": "Nauč želvu nový příkaz ctverec a délku strany mu předej jako parametr :s.",
+      "why": "Procedura je nový příkaz a parametr je proměnná, která má při každém volání jinou hodnotu. Čtverec se po čtyřech otočkách vrátí do rohu, a proto další začne na stejném místě."
+    },
+    {
+      "goal": "Řada pěti čtverců se stranou 20 vedle sebe, mezery 10, bez spojovacích čar.",
+      "target": "nauč ctverec :s [ opakuj 4 [ dopředu :s vpravo 90 ] ] opakuj 5 [ ctverec 20 pero nahoru vpravo 90 dopředu 30 vlevo 90 pero dolů ]",
+      "max": 12,
+      "hint": "Po každém čtverci se želva musí posunout doprava tak, aby nekreslila, a pak se zase otočit nahoru.",
+      "why": "Želva drží stav: polohu, směr a pero. Po přesunu musí stav vrátit (vlevo 90, pero dolů), jinak by další čtverec byl otočený nebo neviditelný. Krok 30 je strana 20 plus mezera 10."
+    }
+  ],
+  "debrief": "Cyklus šetří příkazy, vnořený cyklus je násobí a procedura s parametrem udělá z jednoho tvaru celou rodinu. Želva přitom pořád drží stav: kde je, kam se dívá a jestli kreslí. Stejně jako proměnné ve tvém programu."
+}

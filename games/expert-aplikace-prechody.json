@@ -1,0 +1,135 @@
+{
+  "type": "trace",
+  "title": "Písnička pro odhlášeného",
+  "instruction": "Krokuj přehrávač a sleduj trojici (prihlasen, nacita, hraje). Události přicházejí v uvedeném pořadí. Pozor na zprávy, které dorazí pozdě.",
+  "rounds": [
+    {
+      "code": [
+        "prihlasen = ano, nacita = ne, hraje = ne",
+        "při ▶:",
+        "    když hraje: hraje = ne",
+        "    jinak když nacita = ne: nacita = ano",
+        "při „načteno“:",
+        "    nacita = ne",
+        "    hraje = ano",
+        "při „odhlásit“:",
+        "    prihlasen = ne",
+        "    hraje = ne"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "klepnutí na ▶",
+          "q": "Jaká je trojice (prihlasen, nacita, hraje)?",
+          "options": [
+            "ano, ano, ne",
+            "ano, ne, ano",
+            "ano, ne, ne"
+          ],
+          "answer": 0,
+          "why": "Hudba nehraje a nic se nenačítá, takže platí řádek 4: nacita = ano. Písnička se začne stahovat."
+        },
+        {
+          "line": 8,
+          "input": "odhlásit (písnička se pořád stahuje)",
+          "q": "Jaká je trojice po odhlášení?",
+          "options": [
+            "ne, ne, ne",
+            "ne, ano, ne",
+            "ne, ano, ano"
+          ],
+          "answer": 1,
+          "why": "Odhlášení nastaví jen prihlasen a hraje. Na nacita zapomnělo, takže appka je v kombinaci, která nedává smysl: odhlášený uživatel, a přitom se něco stahuje."
+        },
+        {
+          "line": 6,
+          "input": "„načteno“ (data dorazila se zpožděním)",
+          "q": "Co se stane?",
+          "options": [
+            "Nic, uživatel je odhlášený",
+            "Odhlášenému uživateli začne hrát hudba",
+            "Appka spadne"
+          ],
+          "answer": 1,
+          "why": "Událost „načteno“ vůbec nekontroluje, jestli je někdo přihlášený. Trojice je teď (ne, ne, ano): hudba hraje bez přihlášení. Nemožný stav vznikl ze dvou správně vypadajících řádků."
+        },
+        {
+          "line": 2,
+          "input": "klepnutí na ▶",
+          "q": "Co udělá ▶ teď?",
+          "options": [
+            "Zastaví hudbu, i když nikdo není přihlášený",
+            "Ukáže přihlašovací obrazovku",
+            "Nic"
+          ],
+          "answer": 0,
+          "why": "Obsluha ▶ se na přihlášení neptá vůbec. Kód zná jen hraje a nacita, takže hudbu klidně zastaví a příště zase spustí. Odhlášený uživatel má appku zdarma."
+        }
+      ]
+    },
+    {
+      "code": [
+        "stav = „pauza“",
+        "při ▶:",
+        "    když stav = „hraje“: stav = „pauza“",
+        "    jinak když stav = „pauza“: stav = „načítá“",
+        "    jinak když stav = „odhlášeno“: ukaž přihlášení",
+        "při „načteno“:",
+        "    když stav = „načítá“: stav = „hraje“",
+        "při „odhlásit“:",
+        "    stav = „odhlášeno“"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "klepnutí na ▶",
+          "q": "Jaký je stav?",
+          "options": [
+            "„hraje“",
+            "„načítá“",
+            "„pauza“"
+          ],
+          "answer": 1,
+          "why": "Stav byl „pauza“, takže platí řádek 4. Stejně jako minule, jen jedna proměnná místo tří."
+        },
+        {
+          "line": 8,
+          "input": "odhlásit",
+          "q": "Jaký je stav?",
+          "options": [
+            "„odhlášeno“",
+            "„načítá“",
+            "„odhlášeno“ a zároveň „načítá“"
+          ],
+          "answer": 0,
+          "why": "Jedna proměnná má vždy jen jednu hodnotu. Kombinace „odhlášený a stahuje se“ se nedá ani zapsat."
+        },
+        {
+          "line": 6,
+          "input": "„načteno“ (data dorazila se zpožděním)",
+          "q": "Jaký je stav?",
+          "options": [
+            "„hraje“",
+            "„odhlášeno“",
+            "„načítá“"
+          ],
+          "answer": 1,
+          "why": "Řádek 7 přepne na „hraje“ jen ze stavu „načítá“. Teď je stav „odhlášeno“, takže se pozdní zpráva tiše zahodí. Přesně tohle chybělo v první verzi."
+        },
+        {
+          "line": 0,
+          "input": "pohled na celý program",
+          "q": "Kolik různých hodnot může proměnná stav mít?",
+          "options": [
+            "8",
+            "4",
+            "3"
+          ],
+          "answer": 1,
+          "why": "Pauza, načítá, hraje, odhlášeno. Tři proměnné ano/ne dávají 2 × 2 × 2 = 8 kombinací, ale jen 4 z nich dávají smysl. Zbylé 4 jsou místa, kam se appka může omylem dostat."
+        }
+      ]
+    }
+  ],
+  "debrief": "Když appku popisuje víc proměnných ano/ne, vzniká víc kombinací, než kolik má appka skutečných stavů. Do nemožné kombinace ji dostane pozdní zpráva nebo zapomenutý řádek. Jedna proměnná se seznamem stavů takovou chybu vyloučí už v návrhu. Testuj i události, které přijdou ve chvíli, kdy je nikdo nečeká."
+}

@@ -1,0 +1,478 @@
+{
+  "type": "route",
+  "title": "Merre repül a weboldalad",
+  "instruction": "Rakd össze az utat a gépedtől a szerverig. Az éleken lévő számok az egyirányú út milliszekundumai. Csillagot a leggyorsabb útért kapsz.",
+  "levels": [
+    {
+      "story": "A szakkör weboldala egy prágai szerveren lakik, te pedig otthon ülsz Brnóban. Az adatok az otthoni Wi-Fin és a szolgáltató hálózatán át mennek.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "A laptopod",
+          "x": 4,
+          "y": 45
+        },
+        {
+          "id": "W",
+          "label": "Wi-Fi router",
+          "x": 19,
+          "y": 18
+        },
+        {
+          "id": "B",
+          "label": "Szolgáltató, Brno",
+          "x": 42,
+          "y": 55
+        },
+        {
+          "id": "V",
+          "label": "Bécs",
+          "x": 58,
+          "y": 97
+        },
+        {
+          "id": "P",
+          "label": "Prága",
+          "x": 68,
+          "y": 2
+        },
+        {
+          "id": "S",
+          "label": "Szerver Prágában",
+          "x": 100,
+          "y": 0
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "W",
+          3
+        ],
+        [
+          "W",
+          "B",
+          5
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "P",
+          6
+        ],
+        [
+          "P",
+          "S",
+          1
+        ],
+        [
+          "V",
+          "S",
+          9
+        ]
+      ],
+      "from": "N",
+      "to": "S",
+      "metric": "ms",
+      "why": "A leggyorsabb: laptop → Wi-Fi → Brno → Prága → szerver, 13 ms. A bécsi kitérő a legrövidebb éllel kezdődik, de összesen 18 ms. A csábító első lépés még nem jelenti a legjobb utat."
+    },
+    {
+      "story": "Most egy olyan játékkal játszol, amelynek a szervere az USA-ban, Virginiában áll. Az Atlanti-óceánon át Londonból és Amszterdamból is vezetnek kábelek.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "A laptopod",
+          "x": 0,
+          "y": 75
+        },
+        {
+          "id": "W",
+          "label": "Wi-Fi router",
+          "x": 2,
+          "y": 50
+        },
+        {
+          "id": "B",
+          "label": "Szolgáltató, Brno",
+          "x": 20,
+          "y": 87
+        },
+        {
+          "id": "V",
+          "label": "Bécs",
+          "x": 43,
+          "y": 90
+        },
+        {
+          "id": "P",
+          "label": "Prága",
+          "x": 18,
+          "y": 41
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 42,
+          "y": 56
+        },
+        {
+          "id": "A",
+          "label": "Amszterdam",
+          "x": 32,
+          "y": 2
+        },
+        {
+          "id": "L",
+          "label": "London",
+          "x": 62,
+          "y": 13
+        },
+        {
+          "id": "Y",
+          "label": "New York",
+          "x": 86,
+          "y": 10
+        },
+        {
+          "id": "U",
+          "label": "Szerver Virginiában",
+          "x": 90,
+          "y": 36
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "W",
+          3
+        ],
+        [
+          "W",
+          "B",
+          5
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "P",
+          "F",
+          8
+        ],
+        [
+          "V",
+          "F",
+          10
+        ],
+        [
+          "F",
+          "A",
+          7
+        ],
+        [
+          "P",
+          "A",
+          16
+        ],
+        [
+          "A",
+          "L",
+          5
+        ],
+        [
+          "F",
+          "L",
+          11
+        ],
+        [
+          "L",
+          "Y",
+          34
+        ],
+        [
+          "A",
+          "Y",
+          40
+        ],
+        [
+          "Y",
+          "U",
+          6
+        ]
+      ],
+      "from": "N",
+      "to": "U",
+      "metric": "ms",
+      "why": "Az optimum 71 ms: Prága → Frankfurt → London → New York → szerver. Két másik út 72 ms. Egy nagy hálózatban gyakran több majdnem ugyanolyan jó út van, ezért éli túl az internet, ha az egyik kiesik. A közvetlen ugrás Prágából Amszterdamba rövidítésnek tűnik, mégis lassabb."
+    },
+    {
+      "story": "Egy markoló Németországban elvágta a Prága–Frankfurt kábelt. Az él eltűnt. Keresd meg az új leggyorsabb utat.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "A laptopod",
+          "x": 0,
+          "y": 74
+        },
+        {
+          "id": "W",
+          "label": "Wi-Fi router",
+          "x": 4,
+          "y": 50
+        },
+        {
+          "id": "B",
+          "label": "Szolgáltató, Brno",
+          "x": 21,
+          "y": 86
+        },
+        {
+          "id": "V",
+          "label": "Bécs",
+          "x": 45,
+          "y": 87
+        },
+        {
+          "id": "P",
+          "label": "Prága",
+          "x": 24,
+          "y": 40
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 40,
+          "y": 50
+        },
+        {
+          "id": "A",
+          "label": "Amszterdam",
+          "x": 33,
+          "y": 9
+        },
+        {
+          "id": "L",
+          "label": "London",
+          "x": 54,
+          "y": 12
+        },
+        {
+          "id": "Y",
+          "label": "New York",
+          "x": 87,
+          "y": 1
+        },
+        {
+          "id": "U",
+          "label": "Szerver Virginiában",
+          "x": 93,
+          "y": 39
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "W",
+          3
+        ],
+        [
+          "W",
+          "B",
+          5
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "F",
+          10
+        ],
+        [
+          "F",
+          "A",
+          7
+        ],
+        [
+          "P",
+          "A",
+          16
+        ],
+        [
+          "A",
+          "L",
+          5
+        ],
+        [
+          "F",
+          "L",
+          11
+        ],
+        [
+          "L",
+          "Y",
+          34
+        ],
+        [
+          "A",
+          "Y",
+          40
+        ],
+        [
+          "Y",
+          "U",
+          6
+        ]
+      ],
+      "from": "N",
+      "to": "U",
+      "metric": "ms",
+      "why": "Az új legjobb út Brnóból Bécsen át Frankfurtba vezet, onnan Londonon át tovább: 72 ms. A kiesés csak 1 ms-odba került. A routerek pontosan így csinálják: ha eltűnik egy vonal, újraszámolják az utat, és te semmit sem veszel észre."
+    },
+    {
+      "story": "A hétvégi házban vagy. A router az adatokat elküldheti egy geostacionárius műholdon át, 36 000 km-rel a Föld felett, vagy egy mobiltornyon keresztül, aztán kábeleken.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "A laptopod",
+          "x": 11,
+          "y": 41
+        },
+        {
+          "id": "T",
+          "label": "Router a hétvégi házban",
+          "x": 12,
+          "y": 71
+        },
+        {
+          "id": "SAT",
+          "label": "Műhold a pályáján",
+          "x": 65,
+          "y": 26
+        },
+        {
+          "id": "O",
+          "label": "Mobiltorony",
+          "x": 13,
+          "y": 100
+        },
+        {
+          "id": "B",
+          "label": "Szolgáltató, Brno",
+          "x": 44,
+          "y": 100
+        },
+        {
+          "id": "P",
+          "label": "Prága",
+          "x": 38,
+          "y": 78
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 60,
+          "y": 81
+        },
+        {
+          "id": "L",
+          "label": "London",
+          "x": 55,
+          "y": 55
+        },
+        {
+          "id": "Y",
+          "label": "New York",
+          "x": 74,
+          "y": 56
+        },
+        {
+          "id": "U",
+          "label": "Szerver Virginiában",
+          "x": 100,
+          "y": 74
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "T",
+          2
+        ],
+        [
+          "T",
+          "SAT",
+          140
+        ],
+        [
+          "SAT",
+          "U",
+          140
+        ],
+        [
+          "T",
+          "O",
+          6
+        ],
+        [
+          "O",
+          "B",
+          9
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "P",
+          "F",
+          8
+        ],
+        [
+          "F",
+          "L",
+          11
+        ],
+        [
+          "L",
+          "Y",
+          34
+        ],
+        [
+          "Y",
+          "U",
+          6
+        ]
+      ],
+      "from": "N",
+      "to": "U",
+      "metric": "ms",
+      "why": "A műholdon át csak 3 ugrás, de 282 ms. A földön 8 ugrás, és csak 80 ms. A jel a műholdig és vissza több mint 72 000 km-t tesz meg, és ezt még a fény sem tudja gyorsan. Nem az ugrások száma dönt, hanem a késések összege."
+    }
+  ],
+  "debrief": "Az utat nem a böngésző keresi, hanem az út menti routerek. Ugyanazt az ötletet használják, mint te: a legkisebb összeget keresik. Ezt a módszert Dijkstra-algoritmusnak hívják. Ezért teszik a nagy weboldalak a fájljaik másolatait az emberekhez közeli szerverekre (CDN): a leggyorsabb óceáni kábel az, amelyet egyáltalán nem kell használnod."
+}

@@ -1,0 +1,78 @@
+{
+  "type": "estimate",
+  "title": "How much does it weigh? Calculate, don’t guess",
+  "instruction": "Every value can be worked out from the resolution, the number of bytes per pixel or sample, and the time. Use 1 kB = 1,000 B and 1 MB = 1,000,000 B. A calculator is allowed.",
+  "items": [
+    {
+      "q": "A black-and-white picture of 1920 × 1080 pixels, each pixel 1 bit, no compression. How many kB?",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "answer": 260,
+      "tolerance": 15,
+      "unit": "kB",
+      "why": "1920 × 1080 = 2,073,600 bits. Divided by 8, that is 259,200 bytes, so about 259 kB."
+    },
+    {
+      "q": "A colour photo from a phone, 4000 × 3000 pixels, each pixel 3 bytes (R, G, B), no compression. How many MB?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 36,
+      "tolerance": 2,
+      "unit": "MB",
+      "why": "12 million pixels × 3 bytes = 36,000,000 B = 36 MB. The same photo as a JPG is usually 3 to 5 MB: the compression threw away what the eye doesn’t notice."
+    },
+    {
+      "q": "One minute of music in WAV: 44,100 samples per second, 2 bytes per sample, 2 channels (stereo). How many MB?",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "answer": 10.5,
+      "tolerance": 1,
+      "unit": "MB",
+      "why": "44,100 × 2 × 2 × 60 = 10,584,000 B, about 10.6 MB. That is why a three-minute song in WAV is around 32 MB."
+    },
+    {
+      "q": "The same 3-minute song as an MP3 with a bit rate of 128 kbit/s. How many MB?",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "answer": 2.9,
+      "tolerance": 0.3,
+      "unit": "MB",
+      "why": "128,000 bits × 180 s = 23,040,000 bits, divided by 8 that is 2,880,000 B, about 2.9 MB. The MP3 is about 11× smaller than the WAV."
+    },
+    {
+      "q": "One second of uncompressed Full HD video: 1920 × 1080 pixels, 3 bytes per pixel, 30 frames per second. How many MB?",
+      "min": 0,
+      "max": 500,
+      "step": 1,
+      "answer": 187,
+      "tolerance": 15,
+      "unit": "MB",
+      "why": "1920 × 1080 × 3 × 30 = 186,624,000 B, about 187 MB for a single second. Without compression, an hour of video would be over 670 GB."
+    },
+    {
+      "q": "How many text messages of 100 characters (no accents, 1 byte per character) fit into 1 MB?",
+      "min": 0,
+      "max": 50000,
+      "step": 500,
+      "answer": 10000,
+      "tolerance": 1000,
+      "unit": "messages",
+      "why": "1,000,000 B / 100 B = 10,000 messages. Compared with pictures and video, text is almost nothing."
+    },
+    {
+      "q": "The Czech word “Čau” stored in UTF-8 encoding. How many bytes?",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "answer": 4,
+      "tolerance": 0,
+      "unit": "B",
+      "why": "“a” and “u” take 1 byte each, but “Č” is not in ASCII, so in UTF-8 it takes 2 bytes. 4 B in total. When a program reads UTF-8 as a different encoding, “Č” turns into two strange characters."
+    }
+  ],
+  "debrief": "Data size is no mystery: resolution × depth (bytes per pixel or sample) × time. Compression then decides how much of it you really store. Video is huge because it is 30 photos a second."
+}

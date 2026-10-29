@@ -1,0 +1,53 @@
+{
+  "type": "sort",
+  "title": "What kind of bug is it?",
+  "instruction": "Each Python snippet has one bug. Decide when it shows up: Python won’t run the program at all (syntax error), the program crashes while running (runtime error), or it runs but does something different from what it should (logic error).",
+  "buckets": [
+    "Syntax error",
+    "Runtime error",
+    "Logic error"
+  ],
+  "items": [
+    {
+      "text": "print(\"Hi)",
+      "answer": 0,
+      "why": "The closing quotation mark is missing. Python can’t read the text to the end and won’t even run the program."
+    },
+    {
+      "text": "if score > 10   (no colon at the end)   and below it, indented, print(\"Star!\")",
+      "answer": 0,
+      "why": "In Python, a condition must be followed by a colon. Without it, it’s an invalid sentence for Python, and nothing runs."
+    },
+    {
+      "text": "age = input(\"How old are you? \")   and then   print(age + 1)",
+      "answer": 1,
+      "why": "input returns text, not a number. Python can’t add text and a number, so it crashes when it reaches that line. Fix: int(input(…))."
+    },
+    {
+      "text": "players = [\"Ema\", \"Ondra\", \"Tomáš\"]   and then   print(players[3])",
+      "answer": 1,
+      "why": "A list is numbered from zero: 0, 1, 2. Position 3 doesn’t exist, and the program crashes with an IndexError."
+    },
+    {
+      "text": "average = points / count   and the player hasn’t played any games yet, so count = 0",
+      "answer": 1,
+      "why": "The code itself is fine. The program crashes only for some inputs, here by dividing by zero. That’s why you test with zero too."
+    },
+    {
+      "text": "The program should print the numbers 1 to 10:   for i in range(1, 10): print(i)",
+      "answer": 2,
+      "why": "range(1, 10) stops before ten. The program runs without an error, it just prints one number too few. The off-by-one error is one of the most common in the world."
+    },
+    {
+      "text": "x = 10   and then   while x != 0:   x = x - 3",
+      "answer": 2,
+      "why": "Python reports nothing; the program just never stops: x skips over zero (1, −2, −5…). An endless loop is a logic error; the computer does exactly what is written."
+    },
+    {
+      "text": "The discount should apply from age 65:   if age > 65: discount = True",
+      "answer": 2,
+      "why": "The program runs, but someone who is exactly 65 doesn’t get the discount. A boundary bug, which only a test with the age 65 will expose."
+    }
+  ],
+  "debrief": "Python finds a syntax error for you, before you even run the program. It reports a runtime error when it runs into it, and tells you the line number. A logic error can be found by nobody but you and your tests. That’s why tests are written in advance, with boundaries."
+}

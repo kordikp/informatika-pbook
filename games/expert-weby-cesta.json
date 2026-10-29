@@ -1,0 +1,478 @@
+{
+  "type": "route",
+  "title": "Kudy letí tvůj web",
+  "instruction": "Slož cestu od svého počítače k serveru. Čísla na hranách jsou milisekundy cesty jedním směrem. Hvězdu dostaneš za nejrychlejší cestu.",
+  "levels": [
+    {
+      "story": "Web kroužku bydlí na serveru v Praze a ty sedíš doma v Brně. Data jdou přes domácí Wi-Fi a síť poskytovatele.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "Tvůj notebook",
+          "x": 4,
+          "y": 45
+        },
+        {
+          "id": "W",
+          "label": "Wi-Fi router",
+          "x": 19,
+          "y": 18
+        },
+        {
+          "id": "B",
+          "label": "Poskytovatel Brno",
+          "x": 42,
+          "y": 55
+        },
+        {
+          "id": "V",
+          "label": "Vídeň",
+          "x": 58,
+          "y": 97
+        },
+        {
+          "id": "P",
+          "label": "Praha",
+          "x": 68,
+          "y": 2
+        },
+        {
+          "id": "S",
+          "label": "Server v Praze",
+          "x": 100,
+          "y": 0
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "W",
+          3
+        ],
+        [
+          "W",
+          "B",
+          5
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "P",
+          6
+        ],
+        [
+          "P",
+          "S",
+          1
+        ],
+        [
+          "V",
+          "S",
+          9
+        ]
+      ],
+      "from": "N",
+      "to": "S",
+      "metric": "ms",
+      "why": "Nejrychlejší je notebook → Wi-Fi → Brno → Praha → server, 13 ms. Odbočka přes Vídeň začíná nejkratší hranou, ale celkem stojí 18 ms. Lákavý první krok ještě neznamená nejlepší cestu."
+    },
+    {
+      "story": "Teď hraješ hru, jejíž server stojí ve Virginii v USA. Přes Atlantik vedou kabely z Londýna i z Amsterdamu.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "Tvůj notebook",
+          "x": 0,
+          "y": 75
+        },
+        {
+          "id": "W",
+          "label": "Wi-Fi router",
+          "x": 2,
+          "y": 50
+        },
+        {
+          "id": "B",
+          "label": "Poskytovatel Brno",
+          "x": 20,
+          "y": 87
+        },
+        {
+          "id": "V",
+          "label": "Vídeň",
+          "x": 43,
+          "y": 90
+        },
+        {
+          "id": "P",
+          "label": "Praha",
+          "x": 18,
+          "y": 41
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 42,
+          "y": 56
+        },
+        {
+          "id": "A",
+          "label": "Amsterdam",
+          "x": 32,
+          "y": 2
+        },
+        {
+          "id": "L",
+          "label": "Londýn",
+          "x": 62,
+          "y": 13
+        },
+        {
+          "id": "Y",
+          "label": "New York",
+          "x": 86,
+          "y": 10
+        },
+        {
+          "id": "U",
+          "label": "Server ve Virginii",
+          "x": 90,
+          "y": 36
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "W",
+          3
+        ],
+        [
+          "W",
+          "B",
+          5
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "P",
+          "F",
+          8
+        ],
+        [
+          "V",
+          "F",
+          10
+        ],
+        [
+          "F",
+          "A",
+          7
+        ],
+        [
+          "P",
+          "A",
+          16
+        ],
+        [
+          "A",
+          "L",
+          5
+        ],
+        [
+          "F",
+          "L",
+          11
+        ],
+        [
+          "L",
+          "Y",
+          34
+        ],
+        [
+          "A",
+          "Y",
+          40
+        ],
+        [
+          "Y",
+          "U",
+          6
+        ]
+      ],
+      "from": "N",
+      "to": "U",
+      "metric": "ms",
+      "why": "Optimum je 71 ms: Praha → Frankfurt → Londýn → New York → server. Dvě jiné cesty mají 72 ms. Ve velké síti bývá víc skoro stejně dobrých cest, a proto internet přežije, když jedna vypadne. Přímý skok z Prahy do Amsterdamu vypadá jako zkratka, a je pomalejší."
+    },
+    {
+      "story": "Bagr v Německu přerušil kabel Praha–Frankfurt. Hrana zmizela. Najdi novou nejrychlejší cestu.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "Tvůj notebook",
+          "x": 0,
+          "y": 74
+        },
+        {
+          "id": "W",
+          "label": "Wi-Fi router",
+          "x": 4,
+          "y": 50
+        },
+        {
+          "id": "B",
+          "label": "Poskytovatel Brno",
+          "x": 21,
+          "y": 86
+        },
+        {
+          "id": "V",
+          "label": "Vídeň",
+          "x": 45,
+          "y": 87
+        },
+        {
+          "id": "P",
+          "label": "Praha",
+          "x": 24,
+          "y": 40
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 40,
+          "y": 50
+        },
+        {
+          "id": "A",
+          "label": "Amsterdam",
+          "x": 33,
+          "y": 9
+        },
+        {
+          "id": "L",
+          "label": "Londýn",
+          "x": 54,
+          "y": 12
+        },
+        {
+          "id": "Y",
+          "label": "New York",
+          "x": 87,
+          "y": 1
+        },
+        {
+          "id": "U",
+          "label": "Server ve Virginii",
+          "x": 93,
+          "y": 39
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "W",
+          3
+        ],
+        [
+          "W",
+          "B",
+          5
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "F",
+          10
+        ],
+        [
+          "F",
+          "A",
+          7
+        ],
+        [
+          "P",
+          "A",
+          16
+        ],
+        [
+          "A",
+          "L",
+          5
+        ],
+        [
+          "F",
+          "L",
+          11
+        ],
+        [
+          "L",
+          "Y",
+          34
+        ],
+        [
+          "A",
+          "Y",
+          40
+        ],
+        [
+          "Y",
+          "U",
+          6
+        ]
+      ],
+      "from": "N",
+      "to": "U",
+      "metric": "ms",
+      "why": "Nová nejlepší cesta vede z Brna přes Vídeň do Frankfurtu a dál přes Londýn: 72 ms. Výpadek tě stál jen 1 ms. Přesně tak to dělají routery: když zmizí linka, spočítají cestu znovu a ty si ničeho nevšimneš."
+    },
+    {
+      "story": "Jsi na chatě. Router umí poslat data přes geostacionární družici 36 000 km nad Zemí, nebo přes mobilní vysílač a pak po kabelech.",
+      "nodes": [
+        {
+          "id": "N",
+          "label": "Tvůj notebook",
+          "x": 11,
+          "y": 41
+        },
+        {
+          "id": "T",
+          "label": "Router na chatě",
+          "x": 12,
+          "y": 71
+        },
+        {
+          "id": "SAT",
+          "label": "Družice na oběžné dráze",
+          "x": 65,
+          "y": 26
+        },
+        {
+          "id": "O",
+          "label": "Mobilní vysílač",
+          "x": 13,
+          "y": 100
+        },
+        {
+          "id": "B",
+          "label": "Poskytovatel Brno",
+          "x": 44,
+          "y": 100
+        },
+        {
+          "id": "P",
+          "label": "Praha",
+          "x": 38,
+          "y": 78
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 60,
+          "y": 81
+        },
+        {
+          "id": "L",
+          "label": "Londýn",
+          "x": 55,
+          "y": 55
+        },
+        {
+          "id": "Y",
+          "label": "New York",
+          "x": 74,
+          "y": 56
+        },
+        {
+          "id": "U",
+          "label": "Server ve Virginii",
+          "x": 100,
+          "y": 74
+        }
+      ],
+      "edges": [
+        [
+          "N",
+          "T",
+          2
+        ],
+        [
+          "T",
+          "SAT",
+          140
+        ],
+        [
+          "SAT",
+          "U",
+          140
+        ],
+        [
+          "T",
+          "O",
+          6
+        ],
+        [
+          "O",
+          "B",
+          9
+        ],
+        [
+          "B",
+          "P",
+          4
+        ],
+        [
+          "P",
+          "F",
+          8
+        ],
+        [
+          "F",
+          "L",
+          11
+        ],
+        [
+          "L",
+          "Y",
+          34
+        ],
+        [
+          "Y",
+          "U",
+          6
+        ]
+      ],
+      "from": "N",
+      "to": "U",
+      "metric": "ms",
+      "why": "Přes družici jsou to jen 3 skoky, ale 282 ms. Po zemi je skoků 8 a jen 80 ms. Signál k družici a zpátky letí přes 72 000 km a ani světlo to nezvládne rychle. Počet skoků nerozhoduje, rozhoduje součet zpoždění."
+    }
+  ],
+  "debrief": "Cestu nehledá prohlížeč, ale routery po cestě. Používají stejný nápad jako ty: hledají nejmenší součet. Takovému postupu se říká Dijkstrův algoritmus. A proto velké weby dávají kopie svých souborů na servery blízko lidí (CDN): nejrychlejší kabel přes oceán je ten, který vůbec nemusíš použít."
+}

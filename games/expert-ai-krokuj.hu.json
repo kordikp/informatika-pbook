@@ -1,0 +1,190 @@
+{
+  "type": "trace",
+  "title": "Léptesd a modellt belülről",
+  "instruction": "Három kis program, amely ugyanazt csinálja, mint a valódi MI, csak kicsiben. Léptesd őket soronként, és válaszold meg, mi történik.",
+  "rounds": [
+    {
+      "code": [
+        "szó = „Bécs”",
+        "mondat = szó",
+        "ismételd, amíg a szó nem országnév:",
+        "    jelöltek = a szavak, amelyek az adatokban a szó után következnek",
+        "    szó = a legnagyobb valószínűségű jelölt",
+        "    mondat = mondat + „ ” + szó",
+        "írd ki: mondat"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "Adatok: „Bécs” után: a 1,0 | „a” után: legnagyobb 0,67, második 0,33 | „legnagyobb” után: város 1,0 | „város” után: Csehországban 0,67, Ausztriában 0,33",
+          "q": "Melyik szót választja az 5. sor a második körben (az „a” szó után)?",
+          "options": [
+            "legnagyobb",
+            "második",
+            "város"
+          ],
+          "answer": 0,
+          "why": "A „legnagyobb” 0,67, több, mint a „második” 0,33-a. A modell mindig a legvalószínűbbet választja."
+        },
+        {
+          "line": 4,
+          "input": "Utolsó kör: szó = „város”",
+          "q": "Melyik szót választja most a modell?",
+          "options": [
+            "Ausztriában",
+            "Csehországban",
+            "Bécsben"
+          ],
+          "answer": 1,
+          "why": "Az adatokban a „város” után kétszer „Csehországban” következett, és csak egyszer „Ausztriában”. A modell ekkor csak a „város” szót látja, Bécset már elfelejtette."
+        },
+        {
+          "line": 6,
+          "input": "A ciklus vége",
+          "q": "Mit ír ki a program?",
+          "options": [
+            "Bécs a legnagyobb város Ausztriában",
+            "Bécs a legnagyobb város Csehországban",
+            "Bécs a második legnagyobb város Csehországban"
+          ],
+          "answer": 1,
+          "why": "Minden lépés valószínű volt, a mondat mégis hamis. Így születik kicsiben a hallucináció."
+        },
+        {
+          "line": 2,
+          "input": "Nézd végig még egyszer az egész programot",
+          "q": "Melyik sorban ellenőrzi a program, hogy igaz-e a mondat?",
+          "options": [
+            "A 4. sorban",
+            "Az 5. sorban",
+            "Sehol"
+          ],
+          "answer": 2,
+          "why": "Egyik sor sem ellenőrzi az igazságot. A program csak valószínű szavakat rak össze. Az ellenőrzésnek kívülről kell jönnie, tőled vagy egy kereséstől."
+        }
+      ]
+    },
+    {
+      "code": [
+        "legkisebb = végtelen",
+        "a tanító adatok minden példájára:",
+        "    d = (pirosság − példa.pirosság)² + (átmérő − példa.átmérő)²",
+        "    ha d < legkisebb:",
+        "        legkisebb = d",
+        "        legközelebbi = példa",
+        "írd ki: fajta(legközelebbi)"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "Új gyümölcs: pirosság 2, átmérő 7. Első példa: alma (9, 7)",
+          "q": "Mennyi lesz a d?",
+          "options": [
+            "7",
+            "49",
+            "14"
+          ],
+          "answer": 1,
+          "why": "(2 − 9)² + (7 − 7)² = 49 + 0 = 49."
+        },
+        {
+          "line": 3,
+          "input": "Második példa: körte (3, 9). legkisebb = 49",
+          "q": "Megváltozik a legközelebbi szomszéd?",
+          "options": [
+            "Igen, d = 5 kisebb, mint 49",
+            "Nem, a körte másik fajta",
+            "Nem, d = 50 lesz"
+          ],
+          "answer": 0,
+          "why": "(2 − 3)² + (7 − 9)² = 1 + 4 = 5. Ez kevesebb 49-nél, így egyelőre a körte van a legközelebb."
+        },
+        {
+          "line": 3,
+          "input": "Harmadik példa: alma (4, 5). legkisebb = 5",
+          "q": "Megváltozik a legközelebbi szomszéd?",
+          "options": [
+            "Igen, az alma elsőbbséget élvez",
+            "Nem, d = 8 nem kisebb 5-nél",
+            "Igen, d = 2"
+          ],
+          "answer": 1,
+          "why": "(2 − 4)² + (7 − 5)² = 4 + 4 = 8. A körte marad a legközelebb."
+        },
+        {
+          "line": 6,
+          "input": "A gyümölcs valójában zöld alma volt",
+          "q": "Miért mondta a modell, hogy „körte”?",
+          "options": [
+            "Hiba van a kódjában",
+            "Az adatokban nem volt egyetlen zöld alma sem",
+            "A körte elsőbbséget élvez"
+          ],
+          "answer": 1,
+          "why": "A kód helyesen számol. A hiba az adatokban van: hiányoznak belőlük a zöld almák. Ami nincs az adatokban, azt a modell nem tudja."
+        }
+      ]
+    },
+    {
+      "code": [
+        "súly = {játékok: 1, tudomány: 1}",
+        "ismételd 2-szer:",
+        "    mutass 4 videót a súlyok arányában",
+        "    minden végignézett videóra:",
+        "        súly[kategória] = súly[kategória] + 1",
+        "írd ki: súly"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "1. kör. Csak a játékos videókat nézed végig.",
+          "q": "Hány játékos videót mutat a hírfolyam az 1. körben?",
+          "options": [
+            "1",
+            "2",
+            "4"
+          ],
+          "answer": 1,
+          "why": "A súlyok 1 : 1 arányúak, így a 4 videó 2-2 arányban oszlik meg."
+        },
+        {
+          "line": 4,
+          "input": "1. kör: mindkét játékos videót végignézed",
+          "q": "Mennyi a játékok súlya az 1. kör után?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "why": "1 + 1 + 1 = 3. A tudomány 1-en maradt."
+        },
+        {
+          "line": 2,
+          "input": "2. kör: súlyok: játékok 3, tudomány 1",
+          "q": "Hány tudományos videót látsz a 2. körben?",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ],
+          "answer": 1,
+          "why": "A 3 : 1 arány 4 videóból 3 játékosat és csak 1 tudományosat ad."
+        },
+        {
+          "line": 5,
+          "input": "A 2. körben megint csak játékos videókat nézel végig",
+          "q": "Mit ír ki a program?",
+          "options": [
+            "játékok 6, tudomány 1",
+            "játékok 5, tudomány 2",
+            "játékok 4, tudomány 1"
+          ],
+          "answer": 0,
+          "why": "3 + 3 = 6. A tudomány nem kapott esélyt, mert a hírfolyam alig mutatja. Ez a visszacsatolási hurok: amit látsz, arra kattintasz, és amire kattintasz, azt látod."
+        }
+      ]
+    }
+  ],
+  "debrief": "Három program, három lecke. A nyelvi modell valószínű szavakat rak össze, és nem ellenőrzi az igazságot. A legközelebbi szomszéd pontosan számol, de csak azzal, ami az adatokban van. Az ajánló pedig minden körrel azt erősíti, amit már megmutatott."
+}

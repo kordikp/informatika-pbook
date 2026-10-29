@@ -1,0 +1,120 @@
+{
+  "type": "hotspot",
+  "title": "Dark pattern hunt",
+  "instruction": "A dark pattern is a screen design that quietly pushes you towards a choice that suits the app, not you. On each screen, find what the dark pattern is. Careful: some sentences look suspicious but are honest.",
+  "items": [
+    {
+      "label": "A subscription in a music app",
+      "segments": [
+        {
+          "text": "Try Premium free for 7 days."
+        },
+        {
+          "text": "Then 199 CZK a month.",
+          "why": "The price is written clearly and in advance. That’s honest."
+        },
+        {
+          "text": "You can cancel any time, but only on our website, not in the app.",
+          "hit": true,
+          "why": "Signing up takes one tap, cancelling only somewhere else and in a complicated way. It’s called a roach motel: easy to get in, hard to get out."
+        }
+      ]
+    },
+    {
+      "label": "A notifications request",
+      "segments": [
+        {
+          "text": "Do you want notifications about new levels?"
+        },
+        {
+          "text": "[Yes, sure!]",
+          "why": "An ordinary button for saying yes."
+        },
+        {
+          "text": "[No, I don’t want to hear about free gifts]",
+          "hit": true,
+          "why": "The “no” is worded to shame you and make you feel you’re missing out. The honest version is a simple “No, thanks”."
+        }
+      ]
+    },
+    {
+      "label": "Signing up to a quiz app",
+      "segments": [
+        {
+          "text": "Nickname: ____"
+        },
+        {
+          "text": "☐ I agree to the terms",
+          "why": "Agreeing to the terms is required, and the box is empty. That’s fine."
+        },
+        {
+          "text": "☑ Send my details to partners for better offers",
+          "hit": true,
+          "why": "The box is ticked in advance. Anyone who misses it agrees to share their details, even if they don’t want to."
+        }
+      ]
+    },
+    {
+      "label": "An in-game shop",
+      "segments": [
+        {
+          "text": "Dragon pack: 1,200 gems"
+        },
+        {
+          "text": "(20 % more than last time)",
+          "why": "A specific comparison that can be checked. On its own, it isn’t a dark pattern."
+        },
+        {
+          "text": "Offer ends in 00:59",
+          "hit": true,
+          "why": "A countdown that starts again when it runs out is false urgency. It’s meant to make you decide before you’ve done the maths."
+        },
+        {
+          "text": "Price: 900 gems",
+          "hit": true,
+          "why": "A price in virtual currency hides the real money. How much are 900 gems in real money? The app deliberately doesn’t say."
+        }
+      ]
+    },
+    {
+      "label": "An online shop checkout",
+      "segments": [
+        {
+          "text": "Hoodie 690 CZK"
+        },
+        {
+          "text": "Delivery 79 CZK",
+          "why": "The delivery is visible and can be changed. Honest."
+        },
+        {
+          "text": "Parcel insurance 39 CZK (we added it for you)",
+          "hit": true,
+          "why": "Something put in your basket without you tapping anything. It’s called sneaking into the basket."
+        }
+      ]
+    },
+    {
+      "label": "Deleting your account",
+      "segments": [
+        {
+          "text": "Do you really want to leave?"
+        },
+        {
+          "text": "Deleting your account means losing your history and saved games.",
+          "why": "True information about what deleting means. That’s what the app should say."
+        },
+        {
+          "text": "Your 312-day streak will disappear and your friends will see that you’re giving up.",
+          "hit": true,
+          "why": "Emotional pressure: instead of information, fear of being shamed in front of your friends."
+        },
+        {
+          "text": "[STAY] big colourful button, “delete” small and grey at the bottom",
+          "hit": true,
+          "why": "The option the app wants is eye-catching, and your choice is hidden. Both buttons should be equally easy to see."
+        }
+      ]
+    }
+  ],
+  "debrief": "Dark patterns aren’t mistakes; they’re on purpose. You can spot them by the imbalance: one choice is easy, big and pleasant, the other hidden, tiny or unpleasantly worded. When you design your own app, give agreeing and refusing the same weight, and show prices in real money."
+}

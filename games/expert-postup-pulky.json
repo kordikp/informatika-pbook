@@ -1,0 +1,149 @@
+{
+  "type": "trace",
+  "title": "Hledání půlením: kde se skrývá chyba",
+  "instruction": "Krokuj hledání v seřazeném seznamu. Program se nedívá na čísla popořadě, ale vždy doprostřed a polovinu zahodí. Sleduj proměnné dolní, horní a střed. Pozor, ve třetím kole je v kódu schovaná chyba.",
+  "rounds": [
+    {
+      "code": [
+        "seznam = [3, 8, 12, 17, 21, 25, 30, 34, 40]   # seznam[1] je 3, seznam[9] je 40",
+        "hledám = 30",
+        "dolní = 1, horní = 9",
+        "dokud dolní ≤ horní:",
+        "    střed = (dolní + horní) : 2, zaokrouhli dolů",
+        "    když seznam[střed] = hledám: vrať střed",
+        "    když seznam[střed] < hledám: dolní = střed + 1",
+        "    jinak: horní = střed - 1",
+        "vrať „nenalezeno“"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "dolní = 1, horní = 9",
+          "q": "Kolik je střed?",
+          "options": [
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": 1,
+          "why": "(1 + 9) : 2 = 5. Na 5. místě je 21."
+        },
+        {
+          "line": 6,
+          "input": "střed = 5, seznam[5] = 21, hledám 30",
+          "q": "Co se změní?",
+          "options": [
+            "dolní = 6",
+            "horní = 4",
+            "dolní = 5"
+          ],
+          "answer": 0,
+          "why": "21 < 30, takže třicítka může být jen vpravo. Levou půlku i s 21 program zahodí: dolní = 5 + 1 = 6."
+        },
+        {
+          "line": 5,
+          "input": "dolní = 6, horní = 9",
+          "q": "Kam se program podívá a co najde?",
+          "options": [
+            "na 7. místo, je tam 30: nalezeno",
+            "na 8. místo, je tam 34: hledá dál",
+            "na 6. místo, je tam 25: hledá dál"
+          ],
+          "answer": 0,
+          "why": "(6 + 9) : 2 = 7,5, zaokrouhleno dolů 7. seznam[7] = 30. Stačila dvě porovnání. Hledání od začátku by jich potřebovalo sedm."
+        }
+      ]
+    },
+    {
+      "code": [
+        "seznam = [3, 8, 12, 17, 21, 25, 30, 34, 40]   # seznam[1] je 3, seznam[9] je 40",
+        "hledám = 26",
+        "dolní = 1, horní = 9",
+        "dokud dolní ≤ horní:",
+        "    střed = (dolní + horní) : 2, zaokrouhli dolů",
+        "    když seznam[střed] = hledám: vrať střed",
+        "    když seznam[střed] < hledám: dolní = střed + 1",
+        "    jinak: horní = střed - 1",
+        "vrať „nenalezeno“"
+      ],
+      "steps": [
+        {
+          "line": 7,
+          "input": "dolní = 6, horní = 9, střed = 7, seznam[7] = 30, hledám 26",
+          "q": "Co se změní?",
+          "options": [
+            "horní = 6",
+            "dolní = 8",
+            "horní = 7"
+          ],
+          "answer": 0,
+          "why": "30 > 26, takže hledané číslo by muselo být vlevo od 7. místa: horní = 7 - 1 = 6."
+        },
+        {
+          "line": 3,
+          "input": "Další krok: střed = 6, seznam[6] = 25 < 26, takže dolní = 7. Teď dolní = 7, horní = 6.",
+          "q": "Co udělá smyčka?",
+          "options": [
+            "skončí a program vrátí „nenalezeno“",
+            "pokračuje se středem 6",
+            "pokračuje se středem 7"
+          ],
+          "answer": 0,
+          "why": "Podmínka dolní ≤ horní neplatí, 7 ≤ 6 je nepravda. Úsek, kde by číslo mohlo být, je prázdný. Program skončí po konečném počtu kroků, i když číslo nenašel."
+        }
+      ]
+    },
+    {
+      "code": [
+        "seznam = [3, 8, 12, 17, 21, 25, 30, 34, 40]   # seznam[1] je 3, seznam[9] je 40",
+        "hledám = 40",
+        "dolní = 1, horní = 9",
+        "dokud dolní ≤ horní:",
+        "    střed = (dolní + horní) : 2, zaokrouhli dolů",
+        "    když seznam[střed] = hledám: vrať střed",
+        "    když seznam[střed] < hledám: dolní = střed",
+        "    jinak: horní = střed - 1",
+        "vrať „nenalezeno“"
+      ],
+      "steps": [
+        {
+          "line": 6,
+          "input": "Hledám 40. Po dvou krocích je dolní = 7, horní = 9, střed = 8, seznam[8] = 34.",
+          "q": "Co provede řádek s chybou?",
+          "options": [
+            "dolní = 8",
+            "dolní = 9",
+            "horní = 7"
+          ],
+          "answer": 0,
+          "why": "34 < 40, takže se provede dolní = střed. V tomhle kódu chybí + 1, proto dolní = 8, ne 9."
+        },
+        {
+          "line": 4,
+          "input": "dolní = 8, horní = 9",
+          "q": "Co se stane dál?",
+          "options": [
+            "střed je zase 8 a program se zacyklí",
+            "střed je 9 a program najde 40",
+            "program vrátí „nenalezeno“"
+          ],
+          "answer": 0,
+          "why": "(8 + 9) : 2 = 8,5, dolů 8. Zase 34 < 40, zase dolní = 8. Nic se nemění a smyčka běží navždy. Algoritmus porušil konečnost. Tuhle chybu najde jen test s číslem na samém konci seznamu: okrajový případ."
+        },
+        {
+          "line": 3,
+          "input": "Opravený kód (s + 1), seřazený seznam má 1000 čísel",
+          "q": "Nejvýš kolikrát se program podívá do seznamu?",
+          "options": [
+            "10krát",
+            "100krát",
+            "500krát"
+          ],
+          "answer": 0,
+          "why": "Každé porovnání úsek aspoň způlí: 1000, 500, 250, 125, 62, 31, 15, 7, 3, 1. To je 10 pohledů, protože 2 na desátou je 1024. Pro milion čísel stačí 20. Hledání od začátku jich může potřebovat milion."
+        }
+      ]
+    }
+  ],
+  "debrief": "Půlení intervalu je jeden z nejsilnějších algoritmů vůbec: každý krok zahodí polovinu možností. Funguje ale jen na seřazeném seznamu a jen tehdy, když se úsek v každém kroku opravdu zmenší. Jediné chybějící + 1 udělá z rychlého algoritmu nekonečnou smyčku. Proto testuješ i okraje: první číslo, poslední číslo a číslo, které v seznamu není."
+}

@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Želva: nejkratší program",
+  "instruction": "Nakresli cílový obrázek co nejkratším programem. Želva začíná uprostřed a dívá se nahoru. Počítá se každý příkaz včetně opakuj a nauč. Hvězda je za program, který se vejde do limitu.",
+  "levels": [
+    {
+      "goal": "Rovnostranný trojúhelník se stranou 100.",
+      "target": "opakuj 3 [ dopředu 100 vpravo 120 ]",
+      "max": 3,
+      "hint": "Úhel uvnitř trojúhelníku je 60°. Želva se ale neotáčí o úhel uvnitř, otáčí se o to, co zbývá do přímého směru.",
+      "why": "Za celou cestu kolem obrazce se želva otočí dokola, tedy o 360°. Tři stejné rohy: 360 : 3 = 120°."
+    },
+    {
+      "goal": "Pěticípá hvězda nakreslená jedním tahem, strana 150.",
+      "target": "opakuj 5 [ dopředu 150 vpravo 144 ]",
+      "max": 3,
+      "hint": "U hvězdy se želva neotočí dokola jednou, ale dvakrát. Kolik je dvakrát 360° děleno pěti?",
+      "why": "Hvězda obejde střed dvakrát: 2 × 360 = 720°, 720 : 5 = 144°. Pravidlo celkového otočení je obecné, platí pro každý uzavřený obrazec."
+    },
+    {
+      "goal": "Mřížka 2 × 2 ze čtyř čtverců se stranou 50, které se dotýkají v jednom rohu.",
+      "target": "nauč ctverec :a [ opakuj 4 [ dopředu :a vpravo 90 ] ] opakuj 4 [ ctverec 50 vlevo 90 ]",
+      "max": 8,
+      "hint": "Nejdřív nauč želvu kreslit čtverec s parametrem. Pak se podívej na mřížku jako na čtyři čtverce kolem jednoho bodu.",
+      "why": "Pojmenovaná část řešení je podprogram. Čtyři čtverce otočené kolem společného rohu dají mřížku, i když v programu žádnou mřížku nevidíš. Tak vypadá dekompozice v kódu."
+    },
+    {
+      "goal": "Devíticípá ostrá hvězda jedním tahem, strana 150. Každý cíp je ostřejší než u pěticípé.",
+      "target": "opakuj 9 [ dopředu 150 vpravo 160 ]",
+      "max": 3,
+      "hint": "Vyzkoušej, kolikrát má želva obkroužit střed. Úhel musí vyjít jako celé číslo a hvězda se musí uzavřít.",
+      "why": "Želva obkrouží střed čtyřikrát: 4 × 360 = 1440°, 1440 : 9 = 160°. Při dvou nebo třech obkrouženích to vyjde 80° a 120°, a to už nejsou ostré cípy (při 120° se nakreslí jen trojúhelník třikrát přes sebe)."
+    },
+    {
+      "goal": "Domeček jedním tahem: čtverec se stranou 100, obě úhlopříčky a stříška. Pero se ani jednou nezvedne a žádná čára se nekreslí dvakrát. Začínáš v levém dolním rohu.",
+      "target": "vpravo 90 dopředu 100 vlevo 90 dopředu 100 vlevo 135 dopředu 141 vpravo 135 dopředu 100 vpravo 90 dopředu 100 vlevo 135 dopředu 71 vlevo 90 dopředu 71 vlevo 90 dopředu 141",
+      "max": 16,
+      "hint": "Domeček je graf: 5 rohů a 8 čar. Spočítej, kolik čar vede z každého rohu. Jedním tahem se dá začít jen v rohu s lichým počtem čar a skončit musíš v druhém takovém.",
+      "why": "Liché rohy jsou jen dva: levý a pravý dolní. Začneš v jednom a skončíš v druhém. Úhlopříčka čtverce se stranou 100 je asi 141, šikmá strana stříšky asi 71. Želva tu kreslí model z jádra Model: graf."
+    }
+  ],
+  "debrief": "Kratší program není jen hezčí. Nutí tě najít pravidlo: celkové otočení, opakující se část, podprogram, liché vrcholy grafu. Program o třech příkazech, který kreslí hvězdu, je obecný. Změníš jedno číslo a máš jinou hvězdu."
+}

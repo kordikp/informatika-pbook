@@ -1,0 +1,163 @@
+{
+  "type": "trace",
+  "title": "Krokuj feed",
+  "instruction": "Tři kusy pseudokódu, který rozhoduje o tvém feedu. Krokuj je řádek po řádku a pozor na čísla: jedna chyba v součtu změní celý feed.",
+  "rounds": [
+    {
+      "code": [
+        "skóre = {pejsci: 35, fotbal: 22, minecraft: 20}",
+        "pro každé video ve frontě:",
+        "    pokud dokoukáno:",
+        "        skóre[téma] = skóre[téma] + 10",
+        "    jinak pokud „Nemám zájem“:",
+        "        skóre[téma] = skóre[téma] - 15",
+        "    další téma = téma s nejvyšším skóre"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "video o Minecraftu, dokoukáno do konce",
+          "q": "Kolik má teď Minecraft?",
+          "options": [
+            "20",
+            "30",
+            "35"
+          ],
+          "answer": 1,
+          "why": "Dokoukání přičte 10: 20 + 10 = 30."
+        },
+        {
+          "line": 6,
+          "input": "pejsci 35, fotbal 22, minecraft 30",
+          "q": "Jaké téma přijde dál?",
+          "options": [
+            "pejsci",
+            "minecraft",
+            "fotbal"
+          ],
+          "answer": 0,
+          "why": "Pejsci mají pořád nejvíc: 35 je víc než 30."
+        },
+        {
+          "line": 5,
+          "input": "video s pejskem, klepnutí na „Nemám zájem“",
+          "q": "Kolik mají teď pejsci?",
+          "options": [
+            "20",
+            "25",
+            "35"
+          ],
+          "answer": 0,
+          "why": "„Nemám zájem“ odečte 15: 35 − 15 = 20. Jedno klepnutí smaže skoro polovinu skóre."
+        },
+        {
+          "line": 6,
+          "input": "pejsci 20, fotbal 22, minecraft 30",
+          "q": "Jaké téma přijde dál?",
+          "options": [
+            "pejsci",
+            "fotbal",
+            "minecraft"
+          ],
+          "answer": 2,
+          "why": "Minecraft má 30, fotbal 22, pejsci jen 20. Jedno klepnutí a jedno dokoukání otočily pořadí."
+        }
+      ]
+    },
+    {
+      "code": [
+        "počet = 0",
+        "pro každé video ve frontě:",
+        "    počet = počet + 1",
+        "    pokud počet je dělitelný 5:",
+        "        další téma = náhodné téma, které ti dlouho nepřišlo",
+        "    jinak:",
+        "        další téma = téma s nejvyšším skóre"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "počet = 4",
+          "q": "Bude další video průzkumné?",
+          "options": [
+            "ano",
+            "ne"
+          ],
+          "answer": 1,
+          "why": "4 není dělitelné 5, takže řádek 4 neplatí a jde se na řádek 7: vítězné téma."
+        },
+        {
+          "line": 4,
+          "input": "prvních 20 videí",
+          "q": "Kolik z prvních 20 videí je průzkumných?",
+          "options": [
+            "2",
+            "4",
+            "5"
+          ],
+          "answer": 1,
+          "why": "Dělitelná 5 jsou čísla 5, 10, 15 a 20. Čtyři videa z dvaceti, tedy 20 % feedu, je průzkum."
+        },
+        {
+          "line": 4,
+          "input": "průzkumné video o vaření dokoukáš",
+          "q": "Proč je řádek 5 pro feed důležitý?",
+          "options": [
+            "Zpomaluje appku",
+            "Bez něj by se skóre ostatních témat nikdy nezměnilo",
+            "Ušetří data"
+          ],
+          "answer": 1,
+          "why": "Síť se učí jen z videí, která ti ukázala. Bez průzkumu nevzniknou o jiných tématech nová data a bublina se uzavře."
+        }
+      ]
+    },
+    {
+      "code": [
+        "pro každé video ve frontě:",
+        "    ukaž video",
+        "    pokud ve frontě zbývají méně než 3 videa:",
+        "        doplň frontu 10 novými videi"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "ve frontě zbývají 2 videa",
+          "q": "Co se stane?",
+          "options": [
+            "Smyčka skončí",
+            "Fronta se doplní a smyčka jede dál",
+            "Appka se zeptá, jestli chceš pokračovat"
+          ],
+          "answer": 1,
+          "why": "Řádek 4 přidá nová videa dřív, než fronta dojde. Fronta nikdy není prázdná."
+        },
+        {
+          "line": 0,
+          "input": "sleduješ už 2 hodiny",
+          "q": "Kdy tahle smyčka skončí?",
+          "options": [
+            "Až dojdou videa",
+            "Nikdy, dokud appku nezavřeš",
+            "Po 10 videích"
+          ],
+          "answer": 1,
+          "why": "V kódu není žádná podmínka ukončení. Konec je jen tvoje rozhodnutí."
+        },
+        {
+          "line": 1,
+          "input": "chceš přidat řádek „pokud čas > 30 minut: ukonči smyčku“",
+          "q": "Kam ho dáš, aby fungoval nejlépe?",
+          "options": [
+            "Na začátek těla smyčky, před řádek 2",
+            "Za smyčku, pod řádek 4",
+            "Na úplný začátek, před řádek 1"
+          ],
+          "answer": 0,
+          "why": "Podmínka musí být uvnitř smyčky, aby se kontrolovala před každým videem. Za smyčkou by se nikdy nespustila, protože smyčka nekončí. Před smyčkou by se zkontrolovala jen jednou."
+        }
+      ]
+    }
+  ],
+  "debrief": "Feed je pár řádků: skóre, smyčka a výběr maxima. Malé signály, jako jedno „Nemám zájem“, umí pořadí otočit. Průzkumný řádek brání uzavřené bublině a chybějící podmínka ukončení dělá ze scrollu smyčku bez konce."
+}

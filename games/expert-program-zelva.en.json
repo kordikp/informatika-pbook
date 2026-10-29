@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Turtle workshop for advanced coders",
+  "instruction": "Draw the target with the shortest possible program. Every command counts, including repeat, learn and calling a procedure. You get a star if you stay within the limit.",
+  "levels": [
+    {
+      "goal": "An equilateral triangle with side 100.",
+      "target": "opakuj 3 [ dopředu 100 vpravo 120 ]",
+      "max": 3,
+      "hint": "The inner angle of a triangle is 60°. But the turtle doesn’t turn by the inner angle; it turns by how much it changes direction.",
+      "why": "Over the whole trip round, the turtle turns by 360°. Three turns: 360 / 3 = 120°. With a 60° turn, it would draw part of a hexagon."
+    },
+    {
+      "goal": "A five-pointed star in one stroke, side 150.",
+      "target": "opakuj 5 [ dopředu 150 vpravo 144 ]",
+      "max": 3,
+      "hint": "When drawing a star, the turtle goes round the centre twice. How many degrees is that in total?",
+      "why": "Two trips round are 720°. 720 / 5 = 144°. For a pentagon, 72° would be enough. The bigger turn sends the turtle across the centre, and that’s why the lines cross."
+    },
+    {
+      "goal": "A rosette: 12 squares with side 80, each turned by 30° around the same corner.",
+      "target": "opakuj 12 [ opakuj 4 [ dopředu 80 vpravo 90 ] vpravo 30 ]",
+      "max": 5,
+      "hint": "Draw one square with a loop. Then wrap the whole square, turn included, in another loop.",
+      "why": "A nested loop: the inner one draws the square, the outer one turns it. 12 × 30° = 360°, so the rosette closes up. Without loops, it would be 108 commands."
+    },
+    {
+      "goal": "Three squares with a shared corner: sides 30, 60 and 90.",
+      "target": "nauč ctverec :s [ opakuj 4 [ dopředu :s vpravo 90 ] ] ctverec 30 ctverec 60 ctverec 90",
+      "max": 7,
+      "hint": "Teach the turtle a new command square, and pass it the side length as the parameter :s.",
+      "why": "A procedure is a new command, and a parameter is a variable that has a different value each time it is called. After four turns, the square returns to its corner, and that’s why the next one starts in the same place."
+    },
+    {
+      "goal": "A row of five squares with side 20 next to each other, gaps of 10, with no connecting lines.",
+      "target": "nauč ctverec :s [ opakuj 4 [ dopředu :s vpravo 90 ] ] opakuj 5 [ ctverec 20 pero nahoru vpravo 90 dopředu 30 vlevo 90 pero dolů ]",
+      "max": 12,
+      "hint": "After each square, the turtle must move right without drawing, and then turn back up again.",
+      "why": "The turtle holds a state: position, direction and pen. After moving, it must restore the state (left 90, pen down), or the next square would be turned or invisible. A step of 30 is the side of 20 plus the gap of 10."
+    }
+  ],
+  "debrief": "A loop saves commands, a nested loop multiplies them, and a procedure with a parameter turns one shape into a whole family. All the while, the turtle holds its state: where it is, which way it faces and whether it’s drawing. Just like the variables in your program."
+}

@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Dlaždice z procedúr",
+  "instruction": "Nakresli korytnačkou grafiku pre plošinovku. Korytnačka začína v strede, pozerá sa hore a má pero dole. Počíta sa každý príkaz vrátane „opakuj“, „nauč“ a volania procedúry. Hviezdu získaš za program kratší, ako je limit.",
+  "levels": [
+    {
+      "goal": "Tehlová stena: štyri štvorce 20 × 20 vedľa seba v jednom rade.",
+      "target": "opakuj 4 [ opakuj 4 [ dopředu 20 vpravo 90 ] vpravo 90 dopředu 20 vlevo 90 ]",
+      "max": 8,
+      "hint": "Po nakreslení štvorca je korytnačka tam, kde začala, a pozerá sa rovnakým smerom. Odkiaľ má začať ďalšia tehla?",
+      "why": "Vnútorné opakovanie nakreslí tehlu, vonkajšie ju zopakuje. Medzi tehlami sa korytnačka posunie o 20 vpravo a natočí späť hore. Bez návratu do rovnakého smeru by sa stena stočila do kruhu."
+    },
+    {
+      "goal": "Rad piatich bodcov: rovnostranné trojuholníky so stranou 20, ktoré stoja vedľa seba na jednej základni a mieria špičkou hore.",
+      "target": "vpravo 90 opakuj 5 [ opakuj 3 [ dopředu 20 vlevo 120 ] dopředu 20 ]",
+      "max": 7,
+      "hint": "Rovnostranný trojuholník má vnútorné uhly 60°. Korytnačka sa však neotáča o vnútorný uhol. O koľko sa musí otočiť, aby sa po troch stranách vrátila do pôvodného smeru?",
+      "why": "Korytnačka sa otáča o vonkajší uhol 180° − 60° = 120°. Za celý obrazec sa otočí o 3 × 120° = 360°, teda raz dokola. S otočením o 60° by namiesto trojuholníka vznikla polovica šesťuholníka. Po trojuholníku stojí korytnačka na začiatku a dopredu 20 ju posunie po už nakreslenej základni k ďalšiemu bodcu."
+    },
+    {
+      "goal": "Pasca s dvoma veľkosťami bodcov: strieda sa veľký bodec so stranou 30 a malý so stranou 15, spolu tri dvojice v jednom rade.",
+      "target": "nauč osten :a [ opakuj 3 [ dopředu :a vlevo 120 ] dopředu :a ] vpravo 90 opakuj 3 [ osten 30 osten 15 ]",
+      "max": 10,
+      "hint": "Napíš procedúru pre jeden bodec, v ktorej je dĺžka strany parameter :a. Potom ju volaj s rôznymi číslami.",
+      "why": "Procedúra s parametrom je jeden recept pre všetky veľkosti. Bez nej by sa rovnaký kód písal dvakrát a oprava uhla by sa musela urobiť v oboch kópiách. Takto vznikajú dlaždice v enginoch: jeden predpis, rôzne hodnoty."
+    },
+    {
+      "goal": "Dlaždicová mapa 3 × 3: deväť štvorcov 20 × 20 v troch radoch nad sebou, spolu 60 × 60.",
+      "target": "nauč ctverec :a [ opakuj 4 [ dopředu :a vpravo 90 ] ] nauč rada [ opakuj 3 [ ctverec 20 vpravo 90 dopředu 20 vlevo 90 ] vlevo 90 dopředu 60 vpravo 90 ] opakuj 3 [ rada dopředu 20 ]",
+      "max": 18,
+      "hint": "Rozlož úlohu: dlaždica, rad dlaždíc, mapa z radov. Po každom rade musí korytnačka stáť tam, kde rad začal, a pozerať sa hore. Len tak sa dajú rady skladať nad seba.",
+      "why": "Procedúra, ktorá vracia korytnačku do východiskovej polohy a smeru, sa dá bezpečne skladať do väčších celkov. Návrat po už nakreslenej spodnej hrane a posun po ľavej hrane nepridajú žiadnu čiaru navyše. Kratšie riešenie existuje: celá mapa sú štyri vodorovné a štyri zvislé čiary, a kto ho nájde, získa hviezdu."
+    },
+    {
+      "goal": "Bonusová hviezda: päťcípa hviezda nakreslená jedným ťahom, strana 60.",
+      "target": "opakuj 5 [ dopředu 60 vpravo 144 ]",
+      "max": 4,
+      "hint": "Pri trojuholníku sa korytnačka otočila celkovo o 360°. Koľkokrát sa otočí dokola, keď obkreslí hviezdu? Skús si ju nakresliť ceruzkou jedným ťahom a sleduj, koľkokrát obídeš stred.",
+      "why": "Pri kreslení hviezdy obíde korytnačka stred dvakrát, takže sa celkovo otočí o 2 × 360° = 720°. Päť otočení dá 720° / 5 = 144°. Pravidlo „celkové otočenie je násobok 360°“ ti vypočíta uhol pre akýkoľvek uzavretý obrazec, od mince po hviezdu."
+    }
+  ],
+  "debrief": "Herná grafika sa skladá z malých receptov. Opakovanie ušetrí písanie, procedúra s parametrom ušetrí kópie a procedúra, ktorá vráti korytnačku do východiskovej polohy, sa dá skladať do väčších celkov. Uhly nehádaš: celkové otočenie uzavretého obrazca je vždy celý násobok 360°."
+}

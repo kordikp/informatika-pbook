@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "Čo je za touto súvislosťou?",
+  "instruction": "Každá veta opisuje dve veci, ktoré idú spolu. Roztrieď ich podľa toho, čo je za tým najpravdepodobnejšie. Pozor: iba jedna priehradka znamená skutočnú príčinu.",
+  "buckets": [
+    "Príčina overená pokusom",
+    "Skrytá tretia vec",
+    "Obrátená príčina",
+    "Náhoda z prehrabávania dát"
+  ],
+  "items": [
+    {
+      "text": "V dňoch, keď sa predá viac zmrzliny, sa viac ľudí utopí.",
+      "answer": 1,
+      "why": "Oboje spôsobuje horúčava. Zmrzlina nikoho netopí."
+    },
+    {
+      "text": "Deti s väčšou veľkosťou topánok čítajú rýchlejšie.",
+      "answer": 1,
+      "why": "Tretia vec je vek. Staršie deti majú väčšie nohy a viac čítajú."
+    },
+    {
+      "text": "Aplikácia náhodne ukázala polovici z 50 000 ľudí zelené tlačidlo a druhej polovici modré. Na zelené klikalo o 12 % viac ľudí.",
+      "answer": 0,
+      "why": "Náhodné rozdelenie je pokus (A/B test). Obe skupiny sú inak rovnaké, takže rozdiel robí farba."
+    },
+    {
+      "text": "Ľudia, ktorí často chodia k lekárovi, bývajú častejšie chorí.",
+      "answer": 2,
+      "why": "Lekár chorobu nespôsobuje. Choroba je dôvod, prečo tam chodia."
+    },
+    {
+      "text": "V mestách s viacerými policajtmi je viac trestných činov.",
+      "answer": 2,
+      "why": "Kde je viac kriminality, tam mesto najme viac policajtov. Príčina vedie opačne, než naznačuje veta."
+    },
+    {
+      "text": "Počet doktorátov z informatiky v USA a počet včelstiev roky stúpali a klesali spolu.",
+      "answer": 3,
+      "why": "Keď porovnáš tisíce dvojíc radov, niektoré si budú podobné čisto náhodou. Presne tak vznikajú príklady na webe Spurious Correlations."
+    },
+    {
+      "text": "Z 200 sledovaných údajov o tvojom hraní jeden ukázal, že vyhrávaš viac v dňoch, ktoré majú v názve písmeno „t“.",
+      "answer": 3,
+      "why": "Z 200 testov ich niekoľko „vyjde“ iba náhodou. Bez nového overenia na iných dátach to nič neznamená."
+    },
+    {
+      "text": "Škola náhodne losovala, ktoré triedy budú mať prvú hodinu o 30 minút neskôr. Vylosované triedy mali za polrok menej neskorých príchodov.",
+      "answer": 0,
+      "why": "Žreb rozhodol, kto dostane zmenu, takže triedy sa inak nelíšia. Rozdiel spôsobil neskorší začiatok."
+    }
+  ],
+  "debrief": "Súvislosť má štyri možné vysvetlenia: príčinu, tretiu skrytú vec, obrátený smer a náhodu. Príčinu poctivo dokáže hlavne pokus s náhodným rozdelením. Keď pokus nejde, hľadaj tretiu vec a pýtaj sa, koľko dvojíc niekto prehrabal, kým našiel tú „zaujímavú“."
+}

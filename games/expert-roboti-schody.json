@@ -1,0 +1,36 @@
+{
+  "type": "turtle",
+  "title": "Schody pro kreslicího robota",
+  "instruction": "Kreslicí robot jezdí po papíře a fixou za sebou kreslí čáru. Nakresli cíl co nejkratším programem. Každý příkaz se počítá, i opakuj a nauč. Bez opakování se do limitu pro hvězdu nevejdeš: najdi vzor, který se opakuje, a zabal ho do smyčky.",
+  "levels": [
+    {
+      "goal": "Schody nahoru: čtyři stupně, každý 30 vysoký a 30 široký.",
+      "target": "opakuj 4 [ dopředu 30 vpravo 90 dopředu 30 vlevo 90 ]",
+      "max": 5,
+      "hint": "Nakresli jeden stupeň: nahoru, otočka, rovně, otočka zpátky. Kolikrát se ty čtyři příkazy opakují?",
+      "why": "Vzor je dopředu, vpravo, dopředu, vlevo. Opakuj ho 4×. Bez smyčky by to bylo 16 příkazů, se smyčkou 5."
+    },
+    {
+      "goal": "Hradba se zuby: čtyři zuby 20 vysoké a 20 široké, za každým mezera 20.",
+      "target": "opakuj 4 [ dopředu 20 vpravo 90 dopředu 20 vpravo 90 dopředu 20 vlevo 90 dopředu 20 vlevo 90 ]",
+      "max": 9,
+      "hint": "Jeden zub a jedna mezera jsou čtyři čáry a čtyři otočky. Po mezeře se robot musí dívat stejně jako na začátku.",
+      "why": "Vzor je delší, osm příkazů, ale pořád jen jeden. Smyčka funguje, jen když robot skončí natočený stejně jako na začátku: dvakrát vpravo a dvakrát vlevo se vyruší. Bez smyčky by to bylo 32 příkazů."
+    },
+    {
+      "goal": "Pyramida: tři stupně nahoru a hned tři dolů, stupeň 20 vysoký a 20 široký.",
+      "target": "opakuj 2 [ opakuj 3 [ dopředu 20 vpravo 90 dopředu 20 vlevo 90 ] vpravo 90 ]",
+      "max": 11,
+      "hint": "Jedna smyčka nestačí. Napiš smyčku nahoru, pak otočku a pak smyčku dolů.",
+      "why": "Delší programy se skládají z několika smyček za sebou: nahoru, otočka, dolů. A teď to nejlepší: cesta dolů je stejný vzor jako cesta nahoru, jen otočený o 90°. Kdo si toho všimne, zabalí smyčku do další smyčky a vejde se do 7 příkazů."
+    },
+    {
+      "goal": "Schody, které rostou: dva stupně 10 × 10, dva stupně 20 × 20 a dva stupně 30 × 30, jeden za druhým.",
+      "target": "nauč schody :s [ opakuj 2 [ dopředu :s vpravo 90 dopředu :s vlevo 90 ] ] schody 10 schody 20 schody 30",
+      "max": 9,
+      "hint": "Tři smyčky se liší jen číslem. Nauč robota nový příkaz schody a velikost stupně mu předej jako parametr :s.",
+      "why": "Procedura je vzor s proměnnou: stejné příkazy, pokaždé jiné číslo. Tři smyčky za sebou stojí 15 příkazů, procedura a tři volání jen 9. Programy pro roboty se skládají právě z takových malých pojmenovaných kousků."
+    }
+  ],
+  "debrief": "Robot cestu nevymyslí. Ty ano: najdeš vzor a zabalíš ho do smyčky. Čím kratší program, tím méně míst pro chybu. Proto se v MakeCode tak často používá blok opakuj. A první želva jazyka Logo byla opravdu robot: jezdila po podlaze a perem kreslila po papíře."
+}

@@ -1,0 +1,191 @@
+{
+  "type": "gates",
+  "title": "A rover brain made of gates",
+  "instruction": "Build the robot’s decision-making from logic gates, without a single line of program. The inputs are sensors (1 = sees the line or has bumped into something), the outputs are motors and actions (1 = running). You get a star for the smallest number of gates.",
+  "levels": [
+    {
+      "story": "The rover has two line sensors, L and P. On a straight both see the line, in a bend only one. Connect the motors ML and MP so that the rover turns towards the line. When only the right motor runs, it turns left.",
+      "inputs": [
+        "L",
+        "P"
+      ],
+      "outputs": {
+        "ML": "P",
+        "MP": "L"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT",
+        "XOR"
+      ],
+      "max": 1,
+      "why": "You don’t need any gate: connect ML to P and MP to L. Crossed wires are the whole program. This is called a Braitenberg vehicle.",
+      "solution": {
+        "gates": [],
+        "outputs": {
+          "ML": "P",
+          "MP": "L"
+        }
+      }
+    },
+    {
+      "story": "When the line disappears (L = 0 and P = 0), the rover shouldn’t stop, but turn right until it finds it. The other rows stay as before.",
+      "inputs": [
+        "L",
+        "P"
+      ],
+      "outputs": {
+        "ML": "(not L) or P",
+        "MP": "L"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT",
+        "XOR"
+      ],
+      "max": 2,
+      "why": "ML should be 1 in three rows out of four, and 0 only for L = 1, P = 0. That kind of “almost always” is easy to build from OR: ML = NOT L OR P.",
+      "solution": {
+        "gates": [
+          [
+            "NOT",
+            "L"
+          ],
+          [
+            "OR",
+            "g0",
+            "P"
+          ]
+        ],
+        "outputs": {
+          "ML": "g1",
+          "MP": "L"
+        }
+      }
+    },
+    {
+      "story": "A robot vacuum has two bumpers, L and P. When either one hits something, it should back up (C). It should turn right (V) only when only the left one has hit something.",
+      "inputs": [
+        "L",
+        "P"
+      ],
+      "outputs": {
+        "C": "L or P",
+        "V": "L and (not P)"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT"
+      ],
+      "max": 3,
+      "why": "C = L OR P. For V you need L and at the same time not P: one NOT and one AND. When both bumpers hit, it backs up straight.",
+      "solution": {
+        "gates": [
+          [
+            "OR",
+            "L",
+            "P"
+          ],
+          [
+            "NOT",
+            "P"
+          ],
+          [
+            "AND",
+            "L",
+            "g1"
+          ]
+        ],
+        "outputs": {
+          "C": "g0",
+          "V": "g2"
+        }
+      }
+    },
+    {
+      "story": "The rover has got a third sensor in the middle, S. When the middle sees the line, it goes straight. When only a side sensor sees it, it turns towards that sensor. When none sees anything, it stops. At a crossroads, where both side sensors see the line, it also goes straight.",
+      "inputs": [
+        "L",
+        "S",
+        "P"
+      ],
+      "outputs": {
+        "ML": "S or P",
+        "MP": "S or L"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT",
+        "XOR"
+      ],
+      "max": 2,
+      "why": "Each motor listens to the middle and the opposite side: ML = S OR P, MP = S OR L. Eight rows of the table and only two gates.",
+      "solution": {
+        "gates": [
+          [
+            "OR",
+            "S",
+            "P"
+          ],
+          [
+            "OR",
+            "S",
+            "L"
+          ]
+        ],
+        "outputs": {
+          "ML": "g0",
+          "MP": "g1"
+        }
+      }
+    },
+    {
+      "story": "In the corridor by the workshop there are two switches, A downstairs and B upstairs. Every click switches the light S, whichever switch you click. But the XOR gates have run out.",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "S": "A xor B"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT"
+      ],
+      "max": 4,
+      "why": "The light is on when exactly one switch is on: (A OR B) AND NOT (A AND B). Four gates. That’s why XOR is made as a part of its own.",
+      "solution": {
+        "gates": [
+          [
+            "OR",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "A",
+            "B"
+          ],
+          [
+            "NOT",
+            "g1"
+          ],
+          [
+            "AND",
+            "g0",
+            "g2"
+          ]
+        ],
+        "outputs": {
+          "S": "g3"
+        }
+      }
+    }
+  ],
+  "debrief": "You can build a robot’s decision table from gates. Grey Walter’s tortoises, some of the first robots from the late 1940s, had only a few valves and behaved as if they were thinking. A program in the micro:bit does the same, except you can rewrite it without soldering."
+}

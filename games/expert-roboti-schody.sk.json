@@ -1,0 +1,36 @@
+{
+  "type": "turtle",
+  "title": "Schody pre kresliaceho robota",
+  "instruction": "Kresliaci robot jazdí po papieri a fixkou za sebou kreslí čiaru. Nakresli cieľ čo najkratším programom. Každý príkaz sa počíta, aj opakuj a nauč. Bez opakovania sa do limitu pre hviezdu nezmestíš: nájdi vzor, ktorý sa opakuje, a zabaľ ho do slučky.",
+  "levels": [
+    {
+      "goal": "Schody hore: štyri stupne, každý 30 vysoký a 30 široký.",
+      "target": "opakuj 4 [ dopředu 30 vpravo 90 dopředu 30 vlevo 90 ]",
+      "max": 5,
+      "hint": "Nakresli jeden stupeň: hore, otočka, rovno, otočka späť. Koľkokrát sa tie štyri príkazy opakujú?",
+      "why": "Vzor je dopredu, vpravo, dopredu, vľavo. Opakuj ho 4×. Bez slučky by to bolo 16 príkazov, so slučkou 5."
+    },
+    {
+      "goal": "Hradba so zubami: štyri zuby 20 vysoké a 20 široké, za každým medzera 20.",
+      "target": "opakuj 4 [ dopředu 20 vpravo 90 dopředu 20 vpravo 90 dopředu 20 vlevo 90 dopředu 20 vlevo 90 ]",
+      "max": 9,
+      "hint": "Jeden zub a jedna medzera sú štyri čiary a štyri otočky. Po medzere sa robot musí pozerať rovnako ako na začiatku.",
+      "why": "Vzor je dlhší, osem príkazov, ale stále len jeden. Slučka funguje, len keď robot skončí natočený rovnako ako na začiatku: dvakrát vpravo a dvakrát vľavo sa vyrušia. Bez slučky by to bolo 32 príkazov."
+    },
+    {
+      "goal": "Pyramída: tri stupne hore a hneď tri dole, stupeň 20 vysoký a 20 široký.",
+      "target": "opakuj 2 [ opakuj 3 [ dopředu 20 vpravo 90 dopředu 20 vlevo 90 ] vpravo 90 ]",
+      "max": 11,
+      "hint": "Jedna slučka nestačí. Napíš slučku hore, potom otočku a potom slučku dole.",
+      "why": "Dlhšie programy sa skladajú z niekoľkých slučiek za sebou: hore, otočka, dole. A teraz to najlepšie: cesta dole je rovnaký vzor ako cesta hore, len otočený o 90°. Kto si to všimne, zabalí slučku do ďalšej slučky a zmestí sa do 7 príkazov."
+    },
+    {
+      "goal": "Schody, ktoré rastú: dva stupne 10 × 10, dva stupne 20 × 20 a dva stupne 30 × 30, jeden za druhým.",
+      "target": "nauč schody :s [ opakuj 2 [ dopředu :s vpravo 90 dopředu :s vlevo 90 ] ] schody 10 schody 20 schody 30",
+      "max": 9,
+      "hint": "Tri slučky sa líšia len číslom. Nauč robota nový príkaz schody a veľkosť stupňa mu odovzdaj ako parameter :s.",
+      "why": "Procedúra je vzor s premennou: rovnaké príkazy, zakaždým iné číslo. Tri slučky za sebou stoja 15 príkazov, procedúra a tri volania len 9. Programy pre roboty sa skladajú práve z takých malých pomenovaných kúskov."
+    }
+  ],
+  "debrief": "Robot cestu nevymyslí. Ty áno: nájdeš vzor a zabalíš ho do slučky. Čím kratší program, tým menej miest pre chybu. Preto sa v MakeCode tak často používa blok opakuj. A prvá korytnačka jazyka Logo bola naozaj robot: jazdila po podlahe a perom kreslila po papieri."
+}

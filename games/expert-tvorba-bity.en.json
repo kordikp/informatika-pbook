@@ -1,0 +1,78 @@
+{
+  "type": "estimate",
+  "title": "How much do picture and sound weigh?",
+  "instruction": "Work it out, or at least make a good estimate. 1 byte = 8 bits, 1 MB = 1,000,000 bytes, 1 GB = 1000 MB. An uncompressed colour pixel takes 3 bytes (R, G, B).",
+  "items": [
+    {
+      "q": "One uncompressed Full HD frame (1920 × 1080 pixels). How many MB?",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "answer": 6.2,
+      "tolerance": 0.5,
+      "unit": "MB",
+      "why": "1920 × 1080 = 2,073,600 pixels, × 3 bytes = 6,220,800 B ≈ 6.2 MB."
+    },
+    {
+      "q": "One minute of uncompressed Full HD video at 30 frames per second. How many GB?",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "answer": 11,
+      "tolerance": 1,
+      "unit": "GB",
+      "why": "60 × 30 = 1800 frames × 6.2 MB ≈ 11,200 MB ≈ 11 GB. For one minute!"
+    },
+    {
+      "q": "The same minute in 4K (3840 × 2160). How many GB?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 45,
+      "tolerance": 3,
+      "unit": "GB",
+      "why": "4K has twice as many pixels across and twice as many down, so four times as many: 4 × 11.2 ≈ 45 GB."
+    },
+    {
+      "q": "A phone stores a minute of 4K in 350 MB. How many times smaller is the file than the uncompressed version?",
+      "min": 0,
+      "max": 500,
+      "step": 5,
+      "answer": 130,
+      "tolerance": 15,
+      "unit": "×",
+      "why": "44,800 MB : 350 MB ≈ 128. Compression throws away repetition between frames and details the eye cannot see."
+    },
+    {
+      "q": "The 4:2:0 trick: every pixel has its own brightness, but colour is stored only once for every group of four pixels. On average a pixel then takes 12 bits instead of 24. How many MB is one Full HD frame now?",
+      "min": 0,
+      "max": 10,
+      "step": 0.1,
+      "answer": 3.1,
+      "tolerance": 0.3,
+      "unit": "MB",
+      "why": "Half the bits, so 6.2 : 2 ≈ 3.1 MB. The eye is more sensitive to brightness than to colour, and video takes advantage of that."
+    },
+    {
+      "q": "One minute of CD-quality sound: 44,100 samples per second, 16 bits, 2 channels. How many MB?",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "answer": 10.5,
+      "tolerance": 1,
+      "unit": "MB",
+      "why": "44,100 × 2 B × 2 channels × 60 s = 10,584,000 B ≈ 10.6 MB."
+    },
+    {
+      "q": "A video has a bitrate of 8 Mb/s (megabits per second). How many MB does one minute take?",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "answer": 60,
+      "tolerance": 5,
+      "unit": "MB",
+      "why": "8 Mb/s × 60 s = 480 Mb, divided by 8 = 60 MB. Watch out for small b (bit) and capital B (byte)."
+    }
+  ],
+  "debrief": "Raw video is huge: a minute of 4K would take tens of gigabytes. Compression gets it down to hundreds of megabytes by throwing away repetition and what the eye cannot see. And when you see “Mb/s”, divide by eight."
+}

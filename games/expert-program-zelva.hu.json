@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Teknősműhely haladóknak",
+  "instruction": "Rajzold meg a célt a lehető legrövidebb programmal. Minden utasítás számít, az ismételd, a tanuld és az eljáráshívás is. Csillagot kapsz, ha belefértél a korlátba.",
+  "levels": [
+    {
+      "goal": "Egyenlő oldalú háromszög 100-as oldallal.",
+      "target": "opakuj 3 [ dopředu 100 vpravo 120 ]",
+      "max": 3,
+      "hint": "A háromszög belső szöge 60°. A teknős viszont nem a belső szöggel fordul, hanem annyival, amennyivel az irányát változtatja.",
+      "why": "Egy teljes körbejárás alatt a teknős 360°-ot fordul. Három fordulat: 360 / 3 = 120°. 60°-os fordulattal egy hatszög darabját rajzolná."
+    },
+    {
+      "goal": "Ötágú csillag egy vonallal, 150-es oldallal.",
+      "target": "opakuj 5 [ dopředu 150 vpravo 144 ]",
+      "max": 3,
+      "hint": "A csillag rajzolásakor a teknős kétszer kerüli meg a középpontot. Ez összesen hány fok?",
+      "why": "Két körbejárás 720°. 720 / 5 = 144°. Egy ötszöghöz 72° is elég lenne. A nagyobb fordulat átküldi a teknőst a középponton, ezért keresztezik egymást a vonalak."
+    },
+    {
+      "goal": "Rozetta: 12 négyzet 80-as oldallal, mindegyik 30°-kal elforgatva ugyanazon sarok körül.",
+      "target": "opakuj 12 [ opakuj 4 [ dopředu 80 vpravo 90 ] vpravo 30 ]",
+      "max": 5,
+      "hint": "Rajzolj meg egy négyzetet ciklussal. Aztán az egész négyzetet a forgatással együtt csomagold egy újabb ciklusba.",
+      "why": "Beágyazott ciklus: a belső négyzetet rajzol, a külső forgatja. 12 × 30° = 360°, így a rozetta bezárul. Ciklusok nélkül ez 108 utasítás lenne."
+    },
+    {
+      "goal": "Három négyzet közös sarokkal: 30, 60 és 90 oldallal.",
+      "target": "nauč ctverec :s [ opakuj 4 [ dopředu :s vpravo 90 ] ] ctverec 30 ctverec 60 ctverec 90",
+      "max": 7,
+      "hint": "Tanítsd meg a teknősnek az új negyzet parancsot, és az oldal hosszát add át neki :oldal paraméterként.",
+      "why": "Az eljárás egy új parancs, a paraméter pedig egy változó, amelynek minden hívásnál más az értéke. A négyzet négy fordulat után visszaér a sarokba, ezért a következő ugyanott kezdődik."
+    },
+    {
+      "goal": "Öt 20-as oldalú négyzet egymás mellett egy sorban, 10-es hézagokkal, összekötő vonalak nélkül.",
+      "target": "nauč ctverec :s [ opakuj 4 [ dopředu :s vpravo 90 ] ] opakuj 5 [ ctverec 20 pero nahoru vpravo 90 dopředu 30 vlevo 90 pero dolů ]",
+      "max": 12,
+      "hint": "Minden négyzet után a teknősnek úgy kell jobbra mennie, hogy ne rajzoljon, aztán újra fel kell fordulnia.",
+      "why": "A teknős állapotot tart: helyzetet, irányt és tollat. Az áthelyezés után vissza kell állítania az állapotot (balra 90, tollat le), különben a következő négyzet elfordulna vagy láthatatlan lenne. A 30-as lépés a 20-as oldal plusz a 10-es hézag."
+    }
+  ],
+  "debrief": "A ciklus utasításokat spórol, a beágyazott ciklus megsokszorozza őket, a paraméteres eljárás pedig egyetlen alakzatból egész családot csinál. A teknős közben folyamatosan tartja az állapotát: hol van, merre néz, és rajzol-e. Ugyanúgy, mint a programod változói."
+}

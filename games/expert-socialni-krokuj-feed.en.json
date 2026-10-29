@@ -1,0 +1,163 @@
+{
+  "type": "trace",
+  "title": "Step through the feed",
+  "instruction": "Three bits of pseudocode that decide your feed. Step through them line by line and watch the numbers: one mistake in a sum changes the whole feed.",
+  "rounds": [
+    {
+      "code": [
+        "score = {dogs: 35, football: 22, minecraft: 20}",
+        "for each video in the queue:",
+        "    if watched to the end:",
+        "        score[topic] = score[topic] + 10",
+        "    else if “Not interested”:",
+        "        score[topic] = score[topic] - 15",
+        "    next topic = topic with the highest score"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "a Minecraft video, watched to the end",
+          "q": "What does Minecraft have now?",
+          "options": [
+            "20",
+            "30",
+            "35"
+          ],
+          "answer": 1,
+          "why": "Watching to the end adds 10: 20 + 10 = 30."
+        },
+        {
+          "line": 6,
+          "input": "dogs 35, football 22, minecraft 30",
+          "q": "Which topic comes next?",
+          "options": [
+            "dogs",
+            "minecraft",
+            "football"
+          ],
+          "answer": 0,
+          "why": "Dogs still have the most: 35 is more than 30."
+        },
+        {
+          "line": 5,
+          "input": "a dog video, a tap on “Not interested”",
+          "q": "What do dogs have now?",
+          "options": [
+            "20",
+            "25",
+            "35"
+          ],
+          "answer": 0,
+          "why": "“Not interested” takes away 15: 35 − 15 = 20. One tap wipes out almost half the score."
+        },
+        {
+          "line": 6,
+          "input": "dogs 20, football 22, minecraft 30",
+          "q": "Which topic comes next?",
+          "options": [
+            "dogs",
+            "football",
+            "minecraft"
+          ],
+          "answer": 2,
+          "why": "Minecraft has 30, football 22, dogs only 20. One tap and one full watch turned the order around."
+        }
+      ]
+    },
+    {
+      "code": [
+        "count = 0",
+        "for each video in the queue:",
+        "    count = count + 1",
+        "    if count is divisible by 5:",
+        "        next topic = random topic you haven’t had for a long time",
+        "    else:",
+        "        next topic = topic with the highest score"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "count = 4",
+          "q": "Will the next video be an exploring one?",
+          "options": [
+            "yes",
+            "no"
+          ],
+          "answer": 1,
+          "why": "4 is not divisible by 5, so line 4 doesn’t apply and it goes to line 7: the winning topic."
+        },
+        {
+          "line": 4,
+          "input": "the first 20 videos",
+          "q": "How many of the first 20 videos are exploring ones?",
+          "options": [
+            "2",
+            "4",
+            "5"
+          ],
+          "answer": 1,
+          "why": "The numbers divisible by 5 are 5, 10, 15 and 20. Four videos out of twenty, so 20 % of the feed, are exploring."
+        },
+        {
+          "line": 4,
+          "input": "you watch an exploring cooking video to the end",
+          "q": "Why is line 5 important for the feed?",
+          "options": [
+            "It slows the app down",
+            "Without it, the scores of the other topics would never change",
+            "It saves data"
+          ],
+          "answer": 1,
+          "why": "The network only learns from the videos it has shown you. Without exploring, no new data about other topics appears and the bubble closes."
+        }
+      ]
+    },
+    {
+      "code": [
+        "for each video in the queue:",
+        "    show video",
+        "    if fewer than 3 videos are left in the queue:",
+        "        fill the queue with 10 new videos"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "2 videos are left in the queue",
+          "q": "What happens?",
+          "options": [
+            "The loop ends",
+            "The queue is refilled and the loop carries on",
+            "The app asks whether you want to carry on"
+          ],
+          "answer": 1,
+          "why": "Line 4 adds new videos before the queue runs out. The queue is never empty."
+        },
+        {
+          "line": 0,
+          "input": "you have been watching for 2 hours already",
+          "q": "When does this loop end?",
+          "options": [
+            "When the videos run out",
+            "Never, until you close the app",
+            "After 10 videos"
+          ],
+          "answer": 1,
+          "why": "There is no stopping condition in the code. The end is only your decision."
+        },
+        {
+          "line": 1,
+          "input": "you want to add the line “if time > 30 minutes: end the loop”",
+          "q": "Where do you put it so that it works best?",
+          "options": [
+            "At the start of the loop body, before line 2",
+            "After the loop, below line 4",
+            "At the very beginning, before line 1"
+          ],
+          "answer": 0,
+          "why": "The condition must be inside the loop so that it is checked before every video. After the loop it would never run, because the loop never ends. Before the loop it would only be checked once."
+        }
+      ]
+    }
+  ],
+  "debrief": "A feed is a few lines: scores, a loop and picking the maximum. Small signals, like one “Not interested”, can turn the order around. The exploring line stops the bubble from closing, and the missing stopping condition turns scrolling into a loop without end."
+}

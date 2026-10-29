@@ -70,8 +70,21 @@ const svety = mise.filter(m => m.id.startsWith('svet-')).map(m => ({
   id: m.id.slice(5), block: bloky[m.id] ? m.id : null,
   name: vsude(m.id, 'title', t => t.split(': ')[0].trim()), mission: kratce(m),
 }));
-const projekt = mise.find(m => m.difficulty === 'Advanced');
+const projekt = mise.find(m => m.group === 'project') || mise.find(m => m.difficulty === 'Advanced' && m.group !== 'expedition');
 
-const out = { langs: LANGS, chapters: kapitoly, worlds: svety, project: projekt ? kratce(projekt) : null };
+// pro nadané: expedice (mise skupiny expedition, směr = kapitola nebo svět), jejich základna a rozcestník
+// v knize, stránka o bezpečí v komunitách a kolik je u jader výzev a her navíc
+const blok = id => (bloky[id] ? id : null);
+const expedice = mise.filter(m => m.group === 'expedition').map(m => {
+  const d = m.id.replace(/^expedice-/, '');
+  const kap = kapitoly.find(k => k.id.replace(/^ch\d+-/, '') === d), svet = svety.find(w => w.id === d);
+  return { ...kratce(m), dir: kap ? kap.title : svet ? svet.name : '', world: !!svet,
+    block: blok(m.id), guide: blok(`${m.id}-rozcestnik`), branches: Object.values(m.branches || {}).map(b => b.label) };
+});
+const kolik = f => poradi.filter(id => f(bloky[id][ORIG], id)).length;
+const nadani = expedice.length ? { expeditions: expedice, safety: blok('bezpecne-v-komunitach'), hub: blok('expedice'),
+  challenges: kolik(o => o.type === 'challenge'), games: kolik((o, id) => o.type === 'game' && id.includes('expert-')) } : null;
+
+const out = { langs: LANGS, chapters: kapitoly, worlds: svety, project: projekt ? kratce(projekt) : null, gifted: nadani };
 fs.writeFileSync(path.join(C, 'ucitel.json'), JSON.stringify(out));
-console.log(`→ content/ucitel.json  ${kapitoly.length} kapitol, ${kapitoly.reduce((s, k) => s + k.cores.length, 0)} jader, ${svety.length} světů${projekt ? ', projekt ' + projekt.id : ''}, ${(fs.statSync(path.join(C, 'ucitel.json')).size / 1024).toFixed(0)} kB`);
+console.log(`→ content/ucitel.json  ${kapitoly.length} kapitol, ${kapitoly.reduce((s, k) => s + k.cores.length, 0)} jader, ${svety.length} světů${projekt ? ', projekt ' + projekt.id : ''}${nadani ? `, ${expedice.length} expedic, ${nadani.challenges} výzev a ${nadani.games} her navíc` : ''}, ${(fs.statSync(path.join(C, 'ucitel.json')).size / 1024).toFixed(0)} kB`);

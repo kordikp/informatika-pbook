@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Tiles from procedures",
+  "instruction": "Draw graphics for a platformer with the turtle. The turtle starts in the middle, faces up and has its pen down. Every command counts, including “repeat”, “learn” and calling a procedure. You get a star for a program shorter than the limit.",
+  "levels": [
+    {
+      "goal": "Brick wall: four 20 × 20 squares side by side in one row.",
+      "target": "opakuj 4 [ opakuj 4 [ dopředu 20 vpravo 90 ] vpravo 90 dopředu 20 vlevo 90 ]",
+      "max": 8,
+      "hint": "After drawing a square, the turtle is where it started and faces the same way. Where should the next brick start from?",
+      "why": "The inner repeat draws a brick, the outer one repeats it. Between bricks, the turtle moves 20 to the right and turns back up. Without returning to the same direction, the wall would curl into a circle."
+    },
+    {
+      "goal": "A row of five spikes: equilateral triangles with side 20, standing side by side on one base with their points facing up.",
+      "target": "vpravo 90 opakuj 5 [ opakuj 3 [ dopředu 20 vlevo 120 ] dopředu 20 ]",
+      "max": 7,
+      "hint": "An equilateral triangle has interior angles of 60°. But the turtle doesn’t turn by the interior angle. How much must it turn so that after three sides it is back in its original direction?",
+      "why": "The turtle turns by the exterior angle 180° − 60° = 120°. Over the whole shape it turns 3 × 120° = 360°, so once all the way round. Turning by 60° would make half a hexagon instead of a triangle. After the triangle, the turtle stands at the start, and forward 20 moves it along the base it has already drawn to the next spike."
+    },
+    {
+      "goal": "A trap with two sizes of spikes: a big spike with side 30 alternates with a small one with side 15, three pairs in total in one row.",
+      "target": "nauč osten :a [ opakuj 3 [ dopředu :a vlevo 120 ] dopředu :a ] vpravo 90 opakuj 3 [ osten 30 osten 15 ]",
+      "max": 10,
+      "hint": "Write a procedure for one spike in which the side length is the parameter :a. Then call it with different numbers.",
+      "why": "A procedure with a parameter is one recipe for all sizes. Without it, the same code would be written twice and fixing the angle would have to be done in both copies. This is how tiles are made in engines: one rule, different values."
+    },
+    {
+      "goal": "A 3 × 3 tile map: nine 20 × 20 squares in three rows on top of each other, 60 × 60 in total.",
+      "target": "nauč ctverec :a [ opakuj 4 [ dopředu :a vpravo 90 ] ] nauč rada [ opakuj 3 [ ctverec 20 vpravo 90 dopředu 20 vlevo 90 ] vlevo 90 dopředu 60 vpravo 90 ] opakuj 3 [ rada dopředu 20 ]",
+      "max": 18,
+      "hint": "Break the task down: a tile, a row of tiles, a map made of rows. After each row, the turtle must stand where the row started and face up. Only then can the rows be stacked on top of each other.",
+      "why": "A procedure that returns the turtle to its starting position and direction can safely be built into bigger wholes. Going back along the bottom edge that is already drawn and moving along the left edge add no extra line. A shorter solution exists: the whole map is four horizontal and four vertical lines, and whoever finds it gets a star."
+    },
+    {
+      "goal": "Bonus star: a five-pointed star drawn in one stroke, side 60.",
+      "target": "opakuj 5 [ dopředu 60 vpravo 144 ]",
+      "max": 4,
+      "hint": "For the triangle, the turtle turned 360° in total. How many times does it turn all the way round when it traces a star? Try drawing one with a pencil in one stroke and watch how many times you go round the centre.",
+      "why": "When drawing the star, the turtle goes round the centre twice, so in total it turns 2 × 360° = 720°. Five turns give 720° / 5 = 144°. The rule “the total turn is a multiple of 360°” will give you the angle for any closed shape, from a coin to a star."
+    }
+  ],
+  "debrief": "Game graphics are built from small recipes. Repeat saves typing, a procedure with a parameter saves copies, and a procedure that returns the turtle to its starting position can be built into bigger wholes. You don’t guess angles: the total turn of a closed shape is always a whole multiple of 360°."
+}

@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Dlaždice z procedur",
+  "instruction": "Nakresli želvou grafiku pro plošinovku. Želva začíná uprostřed, dívá se nahoru a má pero dole. Počítá se každý příkaz včetně „opakuj“, „nauč“ a volání procedury. Hvězdu získáš za program kratší, než je limit.",
+  "levels": [
+    {
+      "goal": "Cihlová zeď: čtyři čtverce 20 × 20 vedle sebe v jedné řadě.",
+      "target": "opakuj 4 [ opakuj 4 [ dopředu 20 vpravo 90 ] vpravo 90 dopředu 20 vlevo 90 ]",
+      "max": 8,
+      "hint": "Po nakreslení čtverce je želva tam, kde začala, a dívá se stejným směrem. Odkud má začít další cihla?",
+      "why": "Vnitřní opakování nakreslí cihlu, vnější ji zopakuje. Mezi cihlami se želva posune o 20 vpravo a natočí zpátky nahoru. Bez návratu do stejného směru by se zeď stočila do kruhu."
+    },
+    {
+      "goal": "Řada pěti ostnů: rovnostranné trojúhelníky se stranou 20, které stojí vedle sebe na jedné základně a míří špičkou nahoru.",
+      "target": "vpravo 90 opakuj 5 [ opakuj 3 [ dopředu 20 vlevo 120 ] dopředu 20 ]",
+      "max": 7,
+      "hint": "Rovnostranný trojúhelník má vnitřní úhly 60°. Želva se ale neotáčí o vnitřní úhel. O kolik se musí otočit, aby se po třech stranách vrátila do původního směru?",
+      "why": "Želva se otáčí o vnější úhel 180° − 60° = 120°. Za celý obrazec se otočí o 3 × 120° = 360°, tedy jednou dokola. S otočením o 60° by místo trojúhelníku vznikla půlka šestiúhelníku. Po trojúhelníku stojí želva na začátku a dopředu 20 ji posune po už nakreslené základně k dalšímu ostnu."
+    },
+    {
+      "goal": "Past se dvěma velikostmi ostnů: střídá se velký osten se stranou 30 a malý se stranou 15, celkem tři dvojice v jedné řadě.",
+      "target": "nauč osten :a [ opakuj 3 [ dopředu :a vlevo 120 ] dopředu :a ] vpravo 90 opakuj 3 [ osten 30 osten 15 ]",
+      "max": 10,
+      "hint": "Napiš proceduru pro jeden osten, ve které je délka strany parametr :a. Pak ji volej s různými čísly.",
+      "why": "Procedura s parametrem je jeden recept pro všechny velikosti. Bez ní by se stejný kód psal dvakrát a oprava úhlu by se musela udělat v obou kopiích. Takhle vznikají dlaždice v enginech: jeden předpis, různé hodnoty."
+    },
+    {
+      "goal": "Dlaždicová mapa 3 × 3: devět čtverců 20 × 20 ve třech řadách nad sebou, celkem 60 × 60.",
+      "target": "nauč ctverec :a [ opakuj 4 [ dopředu :a vpravo 90 ] ] nauč rada [ opakuj 3 [ ctverec 20 vpravo 90 dopředu 20 vlevo 90 ] vlevo 90 dopředu 60 vpravo 90 ] opakuj 3 [ rada dopředu 20 ]",
+      "max": 18,
+      "hint": "Rozlož úlohu: dlaždice, řada dlaždic, mapa z řad. Po každé řadě musí želva stát tam, kde řada začala, a dívat se nahoru. Jen tak jde řady skládat nad sebe.",
+      "why": "Procedura, která vrací želvu do výchozí polohy a směru, se dá bezpečně skládat do větších celků. Návrat po už nakreslené spodní hraně a posun po levé hraně nepřidají žádnou čáru navíc. Kratší řešení existuje: celá mapa je čtyři vodorovné a čtyři svislé čáry, a kdo ho najde, získá hvězdu."
+    },
+    {
+      "goal": "Bonusová hvězda: pěticípá hvězda nakreslená jedním tahem, strana 60.",
+      "target": "opakuj 5 [ dopředu 60 vpravo 144 ]",
+      "max": 4,
+      "hint": "U trojúhelníku se želva otočila celkem o 360°. Kolikrát se otočí dokola, když obkreslí hvězdu? Zkus si ji nakreslit tužkou jedním tahem a sleduj, kolikrát obejdeš střed.",
+      "why": "Při kreslení hvězdy obejde želva střed dvakrát, takže se celkem otočí o 2 × 360° = 720°. Pět otočení dá 720° / 5 = 144°. Pravidlo „celkové otočení je násobek 360°“ ti spočítá úhel pro jakýkoli uzavřený obrazec, od mince po hvězdu."
+    }
+  ],
+  "debrief": "Herní grafika se skládá z malých receptů. Opakování ušetří psaní, procedura s parametrem ušetří kopie a procedura, která vrátí želvu do výchozí polohy, se dá skládat do větších celků. Úhly nehádáš: celkové otočení uzavřeného obrazce je vždy celý násobek 360°."
+}

@@ -1,0 +1,36 @@
+{
+  "type": "turtle",
+  "title": "Lépcső a rajzolórobotnak",
+  "instruction": "A rajzolórobot a papíron jár, és filccel vonalat húz maga után. Rajzold meg a célt a lehető legrövidebb programmal. Minden parancs számít, az ismételd és a tanuld is. Ismétlés nélkül nem férsz bele a csillag határába: keresd meg az ismétlődő mintát, és csomagold ciklusba.",
+  "levels": [
+    {
+      "goal": "Lépcső felfelé: négy fok, mindegyik 30 magas és 30 széles.",
+      "target": "opakuj 4 [ dopředu 30 vpravo 90 dopředu 30 vlevo 90 ]",
+      "max": 5,
+      "hint": "Rajzolj meg egy fokot: fel, fordulás, egyenesen, visszafordulás. Hányszor ismétlődik ez a négy parancs?",
+      "why": "A minta: előre, jobbra, előre, balra. Ismételd 4×. Ciklus nélkül 16 parancs lenne, ciklussal 5."
+    },
+    {
+      "goal": "Fogazott várfal: négy fog, 20 magas és 20 széles, mindegyik után 20-as rés.",
+      "target": "opakuj 4 [ dopředu 20 vpravo 90 dopředu 20 vpravo 90 dopředu 20 vlevo 90 dopředu 20 vlevo 90 ]",
+      "max": 9,
+      "hint": "Egy fog és egy rés négy vonal és négy fordulás. A rés után a robotnak ugyanarra kell néznie, mint az elején.",
+      "why": "A minta hosszabb, nyolc parancs, de még mindig csak egy. A ciklus csak akkor működik, ha a robot ugyanabba az irányba fordulva végez, mint ahogy kezdett: a kétszer jobbra és kétszer balra kioltja egymást. Ciklus nélkül 32 parancs lenne."
+    },
+    {
+      "goal": "Piramis: három fok fel, és rögtön három le, a fok 20 magas és 20 széles.",
+      "target": "opakuj 2 [ opakuj 3 [ dopředu 20 vpravo 90 dopředu 20 vlevo 90 ] vpravo 90 ]",
+      "max": 11,
+      "hint": "Egy ciklus nem elég. Írj egy ciklust felfelé, aztán egy fordulást, aztán egy ciklust lefelé.",
+      "why": "A hosszabb programok több egymás utáni ciklusból állnak: fel, fordulás, le. És most a legjobb: a lefelé vezető út ugyanaz a minta, mint a felfelé vezető, csak 90°-kal elforgatva. Aki ezt észreveszi, a ciklust egy másik ciklusba csomagolja, és belefér 7 parancsba."
+    },
+    {
+      "goal": "Növekvő lépcső: két 10 × 10-es, két 20 × 20-as és két 30 × 30-as fok, egymás után.",
+      "target": "nauč schody :s [ opakuj 2 [ dopředu :s vpravo 90 dopředu :s vlevo 90 ] ] schody 10 schody 20 schody 30",
+      "max": 9,
+      "hint": "A három ciklus csak egy számban különbözik. Tanítsd meg a robotnak a lépcső nevű új parancsot, és a fok méretét add át neki :s paraméterként.",
+      "why": "Az eljárás egy változós minta: ugyanazok a parancsok, mindig más számmal. Három egymás utáni ciklus 15 parancs, az eljárás és három hívás csak 9. A robotprogramok éppen ilyen kis, névvel ellátott darabokból állnak."
+    }
+  ],
+  "debrief": "A robot nem találja ki az utat. Te igen: megtalálod a mintát, és ciklusba csomagolod. Minél rövidebb a program, annál kevesebb helyen lehet hiba. Ezért használják a MakeCode-ban olyan gyakran az ismételd blokkot. A Logo nyelv első teknőse pedig tényleg robot volt: a padlón járt, és tollal rajzolt a papírra."
+}

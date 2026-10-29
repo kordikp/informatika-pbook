@@ -1,0 +1,138 @@
+{
+  "type": "trace",
+  "title": "Zrážka dvoch obdĺžnikov",
+  "instruction": "Krokuj funkciu, ktorá zisťuje zrážku dvoch obdĺžnikov (hitboxov). Obdĺžnik má ľavý horný roh x, y, šírku a výšku. Os y rastie nadol, ako na obrazovke. Pozor na znak < a na čísla, ktoré vychádzajú presne na hranu.",
+  "rounds": [
+    {
+      "code": [
+        "funkcia zrazka(a, b):",
+        "    ak a.x + a.sirka < b.x: vráť nie",
+        "    ak b.x + b.sirka < a.x: vráť nie",
+        "    ak a.y + a.vyska < b.y: vráť nie",
+        "    ak b.y + b.vyska < a.y: vráť nie",
+        "    vráť áno"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "a = hráč: x 10, y 0, šírka 20, výška 20. b = minca: x 30, y 5, šírka 10, výška 10.",
+          "q": "Čo urobí riadok 2?",
+          "options": [
+            "vráti nie, pretože hráč končí presne tam, kde minca začína",
+            "nevráti nič a pokračuje, pretože 30 < 30 neplatí",
+            "vráti áno"
+          ],
+          "answer": 1,
+          "why": "Pravý okraj hráča je 10 + 20 = 30 a minca začína na x = 30. Otázka znie „je 30 menšie ako 30?“ a odpoveď je nie. Podmienka neplatí, takže riadok nič nevráti a funkcia ide ďalej."
+        },
+        {
+          "line": 5,
+          "input": "Rovnaký hráč a rovnaká minca ako v minulom kroku.",
+          "q": "Čo funkcia nakoniec vráti?",
+          "options": [
+            "áno: dotyk hranou sa tu počíta ako zrážka",
+            "nie: obdĺžniky sa len dotýkajú",
+            "závisí od toho, ktorý obdĺžnik je a a ktorý b"
+          ],
+          "answer": 0,
+          "why": "Riadky 3 až 5 tiež neplatia: 40 < 10 nie, 20 < 5 nie, 15 < 0 nie. Žiadny riadok nevrátil nie, takže funkcia vráti áno. So znakom < je dotyk hranou zásah. Keby namiesto neho bol <=, dotyk by zásahom nebol. Jeden znak rozhoduje, či zoberieš mincu, o ktorú sa len obtrieš. Poradie a, b nehrá rolu, funkcia je súmerná."
+        },
+        {
+          "line": 3,
+          "input": "a = hráč: x 0, y 0, šírka 16, výška 16. b = bodce: x 4, y 40, šírka 8, výška 8. Bodce sú pod hráčom.",
+          "q": "Na ktorom riadku funkcia skončí a čo vráti?",
+          "options": [
+            "na riadku 2, nie",
+            "na riadku 4, nie",
+            "na riadku 5, nie",
+            "na riadku 6, áno"
+          ],
+          "answer": 1,
+          "why": "V osi x sa prekrývajú: 16 < 4 neplatí a 12 < 0 tiež nie. Riadok 4 sa pýta „končí hráč nad bodcami?“: 0 + 16 = 16 < 40, áno. Funkcia vráti nie. Zrážka nastane, len keď sa obdĺžniky prekrývajú v oboch osiach naraz."
+        }
+      ]
+    },
+    {
+      "code": [
+        "funkcia zrazka(a, b):",
+        "    ak a.x + a.sirka < b.x: vráť nie",
+        "    ak b.x + b.sirka < a.x: vráť nie",
+        "    vráť áno"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Ondra funkciu „zrýchlil“ a riadky pre os y zmazal. Hráč: x 100, y 0, šírka 16, výška 16. Minca: x 104, y 200, šírka 8, výška 8.",
+          "q": "Čo vráti funkcia?",
+          "options": [
+            "áno, hráč zoberie mincu, ktorá je o 200 px nižšie",
+            "nie, minca je ďaleko",
+            "funkcia skončí chybou"
+          ],
+          "answer": 0,
+          "why": "V osi x sa prekrývajú (116 < 104 nie, 112 < 100 nie) a na os y sa už nikto nepýta. Hráč teraz zbiera všetky mince vo svojom stĺpci, aj tie na druhom konci obrazovky."
+        },
+        {
+          "line": 3,
+          "input": "Ondra chce test, ktorý s jeho verziou zlyhá a so správnou verziou prejde.",
+          "q": "Ktorý test chybu zachytí?",
+          "options": [
+            "hráč a minca na rovnakom mieste, čakám áno",
+            "minca ďaleko vpravo v rovnakej výške, čakám nie",
+            "minca priamo nad hráčom o 100 px vyššie, čakám nie",
+            "minca sa dotýka hráča hranou zľava, čakám áno"
+          ],
+          "answer": 2,
+          "why": "Chybu odhalí len prípad, keď sa obdĺžniky prekrývajú v osi x, ale nie v osi y. Ostatné tri testy prejdú s oboma verziami, takže o chybe nič nepovedia. Dobrý test je taký, ktorý vie rozlíšiť pokazený kód od správneho."
+        }
+      ]
+    },
+    {
+      "code": [
+        "x = 0",
+        "opakuj, kým x < 100:",
+        "    x = x + rychlost",
+        "    ak zrazka(loptička, pálka): odraz a koniec"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Loptička je široká 8 px a letí doprava. Pálka zaberá x od 50 do 60. Zrážka sa počíta ako v prvom kole. Rýchlosť je 35 px za snímok.",
+          "q": "Odrazí sa loptička?",
+          "options": [
+            "áno, pri x = 35",
+            "áno, pri x = 70",
+            "nie, preletí"
+          ],
+          "answer": 2,
+          "why": "Polohy po snímkach sú 35 a 70. Pri x = 35 končí loptička na 43, to je pred pálkou. Pri x = 70 je už za ňou, pretože pálka končí na 60. Loptička sa s pálkou prekrýva, len keď jej ľavý okraj leží od 42 do 60, a tam žiadna poloha nepadla."
+        },
+        {
+          "line": 3,
+          "input": "Rovnaká pálka, ale rýchlosť 45 px za snímok, teda ešte rýchlejšia.",
+          "q": "Odrazí sa teraz?",
+          "options": [
+            "nie, rýchlejšia loptička preletí o to skôr",
+            "áno, pri x = 45",
+            "áno, pri x = 90"
+          ],
+          "answer": 1,
+          "why": "Poloha 45 leží v úseku od 42 do 60, takže hra zrážku zistí. Rýchlejšia loptička sa odrazí a pomalšia preletela. Tunelovanie nezávisí len od rýchlosti, ale od toho, kam padnú polohy. Preto nestačí otestovať jednu rýchlosť. Istotu dáva až krok najviac 18 px, teda šírka pálky plus šírka loptičky."
+        },
+        {
+          "line": 2,
+          "input": "Rovnaká pálka, rýchlosť 30 px za snímok.",
+          "q": "Kedy a ako hra zrážku zistí?",
+          "options": [
+            "pri x = 30, loptička sa odrazí pred pálkou",
+            "pri x = 60, keď je už loptička celá za pálkou a len sa jej dotýka ľavou hranou",
+            "vôbec, loptička preletí"
+          ],
+          "answer": 1,
+          "why": "Pri x = 30 končí loptička na 38, to je pred pálkou. Pri x = 60 sa jej ľavá hrana dotýka pravej hrany pálky, a keďže sa dotyk počíta, hra hlási zásah. Lenže loptička už pálkou prešla. Odraz ju pošle späť cez pálku. Hra zrážku našla, ale neskoro a z druhej strany. Preto skutočné enginy hľadajú okamih, keď zrážka začala, a nie len to, že nastala."
+        }
+      ]
+    }
+  ],
+  "debrief": "Zrážka dvoch obdĺžnikov sú štyri otázky „končí jeden skôr, ako druhý začne?“, dve pre os x a dve pre os y. Znak < alebo <= rozhoduje o dotyku hranou. Chýbajúca os prejde všetkými testami okrem jedného, ktorý musíš vymyslieť zámerne. A kontrola raz za snímok vidí len polohy, nie cestu medzi nimi. Rýchla loptička preto môže preletieť alebo sa odraziť z druhej strany. Skutočné hry to riešia medzikrokmi alebo lúčom medzi starou a novou polohou."
+}

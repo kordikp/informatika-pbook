@@ -1,0 +1,78 @@
+{
+  "type": "estimate",
+  "title": "Where the ping gets lost",
+  "instruction": "Estimate the result. Light travels at 300,000 km/s in a vacuum and about 200,000 km/s in glass fibre. Ping is the time there and back.",
+  "items": [
+    {
+      "q": "How many kilometres does a signal travel in fibre in 1 millisecond?",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "answer": 200,
+      "tolerance": 10,
+      "unit": "km",
+      "why": "200,000 km a second is 200 km per thousandth of a second. So every 100 km of cable adds 1 ms to the ping: half a millisecond there and half back."
+    },
+    {
+      "q": "The smallest possible ping from Prague to New York (about 6,600 km), if the fibre ran straight.",
+      "min": 0,
+      "max": 300,
+      "step": 2,
+      "answer": 66,
+      "tolerance": 6,
+      "unit": "ms",
+      "why": "There and back is 13,200 km, and 13,200 ÷ 200,000 = 0.066 s. The real ping is usually around 100 ms, because the cable doesn’t run straight and routers hold the packet for a moment."
+    },
+    {
+      "q": "Internet through a geostationary satellite at a height of 36,000 km. How much ping does the journey alone add? The signal goes up and down on the way there, then up and down on the way back.",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "answer": 480,
+      "tolerance": 30,
+      "unit": "ms",
+      "why": "4 × 36,000 = 144,000 km at 300,000 km/s is 0.48 s. For a fast shooter that’s hopeless, even if the satellite were perfect in every other way."
+    },
+    {
+      "q": "A satellite in low orbit at a height of 550 km. How many milliseconds does the journey up and down, there and back, add?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 7,
+      "tolerance": 1,
+      "unit": "ms",
+      "why": "4 × 550 = 2,200 km, divided by 300,000 km/s is about 0.007 s. That’s why networks of low satellites have a ping similar to cable. But there have to be thousands of them in orbit, because each one is above you for only a few minutes."
+    },
+    {
+      "q": "A game runs at 60 frames per second. How many milliseconds does one frame have?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 17,
+      "tolerance": 1,
+      "unit": "ms",
+      "why": "1,000 ms ÷ 60 ≈ 16.7 ms. In that time the game has to calculate the physics and draw the whole picture."
+    },
+    {
+      "q": "You have a ping of 100 ms and the game runs at 60 frames per second. How many frames later does the server find out about your shot?",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "answer": 3,
+      "tolerance": 0,
+      "unit": "frames",
+      "why": "Only half the ping leads to the server, so 50 ms. 50 ÷ 16.7 = 3 frames. That’s why games predict movement, and the server works out afterwards where the opponent was standing at the moment of the shot."
+    },
+    {
+      "q": "A 4K stream needs 25 Mb/s (megabits per second). How many MB (megabytes) do you download in a minute? 1 byte = 8 bits.",
+      "min": 0,
+      "max": 1000,
+      "step": 5,
+      "answer": 190,
+      "tolerance": 10,
+      "unit": "MB",
+      "why": "25 ÷ 8 = 3.125 MB/s, times 60 is 187.5 MB. Speed in Mb/s and delay in ms are two different things: a wider motorway doesn’t make the trip to Australia shorter."
+    }
+  ],
+  "debrief": "Delay has a hard lower limit: the speed of light times the length of the cable. On top of that, routers, queues and the server add time. A faster connection gives you more data per second, but it doesn’t shorten the ping. Only a server closer to you does that."
+}

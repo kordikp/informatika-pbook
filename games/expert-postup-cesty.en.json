@@ -1,0 +1,322 @@
+{
+  "type": "route",
+  "title": "The fastest way across town",
+  "instruction": "Build a route from start to finish with the smallest total of minutes. Watch out for a tempting short first edge: the shortest step now may not lead to the shortest route.",
+  "levels": [
+    {
+      "story": "You’re walking from home to training. It’s only 2 minutes to the corner shop, so you head there. Is that a good idea?",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Home",
+          "x": 3,
+          "y": 47
+        },
+        {
+          "id": "S",
+          "label": "Corner shop",
+          "x": 31,
+          "y": 0
+        },
+        {
+          "id": "P",
+          "label": "Park",
+          "x": 30,
+          "y": 100
+        },
+        {
+          "id": "M",
+          "label": "Bridge",
+          "x": 66,
+          "y": 98
+        },
+        {
+          "id": "T",
+          "label": "Training",
+          "x": 97,
+          "y": 48
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "S",
+          2
+        ],
+        [
+          "S",
+          "T",
+          12
+        ],
+        [
+          "D",
+          "P",
+          5
+        ],
+        [
+          "P",
+          "M",
+          3
+        ],
+        [
+          "M",
+          "T",
+          3
+        ],
+        [
+          "S",
+          "P",
+          4
+        ]
+      ],
+      "from": "D",
+      "to": "T",
+      "metric": "min",
+      "why": "The shortest is Home → Park → Bridge → Training, 11 minutes. Anyone who always picks the nearest place goes via the corner shop and arrives in 12 or 14 minutes. A greedy method like that is quick to think up, but it may not give the best result."
+    },
+    {
+      "story": "You and Ema are going from school to the zoo. Ema wants as few stops as possible. You want as few minutes as possible. Find the route with the smallest total.",
+      "nodes": [
+        {
+          "id": "A",
+          "label": "School",
+          "x": 3,
+          "y": 51
+        },
+        {
+          "id": "B",
+          "label": "Library",
+          "x": 20,
+          "y": 1
+        },
+        {
+          "id": "C",
+          "label": "Square",
+          "x": 22,
+          "y": 48
+        },
+        {
+          "id": "D",
+          "label": "Cinema",
+          "x": 25,
+          "y": 96
+        },
+        {
+          "id": "E",
+          "label": "Station",
+          "x": 55,
+          "y": 20
+        },
+        {
+          "id": "F",
+          "label": "Pool",
+          "x": 53,
+          "y": 80
+        },
+        {
+          "id": "G",
+          "label": "Stadium",
+          "x": 83,
+          "y": 4
+        },
+        {
+          "id": "H",
+          "label": "Zoo",
+          "x": 99,
+          "y": 58
+        }
+      ],
+      "edges": [
+        [
+          "A",
+          "B",
+          4
+        ],
+        [
+          "A",
+          "C",
+          2
+        ],
+        [
+          "A",
+          "D",
+          6
+        ],
+        [
+          "B",
+          "C",
+          3
+        ],
+        [
+          "B",
+          "E",
+          5
+        ],
+        [
+          "C",
+          "E",
+          8
+        ],
+        [
+          "C",
+          "F",
+          4
+        ],
+        [
+          "D",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "G",
+          3
+        ],
+        [
+          "F",
+          "H",
+          11
+        ],
+        [
+          "G",
+          "H",
+          4
+        ],
+        [
+          "E",
+          "H",
+          8
+        ]
+      ],
+      "from": "A",
+      "to": "H",
+      "metric": "min",
+      "why": "The fastest is School → Square → Pool → Station → Stadium → Zoo, 15 minutes. It has the most stops, and still it wins. The route Pool → Zoo looks direct, but takes 11 minutes. Phone navigation works exactly like this: from the start it remembers the shortest known route to every place (Dijkstra’s algorithm)."
+    },
+    {
+      "story": "The footbridge between the pool and the station is closed for repairs. The model has changed by one edge. Will the whole route change?",
+      "nodes": [
+        {
+          "id": "A",
+          "label": "School",
+          "x": 1,
+          "y": 48
+        },
+        {
+          "id": "B",
+          "label": "Library",
+          "x": 21,
+          "y": 1
+        },
+        {
+          "id": "C",
+          "label": "Square",
+          "x": 30,
+          "y": 52
+        },
+        {
+          "id": "D",
+          "label": "Cinema",
+          "x": 18,
+          "y": 100
+        },
+        {
+          "id": "E",
+          "label": "Station",
+          "x": 57,
+          "y": 24
+        },
+        {
+          "id": "F",
+          "label": "Pool",
+          "x": 57,
+          "y": 80
+        },
+        {
+          "id": "G",
+          "label": "Stadium",
+          "x": 88,
+          "y": 0
+        },
+        {
+          "id": "H",
+          "label": "Zoo",
+          "x": 98,
+          "y": 57
+        }
+      ],
+      "edges": [
+        [
+          "A",
+          "B",
+          4
+        ],
+        [
+          "A",
+          "C",
+          2
+        ],
+        [
+          "A",
+          "D",
+          6
+        ],
+        [
+          "B",
+          "C",
+          3
+        ],
+        [
+          "B",
+          "E",
+          5
+        ],
+        [
+          "C",
+          "E",
+          8
+        ],
+        [
+          "C",
+          "F",
+          4
+        ],
+        [
+          "D",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "G",
+          3
+        ],
+        [
+          "F",
+          "H",
+          11
+        ],
+        [
+          "G",
+          "H",
+          4
+        ],
+        [
+          "E",
+          "H",
+          8
+        ]
+      ],
+      "from": "A",
+      "to": "H",
+      "metric": "min",
+      "why": "Now the fastest route goes a completely different way: School → Library → Station → Stadium → Zoo, 16 minutes. One closed edge changed almost everything. That’s why navigation recalculates the whole route whenever the model changes, and doesn’t rely on the old result."
+    }
+  ],
+  "debrief": "A map of nodes and edges is a model: it leaves out houses, trees and colours and keeps only what is needed to work out the route. An algorithm then runs on this model and checks all the possibilities cleverly, not blindly. Greedily picking the nearest neighbour already leads you the wrong way in the first level."
+}

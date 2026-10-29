@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "The turtle paints: stars, flowers and rosettes",
+  "instruction": "Draw the target picture with the shortest program you can. A program within the command limit earns you a star.",
+  "levels": [
+    {
+      "goal": "A five-pointed star in one stroke, side 100",
+      "target": "opakuj 5 [dopředu 100 vpravo 144]",
+      "max": 3,
+      "hint": "When drawing a star, the turtle goes round the centre twice. How many degrees does it turn in total, and how many times does it turn?",
+      "why": "Over the whole star, the turtle turns 2 × 360 = 720°. Five equal turns: 720 : 5 = 144°."
+    },
+    {
+      "goal": "A sharp nine-pointed star in one stroke: the turtle circles the centre four times",
+      "target": "opakuj 9 [dopředu 100 vpravo 160]",
+      "max": 3,
+      "hint": "Use the same rule as for the five-pointed star, just with different numbers.",
+      "why": "The total turn is 4 × 360 = 1440°, nine turns of 1440 : 9 = 160°. In general: n points, k laps, angle 360 · k : n."
+    },
+    {
+      "goal": "A dashed circle: 36 dashes of length 5 with gaps of 5 between them; the turtle ends where it started",
+      "target": "opakuj 36 [pero dolů dopředu 5 pero nahoru dopředu 5 vpravo 10]",
+      "max": 7,
+      "hint": "One part of the circle is a dash, a gap and a small turn. How many degrees per part, if there are 36 of them?",
+      "why": "A circle is a polygon with lots of very short sides. 36 parts × 10° = 360°, so the turtle gets back to the start."
+    },
+    {
+      "goal": "A rosette: 12 squares with side 80, each turned by 30° around a shared corner",
+      "target": "nauč čtverec :s [opakuj 4 [dopředu :s vpravo 90]] opakuj 12 [čtverec 80 vpravo 30]",
+      "max": 7,
+      "hint": "First teach the turtle a new command, “square”. A square ends where it started, and that is the whole magic.",
+      "why": "A procedure is an abstraction: you describe once what a square is, and then you use it like one word. 12 × 30° = 360°, so the rosette closes."
+    },
+    {
+      "goal": "A flower of 8 petals; each petal is a rhombus with side 60 and a sharp 45° angle at the centre",
+      "target": "nauč lístek :s [opakuj 2 [dopředu :s vpravo 45 dopředu :s vpravo 135]] opakuj 8 [lístek 60 vpravo 45]",
+      "max": 9,
+      "hint": "At a corner, the turtle turns by what the inner angle needs to make 180°. A sharp 45° corner means a 135° turn, a blunt 135° corner a 45° turn.",
+      "why": "One petal: 2 × (45 + 135) = 360°, so it closes. The petal has 45° at the centre and 8 × 45° = 360°, so the petals fit together exactly."
+    }
+  ],
+  "debrief": "Generative art often does not come from thousands of lines, but from one rule that repeats. The key is the sum of the turns: when it is a whole number of full turns, the picture closes. You will find the same rule in p5.js, in Blender’s array of objects and in every mandala."
+}

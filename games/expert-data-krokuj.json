@@ -1,0 +1,152 @@
+{
+  "type": "trace",
+  "title": "Krokuj datový program",
+  "instruction": "Tři krátké programy pracují s daty. Krokuj je řádek po řádku a hlídej, kde se data a program rozejdou.",
+  "rounds": [
+    {
+      "code": [
+        "teploty = [-3, -5, -1, -4]",
+        "nejvyšší = 0",
+        "pro každé t v teploty:",
+        "    pokud t > nejvyšší:",
+        "        nejvyšší = t",
+        "vypiš nejvyšší"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "t = -3, nejvyšší = 0",
+          "q": "Splní se podmínka t > nejvyšší?",
+          "options": [
+            "ano",
+            "ne"
+          ],
+          "answer": 1,
+          "why": "-3 je menší než 0. Podmínka se nesplní a nejvyšší zůstává 0."
+        },
+        {
+          "line": 5,
+          "input": "cyklus doběhl",
+          "q": "Co program vypíše?",
+          "options": [
+            "-1",
+            "0",
+            "-3",
+            "-5"
+          ],
+          "answer": 1,
+          "why": "Žádná teplota není větší než 0, takže zůstane počáteční 0. Program vypíše číslo, které v datech vůbec není."
+        },
+        {
+          "line": 1,
+          "input": "oprava",
+          "q": "Jak opravit řádek 2, aby program fungoval pro jakákoli čísla?",
+          "options": [
+            "nejvyšší = teploty[0]",
+            "nejvyšší = -1",
+            "nejvyšší = -100"
+          ],
+          "answer": 0,
+          "why": "Začni prvním skutečným měřením. -1 i -100 jen posunou chybu jinam: s daty z laboratorního mrazáku (-150 °C) by selhaly zas."
+        }
+      ]
+    },
+    {
+      "code": [
+        "žáci = [(1, 'Ema', '7.B'), (2, 'Ema', '7.A'), (3, 'Tomáš', '7.B')]",
+        "výpůjčky = [(1, 'Hobit'), (2, 'Malý princ'), (1, 'Dášeňka'), (3, 'Hobit')]",
+        "počet = 0",
+        "pro každou (id, kniha) ve výpůjčky:",
+        "    žák = najdi v žáci řádek s tímto id",
+        "    pokud třída žáka je '7.B':",
+        "        počet = počet + 1",
+        "vypiš počet"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "výpůjčka (2, 'Malý princ')",
+          "q": "Kterého žáka program najde?",
+          "options": [
+            "Emu ze 7.B",
+            "Emu ze 7.A",
+            "obě Emy"
+          ],
+          "answer": 1,
+          "why": "Id 2 patří jen jednomu žákovi: Emě ze 7.A. Proto se záznamy spojují přes id, ne přes jméno."
+        },
+        {
+          "line": 7,
+          "input": "cyklus doběhl",
+          "q": "Co program vypíše?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Výpůjčky s id 1, 1 a 3 patří žákům ze 7.B. Výpůjčka s id 2 patří 7.A. Výsledek je 3."
+        },
+        {
+          "line": 4,
+          "input": "varianta: výpůjčky obsahují jméno místo id a program bere prvního žáka s tím jménem",
+          "q": "Co by program vypsal teď?",
+          "options": [
+            "3",
+            "4",
+            "2"
+          ],
+          "answer": 1,
+          "why": "Pro „Emu“ najde vždy první Emu, tu ze 7.B. Malý princ se tak započítá špatné třídě a vyjde 4. Jméno není jednoznačný klíč."
+        }
+      ]
+    },
+    {
+      "code": [
+        "kód = [3, 2, 1, 2]",
+        "barva = bílá",
+        "pro každé n v kód:",
+        "    nakresli n pixelů barvou barva",
+        "    přepni barvu"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "n = 2 (druhé číslo)",
+          "q": "Jakou barvou se teď kreslí?",
+          "options": [
+            "bílá",
+            "černá"
+          ],
+          "answer": 1,
+          "why": "Po prvním běhu se barva přepnula z bílé na černou."
+        },
+        {
+          "line": 4,
+          "input": "cyklus doběhl, 0 = bílá, 1 = černá",
+          "q": "Jak vypadá nakreslený řádek?",
+          "options": [
+            "00011011",
+            "00011010",
+            "11100100"
+          ],
+          "answer": 0,
+          "why": "3 bílé, 2 černé, 1 bílý, 2 černé: 000 11 0 11."
+        },
+        {
+          "line": 0,
+          "input": "chceš zakódovat řádek 10000000",
+          "q": "Jaký kód potřebuješ, když se vždy začíná bílou?",
+          "options": [
+            "[1, 7]",
+            "[0, 1, 7]",
+            "[7, 1]"
+          ],
+          "answer": 1,
+          "why": "Řádek začíná černou, takže první bílý běh má délku 0. Bez té nuly by dekodér nakreslil bílý pixel a pak 7 černých."
+        }
+      ]
+    }
+  ],
+  "debrief": "Program s daty selže tam, kde předpokládá něco, co v datech být nemusí: že teploty jsou kladné, že jméno je jednoznačné, že řádek začíná bílou. Proto testuj okraje: záporná čísla, stejná jména, prázdné běhy."
+}

@@ -1,0 +1,130 @@
+{
+  "type": "hotspot",
+  "title": "Web naslepo",
+  "instruction": "Takto číta stránku krúžku čítačka obrazovky: program, ktorý nevidiacim ľuďom číta web nahlas a vie skákať po nadpisoch, odkazoch a tlačidlách. Klikni na každý kúsok, ktorý niekomu znemožní používať web. Pozor, niektoré kúsky len vyzerajú podozrivo a sú správne.",
+  "items": [
+    {
+      "label": "Odkazy",
+      "segments": [
+        {
+          "text": "Rozvrh nájdeš"
+        },
+        {
+          "text": "[klikni sem]",
+          "hit": true,
+          "why": "Čítačka vie vypísať zoznam všetkých odkazov na stránke. Tri odkazy „klikni sem“ za sebou nič nepovedia. Dobrý odkaz dáva zmysel aj bez okolitej vety: „Rozvrh krúžku“."
+        },
+        {
+          "text": ". Fotky nájdeš v galérii"
+        },
+        {
+          "text": "[Fotky z výletu na Macochu]",
+          "why": "Tento je v poriadku: z textu odkazu je jasné, kam vedie."
+        }
+      ]
+    },
+    {
+      "label": "Obrázky",
+      "segments": [
+        {
+          "text": "<img src=\"vylet.jpg\">",
+          "hit": true,
+          "why": "Chýba alt, teda textový popis obrázka. Čítačka prečíta len názov súboru „vylet jpg“, alebo nič."
+        },
+        {
+          "text": " a"
+        },
+        {
+          "text": "<img src=\"ozdobna-vlnka.svg\" alt=\"\">",
+          "why": "Správne. Prázdny alt hovorí čítačke: toto je len ozdoba, preskoč ju."
+        }
+      ]
+    },
+    {
+      "label": "Nadpisy",
+      "segments": [
+        {
+          "text": "<h1>Krúžok robotiky</h1>"
+        },
+        {
+          "text": "<h4>Kedy sa stretávame</h4>",
+          "hit": true,
+          "why": "Po h1 hneď h4. Kto skáče po nadpisoch, čaká, že mu dve úrovne chýbajú. Nadpisy sú osnova stránky: h1, pod ním h2, pod nimi h3."
+        },
+        {
+          "text": " <h2>Fotky z akcií</h2>"
+        }
+      ]
+    },
+    {
+      "label": "Tlačidlá",
+      "segments": [
+        {
+          "text": "<button>Prihlásiť sa</button>",
+          "why": "Správne. Na button sa dostaneš klávesom Tab a čítačka ohlási „tlačidlo“."
+        },
+        {
+          "text": " a vedľa"
+        },
+        {
+          "text": "<div onclick=\"odoslat()\">Odoslať</div>",
+          "hit": true,
+          "why": "Div vyzerá ako tlačidlo len pre oči. Klávesom Tab sa naň nedostaneš a čítačka neoznámi, že sa naň dá kliknúť."
+        }
+      ]
+    },
+    {
+      "label": "Farby",
+      "segments": [
+        {
+          "text": "Sivý text #999999 na bielom (kontrast 2,85 : 1)",
+          "hit": true,
+          "why": "Pravidlá prístupnosti WCAG chcú pri bežnom texte kontrast aspoň 4,5 : 1. So slabším zrakom alebo na slnku sa 2,85 : 1 čítať nedá."
+        },
+        {
+          "text": " vedľa"
+        },
+        {
+          "text": "tmavosivého textu #595959 na bielom (kontrast 7 : 1)",
+          "why": "V poriadku, 7 : 1 je viac než potrebných 4,5 : 1."
+        }
+      ]
+    },
+    {
+      "label": "Formulár",
+      "segments": [
+        {
+          "text": "<input type=\"email\" placeholder=\"Tvoj e-mail\">",
+          "hit": true,
+          "why": "Chýba <label>. Sivá nápoveda v políčku zmizne, len čo začneš písať, a niektoré čítačky ju vôbec neprečítajú."
+        },
+        {
+          "text": " a pod políčkom"
+        },
+        {
+          "text": "Povinné polia sú označené červenou.",
+          "hit": true,
+          "why": "Informácia len farbou. Kto nerozlišuje červenú (zhruba každý dvanásty chlapec), netuší, čo je povinné. Pridaj hviezdičku alebo slovo „povinné“."
+        }
+      ]
+    },
+    {
+      "label": "Hlavička stránky",
+      "segments": [
+        {
+          "text": "<html lang=\"sk\">",
+          "why": "Správne. Vďaka tomu čítačka číta po slovensky, a nie s anglickou výslovnosťou."
+        },
+        {
+          "text": " a o riadok nižšie"
+        },
+        {
+          "text": "<meta name=\"viewport\" content=\"user-scalable=no\">",
+          "hit": true,
+          "why": "Zakazuje priblížiť stránku prstami. Kto horšie vidí, nemá ako si text zväčšiť."
+        }
+      ]
+    }
+  ],
+  "debrief": "Prístupnosť nie je bonus pre pár ľudí. Rovnaké chyby vadia aj tebe: na slnku, s jednou rukou v električke alebo bez myši. Väčšinu z nich neopraví dizajn, ale správne HTML: nadpisy v poradí, alt pri obrázkoch, label pri políčkach, button namiesto divu. A prázdny alt pri ozdobe je správne, lebo hovorí „toto preskoč“."
+}

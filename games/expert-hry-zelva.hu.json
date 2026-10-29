@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Csempék eljárásokból",
+  "instruction": "Rajzolj a teknőccel grafikát egy platformjátékhoz. A teknőc középről indul, felfelé néz, és a tolla lent van. Minden parancs számít, az „ismételd”, a „tanuld” és az eljáráshívás is. Csillagot kapsz, ha a programod rövidebb a korlátnál.",
+  "levels": [
+    {
+      "goal": "Téglafal: négy 20 × 20-as négyzet egymás mellett, egy sorban.",
+      "target": "opakuj 4 [ opakuj 4 [ dopředu 20 vpravo 90 ] vpravo 90 dopředu 20 vlevo 90 ]",
+      "max": 8,
+      "hint": "A négyzet megrajzolása után a teknőc ott van, ahonnan indult, és ugyanarra néz. Honnan kell indulnia a következő téglának?",
+      "why": "A belső ismétlés megrajzolja a téglát, a külső megismétli. A téglák között a teknőc 20-at lép jobbra, és visszafordul felfelé. Ha nem fordulna vissza ugyanabba az irányba, a fal körbe kanyarodna."
+    },
+    {
+      "goal": "Öt tüskéből álló sor: 20 oldalú egyenlő oldalú háromszögek, amelyek egymás mellett állnak egy közös alapon, csúcsukkal felfelé.",
+      "target": "vpravo 90 opakuj 5 [ opakuj 3 [ dopředu 20 vlevo 120 ] dopředu 20 ]",
+      "max": 7,
+      "hint": "Az egyenlő oldalú háromszög belső szögei 60°-osak. A teknőc azonban nem a belső szöggel fordul. Mennyivel kell fordulnia, hogy három oldal után visszatérjen az eredeti irányba?",
+      "why": "A teknőc a 180° − 60° = 120°-os külső szöggel fordul. Az egész alakzat alatt 3 × 120° = 360°-ot fordul, vagyis egyszer körbe. 60°-os fordulással háromszög helyett egy fél hatszög jönne létre. A háromszög után a teknőc a kiindulópontban áll, és az előre 20 a már megrajzolt alapon a következő tüskéhez viszi."
+    },
+    {
+      "goal": "Csapda kétféle tüskével: egy 30 oldalú nagy tüske váltakozik egy 15 oldalú kicsivel, összesen három pár egy sorban.",
+      "target": "nauč osten :a [ opakuj 3 [ dopředu :a vlevo 120 ] dopředu :a ] vpravo 90 opakuj 3 [ osten 30 osten 15 ]",
+      "max": 10,
+      "hint": "Írj eljárást egy tüskére, amelyben az oldalhossz a :a paraméter. Aztán hívd meg különböző számokkal.",
+      "why": "A paraméteres eljárás egyetlen recept minden méretre. Nélküle ugyanazt a kódot kétszer kellene megírni, és a szög javítását mindkét másolatban el kellene végezni. Így készülnek a csempék a játékmotorokban: egy előírás, különböző értékek."
+    },
+    {
+      "goal": "Csempetérkép 3 × 3: kilenc 20 × 20-as négyzet három sorban egymás fölött, összesen 60 × 60.",
+      "target": "nauč ctverec :a [ opakuj 4 [ dopředu :a vpravo 90 ] ] nauč rada [ opakuj 3 [ ctverec 20 vpravo 90 dopředu 20 vlevo 90 ] vlevo 90 dopředu 60 vpravo 90 ] opakuj 3 [ rada dopředu 20 ]",
+      "max": 18,
+      "hint": "Bontsd részekre a feladatot: csempe, csempesor, sorokból álló térkép. Minden sor után a teknőcnek ott kell állnia, ahol a sor kezdődött, és felfelé kell néznie. Csak így lehet a sorokat egymásra rakni.",
+      "why": "Az az eljárás, amely visszaviszi a teknőcöt a kiinduló helyzetbe és irányba, biztonságosan összerakható nagyobb egységekké. A visszatérés a már megrajzolt alsó élen és az elmozdulás a bal élen nem húz egyetlen felesleges vonalat sem. Van rövidebb megoldás is: az egész térkép négy vízszintes és négy függőleges vonal, és aki megtalálja, csillagot kap."
+    },
+    {
+      "goal": "Bónuszcsillag: egy vonallal megrajzolt ötágú csillag, 60-as oldallal.",
+      "target": "opakuj 5 [ dopředu 60 vpravo 144 ]",
+      "max": 4,
+      "hint": "A háromszögnél a teknőc összesen 360°-ot fordult. Hányszor fordul körbe, amikor körberajzolja a csillagot? Próbáld meg ceruzával egy vonallal megrajzolni, és figyeld, hányszor kerülöd meg a közepét.",
+      "why": "A csillag rajzolásakor a teknőc kétszer kerüli meg a közepet, így összesen 2 × 360° = 720°-ot fordul. Öt fordulás 720° / 5 = 144°-ot ad. Az „összes fordulás a 360° többszöröse” szabály bármilyen zárt alakzat szögét kiszámolja neked, az érmétől a csillagig."
+    }
+  ],
+  "debrief": "A játékgrafika kis receptekből áll. Az ismétlés írást spórol, a paraméteres eljárás másolatokat, és az az eljárás, amely visszaviszi a teknőcöt a kiinduló helyzetbe, nagyobb egységekké rakható össze. A szögeket nem találgatod: egy zárt alakzat teljes fordulása mindig a 360° egész számú többszöröse."
+}

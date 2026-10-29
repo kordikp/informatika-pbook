@@ -1,0 +1,78 @@
+{
+  "type": "estimate",
+  "title": "Mennyit nyom? Számolj, ne tippelj",
+  "instruction": "Minden adat kiszámolható a felbontásból, a pixelenkénti vagy mintánkénti bájtok számából és az időből. Számolj így: 1 kB = 1 000 B és 1 MB = 1 000 000 B. Számológép használható.",
+  "items": [
+    {
+      "q": "Fekete-fehér kép, 1920 × 1080 pixel, minden pixel 1 bit, tömörítés nélkül. Hány kB?",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "answer": 260,
+      "tolerance": 15,
+      "unit": "kB",
+      "why": "1920 × 1080 = 2 073 600 bit. 8-cal elosztva 259 200 bájt, vagyis kb. 259 kB."
+    },
+    {
+      "q": "Színes mobilfotó, 4000 × 3000 pixel, minden pixel 3 bájt (R, G, B), tömörítés nélkül. Hány MB?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 36,
+      "tolerance": 2,
+      "unit": "MB",
+      "why": "12 millió pixel × 3 bájt = 36 000 000 B = 36 MB. Ugyanez a fotó JPG-ben általában 3–5 MB: a tömörítés eldobta azt, amit a szem nem vesz észre."
+    },
+    {
+      "q": "Egy perc zene WAV-ban: másodpercenként 44 100 minta, mintánként 2 bájt, 2 csatorna (sztereó). Hány MB?",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "answer": 10.5,
+      "tolerance": 1,
+      "unit": "MB",
+      "why": "44 100 × 2 × 2 × 60 = 10 584 000 B, kb. 10,6 MB. Ezért egy háromperces dal WAV-ban nagyjából 32 MB."
+    },
+    {
+      "q": "Ugyanez a 3 perces dal MP3-ban, 128 kbit/s adatsebességgel. Hány MB?",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "answer": 2.9,
+      "tolerance": 0.3,
+      "unit": "MB",
+      "why": "128 000 bit × 180 s = 23 040 000 bit, 8-cal elosztva 2 880 000 B, kb. 2,9 MB. Az MP3 kb. 11-szer kisebb, mint a WAV."
+    },
+    {
+      "q": "Egy másodperc tömörítetlen Full HD videó: 1920 × 1080 pixel, pixelenként 3 bájt, másodpercenként 30 képkocka. Hány MB?",
+      "min": 0,
+      "max": 500,
+      "step": 1,
+      "answer": 187,
+      "tolerance": 15,
+      "unit": "MB",
+      "why": "1920 × 1080 × 3 × 30 = 186 624 000 B, kb. 187 MB egyetlen másodpercre. Tömörítés nélkül egy óra videó több mint 670 GB lenne."
+    },
+    {
+      "q": "Hány 100 karakteres szöveges üzenet (ékezetek nélkül, karakterenként 1 bájt) fér el 1 MB-ban?",
+      "min": 0,
+      "max": 50000,
+      "step": 500,
+      "answer": 10000,
+      "tolerance": 1000,
+      "unit": "üzenet",
+      "why": "1 000 000 B / 100 B = 10 000 üzenet. A szöveg a képekhez és a videóhoz képest szinte semmi."
+    },
+    {
+      "q": "Az „Ősz” szó UTF-8 kódolásban tárolva. Hány bájt?",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "answer": 4,
+      "tolerance": 0,
+      "unit": "B",
+      "why": "Az „s” és a „z” 1-1 bájt, de az „Ő” nincs benne az ASCII-ben, ezért UTF-8-ban 2 bájtot foglal. Összesen 4 B. Ha egy program az UTF-8-at más kódolásként olvassa, az „Ő”-ből két furcsa karakter lesz."
+    }
+  ],
+  "debrief": "Az adatok mérete nem rejtély: felbontás × mélység (bájt pixelenként vagy mintánként) × idő. Aztán a tömörítés dönti el, mennyit tárolsz el belőle valójában. A videó azért óriási, mert másodpercenként 30 fotó."
+}

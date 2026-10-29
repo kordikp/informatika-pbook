@@ -1,0 +1,149 @@
+{
+  "type": "trace",
+  "title": "Searching by halving: where the bug hides",
+  "instruction": "Step through a search in a sorted list. The program doesn’t look at the numbers in order, but always in the middle, and throws half away. Keep track of the variables low, high and mid. Careful: in the third round there is a bug hidden in the code.",
+  "rounds": [
+    {
+      "code": [
+        "list = [3, 8, 12, 17, 21, 25, 30, 34, 40]   # list[1] is 3, list[9] is 40",
+        "target = 30",
+        "low = 1, high = 9",
+        "while low ≤ high:",
+        "    mid = (low + high) / 2, round down",
+        "    if list[mid] = target: return mid",
+        "    if list[mid] < target: low = mid + 1",
+        "    else: high = mid - 1",
+        "return “not found”"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "low = 1, high = 9",
+          "q": "What is mid?",
+          "options": [
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": 1,
+          "why": "(1 + 9) / 2 = 5. In position 5 there is 21."
+        },
+        {
+          "line": 6,
+          "input": "mid = 5, list[5] = 21, target 30",
+          "q": "What changes?",
+          "options": [
+            "low = 6",
+            "high = 4",
+            "low = 5"
+          ],
+          "answer": 0,
+          "why": "21 < 30, so thirty can only be to the right. The program throws away the left half, 21 included: low = 5 + 1 = 6."
+        },
+        {
+          "line": 5,
+          "input": "low = 6, high = 9",
+          "q": "Where does the program look, and what does it find?",
+          "options": [
+            "position 7, there is 30: found",
+            "position 8, there is 34: keeps searching",
+            "position 6, there is 25: keeps searching"
+          ],
+          "answer": 0,
+          "why": "(6 + 9) / 2 = 7.5, rounded down 7. list[7] = 30. Two comparisons were enough. Searching from the start would have needed seven."
+        }
+      ]
+    },
+    {
+      "code": [
+        "list = [3, 8, 12, 17, 21, 25, 30, 34, 40]   # list[1] is 3, list[9] is 40",
+        "target = 26",
+        "low = 1, high = 9",
+        "while low ≤ high:",
+        "    mid = (low + high) / 2, round down",
+        "    if list[mid] = target: return mid",
+        "    if list[mid] < target: low = mid + 1",
+        "    else: high = mid - 1",
+        "return “not found”"
+      ],
+      "steps": [
+        {
+          "line": 7,
+          "input": "low = 6, high = 9, mid = 7, list[7] = 30, target 26",
+          "q": "What changes?",
+          "options": [
+            "high = 6",
+            "low = 8",
+            "high = 7"
+          ],
+          "answer": 0,
+          "why": "30 > 26, so the number we want would have to be to the left of position 7: high = 7 - 1 = 6."
+        },
+        {
+          "line": 3,
+          "input": "Next step: mid = 6, list[6] = 25 < 26, so low = 7. Now low = 7, high = 6.",
+          "q": "What does the loop do?",
+          "options": [
+            "it ends and the program returns “not found”",
+            "it carries on with mid 6",
+            "it carries on with mid 7"
+          ],
+          "answer": 0,
+          "why": "The condition low ≤ high doesn’t hold: 7 ≤ 6 is false. The stretch where the number could be is empty. The program ends after a finite number of steps, even though it didn’t find the number."
+        }
+      ]
+    },
+    {
+      "code": [
+        "list = [3, 8, 12, 17, 21, 25, 30, 34, 40]   # list[1] is 3, list[9] is 40",
+        "target = 40",
+        "low = 1, high = 9",
+        "while low ≤ high:",
+        "    mid = (low + high) / 2, round down",
+        "    if list[mid] = target: return mid",
+        "    if list[mid] < target: low = mid",
+        "    else: high = mid - 1",
+        "return “not found”"
+      ],
+      "steps": [
+        {
+          "line": 6,
+          "input": "Target 40. After two steps low = 7, high = 9, mid = 8, list[8] = 34.",
+          "q": "What does the line with the bug do?",
+          "options": [
+            "low = 8",
+            "low = 9",
+            "high = 7"
+          ],
+          "answer": 0,
+          "why": "34 < 40, so low = mid runs. In this code the + 1 is missing, so low = 8, not 9."
+        },
+        {
+          "line": 4,
+          "input": "low = 8, high = 9",
+          "q": "What happens next?",
+          "options": [
+            "mid is 8 again and the program loops forever",
+            "mid is 9 and the program finds 40",
+            "the program returns “not found”"
+          ],
+          "answer": 0,
+          "why": "(8 + 9) / 2 = 8.5, down to 8. Again 34 < 40, again low = 8. Nothing changes and the loop runs forever. The algorithm broke finiteness. Only a test with the number at the very end of the list finds this bug: an edge case."
+        },
+        {
+          "line": 3,
+          "input": "The fixed code (with + 1), the sorted list has 1000 numbers",
+          "q": "At most how many times does the program look into the list?",
+          "options": [
+            "10 times",
+            "100 times",
+            "500 times"
+          ],
+          "answer": 0,
+          "why": "Each comparison at least halves the stretch: 1000, 500, 250, 125, 62, 31, 15, 7, 3, 1. That is 10 looks, because 2 to the power of 10 is 1024. For a million numbers, 20 are enough. Searching from the start may need a million."
+        }
+      ]
+    }
+  ],
+  "debrief": "Halving the interval is one of the most powerful algorithms there is: each step throws away half of the possibilities. But it only works on a sorted list, and only if the stretch really gets smaller at every step. A single missing + 1 turns a fast algorithm into an endless loop. That’s why you test the edges too: the first number, the last number and a number that isn’t in the list."
+}

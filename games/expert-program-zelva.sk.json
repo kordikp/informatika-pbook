@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Korytnačia dielňa pre pokročilých",
+  "instruction": "Nakresli cieľ čo najkratším programom. Každý príkaz sa počíta, aj opakuj, nauč a volanie procedúry. Hviezdu dostaneš, keď sa zmestíš do limitu.",
+  "levels": [
+    {
+      "goal": "Rovnostranný trojuholník so stranou 100.",
+      "target": "opakuj 3 [ dopředu 100 vpravo 120 ]",
+      "max": 3,
+      "hint": "Vnútorný uhol trojuholníka je 60°. Korytnačka sa však neotáča o vnútorný uhol, otáča sa o to, o koľko zmení smer.",
+      "why": "Za celú obchôdzku sa korytnačka otočí o 360°. Tri otočky: 360 / 3 = 120°. S otočkou 60° by nakreslila kus šesťuholníka."
+    },
+    {
+      "goal": "Päťcípa hviezda jedným ťahom, strana 150.",
+      "target": "opakuj 5 [ dopředu 150 vpravo 144 ]",
+      "max": 3,
+      "hint": "Pri kreslení hviezdy korytnačka obíde stred dvakrát. Koľko stupňov je to spolu?",
+      "why": "Dve obchôdzky sú 720°. 720 / 5 = 144°. Pri päťuholníku by stačilo 72°. Väčšia otočka posiela korytnačku cez stred, a preto sa čiary krížia."
+    },
+    {
+      "goal": "Rozeta: 12 štvorcov so stranou 80, každý pootočený o 30° okolo rovnakého rohu.",
+      "target": "opakuj 12 [ opakuj 4 [ dopředu 80 vpravo 90 ] vpravo 30 ]",
+      "max": 5,
+      "hint": "Nakresli jeden štvorec cyklom. Celý štvorec aj s pootočením potom zabaľ do ďalšieho cyklu.",
+      "why": "Vnorený cyklus: vnútorný kreslí štvorec, vonkajší ho otáča. 12 × 30° = 360°, takže sa rozeta uzavrie. Bez cyklov by to bolo 108 príkazov."
+    },
+    {
+      "goal": "Tri štvorce so spoločným rohom: strany 30, 60 a 90.",
+      "target": "nauč ctverec :s [ opakuj 4 [ dopředu :s vpravo 90 ] ] ctverec 30 ctverec 60 ctverec 90",
+      "max": 7,
+      "hint": "Nauč korytnačku nový príkaz stvorec a dĺžku strany mu odovzdaj ako parameter :s.",
+      "why": "Procedúra je nový príkaz a parameter je premenná, ktorá má pri každom volaní inú hodnotu. Štvorec sa po štyroch otočkách vráti do rohu, a preto ďalší začne na rovnakom mieste."
+    },
+    {
+      "goal": "Rad piatich štvorcov so stranou 20 vedľa seba, medzery 10, bez spojovacích čiar.",
+      "target": "nauč ctverec :s [ opakuj 4 [ dopředu :s vpravo 90 ] ] opakuj 5 [ ctverec 20 pero nahoru vpravo 90 dopředu 30 vlevo 90 pero dolů ]",
+      "max": 12,
+      "hint": "Po každom štvorci sa korytnačka musí posunúť doprava tak, aby nekreslila, a potom sa zasa otočiť hore.",
+      "why": "Korytnačka drží stav: polohu, smer a pero. Po presune musí stav vrátiť (vľavo 90, pero dole), inak by ďalší štvorec bol otočený alebo neviditeľný. Krok 30 je strana 20 plus medzera 10."
+    }
+  ],
+  "debrief": "Cyklus šetrí príkazy, vnorený cyklus ich násobí a procedúra s parametrom urobí z jedného tvaru celú rodinu. Korytnačka pritom stále drží stav: kde je, kam sa pozerá a či kreslí. Rovnako ako premenné v tvojom programe."
+}

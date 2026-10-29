@@ -1,0 +1,44 @@
+{
+  "type": "pairs",
+  "title": "Szétesett karakterek nyomozója",
+  "instruction": "Minden szétesett szöveg úgy keletkezett, hogy a böngésző más kódolásban olvasta a bájtokat, mint amelyben a weboldal mentette őket. Párosítsd mindegyiket az eredeti szóval. Támpont: UTF-8-ban minden ékezetes cseh betű két bájt, a Windows-1250 pedig minden bájtot egy karakternek olvas.",
+  "choices": 4,
+  "pairs": [
+    {
+      "a": "ÄŤaj",
+      "b": "čaj",
+      "why": "A č betű UTF-8-ban a C4 8D bájtpár. A Windows-1250 a C4-et Ä-nak, a 8D-t Ť-nek olvassa. Az a és j betűnek mindkét kódolásban ugyanaz a bájtja, ezért túlélték."
+    },
+    {
+      "a": "Ĺľirafa",
+      "b": "žirafa",
+      "why": "ž = C5 BE. A Windows-1250-ben a C5 a Ĺ karakter, a BE pedig a ľ. Két bájtból két karakter lesz."
+    },
+    {
+      "a": "Ĺ™eka",
+      "b": "řeka",
+      "why": "ř = C5 99, és a 99-es bájt a Windows-1250-ben a ™ jel. Ezért néz ki a szétesett ř védjegynek."
+    },
+    {
+      "a": "Ĺˇkola",
+      "b": "škola",
+      "why": "š = C5 A1, és az A1 maga a ˇ ékezet. Figyeld meg: a ř, ž, š és ů is ugyanazzal a C5 bájttal kezdődik, ezért mindegyik Ĺ karakterrel indul."
+    },
+    {
+      "a": "dĂ˝nÄ›",
+      "b": "dýně",
+      "why": "ý = C3 BD (Ă˝) és ě = C4 9B (Ä›). Négy betűből hirtelen hat karakter lesz."
+    },
+    {
+      "a": "dĹŻm",
+      "b": "dům",
+      "why": "ů = C5 AF, és az AF a Windows-1250-ben a Ż betű."
+    },
+    {
+      "a": "�aj",
+      "b": "čaj uložený ve Windows-1250, čtený jako UTF-8",
+      "why": "Fordított irány. A Windows-1250 a č-t egyetlen E8 bájtként menti. Az UTF-8 számára az E8 egy bájthármas kezdete, csakhogy közvetlenül utána egy sima a áll. Ilyen bájtsor az UTF-8-ban érvénytelen, ezért a böngésző a � helyettesítő karaktert mutatja."
+    }
+  ],
+  "debrief": "A szétesett karakterek nem a véletlen művei, minden minta elárulja, hol nem egyezett a kódolás. Az Ä és Ĺ a csoportok elején azt jelenti: UTF-8-ban mentve, Windows-1250-ként olvasva. A rombuszban lévő kérdőjel az ellenkezőjét. A gyógymód egyetlen sor az oldal fejlécében, <meta charset=\"utf-8\">, és UTF-8-ban mentett fájl."
+}

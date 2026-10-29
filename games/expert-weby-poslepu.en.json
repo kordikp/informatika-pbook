@@ -1,0 +1,130 @@
+{
+  "type": "hotspot",
+  "title": "The website, blind",
+  "instruction": "This is how a screen reader reads the club’s page: a program that reads websites aloud to blind people and can jump between headings, links and buttons. Click every piece that makes the website inaccessible to someone. Careful, some pieces only look suspicious and are actually fine.",
+  "items": [
+    {
+      "label": "Links",
+      "segments": [
+        {
+          "text": "You’ll find the timetable"
+        },
+        {
+          "text": "[click here]",
+          "hit": true,
+          "why": "A screen reader can list all the links on a page. Three “click here” links in a row tell you nothing. A good link makes sense even without the sentence around it: “Club timetable”."
+        },
+        {
+          "text": ". You’ll find photos in the gallery"
+        },
+        {
+          "text": "[Photos from the trip to Macocha]",
+          "why": "This one is fine: the link text makes it clear where it leads."
+        }
+      ]
+    },
+    {
+      "label": "Images",
+      "segments": [
+        {
+          "text": "<img src=\"vylet.jpg\">",
+          "hit": true,
+          "why": "The alt is missing, that is, the text description of the image. The screen reader reads only the file name “vylet jpg”, or nothing."
+        },
+        {
+          "text": " and"
+        },
+        {
+          "text": "<img src=\"ozdobna-vlnka.svg\" alt=\"\">",
+          "why": "Correct. An empty alt tells the screen reader: this is just decoration, skip it."
+        }
+      ]
+    },
+    {
+      "label": "Headings",
+      "segments": [
+        {
+          "text": "<h1>Robotics club</h1>"
+        },
+        {
+          "text": "<h4>When we meet</h4>",
+          "hit": true,
+          "why": "Straight after h1 comes h4. Someone jumping between headings expects that two levels are missing. Headings are the page’s outline: h1, h2 below it, h3 below those."
+        },
+        {
+          "text": " <h2>Photos from our events</h2>"
+        }
+      ]
+    },
+    {
+      "label": "Buttons",
+      "segments": [
+        {
+          "text": "<button>Sign up</button>",
+          "why": "Correct. You can reach a button with the Tab key and the screen reader announces “button”."
+        },
+        {
+          "text": " and next to it"
+        },
+        {
+          "text": "<div onclick=\"odeslat()\">Send</div>",
+          "hit": true,
+          "why": "The div only looks like a button to the eyes. You can’t reach it with the Tab key and the screen reader doesn’t announce that you can click it."
+        }
+      ]
+    },
+    {
+      "label": "Colours",
+      "segments": [
+        {
+          "text": "Grey text #999999 on white (contrast 2.85 : 1)",
+          "hit": true,
+          "why": "The WCAG accessibility rules want a contrast of at least 4.5 : 1 for normal text. With weaker eyesight or in the sun, 2.85 : 1 can’t be read."
+        },
+        {
+          "text": " next to"
+        },
+        {
+          "text": "dark grey text #595959 on white (contrast 7 : 1)",
+          "why": "Fine, 7 : 1 is more than the 4.5 : 1 needed."
+        }
+      ]
+    },
+    {
+      "label": "Form",
+      "segments": [
+        {
+          "text": "<input type=\"email\" placeholder=\"Your e-mail\">",
+          "hit": true,
+          "why": "The <label> is missing. The grey hint in the box disappears as soon as you start typing, and some screen readers don’t read it at all."
+        },
+        {
+          "text": " and below the box"
+        },
+        {
+          "text": "Required fields are marked in red.",
+          "hit": true,
+          "why": "Information only by colour. Someone who can’t see red (roughly one boy in twelve) has no idea what is required. Add an asterisk or the word “required”."
+        }
+      ]
+    },
+    {
+      "label": "Page head",
+      "segments": [
+        {
+          "text": "<html lang=\"en\">",
+          "why": "Correct. Thanks to this, the screen reader reads in English, and not with the pronunciation of another language."
+        },
+        {
+          "text": " and one line lower"
+        },
+        {
+          "text": "<meta name=\"viewport\" content=\"user-scalable=no\">",
+          "hit": true,
+          "why": "It stops you from zooming in on the page with your fingers. Someone who can’t see well has no way to make the text bigger."
+        }
+      ]
+    }
+  ],
+  "debrief": "Accessibility isn’t a bonus for a few people. The same mistakes bother you too: in the sun, with one hand on the tram or without a mouse. Most of them aren’t fixed by design, but by correct HTML: headings in order, alt on images, label on fields, button instead of div. And an empty alt on a decoration is correct, because it says “skip this”."
+}

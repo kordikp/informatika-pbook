@@ -1,0 +1,190 @@
+{
+  "type": "trace",
+  "title": "Krokuj model zevnitř",
+  "instruction": "Tři malé programy, které dělají totéž co skutečná AI, jen v malém. Krokuj je řádek po řádku a odpovídej, co se stane.",
+  "rounds": [
+    {
+      "code": [
+        "slovo = „Vídeň“",
+        "věta = slovo",
+        "opakuj, dokud slovo není název země:",
+        "    kandidáti = slova, která v datech následují po slovo",
+        "    slovo = kandidát s nejvyšší pravděpodobností",
+        "    věta = věta + „ “ + slovo",
+        "vypiš věta"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "Data: po „Vídeň“: je 1,0 | po „je“: hlavní 0,67, druhé 0,33 | po „hlavní“: město 1,0 | po „město“: Česka 0,67, Rakouska 0,33",
+          "q": "Jaké slovo vybere řádek 5 ve druhém kole (po slově „je“)?",
+          "options": [
+            "hlavní",
+            "druhé",
+            "město"
+          ],
+          "answer": 0,
+          "why": "„hlavní“ má 0,67, víc než „druhé“ s 0,33. Model bere vždy to nejpravděpodobnější."
+        },
+        {
+          "line": 4,
+          "input": "Poslední kolo: slovo = „město“",
+          "q": "Které slovo teď model vybere?",
+          "options": [
+            "Rakouska",
+            "Česka",
+            "Vídně"
+          ],
+          "answer": 1,
+          "why": "Po „město“ následovalo v datech dvakrát „Česka“ a jen jednou „Rakouska“. Model v tu chvíli vidí jen slovo „město“, na Vídeň už zapomněl."
+        },
+        {
+          "line": 6,
+          "input": "Konec smyčky",
+          "q": "Co program vypíše?",
+          "options": [
+            "Vídeň je hlavní město Rakouska",
+            "Vídeň je hlavní město Česka",
+            "Vídeň je druhé největší město Česka"
+          ],
+          "answer": 1,
+          "why": "Každý krok byl pravděpodobný, a přesto je věta nepravdivá. Takhle v malém vzniká halucinace."
+        },
+        {
+          "line": 2,
+          "input": "Projdi celý program ještě jednou",
+          "q": "Na kterém řádku program ověřuje, jestli je věta pravdivá?",
+          "options": [
+            "Na řádku 4",
+            "Na řádku 5",
+            "Nikde"
+          ],
+          "answer": 2,
+          "why": "Žádný řádek nekontroluje pravdu. Program skládá jen pravděpodobná slova. Ověření musí přijít zvenku, od tebe nebo od vyhledávání."
+        }
+      ]
+    },
+    {
+      "code": [
+        "nejmenší = nekonečno",
+        "pro každý příklad v trénovacích datech:",
+        "    d = (červenost − příklad.červenost)² + (průměr − příklad.průměr)²",
+        "    když d < nejmenší:",
+        "        nejmenší = d",
+        "        nejbližší = příklad",
+        "vypiš druh(nejbližší)"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "Nový plod: červenost 2, průměr 7. První příklad: jablko (9, 7)",
+          "q": "Kolik vyjde d?",
+          "options": [
+            "7",
+            "49",
+            "14"
+          ],
+          "answer": 1,
+          "why": "(2 − 9)² + (7 − 7)² = 49 + 0 = 49."
+        },
+        {
+          "line": 3,
+          "input": "Druhý příklad: hruška (3, 9). nejmenší = 49",
+          "q": "Změní se nejbližší soused?",
+          "options": [
+            "Ano, d = 5 je menší než 49",
+            "Ne, hruška je jiný druh",
+            "Ne, d vyjde 50"
+          ],
+          "answer": 0,
+          "why": "(2 − 3)² + (7 − 9)² = 1 + 4 = 5. To je méně než 49, takže hruška je zatím nejblíž."
+        },
+        {
+          "line": 3,
+          "input": "Třetí příklad: jablko (4, 5). nejmenší = 5",
+          "q": "Změní se nejbližší soused?",
+          "options": [
+            "Ano, jablko má přednost",
+            "Ne, d = 8 není menší než 5",
+            "Ano, d = 2"
+          ],
+          "answer": 1,
+          "why": "(2 − 4)² + (7 − 5)² = 4 + 4 = 8. Hruška zůstává nejblíž."
+        },
+        {
+          "line": 6,
+          "input": "Plod byl ve skutečnosti zelené jablko",
+          "q": "Proč model řekl „hruška“?",
+          "options": [
+            "Má chybu v kódu",
+            "V datech nebylo žádné zelené jablko",
+            "Hrušky mají přednost"
+          ],
+          "answer": 1,
+          "why": "Kód počítá správně. Chyba je v datech: zelená jablka v nich chybí. Co v datech není, to model neumí."
+        }
+      ]
+    },
+    {
+      "code": [
+        "váha = {hry: 1, věda: 1}",
+        "opakuj 2krát:",
+        "    ukaž 4 videa v poměru vah",
+        "    pro každé dokoukané video:",
+        "        váha[kategorie] = váha[kategorie] + 1",
+        "vypiš váha"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "Kolo 1. Dokoukáváš jen videa o hrách.",
+          "q": "Kolik videí o hrách ti feed ukáže v kole 1?",
+          "options": [
+            "1",
+            "2",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Váhy jsou 1 : 1, takže 4 videa se rozdělí 2 a 2."
+        },
+        {
+          "line": 4,
+          "input": "Kolo 1: dokoukáš obě videa o hrách",
+          "q": "Jaká je váha her po kole 1?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "why": "1 + 1 + 1 = 3. Věda zůstala na 1."
+        },
+        {
+          "line": 2,
+          "input": "Kolo 2: váhy hry 3, věda 1",
+          "q": "Kolik videí o vědě uvidíš v kole 2?",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ],
+          "answer": 1,
+          "why": "Poměr 3 : 1 dá ze 4 videí 3 o hrách a jen 1 o vědě."
+        },
+        {
+          "line": 5,
+          "input": "Po kole 2 dokoukáš zase jen hry",
+          "q": "Co program vypíše?",
+          "options": [
+            "hry 6, věda 1",
+            "hry 5, věda 2",
+            "hry 4, věda 1"
+          ],
+          "answer": 0,
+          "why": "3 + 3 = 6. Věda nedostala šanci, protože ji feed skoro neukazuje. To je zpětná smyčka: co vidíš, to klikneš, a co klikneš, to vidíš."
+        }
+      ]
+    }
+  ],
+  "debrief": "Tři programy, tři lekce. Jazykový model skládá pravděpodobná slova a pravdu nekontroluje. Nejbližší soused počítá přesně, ale jen s tím, co v datech je. A doporučovač s každým kolem posiluje to, co už ukázal."
+}

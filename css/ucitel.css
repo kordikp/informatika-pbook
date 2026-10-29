@@ -56,6 +56,10 @@ body.uc { background: var(--bg); color: var(--text); font-family: var(--font-ui)
 .uc-check input { margin-top: .3em; accent-color: var(--accent); flex-shrink: 0; }
 .uc-check:has(input:disabled) { color: var(--text-3); cursor: default; }
 
+.uc-sub { font-size: 1rem; font-weight: 800; margin: .2em 0 .35em; }
+.uc-how { margin: 0 0 1.1em 1.2em; display: grid; gap: .35em; font-size: .92rem; color: var(--text-2); }
+.uc-how li::marker { color: var(--accent); }
+
 .uc-worlds { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .5em; margin-bottom: .9em; }
 .uc-world { display: flex; flex-direction: column; align-items: flex-start; gap: .15em; text-align: left; padding: .6em .7em; border-radius: var(--radius-sm); border: 1.5px solid var(--border); background: var(--surface); }
 .uc-world .uc-ico { font-size: 1.4rem; }

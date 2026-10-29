@@ -1,0 +1,129 @@
+{
+  "type": "trace",
+  "title": "Lampa a krokoměr s pamětí",
+  "instruction": "Krokuj program a odpověz, co udělá. Pozor: stejné číslo ze senzoru nemusí vždycky dát stejný výsledek.",
+  "rounds": [
+    {
+      "code": [
+        "lampa = nesvítí",
+        "pořád:",
+        "    světlo = změř světlo   # 0 až 255",
+        "    když světlo < 40:",
+        "        lampa = svítí",
+        "    jinak když světlo > 60:",
+        "        lampa = nesvítí"
+      ],
+      "steps": [
+        {
+          "line": 5,
+          "input": "světlo = 50, lampa právě svítí",
+          "q": "Jak je na tom lampa po tomhle průchodu smyčkou?",
+          "options": [
+            "svítí",
+            "nesvítí"
+          ],
+          "answer": 0,
+          "why": "50 není pod 40 ani nad 60. Neplatí žádná větev, a tak lampa zůstane, jak byla: svítí."
+        },
+        {
+          "line": 5,
+          "input": "světlo = 50, lampa právě nesvítí",
+          "q": "Jak je na tom lampa teď?",
+          "options": [
+            "svítí",
+            "nesvítí"
+          ],
+          "answer": 1,
+          "why": "Stejné světlo jako minule, a přesto jiný výsledek. Mezi 40 a 60 nerozhoduje senzor, ale paměť: proměnná lampa. Tomu se říká hystereze."
+        },
+        {
+          "line": 3,
+          "input": "Lampa nesvítí. Projíždí auto a senzor po sobě ukáže 38, 45, 39, 47, 36.",
+          "q": "Kolikrát se lampa přepne?",
+          "options": [
+            "0×",
+            "1×",
+            "5×"
+          ],
+          "answer": 1,
+          "why": "Při 38 se rozsvítí. Hodnoty 45, 39, 47 a 36 ji nezhasnou, protože žádná není nad 60. S jediným prahem 40 by se přepnula 5×."
+        },
+        {
+          "line": 3,
+          "input": "Někdo prohodí čísla: když světlo < 60: svítí, jinak když světlo > 40: nesvítí.",
+          "q": "Jak se lampa teď chová?",
+          "options": [
+            "má ještě širší pásmo klidu",
+            "funguje jako jediný práh 60 a na hraně zase bliká",
+            "nikdy nezhasne"
+          ],
+          "answer": 1,
+          "why": "Každé číslo pod 60 splní hned první podmínku a druhá větev se uplatní jen od 60 výš. Paměť se nikdy nepoužije, takže zbyl jediný práh."
+        }
+      ]
+    },
+    {
+      "code": [
+        "kroky = 0",
+        "nahoře = ne",
+        "pořád:",
+        "    síla = změř zrychlení",
+        "    když síla > 1500 a nahoře == ne:",
+        "        kroky = kroky + 1",
+        "        nahoře = ano",
+        "    když síla < 1100:",
+        "        nahoře = ne"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "Měření: 1000, 1600, 1700, 1600, 1000",
+          "q": "Kolik kroků je na konci?",
+          "options": [
+            "1",
+            "3",
+            "0"
+          ],
+          "answer": 0,
+          "why": "1600 přičte krok a nastaví nahoře = ano. 1700 a 1600 už nic nepřičtou. Až 1000 vrátí nahoře na ne."
+        },
+        {
+          "line": 7,
+          "input": "Měření: 1000, 1600, 1300, 1600",
+          "q": "Kolik kroků je na konci?",
+          "options": [
+            "1",
+            "2"
+          ],
+          "answer": 0,
+          "why": "1300 není pod 1100, takže nahoře zůstává ano a druhé 1600 se nepočítá. Chvění nohy se nezapočítá jako nový krok."
+        },
+        {
+          "line": 4,
+          "input": "Z řádku 5 smažeš část a nahoře == ne. Měření: 1000, 1600, 1700, 1600, 1000",
+          "q": "Kolik kroků je teď na konci?",
+          "options": [
+            "1",
+            "3",
+            "5"
+          ],
+          "answer": 1,
+          "why": "Bez paměti se přičte každé měření nad 1500: 1600, 1700 i 1600. Jeden krok se tak počítá třikrát."
+        },
+        {
+          "line": 7,
+          "input": "Řádek 8 změníš na když síla < 1500. Měření: 1000, 1510, 1490, 1520, 1480, 1000 (jeden krok s chvěním)",
+          "q": "Kolik kroků je na konci?",
+          "options": [
+            "1",
+            "2",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Když jsou oba prahy stejné, chvění kolem 1500 přepíná nahoře tam a zpět a každé nové překročení se počítá: 1510 a 1520. Pásmo mezi 1100 a 1500 je to, co šum spolkne."
+        }
+      ]
+    }
+  ],
+  "debrief": "Lampa i krokoměr používají stejný trik: dva prahy a mezi nimi paměť. Proměnná tu nic nepočítá, jen si pamatuje stav. Díky tomu zařízení nebliká a nepočítá šum. Stejně funguje termostat v radiátoru."
+}

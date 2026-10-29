@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Korytnačka: najkratší program",
+  "instruction": "Nakresli cieľový obrázok čo najkratším programom. Korytnačka začína v strede a pozerá sa hore. Počíta sa každý príkaz vrátane opakuj a nauč. Hviezda je za program, ktorý sa zmestí do limitu.",
+  "levels": [
+    {
+      "goal": "Rovnostranný trojuholník so stranou 100.",
+      "target": "opakuj 3 [ dopředu 100 vpravo 120 ]",
+      "max": 3,
+      "hint": "Uhol vnútri trojuholníka je 60°. Korytnačka sa ale neotáča o uhol vnútri, otáča sa o to, čo zostáva do priameho smeru.",
+      "why": "Za celú cestu okolo obrazca sa korytnačka otočí dookola, teda o 360°. Tri rovnaké rohy: 360 : 3 = 120°."
+    },
+    {
+      "goal": "Päťcípa hviezda nakreslená jedným ťahom, strana 150.",
+      "target": "opakuj 5 [ dopředu 150 vpravo 144 ]",
+      "max": 3,
+      "hint": "Pri hviezde sa korytnačka neotočí dookola raz, ale dvakrát. Koľko je dvakrát 360° delené piatimi?",
+      "why": "Hviezda obíde stred dvakrát: 2 × 360 = 720°, 720 : 5 = 144°. Pravidlo celkového otočenia je všeobecné, platí pre každý uzavretý obrazec."
+    },
+    {
+      "goal": "Mriežka 2 × 2 zo štyroch štvorcov so stranou 50, ktoré sa dotýkajú v jednom rohu.",
+      "target": "nauč ctverec :a [ opakuj 4 [ dopředu :a vpravo 90 ] ] opakuj 4 [ ctverec 50 vlevo 90 ]",
+      "max": 8,
+      "hint": "Najskôr nauč korytnačku kresliť štvorec s parametrom. Potom sa pozri na mriežku ako na štyri štvorce okolo jedného bodu.",
+      "why": "Pomenovaná časť riešenia je podprogram. Štyri štvorce otočené okolo spoločného rohu dajú mriežku, aj keď v programe žiadnu mriežku nevidíš. Tak vyzerá dekompozícia v kóde."
+    },
+    {
+      "goal": "Deväťcípa ostrá hviezda jedným ťahom, strana 150. Každý cíp je ostrejší než pri päťcípej.",
+      "target": "opakuj 9 [ dopředu 150 vpravo 160 ]",
+      "max": 3,
+      "hint": "Vyskúšaj, koľkokrát má korytnačka obkrúžiť stred. Uhol musí vyjsť ako celé číslo a hviezda sa musí uzavrieť.",
+      "why": "Korytnačka obkrúži stred štyrikrát: 4 × 360 = 1440°, 1440 : 9 = 160°. Pri dvoch alebo troch obkrúženiach to vyjde 80° a 120°, a to už nie sú ostré cípy (pri 120° sa nakreslí len trojuholník trikrát cez seba)."
+    },
+    {
+      "goal": "Domček jedným ťahom: štvorec so stranou 100, obe uhlopriečky a strieška. Pero sa ani raz nezdvihne a žiadna čiara sa nekreslí dvakrát. Začínaš v ľavom dolnom rohu.",
+      "target": "vpravo 90 dopředu 100 vlevo 90 dopředu 100 vlevo 135 dopředu 141 vpravo 135 dopředu 100 vpravo 90 dopředu 100 vlevo 135 dopředu 71 vlevo 90 dopředu 71 vlevo 90 dopředu 141",
+      "max": 16,
+      "hint": "Domček je graf: 5 rohov a 8 čiar. Spočítaj, koľko čiar vedie z každého rohu. Jedným ťahom sa dá začať len v rohu s nepárnym počtom čiar a skončiť musíš v druhom takom.",
+      "why": "Nepárne rohy sú len dva: ľavý a pravý dolný. Začneš v jednom a skončíš v druhom. Uhlopriečka štvorca so stranou 100 je asi 141, šikmá strana striešky asi 71. Korytnačka tu kreslí model z jadra Model: graf."
+    }
+  ],
+  "debrief": "Kratší program nie je len krajší. Núti ťa nájsť pravidlo: celkové otočenie, opakujúcu sa časť, podprogram, nepárne vrcholy grafu. Program s tromi príkazmi, ktorý kreslí hviezdu, je všeobecný. Zmeníš jedno číslo a máš inú hviezdu."
+}

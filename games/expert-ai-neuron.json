@@ -1,0 +1,308 @@
+{
+  "type": "neuron",
+  "title": "Jeden neuron, jedna přímka",
+  "instruction": "Nastav váhy a práh tak, aby přímka oddělila dvě skupiny bodů. Neuron řekne „druhá skupina“, když váha₁ · x + váha₂ · y je větší než práh.",
+  "levels": [
+    {
+      "story": "Rozpoznávač mazlíčků zná váhu a výšku zvířete. Odděl kočky od psů.",
+      "labels": [
+        "kočka",
+        "pes"
+      ],
+      "axes": [
+        "váha kg",
+        "výška cm"
+      ],
+      "points": [
+        [
+          3,
+          25,
+          0
+        ],
+        [
+          4,
+          23,
+          0
+        ],
+        [
+          5,
+          28,
+          0
+        ],
+        [
+          4,
+          30,
+          0
+        ],
+        [
+          6,
+          26,
+          0
+        ],
+        [
+          2,
+          20,
+          0
+        ],
+        [
+          20,
+          50,
+          1
+        ],
+        [
+          25,
+          55,
+          1
+        ],
+        [
+          30,
+          60,
+          1
+        ],
+        [
+          12,
+          40,
+          1
+        ],
+        [
+          18,
+          45,
+          1
+        ],
+        [
+          9,
+          35,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "Stačí jedna vlastnost: psi jsou tady těžší. Nastavíš-li váhu výšky na nulu, přímka je svislá a pořád to funguje."
+    },
+    {
+      "story": "Spamový filtr počítá vykřičníky a odkazy. Žádná z vlastností sama nestačí. Najdi přímku šikmo.",
+      "labels": [
+        "běžný e-mail",
+        "spam"
+      ],
+      "axes": [
+        "vykřičníky",
+        "odkazy"
+      ],
+      "points": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          4,
+          1,
+          0
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          2,
+          4,
+          0
+        ],
+        [
+          5,
+          3,
+          1
+        ],
+        [
+          3,
+          5,
+          1
+        ],
+        [
+          6,
+          2,
+          1
+        ],
+        [
+          2,
+          6,
+          1
+        ],
+        [
+          7,
+          4,
+          1
+        ],
+        [
+          4,
+          4,
+          1
+        ],
+        [
+          4,
+          3,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "Spam má hodně vykřičníků a odkazů dohromady. Obě váhy musí být kladné a přibližně stejné, práh mezi 6 a 7. Podle jedné vlastnosti dosáhneš nejvýš asi 79 %."
+    },
+    {
+      "story": "micro:bit rozlišuje mávání a tleskání podle síly a rychlosti pohybu. Dvě nahrávky se ale pokazily. Zkus 100 %.",
+      "labels": [
+        "mávání",
+        "tleskání"
+      ],
+      "axes": [
+        "síla pohybu",
+        "rychlost změn"
+      ],
+      "points": [
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          7,
+          8,
+          0
+        ],
+        [
+          6,
+          7,
+          1
+        ],
+        [
+          7,
+          6,
+          1
+        ],
+        [
+          8,
+          7,
+          1
+        ],
+        [
+          6,
+          8,
+          1
+        ],
+        [
+          8,
+          8,
+          1
+        ],
+        [
+          7,
+          9,
+          1
+        ],
+        [
+          2,
+          2,
+          1
+        ]
+      ],
+      "goal": 0.85,
+      "why": "100 % nejde: dva body leží uprostřed cizí skupiny. Nejlepší přímka trefí 12 ze 14, tedy 86 %. Chybná data se nemají honit. Spravit se dají jen tak, že nahrávky uděláš znovu."
+    },
+    {
+      "story": "Schodišťový vypínač: světlo svítí, když je jeden vypínač nahoře a druhý dole. Osy ukazují polohu dolního a horního vypínače (0 = dole, 10 = nahoře). Naučíš to jeden neuron?",
+      "labels": [
+        "nesvítí",
+        "svítí"
+      ],
+      "axes": [
+        "dolní vypínač",
+        "horní vypínač"
+      ],
+      "points": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          8,
+          8,
+          0
+        ],
+        [
+          9,
+          9,
+          0
+        ],
+        [
+          1,
+          9,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ],
+        [
+          8,
+          2,
+          1
+        ],
+        [
+          9,
+          1,
+          1
+        ]
+      ],
+      "goal": 0.75,
+      "why": "Svítící body jsou ve dvou protilehlých rozích. Jedna přímka je od nesvítících neoddělí, nejlíp trefíš 6 z 8. Tomu se říká problém XOR. Potřebuješ dva neurony a třetí, který jejich výsledky spojí. To je skrytá vrstva neuronové sítě."
+    }
+  ],
+  "debrief": "Jeden neuron umí jen jedno: nakreslit přímku. Kde přímka stačí, naučí se rychle. Kde data lžou, 100 % nejde. A kde je potřeba víc přímek, přidá se další vrstva neuronů. Celé neuronové sítě jsou jen spousta takových přímek poskládaných na sebe."
+}

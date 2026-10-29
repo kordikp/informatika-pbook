@@ -1,0 +1,78 @@
+{
+  "type": "estimate",
+  "title": "Hol vész el a ping",
+  "instruction": "Becsüld meg az eredményt. A fény vákuumban 300 000 km/s sebességgel halad, üvegszálban kb. 200 000 km/s-mal. A ping az oda-vissza út ideje.",
+  "items": [
+    {
+      "q": "Hány kilométert tesz meg a jel a szálban 1 milliszekundum alatt?",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "answer": 200,
+      "tolerance": 10,
+      "unit": "km",
+      "why": "Másodpercenként 200 000 km az ezredmásodpercenként 200 km. Minden 100 km kábel tehát 1 ms-ot ad a pinghez: fél milliszekundumot oda és felet vissza."
+    },
+    {
+      "q": "A lehető legkisebb ping Prágából New Yorkba (kb. 6 600 km), ha a szál egyenesen futna.",
+      "min": 0,
+      "max": 300,
+      "step": 2,
+      "answer": 66,
+      "tolerance": 6,
+      "unit": "ms",
+      "why": "Oda-vissza 13 200 km, és 13 200 : 200 000 = 0,066 s. A valódi ping általában 100 ms körül van, mert a kábel nem egyenesen fut, és a routerek egy kicsit feltartják a csomagot."
+    },
+    {
+      "q": "Internet geostacionárius műholdon át, 36 000 km magasan. Mennyi pinget ad maga az út? A jel oda felfelé és lefelé megy, aztán vissza is felfelé és lefelé.",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "answer": 480,
+      "tolerance": 30,
+      "unit": "ms",
+      "why": "4 × 36 000 = 144 000 km 300 000 km/s sebességgel 0,48 s. Egy gyors lövöldözős játékhoz ez reménytelen, még akkor is, ha a műhold egyébként tökéletes lenne."
+    },
+    {
+      "q": "Alacsony pályás műhold 550 km magasan. Hány milliszekundumot ad a felfelé és lefelé vezető út oda és vissza?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 7,
+      "tolerance": 1,
+      "unit": "ms",
+      "why": "4 × 550 = 2 200 km, osztva 300 000 km/s-mal kb. 0,007 s. Ezért van az alacsony pályás műholdhálózatoknak a kábelhez hasonló pingje. Cserébe ezreknek kell keringeniük belőlük, mert mindegyik csak pár percig van fölötted."
+    },
+    {
+      "q": "A játék 60 képkocka/másodperccel fut. Hány milliszekundum jut egy képkockára?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 17,
+      "tolerance": 1,
+      "unit": "ms",
+      "why": "1 000 ms : 60 ≈ 16,7 ms. Ennyi idő alatt kell a játéknak kiszámolnia a fizikát és kirajzolnia az egész képet."
+    },
+    {
+      "q": "100 ms a pinged, és a játék 60 képkocka/másodperccel fut. Hány képkockával később tud a szerver a lövésedről?",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "answer": 3,
+      "tolerance": 0,
+      "unit": "képkocka",
+      "why": "A szerverig csak a ping fele vezet, vagyis 50 ms. 50 : 16,7 = 3 képkocka. Ezért a játékok előre jelzik a mozgást, és a szerver utólag kiszámolja, hol állt az ellenfél a lövés pillanatában."
+    },
+    {
+      "q": "Egy 4K-s streamhez 25 Mb/s (megabit másodpercenként) kell. Hány MB-ot (megabájtot) töltesz le egy perc alatt? 1 bájt = 8 bit.",
+      "min": 0,
+      "max": 1000,
+      "step": 5,
+      "answer": 190,
+      "tolerance": 10,
+      "unit": "MB",
+      "why": "25 : 8 = 3,125 MB/s, szorozva 60-nal 187,5 MB. A Mb/s-ban mért sebesség és a ms-ban mért késleltetés két különböző dolog: a szélesebb autópálya nem rövidíti meg az utat Ausztráliába."
+    }
+  ],
+  "debrief": "A késleltetésnek kemény alsó határa van: a fénysebesség és a kábel hossza szabja meg. Ezen felül a routerek, a sorok és a szerver adnak hozzá időt. A gyorsabb internet több adatot ad másodpercenként, de a pinget nem rövidíti meg. Azt csak egy hozzád közelebbi szerver rövidíti meg."
+}

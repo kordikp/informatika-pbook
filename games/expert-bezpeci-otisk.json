@@ -1,0 +1,129 @@
+{
+  "type": "trace",
+  "title": "Jak web pozná heslo, které nezná",
+  "instruction": "Krokuj dva programy. První kontroluje přihlášení, druhý počítá hračkový otisk (hash). Otisk je číslo, které se z hesla spočítá snadno, ale zpátky na heslo se převést nedá.",
+  "rounds": [
+    {
+      "code": [
+        "pokusy = 0",
+        "opakuj dokud pokusy < 3:",
+        "    heslo = načti_heslo()",
+        "    pokud otisk(sůl + heslo) == uložený_otisk:",
+        "        vypiš „Vítej“",
+        "        skonči",
+        "    pokusy = pokusy + 1",
+        "zamkni účet na 15 minut"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Někdo zadá heslo123",
+          "q": "Co server v tu chvíli porovnává?",
+          "options": [
+            "Zadané heslo s heslem uloženým v databázi",
+            "Otisk soli a zadaného hesla s uloženým otiskem",
+            "Délku zadaného hesla s délkou uloženého hesla"
+          ],
+          "answer": 1,
+          "why": "Poctivý server heslo vůbec neukládá. Má jen otisk. Spočítá otisk z toho, co zadáš, a porovná dvě čísla. Proto ti po zapomenutí heslo nepošle, jen nabídne nové."
+        },
+        {
+          "line": 7,
+          "input": "Tři špatná hesla za sebou",
+          "q": "Na kterém řádku program pokračuje po třetím špatném pokusu?",
+          "options": [
+            "Na řádku 5",
+            "Na řádku 8",
+            "Znovu na řádku 3"
+          ],
+          "answer": 1,
+          "why": "Po třetím pokusu je pokusy = 3, podmínka pokusy < 3 neplatí, smyčka končí a účet se zamkne."
+        },
+        {
+          "line": 7,
+          "input": "Útočník hádá přes přihlašovací stránku celý den bez přestávky",
+          "q": "Kolik hesel stihne vyzkoušet za 24 hodin?",
+          "options": [
+            "288",
+            "Asi 10 miliard",
+            "Jen 3"
+          ],
+          "answer": 0,
+          "why": "Tři pokusy za 15 minut je 12 za hodinu, tedy 288 za den. Takový útok online je hrozně pomalý. Proto útočníci radši ukradnou celou databázi otisků a hádají u sebe, miliardy pokusů za sekundu."
+        },
+        {
+          "line": 3,
+          "input": "Databáze unikla. Útočník má otisky i soli všech účtů.",
+          "q": "Sůl je náhodný řetězec, jiný u každého účtu. K čemu je, když ji útočník zná?",
+          "options": [
+            "Stejná hesla mají různé otisky, takže útočník musí hádat každý účet zvlášť",
+            "Sůl otisk zašifruje, takže ho nejde přečíst",
+            "Sůl prodlouží heslo, takže už ho nejde uhodnout"
+          ],
+          "answer": 0,
+          "why": "Bez soli by měli všichni s heslem 123456 stejný otisk a jedním uhodnutím by padly tisíce účtů. Sůl útočníka nutí začínat u každého účtu znovu. Slabé heslo ale nezachrání."
+        }
+      ]
+    },
+    {
+      "code": [
+        "funkce otisk(slovo):",
+        "    s = 0",
+        "    pro každé písmeno p ve slově:",
+        "        s = s * 3 + pořadí(p)    # A=1, B=2, C=3 …",
+        "    vrať zbytek po dělení s : 11"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "slovo = AB",
+          "q": "Jaké je s po zpracování obou písmen?",
+          "options": [
+            "3",
+            "5",
+            "6"
+          ],
+          "answer": 1,
+          "why": "Po A: s = 0 · 3 + 1 = 1. Po B: s = 1 · 3 + 2 = 5."
+        },
+        {
+          "line": 4,
+          "input": "slovo = BA",
+          "q": "Jaký otisk funkce vrátí?",
+          "options": [
+            "5",
+            "7",
+            "1"
+          ],
+          "answer": 1,
+          "why": "Po B: s = 2. Po A: s = 2 · 3 + 1 = 7. Zbytek po dělení 11 je 7. Na pořadí písmen záleží, AB a BA mají jiný otisk."
+        },
+        {
+          "line": 4,
+          "input": "slovo = E",
+          "q": "Otisk E vyjde 5, stejně jako u AB. Co to znamená, když máš heslo AB?",
+          "options": [
+            "Kdo zadá E, přihlásí se za tebe",
+            "Nic, server pozná, že E je jiné heslo",
+            "Server ohlásí chybu"
+          ],
+          "answer": 0,
+          "why": "Server porovnává jen otisky. Dvě různá slova se stejným otiskem jsou kolize a útočníkovi stačí najít jakékoli z nich."
+        },
+        {
+          "line": 4,
+          "input": "Zkoušíš různá slova, jedno po druhém",
+          "q": "Po kolika různých slovech máš kolizi jistou, ať jsou slova jakákoli?",
+          "options": [
+            "Po 11",
+            "Po 12",
+            "Až po 1000"
+          ],
+          "answer": 1,
+          "why": "Zbytek po dělení 11 může být jen 0 až 10, tedy 11 hodnot. Dvanáct slov se do 11 přihrádek nevejde, dvě musí sdílet jednu. Skutečný otisk SHA-256 má 2 na 256 hodnot, víc než atomů na Zemi, takže kolizi nikdo nenajde."
+        }
+      ]
+    }
+  ],
+  "debrief": "Web tvoje heslo nezná, zná jen jeho otisk. Dobrý otisk se nedá převrátit, nemá najitelné kolize a sůl ho dělá jiným u každého účtu. Ani to ale nezachrání krátké heslo: útočník s ukradenou databází prostě zkouší hesla a počítá jejich otisky. Proto pořád platí délka a jedinečnost."
+}

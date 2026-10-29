@@ -1,0 +1,190 @@
+{
+  "type": "trace",
+  "title": "Step through the model from inside",
+  "instruction": "Three small programs that do the same as real AI, just on a small scale. Step through them line by line and answer what happens.",
+  "rounds": [
+    {
+      "code": [
+        "word = “Vienna”",
+        "sentence = word",
+        "repeat until word is the name of a country:",
+        "    candidates = words that follow word in the data",
+        "    word = candidate with the highest probability",
+        "    sentence = sentence + “ ” + word",
+        "print sentence"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "Data: after “Vienna”: is 1.0 | after “is”: the 1.0 | after “the”: capital 0.67, second 0.33 | after “capital”: of 1.0 | after “of”: Czechia 0.67, Austria 0.33",
+          "q": "Which word does line 5 pick in the third round (after the word “the”)?",
+          "options": [
+            "capital",
+            "second",
+            "of"
+          ],
+          "answer": 0,
+          "why": "“capital” has 0.67, more than “second” with 0.33. The model always takes the most likely one."
+        },
+        {
+          "line": 4,
+          "input": "Last round: word = “of”",
+          "q": "Which word does the model pick now?",
+          "options": [
+            "Austria",
+            "Czechia",
+            "Vienna"
+          ],
+          "answer": 1,
+          "why": "In the data, “of” was followed twice by “Czechia” and only once by “Austria”. At this moment the model sees only the word “of”; it has already forgotten about Vienna."
+        },
+        {
+          "line": 6,
+          "input": "End of the loop",
+          "q": "What does the program print?",
+          "options": [
+            "Vienna is the capital of Austria",
+            "Vienna is the capital of Czechia",
+            "Vienna is the second largest city of Czechia"
+          ],
+          "answer": 1,
+          "why": "Every step was likely, and yet the sentence is false. This is how a hallucination happens on a small scale."
+        },
+        {
+          "line": 2,
+          "input": "Go through the whole program once more",
+          "q": "On which line does the program check whether the sentence is true?",
+          "options": [
+            "On line 4",
+            "On line 5",
+            "Nowhere"
+          ],
+          "answer": 2,
+          "why": "No line checks the truth. The program only puts likely words together. Checking has to come from outside, from you or from a search."
+        }
+      ]
+    },
+    {
+      "code": [
+        "smallest = infinity",
+        "for each example in the training data:",
+        "    d = (redness − example.redness)² + (diameter − example.diameter)²",
+        "    if d < smallest:",
+        "        smallest = d",
+        "        nearest = example",
+        "print kind(nearest)"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "New fruit: redness 2, diameter 7. First example: apple (9, 7)",
+          "q": "What does d come out as?",
+          "options": [
+            "7",
+            "49",
+            "14"
+          ],
+          "answer": 1,
+          "why": "(2 − 9)² + (7 − 7)² = 49 + 0 = 49."
+        },
+        {
+          "line": 3,
+          "input": "Second example: pear (3, 9). smallest = 49",
+          "q": "Does the nearest neighbour change?",
+          "options": [
+            "Yes, d = 5 is less than 49",
+            "No, a pear is a different kind",
+            "No, d comes out as 50"
+          ],
+          "answer": 0,
+          "why": "(2 − 3)² + (7 − 9)² = 1 + 4 = 5. That is less than 49, so the pear is the nearest so far."
+        },
+        {
+          "line": 3,
+          "input": "Third example: apple (4, 5). smallest = 5",
+          "q": "Does the nearest neighbour change?",
+          "options": [
+            "Yes, apples come first",
+            "No, d = 8 is not less than 5",
+            "Yes, d = 2"
+          ],
+          "answer": 1,
+          "why": "(2 − 4)² + (7 − 5)² = 4 + 4 = 8. The pear stays the nearest."
+        },
+        {
+          "line": 6,
+          "input": "The fruit was actually a green apple",
+          "q": "Why did the model say “pear”?",
+          "options": [
+            "There’s a bug in the code",
+            "There was no green apple in the data",
+            "Pears come first"
+          ],
+          "answer": 1,
+          "why": "The code calculates correctly. The mistake is in the data: green apples are missing from it. What isn’t in the data, the model can’t do."
+        }
+      ]
+    },
+    {
+      "code": [
+        "weight = {games: 1, science: 1}",
+        "repeat 2 times:",
+        "    show 4 videos in the ratio of the weights",
+        "    for each video watched to the end:",
+        "        weight[category] = weight[category] + 1",
+        "print weight"
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "Round 1. You only watch videos about games to the end.",
+          "q": "How many videos about games will the feed show you in round 1?",
+          "options": [
+            "1",
+            "2",
+            "4"
+          ],
+          "answer": 1,
+          "why": "The weights are 1 : 1, so the 4 videos are split 2 and 2."
+        },
+        {
+          "line": 4,
+          "input": "Round 1: you watch both videos about games to the end",
+          "q": "What is the weight of games after round 1?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "why": "1 + 1 + 1 = 3. Science stayed at 1."
+        },
+        {
+          "line": 2,
+          "input": "Round 2: weights games 3, science 1",
+          "q": "How many videos about science will you see in round 2?",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ],
+          "answer": 1,
+          "why": "A ratio of 3 : 1 gives, out of 4 videos, 3 about games and only 1 about science."
+        },
+        {
+          "line": 5,
+          "input": "After round 2 you again watch only games to the end",
+          "q": "What does the program print?",
+          "options": [
+            "games 6, science 1",
+            "games 5, science 2",
+            "games 4, science 1"
+          ],
+          "answer": 0,
+          "why": "3 + 3 = 6. Science didn’t get a chance, because the feed hardly shows it. That’s a feedback loop: what you see is what you click, and what you click is what you see."
+        }
+      ]
+    }
+  ],
+  "debrief": "Three programs, three lessons. A language model puts likely words together and doesn’t check the truth. Nearest neighbour calculates precisely, but only with what is in the data. And a recommender strengthens what it has already shown with every round."
+}

@@ -1,0 +1,130 @@
+{
+  "type": "hotspot",
+  "title": "Weboldal vakon",
+  "instruction": "Így olvassa a szakkör oldalát a képernyőolvasó: egy program, amely vak embereknek hangosan felolvassa a weboldalt, és tud ugrálni a címsorok, linkek és gombok között. Kattints minden darabra, amely valakinek elérhetetlenné teszi az oldalt. Vigyázz, néhány darab csak gyanúsnak tűnik, de helyes.",
+  "items": [
+    {
+      "label": "Linkek",
+      "segments": [
+        {
+          "text": "Az órarendet megtalálod:"
+        },
+        {
+          "text": "[kattints ide]",
+          "hit": true,
+          "why": "A képernyőolvasó ki tudja listázni az oldal összes linkjét. Három „kattints ide” link egymás után semmit sem mond. A jó link a körülötte lévő mondat nélkül is érthető: „A szakkör órarendje”."
+        },
+        {
+          "text": ". A fotókat a galériában találod:"
+        },
+        {
+          "text": "[Fotók a Macocha-kirándulásról]",
+          "why": "Ez rendben van: a link szövegéből világos, hová vezet."
+        }
+      ]
+    },
+    {
+      "label": "Képek",
+      "segments": [
+        {
+          "text": "<img src=\"vylet.jpg\">",
+          "hit": true,
+          "why": "Hiányzik az alt, vagyis a kép szöveges leírása. A képernyőolvasó csak a fájlnevet olvassa fel, „vylet jpg”, vagy semmit."
+        },
+        {
+          "text": " és"
+        },
+        {
+          "text": "<img src=\"ozdobna-vlnka.svg\" alt=\"\">",
+          "why": "Helyes. Az üres alt azt mondja a képernyőolvasónak: ez csak díszítés, ugord át."
+        }
+      ]
+    },
+    {
+      "label": "Címsorok",
+      "segments": [
+        {
+          "text": "<h1>Robotikaszakkör</h1>"
+        },
+        {
+          "text": "<h4>Mikor találkozunk</h4>",
+          "hit": true,
+          "why": "A h1 után rögtön h4. Aki a címsorok között ugrál, azt hiszi, hogy két szint hiányzik. A címsorok az oldal vázlata: h1, alatta h2, azok alatt h3."
+        },
+        {
+          "text": " <h2>Fotók a programokról</h2>"
+        }
+      ]
+    },
+    {
+      "label": "Gombok",
+      "segments": [
+        {
+          "text": "<button>Bejelentkezés</button>",
+          "why": "Helyes. A buttonhöz eljutsz a Tab billentyűvel, és a képernyőolvasó bemondja: „gomb”."
+        },
+        {
+          "text": " és mellette"
+        },
+        {
+          "text": "<div onclick=\"odeslat()\">Küldés</div>",
+          "hit": true,
+          "why": "A div csak a szemnek néz ki gombnak. A Tab billentyűvel nem jutsz el hozzá, és a képernyőolvasó nem jelzi, hogy rá lehet kattintani."
+        }
+      ]
+    },
+    {
+      "label": "Színek",
+      "segments": [
+        {
+          "text": "Szürke #999999 szöveg fehéren (kontraszt 2,85 : 1)",
+          "hit": true,
+          "why": "A WCAG akadálymentességi szabályai normál szövegnél legalább 4,5 : 1 kontrasztot kérnek. Gyengébb látással vagy napfényben a 2,85 : 1 nem olvasható."
+        },
+        {
+          "text": " és mellette"
+        },
+        {
+          "text": "sötétszürke #595959 szöveg fehéren (kontraszt 7 : 1)",
+          "why": "Rendben van, a 7 : 1 több a szükséges 4,5 : 1-nél."
+        }
+      ]
+    },
+    {
+      "label": "Űrlap",
+      "segments": [
+        {
+          "text": "<input type=\"email\" placeholder=\"Az e-mail-címed\">",
+          "hit": true,
+          "why": "Hiányzik a <label>. A mezőben lévő szürke tipp eltűnik, amint elkezdesz gépelni, és néhány képernyőolvasó egyáltalán nem olvassa fel."
+        },
+        {
+          "text": " és a mező alatt"
+        },
+        {
+          "text": "A kötelező mezők pirossal vannak jelölve.",
+          "hit": true,
+          "why": "Információ csak színnel. Aki nem különbözteti meg a pirosat (nagyjából minden tizenkettedik fiú), nem tudja, mi kötelező. Tegyél mellé csillagot vagy a „kötelező” szót."
+        }
+      ]
+    },
+    {
+      "label": "Az oldal fejléce",
+      "segments": [
+        {
+          "text": "<html lang=\"hu\">",
+          "why": "Helyes. Ennek köszönhetően a képernyőolvasó magyarul olvas, és nem angol kiejtéssel."
+        },
+        {
+          "text": " és egy sorral lejjebb"
+        },
+        {
+          "text": "<meta name=\"viewport\" content=\"user-scalable=no\">",
+          "hit": true,
+          "why": "Megtiltja, hogy ujjakkal nagyítsd az oldalt. Aki rosszabbul lát, nem tudja felnagyítani a szöveget."
+        }
+      ]
+    }
+  ],
+  "debrief": "Az akadálymentesség nem extra néhány embernek. Ugyanezek a hibák neked is zavarók: napfényben, egy kézzel a villamoson vagy egér nélkül. A legtöbbjüket nem a dizájn javítja meg, hanem a helyes HTML: sorrendben lévő címsorok, alt a képeken, label a mezőkön, button a div helyett. A díszítésen lévő üres alt pedig helyes, mert azt mondja: „ezt ugord át”."
+}

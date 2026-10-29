@@ -1,0 +1,129 @@
+{
+  "type": "trace",
+  "title": "Hogyan ismeri fel a web a jelszót, amit nem tud",
+  "instruction": "Lépkedj végig két programon. Az első a bejelentkezést ellenőrzi, a második egy játék lenyomatot (hasht) számol. A lenyomat egy szám, amelyet a jelszóból könnyű kiszámolni, de visszafelé jelszóvá alakítani nem lehet.",
+  "rounds": [
+    {
+      "code": [
+        "próbák = 0",
+        "ismételd, amíg próbák < 3:",
+        "    jelszó = jelszót_beolvas()",
+        "    ha lenyomat(só + jelszó) == tárolt_lenyomat:",
+        "        kiír „Üdv”",
+        "        kilép",
+        "    próbák = próbák + 1",
+        "fiók zárolása 15 percre"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Valaki beírja, hogy jelszo123",
+          "q": "Mit hasonlít össze a szerver ebben a pillanatban?",
+          "options": [
+            "A beírt jelszót az adatbázisban tárolt jelszóval",
+            "A só és a beírt jelszó lenyomatát a tárolt lenyomattal",
+            "A beírt jelszó hosszát a tárolt jelszó hosszával"
+          ],
+          "answer": 1,
+          "why": "A becsületes szerver egyáltalán nem tárolja a jelszót. Csak a lenyomata van meg neki. Kiszámolja a lenyomatot abból, amit beírsz, és két számot hasonlít össze. Ezért nem küldi el a jelszavadat, ha elfelejtetted, csak újat ajánl fel."
+        },
+        {
+          "line": 7,
+          "input": "Három rossz jelszó egymás után",
+          "q": "Melyik sorban folytatódik a program a harmadik rossz próbálkozás után?",
+          "options": [
+            "Az 5. sorban",
+            "A 8. sorban",
+            "Újra a 3. sorban"
+          ],
+          "answer": 1,
+          "why": "A harmadik próbálkozás után próbák = 3, a próbák < 3 feltétel nem teljesül, a ciklus véget ér, és a fiók zárolódik."
+        },
+        {
+          "line": 7,
+          "input": "A támadó a bejelentkezési oldalon találgat egész nap, szünet nélkül",
+          "q": "Hány jelszót tud kipróbálni 24 óra alatt?",
+          "options": [
+            "288",
+            "Kb. 10 milliárdot",
+            "Csak 3-at"
+          ],
+          "answer": 0,
+          "why": "15 percenként három próbálkozás óránként 12, vagyis naponta 288. Egy ilyen online támadás borzasztóan lassú. Ezért a támadók inkább ellopják a lenyomatok teljes adatbázisát, és a saját gépükön találgatnak, másodpercenként milliárdszor."
+        },
+        {
+          "line": 3,
+          "input": "Kiszivárgott az adatbázis. A támadónál van az összes fiók lenyomata és sója.",
+          "q": "A só egy véletlen karakterlánc, minden fióknál más. Mire jó, ha a támadó ismeri?",
+          "options": [
+            "Az azonos jelszavaknak különböző lenyomatuk lesz, így a támadónak minden fiókot külön kell találgatnia",
+            "A só titkosítja a lenyomatot, így nem lehet elolvasni",
+            "A só meghosszabbítja a jelszót, így már nem lehet kitalálni"
+          ],
+          "answer": 0,
+          "why": "Só nélkül mindenkinek, akinek 123456 a jelszava, ugyanaz lenne a lenyomata, és egyetlen találattal fiókok ezrei dőlnének el. A só arra kényszeríti a támadót, hogy minden fióknál elölről kezdje. A gyenge jelszót viszont nem menti meg."
+        }
+      ]
+    },
+    {
+      "code": [
+        "függvény lenyomat(szó):",
+        "    s = 0",
+        "    a szó minden b betűjére:",
+        "        s = s * 3 + sorszám(b)    # A=1, B=2, C=3 …",
+        "    add vissza s : 11 maradékát"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "szó = AB",
+          "q": "Mennyi s a két betű feldolgozása után?",
+          "options": [
+            "3",
+            "5",
+            "6"
+          ],
+          "answer": 1,
+          "why": "Az A után: s = 0 · 3 + 1 = 1. A B után: s = 1 · 3 + 2 = 5."
+        },
+        {
+          "line": 4,
+          "input": "szó = BA",
+          "q": "Milyen lenyomatot ad vissza a függvény?",
+          "options": [
+            "5",
+            "7",
+            "1"
+          ],
+          "answer": 1,
+          "why": "A B után: s = 2. Az A után: s = 2 · 3 + 1 = 7. A 11-gyel való osztás maradéka 7. A betűk sorrendje számít, az AB-nek és a BA-nak más a lenyomata."
+        },
+        {
+          "line": 4,
+          "input": "szó = E",
+          "q": "Az E lenyomata 5, ugyanaz, mint az AB-é. Mit jelent ez, ha a jelszavad AB?",
+          "options": [
+            "Aki E-t ír be, helyetted jelentkezik be",
+            "Semmit, a szerver felismeri, hogy az E egy másik jelszó",
+            "A szerver hibát jelez"
+          ],
+          "answer": 0,
+          "why": "A szerver csak lenyomatokat hasonlít össze. Két különböző szó ugyanazzal a lenyomattal ütközés, és a támadónak elég bármelyiket megtalálnia."
+        },
+        {
+          "line": 4,
+          "input": "Különböző szavakat próbálsz, egyiket a másik után",
+          "q": "Hány különböző szó után biztos az ütközés, bármilyenek is a szavak?",
+          "options": [
+            "11 után",
+            "12 után",
+            "Csak 1000 után"
+          ],
+          "answer": 1,
+          "why": "A 11-gyel való osztás maradéka csak 0 és 10 között lehet, vagyis 11 érték. Tizenkét szó nem fér el 11 rekeszben, kettőnek ugyanabba kell kerülnie. Egy igazi SHA-256 lenyomatnak 2 a 256-on értéke van, több, mint ahány atom a Földön van, így ütközést senki sem talál."
+        }
+      ]
+    }
+  ],
+  "debrief": "A web nem ismeri a jelszavadat, csak a lenyomatát. A jó lenyomatot nem lehet visszafordítani, nincsenek megtalálható ütközései, és a só minden fióknál mássá teszi. A rövid jelszót azonban ez sem menti meg: a támadó az ellopott adatbázissal egyszerűen próbálgatja a jelszavakat, és kiszámolja a lenyomatukat. Ezért továbbra is a hosszúság és az egyediség számít."
+}

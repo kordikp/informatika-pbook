@@ -1,0 +1,78 @@
+{
+  "type": "estimate",
+  "title": "Kolik váží obraz a zvuk",
+  "instruction": "Spočítej, nebo aspoň dobře odhadni. 1 bajt = 8 bitů, 1 MB = 1 000 000 bajtů, 1 GB = 1000 MB. Barevný pixel bez komprese má 3 bajty (R, G, B).",
+  "items": [
+    {
+      "q": "Jeden nekomprimovaný snímek Full HD (1920 × 1080 pixelů). Kolik MB?",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "answer": 6.2,
+      "tolerance": 0.5,
+      "unit": "MB",
+      "why": "1920 × 1080 = 2 073 600 pixelů, × 3 bajty = 6 220 800 B ≈ 6,2 MB."
+    },
+    {
+      "q": "Minuta nekomprimovaného Full HD videa při 30 snímcích za vteřinu. Kolik GB?",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "answer": 11,
+      "tolerance": 1,
+      "unit": "GB",
+      "why": "60 × 30 = 1800 snímků × 6,2 MB ≈ 11 200 MB ≈ 11 GB. Za minutu!"
+    },
+    {
+      "q": "Tatáž minuta ve 4K (3840 × 2160). Kolik GB?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 45,
+      "tolerance": 3,
+      "unit": "GB",
+      "why": "4K má dvakrát víc pixelů na šířku i na výšku, tedy čtyřikrát víc: 4 × 11,2 ≈ 45 GB."
+    },
+    {
+      "q": "Mobil uloží minutu 4K do 350 MB. Kolikrát je soubor menší než nekomprimovaná verze?",
+      "min": 0,
+      "max": 500,
+      "step": 5,
+      "answer": 130,
+      "tolerance": 15,
+      "unit": "×",
+      "why": "44 800 MB : 350 MB ≈ 128. Komprese zahodí opakování mezi snímky a detaily, které oko nepozná."
+    },
+    {
+      "q": "Trik 4:2:0: jas má každý pixel, barvu jen každá čtveřice pixelů. Průměrně tak pixel zabere 12 bitů místo 24. Kolik MB má teď jeden snímek Full HD?",
+      "min": 0,
+      "max": 10,
+      "step": 0.1,
+      "answer": 3.1,
+      "tolerance": 0.3,
+      "unit": "MB",
+      "why": "Poloviční počet bitů, tedy 6,2 : 2 ≈ 3,1 MB. Oko je citlivější na jas než na barvu, a toho video využívá."
+    },
+    {
+      "q": "Minuta zvuku v kvalitě CD: 44 100 vzorků za vteřinu, 16 bitů, 2 kanály. Kolik MB?",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "answer": 10.5,
+      "tolerance": 1,
+      "unit": "MB",
+      "why": "44 100 × 2 B × 2 kanály × 60 s = 10 584 000 B ≈ 10,6 MB."
+    },
+    {
+      "q": "Video má datový tok 8 Mb/s (megabitů za vteřinu). Kolik MB zabere jedna minuta?",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "answer": 60,
+      "tolerance": 5,
+      "unit": "MB",
+      "why": "8 Mb/s × 60 s = 480 Mb, děleno 8 = 60 MB. Pozor na malé b (bit) a velké B (bajt)."
+    }
+  ],
+  "debrief": "Surové video je obří: minuta 4K by zabrala desítky gigabajtů. Do stovek megabajtů ho dostane komprese, která zahazuje opakování a to, co oko nepozná. A až uvidíš „Mb/s“, vyděl osmi."
+}

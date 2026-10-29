@@ -1,0 +1,216 @@
+{
+  "type": "gates",
+  "title": "Ako kuchár počíta",
+  "instruction": "Procesor nevie nič iné, len spájať hradlá. Z povolených hradiel postav obvod, ktorý splní tabuľku. Hviezdu dostaneš za najmenší počet hradiel.",
+  "levels": [
+    {
+      "story": "Kuchár potrebuje zistiť, či sú dva bity rovnaké. Výstup E svieti, keď A a B majú rovnakú hodnotu.",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "E": "not (A xor B)"
+      },
+      "allow": [
+        "XOR",
+        "NOT"
+      ],
+      "max": 2,
+      "why": "XOR svieti, keď sa bity líšia. NOT to obráti. Takto procesor porovnáva čísla bit po bite.",
+      "solution": {
+        "gates": [
+          [
+            "XOR",
+            "A",
+            "B"
+          ],
+          [
+            "NOT",
+            "g0"
+          ]
+        ],
+        "outputs": {
+          "E": "g1"
+        }
+      }
+    },
+    {
+      "story": "Sčítaj dva bity. Výstup S je číslica výsledku, výstup C je prenos do vyššieho rádu, rovnako ako keď sčítaš 5 + 7 na papieri.",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "S": "A xor B",
+        "C": "A and B"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "XOR"
+      ],
+      "max": 2,
+      "why": "1 + 1 = 10 v dvojkovej sústave: číslica 0 a prenos 1. Tomuto obvodu sa hovorí polovičná sčítačka a je to prvý krok každej kalkulačky.",
+      "solution": {
+        "gates": [
+          [
+            "XOR",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "A",
+            "B"
+          ]
+        ],
+        "outputs": {
+          "S": "g0",
+          "C": "g1"
+        }
+      }
+    },
+    {
+      "story": "Kuchár siaha na dosku po jednej z dvoch vecí. Riadiaci bit S hovorí, po ktorej: S = 0 vyberie A, S = 1 vyberie B.",
+      "inputs": [
+        "A",
+        "B",
+        "S"
+      ],
+      "outputs": {
+        "Y": "(A and not S) or (B and S)"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT"
+      ],
+      "max": 4,
+      "why": "Tomuto obvodu sa hovorí multiplexor. Z mnohých takých prepínačov sa skladá výber bunky v operačnej pamäti: adresa určí, ktoré miesto sa prečíta.",
+      "solution": {
+        "gates": [
+          [
+            "NOT",
+            "S"
+          ],
+          [
+            "AND",
+            "A",
+            "g0"
+          ],
+          [
+            "AND",
+            "B",
+            "S"
+          ],
+          [
+            "OR",
+            "g1",
+            "g2"
+          ]
+        ],
+        "outputs": {
+          "Y": "g3"
+        }
+      }
+    },
+    {
+      "story": "Tri snímače teploty hlasujú, či sa procesor prehrieva. Výstup M svieti, keď svietia aspoň dva snímače. Jeden pokazený snímač tak nič nespustí.",
+      "inputs": [
+        "A",
+        "B",
+        "C"
+      ],
+      "outputs": {
+        "M": "(A and B) or (C and (A or B))"
+      },
+      "allow": [
+        "AND",
+        "OR"
+      ],
+      "max": 4,
+      "why": "Hlasovanie väčšinou je trik spoľahlivých strojov: vesmírne sondy majú počítače trikrát a veria väčšine. Priamočiare riešenie (A and B) or (A and C) or (B and C) potrebuje 5 hradiel, múdrejšie len 4.",
+      "solution": {
+        "gates": [
+          [
+            "AND",
+            "A",
+            "B"
+          ],
+          [
+            "OR",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "C",
+            "g1"
+          ],
+          [
+            "OR",
+            "g0",
+            "g2"
+          ]
+        ],
+        "outputs": {
+          "M": "g3"
+        }
+      }
+    },
+    {
+      "story": "Naozajstné sčítanie: okrem bitov A a B prichádza aj prenos C z nižšieho rádu. Postav úplnú sčítačku s výstupom S a prenosom K.",
+      "inputs": [
+        "A",
+        "B",
+        "C"
+      ],
+      "outputs": {
+        "S": "A xor B xor C",
+        "K": "(A and B) or (C and (A xor B))"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "XOR"
+      ],
+      "max": 5,
+      "why": "Hradlo A xor B použiješ dvakrát: na súčet aj na prenos. Keď 64 takých sčítačiek zapojíš za sebou, máš sčítačku 64-bitových čísel, ako v procesore tvojho mobilu.",
+      "solution": {
+        "gates": [
+          [
+            "XOR",
+            "A",
+            "B"
+          ],
+          [
+            "XOR",
+            "g0",
+            "C"
+          ],
+          [
+            "AND",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "C",
+            "g0"
+          ],
+          [
+            "OR",
+            "g2",
+            "g3"
+          ]
+        ],
+        "outputs": {
+          "S": "g1",
+          "K": "g4"
+        }
+      }
+    }
+  ],
+  "debrief": "Kuchár z jadra „Vnútri zariadenia“ je v skutočnosti miliardy hradiel. Porovnávanie, sčítanie aj výber z pamäte sa skladajú z rovnakých malých kociek. Pokračuj na nandgame.com, kde z nich postavíš celý počítač."
+}

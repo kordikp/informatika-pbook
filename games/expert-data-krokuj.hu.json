@@ -1,0 +1,152 @@
+{
+  "type": "trace",
+  "title": "Léptesd az adatprogramot",
+  "instruction": "Három rövid program dolgozik adatokkal. Léptesd őket soronként, és figyeld, hol válik el egymástól az adat és a program.",
+  "rounds": [
+    {
+      "code": [
+        "hőmérsékletek = [-3, -5, -1, -4]",
+        "legnagyobb = 0",
+        "minden t elemre a hőmérsékletek listában:",
+        "    ha t > legnagyobb:",
+        "        legnagyobb = t",
+        "írd ki: legnagyobb"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "t = -3, legnagyobb = 0",
+          "q": "Teljesül a t > legnagyobb feltétel?",
+          "options": [
+            "igen",
+            "nem"
+          ],
+          "answer": 1,
+          "why": "A -3 kisebb, mint 0. A feltétel nem teljesül, a legnagyobb marad 0."
+        },
+        {
+          "line": 5,
+          "input": "a ciklus lefutott",
+          "q": "Mit ír ki a program?",
+          "options": [
+            "-1",
+            "0",
+            "-3",
+            "-5"
+          ],
+          "answer": 1,
+          "why": "Egyik hőmérséklet sem nagyobb 0-nál, így a kezdő 0 marad. A program olyan számot ír ki, ami egyáltalán nincs benne az adatokban."
+        },
+        {
+          "line": 1,
+          "input": "javítás",
+          "q": "Hogyan javítsd ki a 2. sort, hogy a program bármilyen számokra működjön?",
+          "options": [
+            "legnagyobb = hőmérsékletek[0]",
+            "legnagyobb = -1",
+            "legnagyobb = -100"
+          ],
+          "answer": 0,
+          "why": "Kezdj az első valódi méréssel. A -1 és a -100 csak máshová tolja a hibát: egy laboratóriumi fagyasztó adataival (-150 °C) megint csődöt mondanának."
+        }
+      ]
+    },
+    {
+      "code": [
+        "tanulók = [(1, 'Ema', '7.B'), (2, 'Ema', '7.A'), (3, 'Tomáš', '7.B')]",
+        "kölcsönzések = [(1, 'A hobbit'), (2, 'A kis herceg'), (1, 'Dasenka'), (3, 'A hobbit')]",
+        "darab = 0",
+        "minden (id, könyv) elemre a kölcsönzések listában:",
+        "    tanuló = keresd meg a tanulók között az ilyen id-jű sort",
+        "    ha a tanuló osztálya '7.B':",
+        "        darab = darab + 1",
+        "írd ki: darab"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "kölcsönzés (2, 'A kis herceg')",
+          "q": "Melyik tanulót találja meg a program?",
+          "options": [
+            "a 7.B-s Emát",
+            "a 7.A-s Emát",
+            "mindkét Emát"
+          ],
+          "answer": 1,
+          "why": "A 2-es id csak egy tanulóé: a 7.A-s Emáé. Ezért kapcsoljuk össze a rekordokat id alapján, nem név alapján."
+        },
+        {
+          "line": 7,
+          "input": "a ciklus lefutott",
+          "q": "Mit ír ki a program?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Az 1, 1 és 3 id-jű kölcsönzések 7.B-s tanulókéi. A 2-es id-jű kölcsönzés a 7.A-é. Az eredmény 3."
+        },
+        {
+          "line": 4,
+          "input": "változat: a kölcsönzésekben id helyett név van, és a program az első ilyen nevű tanulót veszi",
+          "q": "Mit írna ki most a program?",
+          "options": [
+            "3",
+            "4",
+            "2"
+          ],
+          "answer": 1,
+          "why": "Az „Ema” névre mindig az első Emát találja meg, a 7.B-st. A kis herceg így rossz osztályhoz számítódik, és 4 jön ki. A név nem egyértelmű kulcs."
+        }
+      ]
+    },
+    {
+      "code": [
+        "kód = [3, 2, 1, 2]",
+        "szín = fehér",
+        "minden n elemre a kód listában:",
+        "    rajzolj n pixelt szín színnel",
+        "    váltsd át a színt"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "n = 2 (a második szám)",
+          "q": "Milyen színnel rajzol most?",
+          "options": [
+            "fehér",
+            "fekete"
+          ],
+          "answer": 1,
+          "why": "Az első futás után a szín fehérről feketére váltott."
+        },
+        {
+          "line": 4,
+          "input": "a ciklus lefutott, 0 = fehér, 1 = fekete",
+          "q": "Hogyan néz ki a megrajzolt sor?",
+          "options": [
+            "00011011",
+            "00011010",
+            "11100100"
+          ],
+          "answer": 0,
+          "why": "3 fehér, 2 fekete, 1 fehér, 2 fekete: 000 11 0 11."
+        },
+        {
+          "line": 0,
+          "input": "a 10000000 sort akarod kódolni",
+          "q": "Milyen kód kell, ha mindig fehérrel kezdünk?",
+          "options": [
+            "[1, 7]",
+            "[0, 1, 7]",
+            "[7, 1]"
+          ],
+          "answer": 1,
+          "why": "A sor feketével kezdődik, így az első fehér futás hossza 0. E nulla nélkül a dekóder egy fehér pixelt rajzolna, aztán 7 feketét."
+        }
+      ]
+    }
+  ],
+  "debrief": "Az adatokkal dolgozó program ott hibázik, ahol feltételez valamit, aminek nem kell az adatokban lennie: hogy a hőmérsékletek pozitívak, hogy a név egyértelmű, hogy a sor fehérrel kezdődik. Ezért teszteld a széleket: negatív számok, azonos nevek, üres futások."
+}

@@ -1,0 +1,36 @@
+{
+  "type": "cipher",
+  "title": "Lámej šifry jako kryptoanalytik",
+  "instruction": "Každá šifra má slabinu. Najdi ji, prolom zprávu a pak si přečti, proč šifra padla.",
+  "levels": [
+    {
+      "kind": "caesar",
+      "plain": "TAJNY VZKAZ PRO TEBE SCHUZKA KROUZKU JE VE CTVRTEK V SEST",
+      "key": "7",
+      "hint": "Caesar má jen 25 možných posunů. Zkus je, nebo hledej krátká slova: jednopísmenné V a dvoupísmenné JE, VE.",
+      "why": "Prostor klíčů má 25 možností, útočník je projde za minutu. Je to stejné jako heslo ze dvou číslic: na síle šifry rozhoduje, kolik klíčů musíš vyzkoušet."
+    },
+    {
+      "kind": "subst",
+      "plain": "KDO ZNA TVOJE HESLO JE PRO SLUZBU TEBOU PROTO MA KAZDA SLUZBA SVE VLASTNI DLOUHE HESLO A K TOMU DRUHY KLIC V MOBILU NEJCASTEJSI PISMENO V TOMTO TEXTU TI NAPOVI KDE ZACIT",
+      "key": "QWERTYUIOPASDFGHJKLZXCVBNM",
+      "hint": "Klíčů je přes 400 kvadrilionů, zkoušet je nemá smysl. Spočítej četnost: v češtině bez háčků vedou O, E, A. Jednopísmenná slova bývají A, V, K. A klíč se dá napsat jedním tahem prstu po klávesnici.",
+      "why": "Obrovský počet klíčů nestačí. Záměna nechává četnost písmen beze změny, takže jazyk sám prozradí, co je co. Síla šifry není jen počet klíčů, ale i to, kolik toho šifra o textu prozradí."
+    },
+    {
+      "kind": "vigenere",
+      "plain": "HRAD MA VIC VRSTEV AKTUALIZACE ZALATAJI DIRY ZALOHA JINDE ZACHRANI DATA A OPRAVNENI DRZI APLIKACE V MEZICH ZADNA VRSTVA NESTACI SAMA",
+      "key": "HRAD",
+      "hint": "Klíč má 4 písmena. Mezery přeskoč a rozděl písmena do čtyř skupin: 1., 5., 9. … písmeno, pak 2., 6., 10. … Každá skupina je obyčejný Caesar a na každou platí četnost.",
+      "why": "Vigenère míchá několik Caesarů, a tak rozmaže četnost. Jakmile znáš délku klíče, rozpadne se na čtyři snadné šifry. Přes 300 let platila za nerozluštitelnou, než v 19. století někdo přišel právě na tenhle trik."
+    },
+    {
+      "kind": "vigenere",
+      "plain": "PODVODNIK NELAME POCITAC LAME TEBE PROTO SE ZASTAV OVER SI ZPRAVU JINOU CESTOU A KODY NIKOMU NEPOSILEJ ANI KAMARADOVI",
+      "key": "ONDRA",
+      "hint": "Klíč má 5 písmen. Než začneš počítat četnost, zkus myslet jako člověk: kdo z 7.B by si jako klíč zvolil vlastní jméno?",
+      "why": "Šifra je silná jen tak, jak silný je klíč. Jméno, přezdívka nebo slovo ze slovníku se dá uhodnout dřív než jakýkoli výpočet, přesně jako heslo Ondra2013."
+    }
+  ],
+  "debrief": "Tři šifry, tři slabiny: málo klíčů (Caesar), prozrazená četnost (záměna) a krátký nebo uhodnutelný klíč (Vigenère). Dnešní šifry, například AES, tyhle slabiny nemají. Mají tolik klíčů, že je nevyzkouší ani všechny počítače světa, a výsledek vypadá jako náhodný šum. Slabým místem zůstává člověk a jeho heslo."
+}

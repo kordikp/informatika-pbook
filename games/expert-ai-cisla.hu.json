@@ -1,0 +1,68 @@
+{
+  "type": "estimate",
+  "title": "Számok, amelyek elárulják az MI-t",
+  "instruction": "Becsülj, vagy inkább számolj. Itt a megérzés gyakran becsap.",
+  "items": [
+    {
+      "q": "Egy évfolyamon 100 tanuló van, közülük 5 influenzás. Egy lusta modell mindig azt feleli: „egészséges”. Mekkora a pontossága?",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "answer": 95,
+      "tolerance": 0,
+      "unit": "%",
+      "why": "Eltalálja mind a 95 egészségest. Egyetlen beteget sem talál meg, mégis 95%-os. A pontosság önmagában nem elég, azt is nézned kell, kit téveszt el a modell."
+    },
+    {
+      "q": "A legközelebbi szomszéd modellt a saját tanító adatain teszteled (nincs két egyforma példa). Milyen pontosságot mérsz?",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "answer": 100,
+      "tolerance": 0,
+      "unit": "%",
+      "why": "Minden példa önmagához van a legközelebb, 0 távolsággal. A százszázalékos eredmény semmit sem mond az új adatokról. Ezért olyan adatokon tesztelünk, amelyeket a modell sosem látott."
+    },
+    {
+      "q": "Egy nyelvi modell 5 szavas mondatot ír. Minden szónál 90% az esély, hogy igaz lesz. Mekkora az esély, hogy az egész mondat igaz?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 59,
+      "tolerance": 3,
+      "unit": "%",
+      "why": "0,9 × 0,9 × 0,9 × 0,9 × 0,9 ≈ 0,59. A kis bizonytalanságok összeszorzódnak. Minél hosszabb a válasz, annál több helyen csúszhat félre."
+    },
+    {
+      "q": "Egy deepfake-detektor a hamis videók 99%-át elkapja, és a valódi videók 99%-át helyesen átengedi. A hírfolyamban 1000 videóból 1 hamis. A detektor éppen hamisnak jelölt egy videót. Mekkora az esély, hogy tényleg az?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 9,
+      "tolerance": 3,
+      "unit": "%",
+      "why": "1000 videóból 1 hamis, és a detektor szinte biztosan megjelöli. A 999 valódiból viszont tévedésből kb. 10-et is megjelöl. A 11 riasztásból csak 1 valódi, vagyis kb. 9%. Ha valami ritka, a riasztások többsége vaklárma."
+    },
+    {
+      "q": "Egy videó 20 másodperces, és az oldal minden 5 videó után reklámot mutat. Hány reklámot látsz 40 perc görgetés alatt?",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "answer": 24,
+      "tolerance": 2,
+      "unit": "reklám",
+      "why": "40 perc az 2400 másodperc, ez 120 videó, és 120 : 5 = 24 reklám. Minden plusz perc pénz az oldalnak. Ezért nincs vége a hírfolyamnak."
+    },
+    {
+      "q": "Hat weboldal ugyanazt állítja. Közülük öt a hatodiktól másolta, amely saját mérést közöl. Hány független forrásod van?",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "answer": 1,
+      "tolerance": 0,
+      "unit": "forrás",
+      "why": "A másolatok nem megerősítések. Az számít, hány forrás derítette ki magától, nem az, hányszor ismétlődik."
+    }
+  ],
+  "debrief": "Az MI és az internet valószínűségekkel dolgozik, és a számok meg tudnak téveszteni. A magas pontosság mögött olyan modell is lehet, amely semmit sem talál meg. Még egy megbízható detektor is gyakran ad vaklármát. És hat weboldal lehet egyetlen forrás. Ha számolsz, nem lehet könnyen becsapni."
+}

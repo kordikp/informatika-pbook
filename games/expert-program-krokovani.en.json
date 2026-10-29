@@ -1,0 +1,161 @@
+{
+  "type": "trace",
+  "title": "Step through it like a debugger",
+  "instruction": "Four short programs, each with one trap. Go through them line by line, and for each question first write a trace table: what is in the boxes after each step.",
+  "rounds": [
+    {
+      "code": [
+        "total = 0",
+        "repeat for i from 1 to 3:",
+        "    repeat i times:",
+        "        total = total + i",
+        "print total"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "no input",
+          "q": "How many times in total does line 4 run?",
+          "options": [
+            "3 times",
+            "6 times",
+            "9 times"
+          ],
+          "answer": 1,
+          "why": "The inner loop runs for a different length each time: once for i = 1, twice for i = 2, three times for i = 3. 1 + 2 + 3 = 6."
+        },
+        {
+          "line": 3,
+          "input": "no input",
+          "q": "What is in the box total after the round i = 2 ends?",
+          "options": [
+            "3",
+            "5",
+            "4"
+          ],
+          "answer": 1,
+          "why": "After the round i = 1, it holds 1. In the round i = 2, 2 is added twice: 1 + 2 + 2 = 5."
+        },
+        {
+          "line": 4,
+          "input": "no input",
+          "q": "What does the program print?",
+          "options": [
+            "6",
+            "14",
+            "12"
+          ],
+          "answer": 1,
+          "why": "In the round i = 3, 3 is added three times: 5 + 9 = 14. Six is the number of rounds of the inner loop, not the sum."
+        }
+      ]
+    },
+    {
+      "code": [
+        "energy = 10",
+        "rounds = 0",
+        "while energy > 0:",
+        "    energy = energy - 4",
+        "    print energy",
+        "    rounds = rounds + 1",
+        "print rounds"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "no input",
+          "q": "Does the program ever print a negative number?",
+          "options": [
+            "No, the loop ends before that",
+            "Yes, it prints −2"
+          ],
+          "answer": 1,
+          "why": "The condition is only checked at the start of a round. In the third round 2 > 0 is true, the whole body runs, energy drops to −2 and gets printed. Only then is the condition false."
+        },
+        {
+          "line": 6,
+          "input": "no input",
+          "q": "What does the last line print?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Energy goes 10 → 6 → 2 → −2. Three rounds ran."
+        }
+      ]
+    },
+    {
+      "code": [
+        "a = 3",
+        "b = 7",
+        "a = b",
+        "b = a",
+        "a = a + b",
+        "print a, b"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "no input",
+          "q": "What is in box b after line 4?",
+          "options": [
+            "3",
+            "7",
+            "10"
+          ],
+          "answer": 1,
+          "why": "Line 3 overwrote a with 7, and the three vanished. Line 4 then stores that seven in b. The swap didn’t work."
+        },
+        {
+          "line": 5,
+          "input": "no input",
+          "q": "What does the program print?",
+          "options": [
+            "10, 3",
+            "14, 7",
+            "10, 7"
+          ],
+          "answer": 1,
+          "why": "Both boxes hold 7, so a = 7 + 7 = 14 and b stays 7."
+        }
+      ]
+    },
+    {
+      "code": [
+        "score = 12",
+        "lives = 0",
+        "if score > 10 or lives == 0 and score < 5:",
+        "    print \"game over\"",
+        "else:",
+        "    print \"keep playing\""
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "score = 12, lives = 0",
+          "q": "Just like in Python, “and” is worked out before “or”. What does the program print?",
+          "options": [
+            "game over",
+            "keep playing"
+          ],
+          "answer": 0,
+          "why": "The condition reads as: score > 10 or (lives == 0 and score < 5). The bracket is false, because 12 < 5 isn’t true. But score > 10 is true, and with “or” one true part is enough."
+        },
+        {
+          "line": 2,
+          "input": "score = 12, lives = 0",
+          "q": "If the brackets were like this: (score > 10 or lives == 0) and score < 5, what would the program print?",
+          "options": [
+            "game over",
+            "keep playing"
+          ],
+          "answer": 1,
+          "why": "The bracket is true, but score < 5 isn’t, and with “and” both parts must be true. Same symbols, different brackets, different result. When you’re not sure about the order, write the brackets."
+        }
+      ]
+    }
+  ],
+  "debrief": "A nested loop multiplies, a loop’s condition is only checked at the start of a round, an assignment overwrites the old value, and “and” comes before “or”. You catch all four traps the same way: with a trace table, step by step."
+}

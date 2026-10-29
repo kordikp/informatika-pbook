@@ -1,0 +1,138 @@
+{
+  "type": "trace",
+  "title": "Two rectangles collide",
+  "instruction": "Step through a function that detects a collision between two rectangles (hitboxes). A rectangle has its top-left corner x, y, a width and a height. The y axis grows downwards, as on a screen. Watch out for the < sign and for numbers that land exactly on the edge.",
+  "rounds": [
+    {
+      "code": [
+        "function collide(a, b):",
+        "    if a.x + a.width < b.x: return no",
+        "    if b.x + b.width < a.x: return no",
+        "    if a.y + a.height < b.y: return no",
+        "    if b.y + b.height < a.y: return no",
+        "    return yes"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "a = player: x 10, y 0, width 20, height 20. b = coin: x 30, y 5, width 10, height 10.",
+          "q": "What does line 2 do?",
+          "options": [
+            "returns no, because the player ends exactly where the coin begins",
+            "returns nothing and carries on, because 30 < 30 is not true",
+            "returns yes"
+          ],
+          "answer": 1,
+          "why": "The player’s right edge is 10 + 20 = 30 and the coin begins at x = 30. The question is “is 30 less than 30?” and the answer is no. The condition is not true, so the line returns nothing and the function goes on."
+        },
+        {
+          "line": 5,
+          "input": "The same player and the same coin as in the last step.",
+          "q": "What does the function return in the end?",
+          "options": [
+            "yes: touching at the edge counts as a collision here",
+            "no: the rectangles only touch",
+            "it depends on which rectangle is a and which is b"
+          ],
+          "answer": 0,
+          "why": "Lines 3 to 5 aren’t true either: 40 < 10 no, 20 < 5 no, 15 < 0 no. No line returned no, so the function returns yes. With the < sign, touching at the edge is a hit. If there were <= instead, touching would not be a hit. One sign decides whether you collect a coin you only brush against. The order of a, b doesn’t matter, the function is symmetrical."
+        },
+        {
+          "line": 3,
+          "input": "a = player: x 0, y 0, width 16, height 16. b = spikes: x 4, y 40, width 8, height 8. The spikes are below the player.",
+          "q": "On which line does the function finish and what does it return?",
+          "options": [
+            "on line 2, no",
+            "on line 4, no",
+            "on line 5, no",
+            "on line 6, yes"
+          ],
+          "answer": 1,
+          "why": "On the x axis they overlap: 16 < 4 is not true and 12 < 0 isn’t either. Line 4 asks “does the player end above the spikes?”: 0 + 16 = 16 < 40, yes. The function returns no. A collision happens only when the rectangles overlap on both axes at once."
+        }
+      ]
+    },
+    {
+      "code": [
+        "function collide(a, b):",
+        "    if a.x + a.width < b.x: return no",
+        "    if b.x + b.width < a.x: return no",
+        "    return yes"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Ondra “sped up” the function and deleted the lines for the y axis. Player: x 100, y 0, width 16, height 16. Coin: x 104, y 200, width 8, height 8.",
+          "q": "What does the function return?",
+          "options": [
+            "yes, the player collects a coin that is 200 px lower",
+            "no, the coin is far away",
+            "the function ends with an error"
+          ],
+          "answer": 0,
+          "why": "On the x axis they overlap (116 < 104 no, 112 < 100 no) and nobody asks about the y axis any more. The player now collects all the coins in their column, even those at the other end of the screen."
+        },
+        {
+          "line": 3,
+          "input": "Ondra wants a test that fails with his version and passes with the correct version.",
+          "q": "Which test catches the bug?",
+          "options": [
+            "player and coin in the same place, I expect yes",
+            "coin far to the right at the same height, I expect no",
+            "coin directly above the player, 100 px higher, I expect no",
+            "coin touches the player at the edge from the left, I expect yes"
+          ],
+          "answer": 2,
+          "why": "Only a case where the rectangles overlap on the x axis but not on the y axis reveals the bug. The other three tests pass with both versions, so they tell you nothing about the bug. A good test is one that can tell broken code from correct code."
+        }
+      ]
+    },
+    {
+      "code": [
+        "x = 0",
+        "repeat while x < 100:",
+        "    x = x + speed",
+        "    if collide(ball, paddle): bounce and stop"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "The ball is 8 px wide and flies to the right. The paddle takes up x from 50 to 60. The collision is calculated as in the first round. The speed is 35 px per frame.",
+          "q": "Does the ball bounce?",
+          "options": [
+            "yes, at x = 35",
+            "yes, at x = 70",
+            "no, it flies through"
+          ],
+          "answer": 2,
+          "why": "The positions frame by frame are 35 and 70. At x = 35 the ball ends at 43, which is before the paddle. At x = 70 it is already past it, because the paddle ends at 60. The ball overlaps the paddle only when its left edge lies between 42 and 60, and no position landed there."
+        },
+        {
+          "line": 3,
+          "input": "The same paddle, but a speed of 45 px per frame, so even faster.",
+          "q": "Does it bounce now?",
+          "options": [
+            "no, a faster ball flies through all the more",
+            "yes, at x = 45",
+            "yes, at x = 90"
+          ],
+          "answer": 1,
+          "why": "Position 45 lies in the stretch from 42 to 60, so the game detects the collision. The faster ball bounces and the slower one flew through. Tunnelling doesn’t depend only on speed but on where the positions land. That is why testing one speed is not enough. You can only be sure with a step of at most 18 px, that is the paddle’s width plus the ball’s width."
+        },
+        {
+          "line": 2,
+          "input": "The same paddle, a speed of 30 px per frame.",
+          "q": "When and how does the game detect the collision?",
+          "options": [
+            "at x = 30, the ball bounces in front of the paddle",
+            "at x = 60, when the ball is already completely past the paddle and only touches it with its left edge",
+            "never, the ball flies through"
+          ],
+          "answer": 1,
+          "why": "At x = 30 the ball ends at 38, which is before the paddle. At x = 60 its left edge touches the paddle’s right edge, and because touching counts, the game reports a hit. But the ball has already passed through the paddle. The bounce sends it back through the paddle. The game found the collision, but too late and from the other side. That is why real engines look for the moment the collision started, not just the fact that it happened."
+        }
+      ]
+    }
+  ],
+  "debrief": "A collision of two rectangles is four questions “does one end before the other begins?”, two for the x axis and two for the y axis. The < or <= sign decides about touching at the edge. A missing axis passes all tests except one, which you have to think up on purpose. And a check once per frame sees only positions, not the path between them. So a fast ball can fly through, or bounce off from the other side. Real games solve this with substeps or a ray between the old and the new position."
+}

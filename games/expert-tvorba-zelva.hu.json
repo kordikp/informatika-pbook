@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "A teknős rajzol: csillagok, virágok és rozetták",
+  "instruction": "Rajzold meg a célképet a lehető legrövidebb programmal. Ha a program belefér a parancskorlátba, csillagot kapsz.",
+  "levels": [
+    {
+      "goal": "Ötágú csillag egy vonallal, 100-as oldallal",
+      "target": "opakuj 5 [dopředu 100 vpravo 144]",
+      "max": 3,
+      "hint": "A csillag rajzolásakor a teknős kétszer kerüli meg a középpontot. Összesen hány fokot fordul, és hányszor kanyarodik?",
+      "why": "A teknős az egész csillag alatt 2 × 360 = 720°-ot fordul. Öt egyforma kanyar: 720 : 5 = 144°."
+    },
+    {
+      "goal": "Kilencágú hegyes csillag egy vonallal: a teknős közben négyszer kerüli meg a középpontot",
+      "target": "opakuj 9 [dopředu 100 vpravo 160]",
+      "max": 3,
+      "hint": "Ugyanazt a szabályt használd, mint az ötágú csillagnál, csak más számokkal.",
+      "why": "A teljes fordulás 4 × 360 = 1440°, kilenc kanyar, mindegyik 1440 : 9 = 160°. Általánosan: n ág, k kör, a szög 360 · k : n."
+    },
+    {
+      "goal": "Szaggatott kör: 36 darab 5 hosszú vonás, köztük 5-ös hézagok, a teknős ott áll meg, ahol kezdett",
+      "target": "opakuj 36 [pero dolů dopředu 5 pero nahoru dopředu 5 vpravo 10]",
+      "max": 7,
+      "hint": "A kör egy része egy vonás, egy hézag és egy kis kanyar. Hány fok jut egy részre, ha 36 van belőlük?",
+      "why": "A kör egy sok rövid oldalú sokszög. 36 rész × 10° = 360°, így a teknős visszaér a kiindulópontba."
+    },
+    {
+      "goal": "Rozetta: 12 darab 80 oldalú négyzet, mindegyik 30°-kal elforgatva egy közös csúcs körül",
+      "target": "nauč čtverec :s [opakuj 4 [dopředu :s vpravo 90]] opakuj 12 [čtverec 80 vpravo 30]",
+      "max": 7,
+      "hint": "Először tanítsd meg a teknősnek a „négyzet” új parancsot. A négyzet ott ér véget, ahol kezdődött, és ez az egész varázslat.",
+      "why": "Az eljárás absztrakció: egyszer leírod, mi a négyzet, és onnantól egyetlen szóként használod. 12 × 30° = 360°, a rozetta bezárul."
+    },
+    {
+      "goal": "8 szirmú virág; minden szirom egy 60 oldalú rombusz, a középpontnál 45°-os hegyesszöggel",
+      "target": "nauč lístek :s [opakuj 2 [dopředu :s vpravo 45 dopředu :s vpravo 135]] opakuj 8 [lístek 60 vpravo 45]",
+      "max": 9,
+      "hint": "A teknős a csúcsban a belső szög 180°-ra kiegészítő szögével fordul. A 45°-os hegyes csúcs 135°-os kanyart jelent, a 135°-os tompa csúcs 45°-os kanyart.",
+      "why": "Egy szirom: 2 × (45 + 135) = 360°, tehát bezárul. A szirom szöge a középpontnál 45°, és 8 × 45° = 360°, így a szirmok pontosan illeszkednek."
+    }
+  ],
+  "debrief": "A generatív művészet gyakran nem több ezer vonalból születik, hanem egyetlen ismétlődő szabályból. A kulcs a kanyarok összege: ha ez egész számú fordulat, a kép bezárul. Ugyanezt a szabályt megtalálod a p5.js-ben, a Blender objektumtömbjeinél és minden mandalában."
+}

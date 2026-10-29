@@ -1,0 +1,135 @@
+{
+  "type": "trace",
+  "title": "Zene a kijelentkezettnek",
+  "instruction": "Léptesd a lejátszót, és kövesd a hármast (bejelentkezve, tolt, szol). Az események a megadott sorrendben érkeznek. Vigyázz a későn érkező üzenetekre.",
+  "rounds": [
+    {
+      "code": [
+        "bejelentkezve = igen, tolt = nem, szol = nem",
+        "▶ esetén:",
+        "    ha szol: szol = nem",
+        "    különben ha tolt = nem: tolt = igen",
+        "„betöltve” esetén:",
+        "    tolt = nem",
+        "    szol = igen",
+        "„kijelentkezés” esetén:",
+        "    bejelentkezve = nem",
+        "    szol = nem"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "koppintás a ▶ gombra",
+          "q": "Mi a hármas (bejelentkezve, tolt, szol)?",
+          "options": [
+            "igen, igen, nem",
+            "igen, nem, igen",
+            "igen, nem, nem"
+          ],
+          "answer": 0,
+          "why": "A zene nem szól, és semmi nem töltődik, ezért a 4. sor érvényes: tolt = igen. A dal elkezd töltődni."
+        },
+        {
+          "line": 8,
+          "input": "kijelentkezés (a dal még mindig töltődik)",
+          "q": "Mi a hármas a kijelentkezés után?",
+          "options": [
+            "nem, nem, nem",
+            "nem, igen, nem",
+            "nem, igen, igen"
+          ],
+          "answer": 1,
+          "why": "A kijelentkezés csak a bejelentkezve és a szol értékét állítja be. A tolt kimaradt, így az app értelmetlen kombinációba került: a felhasználó ki van jelentkezve, mégis töltődik valami."
+        },
+        {
+          "line": 6,
+          "input": "„betöltve” (az adatok késve érkeztek meg)",
+          "q": "Mi történik?",
+          "options": [
+            "Semmi, a felhasználó ki van jelentkezve",
+            "A kijelentkezett felhasználónak szólni kezd a zene",
+            "Az app összeomlik"
+          ],
+          "answer": 1,
+          "why": "A „betöltve” esemény egyáltalán nem ellenőrzi, hogy be van-e jelentkezve valaki. A hármas most (nem, nem, igen): a zene bejelentkezés nélkül szól. A lehetetlen állapot két helyesnek látszó sorból jött létre."
+        },
+        {
+          "line": 2,
+          "input": "koppintás a ▶ gombra",
+          "q": "Mit csinál most a ▶?",
+          "options": [
+            "Leállítja a zenét, pedig senki nincs bejelentkezve",
+            "Megmutatja a bejelentkező képernyőt",
+            "Semmit"
+          ],
+          "answer": 0,
+          "why": "A ▶ kezelője egyáltalán nem kérdez rá a bejelentkezésre. A kód csak a szol és a tolt értékét ismeri, ezért nyugodtan leállítja a zenét, és legközelebb újra elindítja. A kijelentkezett felhasználó ingyen használja az appot."
+        }
+      ]
+    },
+    {
+      "code": [
+        "allapot = „szünet”",
+        "▶ esetén:",
+        "    ha allapot = „szól”: allapot = „szünet”",
+        "    különben ha allapot = „szünet”: allapot = „tölt”",
+        "    különben ha allapot = „kijelentkezve”: mutasd a bejelentkezést",
+        "„betöltve” esetén:",
+        "    ha allapot = „tölt”: allapot = „szól”",
+        "„kijelentkezés” esetén:",
+        "    allapot = „kijelentkezve”"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "koppintás a ▶ gombra",
+          "q": "Mi az állapot?",
+          "options": [
+            "„szól”",
+            "„tölt”",
+            "„szünet”"
+          ],
+          "answer": 1,
+          "why": "Az állapot „szünet” volt, ezért a 4. sor érvényes. Ugyanúgy, mint legutóbb, csak három változó helyett egy."
+        },
+        {
+          "line": 8,
+          "input": "kijelentkezés",
+          "q": "Mi az állapot?",
+          "options": [
+            "„kijelentkezve”",
+            "„tölt”",
+            "„kijelentkezve” és egyúttal „tölt”"
+          ],
+          "answer": 0,
+          "why": "Egy változónak mindig csak egy értéke van. A „kijelentkezve és töltődik” kombinációt le se lehet írni."
+        },
+        {
+          "line": 6,
+          "input": "„betöltve” (az adatok késve érkeztek meg)",
+          "q": "Mi az állapot?",
+          "options": [
+            "„szól”",
+            "„kijelentkezve”",
+            "„tölt”"
+          ],
+          "answer": 1,
+          "why": "A 7. sor csak a „tölt” állapotból vált „szól”-ra. Most az állapot „kijelentkezve”, ezért a késői üzenetet az app csendben eldobja. Pontosan ez hiányzott az első verzióból."
+        },
+        {
+          "line": 0,
+          "input": "az egész program áttekintése",
+          "q": "Hány különböző értéke lehet az allapot változónak?",
+          "options": [
+            "8",
+            "4",
+            "3"
+          ],
+          "answer": 1,
+          "why": "Szünet, tölt, szól, kijelentkezve. Három igen/nem változó 2 × 2 × 2 = 8 kombinációt ad, de ezek közül csak 4-nek van értelme. A maradék 4 olyan hely, ahová az app véletlenül eljuthat."
+        }
+      ]
+    }
+  ],
+  "debrief": "Ha egy appot több igen/nem változó ír le, több kombináció jön létre, mint ahány valódi állapota az appnak van. Lehetetlen kombinációba egy késői üzenet vagy egy elfelejtett sor juttatja. Egyetlen változó az állapotok listájával már a tervezéskor kizárja az ilyen hibát. Azokat az eseményeket is teszteld, amelyek akkor érkeznek, amikor senki sem várja őket."
+}

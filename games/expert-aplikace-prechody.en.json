@@ -1,0 +1,135 @@
+{
+  "type": "trace",
+  "title": "A song for the logged-out user",
+  "instruction": "Step through the player and keep track of the trio (logged_in, loading, playing). The events arrive in the order shown. Watch out for messages that arrive late.",
+  "rounds": [
+    {
+      "code": [
+        "logged_in = yes, loading = no, playing = no",
+        "on ▶:",
+        "    if playing: playing = no",
+        "    else if loading = no: loading = yes",
+        "on “loaded”:",
+        "    loading = no",
+        "    playing = yes",
+        "on “log out”:",
+        "    logged_in = no",
+        "    playing = no"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "tap on ▶",
+          "q": "What is the trio (logged_in, loading, playing)?",
+          "options": [
+            "yes, yes, no",
+            "yes, no, yes",
+            "yes, no, no"
+          ],
+          "answer": 0,
+          "why": "No music is playing and nothing is loading, so line 4 applies: loading = yes. The song starts downloading."
+        },
+        {
+          "line": 8,
+          "input": "log out (the song is still downloading)",
+          "q": "What is the trio after logging out?",
+          "options": [
+            "no, no, no",
+            "no, yes, no",
+            "no, yes, yes"
+          ],
+          "answer": 1,
+          "why": "Logging out only sets logged_in and playing. It forgot about loading, so the app is in a combination that makes no sense: a logged-out user, and yet something is downloading."
+        },
+        {
+          "line": 6,
+          "input": "“loaded” (the data arrived late)",
+          "q": "What happens?",
+          "options": [
+            "Nothing, the user is logged out",
+            "Music starts playing for the logged-out user",
+            "The app crashes"
+          ],
+          "answer": 1,
+          "why": "The “loaded” event doesn’t check at all whether anyone is logged in. The trio is now (no, no, yes): music is playing without anyone logged in. The impossible state came from two lines that looked correct."
+        },
+        {
+          "line": 2,
+          "input": "tap on ▶",
+          "q": "What does ▶ do now?",
+          "options": [
+            "It stops the music, even though nobody is logged in",
+            "It shows the login screen",
+            "Nothing"
+          ],
+          "answer": 0,
+          "why": "The ▶ handler doesn’t ask about logging in at all. The code only knows playing and loading, so it happily stops the music and starts it again next time. The logged-out user gets the app for free."
+        }
+      ]
+    },
+    {
+      "code": [
+        "state = “paused”",
+        "on ▶:",
+        "    if state = “playing”: state = “paused”",
+        "    else if state = “paused”: state = “loading”",
+        "    else if state = “logged out”: show login",
+        "on “loaded”:",
+        "    if state = “loading”: state = “playing”",
+        "on “log out”:",
+        "    state = “logged out”"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "tap on ▶",
+          "q": "What is the state?",
+          "options": [
+            "“playing”",
+            "“loading”",
+            "“paused”"
+          ],
+          "answer": 1,
+          "why": "The state was “paused”, so line 4 applies. Just like last time, only with one variable instead of three."
+        },
+        {
+          "line": 8,
+          "input": "log out",
+          "q": "What is the state?",
+          "options": [
+            "“logged out”",
+            "“loading”",
+            "“logged out” and “loading” at the same time"
+          ],
+          "answer": 0,
+          "why": "One variable always has just one value. The combination “logged out and downloading” can’t even be written down."
+        },
+        {
+          "line": 6,
+          "input": "“loaded” (the data arrived late)",
+          "q": "What is the state?",
+          "options": [
+            "“playing”",
+            "“logged out”",
+            "“loading”"
+          ],
+          "answer": 1,
+          "why": "Line 7 switches to “playing” only from the “loading” state. Right now the state is “logged out”, so the late message is quietly thrown away. That’s exactly what was missing in the first version."
+        },
+        {
+          "line": 0,
+          "input": "looking at the whole program",
+          "q": "How many different values can the variable state have?",
+          "options": [
+            "8",
+            "4",
+            "3"
+          ],
+          "answer": 1,
+          "why": "Paused, loading, playing, logged out. Three yes/no variables give 2 × 2 × 2 = 8 combinations, but only 4 of them make sense. The other 4 are places the app can end up in by mistake."
+        }
+      ]
+    }
+  ],
+  "debrief": "When an app is described by several yes/no variables, you get more combinations than the app has real states. A late message or a forgotten line can push it into an impossible combination. A single variable with a list of states rules out that kind of bug right in the design. Test events that arrive when nobody expects them, too."
+}

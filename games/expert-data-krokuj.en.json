@@ -1,0 +1,152 @@
+{
+  "type": "trace",
+  "title": "Trace a data program",
+  "instruction": "Three short programs work with data. Trace them line by line and watch for where the data and the program part ways.",
+  "rounds": [
+    {
+      "code": [
+        "temperatures = [-3, -5, -1, -4]",
+        "highest = 0",
+        "for each t in temperatures:",
+        "    if t > highest:",
+        "        highest = t",
+        "print highest"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "t = -3, highest = 0",
+          "q": "Is the condition t > highest true?",
+          "options": [
+            "yes",
+            "no"
+          ],
+          "answer": 1,
+          "why": "-3 is less than 0. The condition is not true and highest stays 0."
+        },
+        {
+          "line": 5,
+          "input": "the loop has finished",
+          "q": "What does the program print?",
+          "options": [
+            "-1",
+            "0",
+            "-3",
+            "-5"
+          ],
+          "answer": 1,
+          "why": "No temperature is greater than 0, so the starting 0 stays. The program prints a number that isn’t in the data at all."
+        },
+        {
+          "line": 1,
+          "input": "a fix",
+          "q": "How do you fix line 2 so that the program works for any numbers?",
+          "options": [
+            "highest = temperatures[0]",
+            "highest = -1",
+            "highest = -100"
+          ],
+          "answer": 0,
+          "why": "Start with the first real measurement. -1 and -100 only move the bug somewhere else: with data from a laboratory freezer (-150 °C) they would fail again."
+        }
+      ]
+    },
+    {
+      "code": [
+        "pupils = [(1, 'Ema', '7.B'), (2, 'Ema', '7.A'), (3, 'Tomáš', '7.B')]",
+        "loans = [(1, 'The Hobbit'), (2, 'The Little Prince'), (1, 'Dashenka'), (3, 'The Hobbit')]",
+        "count = 0",
+        "for each (id, book) in loans:",
+        "    pupil = find the row in pupils with this id",
+        "    if the pupil’s class is '7.B':",
+        "        count = count + 1",
+        "print count"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "loan (2, 'The Little Prince')",
+          "q": "Which pupil does the program find?",
+          "options": [
+            "Ema from 7.B",
+            "Ema from 7.A",
+            "both Emas"
+          ],
+          "answer": 1,
+          "why": "Id 2 belongs to only one pupil: Ema from 7.A. That is why records are joined through the id, not through the name."
+        },
+        {
+          "line": 7,
+          "input": "the loop has finished",
+          "q": "What does the program print?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "why": "The loans with id 1, 1 and 3 belong to pupils from 7.B. The loan with id 2 belongs to 7.A. The result is 3."
+        },
+        {
+          "line": 4,
+          "input": "a variant: the loans contain the name instead of the id, and the program takes the first pupil with that name",
+          "q": "What would the program print now?",
+          "options": [
+            "3",
+            "4",
+            "2"
+          ],
+          "answer": 1,
+          "why": "For “Ema” it always finds the first Ema, the one from 7.B. So The Little Prince is counted for the wrong class and the result is 4. A name is not a unique key."
+        }
+      ]
+    },
+    {
+      "code": [
+        "code = [3, 2, 1, 2]",
+        "colour = white",
+        "for each n in code:",
+        "    draw n pixels in colour colour",
+        "    switch colour"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "n = 2 (the second number)",
+          "q": "Which colour is it drawing in now?",
+          "options": [
+            "white",
+            "black"
+          ],
+          "answer": 1,
+          "why": "After the first run, the colour switched from white to black."
+        },
+        {
+          "line": 4,
+          "input": "the loop has finished, 0 = white, 1 = black",
+          "q": "What does the drawn row look like?",
+          "options": [
+            "00011011",
+            "00011010",
+            "11100100"
+          ],
+          "answer": 0,
+          "why": "3 white, 2 black, 1 white, 2 black: 000 11 0 11."
+        },
+        {
+          "line": 0,
+          "input": "you want to encode the row 10000000",
+          "q": "Which code do you need, if you always start with white?",
+          "options": [
+            "[1, 7]",
+            "[0, 1, 7]",
+            "[7, 1]"
+          ],
+          "answer": 1,
+          "why": "The row starts with black, so the first white run has length 0. Without that zero, the decoder would draw a white pixel and then 7 black ones."
+        }
+      ]
+    }
+  ],
+  "debrief": "A program working with data fails where it assumes something that need not be in the data: that temperatures are positive, that a name is unique, that a row starts with white. So test the edges: negative numbers, identical names, empty runs."
+}

@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "Mi áll az összefüggés mögött?",
+  "instruction": "Minden mondat két dolgot ír le, amelyek együtt járnak. Válogasd szét őket aszerint, hogy mi áll mögöttük a legvalószínűbben. Vigyázz: csak egy rekesz jelent valódi okot.",
+  "buckets": [
+    "Ok, kísérlettel igazolva",
+    "Rejtett harmadik dolog",
+    "Fordított ok",
+    "Véletlen az adatok átfésüléséből"
+  ],
+  "items": [
+    {
+      "text": "Azokon a napokon, amikor több fagyit adnak el, többen fulladnak vízbe.",
+      "answer": 1,
+      "why": "Mindkettőt a hőség okozza. A fagyi senkit sem fojt vízbe."
+    },
+    {
+      "text": "A nagyobb cipőméretű gyerekek gyorsabban olvasnak.",
+      "answer": 1,
+      "why": "A harmadik dolog az életkor. Az idősebb gyerekeknek nagyobb a lábuk, és többet olvasnak."
+    },
+    {
+      "text": "Egy app 50 000 emberből véletlenszerűen a felének zöld gombot mutatott, a másik felének kéket. A zöldre 12 %-kal többen kattintottak.",
+      "answer": 0,
+      "why": "A véletlenszerű szétosztás kísérlet (A/B teszt). A két csoport minden másban egyforma, így a különbséget a szín okozza."
+    },
+    {
+      "text": "Azok, akik gyakran járnak orvoshoz, gyakrabban betegek.",
+      "answer": 2,
+      "why": "Az orvos nem okoz betegséget. A betegség az oka annak, hogy odajárnak."
+    },
+    {
+      "text": "Azokban a városokban, ahol több a rendőr, több a bűncselekmény.",
+      "answer": 2,
+      "why": "Ahol több a bűnözés, ott a város több rendőrt vesz fel. Az ok fordított irányba mutat, mint amit a mondat sugall."
+    },
+    {
+      "text": "Az USA-ban az informatikai doktori fokozatok és a méhcsaládok száma éveken át együtt nőtt és csökkent.",
+      "answer": 3,
+      "why": "Ha több ezer adatsorpárt hasonlítasz össze, néhány pusztán véletlenül hasonlítani fog egymásra. Pontosan így születnek a Spurious Correlations oldal példái."
+    },
+    {
+      "text": "A játékodról figyelt 200 adat közül az egyik azt mutatta, hogy többet nyersz azokon a napokon, amelyek nevében van „t” betű.",
+      "answer": 3,
+      "why": "200 tesztből néhány csak véletlenül „jön ki”. Más adatokon végzett új ellenőrzés nélkül ez semmit sem jelent."
+    },
+    {
+      "text": "Egy iskola sorsolással döntötte el, mely osztályoknál kezdődik az első óra 30 perccel később. A kisorsolt osztályokban a félév során kevesebb volt a késés.",
+      "answer": 0,
+      "why": "A sorsolás döntötte el, ki kapja a változást, így az osztályok másban nem különböznek. A különbséget a későbbi kezdés okozta."
+    }
+  ],
+  "debrief": "Egy összefüggésnek négy lehetséges magyarázata van: ok, rejtett harmadik dolog, fordított irány és véletlen. Okot becsületesen főleg véletlenszerű szétosztással végzett kísérlet bizonyít. Ha kísérlet nem lehetséges, keresd a harmadik dolgot, és kérdezd meg, hány párt fésült át valaki, mire megtalálta az „érdekeset”."
+}

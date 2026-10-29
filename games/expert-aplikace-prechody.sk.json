@@ -1,0 +1,135 @@
+{
+  "type": "trace",
+  "title": "Pesnička pre odhláseného",
+  "instruction": "Krokuj prehrávač a sleduj trojicu (prihlaseny, nacitava, prehrava). Udalosti prichádzajú v uvedenom poradí. Pozor na správy, ktoré dorazia neskoro.",
+  "rounds": [
+    {
+      "code": [
+        "prihlaseny = áno, nacitava = nie, prehrava = nie",
+        "pri ▶:",
+        "    ak prehrava: prehrava = nie",
+        "    inak ak nacitava = nie: nacitava = áno",
+        "pri „načítané“:",
+        "    nacitava = nie",
+        "    prehrava = áno",
+        "pri „odhlásiť“:",
+        "    prihlaseny = nie",
+        "    prehrava = nie"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "ťuknutie na ▶",
+          "q": "Aká je trojica (prihlaseny, nacitava, prehrava)?",
+          "options": [
+            "áno, áno, nie",
+            "áno, nie, áno",
+            "áno, nie, nie"
+          ],
+          "answer": 0,
+          "why": "Hudba nehrá a nič sa nenačítava, takže platí riadok 4: nacitava = áno. Pesnička sa začne sťahovať."
+        },
+        {
+          "line": 8,
+          "input": "odhlásiť (pesnička sa stále sťahuje)",
+          "q": "Aká je trojica po odhlásení?",
+          "options": [
+            "nie, nie, nie",
+            "nie, áno, nie",
+            "nie, áno, áno"
+          ],
+          "answer": 1,
+          "why": "Odhlásenie nastaví len prihlaseny a prehrava. Na nacitava zabudlo, takže apka je v kombinácii, ktorá nedáva zmysel: odhlásený používateľ, a pritom sa niečo sťahuje."
+        },
+        {
+          "line": 6,
+          "input": "„načítané“ (dáta dorazili s oneskorením)",
+          "q": "Čo sa stane?",
+          "options": [
+            "Nič, používateľ je odhlásený",
+            "Odhlásenému používateľovi začne hrať hudba",
+            "Apka spadne"
+          ],
+          "answer": 1,
+          "why": "Udalosť „načítané“ vôbec nekontroluje, či je niekto prihlásený. Trojica je teraz (nie, nie, áno): hudba hrá bez prihlásenia. Nemožný stav vznikol z dvoch správne vyzerajúcich riadkov."
+        },
+        {
+          "line": 2,
+          "input": "ťuknutie na ▶",
+          "q": "Čo urobí ▶ teraz?",
+          "options": [
+            "Zastaví hudbu, aj keď nikto nie je prihlásený",
+            "Ukáže prihlasovaciu obrazovku",
+            "Nič"
+          ],
+          "answer": 0,
+          "why": "Obsluha ▶ sa na prihlásenie nepýta vôbec. Kód pozná len prehrava a nacitava, takže hudbu pokojne zastaví a nabudúce zase spustí. Odhlásený používateľ má apku zadarmo."
+        }
+      ]
+    },
+    {
+      "code": [
+        "stav = „pauza“",
+        "pri ▶:",
+        "    ak stav = „hrá“: stav = „pauza“",
+        "    inak ak stav = „pauza“: stav = „načítava“",
+        "    inak ak stav = „odhlásené“: ukáž prihlásenie",
+        "pri „načítané“:",
+        "    ak stav = „načítava“: stav = „hrá“",
+        "pri „odhlásiť“:",
+        "    stav = „odhlásené“"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "ťuknutie na ▶",
+          "q": "Aký je stav?",
+          "options": [
+            "„hrá“",
+            "„načítava“",
+            "„pauza“"
+          ],
+          "answer": 1,
+          "why": "Stav bol „pauza“, takže platí riadok 4. Rovnako ako minule, len jedna premenná namiesto troch."
+        },
+        {
+          "line": 8,
+          "input": "odhlásiť",
+          "q": "Aký je stav?",
+          "options": [
+            "„odhlásené“",
+            "„načítava“",
+            "„odhlásené“ a zároveň „načítava“"
+          ],
+          "answer": 0,
+          "why": "Jedna premenná má vždy len jednu hodnotu. Kombinácia „odhlásený a sťahuje sa“ sa nedá ani zapísať."
+        },
+        {
+          "line": 6,
+          "input": "„načítané“ (dáta dorazili s oneskorením)",
+          "q": "Aký je stav?",
+          "options": [
+            "„hrá“",
+            "„odhlásené“",
+            "„načítava“"
+          ],
+          "answer": 1,
+          "why": "Riadok 7 prepne na „hrá“ len zo stavu „načítava“. Teraz je stav „odhlásené“, takže sa neskorá správa potichu zahodí. Presne toto chýbalo v prvej verzii."
+        },
+        {
+          "line": 0,
+          "input": "pohľad na celý program",
+          "q": "Koľko rôznych hodnôt môže premenná stav mať?",
+          "options": [
+            "8",
+            "4",
+            "3"
+          ],
+          "answer": 1,
+          "why": "Pauza, načítava, hrá, odhlásené. Tri premenné áno/nie dávajú 2 × 2 × 2 = 8 kombinácií, ale len 4 z nich dávajú zmysel. Zvyšné 4 sú miesta, kam sa apka môže omylom dostať."
+        }
+      ]
+    }
+  ],
+  "debrief": "Keď apku opisuje viac premenných áno/nie, vzniká viac kombinácií, než koľko má apka skutočných stavov. Do nemožnej kombinácie ju dostane neskorá správa alebo zabudnutý riadok. Jedna premenná so zoznamom stavov takú chybu vylúči už v návrhu. Testuj aj udalosti, ktoré prídu vo chvíli, keď ich nikto nečaká."
+}

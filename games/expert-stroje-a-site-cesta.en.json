@@ -1,0 +1,406 @@
+{
+  "type": "route",
+  "title": "Network routes: detours and oceans",
+  "instruction": "Put together the packet’s route from start to finish. The numbers on the links are milliseconds. You’re looking for the fastest route, not the one with the fewest hops.",
+  "levels": [
+    {
+      "story": "You’re playing on a server in Amsterdam. The direct line from Prague looks shortest, but it’s overloaded.",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Your room",
+          "x": 2,
+          "y": 33
+        },
+        {
+          "id": "R",
+          "label": "Provider’s router",
+          "x": 12,
+          "y": 59
+        },
+        {
+          "id": "P",
+          "label": "Prague node",
+          "x": 46,
+          "y": 44
+        },
+        {
+          "id": "V",
+          "label": "Vienna",
+          "x": 57,
+          "y": 97
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 64,
+          "y": 4
+        },
+        {
+          "id": "S",
+          "label": "Game server Amsterdam",
+          "x": 99,
+          "y": 29
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "R",
+          2
+        ],
+        [
+          "R",
+          "P",
+          3
+        ],
+        [
+          "P",
+          "S",
+          30
+        ],
+        [
+          "P",
+          "F",
+          9
+        ],
+        [
+          "F",
+          "S",
+          7
+        ],
+        [
+          "P",
+          "V",
+          6
+        ],
+        [
+          "V",
+          "S",
+          25
+        ]
+      ],
+      "from": "D",
+      "to": "S",
+      "metric": "ms",
+      "why": "The fastest is room → router → Prague → Frankfurt → server in 21 ms. The direct line from Prague gives 35 ms. More hops can be faster when each of them is short."
+    },
+    {
+      "story": "The node in Frankfurt has an outage and has vanished from the network. This time the server is in Milan. Find a detour; two options are almost equally good.",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Your room",
+          "x": 2,
+          "y": 43
+        },
+        {
+          "id": "R",
+          "label": "Provider’s router",
+          "x": 33,
+          "y": 43
+        },
+        {
+          "id": "P",
+          "label": "Prague node",
+          "x": 38,
+          "y": 0
+        },
+        {
+          "id": "B",
+          "label": "Brno",
+          "x": 33,
+          "y": 87
+        },
+        {
+          "id": "V",
+          "label": "Vienna",
+          "x": 57,
+          "y": 98
+        },
+        {
+          "id": "M",
+          "label": "Munich",
+          "x": 59,
+          "y": 31
+        },
+        {
+          "id": "S",
+          "label": "Server Milan",
+          "x": 99,
+          "y": 63
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "R",
+          2
+        ],
+        [
+          "R",
+          "P",
+          3
+        ],
+        [
+          "R",
+          "B",
+          5
+        ],
+        [
+          "P",
+          "M",
+          11
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "M",
+          7
+        ],
+        [
+          "M",
+          "S",
+          12
+        ],
+        [
+          "V",
+          "S",
+          20
+        ],
+        [
+          "P",
+          "S",
+          28
+        ]
+      ],
+      "from": "D",
+      "to": "S",
+      "metric": "ms",
+      "why": "The fastest is room → router → Prague → Munich → server in 28 ms. The route through Brno, Vienna and Munich takes 29 ms. The internet has no single centre, so there are almost always several good detours."
+    },
+    {
+      "story": "You’re at a cabin in the mountains where no cable reaches. You can choose a geostationary satellite, low satellites, or a mobile mast in the valley.",
+      "nodes": [
+        {
+          "id": "C",
+          "label": "Cabin",
+          "x": 14,
+          "y": 64
+        },
+        {
+          "id": "G",
+          "label": "Geostationary satellite",
+          "x": 41,
+          "y": 24
+        },
+        {
+          "id": "L",
+          "label": "Low satellites",
+          "x": 20,
+          "y": 9
+        },
+        {
+          "id": "T",
+          "label": "Mobile mast in the valley",
+          "x": 21,
+          "y": 100
+        },
+        {
+          "id": "P",
+          "label": "Prague node",
+          "x": 58,
+          "y": 79
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 69,
+          "y": 24
+        },
+        {
+          "id": "S",
+          "label": "Server Amsterdam",
+          "x": 100,
+          "y": 21
+        }
+      ],
+      "edges": [
+        [
+          "C",
+          "G",
+          280
+        ],
+        [
+          "C",
+          "L",
+          25
+        ],
+        [
+          "C",
+          "T",
+          35
+        ],
+        [
+          "G",
+          "P",
+          10
+        ],
+        [
+          "L",
+          "F",
+          8
+        ],
+        [
+          "T",
+          "P",
+          12
+        ],
+        [
+          "P",
+          "F",
+          9
+        ],
+        [
+          "F",
+          "S",
+          7
+        ],
+        [
+          "P",
+          "S",
+          30
+        ]
+      ],
+      "from": "C",
+      "to": "S",
+      "metric": "ms",
+      "why": "The fastest is cabin → low satellites → Frankfurt → server in 40 ms. The mobile mast goes through Prague, which is closer, and gives 63 ms. The geostationary satellite is over 300 ms because of its 36,000 km height."
+    },
+    {
+      "story": "You’re sending a video to a friend in Sydney. From Europe, undersea cables run through the Mediterranean Sea and the Indian Ocean, or across the Atlantic and the Pacific Ocean.",
+      "nodes": [
+        {
+          "id": "P",
+          "label": "Prague",
+          "x": 70,
+          "y": 9
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 52,
+          "y": 5
+        },
+        {
+          "id": "L",
+          "label": "London",
+          "x": 36,
+          "y": 6
+        },
+        {
+          "id": "M",
+          "label": "Marseille",
+          "x": 44,
+          "y": 37
+        },
+        {
+          "id": "NY",
+          "label": "New York",
+          "x": 16,
+          "y": 15
+        },
+        {
+          "id": "LA",
+          "label": "Los Angeles",
+          "x": 12,
+          "y": 41
+        },
+        {
+          "id": "MU",
+          "label": "Mumbai",
+          "x": 69,
+          "y": 39
+        },
+        {
+          "id": "SG",
+          "label": "Singapore",
+          "x": 85,
+          "y": 67
+        },
+        {
+          "id": "SY",
+          "label": "Sydney",
+          "x": 85,
+          "y": 96
+        }
+      ],
+      "edges": [
+        [
+          "P",
+          "F",
+          9
+        ],
+        [
+          "P",
+          "M",
+          23
+        ],
+        [
+          "F",
+          "M",
+          12
+        ],
+        [
+          "F",
+          "L",
+          9
+        ],
+        [
+          "L",
+          "NY",
+          37
+        ],
+        [
+          "NY",
+          "LA",
+          35
+        ],
+        [
+          "LA",
+          "SY",
+          70
+        ],
+        [
+          "M",
+          "MU",
+          55
+        ],
+        [
+          "MU",
+          "SG",
+          30
+        ],
+        [
+          "M",
+          "SG",
+          80
+        ],
+        [
+          "SG",
+          "SY",
+          45
+        ]
+      ],
+      "from": "P",
+      "to": "SY",
+      "metric": "ms",
+      "why": "The fastest is Prague → Frankfurt → Marseille → Singapore → Sydney in 146 ms. The direct route from Prague to Marseille gives 148 ms, the route through Mumbai 151 ms and the route through America 160 ms. Differences this close can only be found reliably by a method that explores all routes, starting from the shortest, and routers really use it."
+    }
+  ],
+  "debrief": "Routers look for the fastest route, not the shortest line on the map or the fewest hops. When a link fails, they work out the route again and the packets take a detour. The method that compares routes starting from the shortest is called Dijkstra’s algorithm."
+}

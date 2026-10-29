@@ -1,0 +1,53 @@
+{
+  "type": "sort",
+  "title": "Can you put it in a sponsored video?",
+  "instruction": "The school video will run on YouTube and at the end it shows the logo of a local company that paid for it. That is commercial use. Decide about each piece.",
+  "buckets": [
+    "Allowed, just credit the author (or not even that)",
+    "Allowed, but then the whole video must have the CC BY-SA licence",
+    "Not allowed"
+  ],
+  "items": [
+    {
+      "text": "A photo of a castle from Wikimedia Commons with the CC BY licence",
+      "answer": 0,
+      "why": "CC BY allows anything, even commercial use, as long as you credit the author, the licence and a link to the source."
+    },
+    {
+      "text": "Music with the CC BY-SA licence as background for the whole video",
+      "answer": 1,
+      "why": "Under CC, music combined with a picture is an adaptation of the work. SA means “share alike”: your video must get the same licence."
+    },
+    {
+      "text": "A track with the CC BY-NC licence",
+      "answer": 2,
+      "why": "NC forbids commercial use. The sponsor pays for showing its logo, so the video is commercial."
+    },
+    {
+      "text": "An illustration with the CC BY-ND licence that you draw the school logo into",
+      "answer": 2,
+      "why": "ND forbids changes. An added logo is a change, even if it is small."
+    },
+    {
+      "text": "A shot from the film Sprite Fright, (CC) Blender Foundation, licence CC BY",
+      "answer": 0,
+      "why": "Blender Studio’s open films are CC BY. Just credit “(CC) Blender Foundation | studio.blender.org”."
+    },
+    {
+      "text": "A sound of applause with the CC0 licence",
+      "answer": 0,
+      "why": "CC0 means the author has given up their rights. You don’t have to credit them, but it is polite."
+    },
+    {
+      "text": "A picture from a search engine that has no licence at all",
+      "answer": 2,
+      "why": "Without a licence, “all rights reserved” applies. Being on the internet does not make a picture free."
+    },
+    {
+      "text": "A picture from an AI generator showing an almost exact copy of a famous cartoon character",
+      "answer": 2,
+      "why": "The generator’s terms may “give” you the output, but the character belongs to the studio. The generator cannot hand out rights to it."
+    }
+  ],
+  "debrief": "Creative Commons licences are a kit of four parts: BY (credit the author), SA (share alike), NC (non-commercial only), ND (no changes). CC0 is completely free. When there is no licence, you may do almost nothing. And AI output is not automatically free: check what is in it."
+}

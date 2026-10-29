@@ -1,0 +1,120 @@
+{
+  "type": "hotspot",
+  "title": "Vadászat a sötét mintákra",
+  "instruction": "A sötét minta olyan képernyőterv, amely észrevétlenül olyan döntés felé terel, ami az appnak jó, nem neked. Keresd meg minden képernyőn, mi a sötét minta. Vigyázz: néhány mondat gyanúsnak tűnik, pedig tisztességes.",
+  "items": [
+    {
+      "label": "Előfizetés egy zenei appban",
+      "segments": [
+        {
+          "text": "Próbáld ki a Premiumot 7 napig ingyen."
+        },
+        {
+          "text": "Utána havi 199 Kč.",
+          "why": "Az ár világosan és előre oda van írva. Ez tisztességes."
+        },
+        {
+          "text": "Bármikor lemondhatod, de csak a weboldalunkon, nem az appban.",
+          "hit": true,
+          "why": "Feliratkozni egy koppintással lehet, lemondani csak máshol és bonyolultan. Ezt egérfogónak hívják: bejutni könnyű, kijutni nehéz."
+        }
+      ]
+    },
+    {
+      "label": "Értesítéskérés",
+      "segments": [
+        {
+          "text": "Szeretnél értesítést kapni az új pályákról?"
+        },
+        {
+          "text": "[Igen, persze!]",
+          "why": "Egy egyszerű gomb a beleegyezéshez."
+        },
+        {
+          "text": "[Nem, nem akarok tudni az ingyenes ajándékokról]",
+          "hit": true,
+          "why": "Az elutasítás úgy van megfogalmazva, hogy megszégyenítsen, és veszteségérzetet keltsen. A tisztességes változat egyszerűen: „Nem, köszönöm”."
+        }
+      ]
+    },
+    {
+      "label": "Regisztráció egy kvízappba",
+      "segments": [
+        {
+          "text": "Becenév: ____"
+        },
+        {
+          "text": "☐ Elfogadom a feltételeket",
+          "why": "A feltételek elfogadása kötelező, és a négyzet üres. Rendben van."
+        },
+        {
+          "text": "☑ Adataim továbbítása partnereknek a jobb ajánlatokért",
+          "hit": true,
+          "why": "A négyzet előre be van pipálva. Aki nem veszi észre, beleegyezik az adatai megosztásába, akkor is, ha nem akarja."
+        }
+      ]
+    },
+    {
+      "label": "Bolt a játékban",
+      "segments": [
+        {
+          "text": "Sárkány csomag: 1 200 drágakő"
+        },
+        {
+          "text": "(20 %-kal több, mint legutóbb)",
+          "why": "Konkrét összehasonlítás, ellenőrizhető. Önmagában ez nem sötét minta."
+        },
+        {
+          "text": "Az ajánlat 00:59 múlva lejár",
+          "hit": true,
+          "why": "A visszaszámláló, amely lejárta után újraindul, hamis sürgetés. Arra akar rávenni, hogy dönts, mielőtt kiszámolnád."
+        },
+        {
+          "text": "Ár: 900 drágakő",
+          "hit": true,
+          "why": "A virtuális pénznemben megadott ár elrejti a valódi pénzt. Mennyi 900 drágakő koronában? Az app szándékosan nem mondja meg."
+        }
+      ]
+    },
+    {
+      "label": "Webáruház pénztára",
+      "segments": [
+        {
+          "text": "Pulóver 690 Kč"
+        },
+        {
+          "text": "Szállítás 79 Kč",
+          "why": "A szállítás látható, és módosítható. Tisztességes."
+        },
+        {
+          "text": "Csomagbiztosítás 39 Kč (hozzáadtuk helyetted)",
+          "hit": true,
+          "why": "A kosárba a koppintásod nélkül került be valami. Ennek a neve titkos kosárba csempészés."
+        }
+      ]
+    },
+    {
+      "label": "Fiók törlése",
+      "segments": [
+        {
+          "text": "Biztosan el akarsz menni?"
+        },
+        {
+          "text": "A törléssel elveszíted az előzményeidet és a mentett játékaidat.",
+          "why": "Igaz információ arról, mit jelent a törlés. Ezt az appnak el kell mondania."
+        },
+        {
+          "text": "A 312 napos sorozatod eltűnik, és a barátaid látni fogják, hogy feladod.",
+          "hit": true,
+          "why": "Érzelmi nyomás: információ helyett a barátok előtti szégyentől való félelem."
+        },
+        {
+          "text": "[MARADOK] nagy, színes gomb, a „törlés” apró szürke betűkkel lent",
+          "hit": true,
+          "why": "Az a lehetőség, amelyet az app szeretne, feltűnő, a te választásod pedig el van rejtve. A két gombnak egyformán jól láthatónak kell lennie."
+        }
+      ]
+    }
+  ],
+  "debrief": "A sötét minták nem hibák, hanem szándékosak. Az egyenlőtlenségről ismered fel őket: az egyik választás könnyű, nagy és kellemes, a másik rejtett, apró vagy kellemetlenül megfogalmazott. Amikor saját appot tervezel, adj egyforma súlyt a beleegyezésnek és az elutasításnak, és az árat koronában mutasd."
+}

@@ -1,0 +1,163 @@
+{
+  "type": "trace",
+  "title": "Krokuj feed",
+  "instruction": "Tri kúsky pseudokódu, ktorý rozhoduje o tvojom feede. Krokuj ich riadok po riadku a pozor na čísla: jedna chyba v súčte zmení celý feed.",
+  "rounds": [
+    {
+      "code": [
+        "skóre = {psíky: 35, futbal: 22, minecraft: 20}",
+        "pre každé video v rade:",
+        "    ak dopozerané:",
+        "        skóre[téma] = skóre[téma] + 10",
+        "    inak ak „Nemám záujem“:",
+        "        skóre[téma] = skóre[téma] - 15",
+        "    ďalšia téma = téma s najvyšším skóre"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "video o Minecrafte, dopozerané do konca",
+          "q": "Koľko má teraz Minecraft?",
+          "options": [
+            "20",
+            "30",
+            "35"
+          ],
+          "answer": 1,
+          "why": "Dopozeranie pripočíta 10: 20 + 10 = 30."
+        },
+        {
+          "line": 6,
+          "input": "psíky 35, futbal 22, minecraft 30",
+          "q": "Aká téma príde ďalej?",
+          "options": [
+            "psíky",
+            "minecraft",
+            "futbal"
+          ],
+          "answer": 0,
+          "why": "Psíky majú stále najviac: 35 je viac ako 30."
+        },
+        {
+          "line": 5,
+          "input": "video so psíkom, ťuknutie na „Nemám záujem“",
+          "q": "Koľko majú teraz psíky?",
+          "options": [
+            "20",
+            "25",
+            "35"
+          ],
+          "answer": 0,
+          "why": "„Nemám záujem“ odpočíta 15: 35 − 15 = 20. Jedno ťuknutie zmaže takmer polovicu skóre."
+        },
+        {
+          "line": 6,
+          "input": "psíky 20, futbal 22, minecraft 30",
+          "q": "Aká téma príde ďalej?",
+          "options": [
+            "psíky",
+            "futbal",
+            "minecraft"
+          ],
+          "answer": 2,
+          "why": "Minecraft má 30, futbal 22, psíky len 20. Jedno ťuknutie a jedno dopozeranie otočili poradie."
+        }
+      ]
+    },
+    {
+      "code": [
+        "počet = 0",
+        "pre každé video v rade:",
+        "    počet = počet + 1",
+        "    ak je počet deliteľný 5:",
+        "        ďalšia téma = náhodná téma, ktorá ti dlho neprišla",
+        "    inak:",
+        "        ďalšia téma = téma s najvyšším skóre"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "počet = 4",
+          "q": "Bude ďalšie video prieskumné?",
+          "options": [
+            "áno",
+            "nie"
+          ],
+          "answer": 1,
+          "why": "4 nie je deliteľné 5, takže riadok 4 neplatí a ide sa na riadok 7: víťazná téma."
+        },
+        {
+          "line": 4,
+          "input": "prvých 20 videí",
+          "q": "Koľko z prvých 20 videí je prieskumných?",
+          "options": [
+            "2",
+            "4",
+            "5"
+          ],
+          "answer": 1,
+          "why": "Deliteľné 5 sú čísla 5, 10, 15 a 20. Štyri videá z dvadsiatich, teda 20 % feedu, sú prieskum."
+        },
+        {
+          "line": 4,
+          "input": "prieskumné video o varení dopozeráš",
+          "q": "Prečo je riadok 5 pre feed dôležitý?",
+          "options": [
+            "Spomaľuje apku",
+            "Bez neho by sa skóre ostatných tém nikdy nezmenilo",
+            "Ušetrí dáta"
+          ],
+          "answer": 1,
+          "why": "Sieť sa učí len z videí, ktoré ti ukázala. Bez prieskumu nevzniknú o iných témach nové dáta a bublina sa uzavrie."
+        }
+      ]
+    },
+    {
+      "code": [
+        "pre každé video v rade:",
+        "    ukáž video",
+        "    ak v rade zostávajú menej ako 3 videá:",
+        "        doplň rad 10 novými videami"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "v rade zostávajú 2 videá",
+          "q": "Čo sa stane?",
+          "options": [
+            "Slučka skončí",
+            "Rad sa doplní a slučka ide ďalej",
+            "Apka sa spýta, či chceš pokračovať"
+          ],
+          "answer": 1,
+          "why": "Riadok 4 pridá nové videá skôr, než rad dôjde. Rad nikdy nie je prázdny."
+        },
+        {
+          "line": 0,
+          "input": "sleduješ už 2 hodiny",
+          "q": "Kedy táto slučka skončí?",
+          "options": [
+            "Keď dôjdu videá",
+            "Nikdy, kým apku nezavrieš",
+            "Po 10 videách"
+          ],
+          "answer": 1,
+          "why": "V kóde nie je žiadna podmienka ukončenia. Koniec je len tvoje rozhodnutie."
+        },
+        {
+          "line": 1,
+          "input": "chceš pridať riadok „ak čas > 30 minút: ukonči slučku“",
+          "q": "Kam ho dáš, aby fungoval najlepšie?",
+          "options": [
+            "Na začiatok tela slučky, pred riadok 2",
+            "Za slučku, pod riadok 4",
+            "Na úplný začiatok, pred riadok 1"
+          ],
+          "answer": 0,
+          "why": "Podmienka musí byť vnútri slučky, aby sa kontrolovala pred každým videom. Za slučkou by sa nikdy nespustila, pretože slučka nekončí. Pred slučkou by sa skontrolovala len raz."
+        }
+      ]
+    }
+  ],
+  "debrief": "Feed je pár riadkov: skóre, slučka a výber maxima. Malé signály, ako jedno „Nemám záujem“, vedia poradie otočiť. Prieskumný riadok bráni uzavretej bubline a chýbajúca podmienka ukončenia robí zo scrollovania slučku bez konca."
+}

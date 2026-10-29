@@ -1,0 +1,138 @@
+{
+  "type": "trace",
+  "title": "Srážka dvou obdélníků",
+  "instruction": "Krokuj funkci, která zjišťuje srážku dvou obdélníků (hitboxů). Obdélník má levý horní roh x, y, šířku a výšku. Osa y roste dolů, jako na obrazovce. Pozor na znak < a na čísla, která vycházejí přesně na hranu.",
+  "rounds": [
+    {
+      "code": [
+        "funkce srazka(a, b):",
+        "    pokud a.x + a.sirka < b.x: vrať ne",
+        "    pokud b.x + b.sirka < a.x: vrať ne",
+        "    pokud a.y + a.vyska < b.y: vrať ne",
+        "    pokud b.y + b.vyska < a.y: vrať ne",
+        "    vrať ano"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "a = hráč: x 10, y 0, šířka 20, výška 20. b = mince: x 30, y 5, šířka 10, výška 10.",
+          "q": "Co udělá řádek 2?",
+          "options": [
+            "vrátí ne, protože hráč končí přesně tam, kde mince začíná",
+            "nevrátí nic a pokračuje, protože 30 < 30 neplatí",
+            "vrátí ano"
+          ],
+          "answer": 1,
+          "why": "Pravý okraj hráče je 10 + 20 = 30 a mince začíná na x = 30. Otázka zní „je 30 menší než 30?“ a odpověď je ne. Podmínka neplatí, takže řádek nic nevrátí a funkce jde dál."
+        },
+        {
+          "line": 5,
+          "input": "Stejný hráč a stejná mince jako v minulém kroku.",
+          "q": "Co funkce nakonec vrátí?",
+          "options": [
+            "ano: dotyk hranou se tady počítá jako srážka",
+            "ne: obdélníky se jen dotýkají",
+            "záleží na tom, který obdélník je a a který b"
+          ],
+          "answer": 0,
+          "why": "Řádky 3 až 5 také neplatí: 40 < 10 ne, 20 < 5 ne, 15 < 0 ne. Žádný řádek nevrátil ne, takže funkce vrátí ano. Se znakem < je dotyk hranou zásah. Kdyby místo něj byl <=, dotyk by zásahem nebyl. Jeden znak rozhoduje, jestli sebereš minci, o kterou se jen otřeš. Pořadí a, b nehraje roli, funkce je souměrná."
+        },
+        {
+          "line": 3,
+          "input": "a = hráč: x 0, y 0, šířka 16, výška 16. b = ostny: x 4, y 40, šířka 8, výška 8. Ostny jsou pod hráčem.",
+          "q": "Na kterém řádku funkce skončí a co vrátí?",
+          "options": [
+            "na řádku 2, ne",
+            "na řádku 4, ne",
+            "na řádku 5, ne",
+            "na řádku 6, ano"
+          ],
+          "answer": 1,
+          "why": "V ose x se překrývají: 16 < 4 neplatí a 12 < 0 také ne. Řádek 4 se ptá „končí hráč nad ostny?“: 0 + 16 = 16 < 40, ano. Funkce vrátí ne. Srážka nastane, jen když se obdélníky překrývají v obou osách naráz."
+        }
+      ]
+    },
+    {
+      "code": [
+        "funkce srazka(a, b):",
+        "    pokud a.x + a.sirka < b.x: vrať ne",
+        "    pokud b.x + b.sirka < a.x: vrať ne",
+        "    vrať ano"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Ondra funkci „zrychlil“ a řádky pro osu y smazal. Hráč: x 100, y 0, šířka 16, výška 16. Mince: x 104, y 200, šířka 8, výška 8.",
+          "q": "Co vrátí funkce?",
+          "options": [
+            "ano, hráč sebere minci, která je o 200 px níž",
+            "ne, mince je daleko",
+            "funkce skončí chybou"
+          ],
+          "answer": 0,
+          "why": "V ose x se překrývají (116 < 104 ne, 112 < 100 ne) a na osu y se už nikdo neptá. Hráč teď sbírá všechny mince ve svém sloupci, i ty na druhém konci obrazovky."
+        },
+        {
+          "line": 3,
+          "input": "Ondra chce test, který s jeho verzí selže a se správnou verzí projde.",
+          "q": "Který test chybu chytí?",
+          "options": [
+            "hráč a mince na stejném místě, čekám ano",
+            "mince daleko vpravo ve stejné výšce, čekám ne",
+            "mince přímo nad hráčem o 100 px výš, čekám ne",
+            "mince se dotýká hráče hranou zleva, čekám ano"
+          ],
+          "answer": 2,
+          "why": "Chybu odhalí jen případ, kdy se obdélníky překrývají v ose x, ale ne v ose y. Ostatní tři testy projdou s oběma verzemi, takže o chybě nic neřeknou. Dobrý test je takový, který rozbitý kód umí rozlišit od správného."
+        }
+      ]
+    },
+    {
+      "code": [
+        "x = 0",
+        "opakuj, dokud x < 100:",
+        "    x = x + rychlost",
+        "    pokud srazka(míček, pálka): odraz a konec"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Míček je široký 8 px a letí vpravo. Pálka zabírá x od 50 do 60. Srážka se počítá jako v prvním kole. Rychlost je 35 px za snímek.",
+          "q": "Odrazí se míček?",
+          "options": [
+            "ano, při x = 35",
+            "ano, při x = 70",
+            "ne, proletí"
+          ],
+          "answer": 2,
+          "why": "Polohy po snímcích jsou 35 a 70. Při x = 35 končí míček na 43, to je před pálkou. Při x = 70 je už za ní, protože pálka končí na 60. Míček se s pálkou překrývá, jen když jeho levý okraj leží od 42 do 60, a tam žádná poloha nepadla."
+        },
+        {
+          "line": 3,
+          "input": "Stejná pálka, ale rychlost 45 px za snímek, tedy ještě rychlejší.",
+          "q": "Odrazí se teď?",
+          "options": [
+            "ne, rychlejší míček proletí tím spíš",
+            "ano, při x = 45",
+            "ano, při x = 90"
+          ],
+          "answer": 1,
+          "why": "Poloha 45 leží v úseku od 42 do 60, takže hra srážku zjistí. Rychlejší míček se odrazí a pomalejší proletěl. Tunelování nezávisí jen na rychlosti, ale na tom, kam padnou polohy. Proto nestačí otestovat jednu rychlost. Jistotu dává až krok nejvýš 18 px, tedy šířka pálky plus šířka míčku."
+        },
+        {
+          "line": 2,
+          "input": "Stejná pálka, rychlost 30 px za snímek.",
+          "q": "Kdy a jak hra srážku zjistí?",
+          "options": [
+            "při x = 30, míček se odrazí před pálkou",
+            "při x = 60, kdy už je míček celý za pálkou a jen se jí dotýká levou hranou",
+            "vůbec, míček proletí"
+          ],
+          "answer": 1,
+          "why": "Při x = 30 končí míček na 38, to je před pálkou. Při x = 60 se jeho levá hrana dotýká pravé hrany pálky, a protože dotyk se počítá, hra hlásí zásah. Jenže míček už pálkou prošel. Odraz ho pošle zpátky skrz pálku. Hra srážku našla, ale pozdě a z druhé strany. Proto skutečné enginy hledají okamžik, kdy srážka začala, a ne jen to, že nastala."
+        }
+      ]
+    }
+  ],
+  "debrief": "Srážka dvou obdélníků jsou čtyři otázky „končí jeden dřív, než druhý začne?“, dvě pro osu x a dvě pro osu y. Znak < nebo <= rozhoduje o dotyku hranou. Chybějící osa projde všemi testy kromě jednoho, který musíš vymyslet záměrně. A kontrola jednou za snímek vidí jen polohy, ne cestu mezi nimi. Rychlý míček proto může proletět, nebo se odrazit z druhé strany. Skutečné hry to řeší mezikroky nebo paprskem mezi starou a novou polohou."
+}

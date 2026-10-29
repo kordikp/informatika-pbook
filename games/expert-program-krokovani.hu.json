@@ -1,0 +1,161 @@
+{
+  "type": "trace",
+  "title": "Lépkedj, mint egy hibakereső",
+  "instruction": "Négy rövid program, mindegyikben egy csapda. Menj végig rajtuk soronként, és minden kérdésnél először írj nyomkövető táblázatot: mi van a dobozokban minden lépés után.",
+  "rounds": [
+    {
+      "code": [
+        "összeg = 0",
+        "ismételd i = 1-től 3-ig:",
+        "    ismételd i-szer:",
+        "        összeg = összeg + i",
+        "írd ki összeg"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "nincs bemenet",
+          "q": "Összesen hányszor fut le a 4. sor?",
+          "options": [
+            "3-szor",
+            "6-szor",
+            "9-szer"
+          ],
+          "answer": 1,
+          "why": "A belső ciklus minden alkalommal máshány kört fut: i = 1-nél egyszer, i = 2-nél kétszer, i = 3-nál háromszor. 1 + 2 + 3 = 6."
+        },
+        {
+          "line": 3,
+          "input": "nincs bemenet",
+          "q": "Mennyi van az összeg dobozban az i = 2 kör vége után?",
+          "options": [
+            "3",
+            "5",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Az i = 1 kör után 1 van benne. Az i = 2 körben kétszer adódik hozzá 2: 1 + 2 + 2 = 5."
+        },
+        {
+          "line": 4,
+          "input": "nincs bemenet",
+          "q": "Mit ír ki a program?",
+          "options": [
+            "6",
+            "14",
+            "12"
+          ],
+          "answer": 1,
+          "why": "Az i = 3 körben háromszor adódik hozzá 3: 5 + 9 = 14. A hatos a belső ciklus köreinek száma, nem az összeg."
+        }
+      ]
+    },
+    {
+      "code": [
+        "energia = 10",
+        "körök = 0",
+        "amíg energia > 0:",
+        "    energia = energia - 4",
+        "    írd ki energia",
+        "    körök = körök + 1",
+        "írd ki körök"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "nincs bemenet",
+          "q": "Kiír valaha negatív számot a program?",
+          "options": [
+            "Nem, a ciklus előbb véget ér",
+            "Igen, kiírja, hogy −2"
+          ],
+          "answer": 1,
+          "why": "A feltételt csak a kör elején ellenőrzi. A harmadik körben 2 > 0 igaz, a törzs végigfut, az energia −2-re csökken, és kiíródik. A feltétel csak ezután hamis."
+        },
+        {
+          "line": 6,
+          "input": "nincs bemenet",
+          "q": "Mit ír ki az utolsó sor?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Az energia így változik 10 → 6 → 2 → −2. Három kör futott le."
+        }
+      ]
+    },
+    {
+      "code": [
+        "a = 3",
+        "b = 7",
+        "a = b",
+        "b = a",
+        "a = a + b",
+        "írd ki a, b"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "nincs bemenet",
+          "q": "Mi van a b dobozban a 4. sor után?",
+          "options": [
+            "3",
+            "7",
+            "10"
+          ],
+          "answer": 1,
+          "why": "A 3. sor az a értékét 7-re írta át, és a hármas eltűnt. A 4. sor aztán ezt a hetest teszi a b-be. A csere nem sikerült."
+        },
+        {
+          "line": 5,
+          "input": "nincs bemenet",
+          "q": "Mit ír ki a program?",
+          "options": [
+            "10, 3",
+            "14, 7",
+            "10, 7"
+          ],
+          "answer": 1,
+          "why": "Mindkét dobozban 7 van, így a = 7 + 7 = 14, a b pedig 7 marad."
+        }
+      ]
+    },
+    {
+      "code": [
+        "pont = 12",
+        "életek = 0",
+        "ha pont > 10 vagy életek == 0 és pont < 5:",
+        "    írd ki \"vége\"",
+        "különben:",
+        "    írd ki \"játssz tovább\""
+      ],
+      "steps": [
+        {
+          "line": 2,
+          "input": "pont = 12, életek = 0",
+          "q": "Ugyanúgy, mint Pythonban, az „és” előbb értékelődik ki, mint a „vagy”. Mit ír ki a program?",
+          "options": [
+            "vége",
+            "játssz tovább"
+          ],
+          "answer": 0,
+          "why": "A feltétel így olvasandó: pont > 10 vagy (életek == 0 és pont < 5). A zárójel hamis, mert a 12 < 5 nem igaz. De a pont > 10 igaz, és a „vagy”-nál elég egy igaz rész."
+        },
+        {
+          "line": 2,
+          "input": "pont = 12, életek = 0",
+          "q": "Ha a zárójelek így lennének: (pont > 10 vagy életek == 0) és pont < 5, mit írna ki a program?",
+          "options": [
+            "vége",
+            "játssz tovább"
+          ],
+          "answer": 1,
+          "why": "A zárójel igaz, de a pont < 5 nem igaz, és az „és”-nél mindkét résznek igaznak kell lennie. Ugyanazok a jelek, más zárójelek, más eredmény. Ha nem vagy biztos a sorrendben, írj zárójelet."
+        }
+      ]
+    }
+  ],
+  "debrief": "A beágyazott ciklus szoroz, a ciklus feltételét csak a kör elején ellenőrzi, az értékadás felülírja a régi értéket, és az „és” elsőbbséget élvez a „vagy” előtt. Mind a négy csapdát ugyanúgy kapod el: nyomkövető táblázattal, lépésről lépésre."
+}

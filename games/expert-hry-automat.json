@@ -1,0 +1,94 @@
+{
+  "type": "trace",
+  "title": "Stavový automat postavy",
+  "instruction": "Postava je vždy v jednom stavu: stojí, běží, skok, nebo padá. Kód každý snímek čte řádky shora a provede jen první „pokud“, které platí. „Stisk skoku“ platí jen v tom jediném snímku, kdy tlačítko zmáčkneš. Fyzika běží zvlášť: ve vzduchu přičítá gravitaci k rychlostY (kladná rychlostY znamená pohyb dolů) a postavu na zemi drží na rychlostY = 0. Najdi, kde tenhle automat podvádí hráče.",
+  "rounds": [
+    {
+      "code": [
+        "stav = \"stojí\"",
+        "každý snímek:",
+        "    pokud stav == \"stojí\" a stisk skoku: stav = \"skok\"",
+        "    jinak pokud stav == \"stojí\" a drží šipku: stav = \"běží\"",
+        "    jinak pokud stav == \"běží\" a nedrží šipku: stav = \"stojí\"",
+        "    jinak pokud stav == \"běží\" a stisk skoku: stav = \"skok\"",
+        "    jinak pokud stav == \"skok\" a rychlostY > 0: stav = \"padá\"",
+        "    jinak pokud stav == \"padá\" a na zemi: stav = \"stojí\""
+      ],
+      "steps": [
+        {
+          "line": 5,
+          "input": "Stav „běží“. Hráč drží šipku a v tomhle snímku zmáčkne skok.",
+          "q": "Jaký bude stav na konci snímku?",
+          "options": [
+            "skok",
+            "stojí",
+            "běží"
+          ],
+          "answer": 0,
+          "why": "Řádek 5 neplatí, protože hráč šipku drží. Řádek 6 platí, stav se změní na „skok“. Tohle je zahřívací kolo, další už takhle hladká nebudou."
+        },
+        {
+          "line": 4,
+          "input": "Stav „běží“. Hráč v tomtéž snímku pustí šipku a zmáčkne skok. Chce vyskočit rovně nahoru.",
+          "q": "Co se stane se skokem?",
+          "options": [
+            "postava skočí",
+            "stav bude „stojí“ a skok se ztratí",
+            "postava skočí o snímek později"
+          ],
+          "answer": 1,
+          "why": "Řádky jsou spojené přes „jinak pokud“, takže platí jen první z nich. Řádek 5 (běží a nedrží šipku) je výš než řádek 6 a platí, stav bude „stojí“. Řádek 6 se už nečte. V dalším snímku stisk skoku neplatí, protože trval jen jeden snímek. Hráč má pocit, že hra jeho skok „sežrala“. Pořadí podmínek je součást pravidel hry."
+        },
+        {
+          "line": 3,
+          "input": "Stav „stojí“ na kraji plošiny. Hráč drží šipku vpravo a postava sjede z hrany do propasti.",
+          "q": "V jakém stavu postava letí dolů?",
+          "options": [
+            "padá",
+            "běží",
+            "skok"
+          ],
+          "answer": 1,
+          "why": "Řádek 4 změní stav na „běží“. Žádný řádek ale neříká „když stojím nebo běžím a nejsem na zemi, padám“. Do stavu „padá“ vede jen cesta přes skok. Postava proto letí propastí ve stavu „běží“."
+        },
+        {
+          "line": 5,
+          "input": "Pokračování: postava je ve vzduchu nad propastí, pořád ve stavu „běží“, a hráč zmáčkne skok.",
+          "q": "Co se stane?",
+          "options": [
+            "nic, ve vzduchu se neskáče",
+            "postava vyskočí ze vzduchu",
+            "stav se změní na „padá“"
+          ],
+          "answer": 1,
+          "why": "Řádek 6 se ptá jen na stav „běží“ a na stisk, na zem se neptá. Postava vyskočí ze vzduchu. Hráči tenhle nechtěný skok rychle najdou a použijí ho k přeskočení půlky úrovně."
+        },
+        {
+          "line": 6,
+          "input": "Stav „skok“. Postava doletí přesně ve vrcholu skoku, kdy je rychlostY = 0, na hranu vyšší plošiny. Fyzika ji postaví na zem a drží rychlostY = 0.",
+          "q": "Co se stane dál?",
+          "options": [
+            "stav přejde na „padá“ a pak na „stojí“",
+            "postava zůstane navždy ve stavu „skok“ a už nevyskočí ani se nerozběhne",
+            "stav přejde rovnou na „stojí“"
+          ],
+          "answer": 1,
+          "why": "Řádek 7 potřebuje rychlostY > 0, ale na zemi je pořád 0. Řádek 8 platí jen pro stav „padá“. Řádky 3 až 6 se ptají na „stojí“ a „běží“. Ze stavu „skok“ na zemi nevede žádná šipka ven. Hra se nezasekla, ale postava ano. Říká se tomu softlock a hráč musí úroveň restartovat."
+        },
+        {
+          "line": 7,
+          "input": "Tři chyby: ztracený skok, skok ze vzduchu po sjetí z hrany a uvíznutí ve stavu „skok“.",
+          "q": "Která oprava odstraní všechny tři?",
+          "options": [
+            "přidat jediný řádek: skok a na zemi, pak stojí",
+            "dát stisk skoku na začátek pro stojí i běží, přidat přechod stojí nebo běží a nejsem na zemi, pak padá, a přechod skok nebo padá a na zemi, pak stojí",
+            "zvětšit gravitaci, aby postava dopadala rychleji"
+          ],
+          "answer": 1,
+          "why": "Ztracený skok opraví pořadí: skok má přednost před zastavením. Skok ze vzduchu opraví přechod do „padá“, kdykoli postava ztratí zem. Uvíznutí opraví přechod na zem i ze stavu „skok“. Jediný řádek opraví jen třetí chybu a gravitace žádnou. Návrháři si proto automat kreslí: u každého stavu se zeptají, kudy se z něj dostanu při každé události."
+        }
+      ]
+    }
+  ],
+  "debrief": "Stavový automat je seznam stavů a šipek mezi nimi. Chyby v něm nejsou v řádcích, které tam jsou, ale v šipkách, které chybějí, a v pořadí, ve kterém se podmínky čtou. Dobrá kontrola je tabulka: řádky jsou stavy, sloupce události (stisk, pustím šipku, ztratím zem, dopadnu) a v každém políčku musí být jasné, kam postava přejde. Prázdné políčko je budoucí chyba."
+}

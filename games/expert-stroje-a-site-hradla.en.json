@@ -1,0 +1,216 @@
+{
+  "type": "gates",
+  "title": "How the cook calculates",
+  "instruction": "A processor can do nothing except connect gates. Using the allowed gates, build a circuit that matches the table. You get a star for the smallest number of gates.",
+  "levels": [
+    {
+      "story": "The cook needs to know whether two bits are the same. Output E lights up when A and B have the same value.",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "E": "not (A xor B)"
+      },
+      "allow": [
+        "XOR",
+        "NOT"
+      ],
+      "max": 2,
+      "why": "XOR lights up when the bits differ. NOT flips that. This is how a processor compares numbers bit by bit.",
+      "solution": {
+        "gates": [
+          [
+            "XOR",
+            "A",
+            "B"
+          ],
+          [
+            "NOT",
+            "g0"
+          ]
+        ],
+        "outputs": {
+          "E": "g1"
+        }
+      }
+    },
+    {
+      "story": "Add two bits. Output S is the digit of the result, output C is the carry to the next place, just like when you add 5 + 7 on paper.",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "S": "A xor B",
+        "C": "A and B"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "XOR"
+      ],
+      "max": 2,
+      "why": "1 + 1 = 10 in binary: digit 0 and carry 1. This circuit is called a half adder, and it’s the first step of every calculator.",
+      "solution": {
+        "gates": [
+          [
+            "XOR",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "A",
+            "B"
+          ]
+        ],
+        "outputs": {
+          "S": "g0",
+          "C": "g1"
+        }
+      }
+    },
+    {
+      "story": "The cook reaches onto the worktop for one of two things. The control bit S says which one: S = 0 picks A, S = 1 picks B.",
+      "inputs": [
+        "A",
+        "B",
+        "S"
+      ],
+      "outputs": {
+        "Y": "(A and not S) or (B and S)"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT"
+      ],
+      "max": 4,
+      "why": "This circuit is called a multiplexer. Choosing a cell in working memory is built from lots of these switches: the address decides which place gets read.",
+      "solution": {
+        "gates": [
+          [
+            "NOT",
+            "S"
+          ],
+          [
+            "AND",
+            "A",
+            "g0"
+          ],
+          [
+            "AND",
+            "B",
+            "S"
+          ],
+          [
+            "OR",
+            "g1",
+            "g2"
+          ]
+        ],
+        "outputs": {
+          "Y": "g3"
+        }
+      }
+    },
+    {
+      "story": "Three temperature sensors vote on whether the processor is overheating. Output M lights up when at least two sensors light up. That way one broken sensor can’t set anything off.",
+      "inputs": [
+        "A",
+        "B",
+        "C"
+      ],
+      "outputs": {
+        "M": "(A and B) or (C and (A or B))"
+      },
+      "allow": [
+        "AND",
+        "OR"
+      ],
+      "max": 4,
+      "why": "Majority voting is a trick of reliable machines: space probes have three computers and trust the majority. The straightforward solution (A and B) or (A and C) or (B and C) needs 5 gates, a cleverer one only 4.",
+      "solution": {
+        "gates": [
+          [
+            "AND",
+            "A",
+            "B"
+          ],
+          [
+            "OR",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "C",
+            "g1"
+          ],
+          [
+            "OR",
+            "g0",
+            "g2"
+          ]
+        ],
+        "outputs": {
+          "M": "g3"
+        }
+      }
+    },
+    {
+      "story": "Real addition: besides bits A and B, a carry C also comes in from the lower place. Build a full adder with outputs S and carry K.",
+      "inputs": [
+        "A",
+        "B",
+        "C"
+      ],
+      "outputs": {
+        "S": "A xor B xor C",
+        "K": "(A and B) or (C and (A xor B))"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "XOR"
+      ],
+      "max": 5,
+      "why": "You use the gate A xor B twice: for the sum and for the carry. If you connect 64 of these adders in a row, you have an adder for 64-bit numbers, like in the processor of your phone.",
+      "solution": {
+        "gates": [
+          [
+            "XOR",
+            "A",
+            "B"
+          ],
+          [
+            "XOR",
+            "g0",
+            "C"
+          ],
+          [
+            "AND",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "C",
+            "g0"
+          ],
+          [
+            "OR",
+            "g2",
+            "g3"
+          ]
+        ],
+        "outputs": {
+          "S": "g1",
+          "K": "g4"
+        }
+      }
+    }
+  ],
+  "debrief": "The cook from the core “Inside a device” is really billions of gates. Comparing, adding and picking from memory are all made of the same little bricks. Carry on at nandgame.com, where you build a whole computer from them."
+}

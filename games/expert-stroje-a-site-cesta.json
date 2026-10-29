@@ -1,0 +1,406 @@
+{
+  "type": "route",
+  "title": "Cesta sítí: objížďky a oceány",
+  "instruction": "Poskládej cestu balíčku od startu do cíle. Čísla na spojích jsou milisekundy. Hledáš nejrychlejší cestu, ne tu s nejmenším počtem skoků.",
+  "levels": [
+    {
+      "story": "Hraješ na serveru v Amsterdamu. Přímá linka z Prahy vypadá nejkratší, ale je přetížená.",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Tvůj pokoj",
+          "x": 2,
+          "y": 33
+        },
+        {
+          "id": "R",
+          "label": "Router poskytovatele",
+          "x": 12,
+          "y": 59
+        },
+        {
+          "id": "P",
+          "label": "Uzel Praha",
+          "x": 46,
+          "y": 44
+        },
+        {
+          "id": "V",
+          "label": "Vídeň",
+          "x": 57,
+          "y": 97
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 64,
+          "y": 4
+        },
+        {
+          "id": "S",
+          "label": "Herní server Amsterdam",
+          "x": 99,
+          "y": 29
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "R",
+          2
+        ],
+        [
+          "R",
+          "P",
+          3
+        ],
+        [
+          "P",
+          "S",
+          30
+        ],
+        [
+          "P",
+          "F",
+          9
+        ],
+        [
+          "F",
+          "S",
+          7
+        ],
+        [
+          "P",
+          "V",
+          6
+        ],
+        [
+          "V",
+          "S",
+          25
+        ]
+      ],
+      "from": "D",
+      "to": "S",
+      "metric": "ms",
+      "why": "Nejrychlejší je pokoj → router → Praha → Frankfurt → server za 21 ms. Přímá linka z Prahy dá 35 ms. Víc skoků může být rychlejších, když každý z nich je krátký."
+    },
+    {
+      "story": "Uzel ve Frankfurtu má výpadek a ze sítě zmizel. Server tentokrát stojí v Milánu. Najdi objížďku, dvě možnosti jsou skoro stejně dobré.",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Tvůj pokoj",
+          "x": 2,
+          "y": 43
+        },
+        {
+          "id": "R",
+          "label": "Router poskytovatele",
+          "x": 33,
+          "y": 43
+        },
+        {
+          "id": "P",
+          "label": "Uzel Praha",
+          "x": 38,
+          "y": 0
+        },
+        {
+          "id": "B",
+          "label": "Brno",
+          "x": 33,
+          "y": 87
+        },
+        {
+          "id": "V",
+          "label": "Vídeň",
+          "x": 57,
+          "y": 98
+        },
+        {
+          "id": "M",
+          "label": "Mnichov",
+          "x": 59,
+          "y": 31
+        },
+        {
+          "id": "S",
+          "label": "Server Milán",
+          "x": 99,
+          "y": 63
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "R",
+          2
+        ],
+        [
+          "R",
+          "P",
+          3
+        ],
+        [
+          "R",
+          "B",
+          5
+        ],
+        [
+          "P",
+          "M",
+          11
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "M",
+          7
+        ],
+        [
+          "M",
+          "S",
+          12
+        ],
+        [
+          "V",
+          "S",
+          20
+        ],
+        [
+          "P",
+          "S",
+          28
+        ]
+      ],
+      "from": "D",
+      "to": "S",
+      "metric": "ms",
+      "why": "Nejrychlejší je pokoj → router → Praha → Mnichov → server za 28 ms. Cesta přes Brno, Vídeň a Mnichov má 29 ms. Internet nemá jeden střed, a tak má skoro vždy víc dobrých objížděk."
+    },
+    {
+      "story": "Jsi na chatě v horách, kam nevede kabel. Na výběr máš geostacionární satelit, nízké satelity, nebo mobilní věž v údolí.",
+      "nodes": [
+        {
+          "id": "C",
+          "label": "Chata",
+          "x": 14,
+          "y": 64
+        },
+        {
+          "id": "G",
+          "label": "Geostacionární satelit",
+          "x": 41,
+          "y": 24
+        },
+        {
+          "id": "L",
+          "label": "Nízké satelity",
+          "x": 20,
+          "y": 9
+        },
+        {
+          "id": "T",
+          "label": "Mobilní věž v údolí",
+          "x": 21,
+          "y": 100
+        },
+        {
+          "id": "P",
+          "label": "Uzel Praha",
+          "x": 58,
+          "y": 79
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 69,
+          "y": 24
+        },
+        {
+          "id": "S",
+          "label": "Server Amsterdam",
+          "x": 100,
+          "y": 21
+        }
+      ],
+      "edges": [
+        [
+          "C",
+          "G",
+          280
+        ],
+        [
+          "C",
+          "L",
+          25
+        ],
+        [
+          "C",
+          "T",
+          35
+        ],
+        [
+          "G",
+          "P",
+          10
+        ],
+        [
+          "L",
+          "F",
+          8
+        ],
+        [
+          "T",
+          "P",
+          12
+        ],
+        [
+          "P",
+          "F",
+          9
+        ],
+        [
+          "F",
+          "S",
+          7
+        ],
+        [
+          "P",
+          "S",
+          30
+        ]
+      ],
+      "from": "C",
+      "to": "S",
+      "metric": "ms",
+      "why": "Nejrychlejší je chata → nízké satelity → Frankfurt → server za 40 ms. Mobilní věž vede přes Prahu, která je blíž, a dá 63 ms. Geostacionární satelit je kvůli 36 000 km výšky přes 300 ms."
+    },
+    {
+      "story": "Posíláš video kamarádovi do Sydney. Z Evropy vedou podmořské kabely Středozemním mořem a Indickým oceánem, nebo přes Atlantik a Tichý oceán.",
+      "nodes": [
+        {
+          "id": "P",
+          "label": "Praha",
+          "x": 70,
+          "y": 9
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 52,
+          "y": 5
+        },
+        {
+          "id": "L",
+          "label": "Londýn",
+          "x": 36,
+          "y": 6
+        },
+        {
+          "id": "M",
+          "label": "Marseille",
+          "x": 44,
+          "y": 37
+        },
+        {
+          "id": "NY",
+          "label": "New York",
+          "x": 16,
+          "y": 15
+        },
+        {
+          "id": "LA",
+          "label": "Los Angeles",
+          "x": 12,
+          "y": 41
+        },
+        {
+          "id": "MU",
+          "label": "Bombaj",
+          "x": 69,
+          "y": 39
+        },
+        {
+          "id": "SG",
+          "label": "Singapur",
+          "x": 85,
+          "y": 67
+        },
+        {
+          "id": "SY",
+          "label": "Sydney",
+          "x": 85,
+          "y": 96
+        }
+      ],
+      "edges": [
+        [
+          "P",
+          "F",
+          9
+        ],
+        [
+          "P",
+          "M",
+          23
+        ],
+        [
+          "F",
+          "M",
+          12
+        ],
+        [
+          "F",
+          "L",
+          9
+        ],
+        [
+          "L",
+          "NY",
+          37
+        ],
+        [
+          "NY",
+          "LA",
+          35
+        ],
+        [
+          "LA",
+          "SY",
+          70
+        ],
+        [
+          "M",
+          "MU",
+          55
+        ],
+        [
+          "MU",
+          "SG",
+          30
+        ],
+        [
+          "M",
+          "SG",
+          80
+        ],
+        [
+          "SG",
+          "SY",
+          45
+        ]
+      ],
+      "from": "P",
+      "to": "SY",
+      "metric": "ms",
+      "why": "Nejrychlejší je Praha → Frankfurt → Marseille → Singapur → Sydney za 146 ms. Přímá cesta z Prahy do Marseille dá 148 ms, cesta přes Bombaj 151 ms a cesta přes Ameriku 160 ms. Takhle těsné rozdíly bezpečně najde jen postup, který prozkoumá všechny cesty od nejkratších, a ten routery opravdu používají."
+    }
+  ],
+  "debrief": "Routery hledají nejrychlejší cestu, ne nejkratší čáru na mapě ani nejmenší počet skoků. Když spoj vypadne, spočítají cestu znovu a balíčky jedou objížďkou. Postup, který porovnává cesty od nejkratších, se jmenuje Dijkstrův algoritmus."
+}

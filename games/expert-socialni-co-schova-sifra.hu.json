@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Mit rejt el a végpontok közötti titkosítás",
+  "instruction": "A végpontok közötti (end-to-end) titkosítás nálad bezárja az üzenetet, és csak a címzettnél nyitja ki. De mit rejtesz el vele valójában? Válogasd szét. Figyelem, néhány elem trükkös.",
+  "buckets": [
+    "Csak te és a címzett látod",
+    "Más is láthatja"
+  ],
+  "items": [
+    {
+      "text": "Az üzenet szövege egy végpontok közötti titkosítású csetben",
+      "answer": 0,
+      "why": "A kulcs csak a ti eszközeiteken van meg. A szerver csak olvashatatlan karakterzagyvaságot továbbít."
+    },
+    {
+      "text": "Egy végpontok közötti titkosítású csetben elküldött fotó",
+      "answer": 0,
+      "why": "A melléklet ugyanúgy titkosítva van, mint a szöveg."
+    },
+    {
+      "text": "Kinek írsz, hány órakor és milyen gyakran",
+      "answer": 1,
+      "why": "Ezek metaadatok, az üzenetről szóló adatok. A szervernek szüksége van rájuk, hogy kézbesítse az üzenetet, és a tartalom titkosítása nem rejti el őket."
+    },
+    {
+      "text": "A nyilvános profilképed és a neved",
+      "answer": 1,
+      "why": "A profil nem üzenet. Hogy ki látja a profilt, azt az adatvédelmi beállítások döntik el, nem a titkosítás."
+    },
+    {
+      "text": "A cset felhőbe mentett biztonsági mentése, amelynél nincs bekapcsolva a mentés titkosítása",
+      "answer": 1,
+      "why": "Az üzenetek útközben zárva vannak, de a mentésben nyitva hevernek. A felhő üzemeltetője elolvashatja őket."
+    },
+    {
+      "text": "Egy üzenet, amelyről a címzett képernyőképet készít, és továbbküldi",
+      "answer": 1,
+      "why": "A titkosítás az utat védi, nem a másik végén ülő embert. Amint elolvassa az üzenetet, bármit csinálhat vele."
+    },
+    {
+      "text": "Üzenet egy appban, ahol senki sem ellenőrizte a biztonsági kódot, és a szerver hamis kulcsot csempészett be",
+      "answer": 1,
+      "why": "Közbeékelődéses („man-in-the-middle”) támadás: a szerver mindkettőtöknek a saját kulcsát adja, és útközben kinyitja az üzeneteket. A biztonsági kód összevetése ezt leleplezi."
+    },
+    {
+      "text": "Üzenet egy hagyományos csetben egy olyan közösségi oldalon, ahol nincs végpontok közötti titkosítás",
+      "answer": 1,
+      "why": "Az üzenet csak a szerverig vezető úton van zárva. A szerver kinyitja, és az üzemeltető elolvashatja."
+    }
+  ],
+  "debrief": "A végpontok közötti titkosítás elrejti a tartalmat, de nem rejti el a metaadatokat, a titkosítatlan mentéseket és azt, amit a címzett csinál. És csak akkor működik, ha tényleg azzal beszélsz, akivel gondolod. Ezért kínálnak az appok összevethető biztonsági kódot."
+}

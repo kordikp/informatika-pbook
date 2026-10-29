@@ -1,0 +1,94 @@
+{
+  "type": "trace",
+  "title": "A figura állapotautomatája",
+  "instruction": "A figura mindig egy állapotban van: áll, fut, ugrik vagy esik. A kód minden képkockában felülről olvassa a sorokat, és csak az első teljesülő „ha” ágat hajtja végre. Az „ugrás lenyomva” csak abban az egy képkockában igaz, amikor megnyomod a gombot. A fizika külön fut: a levegőben hozzáadja a gravitációt a sebessegY-hoz (a pozitív sebessegY lefelé mozgást jelent), a földön pedig sebessegY = 0 értéken tartja a figurát. Keresd meg, hol csapja be ez az automata a játékost.",
+  "rounds": [
+    {
+      "code": [
+        "allapot = \"áll\"",
+        "minden képkockában:",
+        "    ha allapot == \"áll\" és ugrás lenyomva: allapot = \"ugrik\"",
+        "    különben ha allapot == \"áll\" és nyilat tart: allapot = \"fut\"",
+        "    különben ha allapot == \"fut\" és nem tart nyilat: allapot = \"áll\"",
+        "    különben ha allapot == \"fut\" és ugrás lenyomva: allapot = \"ugrik\"",
+        "    különben ha allapot == \"ugrik\" és sebessegY > 0: allapot = \"esik\"",
+        "    különben ha allapot == \"esik\" és a földön: allapot = \"áll\""
+      ],
+      "steps": [
+        {
+          "line": 5,
+          "input": "Az állapot „fut”. A játékos tartja a nyilat, és ebben a képkockában megnyomja az ugrást.",
+          "q": "Mi lesz az állapot a képkocka végén?",
+          "options": [
+            "ugrik",
+            "áll",
+            "fut"
+          ],
+          "answer": 0,
+          "why": "Az 5. sor nem teljesül, mert a játékos tartja a nyilat. A 6. sor teljesül, az állapot „ugrik” lesz. Ez a bemelegítő kör, a következők már nem lesznek ilyen simák."
+        },
+        {
+          "line": 4,
+          "input": "Az állapot „fut”. A játékos ugyanabban a képkockában elengedi a nyilat, és megnyomja az ugrást. Egyenesen felfelé akar ugrani.",
+          "q": "Mi történik az ugrással?",
+          "options": [
+            "a figura ugrik",
+            "az állapot „áll” lesz, és az ugrás elvész",
+            "a figura egy képkockával később ugrik"
+          ],
+          "answer": 1,
+          "why": "A sorokat a „különben ha” köti össze, így közülük csak az első teljesülő számít. Az 5. sor (fut és nem tart nyilat) feljebb van a 6. sornál, és teljesül, az állapot „áll” lesz. A 6. sort a kód már nem olvassa el. A következő képkockában az „ugrás lenyomva” már nem igaz, mert csak egy képkockáig tartott. A játékos úgy érzi, hogy a játék „megette” az ugrását. A feltételek sorrendje a játékszabályok része."
+        },
+        {
+          "line": 3,
+          "input": "Az állapot „áll” a platform szélén. A játékos jobbra tartja a nyilat, és a figura lecsúszik a szélről a szakadékba.",
+          "q": "Milyen állapotban zuhan lefelé a figura?",
+          "options": [
+            "esik",
+            "fut",
+            "ugrik"
+          ],
+          "answer": 1,
+          "why": "A 4. sor „fut”-ra változtatja az állapotot. Egyik sor sem mondja azonban, hogy „ha állok vagy futok, és nem vagyok a földön, akkor esem”. Az „esik” állapotba csak az ugráson keresztül vezet út. A figura ezért „fut” állapotban zuhan a szakadékba."
+        },
+        {
+          "line": 5,
+          "input": "Folytatás: a figura a levegőben van a szakadék fölött, még mindig „fut” állapotban, és a játékos megnyomja az ugrást.",
+          "q": "Mi történik?",
+          "options": [
+            "semmi, a levegőben nem lehet ugrani",
+            "a figura felugrik a levegőből",
+            "az állapot „esik”-re változik"
+          ],
+          "answer": 1,
+          "why": "A 6. sor csak a „fut” állapotra és a gombnyomásra kérdez rá, a földre nem. A figura felugrik a levegőből. A játékosok ezt a nem szándékos ugrást gyorsan megtalálják, és arra használják, hogy átugorják vele a pálya felét."
+        },
+        {
+          "line": 6,
+          "input": "Az állapot „ugrik”. A figura pontosan az ugrás csúcsán, amikor sebessegY = 0, egy magasabb platform szélére ér. A fizika a földre állítja, és sebessegY = 0 értéken tartja.",
+          "q": "Mi történik ezután?",
+          "options": [
+            "az állapot „esik”, majd „áll” lesz",
+            "a figura örökre „ugrik” állapotban marad, és többé nem ugrik fel, és nem is indul el",
+            "az állapot egyenesen „áll” lesz"
+          ],
+          "answer": 1,
+          "why": "A 7. sorhoz sebessegY > 0 kell, de a földön ez továbbra is 0. A 8. sor csak az „esik” állapotra érvényes. A 3–6. sor az „áll” és a „fut” állapotra kérdez rá. A földön lévő „ugrik” állapotból egyetlen nyíl sem vezet ki. A játék nem fagyott le, de a figura igen. Ezt softlocknak hívják, és a játékosnak újra kell indítania a pályát."
+        },
+        {
+          "line": 7,
+          "input": "Három hiba: az elveszett ugrás, a levegőből ugrás a szélről lecsúszás után és a beragadás az „ugrik” állapotba.",
+          "q": "Melyik javítás szünteti meg mind a hármat?",
+          "options": [
+            "egyetlen sor hozzáadása: ugrik és a földön, akkor áll",
+            "az ugrás gombnyomását előre tenni az áll és a fut állapotnál, hozzáadni az áll vagy fut és nem vagyok a földön, akkor esik átmenetet, valamint az ugrik vagy esik és a földön, akkor áll átmenetet",
+            "a gravitáció növelése, hogy a figura gyorsabban érjen földet"
+          ],
+          "answer": 1,
+          "why": "Az elveszett ugrást a sorrend javítja: az ugrás elsőbbséget kap a megállással szemben. A levegőből ugrást az „esik” állapotba vezető átmenet javítja, valahányszor a figura elveszti a talajt. A beragadást a földet érés átmenete javítja, az „ugrik” állapotból is. Az egyetlen sor csak a harmadik hibát javítja ki, a gravitáció egyiket sem. A tervezők ezért lerajzolják az automatát: minden állapotnál megkérdezik, hogyan jutok ki belőle az egyes eseményeknél."
+        }
+      ]
+    }
+  ],
+  "debrief": "Az állapotautomata állapotok és köztük lévő nyilak listája. A hibák nem a meglévő sorokban vannak, hanem a hiányzó nyilakban és abban a sorrendben, amelyben a kód a feltételeket olvassa. A jó ellenőrzés egy táblázat: a sorok az állapotok, az oszlopok az események (gombnyomás, nyíl elengedése, talaj elvesztése, földet érés), és minden mezőben egyértelműnek kell lennie, hová lép a figura. Az üres mező egy jövőbeli hiba."
+}

@@ -1,0 +1,322 @@
+{
+  "type": "route",
+  "title": "Nejrychlejší cesta městem",
+  "instruction": "Slož cestu ze startu do cíle s co nejmenším součtem minut. Pozor na lákavou krátkou první hranu: nejkratší krok teď nemusí vést k nejkratší cestě.",
+  "levels": [
+    {
+      "story": "Jdeš z domova na trénink. U samoobsluhy je to jen 2 minuty, tak tam vyrazíš. Je to dobrý nápad?",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Domov",
+          "x": 3,
+          "y": 47
+        },
+        {
+          "id": "S",
+          "label": "Samoobsluha",
+          "x": 31,
+          "y": 0
+        },
+        {
+          "id": "P",
+          "label": "Park",
+          "x": 30,
+          "y": 100
+        },
+        {
+          "id": "M",
+          "label": "Most",
+          "x": 66,
+          "y": 98
+        },
+        {
+          "id": "T",
+          "label": "Trénink",
+          "x": 97,
+          "y": 48
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "S",
+          2
+        ],
+        [
+          "S",
+          "T",
+          12
+        ],
+        [
+          "D",
+          "P",
+          5
+        ],
+        [
+          "P",
+          "M",
+          3
+        ],
+        [
+          "M",
+          "T",
+          3
+        ],
+        [
+          "S",
+          "P",
+          4
+        ]
+      ],
+      "from": "D",
+      "to": "T",
+      "metric": "min",
+      "why": "Nejkratší je Domov → Park → Most → Trénink, 11 minut. Kdo vždy vybere nejbližší místo, jde přes samoobsluhu a dojde za 12 nebo 14 minut. Takový hladový postup je rychlý na vymyšlení, ale nemusí dát nejlepší výsledek."
+    },
+    {
+      "story": "Ze školy jedete s Emou do zoo. Ema chce co nejméně zastávek. Ty chceš co nejméně minut. Najdi cestu s nejmenším součtem.",
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Škola",
+          "x": 3,
+          "y": 51
+        },
+        {
+          "id": "B",
+          "label": "Knihovna",
+          "x": 20,
+          "y": 1
+        },
+        {
+          "id": "C",
+          "label": "Náměstí",
+          "x": 22,
+          "y": 48
+        },
+        {
+          "id": "D",
+          "label": "Kino",
+          "x": 25,
+          "y": 96
+        },
+        {
+          "id": "E",
+          "label": "Nádraží",
+          "x": 55,
+          "y": 20
+        },
+        {
+          "id": "F",
+          "label": "Bazén",
+          "x": 53,
+          "y": 80
+        },
+        {
+          "id": "G",
+          "label": "Stadion",
+          "x": 83,
+          "y": 4
+        },
+        {
+          "id": "H",
+          "label": "Zoo",
+          "x": 99,
+          "y": 58
+        }
+      ],
+      "edges": [
+        [
+          "A",
+          "B",
+          4
+        ],
+        [
+          "A",
+          "C",
+          2
+        ],
+        [
+          "A",
+          "D",
+          6
+        ],
+        [
+          "B",
+          "C",
+          3
+        ],
+        [
+          "B",
+          "E",
+          5
+        ],
+        [
+          "C",
+          "E",
+          8
+        ],
+        [
+          "C",
+          "F",
+          4
+        ],
+        [
+          "D",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "G",
+          3
+        ],
+        [
+          "F",
+          "H",
+          11
+        ],
+        [
+          "G",
+          "H",
+          4
+        ],
+        [
+          "E",
+          "H",
+          8
+        ]
+      ],
+      "from": "A",
+      "to": "H",
+      "metric": "min",
+      "why": "Nejrychlejší je Škola → Náměstí → Bazén → Nádraží → Stadion → Zoo, 15 minut. Má nejvíc zastávek, a přesto vyhrává. Cesta Bazén → Zoo vypadá přímo, ale trvá 11 minut. Navigace v mobilu počítá právě takhle: od startu si pamatuje nejkratší známou cestu ke každému místu (Dijkstrův algoritmus)."
+    },
+    {
+      "story": "Lávka mezi bazénem a nádražím je zavřená kvůli opravě. Model se změnil o jednu hranu. Změní se celá cesta?",
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Škola",
+          "x": 1,
+          "y": 48
+        },
+        {
+          "id": "B",
+          "label": "Knihovna",
+          "x": 21,
+          "y": 1
+        },
+        {
+          "id": "C",
+          "label": "Náměstí",
+          "x": 30,
+          "y": 52
+        },
+        {
+          "id": "D",
+          "label": "Kino",
+          "x": 18,
+          "y": 100
+        },
+        {
+          "id": "E",
+          "label": "Nádraží",
+          "x": 57,
+          "y": 24
+        },
+        {
+          "id": "F",
+          "label": "Bazén",
+          "x": 57,
+          "y": 80
+        },
+        {
+          "id": "G",
+          "label": "Stadion",
+          "x": 88,
+          "y": 0
+        },
+        {
+          "id": "H",
+          "label": "Zoo",
+          "x": 98,
+          "y": 57
+        }
+      ],
+      "edges": [
+        [
+          "A",
+          "B",
+          4
+        ],
+        [
+          "A",
+          "C",
+          2
+        ],
+        [
+          "A",
+          "D",
+          6
+        ],
+        [
+          "B",
+          "C",
+          3
+        ],
+        [
+          "B",
+          "E",
+          5
+        ],
+        [
+          "C",
+          "E",
+          8
+        ],
+        [
+          "C",
+          "F",
+          4
+        ],
+        [
+          "D",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "G",
+          3
+        ],
+        [
+          "F",
+          "H",
+          11
+        ],
+        [
+          "G",
+          "H",
+          4
+        ],
+        [
+          "E",
+          "H",
+          8
+        ]
+      ],
+      "from": "A",
+      "to": "H",
+      "metric": "min",
+      "why": "Teď vede nejrychlejší cesta úplně jinudy: Škola → Knihovna → Nádraží → Stadion → Zoo, 16 minut. Jedna zavřená hrana změnila skoro všechno. Proto navigace přepočítá celou trasu, kdykoli se změní model, a nespoléhá na starý výsledek."
+    }
+  ],
+  "debrief": "Mapa uzlů a hran je model: vynechá domy, stromy i barvy a nechá jen to, co je potřeba pro výpočet cesty. Na tomhle modelu pak běží algoritmus, který prověří všechny možnosti chytře, ne naslepo. Hladová volba nejbližšího souseda tě zavede špatně už v první úrovni."
+}

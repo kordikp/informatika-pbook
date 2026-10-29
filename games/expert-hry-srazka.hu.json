@@ -1,0 +1,138 @@
+{
+  "type": "trace",
+  "title": "Két téglalap ütközése",
+  "instruction": "Lépkedj végig egy függvényen, amely két téglalap (hitbox) ütközését vizsgálja. A téglalapnak van bal felső sarka (x, y), szélessége és magassága. Az y tengely lefelé nő, mint a képernyőn. Figyelj a < jelre és azokra a számokra, amelyek pontosan a szélre esnek.",
+  "rounds": [
+    {
+      "code": [
+        "függvény utkozes(a, b):",
+        "    ha a.x + a.szelesseg < b.x: add vissza nem",
+        "    ha b.x + b.szelesseg < a.x: add vissza nem",
+        "    ha a.y + a.magassag < b.y: add vissza nem",
+        "    ha b.y + b.magassag < a.y: add vissza nem",
+        "    add vissza igen"
+      ],
+      "steps": [
+        {
+          "line": 1,
+          "input": "a = játékos: x 10, y 0, szélesség 20, magasság 20. b = érme: x 30, y 5, szélesség 10, magasság 10.",
+          "q": "Mit csinál a 2. sor?",
+          "options": [
+            "nem értéket ad vissza, mert a játékos pontosan ott ér véget, ahol az érme kezdődik",
+            "nem ad vissza semmit, és továbbmegy, mert a 30 < 30 nem igaz",
+            "igen értéket ad vissza"
+          ],
+          "answer": 1,
+          "why": "A játékos jobb széle 10 + 20 = 30, és az érme x = 30-nál kezdődik. A kérdés így szól: „kisebb-e a 30, mint 30?”, és a válasz nem. A feltétel nem teljesül, így a sor nem ad vissza semmit, és a függvény továbbmegy."
+        },
+        {
+          "line": 5,
+          "input": "Ugyanaz a játékos és ugyanaz az érme, mint az előző lépésben.",
+          "q": "Mit ad vissza végül a függvény?",
+          "options": [
+            "igen: a széllel érintkezés itt ütközésnek számít",
+            "nem: a téglalapok csak érintkeznek",
+            "attól függ, melyik téglalap az a és melyik a b"
+          ],
+          "answer": 0,
+          "why": "A 3–5. sor sem teljesül: 40 < 10 nem, 20 < 5 nem, 15 < 0 nem. Egyik sor sem adott vissza nem értéket, ezért a függvény igen értéket ad vissza. A < jellel a széllel érintkezés találat. Ha helyette <= állna, az érintés nem lenne találat. Egyetlen jel dönti el, hogy felveszed-e az érmét, amelyet csak súrolsz. Az a, b sorrend nem számít, a függvény szimmetrikus."
+        },
+        {
+          "line": 3,
+          "input": "a = játékos: x 0, y 0, szélesség 16, magasság 16. b = tüskék: x 4, y 40, szélesség 8, magasság 8. A tüskék a játékos alatt vannak.",
+          "q": "Melyik sorban fejeződik be a függvény, és mit ad vissza?",
+          "options": [
+            "a 2. sorban, nem",
+            "a 4. sorban, nem",
+            "az 5. sorban, nem",
+            "a 6. sorban, igen"
+          ],
+          "answer": 1,
+          "why": "Az x tengelyen átfedik egymást: a 16 < 4 nem igaz, és a 12 < 0 sem. A 4. sor azt kérdezi, „a játékos a tüskék fölött ér-e véget?”: 0 + 16 = 16 < 40, igen. A függvény nem értéket ad vissza. Ütközés csak akkor van, ha a téglalapok egyszerre mindkét tengelyen átfedik egymást."
+        }
+      ]
+    },
+    {
+      "code": [
+        "függvény utkozes(a, b):",
+        "    ha a.x + a.szelesseg < b.x: add vissza nem",
+        "    ha b.x + b.szelesseg < a.x: add vissza nem",
+        "    add vissza igen"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Ondra „felgyorsította” a függvényt, és kitörölte az y tengely sorait. Játékos: x 100, y 0, szélesség 16, magasság 16. Érme: x 104, y 200, szélesség 8, magasság 8.",
+          "q": "Mit ad vissza a függvény?",
+          "options": [
+            "igen, a játékos felveszi az érmét, amely 200 px-szel lejjebb van",
+            "nem, az érme messze van",
+            "a függvény hibával leáll"
+          ],
+          "answer": 0,
+          "why": "Az x tengelyen átfedik egymást (116 < 104 nem, 112 < 100 nem), az y tengelyre pedig már senki sem kérdez rá. A játékos most minden érmét felvesz a saját oszlopában, még a képernyő másik végén lévőket is."
+        },
+        {
+          "line": 3,
+          "input": "Ondra olyan tesztet szeretne, amely az ő változatával elbukik, a helyes változattal pedig átmegy.",
+          "q": "Melyik teszt kapja el a hibát?",
+          "options": [
+            "a játékos és az érme ugyanott, igent várok",
+            "az érme messze jobbra, ugyanabban a magasságban, nemet várok",
+            "az érme közvetlenül a játékos fölött, 100 px-szel magasabban, nemet várok",
+            "az érme bal felől a szélével érinti a játékost, igent várok"
+          ],
+          "answer": 2,
+          "why": "A hibát csak az az eset leplezi le, amikor a téglalapok az x tengelyen átfedik egymást, az y tengelyen viszont nem. A másik három teszt mindkét változattal átmegy, így semmit sem mond a hibáról. Az a jó teszt, amely meg tudja különböztetni a hibás kódot a helyestől."
+        }
+      ]
+    },
+    {
+      "code": [
+        "x = 0",
+        "ismételd, amíg x < 100:",
+        "    x = x + sebesseg",
+        "    ha utkozes(labda, ütő): pattanj vissza és vége"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "A labda 8 px széles, és jobbra repül. Az ütő x = 50-től 60-ig tart. Az ütközést úgy számoljuk, mint az első körben. A sebesség 35 px képkockánként.",
+          "q": "Visszapattan a labda?",
+          "options": [
+            "igen, x = 35-nél",
+            "igen, x = 70-nél",
+            "nem, átrepül"
+          ],
+          "answer": 2,
+          "why": "A képkockánkénti helyzetek 35 és 70. x = 35-nél a labda 43-nál ér véget, ez az ütő előtt van. x = 70-nél már mögötte van, mert az ütő 60-nál ér véget. A labda csak akkor fedi át az ütőt, ha a bal széle 42 és 60 között van, és oda egyetlen helyzet sem esett."
+        },
+        {
+          "line": 3,
+          "input": "Ugyanaz az ütő, de a sebesség 45 px képkockánként, vagyis még gyorsabb.",
+          "q": "Most visszapattan?",
+          "options": [
+            "nem, a gyorsabb labda annál inkább átrepül",
+            "igen, x = 45-nél",
+            "igen, x = 90-nél"
+          ],
+          "answer": 1,
+          "why": "A 45-ös helyzet a 42 és 60 közötti szakaszba esik, így a játék észleli az ütközést. A gyorsabb labda visszapattan, a lassabb átrepült. Az alagúthatás nemcsak a sebességtől függ, hanem attól is, hová esnek a helyzetek. Ezért nem elég egyetlen sebességet tesztelni. Biztosat csak a legfeljebb 18 px-es lépés ad, vagyis az ütő szélessége plusz a labda szélessége."
+        },
+        {
+          "line": 2,
+          "input": "Ugyanaz az ütő, a sebesség 30 px képkockánként.",
+          "q": "Mikor és hogyan észleli a játék az ütközést?",
+          "options": [
+            "x = 30-nál, a labda az ütő előtt pattan vissza",
+            "x = 60-nál, amikor a labda már teljesen az ütő mögött van, és csak a bal szélével érinti",
+            "sehogy, a labda átrepül"
+          ],
+          "answer": 1,
+          "why": "x = 30-nál a labda 38-nál ér véget, ez az ütő előtt van. x = 60-nál a bal széle érinti az ütő jobb szélét, és mivel az érintés számít, a játék találatot jelez. Csakhogy a labda már átment az ütőn. A visszapattanás visszaküldi az ütőn keresztül. A játék megtalálta az ütközést, de későn és a másik oldalról. Ezért a valódi motorok azt a pillanatot keresik, amikor az ütközés elkezdődött, nem csak azt, hogy megtörtént."
+        }
+      ]
+    }
+  ],
+  "debrief": "Két téglalap ütközése négy kérdés: „véget ér-e az egyik, mielőtt a másik elkezdődik?”, kettő az x tengelyre és kettő az y tengelyre. A < vagy a <= jel dönt a széllel érintkezésről. A hiányzó tengely minden teszten átmegy, kivéve egyet, amelyet szándékosan kell kitalálnod. A képkockánként egyszeri ellenőrzés pedig csak a helyzeteket látja, a köztük lévő utat nem. A gyors labda ezért átrepülhet, vagy a másik oldalról pattanhat vissza. A valódi játékok ezt közbülső lépésekkel vagy a régi és az új helyzet közötti sugárral oldják meg."
+}

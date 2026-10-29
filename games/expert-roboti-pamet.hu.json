@@ -1,0 +1,129 @@
+{
+  "type": "trace",
+  "title": "Emlékező lámpa és lépésszámláló",
+  "instruction": "Lépkedj végig a programon, és válaszold meg, mit csinál. Vigyázz: ugyanaz az érzékelőszám nem mindig adja ugyanazt az eredményt.",
+  "rounds": [
+    {
+      "code": [
+        "lámpa = nem világít",
+        "örökké:",
+        "    fény = mérd a fényt   # 0-tól 255-ig",
+        "    ha fény < 40:",
+        "        lámpa = világít",
+        "    különben ha fény > 60:",
+        "        lámpa = nem világít"
+      ],
+      "steps": [
+        {
+          "line": 5,
+          "input": "fény = 50, a lámpa éppen világít",
+          "q": "Milyen állapotban van a lámpa a ciklus e lefutása után?",
+          "options": [
+            "világít",
+            "nem világít"
+          ],
+          "answer": 0,
+          "why": "Az 50 se nem 40 alatt, se nem 60 fölött van. Egyik ág sem teljesül, így a lámpa marad, ahogy volt: világít."
+        },
+        {
+          "line": 5,
+          "input": "fény = 50, a lámpa éppen nem világít",
+          "q": "Milyen állapotban van most a lámpa?",
+          "options": [
+            "világít",
+            "nem világít"
+          ],
+          "answer": 1,
+          "why": "Ugyanaz a fény, mint legutóbb, mégis más az eredmény. 40 és 60 között nem az érzékelő dönt, hanem a memória: a lámpa nevű változó. Ezt hiszterézisnek hívják."
+        },
+        {
+          "line": 3,
+          "input": "A lámpa nem világít. Elhalad egy autó, és az érzékelő egymás után ezt mutatja: 38, 45, 39, 47, 36.",
+          "q": "Hányszor kapcsol át a lámpa?",
+          "options": [
+            "0×",
+            "1×",
+            "5×"
+          ],
+          "answer": 1,
+          "why": "A 38-nál felkapcsol. A 45, 39, 47 és 36 nem kapcsolja le, mert egyik sincs 60 fölött. Egyetlen 40-es küszöbbel 5× kapcsolna át."
+        },
+        {
+          "line": 3,
+          "input": "Valaki felcseréli a számokat: ha fény < 60: világít, különben ha fény > 40: nem világít.",
+          "q": "Hogyan viselkedik most a lámpa?",
+          "options": [
+            "még szélesebb a nyugalmi sávja",
+            "egyetlen 60-as küszöbként működik, és a határon megint villog",
+            "sosem alszik ki"
+          ],
+          "answer": 1,
+          "why": "Minden 60 alatti szám rögtön teljesíti az első feltételt, a második ág pedig csak 60-tól felfelé érvényesül. A memória sosem kerül sorra, így egyetlen küszöb maradt."
+        }
+      ]
+    },
+    {
+      "code": [
+        "lépések = 0",
+        "fent = nem",
+        "örökké:",
+        "    erő = mérd a gyorsulást",
+        "    ha erő > 1500 és fent == nem:",
+        "        lépések = lépések + 1",
+        "        fent = igen",
+        "    ha erő < 1100:",
+        "        fent = nem"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "Mérések: 1000, 1600, 1700, 1600, 1000",
+          "q": "Hány lépés van a végén?",
+          "options": [
+            "1",
+            "3",
+            "0"
+          ],
+          "answer": 0,
+          "why": "Az 1600 hozzáad egy lépést, és beállítja: fent = igen. Az 1700 és az 1600 már nem ad hozzá semmit. Csak az 1000 állítja vissza a fent változót nemre."
+        },
+        {
+          "line": 7,
+          "input": "Mérések: 1000, 1600, 1300, 1600",
+          "q": "Hány lépés van a végén?",
+          "options": [
+            "1",
+            "2"
+          ],
+          "answer": 0,
+          "why": "Az 1300 nincs 1100 alatt, ezért a fent értéke igen marad, és a második 1600 nem számít. A láb remegése nem számít új lépésnek."
+        },
+        {
+          "line": 4,
+          "input": "Az 5. sorból kitörlöd az „és fent == nem” részt. Mérések: 1000, 1600, 1700, 1600, 1000",
+          "q": "Hány lépés van most a végén?",
+          "options": [
+            "1",
+            "3",
+            "5"
+          ],
+          "answer": 1,
+          "why": "Memória nélkül minden 1500 fölötti mérés hozzáadódik: az 1600, az 1700 és az 1600 is. Így egy lépés háromszor számít."
+        },
+        {
+          "line": 7,
+          "input": "A 8. sort erre változtatod: ha erő < 1500. Mérések: 1000, 1510, 1490, 1520, 1480, 1000 (egy lépés remegéssel)",
+          "q": "Hány lépés van a végén?",
+          "options": [
+            "1",
+            "2",
+            "4"
+          ],
+          "answer": 1,
+          "why": "Ha a két küszöb azonos, az 1500 körüli remegés oda-vissza kapcsolja a fent változót, és minden új átlépés számít: 1510 és 1520. Az 1100 és 1500 közötti sáv az, ami elnyeli a zajt."
+        }
+      ]
+    }
+  ],
+  "debrief": "A lámpa és a lépésszámláló ugyanazt a trükköt használja: két küszöb, köztük memória. A változó itt nem számol semmit, csak megjegyzi az állapotot. Ennek köszönhetően az eszköz nem villog, és nem számolja bele a zajt. A radiátor termosztátja is így működik."
+}

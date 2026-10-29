@@ -1,0 +1,129 @@
+{
+  "type": "trace",
+  "title": "How a website checks a password it doesn’t know",
+  "instruction": "Step through two programs. The first checks a login, the second calculates a toy hash. A hash is a number that’s easy to calculate from a password, but can’t be turned back into the password.",
+  "rounds": [
+    {
+      "code": [
+        "attempts = 0",
+        "repeat while attempts < 3:",
+        "    password = read_password()",
+        "    if hash(salt + password) == stored_hash:",
+        "        print “Welcome”",
+        "        stop",
+        "    attempts = attempts + 1",
+        "lock the account for 15 minutes"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Someone types in password123",
+          "q": "What is the server comparing at that moment?",
+          "options": [
+            "The typed password with the password stored in the database",
+            "The hash of the salt and the typed password with the stored hash",
+            "The length of the typed password with the length of the stored password"
+          ],
+          "answer": 1,
+          "why": "An honest server doesn’t store the password at all. It only has the hash. It calculates the hash of what you type and compares two numbers. That’s why, when you forget your password, it doesn’t send it to you, it only offers a new one."
+        },
+        {
+          "line": 7,
+          "input": "Three wrong passwords in a row",
+          "q": "On which line does the program continue after the third wrong attempt?",
+          "options": [
+            "On line 5",
+            "On line 8",
+            "On line 3 again"
+          ],
+          "answer": 1,
+          "why": "After the third attempt, attempts = 3, the condition attempts < 3 is false, the loop ends and the account gets locked."
+        },
+        {
+          "line": 7,
+          "input": "An attacker guesses through the login page all day without a break",
+          "q": "How many passwords can they try in 24 hours?",
+          "options": [
+            "288",
+            "About 10 billion",
+            "Only 3"
+          ],
+          "answer": 0,
+          "why": "Three attempts per 15 minutes is 12 an hour, so 288 a day. An online attack like this is terribly slow. That’s why attackers would rather steal the whole database of hashes and guess on their own computers, billions of guesses per second."
+        },
+        {
+          "line": 3,
+          "input": "The database has leaked. The attacker has the hashes and salts of all the accounts.",
+          "q": "A salt is a random string, different for each account. What’s it for if the attacker knows it?",
+          "options": [
+            "The same passwords get different hashes, so the attacker has to guess each account separately",
+            "The salt encrypts the hash, so it can’t be read",
+            "The salt makes the password longer, so it can no longer be guessed"
+          ],
+          "answer": 0,
+          "why": "Without salt, everyone with the password 123456 would have the same hash, and one correct guess would crack thousands of accounts. Salt forces the attacker to start again for each account. But it won’t save a weak password."
+        }
+      ]
+    },
+    {
+      "code": [
+        "function hash(word):",
+        "    s = 0",
+        "    for each letter ch in word:",
+        "        s = s * 3 + position(ch)    # A=1, B=2, C=3 …",
+        "    return the remainder of s ÷ 11"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "word = AB",
+          "q": "What is s after both letters have been processed?",
+          "options": [
+            "3",
+            "5",
+            "6"
+          ],
+          "answer": 1,
+          "why": "After A: s = 0 · 3 + 1 = 1. After B: s = 1 · 3 + 2 = 5."
+        },
+        {
+          "line": 4,
+          "input": "word = BA",
+          "q": "What hash does the function return?",
+          "options": [
+            "5",
+            "7",
+            "1"
+          ],
+          "answer": 1,
+          "why": "After B: s = 2. After A: s = 2 · 3 + 1 = 7. The remainder after dividing by 11 is 7. The order of the letters matters: AB and BA have different hashes."
+        },
+        {
+          "line": 4,
+          "input": "word = E",
+          "q": "The hash of E comes out as 5, the same as for AB. What does that mean if your password is AB?",
+          "options": [
+            "Whoever types E logs in as you",
+            "Nothing, the server knows E is a different password",
+            "The server reports an error"
+          ],
+          "answer": 0,
+          "why": "The server only compares hashes. Two different words with the same hash are a collision, and the attacker only needs to find any one of them."
+        },
+        {
+          "line": 4,
+          "input": "You try different words, one after another",
+          "q": "After how many different words are you sure to have a collision, whatever the words are?",
+          "options": [
+            "After 11",
+            "After 12",
+            "Not until 1000"
+          ],
+          "answer": 1,
+          "why": "The remainder after dividing by 11 can only be 0 to 10, so 11 values. Twelve words won’t fit into 11 boxes, two must share one. A real SHA-256 hash has 2 to the power of 256 values, more than there are atoms on Earth, so nobody finds a collision."
+        }
+      ]
+    }
+  ],
+  "debrief": "A website doesn’t know your password, it only knows its hash. A good hash can’t be reversed, has no collisions anyone can find, and salt makes it different for each account. But even that won’t save a short password: an attacker with a stolen database simply tries passwords and calculates their hashes. That’s why length and uniqueness still matter."
+}

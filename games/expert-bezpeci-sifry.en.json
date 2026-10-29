@@ -1,0 +1,36 @@
+{
+  "type": "cipher",
+  "title": "Break ciphers like a cryptanalyst",
+  "instruction": "Every cipher has a weakness. Find it, break the message and then read why the cipher fell.",
+  "levels": [
+    {
+      "kind": "caesar",
+      "plain": "A SECRET MESSAGE FOR YOU THE CLUB MEETS ON THURSDAY AT SIX",
+      "key": "7",
+      "hint": "Caesar has only 25 possible shifts. Try them, or look for short words: the one-letter A and the two-letter ON, AT.",
+      "why": "The key space has 25 options; an attacker goes through them in a minute. It’s the same as a two-digit password: what decides a cipher’s strength is how many keys you have to try."
+    },
+    {
+      "kind": "subst",
+      "plain": "WHOEVER KNOWS THE PASSWORD IS YOU TO THAT APP SO EACH APP GETS A LONG PASSWORD OF ITS OWN AND AN EXTRA KEY ON A PHONE I BET THE TOP LETTER IN THIS TEXT WILL TELL YOU WHERE TO START",
+      "key": "QWERTYUIOPASDFGHJKLZXCVBNM",
+      "hint": "There are over 400 septillion keys, so trying them makes no sense. Count the frequencies: in English E, T, A and O lead. One-letter words are usually A and I. And the key can be typed with one swipe of your finger across the keyboard.",
+      "why": "A huge number of keys isn’t enough. Substitution leaves the letter frequencies unchanged, so the language itself gives away what is what. A cipher’s strength isn’t just the number of keys, but also how much the cipher gives away about the text."
+    },
+    {
+      "kind": "vigenere",
+      "plain": "A CASTLE HAS MANY LAYERS UPDATES PATCH THE HOLES A BACKUP ELSEWHERE SAVES THE DATA AND PERMISSIONS KEEP APPS IN THEIR LIMITS NO LAYER IS ENOUGH ON ITS OWN",
+      "key": "HRAD",
+      "hint": "The key has 4 letters. Skip the spaces and split the letters into four groups: the 1st, 5th, 9th … letter, then the 2nd, 6th, 10th … Each group is an ordinary Caesar, and frequency analysis works on each one.",
+      "why": "Vigenère mixes several Caesars, and so it smears the frequencies. Once you know the key length, it falls apart into four easy ciphers. For over 300 years it was considered unbreakable, until in the 19th century someone came up with exactly this trick."
+    },
+    {
+      "kind": "vigenere",
+      "plain": "A SCAMMER DOES NOT BREAK THE COMPUTER HE BREAKS YOU SO STOP CHECK THE MESSAGE ANOTHER WAY AND NEVER SEND CODES TO ANYONE NOT EVEN A FRIEND",
+      "key": "ONDRA",
+      "hint": "The key has 5 letters. Before you start counting frequencies, try thinking like a person: who in 7.B would choose their own name as the key?",
+      "why": "A cipher is only as strong as its key. A name, a nickname or a dictionary word can be guessed before any calculation, just like the password Ondra2013."
+    }
+  ],
+  "debrief": "Three ciphers, three weaknesses: too few keys (Caesar), frequencies given away (substitution) and a short or guessable key (Vigenère). Today’s ciphers, such as AES, don’t have these weaknesses. They have so many keys that not even all the computers in the world could try them, and the result looks like random noise. The weak spot is still the person and their password."
+}

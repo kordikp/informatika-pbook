@@ -1,0 +1,338 @@
+{
+  "type": "neuron",
+  "title": "Bot or human?",
+  "instruction": "Use the sliders to set the weights and the threshold so that the dividing line separates the two groups of accounts. Reach the required accuracy.",
+  "levels": [
+    {
+      "story": "40 comments a minute have appeared under a video by your cousin Bára. People or bots? Start with two signals: how much the account posts and how old it is.",
+      "labels": [
+        "human",
+        "bot"
+      ],
+      "axes": [
+        "posts per day",
+        "account age (months)"
+      ],
+      "points": [
+        [
+          2,
+          24,
+          0
+        ],
+        [
+          5,
+          48,
+          0
+        ],
+        [
+          1,
+          12,
+          0
+        ],
+        [
+          8,
+          36,
+          0
+        ],
+        [
+          3,
+          6,
+          0
+        ],
+        [
+          6,
+          60,
+          0
+        ],
+        [
+          4,
+          18,
+          0
+        ],
+        [
+          60,
+          1,
+          1
+        ],
+        [
+          85,
+          2,
+          1
+        ],
+        [
+          40,
+          1,
+          1
+        ],
+        [
+          70,
+          3,
+          1
+        ],
+        [
+          35,
+          0,
+          1
+        ],
+        [
+          90,
+          1,
+          1
+        ],
+        [
+          55,
+          2,
+          1
+        ]
+      ],
+      "goal": 0.9,
+      "why": "Here one signal is enough: bots write dozens of posts a day. The line can be vertical, with the account-age weight almost zero."
+    },
+    {
+      "story": "The bots are learning. Some post more slowly, and others run riot on old stolen accounts, like the one someone once took from Ondra. And there is also a real YouTuber who posts 25 times a day.",
+      "labels": [
+        "human",
+        "bot"
+      ],
+      "axes": [
+        "posts per day",
+        "account age (months)"
+      ],
+      "points": [
+        [
+          2,
+          24,
+          0
+        ],
+        [
+          5,
+          48,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          25,
+          30,
+          0
+        ],
+        [
+          6,
+          60,
+          0
+        ],
+        [
+          4,
+          18,
+          0
+        ],
+        [
+          60,
+          1,
+          1
+        ],
+        [
+          85,
+          2,
+          1
+        ],
+        [
+          20,
+          2,
+          1
+        ],
+        [
+          50,
+          40,
+          1
+        ],
+        [
+          70,
+          30,
+          1
+        ],
+        [
+          35,
+          0,
+          1
+        ],
+        [
+          45,
+          12,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "A vertical line is no longer enough: the YouTuber posts more than a slow bot. A sloping line combines both signals: a new account that posts a lot is suspicious, an old account is allowed more. But stolen old accounts are misleading about their age, which is why the number of posts is needed too."
+    },
+    {
+      "story": "Fake iPhone giveaways. A scammer’s profile is usually young and buys its followers. But there is also a new genuine shop, and an old account that a scammer stole and renamed.",
+      "labels": [
+        "genuine shop",
+        "scam"
+      ],
+      "axes": [
+        "profile age (months)",
+        "followers (thousands)"
+      ],
+      "points": [
+        [
+          1,
+          50,
+          1
+        ],
+        [
+          2,
+          15,
+          1
+        ],
+        [
+          0,
+          80,
+          1
+        ],
+        [
+          3,
+          5,
+          1
+        ],
+        [
+          1,
+          30,
+          1
+        ],
+        [
+          30,
+          12,
+          1
+        ],
+        [
+          48,
+          40,
+          0
+        ],
+        [
+          72,
+          90,
+          0
+        ],
+        [
+          36,
+          8,
+          0
+        ],
+        [
+          60,
+          20,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          24,
+          3,
+          0
+        ]
+      ],
+      "goal": 0.9,
+      "why": "100 % accuracy isn’t possible here: a stolen old profile looks like a genuine shop. Two numbers aren’t enough, and a person has to check another way too, for example on the shop’s official website. The number of followers on its own tells you almost nothing, they can be bought."
+    },
+    {
+      "story": "Now you are on the other side: you are the recommender. You have to guess whether a viewer will watch a video to the end. You know the length of the video and how similar it is to what they have already watched to the end.",
+      "labels": [
+        "skips",
+        "watches to the end"
+      ],
+      "axes": [
+        "video length (s)",
+        "similarity to videos watched to the end (%)"
+      ],
+      "points": [
+        [
+          15,
+          90,
+          1
+        ],
+        [
+          30,
+          80,
+          1
+        ],
+        [
+          10,
+          60,
+          1
+        ],
+        [
+          45,
+          95,
+          1
+        ],
+        [
+          20,
+          70,
+          1
+        ],
+        [
+          60,
+          85,
+          1
+        ],
+        [
+          120,
+          30,
+          0
+        ],
+        [
+          90,
+          20,
+          0
+        ],
+        [
+          30,
+          10,
+          0
+        ],
+        [
+          150,
+          60,
+          0
+        ],
+        [
+          200,
+          90,
+          0
+        ],
+        [
+          60,
+          40,
+          0
+        ],
+        [
+          8,
+          25,
+          0
+        ],
+        [
+          100,
+          70,
+          0
+        ]
+      ],
+      "goal": 1.0,
+      "why": "A short, similar video gets watched to the end, a long or unfamiliar one gets skipped. The feed makes exactly this kind of guess for every video, just with thousands of signals instead of two. And because similarity works best, it keeps offering you the same thing."
+    }
+  ],
+  "debrief": "A perceptron is the simplest machine learning model: it multiplies signals by weights, adds them up and compares the result with a threshold. The same principle, just much bigger, sorts accounts into bots and decides your feed. And just like here, it is never perfect: there is always an account that looks different from what it is."
+}

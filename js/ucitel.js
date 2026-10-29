@@ -114,6 +114,48 @@ const S = {
     hu: 'Haladó projekt több világon át. A főellenségének legyőzése a {0} tanúsítvány feltétele.',
   },
 
+  navNadani: { cs: 'Pro nadané', en: 'For gifted pupils', sk: 'Pre nadaných', hu: 'Tehetségeseknek' },
+  nadH: { cs: 'Pro nadané: výzvy a expedice', en: 'For gifted pupils: challenges and expeditions', sk: 'Pre nadaných: výzvy a expedície', hu: 'Tehetségeseknek: kihívások és expedíciók' },
+  nadIntro: {
+    cs: 'Pro žáky, kterým kniha nestačí. U jader je {0} výzev navíc a {1} her navíc: těžší úlohy na jeden večer s nápovědami a řešením. Dvanáct expedic vede ještě dál, ke skutečným nástrojům, soutěžím a komunitám. Nic z toho se nepočítá do certifikátu a nic se nezamyká: je to nabídka pro ty, koho téma chytlo.',
+    en: 'For pupils who find the book is not enough. Next to the core concepts there are {0} extra challenges and {1} extra games: harder one-evening tasks with hints and a solution. Twelve expeditions go further still, to real tools, contests and communities. None of it counts toward the certificate and nothing is locked: it is an offer for those the topic has caught.',
+    sk: 'Pre žiakov, ktorým kniha nestačí. Pri jadrách je {0} výziev navyše a {1} hier navyše: ťažšie úlohy na jeden večer s nápoveďami a riešením. Dvanásť expedícií vedie ešte ďalej, k skutočným nástrojom, súťažiam a komunitám. Nič z toho sa nepočíta do certifikátu a nič sa nezamyká: je to ponuka pre tých, koho téma chytila.',
+    hu: 'Azoknak a diákoknak, akiknek a könyv nem elég. Az alapfogalmak mellett {0} extra kihívás és {1} extra játék van: nehezebb feladatok egy estére, súgóval és megoldással. Tizenkét expedíció még tovább visz, valódi eszközökhöz, versenyekhez és közösségekhez. Ebből semmi sem számít bele a tanúsítványba, és semmi sincs lezárva: ajánlat azoknak, akiket megfogott a téma.',
+  },
+  nadHow: { cs: 'Jak s expedicemi pracovat', en: 'How to work with the expeditions', sk: 'Ako s expedíciami pracovať', hu: 'Hogyan dolgozzon az expedíciókkal' },
+  nadHow1: {
+    cs: 'Nabídněte expedici žákovi, který má hotová jádra její kapitoly nebo jejího světa. Expedice je na několik večerů, doma nebo v kroužku.',
+    en: 'Offer an expedition to a pupil who has finished the core concepts of its chapter or world. An expedition takes a few evenings, at home or in a club.',
+    sk: 'Ponúknite expedíciu žiakovi, ktorý má hotové jadrá jej kapitoly alebo jej sveta. Expedícia je na niekoľko večerov, doma alebo v krúžku.',
+    hu: 'Ajánljon fel egy expedíciót annak a diáknak, aki már végzett a hozzá tartozó fejezet vagy világ alapfogalmaival. Egy expedíció néhány estét vesz igénybe, otthon vagy szakkörön.',
+  },
+  nadHow2: {
+    cs: 'Každá má pět kroků: 🧩 výzvu, 🛠 dílnu se skutečným nástrojem, 🔍 rozbor, 👥 partu (soutěž nebo komunitu) a 🚀 vlastní projekt. Tři odbočky jdou do hloubky podle zájmu.',
+    en: 'Each one has five steps: 🧩 a challenge, 🛠 a workshop with a real tool, 🔍 a look inside, 👥 a crew (a contest or a community) and 🚀 a project of their own. Three side trips go deeper, as interest takes them.',
+    sk: 'Každá má päť krokov: 🧩 výzvu, 🛠 dielňu so skutočným nástrojom, 🔍 rozbor, 👥 partiu (súťaž alebo komunitu) a 🚀 vlastný projekt. Tri odbočky idú do hĺbky podľa záujmu.',
+    hu: 'Mindegyiknek öt lépése van: 🧩 kihívás, 🛠 műhely valódi eszközzel, 🔍 elemzés, 👥 csapat (verseny vagy közösség) és 🚀 saját projekt. Három kitérő mélyebbre visz, érdeklődés szerint.',
+  },
+  nadHow3: {
+    cs: 'Na konci čeká závěrečná zkouška: žák vlastními slovy popíše svůj plán a AI ho posoudí podle bodů zadání. Plán je dobrý podklad pro rozhovor s vámi.',
+    en: 'At the end comes the final test: the pupil describes their plan in their own words and the AI assesses it against the points of the task. The plan is a good starting point for a talk with you.',
+    sk: 'Na konci čaká záverečná skúška: žiak vlastnými slovami opíše svoj plán a AI ho posúdi podľa bodov zadania. Plán je dobrý podklad na rozhovor s vami.',
+    hu: 'A végén záróvizsga vár: a diák saját szavaival leírja a tervét, a MI pedig a feladat pontjai alapján értékeli. A terv jó kiindulópont egy beszélgetéshez Önnel.',
+  },
+  nadHow4: {
+    cs: 'Krok Parta a rozcestník vedou na weby mimo knihu. Před prvním přihlášením projděte se žákem stránku {0}: deset pravidel a věk, od kterého služby nechtějí souhlas rodiče.',
+    en: 'The crew step and the signpost lead to websites outside the book. Before the first sign-up, go through the page {0} with the pupil: ten rules and the age from which services no longer ask for a parent’s consent.',
+    sk: 'Krok Partia a rozcestník vedú na weby mimo knihy. Pred prvým prihlásením prejdite so žiakom stránku {0}: desať pravidiel a vek, od ktorého služby nechcú súhlas rodiča.',
+    hu: 'A csapat lépés és az útmutató a könyvön kívüli oldalakra vezet. Az első regisztráció előtt nézze át a diákkal a(z) {0} oldalt: tíz szabály, és hogy hány éves kortól nem kérnek a szolgáltatások szülői hozzájárulást.',
+  },
+  safetyPage: { cs: 'Bezpečně v komunitách', en: 'Safe in communities', sk: 'Bezpečne v komunitách', hu: 'Biztonságban a közösségekben' },
+  expCh: { cs: 'Kapitola {0}', en: 'Chapter {0}', sk: 'Kapitola {0}', hu: '{0} fejezet' },
+  expGoal: { cs: 'Cíl:', en: 'Goal:', sk: 'Cieľ:', hu: 'Cél:' },
+  expBranches: { cs: 'Odbočky:', en: 'Side trips:', sk: 'Odbočky:', hu: 'Kitérők:' },
+  expExam: { cs: 'Závěrečná zkouška:', en: 'Final test:', sk: 'Záverečná skúška:', hu: 'Záróvizsga:' },
+  expBase: { cs: 'Základna expedice v knize', en: 'The expedition’s page in the book', sk: 'Základňa expedície v knihe', hu: 'Az expedíció oldala a könyvben' },
+  expGuide: { cs: 'Rozcestník: nástroje a komunity', en: 'Signpost: tools and communities', sk: 'Rozcestník: nástroje a komunity', hu: 'Útmutató: eszközök és közösségek' },
+  expAll: { cs: 'Všechny expedice v knize', en: 'All expeditions in the book', sk: 'Všetky expedície v knihe', hu: 'Az összes expedíció a könyvben' },
+
   tvH: { cs: 'Tvůrčí úkol s kódem třídy', en: 'A creative task with a class code', sk: 'Tvorivá úloha s kódom triedy', hu: 'Alkotó feladat osztálykóddal' },
   tvIntro: {
     cs: 'Žáci napíšou vlastní podání jádra: vysvětlení, příběh, komiks… Studio jim ukáže, co musí podání pokrýt, a AI kouč jim pomůže ho vylepšit.',
@@ -308,6 +350,37 @@ function svety(D) {
   el.querySelectorAll('[data-svet]').forEach(b => b.onclick = () => { stav.svet = b.dataset.svet; uloz(); svety(D); });
 }
 
+// ---------- pro nadané: výzvy, hry a expedice navíc ----------
+function nadani(D) {
+  const N = D.gifted, el = document.getElementById('ucNadani');
+  const vyber = N.expeditions.find(x => x.id === stav.expedice) || N.expeditions[0];
+  const smer = x => (x.world ? loc(x.dir) : t('expCh', loc(x.dir)));
+  const bezpeci = N.safety ? `<a href="${esc(odkaz(N.safety))}" target="_blank" rel="noopener">${t('safetyPage')}</a>` : esc(t('safetyPage'));
+  el.innerHTML = `<h3 class="uc-sub">${t('nadHow')}</h3>
+    <ul class="uc-how"><li>${t('nadHow1')}</li><li>${t('nadHow2')}</li><li>${t('nadHow3')}</li><li>${t('nadHow4', bezpeci)}</li></ul>
+    <div class="uc-worlds" role="group" aria-label="${t('navNadani')}">${N.expeditions.map(x =>
+      `<button type="button" class="uc-world" data-exp="${esc(x.id)}" aria-pressed="${x === vyber}">
+        <span class="uc-ico" aria-hidden="true">${x.icon}</span>
+        <span class="uc-world-name">${esc(loc(x.title))}</span>
+        <small>${esc(smer(x))}</small>
+      </button>`).join('')}</div>
+    <div class="uc-card">
+      <div class="uc-head"><span class="uc-ico" aria-hidden="true">${vyber.icon}</span><div>
+        <div class="uc-kicker">${esc(smer(vyber))} · ${t('steps', vyber.steps)}</div>
+        <h3>${esc(loc(vyber.title))}</h3>
+        <p>${esc(loc(vyber.story))}</p>
+      </div></div>
+      <p><b>${t('expGoal')}</b> ${esc(loc(vyber.goal))}</p>
+      ${vyber.branches.length ? `<p><b>${t('expBranches')}</b> ${vyber.branches.map(b => esc(loc(b))).join(' · ')}</p>` : ''}
+      <p><b>${t('expExam')}</b></p><blockquote>${esc(loc(vyber.boss))}</blockquote>
+      ${odkazBox(odkaz('mission-' + vyber.id), loc(vyber.title))}
+      <p class="uc-muted">${[vyber.block && `<a href="${esc(odkaz(vyber.block))}" target="_blank" rel="noopener">${t('expBase')} ↗</a>`,
+        vyber.guide && `<a href="${esc(odkaz(vyber.guide))}" target="_blank" rel="noopener">${t('expGuide')} ↗</a>`,
+        N.hub && `<a href="${esc(odkaz(N.hub))}" target="_blank" rel="noopener">${t('expAll')} ↗</a>`].filter(Boolean).join(' · ')}</p>
+    </div>`;
+  el.querySelectorAll('[data-exp]').forEach(b => b.onclick = () => { stav.expedice = b.dataset.exp; uloz(); nadani(D); });
+}
+
 // ---------- tvůrčí úkol s kódem třídy ----------
 function tvorba(D) {
   const el = document.getElementById('ucTvorba');
@@ -368,13 +441,14 @@ async function start() {
   const resitel = loc(CONFIG.certificate?.tiers?.practitioner?.title) || 'Řešitel';
   main.innerHTML = `<h1>${t('h1')}</h1>
     <p class="uc-lede">${t('lede')}</p>
-    <nav class="uc-nav"><a href="#kapitola">${t('navKap')}</a><a href="#mikromise">${t('navMini')}</a><a href="#svety">${t('navSvet')}</a><a href="#tvorba">${t('navTvorba')}</a><a href="#certifikat">${t('navCert')}</a></nav>
+    <nav class="uc-nav"><a href="#kapitola">${t('navKap')}</a><a href="#mikromise">${t('navMini')}</a><a href="#svety">${t('navSvet')}</a>${D.gifted ? `<a href="#nadani">${t('navNadani')}</a>` : ''}<a href="#tvorba">${t('navTvorba')}</a><a href="#certifikat">${t('navCert')}</a></nav>
     <section id="kapitola"><h2>${t('navKap')}</h2><p>${t('kapIntro')}</p><div id="ucKap"></div></section>
     <section id="mikromise"><h2>${t('miniH')}</h2><p>${t('miniIntro')}</p><div id="ucMini"></div></section>
     <section id="svety"><h2>${t('navSvet')}</h2><p>${t('svetIntro', esc(resitel))}</p><div id="ucSvet"></div></section>
+    ${D.gifted ? `<section id="nadani"><h2>${t('nadH')}</h2><p>${t('nadIntro', D.gifted.challenges, D.gifted.games)}</p><div id="ucNadani"></div></section>` : ''}
     <section id="tvorba"><h2>${t('tvH')}</h2><p>${t('tvIntro')}</p><div id="ucTvorba"></div></section>
     <section id="certifikat"><h2>${t('navCert')}</h2><p>${t('certIntro')}</p><div id="ucCert"></div></section>`;
-  kapitoly(D); mikromise(D); svety(D); tvorba(D); certifikat(D);
+  kapitoly(D); mikromise(D); svety(D); if (D.gifted) nadani(D); tvorba(D); certifikat(D);
 
   // kopírování a QR pro všechny odkazy na stránce
   main.addEventListener('click', async e => {

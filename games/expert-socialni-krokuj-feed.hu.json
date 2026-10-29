@@ -1,0 +1,163 @@
+{
+  "type": "trace",
+  "title": "Léptesd a hírfolyamot",
+  "instruction": "Három pszeudokód-részlet, amely a hírfolyamodról dönt. Léptesd végig őket soronként, és figyelj a számokra: egyetlen hiba az összeadásban megváltoztatja az egész hírfolyamot.",
+  "rounds": [
+    {
+      "code": [
+        "pontszám = {kutyusok: 35, foci: 22, minecraft: 20}",
+        "minden videóra a sorban:",
+        "    ha végignézted:",
+        "        pontszám[téma] = pontszám[téma] + 10",
+        "    különben ha „Nem érdekel”:",
+        "        pontszám[téma] = pontszám[téma] - 15",
+        "    következő téma = a legnagyobb pontszámú téma"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Minecraft-videó, a végéig megnézve",
+          "q": "Hány pontja van most a Minecraftnak?",
+          "options": [
+            "20",
+            "30",
+            "35"
+          ],
+          "answer": 1,
+          "why": "A végignézés hozzáad 10-et: 20 + 10 = 30."
+        },
+        {
+          "line": 6,
+          "input": "kutyusok 35, foci 22, minecraft 30",
+          "q": "Melyik téma jön következőnek?",
+          "options": [
+            "kutyusok",
+            "minecraft",
+            "foci"
+          ],
+          "answer": 0,
+          "why": "A kutyusoknak még mindig a legtöbb: 35 több, mint 30."
+        },
+        {
+          "line": 5,
+          "input": "kutyusos videó, koppintás a „Nem érdekel” gombra",
+          "q": "Hány pontjuk van most a kutyusoknak?",
+          "options": [
+            "20",
+            "25",
+            "35"
+          ],
+          "answer": 0,
+          "why": "A „Nem érdekel” levon 15-öt: 35 − 15 = 20. Egyetlen koppintás majdnem a pontszám felét eltörli."
+        },
+        {
+          "line": 6,
+          "input": "kutyusok 20, foci 22, minecraft 30",
+          "q": "Melyik téma jön következőnek?",
+          "options": [
+            "kutyusok",
+            "foci",
+            "minecraft"
+          ],
+          "answer": 2,
+          "why": "A Minecraftnak 30 pontja van, a focinak 22, a kutyusoknak csak 20. Egy koppintás és egy végignézés megfordította a sorrendet."
+        }
+      ]
+    },
+    {
+      "code": [
+        "szám = 0",
+        "minden videóra a sorban:",
+        "    szám = szám + 1",
+        "    ha szám osztható 5-tel:",
+        "        következő téma = egy véletlen téma, amelyet rég nem kaptál",
+        "    különben:",
+        "        következő téma = a legnagyobb pontszámú téma"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "szám = 4",
+          "q": "Felfedező videó lesz a következő?",
+          "options": [
+            "igen",
+            "nem"
+          ],
+          "answer": 1,
+          "why": "A 4 nem osztható 5-tel, ezért a 4. sor nem teljesül, és a 7. sor jön: a győztes téma."
+        },
+        {
+          "line": 4,
+          "input": "az első 20 videó",
+          "q": "Az első 20 videóból hány felfedező?",
+          "options": [
+            "2",
+            "4",
+            "5"
+          ],
+          "answer": 1,
+          "why": "5-tel osztható számok: 5, 10, 15 és 20. Húszból négy videó, vagyis a hírfolyam 20 %-a felfedezés."
+        },
+        {
+          "line": 4,
+          "input": "egy felfedező főzős videót végignézel",
+          "q": "Miért fontos az 5. sor a hírfolyam számára?",
+          "options": [
+            "Lelassítja az appot",
+            "Nélküle a többi téma pontszáma soha nem változna",
+            "Adatforgalmat spórol"
+          ],
+          "answer": 1,
+          "why": "A közösségi oldal csak azokból a videókból tanul, amelyeket megmutatott neked. Felfedezés nélkül nem keletkezik új adat a többi témáról, és a buborék bezárul."
+        }
+      ]
+    },
+    {
+      "code": [
+        "minden videóra a sorban:",
+        "    mutasd a videót",
+        "    ha 3-nál kevesebb videó maradt a sorban:",
+        "        töltsd fel a sort 10 új videóval"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "2 videó maradt a sorban",
+          "q": "Mi történik?",
+          "options": [
+            "A ciklus véget ér",
+            "A sor feltöltődik, és a ciklus megy tovább",
+            "Az app megkérdezi, akarod-e folytatni"
+          ],
+          "answer": 1,
+          "why": "A 4. sor új videókat tesz be, mielőtt a sor kifogyna. A sor soha nem üres."
+        },
+        {
+          "line": 0,
+          "input": "már 2 órája nézed",
+          "q": "Mikor ér véget ez a ciklus?",
+          "options": [
+            "Amikor elfogynak a videók",
+            "Soha, amíg be nem zárod az appot",
+            "10 videó után"
+          ],
+          "answer": 1,
+          "why": "A kódban nincs befejezési feltétel. A vége csak a te döntésed."
+        },
+        {
+          "line": 1,
+          "input": "hozzá akarod adni ezt a sort: „ha idő > 30 perc: állítsd le a ciklust”",
+          "q": "Hova teszed, hogy a legjobban működjön?",
+          "options": [
+            "A ciklus törzsének elejére, a 2. sor elé",
+            "A ciklus után, a 4. sor alá",
+            "A legelejére, az 1. sor elé"
+          ],
+          "answer": 0,
+          "why": "A feltételnek a cikluson belül kell lennie, hogy minden videó előtt ellenőrizze. A ciklus után soha nem futna le, mert a ciklus nem ér véget. A ciklus előtt csak egyszer ellenőrizné."
+        }
+      ]
+    }
+  ],
+  "debrief": "A hírfolyam néhány sor: pontszám, ciklus és a maximum kiválasztása. Kis jelzések, mint egyetlen „Nem érdekel”, meg tudják fordítani a sorrendet. A felfedező sor megakadályozza a buborék bezárulását, a hiányzó befejezési feltétel pedig véget nem érő ciklussá teszi a görgetést."
+}

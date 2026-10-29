@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Želva maluje: hvězdy, květy a rozety",
+  "instruction": "Nakresli cílový obrázek co nejkratším programem. Za program v limitu příkazů dostaneš hvězdu.",
+  "levels": [
+    {
+      "goal": "Pěticípá hvězda jedním tahem, strana 100",
+      "target": "opakuj 5 [dopředu 100 vpravo 144]",
+      "max": 3,
+      "hint": "Při kreslení hvězdy obejde želva střed dvakrát. O kolik stupňů se otočí celkem a kolikrát zatáčí?",
+      "why": "Želva se za celou hvězdu otočí o 2 × 360 = 720°. Pět stejných zatáček: 720 : 5 = 144°."
+    },
+    {
+      "goal": "Devíticípá ostrá hvězda jedním tahem: želva při ní obkrouží střed čtyřikrát",
+      "target": "opakuj 9 [dopředu 100 vpravo 160]",
+      "max": 3,
+      "hint": "Použij stejné pravidlo jako u pěticípé hvězdy, jen s jinými čísly.",
+      "why": "Celkové otočení je 4 × 360 = 1440°, devět zatáček po 1440 : 9 = 160°. Obecně: n cípů, k oběhů, úhel 360 · k : n."
+    },
+    {
+      "goal": "Čárkovaný kruh: 36 čárek dlouhých 5, mezi nimi mezery 5, želva skončí tam, kde začala",
+      "target": "opakuj 36 [pero dolů dopředu 5 pero nahoru dopředu 5 vpravo 10]",
+      "max": 7,
+      "hint": "Jeden díl kruhu je čárka, mezera a malá zatáčka. Kolik stupňů na díl, když jich je 36?",
+      "why": "Kruh je mnohoúhelník s hodně krátkými stranami. 36 dílů × 10° = 360°, takže se želva vrátí na start."
+    },
+    {
+      "goal": "Rozeta: 12 čtverců se stranou 80, každý pootočený o 30° kolem společného rohu",
+      "target": "nauč čtverec :s [opakuj 4 [dopředu :s vpravo 90]] opakuj 12 [čtverec 80 vpravo 30]",
+      "max": 7,
+      "hint": "Nejdřív želvu nauč nový příkaz „čtverec“. Čtverec skončí tam, kde začal, a to je celé kouzlo.",
+      "why": "Procedura je abstrakce: jednou popíšeš, co je čtverec, a dál ho používáš jako jedno slovo. 12 × 30° = 360°, rozeta se uzavře."
+    },
+    {
+      "goal": "Květina z 8 lístků; každý lístek je kosočtverec se stranou 60 a ostrým úhlem 45° u středu",
+      "target": "nauč lístek :s [opakuj 2 [dopředu :s vpravo 45 dopředu :s vpravo 135]] opakuj 8 [lístek 60 vpravo 45]",
+      "max": 9,
+      "hint": "Želva se v rohu otáčí o doplněk vnitřního úhlu do 180°. Ostrý roh 45° znamená zatáčku 135°, tupý roh 135° zatáčku 45°.",
+      "why": "Jeden lístek: 2 × (45 + 135) = 360°, takže se uzavře. Lístek má u středu 45° a 8 × 45° = 360°, lístky do sebe přesně zapadnou."
+    }
+  ],
+  "debrief": "Generativní umění často nevzniká z tisíců čar, ale z jednoho pravidla, které se opakuje. Klíčem je součet zatáček: když je to celý počet otoček, obrázek se uzavře. Totéž pravidlo najdeš v p5.js, v Blenderu u pole objektů i v každé mandale."
+}

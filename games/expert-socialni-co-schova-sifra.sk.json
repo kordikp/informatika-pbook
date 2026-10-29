@@ -1,0 +1,52 @@
+{
+  "type": "sort",
+  "title": "Čo skryje koncové šifrovanie",
+  "instruction": "Koncové (end-to-end) šifrovanie zamyká správu u teba a odomyká ju až u príjemcu. Čo tým však naozaj skryješ? Roztrieď. Pozor, niektoré položky sú zradné.",
+  "buckets": [
+    "Uvidíš len ty a príjemca",
+    "Môže vidieť aj niekto ďalší"
+  ],
+  "items": [
+    {
+      "text": "Text správy v čete s koncovým šifrovaním",
+      "answer": 0,
+      "why": "Kľúč majú len vaše zariadenia. Server prenáša len nečitateľnú zmes znakov."
+    },
+    {
+      "text": "Fotka poslaná v čete s koncovým šifrovaním",
+      "answer": 0,
+      "why": "Príloha sa šifruje rovnako ako text."
+    },
+    {
+      "text": "Komu píšeš, o koľkej a ako často",
+      "answer": 1,
+      "why": "To sú metadáta, údaje o správe. Server ich potrebuje, aby správu doručil, a šifrovanie obsahu ich neskryje."
+    },
+    {
+      "text": "Tvoja verejná profilová fotka a meno",
+      "answer": 1,
+      "why": "Profil nie je správa. Kto vidí profil, určuje nastavenie súkromia, nie šifrovanie."
+    },
+    {
+      "text": "Záloha četu do cloudu, pri ktorej nie je zapnuté šifrovanie zálohy",
+      "answer": 1,
+      "why": "Správy sú na ceste zamknuté, ale v zálohe ležia odomknuté. Prevádzkovateľ cloudu ich môže čítať."
+    },
+    {
+      "text": "Správa, ktorú si príjemca odfotí na screenshot a pošle ďalej",
+      "answer": 1,
+      "why": "Šifrovanie chráni cestu, nie človeka na druhom konci. Hneď ako správu prečíta, môže s ňou urobiť čokoľvek."
+    },
+    {
+      "text": "Správa v apke, kde si nikto neskontroloval bezpečnostný kód a server podvrhol kľúč",
+      "answer": 1,
+      "why": "Útok „človek uprostred“: server dá každému z vás svoj kľúč a správy si cestou odomyká. Porovnanie bezpečnostného kódu toto odhalí."
+    },
+    {
+      "text": "Správa v obyčajnom čete na sieti, ktorá koncové šifrovanie nemá",
+      "answer": 1,
+      "why": "Správa je zamknutá len na ceste k serveru. Server ju odomkne a prečítať ju môže prevádzkovateľ."
+    }
+  ],
+  "debrief": "Koncové šifrovanie skryje obsah, ale nie metadáta, nie zálohy bez šifrovania a nie to, čo urobí príjemca. A funguje len vtedy, keď naozaj hovoríš s tým, s kým si myslíš. Preto apky ponúkajú bezpečnostný kód na porovnanie."
+}

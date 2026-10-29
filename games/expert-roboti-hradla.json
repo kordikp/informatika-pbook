@@ -1,0 +1,191 @@
+{
+  "type": "gates",
+  "title": "Mozek vozítka z hradel",
+  "instruction": "Postav rozhodování robota z logických hradel, bez jediného řádku programu. Vstupy jsou senzory (1 = vidí čáru nebo narazil), výstupy motory a akce (1 = běží). Hvězda je za nejmenší počet hradel.",
+  "levels": [
+    {
+      "story": "Vozítko má dva senzory čáry, L a P. Na rovince vidí čáru oba, v zatáčce jen jeden. Zapoj motory ML a MP tak, aby vozítko zatáčelo k čáře. Když běží jen pravý motor, zatáčí doleva.",
+      "inputs": [
+        "L",
+        "P"
+      ],
+      "outputs": {
+        "ML": "P",
+        "MP": "L"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT",
+        "XOR"
+      ],
+      "max": 1,
+      "why": "Nepotřebuješ žádné hradlo: ML připoj na P a MP na L. Překřížené dráty jsou celý program. Tomu se říká Braitenbergovo vozítko.",
+      "solution": {
+        "gates": [],
+        "outputs": {
+          "ML": "P",
+          "MP": "L"
+        }
+      }
+    },
+    {
+      "story": "Když čára zmizí (L = 0 a P = 0), vozítko nemá stát, ale točit se doprava, dokud ji nenajde. Ostatní řádky zůstávají jako minule.",
+      "inputs": [
+        "L",
+        "P"
+      ],
+      "outputs": {
+        "ML": "(not L) or P",
+        "MP": "L"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT",
+        "XOR"
+      ],
+      "max": 2,
+      "why": "ML má být 1 ve třech řádcích ze čtyř a 0 jen pro L = 1, P = 0. Takové skoro vždy se dobře staví z OR: ML = NOT L OR P.",
+      "solution": {
+        "gates": [
+          [
+            "NOT",
+            "L"
+          ],
+          [
+            "OR",
+            "g0",
+            "P"
+          ]
+        ],
+        "outputs": {
+          "ML": "g1",
+          "MP": "L"
+        }
+      }
+    },
+    {
+      "story": "Robotický vysavač má dva nárazníky, L a P. Když narazí kterýkoli, má couvnout (C). Otočit se doprava (V) má jen tehdy, když narazil jen levý.",
+      "inputs": [
+        "L",
+        "P"
+      ],
+      "outputs": {
+        "C": "L or P",
+        "V": "L and (not P)"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT"
+      ],
+      "max": 3,
+      "why": "C = L OR P. Pro V potřebuješ L a zároveň ne P: jedno NOT a jedno AND. Při nárazu oběma couvne rovně.",
+      "solution": {
+        "gates": [
+          [
+            "OR",
+            "L",
+            "P"
+          ],
+          [
+            "NOT",
+            "P"
+          ],
+          [
+            "AND",
+            "L",
+            "g1"
+          ]
+        ],
+        "outputs": {
+          "C": "g0",
+          "V": "g2"
+        }
+      }
+    },
+    {
+      "story": "Vozítko dostalo třetí senzor uprostřed, S. Když vidí čáru střed, jede rovně. Když ji vidí jen boční senzor, zatáčí k němu. Když nevidí nic, stojí. Na křižovatce, kde vidí čáru oba boční, jede taky rovně.",
+      "inputs": [
+        "L",
+        "S",
+        "P"
+      ],
+      "outputs": {
+        "ML": "S or P",
+        "MP": "S or L"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT",
+        "XOR"
+      ],
+      "max": 2,
+      "why": "Každý motor poslouchá střed a protější bok: ML = S OR P, MP = S OR L. Osm řádků tabulky a jen dvě hradla.",
+      "solution": {
+        "gates": [
+          [
+            "OR",
+            "S",
+            "P"
+          ],
+          [
+            "OR",
+            "S",
+            "L"
+          ]
+        ],
+        "outputs": {
+          "ML": "g0",
+          "MP": "g1"
+        }
+      }
+    },
+    {
+      "story": "Na chodbě u dílny jsou dva vypínače, A dole a B nahoře. Každým cvaknutím se světlo S přepne, ať cvakneš kterýmkoli. Hradlo XOR ale došlo.",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "S": "A xor B"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT"
+      ],
+      "max": 4,
+      "why": "Světlo svítí, když je zapnutý právě jeden vypínač: (A OR B) AND NOT (A AND B). Čtyři hradla. Proto se XOR vyrábí jako samostatná součástka.",
+      "solution": {
+        "gates": [
+          [
+            "OR",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "A",
+            "B"
+          ],
+          [
+            "NOT",
+            "g1"
+          ],
+          [
+            "AND",
+            "g0",
+            "g2"
+          ]
+        ],
+        "outputs": {
+          "S": "g3"
+        }
+      }
+    }
+  ],
+  "debrief": "Rozhodovací tabulku robota jde postavit z hradel. Želvy Graye Waltera, jedni z prvních robotů z konce 40. let, měly jen pár elektronek a chovaly se, jako by přemýšlely. Program v micro:bitu dělá totéž, jen ho přepíšeš bez pájení."
+}

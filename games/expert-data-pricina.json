@@ -1,0 +1,54 @@
+{
+  "type": "sort",
+  "title": "Co je za tou souvislostí?",
+  "instruction": "Každá věta popisuje dvě věci, které jdou spolu. Roztřiď je podle toho, co je za tím nejpravděpodobněji. Pozor: jen jedna přihrádka znamená skutečnou příčinu.",
+  "buckets": [
+    "Příčina, ověřená pokusem",
+    "Skrytá třetí věc",
+    "Obrácená příčina",
+    "Náhoda z prohrabání dat"
+  ],
+  "items": [
+    {
+      "text": "Ve dnech, kdy se prodá víc zmrzliny, se víc lidí utopí.",
+      "answer": 1,
+      "why": "Obojí způsobuje horko. Zmrzlina nikoho netopí."
+    },
+    {
+      "text": "Děti s větší velikostí bot čtou rychleji.",
+      "answer": 1,
+      "why": "Třetí věc je věk. Starší děti mají větší nohy a víc čtou."
+    },
+    {
+      "text": "Aplikace náhodně ukázala polovině z 50 000 lidí zelené tlačítko a druhé polovině modré. Na zelené klikalo o 12 % víc lidí.",
+      "answer": 0,
+      "why": "Náhodné rozdělení je pokus (A/B test). Obě skupiny jsou jinak stejné, takže rozdíl dělá barva."
+    },
+    {
+      "text": "Lidé, kteří často chodí k lékaři, bývají častěji nemocní.",
+      "answer": 2,
+      "why": "Lékař nemoc nezpůsobuje. Nemoc je důvod, proč tam chodí."
+    },
+    {
+      "text": "Ve městech s více policisty je víc trestných činů.",
+      "answer": 2,
+      "why": "Kde je víc kriminality, tam město najme víc policistů. Příčina vede opačně, než napovídá věta."
+    },
+    {
+      "text": "Počet doktorátů z informatiky v USA a počet včelstev roky stoupaly a klesaly spolu.",
+      "answer": 3,
+      "why": "Když porovnáš tisíce dvojic řad, některé si budou podobné čistě náhodou. Přesně tak vznikají příklady na webu Spurious Correlations."
+    },
+    {
+      "text": "Z 200 sledovaných údajů o tvém hraní jeden ukázal, že vyhráváš víc ve dnech, které mají v názvu písmeno „t“.",
+      "answer": 3,
+      "why": "Ze 200 testů jich několik „vyjde“ jen náhodou. Bez nového ověření na jiných datech to nic neznamená."
+    },
+    {
+      "text": "Škola náhodně losovala, které třídy budou mít první hodinu o 30 minut později. Losované třídy měly za pololetí méně pozdních příchodů.",
+      "answer": 0,
+      "why": "Los rozhodl, kdo dostane změnu, takže třídy se jinak neliší. Rozdíl způsobil pozdější začátek."
+    }
+  ],
+  "debrief": "Souvislost má čtyři možná vysvětlení: příčinu, třetí skrytou věc, obrácený směr a náhodu. Příčinu poctivě dokáže hlavně pokus s náhodným rozdělením. Když pokus nejde, hledej třetí věc a ptej se, kolik dvojic někdo prohrabal, než našel tu „zajímavou“."
+}

@@ -1,0 +1,53 @@
+{
+  "type": "sort",
+  "title": "Smieš to dať do videa so sponzorom?",
+  "instruction": "Školské video pôjde na YouTube a na konci ukáže logo miestnej firmy, ktorá za to zaplatila. To je komerčné použitie. Rozhodni o každom kúsku.",
+  "buckets": [
+    "Smieš, stačí uviesť autora (alebo ani to nie)",
+    "Smieš, ale celé video potom musí mať licenciu CC BY-SA",
+    "Nesmieš"
+  ],
+  "items": [
+    {
+      "text": "Fotka hradu z Wikimedia Commons s licenciou CC BY",
+      "answer": 0,
+      "why": "CC BY dovoľuje čokoľvek, aj komerčne, keď uvedieš autora, licenciu a odkaz na zdroj."
+    },
+    {
+      "text": "Hudba s licenciou CC BY-SA ako podklad celého videa",
+      "answer": 1,
+      "why": "Hudba spojená s obrazom je podľa CC úprava diela. SA znamená „zdieľaj rovnako“: tvoje video musí dostať rovnakú licenciu."
+    },
+    {
+      "text": "Skladba s licenciou CC BY-NC",
+      "answer": 2,
+      "why": "NC zakazuje komerčné použitie. Sponzor platí za zobrazenie loga, takže video je komerčné."
+    },
+    {
+      "text": "Ilustrácia s licenciou CC BY-ND, do ktorej dokreslíš logo školy",
+      "answer": 2,
+      "why": "ND zakazuje úpravy. Dokreslené logo je úprava, aj keď je malé."
+    },
+    {
+      "text": "Záber z filmu Sprite Fright, (CC) Blender Foundation, licencia CC BY",
+      "answer": 0,
+      "why": "Otvorené filmy Blender Studia majú CC BY. Stačí uviesť „(CC) Blender Foundation | studio.blender.org“."
+    },
+    {
+      "text": "Zvuk potlesku s licenciou CC0",
+      "answer": 0,
+      "why": "CC0 znamená, že sa autor vzdal práv. Uviesť ho nemusíš, ale je to slušné."
+    },
+    {
+      "text": "Obrázok z vyhľadávača, pri ktorom nie je žiadna licencia",
+      "answer": 2,
+      "why": "Bez licencie platí „všetky práva vyhradené“. To, že je obrázok na internete, neznamená, že je voľný."
+    },
+    {
+      "text": "Obrázok z AI generátora, na ktorom je takmer presne známa postavička z animáku",
+      "answer": 2,
+      "why": "Podmienky generátora ti môžu výstup „dať“, ale postavička patrí štúdiu. Práva na ňu generátor rozdávať nemôže."
+    }
+  ],
+  "debrief": "Licencie Creative Commons sú stavebnica zo štyroch dielikov: BY (uveď autora), SA (zdieľaj rovnako), NC (len nekomerčne), ND (neupravuj). CC0 je úplne voľná. Keď chýba licencia, nesmieš takmer nič. A AI výstup nie je automaticky voľný: stráž, čo je na ňom."
+}

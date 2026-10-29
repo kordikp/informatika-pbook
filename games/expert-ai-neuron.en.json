@@ -1,0 +1,308 @@
+{
+  "type": "neuron",
+  "title": "One neuron, one line",
+  "instruction": "Set the weights and the threshold so that the line separates two groups of points. The neuron says “second group” when weight₁ · x + weight₂ · y is greater than the threshold.",
+  "levels": [
+    {
+      "story": "A pet recogniser knows an animal’s weight and height. Separate the cats from the dogs.",
+      "labels": [
+        "cat",
+        "dog"
+      ],
+      "axes": [
+        "weight kg",
+        "height cm"
+      ],
+      "points": [
+        [
+          3,
+          25,
+          0
+        ],
+        [
+          4,
+          23,
+          0
+        ],
+        [
+          5,
+          28,
+          0
+        ],
+        [
+          4,
+          30,
+          0
+        ],
+        [
+          6,
+          26,
+          0
+        ],
+        [
+          2,
+          20,
+          0
+        ],
+        [
+          20,
+          50,
+          1
+        ],
+        [
+          25,
+          55,
+          1
+        ],
+        [
+          30,
+          60,
+          1
+        ],
+        [
+          12,
+          40,
+          1
+        ],
+        [
+          18,
+          45,
+          1
+        ],
+        [
+          9,
+          35,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "One feature is enough: the dogs here are heavier. If you set the weight for height to zero, the line is vertical and it still works."
+    },
+    {
+      "story": "A spam filter counts exclamation marks and links. Neither feature is enough on its own. Find a slanted line.",
+      "labels": [
+        "normal e-mail",
+        "spam"
+      ],
+      "axes": [
+        "exclamation marks",
+        "links"
+      ],
+      "points": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          4,
+          1,
+          0
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          2,
+          4,
+          0
+        ],
+        [
+          5,
+          3,
+          1
+        ],
+        [
+          3,
+          5,
+          1
+        ],
+        [
+          6,
+          2,
+          1
+        ],
+        [
+          2,
+          6,
+          1
+        ],
+        [
+          7,
+          4,
+          1
+        ],
+        [
+          4,
+          4,
+          1
+        ],
+        [
+          4,
+          3,
+          1
+        ]
+      ],
+      "goal": 1.0,
+      "why": "Spam has lots of exclamation marks and links together. Both weights must be positive and roughly equal, with the threshold between 6 and 7. Using just one feature, you’ll reach about 79% at most."
+    },
+    {
+      "story": "A micro:bit tells waving from clapping by the strength and speed of the movement. But two recordings went wrong. Try for 100%.",
+      "labels": [
+        "waving",
+        "clapping"
+      ],
+      "axes": [
+        "strength of movement",
+        "speed of change"
+      ],
+      "points": [
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          7,
+          8,
+          0
+        ],
+        [
+          6,
+          7,
+          1
+        ],
+        [
+          7,
+          6,
+          1
+        ],
+        [
+          8,
+          7,
+          1
+        ],
+        [
+          6,
+          8,
+          1
+        ],
+        [
+          8,
+          8,
+          1
+        ],
+        [
+          7,
+          9,
+          1
+        ],
+        [
+          2,
+          2,
+          1
+        ]
+      ],
+      "goal": 0.85,
+      "why": "100% isn’t possible: two points lie in the middle of the other group. The best line gets 12 out of 14, which is 86%. Don’t chase bad data. The only way to fix it is to record those movements again."
+    },
+    {
+      "story": "A staircase light switch: the light is on when one switch is up and the other is down. The axes show the position of the bottom and the top switch (0 = down, 10 = up). Can one neuron learn this?",
+      "labels": [
+        "off",
+        "on"
+      ],
+      "axes": [
+        "bottom switch",
+        "top switch"
+      ],
+      "points": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          8,
+          8,
+          0
+        ],
+        [
+          9,
+          9,
+          0
+        ],
+        [
+          1,
+          9,
+          1
+        ],
+        [
+          2,
+          8,
+          1
+        ],
+        [
+          8,
+          2,
+          1
+        ],
+        [
+          9,
+          1,
+          1
+        ]
+      ],
+      "goal": 0.75,
+      "why": "The “on” points are in two opposite corners. One line can’t separate them from the “off” points; the best you can get is 6 out of 8. This is called the XOR problem. You need two neurons and a third one that combines their results. That’s the hidden layer of a neural network."
+    }
+  ],
+  "debrief": "One neuron can do only one thing: draw a straight line. Where a line is enough, it learns quickly. Where the data lies, 100% isn’t possible. And where more lines are needed, another layer of neurons is added. Whole neural networks are just lots of these lines stacked on top of each other."
+}

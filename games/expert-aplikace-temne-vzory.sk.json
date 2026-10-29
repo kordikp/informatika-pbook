@@ -1,0 +1,120 @@
+{
+  "type": "hotspot",
+  "title": "Lov na temné vzory",
+  "instruction": "Temný vzor je návrh obrazovky, ktorý ťa nenápadne tlačí k voľbe, ktorá sa hodí apke, nie tebe. Nájdi na každej obrazovke, čo je temný vzor. Pozor: niektoré vety vyzerajú podozrivo, ale sú poctivé.",
+  "items": [
+    {
+      "label": "Predplatné v hudobnej apke",
+      "segments": [
+        {
+          "text": "Vyskúšaj Premium 7 dní zadarmo."
+        },
+        {
+          "text": "Potom 199 Kč mesačne.",
+          "why": "Cena je napísaná jasne a vopred. To je poctivé."
+        },
+        {
+          "text": "Zrušiť môžeš kedykoľvek, ale len na našom webe, nie v apke.",
+          "hit": true,
+          "why": "Prihlásiť sa dá jedným ťuknutím, zrušiť len inde a zložito. Hovorí sa tomu pasca na myši: dnu ľahko, von ťažko."
+        }
+      ]
+    },
+    {
+      "label": "Otázka na upozornenia",
+      "segments": [
+        {
+          "text": "Chceš dostávať upozornenia na nové levely?"
+        },
+        {
+          "text": "[Áno, jasné!]",
+          "why": "Obyčajné tlačidlo na súhlas."
+        },
+        {
+          "text": "[Nie, nechcem nič vedieť o darčekoch zadarmo]",
+          "hit": true,
+          "why": "Odmietnutie je napísané tak, aby ťa zahanbilo a vyvolalo pocit straty. Poctivá verzia je obyčajné „Nie, ďakujem“."
+        }
+      ]
+    },
+    {
+      "label": "Registrácia do kvízovej apky",
+      "segments": [
+        {
+          "text": "Prezývka: ____"
+        },
+        {
+          "text": "☐ Súhlasím s podmienkami",
+          "why": "Súhlas s podmienkami je nutný a políčko je prázdne. V poriadku."
+        },
+        {
+          "text": "☑ Posielať moje údaje partnerom pre lepšie ponuky",
+          "hit": true,
+          "why": "Políčko je zaškrtnuté vopred. Kto ho prehliadne, súhlasí so zdieľaním údajov, aj keď nechce."
+        }
+      ]
+    },
+    {
+      "label": "Obchod v hre",
+      "segments": [
+        {
+          "text": "Balíček Drak: 1 200 drahokamov"
+        },
+        {
+          "text": "(o 20 % viac ako minule)",
+          "why": "Konkrétne porovnanie, dá sa overiť. Samo osebe to temný vzor nie je."
+        },
+        {
+          "text": "Ponuka končí o 00:59",
+          "hit": true,
+          "why": "Odpočítavanie, ktoré po vypršaní naskočí znova, je falošná naliehavosť. Má ťa prinútiť rozhodnúť sa skôr, než si to spočítaš."
+        },
+        {
+          "text": "Cena: 900 drahokamov",
+          "hit": true,
+          "why": "Cena vo virtuálnej mene schováva skutočné peniaze. Koľko je 900 drahokamov v korunách? Apka to schválne nehovorí."
+        }
+      ]
+    },
+    {
+      "label": "Pokladňa e-shopu",
+      "segments": [
+        {
+          "text": "Mikina 690 Kč"
+        },
+        {
+          "text": "Doprava 79 Kč",
+          "why": "Doprava je vidieť a dá sa zmeniť. Poctivé."
+        },
+        {
+          "text": "Poistenie zásielky 39 Kč (pridali sme za teba)",
+          "hit": true,
+          "why": "Vec vložená do košíka bez tvojho ťuknutia. Volá sa to potajomné pridanie do košíka."
+        }
+      ]
+    },
+    {
+      "label": "Zmazanie účtu",
+      "segments": [
+        {
+          "text": "Naozaj chceš odísť?"
+        },
+        {
+          "text": "Zmazaním prídeš o históriu a uložené hry.",
+          "why": "Pravdivá informácia o tom, čo zmazanie znamená. To má apka povedať."
+        },
+        {
+          "text": "Tvoja 312-dňová séria zmizne a kamarátom sa ukáže, že to vzdávaš.",
+          "hit": true,
+          "why": "Emocionálny nátlak: namiesto informácie strach z hanby pred kamarátmi."
+        },
+        {
+          "text": "[ZOSTAŤ] veľké farebné tlačidlo, „zmazať“ drobne sivo dole",
+          "hit": true,
+          "why": "Možnosť, ktorú apka chce, je výrazná, a tvoja voľba je schovaná. Obe tlačidlá majú byť rovnako dobre vidieť."
+        }
+      ]
+    }
+  ],
+  "debrief": "Temné vzory nie sú chyby, sú to zámery. Spoznáš ich podľa nerovnosti: jedna voľba je ľahká, veľká a príjemná, druhá schovaná, drobná alebo nepríjemne napísaná. Keď navrhuješ vlastnú apku, daj súhlasu aj odmietnutiu rovnakú váhu a cenu ukazuj v korunách."
+}

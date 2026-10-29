@@ -1,0 +1,44 @@
+{
+  "type": "pairs",
+  "title": "Scrambled character detective",
+  "instruction": "Each scrambled text appeared because the browser read the bytes in a different encoding from the one the website was saved in. Match it with the original word. Clue: in UTF-8, every Czech letter with a háček or an accent has two bytes, and Windows-1250 reads every byte as one character.",
+  "choices": 4,
+  "pairs": [
+    {
+      "a": "ÄŤaj",
+      "b": "čaj",
+      "why": "The letter č is the byte pair C4 8D in UTF-8. Windows-1250 reads C4 as Ä and 8D as Ť. The letters a and j have the same byte in both encodings, so they survived."
+    },
+    {
+      "a": "Ĺľirafa",
+      "b": "žirafa",
+      "why": "ž = C5 BE. In Windows-1250, C5 is the character Ĺ and BE is the character ľ. Two bytes become two characters."
+    },
+    {
+      "a": "Ĺ™eka",
+      "b": "řeka",
+      "why": "ř = C5 99, and the byte 99 in Windows-1250 is the ™ sign. That’s why a scrambled ř looks like a trademark."
+    },
+    {
+      "a": "Ĺˇkola",
+      "b": "škola",
+      "why": "š = C5 A1, and A1 is the háček ˇ on its own. Notice: ř, ž, š and ů all start with the same byte C5, so they all start with the character Ĺ."
+    },
+    {
+      "a": "dĂ˝nÄ›",
+      "b": "dýně",
+      "why": "ý = C3 BD (Ă˝) and ě = C4 9B (Ä›). Suddenly four letters become six characters."
+    },
+    {
+      "a": "dĹŻm",
+      "b": "dům",
+      "why": "ů = C5 AF, and AF in Windows-1250 is the letter Ż."
+    },
+    {
+      "a": "�aj",
+      "b": "čaj uložený ve Windows-1250, čtený jako UTF-8",
+      "why": "The opposite direction. Windows-1250 saves č as a single byte E8. For UTF-8, E8 is the start of a group of three bytes, but right after it comes an ordinary a. That sequence of bytes isn’t valid in UTF-8, so the browser shows the replacement character �."
+    }
+  ],
+  "debrief": "Scrambled characters aren’t random: each pattern reveals where the encodings didn’t match. Ä and Ĺ at the start of little groups mean: saved in UTF-8, read as Windows-1250. A question mark in a diamond means the opposite. The cure is one line in the page’s head, <meta charset=\"utf-8\">, and a file saved in UTF-8."
+}

@@ -1,0 +1,94 @@
+{
+  "type": "trace",
+  "title": "Character state machine",
+  "instruction": "The character is always in one state: standing, running, jumping or falling. Every frame, the code reads the lines from the top and carries out only the first “if” that is true. “Jump pressed” is true only in the one single frame when you press the button. Physics runs separately: in the air it adds gravity to speedY (a positive speedY means moving down) and keeps a character on the ground at speedY = 0. Find where this state machine cheats the player.",
+  "rounds": [
+    {
+      "code": [
+        "state = \"standing\"",
+        "every frame:",
+        "    if state == \"standing\" and jump pressed: state = \"jumping\"",
+        "    else if state == \"standing\" and holding arrow: state = \"running\"",
+        "    else if state == \"running\" and not holding arrow: state = \"standing\"",
+        "    else if state == \"running\" and jump pressed: state = \"jumping\"",
+        "    else if state == \"jumping\" and speedY > 0: state = \"falling\"",
+        "    else if state == \"falling\" and on ground: state = \"standing\""
+      ],
+      "steps": [
+        {
+          "line": 5,
+          "input": "State “running”. The player is holding the arrow and presses jump in this frame.",
+          "q": "What will the state be at the end of the frame?",
+          "options": [
+            "jumping",
+            "standing",
+            "running"
+          ],
+          "answer": 0,
+          "why": "Line 5 isn’t true, because the player is holding the arrow. Line 6 is true, and the state changes to “jumping”. This is the warm-up round, the next ones won’t be this smooth."
+        },
+        {
+          "line": 4,
+          "input": "State “running”. In the same frame, the player lets go of the arrow and presses jump. They want to jump straight up.",
+          "q": "What happens to the jump?",
+          "options": [
+            "the character jumps",
+            "the state will be “standing” and the jump gets lost",
+            "the character jumps one frame later"
+          ],
+          "answer": 1,
+          "why": "The lines are joined with “else if”, so only the first true one counts. Line 5 (running and not holding arrow) is above line 6 and is true, so the state will be “standing”. Line 6 is no longer read. In the next frame, “jump pressed” is not true, because it lasted only one frame. The player feels that the game “ate” their jump. The order of the conditions is part of the game’s rules."
+        },
+        {
+          "line": 3,
+          "input": "State “standing” at the edge of a platform. The player holds the right arrow and the character runs off the edge into the abyss.",
+          "q": "In which state does the character fall down?",
+          "options": [
+            "falling",
+            "running",
+            "jumping"
+          ],
+          "answer": 1,
+          "why": "Line 4 changes the state to “running”. But no line says “if I’m standing or running and not on the ground, I’m falling”. The only way into the state “falling” is through a jump. So the character flies down the abyss in the state “running”."
+        },
+        {
+          "line": 5,
+          "input": "Continued: the character is in the air above the abyss, still in the state “running”, and the player presses jump.",
+          "q": "What happens?",
+          "options": [
+            "nothing, you can’t jump in mid-air",
+            "the character jumps out of mid-air",
+            "the state changes to “falling”"
+          ],
+          "answer": 1,
+          "why": "Line 6 only asks about the state “running” and the press, it doesn’t ask about the ground. The character jumps out of mid-air. Players quickly find this unintended jump and use it to skip half the level."
+        },
+        {
+          "line": 6,
+          "input": "State “jumping”. The character arrives exactly at the top of the jump, when speedY = 0, on the edge of a higher platform. Physics puts it on the ground and keeps speedY = 0.",
+          "q": "What happens next?",
+          "options": [
+            "the state goes to “falling” and then to “standing”",
+            "the character stays in the state “jumping” forever and can no longer jump or start running",
+            "the state goes straight to “standing”"
+          ],
+          "answer": 1,
+          "why": "Line 7 needs speedY > 0, but on the ground it is still 0. Line 8 only applies to the state “falling”. Lines 3 to 6 ask about “standing” and “running”. No arrow leads out of the state “jumping” on the ground. The game hasn’t frozen, but the character has. This is called a softlock, and the player has to restart the level."
+        },
+        {
+          "line": 7,
+          "input": "Three bugs: the lost jump, the jump out of mid-air after running off an edge, and getting stuck in the state “jumping”.",
+          "q": "Which fix removes all three?",
+          "options": [
+            "add a single line: jumping and on ground, then standing",
+            "put jump pressed first for standing and running, add a transition standing or running and not on ground, then falling, and a transition jumping or falling and on ground, then standing",
+            "increase gravity so that the character lands faster"
+          ],
+          "answer": 1,
+          "why": "The lost jump is fixed by the order: jumping takes priority over stopping. The jump out of mid-air is fixed by a transition to “falling” whenever the character loses the ground. Getting stuck is fixed by a transition to the ground from the state “jumping” too. The single line fixes only the third bug, and gravity fixes none. That is why designers draw the state machine: for each state they ask how do I get out of it for every event."
+        }
+      ]
+    }
+  ],
+  "debrief": "A state machine is a list of states and arrows between them. The bugs in it are not in the lines that are there, but in the arrows that are missing, and in the order in which the conditions are read. A good check is a table: the rows are states, the columns are events (press, let go of arrow, lose the ground, land) and every cell must make clear where the character goes. An empty cell is a future bug."
+}

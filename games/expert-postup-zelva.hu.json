@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Teknős: a legrövidebb program",
+  "instruction": "Rajzold meg a célábrát a lehető legrövidebb programmal. A teknős középről indul, és felfelé néz. Minden parancs számít, az ismételd és a tanuld is. Csillagot az a program kap, amely belefér a korlátba.",
+  "levels": [
+    {
+      "goal": "Egyenlő oldalú háromszög 100-as oldallal.",
+      "target": "opakuj 3 [ dopředu 100 vpravo 120 ]",
+      "max": 3,
+      "hint": "A háromszög belső szöge 60°. A teknős azonban nem a belső szöggel fordul, hanem azzal, ami az egyenes irányig hiányzik.",
+      "why": "Az alakzat körüli teljes út során a teknős egyszer körbefordul, vagyis 360°-ot fordul. Három egyforma sarok: 360 : 3 = 120°."
+    },
+    {
+      "goal": "Ötágú csillag egy vonallal rajzolva, 150-es oldallal.",
+      "target": "opakuj 5 [ dopředu 150 vpravo 144 ]",
+      "max": 3,
+      "hint": "A csillagnál a teknős nem egyszer, hanem kétszer fordul körbe. Mennyi kétszer 360° osztva öttel?",
+      "why": "A csillag kétszer kerüli meg a középpontot: 2 × 360 = 720°, 720 : 5 = 144°. A teljes elfordulás szabálya általános, minden zárt alakzatra érvényes."
+    },
+    {
+      "goal": "2 × 2-es rács négy 50-es oldalú négyzetből, amelyek egy sarokban érintkeznek.",
+      "target": "nauč ctverec :a [ opakuj 4 [ dopředu :a vpravo 90 ] ] opakuj 4 [ ctverec 50 vlevo 90 ]",
+      "max": 8,
+      "hint": "Először tanítsd meg a teknőst paraméteres négyzetet rajzolni. Aztán nézd a rácsot úgy, mint négy négyzetet egy pont körül.",
+      "why": "A megoldás elnevezett része az alprogram. Négy, közös sarok körül elforgatott négyzet rácsot ad, pedig a programban semmilyen rácsot nem látsz. Így néz ki a felbontás a kódban."
+    },
+    {
+      "goal": "Kilencágú hegyes csillag egy vonallal, 150-es oldallal. Minden ága hegyesebb, mint az ötágúé.",
+      "target": "opakuj 9 [ dopředu 150 vpravo 160 ]",
+      "max": 3,
+      "hint": "Próbáld ki, hányszor kell a teknősnek megkerülnie a középpontot. A szögnek egész számnak kell lennie, és a csillagnak záródnia kell.",
+      "why": "A teknős négyszer kerüli meg a középpontot: 4 × 360 = 1440°, 1440 : 9 = 160°. Két vagy három megkerülésnél 80° és 120° jön ki, és ezek már nem hegyes ágak (120°-nál csak egy háromszög rajzolódik háromszor egymásra)."
+    },
+    {
+      "goal": "Házikó egy vonallal: 100-as oldalú négyzet, mindkét átló és a tető. A toll egyszer sem emelkedik fel, és egyetlen vonal sem rajzolódik kétszer. A bal alsó sarokban kezdesz.",
+      "target": "vpravo 90 dopředu 100 vlevo 90 dopředu 100 vlevo 135 dopředu 141 vpravo 135 dopředu 100 vpravo 90 dopředu 100 vlevo 135 dopředu 71 vlevo 90 dopředu 71 vlevo 90 dopředu 141",
+      "max": 16,
+      "hint": "A házikó egy gráf: 5 sarok és 8 vonal. Számold meg, hány vonal indul az egyes sarkokból. Egy vonallal csak olyan sarokban lehet kezdeni, ahonnan páratlan számú vonal indul, és a másik ilyen sarokban kell végezned.",
+      "why": "Páratlan sarok csak kettő van: a bal és a jobb alsó. Az egyikben kezdesz, a másikban végzel. A 100-as oldalú négyzet átlója kb. 141, a tető ferde oldala kb. 71. A teknős itt a Modell alapfogalom modelljét rajzolja: egy gráfot."
+    }
+  ],
+  "debrief": "A rövidebb program nem csak szebb. Rákényszerít, hogy megtaláld a szabályt: teljes elfordulás, ismétlődő rész, alprogram, a gráf páratlan csúcsai. Egy háromparancsos program, amely csillagot rajzol, általános. Megváltoztatsz egy számot, és más csillagot kapsz."
+}

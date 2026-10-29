@@ -1,0 +1,149 @@
+{
+  "type": "trace",
+  "title": "Felezéses keresés: hol bújik a hiba",
+  "instruction": "Léptesd végig a keresést egy rendezett listában. A program nem sorban nézi a számokat, hanem mindig a közepére néz, és a felét eldobja. Kövesd az alsó, a felső és a közép változót. Vigyázz, a harmadik körben hiba rejtőzik a kódban.",
+  "rounds": [
+    {
+      "code": [
+        "lista = [3, 8, 12, 17, 21, 25, 30, 34, 40]   # lista[1] értéke 3, lista[9] értéke 40",
+        "keresett = 30",
+        "alsó = 1, felső = 9",
+        "amíg alsó ≤ felső:",
+        "    közép = (alsó + felső) : 2, lefelé kerekítve",
+        "    ha lista[közép] = keresett: add vissza közép",
+        "    ha lista[közép] < keresett: alsó = közép + 1",
+        "    különben: felső = közép - 1",
+        "add vissza „nincs meg”"
+      ],
+      "steps": [
+        {
+          "line": 4,
+          "input": "alsó = 1, felső = 9",
+          "q": "Mennyi a közép?",
+          "options": [
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": 1,
+          "why": "(1 + 9) : 2 = 5. Az 5. helyen 21 áll."
+        },
+        {
+          "line": 6,
+          "input": "közép = 5, lista[5] = 21, keresett 30",
+          "q": "Mi változik?",
+          "options": [
+            "alsó = 6",
+            "felső = 4",
+            "alsó = 5"
+          ],
+          "answer": 0,
+          "why": "21 < 30, ezért a harminc csak jobbra lehet. A bal felét a 21-gyel együtt a program eldobja: alsó = 5 + 1 = 6."
+        },
+        {
+          "line": 5,
+          "input": "alsó = 6, felső = 9",
+          "q": "Hová néz a program, és mit talál?",
+          "options": [
+            "a 7. helyre, ott 30 áll: megvan",
+            "a 8. helyre, ott 34 áll: keres tovább",
+            "a 6. helyre, ott 25 áll: keres tovább"
+          ],
+          "answer": 0,
+          "why": "(6 + 9) : 2 = 7,5, lefelé kerekítve 7. lista[7] = 30. Két összehasonlítás elég volt. Az elejétől induló keresésnek hét kellett volna."
+        }
+      ]
+    },
+    {
+      "code": [
+        "lista = [3, 8, 12, 17, 21, 25, 30, 34, 40]   # lista[1] értéke 3, lista[9] értéke 40",
+        "keresett = 26",
+        "alsó = 1, felső = 9",
+        "amíg alsó ≤ felső:",
+        "    közép = (alsó + felső) : 2, lefelé kerekítve",
+        "    ha lista[közép] = keresett: add vissza közép",
+        "    ha lista[közép] < keresett: alsó = közép + 1",
+        "    különben: felső = közép - 1",
+        "add vissza „nincs meg”"
+      ],
+      "steps": [
+        {
+          "line": 7,
+          "input": "alsó = 6, felső = 9, közép = 7, lista[7] = 30, keresett 26",
+          "q": "Mi változik?",
+          "options": [
+            "felső = 6",
+            "alsó = 8",
+            "felső = 7"
+          ],
+          "answer": 0,
+          "why": "30 > 26, ezért a keresett számnak a 7. helytől balra kellene lennie: felső = 7 - 1 = 6."
+        },
+        {
+          "line": 3,
+          "input": "Következő lépés: közép = 6, lista[6] = 25 < 26, ezért alsó = 7. Most alsó = 7, felső = 6.",
+          "q": "Mit csinál a ciklus?",
+          "options": [
+            "véget ér, és a program „nincs meg” értéket ad vissza",
+            "folytatódik 6-os középpel",
+            "folytatódik 7-es középpel"
+          ],
+          "answer": 0,
+          "why": "Az alsó ≤ felső feltétel nem teljesül, 7 ≤ 6 hamis. A szakasz, ahol a szám lehetne, üres. A program véges számú lépés után véget ér, pedig a számot nem találta meg."
+        }
+      ]
+    },
+    {
+      "code": [
+        "lista = [3, 8, 12, 17, 21, 25, 30, 34, 40]   # lista[1] értéke 3, lista[9] értéke 40",
+        "keresett = 40",
+        "alsó = 1, felső = 9",
+        "amíg alsó ≤ felső:",
+        "    közép = (alsó + felső) : 2, lefelé kerekítve",
+        "    ha lista[közép] = keresett: add vissza közép",
+        "    ha lista[közép] < keresett: alsó = közép",
+        "    különben: felső = közép - 1",
+        "add vissza „nincs meg”"
+      ],
+      "steps": [
+        {
+          "line": 6,
+          "input": "Keresett: 40. Két lépés után alsó = 7, felső = 9, közép = 8, lista[8] = 34.",
+          "q": "Mit hajt végre a hibás sor?",
+          "options": [
+            "alsó = 8",
+            "alsó = 9",
+            "felső = 7"
+          ],
+          "answer": 0,
+          "why": "34 < 40, ezért az alsó = közép hajtódik végre. Ebből a kódból hiányzik a + 1, ezért alsó = 8, nem 9."
+        },
+        {
+          "line": 4,
+          "input": "alsó = 8, felső = 9",
+          "q": "Mi történik ezután?",
+          "options": [
+            "a közép megint 8, és a program végtelen ciklusba kerül",
+            "a közép 9, és a program megtalálja a 40-et",
+            "a program „nincs meg” értéket ad vissza"
+          ],
+          "answer": 0,
+          "why": "(8 + 9) : 2 = 8,5, lefelé 8. Megint 34 < 40, megint alsó = 8. Semmi nem változik, és a ciklus örökké fut. Az algoritmus megsértette a végességet. Ezt a hibát csak olyan teszt találja meg, amelyben a szám a lista legvégén van: ez szélsőséges eset."
+        },
+        {
+          "line": 3,
+          "input": "Javított kód (+ 1-gyel), a rendezett listában 1000 szám van",
+          "q": "Legfeljebb hányszor néz bele a program a listába?",
+          "options": [
+            "10-szer",
+            "100-szor",
+            "500-szor"
+          ],
+          "answer": 0,
+          "why": "Minden összehasonlítás legalább megfelezi a szakaszt: 1000, 500, 250, 125, 62, 31, 15, 7, 3, 1. Ez 10 pillantás, mert 2 a tizediken 1024. Egymillió számhoz 20 elég. Az elejétől induló keresésnek akár egymillió is kellhet."
+        }
+      ]
+    }
+  ],
+  "debrief": "Az intervallumfelezés az egyik legerősebb algoritmus: minden lépés eldobja a lehetőségek felét. De csak rendezett listán működik, és csak akkor, ha a szakasz minden lépésben tényleg kisebb lesz. Egyetlen hiányzó + 1 a gyors algoritmusból végtelen ciklust csinál. Ezért a széleket is teszteled: az első számot, az utolsó számot és egy olyan számot, amely nincs a listában."
+}

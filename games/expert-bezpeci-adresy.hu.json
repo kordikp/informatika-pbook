@@ -1,0 +1,50 @@
+{
+  "type": "pop",
+  "title": "Kié ez a cím?",
+  "instruction": "Nyolc link, amelyet üzenetben kaphatnál. Koppints azokra, amelyek NEM annak a szolgáltatásnak a tulajdonai, aminek kiadják magukat. Csak a domain valódi tulajdonosa számít, nem az, hogyan néz ki a cím.",
+  "hitLabel": "csalás",
+  "missLabel": "valódi",
+  "items": [
+    {
+      "text": "https://login.seznam.cz.overeni-uctu.top/prihlaseni",
+      "hit": true,
+      "why": "A domaint jobbról olvasod, egészen az első perjelig: a vége overeni-uctu.top. Mindent, ami ettől balra van, a domain tulajdonosa maga írt oda, akár a seznam.cz szót is."
+    },
+    {
+      "text": "https://email.seznam.cz/",
+      "hit": false,
+      "why": "A perjel előtti vég seznam.cz. A bal oldali email szó csak egy aldomain, amelyet a Seznam a saját domainjén hozott létre. Valódi cím."
+    },
+    {
+      "text": "https://seznam.cz@prihlas-se.top/login",
+      "hit": true,
+      "why": "Mindent, ami a kukac előtt van, a böngésző felhasználónévnek vesz, nem címnek. Valójában a prihlas-se.top oldalra csatlakozol."
+    },
+    {
+      "text": "https://www.seznarn.info/",
+      "hit": true,
+      "why": "Nézd meg alaposan: az egymás melletti r és n úgy néz ki, mint egy m. Egy ilyen domain bárkié, aki megvette, és a mobilon apró betűvel szinte meg sem tudod különböztetni."
+    },
+    {
+      "text": "https://accounts.google.com/signin",
+      "hit": false,
+      "why": "A perjel előtti vég google.com, az accounts szó a Google aldomainje. Technikainak tűnik, de valódi."
+    },
+    {
+      "text": "https://steamcommunity.com-darky.top/trade",
+      "hit": true,
+      "why": "A kötőjel egy szóvá köti össze a com és a darky részt. A domain com-darky.top, a Steamnek semmi köze hozzá."
+    },
+    {
+      "text": "https://login.microsoftonline.com/",
+      "hit": false,
+      "why": "Gyanúsan hosszúnak tűnik, de a microsoftonline.com a Microsoft valódi bejelentkezési domainje. A furcsa külső nem bizonyít csalást. A tulajdonos dönt."
+    },
+    {
+      "text": "https://steamcommunity.com/id/ondra",
+      "hit": false,
+      "why": "A domain steamcommunity.com, és ez a Steam valódi közössége. A perjel utáni rész (/id/ondra) csak a weboldalon belüli oldalt határozza meg."
+    }
+  ],
+  "debrief": "A szabály, amely mindig működik: keresd meg a https:// utáni első különálló perjelet, dobj el mindent a kukac előtt, és olvasd jobbról az utolsó két részt (a .cz, .com, .top végződéseknél). Ez a tulajdonos. A lakat (HTTPS) nem ment meg: csak azt bizonyítja, hogy a kapcsolat titkosított a domain tulajdonosával. Tanúsítványt ingyen a csaló is szerez."
+}

@@ -1,0 +1,191 @@
+{
+  "type": "gates",
+  "title": "Kisautó-agy logikai kapukból",
+  "instruction": "Építsd meg a robot döntését logikai kapukból, egyetlen programsor nélkül. A bemenetek az érzékelők (1 = látja a vonalat vagy nekiment valaminek), a kimenetek a motorok és a műveletek (1 = jár). A csillagot a legkevesebb kapuért kapod.",
+  "levels": [
+    {
+      "story": "A kisautónak két vonalérzékelője van, L és P. Egyenesen mindkettő látja a vonalat, kanyarban csak az egyik. Kösd be az ML és MP motorokat úgy, hogy a kisautó a vonal felé kanyarodjon. Ha csak a jobb motor jár, balra kanyarodik.",
+      "inputs": [
+        "L",
+        "P"
+      ],
+      "outputs": {
+        "ML": "P",
+        "MP": "L"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT",
+        "XOR"
+      ],
+      "max": 1,
+      "why": "Nem kell egyetlen kapu sem: az ML-t kösd a P-re, az MP-t az L-re. A keresztbe kötött drótok az egész program. Ezt Braitenberg-járműnek hívják.",
+      "solution": {
+        "gates": [],
+        "outputs": {
+          "ML": "P",
+          "MP": "L"
+        }
+      }
+    },
+    {
+      "story": "Ha a vonal eltűnik (L = 0 és P = 0), a kisautó ne álljon meg, hanem forduljon jobbra, amíg meg nem találja. A többi sor marad, mint legutóbb.",
+      "inputs": [
+        "L",
+        "P"
+      ],
+      "outputs": {
+        "ML": "(not L) or P",
+        "MP": "L"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT",
+        "XOR"
+      ],
+      "max": 2,
+      "why": "Az ML a négy sorból háromban legyen 1, és csak L = 1, P = 0 esetén 0. Az ilyen „szinte mindig” jól építhető OR-ból: ML = NOT L OR P.",
+      "solution": {
+        "gates": [
+          [
+            "NOT",
+            "L"
+          ],
+          [
+            "OR",
+            "g0",
+            "P"
+          ]
+        ],
+        "outputs": {
+          "ML": "g1",
+          "MP": "L"
+        }
+      }
+    },
+    {
+      "story": "A robotporszívónak két ütközője van, L és P. Ha bármelyikkel nekimegy valaminek, tolasson hátra (C). Jobbra fordulni (V) csak akkor kell, ha csak a bal ütközött.",
+      "inputs": [
+        "L",
+        "P"
+      ],
+      "outputs": {
+        "C": "L or P",
+        "V": "L and (not P)"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT"
+      ],
+      "max": 3,
+      "why": "C = L OR P. A V-hez L kell, és közben nem P: egy NOT és egy AND. Ha mindkettővel ütközik, egyenesen tolat hátra.",
+      "solution": {
+        "gates": [
+          [
+            "OR",
+            "L",
+            "P"
+          ],
+          [
+            "NOT",
+            "P"
+          ],
+          [
+            "AND",
+            "L",
+            "g1"
+          ]
+        ],
+        "outputs": {
+          "C": "g0",
+          "V": "g2"
+        }
+      }
+    },
+    {
+      "story": "A kisautó kapott egy harmadik, középső érzékelőt, S-t. Ha a közép látja a vonalat, egyenesen megy. Ha csak egy oldalsó érzékelő látja, afelé kanyarodik. Ha semmit sem lát, megáll. A kereszteződésben, ahol mindkét oldalsó látja a vonalat, szintén egyenesen megy.",
+      "inputs": [
+        "L",
+        "S",
+        "P"
+      ],
+      "outputs": {
+        "ML": "S or P",
+        "MP": "S or L"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT",
+        "XOR"
+      ],
+      "max": 2,
+      "why": "Mindegyik motor a középre és a túloldalra hallgat: ML = S OR P, MP = S OR L. Nyolc sor a táblázatban, és csak két kapu.",
+      "solution": {
+        "gates": [
+          [
+            "OR",
+            "S",
+            "P"
+          ],
+          [
+            "OR",
+            "S",
+            "L"
+          ]
+        ],
+        "outputs": {
+          "ML": "g0",
+          "MP": "g1"
+        }
+      }
+    },
+    {
+      "story": "A műhely melletti folyosón két kapcsoló van, lent A és fent B. Minden kattintással átkapcsol az S lámpa, bármelyiket nyomod is meg. Az XOR kapu viszont elfogyott.",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": {
+        "S": "A xor B"
+      },
+      "allow": [
+        "AND",
+        "OR",
+        "NOT"
+      ],
+      "max": 4,
+      "why": "A lámpa akkor világít, ha pontosan egy kapcsoló van bekapcsolva: (A OR B) AND NOT (A AND B). Négy kapu. Ezért gyártják az XOR-t önálló alkatrészként.",
+      "solution": {
+        "gates": [
+          [
+            "OR",
+            "A",
+            "B"
+          ],
+          [
+            "AND",
+            "A",
+            "B"
+          ],
+          [
+            "NOT",
+            "g1"
+          ],
+          [
+            "AND",
+            "g0",
+            "g2"
+          ]
+        ],
+        "outputs": {
+          "S": "g3"
+        }
+      }
+    }
+  ],
+  "debrief": "A robot döntési táblázata kapukból is megépíthető. Grey Walter teknősei, az első robotok egyikei a 40-es évek végéről, csak néhány elektroncsővel rendelkeztek, mégis úgy viselkedtek, mintha gondolkodnának. A micro:bit programja ugyanezt csinálja, csak forrasztás nélkül írod át."
+}

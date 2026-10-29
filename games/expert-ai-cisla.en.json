@@ -1,0 +1,68 @@
+{
+  "type": "estimate",
+  "title": "Numbers that give AI away",
+  "instruction": "Estimate, or better still, calculate. Here your gut feeling often lets you down.",
+  "items": [
+    {
+      "q": "There are 100 pupils in a class, and 5 of them have flu. A lazy model always answers “healthy”. What is its accuracy?",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "answer": 95,
+      "tolerance": 0,
+      "unit": "%",
+      "why": "It gets all 95 healthy pupils right. It doesn’t find a single ill one, and yet it scores 95%. Accuracy alone isn’t enough; you also have to look at whom the model misses."
+    },
+    {
+      "q": "You test a nearest neighbour model on its own training data (no two examples are the same). What accuracy will you measure?",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "answer": 100,
+      "tolerance": 0,
+      "unit": "%",
+      "why": "Every example is nearest to itself, at a distance of 0. A hundred per cent result says nothing about new data. That’s why you test on data the model has never seen."
+    },
+    {
+      "q": "A language model writes a sentence of 5 words. For each word there is a 90% chance it will be true. What is the chance that the whole sentence is true?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 59,
+      "tolerance": 3,
+      "unit": "%",
+      "why": "0.9 × 0.9 × 0.9 × 0.9 × 0.9 ≈ 0.59. Small uncertainties multiply. The longer the answer, the more places where it can go off track."
+    },
+    {
+      "q": "A deepfake detector catches 99% of fake videos and correctly lets through 99% of real videos. In the feed, 1 video in 1000 is fake. The detector has just flagged a video as fake. What is the chance that it really is?",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "answer": 9,
+      "tolerance": 3,
+      "unit": "%",
+      "why": "Of 1000 videos, 1 is fake, and the detector will almost certainly flag it. But of the 999 real ones it will wrongly flag about 10. Of 11 alarms only 1 is real, which is about 9%. When something is rare, most alarms are false."
+    },
+    {
+      "q": "A video lasts 20 seconds, and the network shows an ad after every 5 videos. How many ads will you see in 40 minutes of scrolling?",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "answer": 24,
+      "tolerance": 2,
+      "unit": "ads",
+      "why": "40 minutes is 2400 seconds, that’s 120 videos, and 120 : 5 = 24 ads. Every extra minute is money for the network. That’s why the feed has no end."
+    },
+    {
+      "q": "Six websites claim the same thing. Five of them copied it from the sixth, which gives its own measurements. How many independent sources do you have?",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "answer": 1,
+      "tolerance": 0,
+      "unit": "source",
+      "why": "Copies are not confirmations. What counts is how many sources found it out themselves, not how many times it is repeated."
+    }
+  ],
+  "debrief": "AI and the internet work with probabilities, and numbers can fool you. High accuracy can hide a model that finds nothing. Even a reliable detector often raises a false alarm. And six websites can be a single source. When you calculate, you won’t be fooled."
+}

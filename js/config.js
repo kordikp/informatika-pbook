@@ -140,6 +140,18 @@ export const CONFIG = {
   },
   levelTitles: [null, null, null, 'Mistr informatiky'],
 
+  // Nadpisy skupin v seznamu misí (group z content/missions.json; generátor drží skupiny pohromadě).
+  missionGroups: {
+    chapter: { title: { cs: 'Mise kapitol', en: 'Chapter missions', sk: 'Misie kapitol', hu: 'Fejezetküldetések' },
+               note: { cs: 'Každá kapitola knihy jako jedna cesta s bossem na konci.', en: 'Each chapter of the book as one path with a boss at the end.', sk: 'Každá kapitola knihy ako jedna cesta s bossom na konci.', hu: 'A könyv minden fejezete egy út, a végén főellenséggel.' } },
+    world: { title: { cs: 'Mise světů', en: 'World missions', sk: 'Misie svetov', hu: 'Világküldetések' },
+             note: { cs: 'Jádra s příklady z jednoho světa a na konci vlastní projekt.', en: 'The cores with examples from one world, and a project of your own at the end.', sk: 'Jadrá s príkladmi z jedného sveta a na konci vlastný projekt.', hu: 'Az alapfogalmak egyetlen világ példáival, a végén saját projekttel.' } },
+    project: { title: { cs: 'Závěrečná mise', en: 'The final mission', sk: 'Záverečná misia', hu: 'A záróküldetés' },
+               note: { cs: 'Vlastní věc postavená ze všeho, co kniha ukázala.', en: 'Something of your own, built from everything the book showed.', sk: 'Vlastná vec postavená zo všetkého, čo kniha ukázala.', hu: 'Valami saját, mindabból építve, amit a könyv megmutatott.' } },
+    expedition: { title: { cs: '🎒 Expedice', en: '🎒 Expeditions', sk: '🎒 Expedície', hu: '🎒 Expedíciók' },
+                  note: { cs: 'Pro ty, kdo chtějí víc: těžší výpravy ke skutečným nástrojům, soutěžím a komunitám. Do certifikátu se nepočítají.', en: 'For those who want more: harder journeys to real tools, contests and communities. They do not count toward the certificate.', sk: 'Pre tých, ktorí chcú viac: ťažšie výpravy k skutočným nástrojom, súťažiam a komunitám. Do certifikátu sa nepočítajú.', hu: 'Azoknak, akik többet akarnak: nehezebb utak valódi eszközökhöz, versenyekhez és közösségekhez. A tanúsítványba nem számítanak bele.' } },
+  },
+
   // Mechaniky na dokončení (js/completion.js): nic nezamykají, jen ukazují cíl a nabízejí kontrolu.
   completion: {
     goalLine: true,      // pod jádrem a na Procházet: kolik zbývá k dalšímu stupni certifikátu

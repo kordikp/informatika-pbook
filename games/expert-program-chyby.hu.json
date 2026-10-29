@@ -1,0 +1,53 @@
+{
+  "type": "sort",
+  "title": "Milyen hiba ez?",
+  "instruction": "Minden Python-részletben van egy hiba. Döntsd el, mikor jön elő: a Python el sem indítja a programot (szintaktikai hiba), a program futás közben leáll (futásidejű hiba), vagy fut, de mást csinál, mint kellene (logikai hiba).",
+  "buckets": [
+    "Szintaktikai hiba",
+    "Futásidejű hiba",
+    "Logikai hiba"
+  ],
+  "items": [
+    {
+      "text": "print(\"Szia)",
+      "answer": 0,
+      "why": "Hiányzik a záró idézőjel. A Python nem olvassa végig a szöveget, és el sem indítja a programot."
+    },
+    {
+      "text": "if pont > 10   (a végén kettőspont nélkül)   és alatta behúzva print(\"Sztár!\")",
+      "answer": 0,
+      "why": "Pythonban a feltétel után kettőspontnak kell állnia. Nélküle ez a Python számára érvénytelen mondat, és semmit sem indít el."
+    },
+    {
+      "text": "kor = input(\"Hány éves vagy? \")   aztán   print(kor + 1)",
+      "answer": 1,
+      "why": "Az input szöveget ad vissza, nem számot. Szöveget és számot a Python nem tud összeadni, és leáll, amikor arra a sorra ér. Javítás: int(input(…))."
+    },
+    {
+      "text": "jatekosok = [\"Ema\", \"Ondra\", \"Tomáš\"]   aztán   print(jatekosok[3])",
+      "answer": 1,
+      "why": "A lista számozása nulláról indul: 0, 1, 2. A 3-as pozíció nem létezik, és a program IndexError hibával leáll."
+    },
+    {
+      "text": "atlag = pontok / db   és a játékos még egy meccset sem játszott, így db = 0",
+      "answer": 1,
+      "why": "A leírás rendben van. A program csak bizonyos bemeneteknél áll le, itt a nullával való osztás miatt. Ezért a nullával is tesztelni kell."
+    },
+    {
+      "text": "A programnak 1-től 10-ig ki kell írnia a számokat:   for i in range(1, 10): print(i)",
+      "answer": 2,
+      "why": "A range(1, 10) a tízes előtt véget ér. A program hiba nélkül fut, csak eggyel kevesebb számot ír ki. Az eggyel való elcsúszás a világ egyik leggyakoribb hibája."
+    },
+    {
+      "text": "x = 10   aztán   while x != 0:   x = x - 3",
+      "answer": 2,
+      "why": "A Python semmit sem jelez, a program csak soha nem áll meg: az x átugorja a nullát (1, −2, −5…). A végtelen ciklus logikai hiba, a számítógép pontosan azt csinálja, ami le van írva."
+    },
+    {
+      "text": "A kedvezmény 65 éves kortól jár:   if kor > 65: kedvezmeny = True",
+      "answer": 2,
+      "why": "A program fut, de aki pontosan 65 éves, nem kap kedvezményt. Határhiba, csak egy 65 éves korral végzett teszt leplezi le."
+    }
+  ],
+  "debrief": "A szintaktikai hibát a Python megtalálja helyetted, még mielőtt elindítod a programot. A futásidejű hibát akkor jelzi, amikor beleütközik, és megmondja a sor számát. A logikai hibát senki sem találja meg, csak te és a tesztjeid. Ezért írják a teszteket előre, a határokkal együtt."
+}

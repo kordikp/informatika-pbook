@@ -1,0 +1,53 @@
+{
+  "type": "sort",
+  "title": "Aká je to chyba?",
+  "instruction": "Každý úryvok Pythonu má jednu chybu. Rozhodni, kedy sa prejaví: Python program vôbec nespustí (syntaktická chyba), program spadne počas behu (chyba za behu), alebo beží, ale robí niečo iné, než mal (logická chyba).",
+  "buckets": [
+    "Syntaktická chyba",
+    "Chyba za behu",
+    "Logická chyba"
+  ],
+  "items": [
+    {
+      "text": "print(\"Ahoj)",
+      "answer": 0,
+      "why": "Chýba uzatváracia úvodzovka. Python text nedočíta do konca a program ani nespustí."
+    },
+    {
+      "text": "if skore > 10   (bez dvojbodky na konci)   a pod tým odsadené print(\"Hviezda!\")",
+      "answer": 0,
+      "why": "Za podmienkou musí byť v Pythone dvojbodka. Bez nej je to pre Python neplatná veta a nespustí nič."
+    },
+    {
+      "text": "vek = input(\"Koľko máš rokov? \")   a potom   print(vek + 1)",
+      "answer": 1,
+      "why": "input vracia text, nie číslo. Text a číslo Python sčítať nevie a spadne, keď na ten riadok príde. Oprava: int(input(…))."
+    },
+    {
+      "text": "hraci = [\"Ema\", \"Ondra\", \"Tomáš\"]   a potom   print(hraci[3])",
+      "answer": 1,
+      "why": "Zoznam sa čísluje od nuly: 0, 1, 2. Pozícia 3 neexistuje a program spadne s chybou IndexError."
+    },
+    {
+      "text": "priemer = body / pocet   a hráč zatiaľ neodohral žiadnu hru, takže pocet = 0",
+      "answer": 1,
+      "why": "Zápis je v poriadku. Program spadne len pre niektoré vstupy, tu delením nulou. Preto sa testuje aj s nulou."
+    },
+    {
+      "text": "Program má vypísať čísla 1 až 10:   for i in range(1, 10): print(i)",
+      "answer": 2,
+      "why": "range(1, 10) končí pred desiatkou. Program beží bez chyby, len vypíše o jedno číslo menej. Chyba o jednotku je jedna z najčastejších na svete."
+    },
+    {
+      "text": "x = 10   a potom   while x != 0:   x = x - 3",
+      "answer": 2,
+      "why": "Python nič nehlási, program sa len nikdy nezastaví: x preskočí nulu (1, −2, −5…). Zacyklenie je logická chyba, počítač robí presne to, čo je napísané."
+    },
+    {
+      "text": "Zľava má platiť od 65 rokov:   if vek > 65: zlava = True",
+      "answer": 2,
+      "why": "Program beží, ale človek, ktorý má presne 65, zľavu nedostane. Chyba na hranici, odhalí ju len test s vekom 65."
+    }
+  ],
+  "debrief": "Syntaktickú chybu nájde Python za teba, ešte než program spustíš. Chybu za behu ohlási, keď na ňu narazí, a povie ti číslo riadku. Logickú chybu nenájde nikto okrem teba a tvojich testov. Preto sa testy píšu vopred a s hranicami."
+}

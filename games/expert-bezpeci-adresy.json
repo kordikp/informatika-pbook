@@ -1,0 +1,50 @@
+{
+  "type": "pop",
+  "title": "Kdo vlastní tuhle adresu?",
+  "instruction": "Osm odkazů, které by ti mohly přijít ve zprávě. Klepni na ty, které NEpatří službě, za kterou se vydávají. Rozhoduje jen skutečný vlastník domény, ne to, jak adresa vypadá.",
+  "hitLabel": "podvod",
+  "missLabel": "pravá",
+  "items": [
+    {
+      "text": "https://login.seznam.cz.overeni-uctu.top/prihlaseni",
+      "hit": true,
+      "why": "Doménu čteš zprava, až k prvnímu lomítku: konec je overeni-uctu.top. Všechno vlevo od toho si vlastník té domény napsal sám, klidně i slovo seznam.cz."
+    },
+    {
+      "text": "https://email.seznam.cz/",
+      "hit": false,
+      "why": "Konec před lomítkem je seznam.cz. Slovo email vlevo je jen subdoména, kterou si Seznam založil u sebe. Pravá adresa."
+    },
+    {
+      "text": "https://seznam.cz@prihlas-se.top/login",
+      "hit": true,
+      "why": "Všechno před zavináčem prohlížeč bere jako uživatelské jméno, ne jako adresu. Skutečně se připojíš na prihlas-se.top."
+    },
+    {
+      "text": "https://www.seznarn.info/",
+      "hit": true,
+      "why": "Podívej se pozorně: r a n vedle sebe vypadají jako m. Taková doména patří komukoli, kdo si ji koupil, a v malém písmu na mobilu ji skoro nerozeznáš."
+    },
+    {
+      "text": "https://accounts.google.com/signin",
+      "hit": false,
+      "why": "Konec před lomítkem je google.com, slovo accounts je subdoména Googlu. Vypadá technicky, ale je pravá."
+    },
+    {
+      "text": "https://steamcommunity.com-darky.top/trade",
+      "hit": true,
+      "why": "Pomlčka spojuje com a darky do jednoho slova. Doména je com-darky.top, Steam s ní nemá nic společného."
+    },
+    {
+      "text": "https://login.microsoftonline.com/",
+      "hit": false,
+      "why": "Vypadá to podezřele dlouze, ale microsoftonline.com je skutečná přihlašovací doména Microsoftu. Divný vzhled podvod neprokazuje. Rozhoduje vlastník."
+    },
+    {
+      "text": "https://steamcommunity.com/id/ondra",
+      "hit": false,
+      "why": "Doména je steamcommunity.com a to je pravá komunita Steamu. Část za lomítkem (/id/ondra) určuje jen stránku uvnitř webu."
+    }
+  ],
+  "debrief": "Pravidlo, které funguje vždycky: najdi první samostatné lomítko za https://, zahoď všechno před zavináčem a čti zprava poslední dvě části (u .cz, .com, .top). To je vlastník. Zámeček (HTTPS) tě nezachrání: dokazuje jen, že spojení je šifrované s majitelem té domény. Certifikát si zdarma pořídí i podvodník."
+}

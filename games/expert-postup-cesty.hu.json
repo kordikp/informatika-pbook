@@ -1,0 +1,322 @@
+{
+  "type": "route",
+  "title": "A leggyorsabb út a városon át",
+  "instruction": "Rakd össze az utat a starttól a célig a lehető legkisebb percösszeggel. Vigyázz a csábítóan rövid első élre: a most legrövidebb lépés nem feltétlenül vezet a legrövidebb úthoz.",
+  "levels": [
+    {
+      "story": "Otthonról edzésre mész. A boltig csak 2 perc, ezért arra indulsz. Jó ötlet ez?",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Otthon",
+          "x": 3,
+          "y": 47
+        },
+        {
+          "id": "S",
+          "label": "Bolt",
+          "x": 31,
+          "y": 0
+        },
+        {
+          "id": "P",
+          "label": "Park",
+          "x": 30,
+          "y": 100
+        },
+        {
+          "id": "M",
+          "label": "Híd",
+          "x": 66,
+          "y": 98
+        },
+        {
+          "id": "T",
+          "label": "Edzés",
+          "x": 97,
+          "y": 48
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "S",
+          2
+        ],
+        [
+          "S",
+          "T",
+          12
+        ],
+        [
+          "D",
+          "P",
+          5
+        ],
+        [
+          "P",
+          "M",
+          3
+        ],
+        [
+          "M",
+          "T",
+          3
+        ],
+        [
+          "S",
+          "P",
+          4
+        ]
+      ],
+      "from": "D",
+      "to": "T",
+      "metric": "perc",
+      "why": "A legrövidebb az Otthon → Park → Híd → Edzés, 11 perc. Aki mindig a legközelebbi helyet választja, a bolton át megy, és 12 vagy 14 perc alatt ér oda. Az ilyen mohó eljárást gyorsan ki lehet találni, de nem feltétlenül adja a legjobb eredményt."
+    },
+    {
+      "story": "Az iskolából Emával az állatkertbe mentek. Ema a lehető legkevesebb megállót szeretné. Te a lehető legkevesebb percet. Keresd meg a legkisebb összegű utat.",
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Iskola",
+          "x": 3,
+          "y": 51
+        },
+        {
+          "id": "B",
+          "label": "Könyvtár",
+          "x": 20,
+          "y": 1
+        },
+        {
+          "id": "C",
+          "label": "Főtér",
+          "x": 22,
+          "y": 48
+        },
+        {
+          "id": "D",
+          "label": "Mozi",
+          "x": 25,
+          "y": 96
+        },
+        {
+          "id": "E",
+          "label": "Pályaudvar",
+          "x": 55,
+          "y": 20
+        },
+        {
+          "id": "F",
+          "label": "Uszoda",
+          "x": 53,
+          "y": 80
+        },
+        {
+          "id": "G",
+          "label": "Stadion",
+          "x": 83,
+          "y": 4
+        },
+        {
+          "id": "H",
+          "label": "Állatkert",
+          "x": 99,
+          "y": 58
+        }
+      ],
+      "edges": [
+        [
+          "A",
+          "B",
+          4
+        ],
+        [
+          "A",
+          "C",
+          2
+        ],
+        [
+          "A",
+          "D",
+          6
+        ],
+        [
+          "B",
+          "C",
+          3
+        ],
+        [
+          "B",
+          "E",
+          5
+        ],
+        [
+          "C",
+          "E",
+          8
+        ],
+        [
+          "C",
+          "F",
+          4
+        ],
+        [
+          "D",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "G",
+          3
+        ],
+        [
+          "F",
+          "H",
+          11
+        ],
+        [
+          "G",
+          "H",
+          4
+        ],
+        [
+          "E",
+          "H",
+          8
+        ]
+      ],
+      "from": "A",
+      "to": "H",
+      "metric": "perc",
+      "why": "A leggyorsabb az Iskola → Főtér → Uszoda → Pályaudvar → Stadion → Állatkert, 15 perc. Ennek van a legtöbb megállója, mégis nyer. Az Uszoda → Állatkert út egyenesnek tűnik, de 11 percig tart. A mobilos navigáció pontosan így számol: a starttól kezdve minden helyhez megjegyzi a legrövidebb ismert utat (Dijkstra-algoritmus)."
+    },
+    {
+      "story": "Az uszoda és a pályaudvar közötti gyaloghíd felújítás miatt zárva van. A modell egy éllel változott. Megváltozik az egész út?",
+      "nodes": [
+        {
+          "id": "A",
+          "label": "Iskola",
+          "x": 1,
+          "y": 48
+        },
+        {
+          "id": "B",
+          "label": "Könyvtár",
+          "x": 21,
+          "y": 1
+        },
+        {
+          "id": "C",
+          "label": "Főtér",
+          "x": 30,
+          "y": 52
+        },
+        {
+          "id": "D",
+          "label": "Mozi",
+          "x": 18,
+          "y": 100
+        },
+        {
+          "id": "E",
+          "label": "Pályaudvar",
+          "x": 57,
+          "y": 24
+        },
+        {
+          "id": "F",
+          "label": "Uszoda",
+          "x": 57,
+          "y": 80
+        },
+        {
+          "id": "G",
+          "label": "Stadion",
+          "x": 88,
+          "y": 0
+        },
+        {
+          "id": "H",
+          "label": "Állatkert",
+          "x": 98,
+          "y": 57
+        }
+      ],
+      "edges": [
+        [
+          "A",
+          "B",
+          4
+        ],
+        [
+          "A",
+          "C",
+          2
+        ],
+        [
+          "A",
+          "D",
+          6
+        ],
+        [
+          "B",
+          "C",
+          3
+        ],
+        [
+          "B",
+          "E",
+          5
+        ],
+        [
+          "C",
+          "E",
+          8
+        ],
+        [
+          "C",
+          "F",
+          4
+        ],
+        [
+          "D",
+          "F",
+          2
+        ],
+        [
+          "E",
+          "G",
+          3
+        ],
+        [
+          "F",
+          "H",
+          11
+        ],
+        [
+          "G",
+          "H",
+          4
+        ],
+        [
+          "E",
+          "H",
+          8
+        ]
+      ],
+      "from": "A",
+      "to": "H",
+      "metric": "perc",
+      "why": "Most a leggyorsabb út egészen máshol vezet: Iskola → Könyvtár → Pályaudvar → Stadion → Állatkert, 16 perc. Egyetlen lezárt él szinte mindent megváltoztatott. Ezért a navigáció az egész útvonalat újraszámolja, valahányszor a modell változik, és nem támaszkodik a régi eredményre."
+    }
+  ],
+  "debrief": "A csúcsok és élek térképe modell: kihagyja a házakat, a fákat és a színeket, és csak azt hagyja meg, ami az út kiszámításához kell. Ezen a modellen fut aztán az algoritmus, amely okosan, nem vaktában vizsgálja meg az összes lehetőséget. A legközelebbi szomszéd mohó választása már az első szinten rossz irányba visz."
+}

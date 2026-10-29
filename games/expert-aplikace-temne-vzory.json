@@ -1,0 +1,120 @@
+{
+  "type": "hotspot",
+  "title": "Lov na temné vzory",
+  "instruction": "Temný vzor je návrh obrazovky, který tě nenápadně tlačí k volbě, která se hodí appce, ne tobě. Najdi v každé obrazovce, co je temný vzor. Pozor: některé věty vypadají podezřele, ale jsou poctivé.",
+  "items": [
+    {
+      "label": "Předplatné v hudební appce",
+      "segments": [
+        {
+          "text": "Vyzkoušej Premium 7 dní zdarma. "
+        },
+        {
+          "text": "Potom 199 Kč měsíčně. ",
+          "why": "Cena je napsaná jasně a předem. To je poctivé."
+        },
+        {
+          "text": "Zrušit můžeš kdykoli, ale jen na našem webu, ne v appce.",
+          "hit": true,
+          "why": "Přihlásit se jde jedním klepnutím, zrušit jen jinde a složitě. Říká se tomu past na myši: dovnitř snadno, ven těžko."
+        }
+      ]
+    },
+    {
+      "label": "Dotaz na oznámení",
+      "segments": [
+        {
+          "text": "Chceš dostávat oznámení o nových levelech? "
+        },
+        {
+          "text": "[Ano, jasně!] ",
+          "why": "Obyčejné tlačítko pro souhlas."
+        },
+        {
+          "text": "[Ne, nechci nic vědět o dárcích zdarma]",
+          "hit": true,
+          "why": "Odmítnutí je napsané tak, aby tě zahanbilo a vyvolalo pocit ztráty. Poctivá verze je prosté „Ne, díky“."
+        }
+      ]
+    },
+    {
+      "label": "Registrace do kvízové appky",
+      "segments": [
+        {
+          "text": "Přezdívka: ____ "
+        },
+        {
+          "text": "☐ Souhlasím s podmínkami ",
+          "why": "Souhlas s podmínkami je nutný a políčko je prázdné. V pořádku."
+        },
+        {
+          "text": "☑ Posílat mé údaje partnerům pro lepší nabídky",
+          "hit": true,
+          "why": "Políčko je zaškrtnuté předem. Kdo ho přehlédne, souhlasí se sdílením údajů, i když nechce."
+        }
+      ]
+    },
+    {
+      "label": "Obchod ve hře",
+      "segments": [
+        {
+          "text": "Balíček Drak: 1 200 drahokamů "
+        },
+        {
+          "text": "(o 20 % víc než minule) ",
+          "why": "Konkrétní srovnání, dá se ověřit. Samo o sobě to temný vzor není."
+        },
+        {
+          "text": "Nabídka končí za 00:59 ",
+          "hit": true,
+          "why": "Odpočet, který po vypršení naskočí znovu, je falešná naléhavost. Má tě donutit rozhodnout se dřív, než si to spočítáš."
+        },
+        {
+          "text": "Cena: 900 drahokamů",
+          "hit": true,
+          "why": "Cena ve virtuální měně schovává skutečné peníze. Kolik je 900 drahokamů v korunách? Appka to schválně neříká."
+        }
+      ]
+    },
+    {
+      "label": "Pokladna e-shopu",
+      "segments": [
+        {
+          "text": "Mikina 690 Kč "
+        },
+        {
+          "text": "Doprava 79 Kč ",
+          "why": "Doprava je vidět a dá se změnit. Poctivé."
+        },
+        {
+          "text": "Pojištění zásilky 39 Kč (přidali jsme za tebe)",
+          "hit": true,
+          "why": "Věc vložená do košíku bez tvého klepnutí. Jmenuje se to přidání do košíku potají."
+        }
+      ]
+    },
+    {
+      "label": "Smazání účtu",
+      "segments": [
+        {
+          "text": "Opravdu chceš odejít? "
+        },
+        {
+          "text": "Smazáním přijdeš o historii a uložené hry. ",
+          "why": "Pravdivá informace o tom, co smazání znamená. To appka říct má."
+        },
+        {
+          "text": "Tvoje 312denní série zmizí a kamarádům se ukáže, že to vzdáváš.",
+          "hit": true,
+          "why": "Emoční nátlak: místo informace strach z hanby před kamarády."
+        },
+        {
+          "text": "[ZŮSTAT] velké barevné tlačítko, „smazat“ drobně šedě dole",
+          "hit": true,
+          "why": "Možnost, kterou appka chce, je výrazná, a tvoje volba je schovaná. Obě tlačítka mají být stejně dobře vidět."
+        }
+      ]
+    }
+  ],
+  "debrief": "Temné vzory nejsou chyby, jsou to záměry. Poznáš je podle nerovnosti: jedna volba je snadná, velká a příjemná, druhá schovaná, drobná nebo nepříjemně napsaná. Když navrhuješ vlastní appku, dej souhlasu i odmítnutí stejnou váhu a cenu ukazuj v korunách."
+}

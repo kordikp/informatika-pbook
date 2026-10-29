@@ -1,0 +1,36 @@
+{
+  "type": "cipher",
+  "title": "Törd fel a rejtjeleket, mint egy kriptoanalitikus",
+  "instruction": "Minden rejtjelnek van gyenge pontja. Találd meg, törd fel az üzenetet, aztán olvasd el, miért bukott el a rejtjel.",
+  "levels": [
+    {
+      "kind": "caesar",
+      "plain": "TITKOS UZENET NEKED A SZAKKOR TALALKOZOJA CSUTORTOKON HATKOR LESZ AZ ISKOLABAN",
+      "key": "7",
+      "hint": "A Caesarnak csak 25 lehetséges eltolása van. Próbáld végig őket, vagy keress rövid szavakat: az egybetűs A-t és a kétbetűs AZ-t.",
+      "why": "A kulcstér 25 lehetőségből áll, a támadó egy perc alatt végignézi. Ez olyan, mint egy kétjegyű számból álló jelszó: a rejtjel erejéről az dönt, hány kulcsot kell kipróbálnod."
+    },
+    {
+      "kind": "subst",
+      "plain": "AKI TUDJA A JELSZAVADAT AZ A SZOLGALTATAS SZEMEBEN TE VAGY EZERT MINDEN SZOLGALTATASNAK LEGYEN SAJAT HOSSZU JELSZAVA ES MELLETTE EGY MASIK KULCS A TELEFONODON EBBEN A SZOVEGBEN A LEGGYAKORIBB BETU MUTATJA MEG HOL KEZDJ",
+      "key": "QWERTYUIOPASDFGHJKLZXCVBNM",
+      "hint": "Több mint 400 kvadrillió kulcs van, nincs értelme próbálgatni őket. Számold meg a gyakoriságot: a magyarban ékezetek nélkül az E, az A és a T vezet. Az egybetűs szó általában az A, gyakori rövid szavak még az AZ, az ES és az EGY. A kulcsot pedig egyetlen ujjhúzással le lehet írni a billentyűzeten.",
+      "why": "A kulcsok óriási száma nem elég. A behelyettesítés változatlanul hagyja a betűk gyakoriságát, így maga a nyelv árulja el, mi micsoda. A rejtjel ereje nem csak a kulcsok száma, hanem az is, mennyit árul el a rejtjel a szövegről."
+    },
+    {
+      "kind": "vigenere",
+      "plain": "A VARNAK TOBB RETEGE VAN A FRISSITES BEFOLTOZZA A RESEKET A MASHOL LEVO MENTES MEGVEDI AZ ADATOT AZ ENGEDELYEK KORDABAN TARTJAK AZ APPOKAT EGY RETEG NEM ELEG",
+      "key": "HRAD",
+      "hint": "A kulcs 4 betűs. Hagyd ki a szóközöket, és oszd a betűket négy csoportba: 1., 5., 9. … betű, aztán 2., 6., 10. … Minden csoport egy közönséges Caesar, és mindegyikre érvényes a gyakoriság.",
+      "why": "A Vigenère több Caesart kever össze, és így elmossa a gyakoriságot. Amint ismered a kulcs hosszát, négy könnyű rejtjelre esik szét. Több mint 300 évig feltörhetetlennek számított, mígnem a 19. században valaki épp erre a trükkre jött rá."
+    },
+    {
+      "kind": "vigenere",
+      "plain": "A CSALO NEM A GEPET TORI FEL HANEM TEGED EZERT ALLJ MEG ELLENORIZD AZ UZENETET MAS UTON ES A KODOKAT NE KULDD EL SENKINEK MEG A BARATODNAK SEM",
+      "key": "ONDRA",
+      "hint": "A kulcs 5 betűs. Mielőtt gyakoriságot számolnál, próbálj emberként gondolkodni: ki választaná a 7.B-ből kulcsnak a saját nevét?",
+      "why": "A rejtjel csak olyan erős, mint a kulcsa. Egy név, becenév vagy szótári szó hamarabb kitalálható, mint bármilyen számítás, pont mint az Ondra2013 jelszó."
+    }
+  ],
+  "debrief": "Három rejtjel, három gyenge pont: kevés kulcs (Caesar), elárult gyakoriság (behelyettesítés) és rövid vagy kitalálható kulcs (Vigenère). A mai rejtjeleknek, például az AES-nek, nincsenek ilyen gyenge pontjai. Annyi kulcsuk van, hogy a világ összes számítógépe sem próbálná végig, és az eredmény véletlen zajnak tűnik. A gyenge pont az ember és a jelszava marad."
+}

@@ -1,0 +1,275 @@
+{
+  "type": "route",
+  "title": "The path to the button",
+  "instruction": "The nodes are screens of the class app; the edges are the transitions between them. The number on an edge says how many seconds the transition takes: tapping, searching with your eyes, typing and waiting for the server. Find the user’s fastest path to the goal.",
+  "levels": [
+    {
+      "story": "Ondra wants to pay for the trip. What is the fastest way to the Pay button?",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Home",
+          "x": 0,
+          "y": 55
+        },
+        {
+          "id": "M",
+          "label": "Menu",
+          "x": 43,
+          "y": 28
+        },
+        {
+          "id": "V",
+          "label": "Trips",
+          "x": 67,
+          "y": 1
+        },
+        {
+          "id": "P",
+          "label": "Payments",
+          "x": 65,
+          "y": 50
+        },
+        {
+          "id": "H",
+          "label": "Search",
+          "x": 28,
+          "y": 99
+        },
+        {
+          "id": "Z",
+          "label": "Pay",
+          "x": 100,
+          "y": 52
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "M",
+          2
+        ],
+        [
+          "M",
+          "V",
+          2
+        ],
+        [
+          "V",
+          "Z",
+          3
+        ],
+        [
+          "M",
+          "P",
+          2
+        ],
+        [
+          "P",
+          "Z",
+          2
+        ],
+        [
+          "D",
+          "H",
+          4
+        ],
+        [
+          "H",
+          "Z",
+          3
+        ],
+        [
+          "D",
+          "V",
+          6
+        ]
+      ],
+      "from": "D",
+      "to": "Z",
+      "metric": "s",
+      "why": "Home → Menu → Payments → Pay takes 6 s. The Trips tile right on the home screen is only one tap, but it’s hidden at the bottom and you spend 6 s looking for it. Close doesn’t mean fast."
+    },
+    {
+      "story": "The app sent a notification, “Pay for the trip!”. Tapping it opens a website where you have to log in again. Is the shortcut really a shortcut?",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Home",
+          "x": 0,
+          "y": 56
+        },
+        {
+          "id": "N",
+          "label": "Notification",
+          "x": 41,
+          "y": 2
+        },
+        {
+          "id": "M",
+          "label": "Menu",
+          "x": 32,
+          "y": 86
+        },
+        {
+          "id": "P",
+          "label": "Payments",
+          "x": 69,
+          "y": 100
+        },
+        {
+          "id": "Z",
+          "label": "Pay",
+          "x": 97,
+          "y": 52
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "N",
+          1
+        ],
+        [
+          "N",
+          "Z",
+          9
+        ],
+        [
+          "D",
+          "M",
+          2
+        ],
+        [
+          "M",
+          "P",
+          2
+        ],
+        [
+          "P",
+          "Z",
+          2
+        ],
+        [
+          "D",
+          "P",
+          5
+        ]
+      ],
+      "from": "D",
+      "to": "Z",
+      "metric": "s",
+      "why": "The path through the notification has only two taps, but it takes 10 s because of logging in again. The fastest is Home → Menu → Payments → Pay in 6 s, even though it has three taps. The number of taps isn’t the only thing the user feels."
+    },
+    {
+      "story": "The teacher needs to find out whether Ondra has paid. Find the fastest path to the Payment status screen.",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "Home",
+          "x": 29,
+          "y": 50
+        },
+        {
+          "id": "M",
+          "label": "Menu",
+          "x": 46,
+          "y": 17
+        },
+        {
+          "id": "V",
+          "label": "Trip",
+          "x": 22,
+          "y": 82
+        },
+        {
+          "id": "H",
+          "label": "Search",
+          "x": 45,
+          "y": 50
+        },
+        {
+          "id": "P",
+          "label": "Payments",
+          "x": 29,
+          "y": 0
+        },
+        {
+          "id": "S",
+          "label": "Class list",
+          "x": 59,
+          "y": 99
+        },
+        {
+          "id": "O",
+          "label": "Ondra’s profile",
+          "x": 82,
+          "y": 71
+        },
+        {
+          "id": "X",
+          "label": "Payment status",
+          "x": 94,
+          "y": 34
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "S",
+          2
+        ],
+        [
+          "S",
+          "O",
+          2
+        ],
+        [
+          "O",
+          "X",
+          2
+        ],
+        [
+          "D",
+          "M",
+          2
+        ],
+        [
+          "M",
+          "P",
+          2
+        ],
+        [
+          "P",
+          "X",
+          3
+        ],
+        [
+          "D",
+          "H",
+          1
+        ],
+        [
+          "H",
+          "O",
+          6
+        ],
+        [
+          "V",
+          "P",
+          2
+        ]
+      ],
+      "from": "D",
+      "to": "X",
+      "metric": "s",
+      "why": "Home → Menu → Payments → Payment status takes 7 s: Payments has an “Unpaid” filter and Ondra is visible straight away. The path through Ondra’s profile makes human sense (“I’m looking for a person”), but it takes 9 s. Good navigation leads to the question the user is trying to answer, not to the place where the data lives."
+    }
+  ],
+  "debrief": "Designers measure a user’s path in time, not just in taps. Searching with your eyes, typing and waiting for the server count too. When you time the main task in your own app with a stopwatch, you’ll see where a shortcut helps and where it only looks good."
+}

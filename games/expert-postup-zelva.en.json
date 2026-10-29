@@ -1,0 +1,43 @@
+{
+  "type": "turtle",
+  "title": "Turtle: the shortest program",
+  "instruction": "Draw the target picture with the shortest possible program. The turtle starts in the middle, facing up. Every command counts, including repeat and learn. You get a star for a program that fits within the limit.",
+  "levels": [
+    {
+      "goal": "An equilateral triangle with side 100.",
+      "target": "opakuj 3 [ dopředu 100 vpravo 120 ]",
+      "max": 3,
+      "hint": "The angle inside a triangle is 60°. But the turtle doesn’t turn by the inside angle; it turns by what is left to go straight on.",
+      "why": "On the whole trip round a shape, the turtle turns all the way round, that is by 360°. Three equal corners: 360 ÷ 3 = 120°."
+    },
+    {
+      "goal": "A five-pointed star drawn in one stroke, side 150.",
+      "target": "opakuj 5 [ dopředu 150 vpravo 144 ]",
+      "max": 3,
+      "hint": "With a star, the turtle doesn’t turn all the way round once, but twice. What is twice 360° divided by five?",
+      "why": "The star goes round the centre twice: 2 × 360 = 720°, 720 ÷ 5 = 144°. The total-turn rule is general; it holds for every closed shape."
+    },
+    {
+      "goal": "A 2 × 2 grid of four squares with side 50, touching at one corner.",
+      "target": "nauč ctverec :a [ opakuj 4 [ dopředu :a vpravo 90 ] ] opakuj 4 [ ctverec 50 vlevo 90 ]",
+      "max": 8,
+      "hint": "First teach the turtle to draw a square with a parameter. Then look at the grid as four squares around one point.",
+      "why": "A named part of a solution is a subprogram. Four squares turned around a shared corner make a grid, even though you can’t see any grid in the program. That is what decomposition looks like in code."
+    },
+    {
+      "goal": "A sharp nine-pointed star in one stroke, side 150. Each point is sharper than on the five-pointed star.",
+      "target": "opakuj 9 [ dopředu 150 vpravo 160 ]",
+      "max": 3,
+      "hint": "Try out how many times the turtle has to circle the centre. The angle must come out as a whole number and the star must close.",
+      "why": "The turtle circles the centre four times: 4 × 360 = 1440°, 1440 ÷ 9 = 160°. With two or three circles you get 80° and 120°, and those are no longer sharp points (at 120° only a triangle is drawn three times over itself)."
+    },
+    {
+      "goal": "A house in one stroke: a square with side 100, both diagonals and a roof. The pen never goes up and no line is drawn twice. You start in the bottom left corner.",
+      "target": "vpravo 90 dopředu 100 vlevo 90 dopředu 100 vlevo 135 dopředu 141 vpravo 135 dopředu 100 vpravo 90 dopředu 100 vlevo 135 dopředu 71 vlevo 90 dopředu 71 vlevo 90 dopředu 141",
+      "max": 16,
+      "hint": "The house is a graph: 5 corners and 8 lines. Count how many lines lead from each corner. You can only start a one-stroke drawing at a corner with an odd number of lines, and you must finish at the other one.",
+      "why": "There are only two odd corners: bottom left and bottom right. You start at one and finish at the other. The diagonal of a square with side 100 is about 141, the sloping side of the roof about 71. Here the turtle draws a model from the Model core: a graph."
+    }
+  ],
+  "debrief": "A shorter program isn’t just nicer. It makes you find the rule: the total turn, the repeating part, the subprogram, the odd vertices of a graph. A three-command program that draws a star is general. Change one number and you have a different star."
+}

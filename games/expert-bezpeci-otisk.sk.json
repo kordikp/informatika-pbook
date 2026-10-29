@@ -1,0 +1,129 @@
+{
+  "type": "trace",
+  "title": "Ako web spozná heslo, ktoré nepozná",
+  "instruction": "Krokuj dva programy. Prvý kontroluje prihlásenie, druhý počíta hračkový odtlačok (hash). Odtlačok je číslo, ktoré sa z hesla vypočíta ľahko, ale späť na heslo sa previesť nedá.",
+  "rounds": [
+    {
+      "code": [
+        "pokusy = 0",
+        "opakuj kým pokusy < 3:",
+        "    heslo = načítaj_heslo()",
+        "    ak odtlačok(soľ + heslo) == uložený_odtlačok:",
+        "        vypíš „Vitaj“",
+        "        skonči",
+        "    pokusy = pokusy + 1",
+        "zamkni účet na 15 minút"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "Niekto zadá heslo123",
+          "q": "Čo server v tej chvíli porovnáva?",
+          "options": [
+            "Zadané heslo s heslom uloženým v databáze",
+            "Odtlačok soli a zadaného hesla s uloženým odtlačkom",
+            "Dĺžku zadaného hesla s dĺžkou uloženého hesla"
+          ],
+          "answer": 1,
+          "why": "Poctivý server heslo vôbec neukladá. Má len odtlačok. Vypočíta odtlačok z toho, čo zadáš, a porovná dve čísla. Preto ti po zabudnutí heslo nepošle, len ponúkne nové."
+        },
+        {
+          "line": 7,
+          "input": "Tri zlé heslá za sebou",
+          "q": "Na ktorom riadku program pokračuje po treťom zlom pokuse?",
+          "options": [
+            "Na riadku 5",
+            "Na riadku 8",
+            "Znova na riadku 3"
+          ],
+          "answer": 1,
+          "why": "Po treťom pokuse je pokusy = 3, podmienka pokusy < 3 neplatí, slučka končí a účet sa zamkne."
+        },
+        {
+          "line": 7,
+          "input": "Útočník háda cez prihlasovaciu stránku celý deň bez prestávky",
+          "q": "Koľko hesiel stihne vyskúšať za 24 hodín?",
+          "options": [
+            "288",
+            "Asi 10 miliárd",
+            "Len 3"
+          ],
+          "answer": 0,
+          "why": "Tri pokusy za 15 minút je 12 za hodinu, teda 288 za deň. Taký útok online je strašne pomalý. Preto útočníci radšej ukradnú celú databázu odtlačkov a hádajú u seba, miliardy pokusov za sekundu."
+        },
+        {
+          "line": 3,
+          "input": "Databáza unikla. Útočník má odtlačky aj soli všetkých účtov.",
+          "q": "Soľ je náhodný reťazec, iný pri každom účte. Na čo je, keď ju útočník pozná?",
+          "options": [
+            "Rovnaké heslá majú rôzne odtlačky, takže útočník musí hádať každý účet zvlášť",
+            "Soľ odtlačok zašifruje, takže sa nedá prečítať",
+            "Soľ predĺži heslo, takže sa už nedá uhádnuť"
+          ],
+          "answer": 0,
+          "why": "Bez soli by mali všetci s heslom 123456 rovnaký odtlačok a jedným uhádnutím by padli tisíce účtov. Soľ útočníka núti začínať pri každom účte znova. Slabé heslo však nezachráni."
+        }
+      ]
+    },
+    {
+      "code": [
+        "funkcia odtlačok(slovo):",
+        "    s = 0",
+        "    pre každé písmeno p v slove:",
+        "        s = s * 3 + poradie(p)    # A=1, B=2, C=3 …",
+        "    vráť zvyšok po delení s : 11"
+      ],
+      "steps": [
+        {
+          "line": 3,
+          "input": "slovo = AB",
+          "q": "Aké je s po spracovaní oboch písmen?",
+          "options": [
+            "3",
+            "5",
+            "6"
+          ],
+          "answer": 1,
+          "why": "Po A: s = 0 · 3 + 1 = 1. Po B: s = 1 · 3 + 2 = 5."
+        },
+        {
+          "line": 4,
+          "input": "slovo = BA",
+          "q": "Aký odtlačok funkcia vráti?",
+          "options": [
+            "5",
+            "7",
+            "1"
+          ],
+          "answer": 1,
+          "why": "Po B: s = 2. Po A: s = 2 · 3 + 1 = 7. Zvyšok po delení 11 je 7. Na poradí písmen záleží, AB a BA majú iný odtlačok."
+        },
+        {
+          "line": 4,
+          "input": "slovo = E",
+          "q": "Odtlačok E vyjde 5, rovnako ako pri AB. Čo to znamená, keď máš heslo AB?",
+          "options": [
+            "Kto zadá E, prihlási sa za teba",
+            "Nič, server spozná, že E je iné heslo",
+            "Server ohlási chybu"
+          ],
+          "answer": 0,
+          "why": "Server porovnáva len odtlačky. Dve rôzne slová s rovnakým odtlačkom sú kolízia a útočníkovi stačí nájsť akékoľvek z nich."
+        },
+        {
+          "line": 4,
+          "input": "Skúšaš rôzne slová, jedno po druhom",
+          "q": "Po koľkých rôznych slovách máš kolíziu istú, nech sú slová akékoľvek?",
+          "options": [
+            "Po 11",
+            "Po 12",
+            "Až po 1000"
+          ],
+          "answer": 1,
+          "why": "Zvyšok po delení 11 môže byť len 0 až 10, teda 11 hodnôt. Dvanásť slov sa do 11 priehradok nezmestí, dve musia zdieľať jednu. Skutočný odtlačok SHA-256 má 2 na 256 hodnôt, viac ako atómov na Zemi, takže kolíziu nikto nenájde."
+        }
+      ]
+    }
+  ],
+  "debrief": "Web tvoje heslo nepozná, pozná len jeho odtlačok. Dobrý odtlačok sa nedá obrátiť, nemá nájditeľné kolízie a soľ ho robí iným pri každom účte. Ani to však nezachráni krátke heslo: útočník s ukradnutou databázou jednoducho skúša heslá a počíta ich odtlačky. Preto stále platí dĺžka a jedinečnosť."
+}

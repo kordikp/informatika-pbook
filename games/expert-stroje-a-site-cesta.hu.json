@@ -1,0 +1,406 @@
+{
+  "type": "route",
+  "title": "Út a hálózaton: kerülőutak és óceánok",
+  "instruction": "Rakd össze a csomag útját a starttól a célig. A kapcsolatokon lévő számok milliszekundumok. A leggyorsabb utat keresed, nem azt, amelyikben a legkevesebb az ugrás.",
+  "levels": [
+    {
+      "story": "Egy amszterdami szerveren játszol. A Prágából induló közvetlen vonal tűnik a legrövidebbnek, de túl van terhelve.",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "A szobád",
+          "x": 2,
+          "y": 33
+        },
+        {
+          "id": "R",
+          "label": "A szolgáltató routere",
+          "x": 12,
+          "y": 59
+        },
+        {
+          "id": "P",
+          "label": "Prága",
+          "x": 46,
+          "y": 44
+        },
+        {
+          "id": "V",
+          "label": "Bécs",
+          "x": 57,
+          "y": 97
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 64,
+          "y": 4
+        },
+        {
+          "id": "S",
+          "label": "Amszterdami játékszerver",
+          "x": 99,
+          "y": 29
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "R",
+          2
+        ],
+        [
+          "R",
+          "P",
+          3
+        ],
+        [
+          "P",
+          "S",
+          30
+        ],
+        [
+          "P",
+          "F",
+          9
+        ],
+        [
+          "F",
+          "S",
+          7
+        ],
+        [
+          "P",
+          "V",
+          6
+        ],
+        [
+          "V",
+          "S",
+          25
+        ]
+      ],
+      "from": "D",
+      "to": "S",
+      "metric": "ms",
+      "why": "A leggyorsabb út: szoba → router → Prága → Frankfurt → szerver, 21 ms. A Prágából induló közvetlen vonal 35 ms. A több ugrás is lehet gyorsabb, ha mindegyik rövid."
+    },
+    {
+      "story": "A frankfurti csomópont kiesett, és eltűnt a hálózatból. A szerver ezúttal Milánóban van. Találj kerülőutat, két lehetőség majdnem ugyanolyan jó.",
+      "nodes": [
+        {
+          "id": "D",
+          "label": "A szobád",
+          "x": 2,
+          "y": 43
+        },
+        {
+          "id": "R",
+          "label": "A szolgáltató routere",
+          "x": 33,
+          "y": 43
+        },
+        {
+          "id": "P",
+          "label": "Prága",
+          "x": 38,
+          "y": 0
+        },
+        {
+          "id": "B",
+          "label": "Brno",
+          "x": 33,
+          "y": 87
+        },
+        {
+          "id": "V",
+          "label": "Bécs",
+          "x": 57,
+          "y": 98
+        },
+        {
+          "id": "M",
+          "label": "München",
+          "x": 59,
+          "y": 31
+        },
+        {
+          "id": "S",
+          "label": "Milánói szerver",
+          "x": 99,
+          "y": 63
+        }
+      ],
+      "edges": [
+        [
+          "D",
+          "R",
+          2
+        ],
+        [
+          "R",
+          "P",
+          3
+        ],
+        [
+          "R",
+          "B",
+          5
+        ],
+        [
+          "P",
+          "M",
+          11
+        ],
+        [
+          "B",
+          "V",
+          3
+        ],
+        [
+          "V",
+          "M",
+          7
+        ],
+        [
+          "M",
+          "S",
+          12
+        ],
+        [
+          "V",
+          "S",
+          20
+        ],
+        [
+          "P",
+          "S",
+          28
+        ]
+      ],
+      "from": "D",
+      "to": "S",
+      "metric": "ms",
+      "why": "A leggyorsabb út: szoba → router → Prága → München → szerver, 28 ms. A Brnón, Bécsen és Münchenen át vezető út 29 ms. Az internetnek nincs egyetlen közepe, ezért szinte mindig több jó kerülőút van."
+    },
+    {
+      "story": "Egy hegyi házban vagy, ahová nem vezet kábel. Választhatsz geostacionárius műholdat, alacsony pályás műholdakat vagy a völgyben álló mobiltornyot.",
+      "nodes": [
+        {
+          "id": "C",
+          "label": "Hegyi ház",
+          "x": 14,
+          "y": 64
+        },
+        {
+          "id": "G",
+          "label": "Geostacionárius műhold",
+          "x": 41,
+          "y": 24
+        },
+        {
+          "id": "L",
+          "label": "Alacsony pályás műholdak",
+          "x": 20,
+          "y": 9
+        },
+        {
+          "id": "T",
+          "label": "Mobiltorony a völgyben",
+          "x": 21,
+          "y": 100
+        },
+        {
+          "id": "P",
+          "label": "Prága",
+          "x": 58,
+          "y": 79
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 69,
+          "y": 24
+        },
+        {
+          "id": "S",
+          "label": "Amszterdami szerver",
+          "x": 100,
+          "y": 21
+        }
+      ],
+      "edges": [
+        [
+          "C",
+          "G",
+          280
+        ],
+        [
+          "C",
+          "L",
+          25
+        ],
+        [
+          "C",
+          "T",
+          35
+        ],
+        [
+          "G",
+          "P",
+          10
+        ],
+        [
+          "L",
+          "F",
+          8
+        ],
+        [
+          "T",
+          "P",
+          12
+        ],
+        [
+          "P",
+          "F",
+          9
+        ],
+        [
+          "F",
+          "S",
+          7
+        ],
+        [
+          "P",
+          "S",
+          30
+        ]
+      ],
+      "from": "C",
+      "to": "S",
+      "metric": "ms",
+      "why": "A leggyorsabb út: hegyi ház → alacsony pályás műholdak → Frankfurt → szerver, 40 ms. A mobiltorony a közelebbi Prágán át vezet, és 63 ms. A geostacionárius műhold a 36 000 km-es magasság miatt 300 ms fölött van."
+    },
+    {
+      "story": "Videót küldesz egy barátodnak Sydney-be. Európából tenger alatti kábelek vezetnek a Földközi-tengeren és az Indiai-óceánon át, vagy az Atlanti- és a Csendes-óceánon keresztül.",
+      "nodes": [
+        {
+          "id": "P",
+          "label": "Prága",
+          "x": 70,
+          "y": 9
+        },
+        {
+          "id": "F",
+          "label": "Frankfurt",
+          "x": 52,
+          "y": 5
+        },
+        {
+          "id": "L",
+          "label": "London",
+          "x": 36,
+          "y": 6
+        },
+        {
+          "id": "M",
+          "label": "Marseille",
+          "x": 44,
+          "y": 37
+        },
+        {
+          "id": "NY",
+          "label": "New York",
+          "x": 16,
+          "y": 15
+        },
+        {
+          "id": "LA",
+          "label": "Los Angeles",
+          "x": 12,
+          "y": 41
+        },
+        {
+          "id": "MU",
+          "label": "Mumbai",
+          "x": 69,
+          "y": 39
+        },
+        {
+          "id": "SG",
+          "label": "Szingapúr",
+          "x": 85,
+          "y": 67
+        },
+        {
+          "id": "SY",
+          "label": "Sydney",
+          "x": 85,
+          "y": 96
+        }
+      ],
+      "edges": [
+        [
+          "P",
+          "F",
+          9
+        ],
+        [
+          "P",
+          "M",
+          23
+        ],
+        [
+          "F",
+          "M",
+          12
+        ],
+        [
+          "F",
+          "L",
+          9
+        ],
+        [
+          "L",
+          "NY",
+          37
+        ],
+        [
+          "NY",
+          "LA",
+          35
+        ],
+        [
+          "LA",
+          "SY",
+          70
+        ],
+        [
+          "M",
+          "MU",
+          55
+        ],
+        [
+          "MU",
+          "SG",
+          30
+        ],
+        [
+          "M",
+          "SG",
+          80
+        ],
+        [
+          "SG",
+          "SY",
+          45
+        ]
+      ],
+      "from": "P",
+      "to": "SY",
+      "metric": "ms",
+      "why": "A leggyorsabb út: Prága → Frankfurt → Marseille → Szingapúr → Sydney, 146 ms. A közvetlen út Prágából Marseille-be 148 ms, a Mumbain át vezető 151 ms, az Amerikán át vezető pedig 160 ms. Ilyen kis különbségeket biztosan csak olyan módszer talál meg, amely a legrövidebbektől kezdve minden utat megvizsgál, és a routerek tényleg ezt használják."
+    }
+  ],
+  "debrief": "A routerek a leggyorsabb utat keresik, nem a legrövidebb vonalat a térképen, és nem is a legkevesebb ugrást. Ha egy kapcsolat kiesik, újraszámolják az utat, és a csomagok kerülőúton mennek. A módszert, amely a legrövidebbektől kezdve hasonlítja össze az utakat, Dijkstra-algoritmusnak hívják."
+}

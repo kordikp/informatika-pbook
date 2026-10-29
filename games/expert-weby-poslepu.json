@@ -1,0 +1,130 @@
+{
+  "type": "hotspot",
+  "title": "Web poslepu",
+  "instruction": "Takhle čte stránku kroužku čtečka obrazovky: program, který nevidomým lidem čte web nahlas a umí skákat po nadpisech, odkazech a tlačítkách. Klikni na každý kousek, který někomu web znepřístupní. Pozor, některé kousky jen vypadají podezřele a jsou správně.",
+  "items": [
+    {
+      "label": "Odkazy",
+      "segments": [
+        {
+          "text": "Rozvrh najdeš "
+        },
+        {
+          "text": "[klikni sem]",
+          "hit": true,
+          "why": "Čtečka umí vypsat seznam všech odkazů na stránce. Tři odkazy „klikni sem“ za sebou nic neřeknou. Dobrý odkaz dává smysl i bez okolní věty: „Rozvrh kroužku“."
+        },
+        {
+          "text": ". Fotky najdeš v galerii "
+        },
+        {
+          "text": "[Fotky z výletu na Macochu]",
+          "why": "Tenhle je v pořádku: z textu odkazu je jasné, kam vede."
+        }
+      ]
+    },
+    {
+      "label": "Obrázky",
+      "segments": [
+        {
+          "text": "<img src=\"vylet.jpg\">",
+          "hit": true,
+          "why": "Chybí alt, tedy textový popis obrázku. Čtečka přečte jen název souboru „vylet jpg“, nebo nic."
+        },
+        {
+          "text": " a "
+        },
+        {
+          "text": "<img src=\"ozdobna-vlnka.svg\" alt=\"\">",
+          "why": "Správně. Prázdný alt říká čtečce: tohle je jen ozdoba, přeskoč ji."
+        }
+      ]
+    },
+    {
+      "label": "Nadpisy",
+      "segments": [
+        {
+          "text": "<h1>Kroužek robotiky</h1> "
+        },
+        {
+          "text": "<h4>Kdy se scházíme</h4>",
+          "hit": true,
+          "why": "Po h1 hned h4. Kdo skáče po nadpisech, čeká, že mu dvě úrovně chybí. Nadpisy jsou osnova stránky: h1, pod ním h2, pod nimi h3."
+        },
+        {
+          "text": " <h2>Fotky z akcí</h2>"
+        }
+      ]
+    },
+    {
+      "label": "Tlačítka",
+      "segments": [
+        {
+          "text": "<button>Přihlásit se</button>",
+          "why": "Správně. Na button se dostaneš klávesou Tab a čtečka ohlásí „tlačítko“."
+        },
+        {
+          "text": " a vedle "
+        },
+        {
+          "text": "<div onclick=\"odeslat()\">Odeslat</div>",
+          "hit": true,
+          "why": "Div vypadá jako tlačítko jen pro oči. Klávesou Tab se na něj nedostaneš a čtečka neoznámí, že se na něj dá kliknout."
+        }
+      ]
+    },
+    {
+      "label": "Barvy",
+      "segments": [
+        {
+          "text": "Šedý text #999999 na bílé (kontrast 2,85 : 1)",
+          "hit": true,
+          "why": "Pravidla přístupnosti WCAG chtějí u běžného textu kontrast aspoň 4,5 : 1. Se slabším zrakem nebo na slunci se 2,85 : 1 číst nedá."
+        },
+        {
+          "text": " vedle "
+        },
+        {
+          "text": "tmavě šedého textu #595959 na bílé (kontrast 7 : 1)",
+          "why": "V pořádku, 7 : 1 je víc než potřebných 4,5 : 1."
+        }
+      ]
+    },
+    {
+      "label": "Formulář",
+      "segments": [
+        {
+          "text": "<input type=\"email\" placeholder=\"Tvůj e-mail\">",
+          "hit": true,
+          "why": "Chybí <label>. Šedá nápověda v políčku zmizí, jakmile začneš psát, a některé čtečky ji vůbec nepřečtou."
+        },
+        {
+          "text": " a pod políčkem "
+        },
+        {
+          "text": "Povinná pole jsou označená červeně.",
+          "hit": true,
+          "why": "Informace jen barvou. Kdo nerozlišuje červenou (zhruba každý dvanáctý kluk), netuší, co je povinné. Přidej hvězdičku nebo slovo „povinné“."
+        }
+      ]
+    },
+    {
+      "label": "Hlavička stránky",
+      "segments": [
+        {
+          "text": "<html lang=\"cs\">",
+          "why": "Správně. Díky tomu čtečka čte česky, a ne s anglickou výslovností."
+        },
+        {
+          "text": " a o řádek níž "
+        },
+        {
+          "text": "<meta name=\"viewport\" content=\"user-scalable=no\">",
+          "hit": true,
+          "why": "Zakazuje přiblížit stránku prsty. Kdo hůř vidí, nemá jak si text zvětšit."
+        }
+      ]
+    }
+  ],
+  "debrief": "Přístupnost není bonus pro pár lidí. Stejné chyby vadí i tobě: na slunci, s jednou rukou v tramvaji nebo bez myši. Většinu z nich nespraví design, ale správné HTML: nadpisy v pořadí, alt u obrázků, label u políček, button místo divu. A prázdný alt u ozdoby je správně, protože říká „tohle přeskoč“."
+}
