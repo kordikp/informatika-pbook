@@ -38,7 +38,7 @@ Na internete stretneš ľudí, ktorých nepoznáš. Väčšina z nich rada porad
 5. **Rozprávaj sa verejne.** Pýtaj sa vo verejnom kanáli, nie v súkromných správach od neznámych dospelých. Keď ťa niekto tlačí do súkromnej konverzácie, povedz to rodičovi alebo organizátorovi.
 6. **Na stretnutie len s niekým, komu veríš.** Na sústredenia, tábory a stretnutia choď len s organizáciou, ktorú rodičia poznajú. Človeka z internetu nikdy nestretávaj bez rodiča.
 7. **Darčeky a tajomstvá sú varovanie.** Kto ti ponúka peniaze, darčeky, prácu alebo „tajný projekt“, alebo chce, aby o niečom nikto nevedel, správa sa podozrivo.
-8. **Nespúšťaj cudzie programy.** Súbor alebo skript od neznámeho človeka ti môže ukradnúť účet. Bezpečnosť trénuj len tam, kde je to dovolené, napríklad v súťaži picoCTF. Skúšať cudzie weby bez povolenia je nezákonné.
+8. **Nespúšťaj cudzie programy.** Súbor alebo skript od neznámeho človeka ti môže ukradnúť účet. Bezpečnosť trénuj len tam, kde je to dovolené, napríklad v CyLab Security Academy (predtým picoCTF). Skúšať cudzie weby bez povolenia je nezákonné.
 9. **Píš vecne a slušne.** Pýtaj sa na kód a na úlohy, nie na osobné veci. Komu tón v diskusii nesedí, môže ju kedykoľvek opustiť.
 10. **Stráž si čas a spánok.** Súťaž má byť radosť, nie stres. Je v poriadku niektoré kolo vynechať.
 
@@ -64,7 +64,7 @@ Každá služba má navyše vlastný vekový limit vo svojich podmienkach. Tie n
 - **YouTube:** 13. *Súhlas rodiča:* Mladší len cez YouTube Kids alebo účet pod dohľadom, ktorý povolí rodič. ([podmienky](https://www.youtube.com/t/terms))
 - **Replit:** 13. *Súhlas rodiča:* Pod 18 je nutné povolenie rodiča. ([podmienky](https://replit.com/terms-of-service))
 - **Roblox:** bez pevného limitu, pod 13 rokov platia predvolené obmedzenia. *Súhlas rodiča:* Áno, rodičovská kontrola je dostupná na diaľku. Pod 13 rokov sa dajú písať správy mimo hier len obmedzene a v hre len so súhlasom rodiča. ([podmienky](https://www.cbc.ca/1.7386393))
-- **picoCTF:** 13. *Súhlas rodiča:* 13 – 17 rokov s e-mailom rodiča, prípadne účet od učiteľa. ([podmienky](https://picoctf.org/terms.html))
+- **CyLab Security Academy (picoCTF):** 13. *Súhlas rodiča:* 13 – 17 rokov s e-mailom rodiča, prípadne účet od učiteľa. ([podmienky](https://cylabacademy.org/terms.html))
 - **Khan Academy:** bez limitu, pod 13 rokov cez rodiča. *Súhlas rodiča:* Áno, rodič schváli alebo vytvorí detský účet (neschválený účet sa maže). ([podmienky](https://support.khanacademy.org/hc/en-us/articles/202487460-If-my-child-is-under-age-13-what-login-options-are-there-))
 - **edX (CS50):** 13. *Súhlas rodiča:* Pod 13 nie, cesta so súhlasom rodiča neexistuje. ([podmienky](https://support.edx.org/hc/en-us/articles/13481901497239-Can-anyone-use-edX))
 - **OpenStreetMap:** 13. *Súhlas rodiča:* Pod 13 nie. ([podmienky](https://help.openstreetmap.org/questions/53579/are-there-any-age-limit-restrictions-for-osm-contributors))

@@ -30,9 +30,9 @@ carriers: prose
 CTF sa hrá po celom svete a niektoré súťaže sú priamo pre školákov.
 
 - **[Kybersoutěž](https://www.kybersoutez.cz/)**: česká národná súťaž v kybernetickej bezpečnosti pre žiakov a študentov od 9 do 24 rokov, aj zo základných škôl. Je súčasťou európskej iniciatívy European Cyber Security Challenge. Online kolo v roku 2026 bežalo od 10. septembra do 18. októbra, termín ďalšieho ročníka si stráž na webe. Po česky.
-- **[picoCTF](https://picoctf.org/)**: najväčšia online CTF pre školákov od Carnegie Mellon University, každú jar (v roku 2026 od 9. do 19. marca). Celý rok je otvorená cvičná „telocvičňa“ **picoGym** so staršími úlohami. Účet je od 13 rokov, zadarmo, po anglicky. Ceny dostávajú len školy v USA.
+- **[CyLab Security Academy](https://cylabacademy.org/)** (predtým picoCTF): najväčšia online CTF pre školákov od Carnegie Mellon University. Veľká súťaž je raz ročne (ročník picoCTF 2026 prebehol od 9. do 19. marca) a počas roka bývajú menšie. Celý rok je otvorená **knižnica úloh** (predtým picoGym) so staršími úlohami. Účet je od 13 rokov, zadarmo, po anglicky. Ceny bývajú len pre študentov z USA.
 
-**Máš menej ako 13?** Do picoGym sa prihlás cez účet rodiča a s ním, alebo hrajte v tíme s krúžkom a učiteľom. Kybersoutěž je otvorená aj tebe, registráciu však urob spolu s rodičom alebo učiteľom.
+**Máš menej ako 13?** Do knižnice úloh CyLab sa prihlás cez účet rodiča a s ním, alebo hrajte v tíme s krúžkom a učiteľom. Kybersoutěž je otvorená aj tebe, registráciu však urob spolu s rodičom alebo učiteľom.
 
 **Tri pravidlá bezpečného zapojenia:**
 

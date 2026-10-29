@@ -4284,10 +4284,10 @@
      "hu": "Ha megvannak a válaszaid, hasonlítsd össze őket a 🔑 Megoldás alatti megoldással."
     },
     {
-     "cs": "Vyber si jednu soutěž a v picoGym nebo v kole Kybersoutěže vyřeš aspoň tři úlohy ze tří různých kategorií, třeba kryptografie, forenzní analýza a web. Zapiš si, která úloha tě zastavila a proč. Každé takové místo je nápad pro tvoji vlastní CTF.",
-     "en": "Pick one competition and, in picoGym or in a round of Kybersoutěž, solve at least three tasks from three different categories, for example cryptography, forensics and web. Write down which task stopped you and why. Each such spot is an idea for your own CTF.",
-     "sk": "Vyber si jednu súťaž a v picoGym alebo v kole Kybersoutěže vyrieš aspoň tri úlohy z troch rôznych kategórií, napríklad kryptografia, forenzná analýza a web. Zapíš si, ktorá úloha ťa zastavila a prečo. Každé také miesto je nápad pre tvoju vlastnú CTF.",
-     "hu": "Válassz egy versenyt, és a picoGymben vagy a Kybersoutěž egyik fordulójában oldj meg legalább három feladatot három különböző kategóriából, például kriptográfia, igazságügyi elemzés (forensics) és web. Írd fel, melyik feladat állított meg, és miért. Minden ilyen pont ötlet a saját CTF-edhez."
+     "cs": "Vyber si jednu soutěž a v knihovně úloh CyLab nebo v kole Kybersoutěže vyřeš aspoň tři úlohy ze tří různých kategorií, třeba kryptografie, forenzní analýza a web. Zapiš si, která úloha tě zastavila a proč. Každé takové místo je nápad pro tvoji vlastní CTF.",
+     "en": "Pick one competition and, in the CyLab challenge library or in a round of Kybersoutěž, solve at least three tasks from three different categories, for example cryptography, forensics and web. Write down which task stopped you and why. Each such spot is an idea for your own CTF.",
+     "sk": "Vyber si jednu súťaž a v knižnici úloh CyLab alebo v kole Kybersoutěže vyrieš aspoň tri úlohy z troch rôznych kategórií, napríklad kryptografia, forenzná analýza a web. Zapíš si, ktorá úloha ťa zastavila a prečo. Každé také miesto je nápad pre tvoju vlastnú CTF.",
+     "hu": "Válassz egy versenyt, és a CyLab feladattárában vagy a Kybersoutěž egyik fordulójában oldj meg legalább három feladatot három különböző kategóriából, például kriptográfia, igazságügyi elemzés (forensics) és web. Írd fel, melyik feladat állított meg, és miért. Minden ilyen pont ötlet a saját CTF-edhez."
     },
     {
      "cs": "Kdo umí postavit úlohu, rozumí tomu, proč útok funguje, a ví, kde se mu bránit. Teď svůj projekt popiš jako plán pro bosse a nech AI posoudit, jestli obstojí.",
@@ -4341,10 +4341,10 @@
       "hu": "A feladatokat olyasvalaki teszteli, aki nem látta, hogyan készültek, és a terv számol azzal, hogy az eredmény alapján módosítani kell őket."
      },
      {
-      "cs": "Projekt ukazuje hráčům další krok ve skutečném světě: CyberChef, picoGym nebo Kybersoutěž.",
-      "en": "The project shows players the next step in the real world: CyberChef, picoGym or Kybersoutěž.",
-      "sk": "Projekt ukazuje hráčom ďalší krok v skutočnom svete: CyberChef, picoGym alebo Kybersoutěž.",
-      "hu": "A projekt megmutatja a játékosoknak a következő lépést a valódi világban: CyberChef, picoGym vagy Kybersoutěž."
+      "cs": "Projekt ukazuje hráčům další krok ve skutečném světě: CyberChef, knihovna úloh CyLab nebo Kybersoutěž.",
+      "en": "The project shows players the next step in the real world: CyberChef, the CyLab challenge library or Kybersoutěž.",
+      "sk": "Projekt ukazuje hráčom ďalší krok v skutočnom svete: CyberChef, knižnica úloh CyLab alebo Kybersoutěž.",
+      "hu": "A projekt megmutatja a játékosoknak a következő lépést a valódi világban: CyberChef, a CyLab feladattára vagy Kybersoutěž."
      }
     ]
    },

@@ -135,17 +135,17 @@ A game on Steam in which you go from a NAND gate all the way to your own process
 
 ### 🏆 Competitions and events
 
-#### [picoCTF (Carnegie Mellon)](https://picoctf.org/)
+#### [CyLab Security Academy, formerly picoCTF (Carnegie Mellon)](https://cylabacademy.org/)
 
 *cybersecurity competition and practice website · free · English*
 
 Ethical hacking in a safe environment. It teaches Linux, cryptography and web security as a game.
 
-**When:** The competition is usually in spring, the picoGym practice website is open all year. Check the 2027 date on the website **Age:** from 13; for ages 13–17 a parent’s e-mail, or a teacher sets up the account
+**When:** The big competition is held once a year, the challenge library (formerly picoGym) is open all year. Check the 2027 date on the website **Age:** from 13; for ages 13–17 a parent’s e-mail, or a teacher sets up the account
 
 **How to join:**
 
-1. register on picoctf.org with a parent’s e-mail
+1. register on cylabacademy.org with a parent’s e-mail
 2. or a class account from a teacher
 
 ### 🧪 Projects for inspiration

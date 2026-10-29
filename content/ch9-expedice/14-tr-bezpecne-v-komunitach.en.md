@@ -38,7 +38,7 @@ On the internet you meet people you do not know. Most of them are happy to give 
 5. **Talk in public.** Ask in the public channel, not in private messages from adults you do not know. If someone pushes you into a private conversation, tell a parent or the organiser.
 6. **Only meet up with someone you trust.** Go to training camps, summer camps and meet-ups only with an organisation your parents know. Never meet a person from the internet without a parent.
 7. **Gifts and secrets are a warning.** Anyone who offers you money, gifts, a job or a “secret project”, or wants you to keep something from everyone, is acting suspiciously.
-8. **Do not run other people’s programs.** A file or script from a stranger can steal your account. Practise security only where it is allowed, for example in the picoCTF competition. Testing other people’s websites without permission is illegal.
+8. **Do not run other people’s programs.** A file or script from a stranger can steal your account. Practise security only where it is allowed, for example in CyLab Security Academy (formerly picoCTF). Testing other people’s websites without permission is illegal.
 9. **Write to the point and politely.** Ask about code and tasks, not about personal things. If you do not like the tone of a discussion, you can leave it at any time.
 10. **Watch your time and sleep.** A competition should be fun, not stress. It is OK to skip a round.
 
@@ -64,7 +64,7 @@ On top of that, every service has its own age limit in its terms. The most commo
 - **YouTube:** 13. *Parental consent:* Younger kids only via YouTube Kids or a supervised account that a parent allows. ([terms](https://www.youtube.com/t/terms))
 - **Replit:** 13. *Parental consent:* Under 18 you need a parent’s permission. ([terms](https://replit.com/terms-of-service))
 - **Roblox:** no fixed limit, default restrictions apply under 13. *Parental consent:* Yes, parental controls are available remotely. Under 13, messaging outside games is limited, and in-game messaging needs a parent’s consent. ([terms](https://www.cbc.ca/1.7386393))
-- **picoCTF:** 13. *Parental consent:* 13–17 with a parent’s e-mail, or an account from a teacher. ([terms](https://picoctf.org/terms.html))
+- **CyLab Security Academy (picoCTF):** 13. *Parental consent:* 13–17 with a parent’s e-mail, or an account from a teacher. ([terms](https://cylabacademy.org/terms.html))
 - **Khan Academy:** no limit, under 13 via a parent. *Parental consent:* Yes, a parent approves or creates a child account (an unapproved account is deleted). ([terms](https://support.khanacademy.org/hc/en-us/articles/202487460-If-my-child-is-under-age-13-what-login-options-are-there-))
 - **edX (CS50):** 13. *Parental consent:* Not under 13, there is no route with a parent’s consent. ([terms](https://support.edx.org/hc/en-us/articles/13481901497239-Can-anyone-use-edX))
 - **OpenStreetMap:** 13. *Parental consent:* Not under 13. ([terms](https://help.openstreetmap.org/questions/53579/are-there-any-age-limit-restrictions-for-osm-contributors))

@@ -148,17 +148,17 @@ Játék a Steamen, amelyben a NAND kaputól egészen a saját processzorodig és
 1. csapat összeállítása edzővel (iskola vagy szakkör)
 2. regisztráció az országos szervezőnél (HelloWorld Education)
 
-#### [picoCTF (Carnegie Mellon)](https://picoctf.org/)
+#### [CyLab Security Academy, korábban picoCTF (Carnegie Mellon)](https://cylabacademy.org/)
 
 *kiberbiztonsági verseny és gyakorlóoldal · ingyenes · angol*
 
 Etikus hackelés biztonságos környezetben. Játékos formában tanít Linuxot, kriptográfiát és webbiztonságot.
 
-**Mikor:** A verseny általában tavasszal van, a picoGym gyakorlóoldal egész évben nyitva áll. A 2027-es időpontot ellenőrizd a weboldalon **Életkor:** 13 éves kortól; 13–17 év között a szülő e-mail-címével, vagy a fiókot a tanár hozza létre
+**Mikor:** A nagy verseny évente egyszer van, a feladattár (korábban picoGym) egész évben nyitva áll. A 2027-es időpontot ellenőrizd a weboldalon **Életkor:** 13 éves kortól; 13–17 év között a szülő e-mail-címével, vagy a fiókot a tanár hozza létre
 
 **Hogyan csatlakozhatsz:**
 
-1. regisztráció a picoctf.org oldalon a szülő e-mail-címével
+1. regisztráció a cylabacademy.org oldalon a szülő e-mail-címével
 2. vagy osztályfiók a tanártól
 
 ### 🧪 Projektek ötletnek

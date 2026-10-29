@@ -309,17 +309,17 @@ Najvyšší cieľ pre 13 – 15-ročných algoritmikov z Maďarska aj z Česka a
 1. účet na usaco.org
 2. začína sa v divízii Bronze
 
-#### [picoCTF (Carnegie Mellon)](https://picoctf.org/)
+#### [CyLab Security Academy, predtým picoCTF (Carnegie Mellon)](https://cylabacademy.org/)
 
 *súťaž a cvičný web v kybernetickej bezpečnosti · zadarmo · angličtina*
 
 Etický hacking v bezpečnom prostredí. Učí Linux, kryptografiu a webovú bezpečnosť formou hry.
 
-**Kedy:** Súťaž býva na jar, cvičný web picoGym je otvorený celoročne. Termín 2027 over na webe **Vek:** od 13 rokov; pre 13 – 17 rokov e-mail rodiča, prípadne účet zriadi učiteľ
+**Kedy:** Veľká súťaž býva raz ročne, knižnica úloh (predtým picoGym) je otvorená celoročne. Termín 2027 over na webe **Vek:** od 13 rokov; pre 13 – 17 rokov e-mail rodiča, prípadne účet zriadi učiteľ
 
 **Ako sa pridať:**
 
-1. registrácia na picoctf.org s e-mailom rodiča
+1. registrácia na cylabacademy.org s e-mailom rodiča
 2. alebo účet v triede od učiteľa
 
 #### [Codeforces](https://codeforces.com/)

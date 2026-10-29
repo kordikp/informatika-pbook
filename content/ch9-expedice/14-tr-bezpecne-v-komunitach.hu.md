@@ -38,7 +38,7 @@ Az interneten olyan emberekkel találkozol, akiket nem ismersz. A legtöbbjük s
 5. **Nyilvánosan beszélgess.** A nyilvános csatornán kérdezz, ne ismeretlen felnőttek privát üzeneteiben. Ha valaki privát beszélgetésbe akar terelni, szólj a szülődnek vagy a szervezőnek.
 6. **Találkozóra csak olyannal, akiben megbízol.** Edzőtáborba, táborba és találkozókra csak olyan szervezettel menj, amelyet a szüleid ismernek. Internetes ismerőssel soha ne találkozz szülő nélkül.
 7. **Az ajándék és a titok figyelmeztető jel.** Aki pénzt, ajándékot, munkát vagy „titkos projektet” kínál neked, vagy azt akarja, hogy valamiről senkinek ne szólj, gyanúsan viselkedik.
-8. **Ne futtass idegen programokat.** Egy ismeretlentől kapott fájl vagy szkript ellophatja a fiókodat. Biztonságot csak ott gyakorolj, ahol szabad, például a picoCTF versenyen. Idegen weboldalakat engedély nélkül tesztelni törvénybe ütközik.
+8. **Ne futtass idegen programokat.** Egy ismeretlentől kapott fájl vagy szkript ellophatja a fiókodat. Biztonságot csak ott gyakorolj, ahol szabad, például a CyLab Security Academy (korábban picoCTF) versenyein. Idegen weboldalakat engedély nélkül tesztelni törvénybe ütközik.
 9. **Írj tárgyilagosan és udvariasan.** A kódról és a feladatokról kérdezz, ne személyes dolgokról. Akinek nem tetszik egy vita hangneme, bármikor kiléphet belőle.
 10. **Figyelj az idődre és az alvásodra.** A verseny legyen öröm, ne stressz. Teljesen rendben van, ha kihagysz egy fordulót.
 
@@ -64,7 +64,7 @@ Ezen felül minden szolgáltatásnak saját korhatára van a feltételeiben. A l
 - **YouTube:** 13. *Szülői beleegyezés:* A fiatalabbak csak a YouTube Kidsen vagy a szülő által engedélyezett felügyelt fiókkal. ([feltételek](https://www.youtube.com/t/terms))
 - **Replit:** 13. *Szülői beleegyezés:* 18 év alatt szülői engedély kell. ([feltételek](https://replit.com/terms-of-service))
 - **Roblox:** nincs szigorú korhatár, 13 év alatt alapértelmezett korlátozások érvényesek. *Szülői beleegyezés:* Igen, a szülői felügyelet távolról is elérhető. 13 év alatt a játékokon kívül csak korlátozottan lehet üzenetet írni, a játékban pedig csak szülői beleegyezéssel. ([feltételek](https://www.cbc.ca/1.7386393))
-- **picoCTF:** 13. *Szülői beleegyezés:* 13–17 év között a szülő e-mail-címével, vagy fiók a tanártól. ([feltételek](https://picoctf.org/terms.html))
+- **CyLab Security Academy (picoCTF):** 13. *Szülői beleegyezés:* 13–17 év között a szülő e-mail-címével, vagy fiók a tanártól. ([feltételek](https://cylabacademy.org/terms.html))
 - **Khan Academy:** nincs korhatár, 13 év alatt a szülőn keresztül. *Szülői beleegyezés:* Igen, a szülő jóváhagyja vagy létrehozza a gyerekfiókot (a jóvá nem hagyott fiókot törlik). ([feltételek](https://support.khanacademy.org/hc/en-us/articles/202487460-If-my-child-is-under-age-13-what-login-options-are-there-))
 - **edX (CS50):** 13. *Szülői beleegyezés:* 13 alatt nem, szülői beleegyezéssel sincs rá mód. ([feltételek](https://support.edx.org/hc/en-us/articles/13481901497239-Can-anyone-use-edX))
 - **OpenStreetMap:** 13. *Szülői beleegyezés:* 13 alatt nem. ([feltételek](https://help.openstreetmap.org/questions/53579/are-there-any-age-limit-restrictions-for-osm-contributors))

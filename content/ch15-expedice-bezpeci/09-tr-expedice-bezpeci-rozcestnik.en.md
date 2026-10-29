@@ -42,16 +42,16 @@ A “Swiss army knife” for encodings, ciphers and hashes from the British GCHQ
 3. Try the Magic operation, which guesses the encoding by itself.
 4. Never paste your real passwords into the tool; only try practice ones.
 
-#### [picoGym (picoCTF)](https://picoctf.org/get_started.html)
+#### [CyLab Security Academy challenge library (formerly picoGym)](https://cylabacademy.org/learners.html)
 
-A year-round practice “gym” with tasks from past years of picoCTF, the biggest online CTF for school students, from Carnegie Mellon University. The tasks are graded from complete basics to hard and sorted into categories (cryptography, forensics, web). You can train any time, not just during the competition.
+A year-round library of practice tasks from past years of picoCTF, the biggest online CTF for school students, from Carnegie Mellon University, now CyLab Security Academy. The tasks are graded from complete basics to hard and sorted into categories (cryptography, forensics, web). You can train any time, not just during the competition.
 
 *free · account from age 13, under 18 with a parent’s consent; younger kids play with a parent through the parent’s account or with a club · in English*
 
 **How to start:**
 
 1. Set up an account together with a parent (a nickname without your name and year).
-2. In picoGym, filter for the easiest tasks in the General Skills category.
+2. In the challenge library, filter for the easiest tasks in the General Skills category.
 3. For each task, write down which principle was in it.
 
 #### [OverTheWire: Bandit](https://overthewire.org/wargames/bandit/)
@@ -80,9 +80,9 @@ A platform for cryptography in the form of tasks: from encodings and XOR to RSA 
 
 #### [TryHackMe](https://tryhackme.com/about)
 
-Online cybersecurity courses with virtual computers in the browser: defence, attack, forensics. The most thorough path from the basics to a career. Suits older and advanced learners who have already done picoGym or Bandit.
+Online cybersecurity courses with virtual computers in the browser: defence, attack, forensics. The most thorough path from the basics to a career. Suits older and advanced learners who have already done the CyLab challenge library or Bandit.
 
-*the basic part is free, premium content is paid (cheaper alternative: picoGym and OverTheWire for free) · from age 13 (terms of use, version 2.0 of 28 August 2026); younger kids only read along with a parent · in English*
+*the basic part is free, premium content is paid (cheaper alternative: the CyLab challenge library and OverTheWire for free) · from age 13 (terms of use, version 2.0 of 28 August 2026); younger kids only read along with a parent · in English*
 
 **How to start:**
 
@@ -104,7 +104,7 @@ An open-source password manager: a vault that remembers long, unique passwords f
 
 ### 👥 Communities
 
-#### [picoCTF (spring competition)](https://picoctf.org/)
+#### [CyLab Security Academy: the big competition (formerly picoCTF)](https://cylabacademy.org/competitors.html)
 
 *CTF competition for school students (online, teams of up to 5 people) · free · in English*
 
@@ -114,7 +114,7 @@ An open-source password manager: a vault that remembers long, unique passwords f
 
 1. Form a team with classmates or with a club.
 2. Under-13s play only through an adult’s account (a teacher’s or a parent’s) and under their supervision.
-3. Between competitions, train in picoGym.
+3. Between competitions, train in the CyLab challenge library.
 
 > **Stay safe:** Under 18, an account needs a parent’s consent; no personal details in the team chat; open task files only in CyberChef or in the browser, don’t run them.
 
@@ -148,24 +148,24 @@ An open-source password manager: a vault that remembers long, unique passwords f
 
 ### 🏆 Competitions and events
 
-#### [picoCTF (Carnegie Mellon)](https://picoctf.org/)
+#### [CyLab Security Academy, formerly picoCTF (Carnegie Mellon)](https://cylabacademy.org/)
 
 *cybersecurity competition and practice website · free · English*
 
 Ethical hacking in a safe environment. It teaches Linux, cryptography and web security as a game.
 
-**When:** The competition is usually in spring, the picoGym practice website is open all year. Check the 2027 date on the website **Age:** from 13; for ages 13–17 a parent’s e-mail, or a teacher sets up the account
+**When:** The big competition is held once a year, the challenge library (formerly picoGym) is open all year. Check the 2027 date on the website **Age:** from 13; for ages 13–17 a parent’s e-mail, or a teacher sets up the account
 
 **How to join:**
 
-1. register on picoctf.org with a parent’s e-mail
+1. register on cylabacademy.org with a parent’s e-mail
 2. or a class account from a teacher
 
 ### 🧪 Projects for inspiration
 
 - **[Have I Been Pwned: Pwned Passwords and k-anonymity](https://www.troyhunt.com/understanding-have-i-been-pwneds-use-of-sha-1-and-k-anonymity/)**: An article by the service’s author about how you can check whether a password has leaked without the server seeing it: only the first 5 characters of the SHA-1 hash are sent. *You will learn:* Hashes, k-anonymity and designing a service that protects privacy by the way it’s built. In English, but you can manage it with a translator.
 - **[CyberChef: source code and releases](https://github.com/gchq/CyberChef/releases)**: The open code of the CyberChef tool on GitHub, including versions to download and run offline. *You will learn:* How a big tool is put together from small operations. Why an intelligence agency publishes its code: openness builds trust.
-- **[picoCTF 2026: the competition page](https://picoctf.org/)**: The rules and organisation of the biggest online CTF for school students: teams of up to 5 people, task categories, prizes. *You will learn:* How a fair competition is built: rules, categories, teams. Useful as a model for your own mini-CTF in the expedition.
+- **[CyLab Security Academy: competitions](https://cylabacademy.org/competitors.html)**: The rules and organisation of the biggest online CTF for school students: teams of up to 5 people, task categories, prizes. *You will learn:* How a fair competition is built: rules, categories, teams. Useful as a model for your own mini-CTF in the expedition.
 
 ### 📚 Where to keep learning
 

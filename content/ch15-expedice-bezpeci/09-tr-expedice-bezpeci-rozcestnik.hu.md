@@ -42,16 +42,16 @@ Valódi eszközök, közösségek, versenyek és projektek, ahol tovább lehet h
 3. Próbáld ki a Magic műveletet, amely magától kitalálja a kódolást.
 4. Soha ne illeszd be az eszközbe a valódi jelszavaidat, csak gyakorló jelszavakkal kísérletezz.
 
-#### [picoGym (picoCTF)](https://picoctf.org/get_started.html)
+#### [A CyLab Security Academy feladattára (korábban picoGym)](https://cylabacademy.org/learners.html)
 
-Egész évben nyitva tartó gyakorló „tornaterem” a picoCTF korábbi évadainak feladataival. A picoCTF a legnagyobb online CTF iskolásoknak, a Carnegie Mellon Universitytől. A feladatok a teljesen kezdőtől a nehézig fokozatosak, és kategóriákba vannak sorolva (kriptográfia, igazságügyi elemzés, web). Bármikor lehet edzeni, nem csak a verseny alatt.
+Egész évben nyitva tartó gyakorló feladattár a picoCTF korábbi évadainak feladataival. A picoCTF a legnagyobb online CTF iskolásoknak, a Carnegie Mellon Universitytől; ma CyLab Security Academy a neve. A feladatok a teljesen kezdőtől a nehézig fokozatosak, és kategóriákba vannak sorolva (kriptográfia, igazságügyi elemzés, web). Bármikor lehet edzeni, nem csak a verseny alatt.
 
 *ingyenes · fiók 13 éves kortól, 18 éves korig szülői beleegyezéssel; a fiatalabbak a szülővel, az ő fiókján keresztül vagy a szakkörrel játszanak · angolul*
 
 **Hogyan kezdj hozzá:**
 
 1. A szüleiddel együtt hozz létre fiókot (becenévvel, név és évszám nélkül).
-2. A picoGymben szűrd ki a General Skills kategória legkönnyebb feladatait.
+2. A feladattárban szűrd ki a General Skills kategória legkönnyebb feladatait.
 3. Minden feladatnál írd fel, milyen elv volt benne.
 
 #### [OverTheWire: Bandit](https://overthewire.org/wargames/bandit/)
@@ -80,9 +80,9 @@ Kriptográfiai platform feladatok formájában: a kódolástól és a XOR-tól a
 
 #### [TryHackMe](https://tryhackme.com/about)
 
-Online kiberbiztonsági kurzusok virtuális gépekkel a böngészőben: védekezés, támadás, igazságügyi elemzés. A legkidolgozottabb út a kezdetektől a szakmáig. Idősebbeknek és haladóknak való, akik már túl vannak a picoGymen vagy a Banditon.
+Online kiberbiztonsági kurzusok virtuális gépekkel a böngészőben: védekezés, támadás, igazságügyi elemzés. A legkidolgozottabb út a kezdetektől a szakmáig. Idősebbeknek és haladóknak való, akik már túl vannak a CyLab feladattárán vagy a Banditon.
 
-*az alaprész ingyenes, a prémium tartalom fizetős (olcsóbb alternatíva: a picoGym és az OverTheWire ingyen) · 13 éves kortól (felhasználási szabályzat, 2.0-s verzió, 2026. 08. 28.); a fiatalabbak csak olvasnak a szülővel · angolul*
+*az alaprész ingyenes, a prémium tartalom fizetős (olcsóbb alternatíva: a CyLab feladattára és az OverTheWire ingyen) · 13 éves kortól (felhasználási szabályzat, 2.0-s verzió, 2026. 08. 28.); a fiatalabbak csak olvasnak a szülővel · angolul*
 
 **Hogyan kezdj hozzá:**
 
@@ -104,7 +104,7 @@ Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hoss
 
 ### 👥 Közösségek
 
-#### [picoCTF (tavaszi verseny)](https://picoctf.org/)
+#### [CyLab Security Academy: a nagy verseny (korábban picoCTF)](https://cylabacademy.org/competitors.html)
 
 *CTF-verseny iskolásoknak (online, legfeljebb 5 fős csapatok) · ingyenes · angolul*
 
@@ -114,7 +114,7 @@ Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hoss
 
 1. Alakíts csapatot az osztálytársaiddal vagy a szakkörrel.
 2. A 13 évesnél fiatalabbak csak egy felnőtt (tanár, szülő) fiókján és az ő felügyeletével játszanak.
-3. Két évad között edz a picoGymben.
+3. Két verseny között edz a CyLab feladattárában.
 
 > **Biztonságosan:** Fiók 18 éves korig szülői beleegyezéssel; a csapatcsetben semmi személyes adat; a feladatok fájljait csak a CyberChefben vagy a böngészőben nyisd meg, ne futtasd őket.
 
@@ -148,24 +148,24 @@ Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hoss
 
 ### 🏆 Versenyek és események
 
-#### [picoCTF (Carnegie Mellon)](https://picoctf.org/)
+#### [CyLab Security Academy, korábban picoCTF (Carnegie Mellon)](https://cylabacademy.org/)
 
 *kiberbiztonsági verseny és gyakorlóoldal · ingyenes · angol*
 
 Etikus hackelés biztonságos környezetben. Játékos formában tanít Linuxot, kriptográfiát és webbiztonságot.
 
-**Mikor:** A verseny általában tavasszal van, a picoGym gyakorlóoldal egész évben nyitva áll. A 2027-es időpontot ellenőrizd a weboldalon **Életkor:** 13 éves kortól; 13–17 év között a szülő e-mail-címével, vagy a fiókot a tanár hozza létre
+**Mikor:** A nagy verseny évente egyszer van, a feladattár (korábban picoGym) egész évben nyitva áll. A 2027-es időpontot ellenőrizd a weboldalon **Életkor:** 13 éves kortól; 13–17 év között a szülő e-mail-címével, vagy a fiókot a tanár hozza létre
 
 **Hogyan csatlakozhatsz:**
 
-1. regisztráció a picoctf.org oldalon a szülő e-mail-címével
+1. regisztráció a cylabacademy.org oldalon a szülő e-mail-címével
 2. vagy osztályfiók a tanártól
 
 ### 🧪 Projektek ötletnek
 
 - **[Have I Been Pwned: Pwned Passwords és k-anonimitás](https://www.troyhunt.com/understanding-have-i-been-pwneds-use-of-sha-1-and-k-anonymity/)**: A szolgáltatás szerzőjének cikke arról, hogyan lehet ellenőrizni, hogy egy jelszó kiszivárgott-e, anélkül hogy a szerver látná: csak az SHA-1 lenyomat első 5 karakterét küldik el. *Mit tanulsz meg:* A lenyomat (hash), a k-anonimitás, és egy olyan szolgáltatás tervezése, amely már a felépítésével védi a magánszférát. Angolul, fordítóval meg fogsz birkózni vele.
 - **[CyberChef: forráskód és kiadások](https://github.com/gchq/CyberChef/releases)**: A CyberChef nyílt kódja a GitHubon, letölthető és offline futtatható verziókkal együtt. *Mit tanulsz meg:* Hogyan épül fel egy nagy eszköz kis műveletekből. Miért teszi közzé a kódját egy hírszerző szolgálat: a nyitottság növeli a bizalmat.
-- **[picoCTF 2026: a verseny oldala](https://picoctf.org/)**: A legnagyobb iskolás online CTF szabályai és szervezése: legfeljebb 5 fős csapatok, feladatkategóriák, díjak. *Mit tanulsz meg:* Hogyan épül fel egy fair verseny: szabályok, kategóriák, csapatok. Jó minta az expedíció saját mini-CTF-jéhez.
+- **[CyLab Security Academy: versenyek](https://cylabacademy.org/competitors.html)**: A legnagyobb iskolás online CTF szabályai és szervezése: legfeljebb 5 fős csapatok, feladatkategóriák, díjak. *Mit tanulsz meg:* Hogyan épül fel egy fair verseny: szabályok, kategóriák, csapatok. Jó minta az expedíció saját mini-CTF-jéhez.
 
 ### 📚 Hol tanulhatsz tovább
 

@@ -42,16 +42,16 @@ Skutočné nástroje, komunity, súťaže a projekty, kde sa dá pokračovať. V
 3. Vyskúšaj operáciu Magic, ktorá sama tipuje kódovanie.
 4. Do nástroja nikdy nevkladaj svoje skutočné heslá, skúšaj len cvičné.
 
-#### [picoGym (picoCTF)](https://picoctf.org/get_started.html)
+#### [Knižnica úloh CyLab Security Academy (predtým picoGym)](https://cylabacademy.org/learners.html)
 
-Celoročná cvičná „telocvičňa“ s úlohami z minulých ročníkov picoCTF, najväčšej online CTF pre školákov od Carnegie Mellon University. Úlohy sú odstupňované od úplných začiatkov po ťažké a rozdelené do kategórií (kryptografia, forenzná analýza, web). Dá sa trénovať kedykoľvek, nielen počas súťaže.
+Celoročná knižnica cvičných úloh z minulých ročníkov picoCTF, najväčšej online CTF pre školákov od Carnegie Mellon University, dnes CyLab Security Academy. Úlohy sú odstupňované od úplných začiatkov po ťažké a rozdelené do kategórií (kryptografia, forenzná analýza, web). Dá sa trénovať kedykoľvek, nielen počas súťaže.
 
 *zadarmo · účet od 13 rokov, do 18 rokov so súhlasom rodiča; mladší hrajú s rodičom cez jeho účet alebo s krúžkom · po anglicky*
 
 **Ako začať:**
 
 1. Spolu s rodičom si založ účet (prezývka bez mena a roku).
-2. V picoGym si vyfiltruj najľahšie úlohy z kategórie General Skills.
+2. V knižnici úloh si vyfiltruj najľahšie úlohy z kategórie General Skills.
 3. Ku každej úlohe si zapíš, aký princíp v nej bol.
 
 #### [OverTheWire: Bandit](https://overthewire.org/wargames/bandit/)
@@ -80,9 +80,9 @@ Platforma na kryptografiu formou úloh: od kódovania a XORu po RSA a eliptické
 
 #### [TryHackMe](https://tryhackme.com/about)
 
-Online kurzy kyberbezpečnosti s virtuálnymi počítačmi v prehliadači: obrana, útok, forenzná analýza. Najprepracovanejšia cesta od začiatkov k profesii. Hodí sa pre starších a pokročilých, ktorí už majú za sebou picoGym alebo Bandit.
+Online kurzy kyberbezpečnosti s virtuálnymi počítačmi v prehliadači: obrana, útok, forenzná analýza. Najprepracovanejšia cesta od začiatkov k profesii. Hodí sa pre starších a pokročilých, ktorí už majú za sebou knižnicu úloh CyLab alebo Bandit.
 
-*základná časť zadarmo, prémiový obsah je platený (lacnejšia alternatíva: picoGym a OverTheWire zadarmo) · od 13 rokov (zásady používania, verzia 2.0 z 28. 8. 2026); mladší len čítajú s rodičom · po anglicky*
+*základná časť zadarmo, prémiový obsah je platený (lacnejšia alternatíva: knižnica úloh CyLab a OverTheWire zadarmo) · od 13 rokov (zásady používania, verzia 2.0 z 28. 8. 2026); mladší len čítajú s rodičom · po anglicky*
 
 **Ako začať:**
 
@@ -114,11 +114,11 @@ Open-source správca hesiel: trezor, ktorý si pamätá dlhé jedinečné heslá
 
 1. Online úvodné kolo 2026 bežalo od 10. 9. do 18. 10. 2026, stráž si termín ďalšieho ročníka.
 2. Registráciu urob s rodičom alebo učiteľom.
-3. Trénuj vopred na picoGym a v CyberChef.
+3. Trénuj vopred v knižnici úloh CyLab a v CyberChef.
 
 > **Bezpečne:** Prezývka bez mena a roku; útočíš len na súťažné úlohy; riešenia ani heslá nikomu neposielaš. Organizuje Cybersecurity Center, z.ú., spolu s univerzitou UJEP.
 
-#### [picoCTF (jarná súťaž)](https://picoctf.org/)
+#### [CyLab Security Academy: veľká súťaž (predtým picoCTF)](https://cylabacademy.org/competitors.html)
 
 *súťaž CTF pre školákov (online, tímy do 5 ľudí) · zadarmo · po anglicky*
 
@@ -128,7 +128,7 @@ Open-source správca hesiel: trezor, ktorý si pamätá dlhé jedinečné heslá
 
 1. Vytvor tím so spolužiakmi alebo s krúžkom.
 2. Mladší ako 13 rokov hrajú len cez účet dospelého (učiteľa, rodiča) a pod jeho dohľadom.
-3. Medzi ročníkmi trénuj v picoGym.
+3. Medzi ročníkmi trénuj v knižnici úloh CyLab.
 
 > **Bezpečne:** Účet do 18 rokov so súhlasom rodiča; v tímovom chate žiadne osobné údaje; súbory z úloh otváraj len v CyberChef alebo v prehliadači, nespúšťaj ich.
 
@@ -189,24 +189,24 @@ Jediná veľká česká súťaž v kybernetickej bezpečnosti už od 9 rokov, s 
 2. Zaregistruj sa na webe súťaže a rieš online kolo; otázky píš na kybersoutez@kybersoutez.cz.
 3. Najlepší postupujú do ďalších kôl a do finále.
 
-#### [picoCTF (Carnegie Mellon)](https://picoctf.org/)
+#### [CyLab Security Academy, predtým picoCTF (Carnegie Mellon)](https://cylabacademy.org/)
 
 *súťaž a cvičný web v kybernetickej bezpečnosti · zadarmo · angličtina*
 
 Etický hacking v bezpečnom prostredí. Učí Linux, kryptografiu a webovú bezpečnosť formou hry.
 
-**Kedy:** Súťaž býva na jar, cvičný web picoGym je otvorený celoročne. Termín 2027 over na webe **Vek:** od 13 rokov; pre 13 – 17 rokov e-mail rodiča, prípadne účet zriadi učiteľ
+**Kedy:** Veľká súťaž býva raz ročne, knižnica úloh (predtým picoGym) je otvorená celoročne. Termín 2027 over na webe **Vek:** od 13 rokov; pre 13 – 17 rokov e-mail rodiča, prípadne účet zriadi učiteľ
 
 **Ako sa pridať:**
 
-1. registrácia na picoctf.org s e-mailom rodiča
+1. registrácia na cylabacademy.org s e-mailom rodiča
 2. alebo účet v triede od učiteľa
 
 ### 🧪 Projekty pre inšpiráciu
 
 - **[Have I Been Pwned: Pwned Passwords a k-anonymita](https://www.troyhunt.com/understanding-have-i-been-pwneds-use-of-sha-1-and-k-anonymity/)**: Článok autora služby o tom, ako sa dá overiť, či heslo uniklo, bez toho, aby ho server videl: odosiela sa len prvých 5 znakov odtlačku SHA-1. *Naučíš sa:* Odtlačok (hash), k-anonymita a návrh služby, ktorá chráni súkromie už svojou konštrukciou. Po anglicky, s prekladačom to zvládneš.
 - **[CyberChef: zdrojový kód a vydania](https://github.com/gchq/CyberChef/releases)**: Otvorený kód nástroja CyberChef na GitHube, vrátane verzií na stiahnutie a spustenie offline. *Naučíš sa:* Ako je veľký nástroj poskladaný z malých operácií. Prečo spravodajská služba zverejňuje svoj kód: otvorenosť zvyšuje dôveru.
-- **[picoCTF 2026: stránka súťaže](https://picoctf.org/)**: Pravidlá a organizácia najväčšej online CTF pre školákov: tímy do 5 ľudí, kategórie úloh, ceny. *Naučíš sa:* Ako sa stavia férová súťaž: pravidlá, kategórie, tímy. Hodí sa ako vzor pre vlastnú mini-CTF v expedícii.
+- **[CyLab Security Academy: súťaže](https://cylabacademy.org/competitors.html)**: Pravidlá a organizácia najväčšej online CTF pre školákov: tímy do 5 ľudí, kategórie úloh, ceny. *Naučíš sa:* Ako sa stavia férová súťaž: pravidlá, kategórie, tímy. Hodí sa ako vzor pre vlastnú mini-CTF v expedícii.
 
 ### 📚 Kde sa učiť ďalej
 

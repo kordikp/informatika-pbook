@@ -160,17 +160,17 @@ Slovenská soutěž v kybernetické bezpečnosti uznaná ministerstvem školstv�
 1. Přečti si organizační řád soutěže.
 2. Přihlas se přes školu nebo online podle pokynů organizátora.
 
-#### [picoCTF (Carnegie Mellon)](https://picoctf.org/)
+#### [CyLab Security Academy, dříve picoCTF (Carnegie Mellon)](https://cylabacademy.org/)
 
 *soutěž a cvičný web v kyberbezpečnosti · zdarma · angličtina*
 
 Etický hacking v bezpečném prostředí. Učí Linux, kryptografii a webovou bezpečnost formou hry.
 
-**Kdy:** Soutěž bývá na jaře, cvičný web picoGym je otevřený celoročně. Termín 2027 ověř na webu **Věk:** od 13 let; pro 13–17 let e-mail rodiče, případně účet zřídí učitel
+**Kdy:** Velká soutěž bývá jednou ročně, knihovna úloh (dříve picoGym) je otevřená celoročně. Termín 2027 ověř na webu **Věk:** od 13 let; pro 13–17 let e-mail rodiče, případně účet zřídí učitel
 
 **Jak se přidat:**
 
-1. registrace na picoctf.org s e-mailem rodiče
+1. registrace na cylabacademy.org s e-mailem rodiče
 2. nebo účet ve třídě od učitele
 
 ### 🧪 Projekty pro inspiraci

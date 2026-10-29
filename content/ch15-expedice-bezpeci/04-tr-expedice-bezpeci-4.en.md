@@ -30,9 +30,9 @@ carriers: prose
 CTF is played all over the world, and some competitions are made just for school students.
 
 - **[Kybersoutěž](https://www.kybersoutez.cz/)**: the Czech national cybersecurity competition for pupils and students aged 9 to 24, including primary schools. It’s part of the European initiative European Cyber Security Challenge. The online round in 2026 ran from 10 September to 18 October; keep an eye on the website for next year’s dates. In Czech.
-- **[picoCTF](https://picoctf.org/)**: the biggest online CTF for school students, from Carnegie Mellon University, every spring (in 2026 from 9 to 19 March). All year round, the practice “gym” **picoGym** with older tasks is open. An account is from age 13, free, in English. Only schools in the USA get prizes.
+- **[CyLab Security Academy](https://cylabacademy.org/)** (formerly picoCTF): the biggest online CTF for school students, from Carnegie Mellon University. The big competition is held once a year (picoCTF 2026 ran from 9 to 19 March), with smaller ones during the year. All year round, the **challenge library** (formerly picoGym) with older tasks is open. An account is from age 13, free, in English. Prizes are usually only for students in the USA.
 
-**Are you under 13?** Sign in to picoGym through a parent’s account and together with them, or play in a team with a club and a teacher. Kybersoutěž is open to you too, but do the registration together with a parent or teacher.
+**Are you under 13?** Sign in to the CyLab challenge library through a parent’s account and together with them, or play in a team with a club and a teacher. Kybersoutěž is open to you too, but do the registration together with a parent or teacher.
 
 **Three rules for taking part safely:**
 
