@@ -6,7 +6,7 @@
 // (content/bundle.<lang>.json or every content file, games, the interface pack — app.js
 // _offlineCopy) and they are stored here. Install used to download all 299 content files
 // a second time while the first visit was still loading them.
-const CACHE_NAME = 'pbook-informatika-v91';
+const CACHE_NAME = 'pbook-informatika-v92';
 
 // Fetch + store one URL; returns the live Response (body still readable) or null
 async function precacheOne(cache, url) {
@@ -29,7 +29,7 @@ async function precacheShell(cache) {
   const page = await precacheOne(cache, '/');
   let html = '';
   try { html = page ? await page.text() : ''; } catch (e) {}
-  const own = new Set(['/index.html', '/favicon.svg']);
+  const own = new Set(['/index.html', '/favicon.svg', '/favicon.ico']);
   for (const m of html.matchAll(/(?:href|src)="\/?(?!https?:|\/|data:|#)([^"]+\.(?:css|js|svg|png|webp|woff2)(?:\?[^"]*)?)"/g)) own.add('/' + m[1]);
   const res = {};
   await inBatches([...own], async u => { res[u] = await precacheOne(cache, u); });
