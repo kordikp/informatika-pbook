@@ -1,59 +1,34 @@
 # Jak funguje digitální svět — p-book
 
-**Živě: https://informatika-pbook.vercel.app** · [GitHub](https://github.com/kordikp/informatika-pbook)
+**Živě: https://informatika-pbook.vercel.app** · vydává [AI dětem](https://aidetem.cz)
 
-Bezplatná **interaktivní učebnice informatiky a umělé inteligence** pro 2. stupeň ZŠ (primárně 8. třída). Česky, s kvízy, misemi a personalizovaným čtením ve stylu Netflixu.
+Bezplatná interaktivní učebnice informatiky a umělé inteligence pro 2. stupeň ZŠ (11–15 let), **česky, anglicky, slovensky a maďarsky**. Funguje v prohlížeči i bez sítě (PWA), bez registrace.
 
-**Obsahová páteř:** core vrstva [Mapy informatických konceptů Glitch](https://knowledge-map-glitch.vercel.app/) organizace [AI dětem](https://aidetem.cz) — **63 konceptů ve 12 tématech**, navázaných na revidované RVP Informatika (2024) a mezinárodní rámce (CSTA K-12, UNESCO AI Competency Framework, AI4K12, DigComp 2.2).
+- **6 kapitol, 24 jader** (Postup, Program, Data, Stroje a sítě, Umělá inteligence, Bezpečí a ty). Každé jádro má několik podání (článek, hra, komiks, řešený příklad…) a kniha vybírá podle toho, co čtenáře baví.
+- **Světy** (hry, roboti a micro:bit, weby, aplikace, tvorba s AI, sociální sítě) a **12 expedic** pro ty, kdo chtějí víc.
+- **Mise se závěrečným bossem.** Odpověď vlastními slovy hodnotí AI zkoušející. Když ještě není úplná, položí jednu naváděcí otázku (sokratovsky) a nic neprozradí.
+- **Autorské studio:** žáci píšou vlastní podání konceptů a sdílejí je se třídou.
+- **Pro učitele:** plán hodiny, odkazy a QR kódy na mise ([/ucitel](https://informatika-pbook.vercel.app/ucitel)).
 
-Fork **nejnovějšího p-book enginu** (`recsys-pbook`, stav k 15. 7. 2026) s fazetovou personalizací, kontrakty konceptů a živou knihou. UI kompletně počeštěno.
+Obsahová páteř: [Mapa informatických konceptů Glitch](https://knowledge-map-glitch.vercel.app/) organizace AI dětem, navázaná na revidované RVP Informatika (2024), CSTA, AI4K12 a UNESCO AI Competency Framework. Platforma: p-book engine ([kordikp/recsys-pbook](https://github.com/kordikp/recsys-pbook)) z FIT ČVUT.
 
-## Kapitoly
+## Pro vývojáře
 
-| # | Téma | Sekce |
-|---|------|-------|
-| 1 | Digitální základy | 5 |
-| 2 | Informatické myšlení a algoritmizace | 5 |
-| 3 | Programování | 5 |
-| 4 | Data, databáze a datová gramotnost | 5 |
-| 5 | Umělá inteligence | 10 |
-| 6 | Kyberbezpečnost a digitální bezpečí | 5 |
-| 7 | Digitální občanství, média a wellbeing | 5 |
-| 8 | Tvorba webů | 5 |
-| 9 | Tvorba aplikací a vibecoding | 5 |
-| 10 | Tvorba digitálního obsahu s AI | 4 |
-| 11 | Herní vývoj | 5 |
-| 12 | Fyzický computing, robotika a IoT | 4 |
+| Dokument | Co v něm je |
+|---|---|
+| [docs/DEPLOY.md](docs/DEPLOY.md) | Nasazení na Vercel, OpenAI token, účet Recombee, Supabase, aktualizace enginu |
+| [docs/tiny-integration/REQUIREMENTS.md](docs/tiny-integration/REQUIREMENTS.md) | Požadavky na propojení s Tiny: přihlášení účtem Tiny, boss, profil (DRAFT) |
+| [docs/TACR-A-PILOT.md](docs/TACR-A-PILOT.md) | Výstup TAČR (modul pro samovzdělávání) a plán pilotu ve školách |
+| [AGENTS.md](AGENTS.md) · [CONTRIBUTING.md](CONTRIBUTING.md) | Pravidla pro obsah a pro AI asistenty |
 
-Pořadí kapitol sleduje metodiku mapy: nejdřív páteř (základy → myšlení → programování → data → AI) s bezpečnostním rámcem (kyberbezpečnost, občanství), pak tvořivá vlna (weby → aplikace → obsah → hry → robotika).
-
-## Didaktika
-
-- Každá sekce = jeden koncept mapy: hook ze života žáka, jádro s tučnými klíčovými větami, příklady z appek, aktivita „Zkus to!“ / „Zamysli se!“, zajímavost a most na související koncepty.
-- Frontmatter `recallQ`/`recallA` pohání kvízy s rozloženým opakováním.
-- Řídící princip: **„ověřuj, ale využívej“** — všude, kde se AI používá jako nástroj, je reflexní mikro-krok (ověř výstup, hledej bias, přiznej použití AI).
-- Texty píšou lidé + AI (Claude); vše podléhá lidské redakci. Stav: první kompletní draft core obsahu.
-
-## Spuštění lokálně
+Lokálně:
 
 ```bash
-node serve-local.js
-# otevři http://localhost:8000
+node serve-local.js 8094        # http://localhost:8094; klíče v .env (viz docs/DEPLOY.md)
 ```
 
-Statický web bez build kroku, nasazený na Vercelu (https://informatika-pbook.vercel.app); push do `master` nasadí automaticky. Případně zapni Recombee personalizaci v `js/config.js` (`recombee.enabled`) a doplň token do `.env`.
-
-## Struktura obsahu
-
-```
-content/book.json           # index kapitol
-content/chN-*/NN-spine-*.md # sekce (Markdown + YAML frontmatter)
-games/                      # minihry (JSON) — zatím prázdné
-images/                     # SVG ilustrace
-```
-
-Jak přispívat: viz [CONTRIBUTING.md](CONTRIBUTING.md). Validace obsahu: `node .github/scripts/validate-content.js`. Po úpravě obsahu přegeneruj koncepty: `node scripts/migrate-facets.js`. Pravidla pro fazety a AI spolupráci: `AGENTS.md`.
+Obsah je v `content/` (Markdown s YAML frontmatter, index `content/book.json`). Svazky `content/bundle.<jazyk>.json` a `content/ucitel.json` se generují při nasazení (`vercel.json` → `buildCommand`), do gitu nepatří.
 
 ## Licence
 
-Obsah: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) · Kód platformy: MIT
+Obsah: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) · Kód platformy: MIT · Písmo Space Grotesk: SIL OFL 1.1 (`fonts/space-grotesk/OFL.txt`) · Ikony: [Lucide](https://lucide.dev/license) (ISC)
