@@ -8,8 +8,8 @@
 **Modul pro samovzdělávání „Jak funguje digitální svět“.** Interaktivní kniha z informatiky a AI
 pro 11–15 let ve čtyřech jazycích. Běží v prohlížeči i bez sítě a nevyžaduje registraci.
 
-- Cestu si volí žák: svět, který ho baví, a co chce umět.
-- Kniha přizpůsobuje podání jeho výsledkům.
+- Cestu si volí žák: oblíbený svět a co chce umět.
+- Kniha přizpůsobuje podání výsledkům žáka.
 - Pochopení ověřuje AI zkoušející. Když odpověď ještě není úplná, položí jednu naváděcí otázku
   (sokratovsky) a odpověď neprozradí.
 - Skupinové úkoly (skládačka): každé místo v týmu má jinou kartu a tým odpovídá drakovi společně.
@@ -24,7 +24,7 @@ dokumentaci programu a ve smlouvě projektu: číslo projektu, příjemce, vlast
 
 | Co | Doklad |
 |---|---|
-| Veřejná verze | https://informatika-pbook.vercel.app, engine 7.8.0, SW v92 (2026-10-30) |
+| Veřejná verze | https://informatika-pbook.vercel.app, engine 7.9.0, SW v93 (2026-10-30) |
 | Obsah | 6 kapitol a 24 jader, 6 světů, projekt Tvůrce, 12 expedic, 25 misí s bossem, 6 skupinových úkolů s AI asistenty, 42 výzev a 36 her navíc (`scripts/build-ucitel.mjs`) |
 | Jazyky | čeština, angličtina, slovenština, maďarština; v každém jazyce otestováno i offline |
 | Pro učitele | https://informatika-pbook.vercel.app/ucitel (plán hodiny, odkazy, QR) |
@@ -101,18 +101,31 @@ Odpověď na otázku 6 dává **vyjádření škol** pro doklad o ověření v p
   v dotazníku.
 - Do logu jde jen to, co kniha zaznamenává dnes (přečteno, ověřeno, mise, výsledek bosse). Texty
   odpovědí žáků se neukládají. K hodnocení je ale kniha posílá poskytovateli modelu (OpenAI).
-- Na `/ucitel` bude krátká informace pro rodiče, kterou může učitel přeposlat. **[?]** Ověřit
-  s pověřencem AI dětem, jestli stačí informace, nebo je potřeba souhlas.
+- Na `/ucitel#rodice` je krátká informace pro rodiče ve čtyřech jazycích, kterou vyučující zkopíruje
+  a doplní podpis. **[?]** Ověřit s pověřencem AI dětem, jestli stačí informace, nebo je potřeba souhlas.
+- Dotazník je neveřejný řádek logu (`teacher_survey`, mimo veřejný seznam `/api/log`). E-mail jde
+  zvlášť jako neveřejný `contact`.
 
-**Co je potřeba postavit** (asi 1–2 dny, bez práce týmu AI dětem)
+**Co je postavené** (engine 7.9.0, Informatika SW v93, 2026-10-30)
 
-1. Kód třídy: vznikne na `/ucitel`, jde v odkazech a QR kódech, zařízení žáka si ho pamatuje
-   a přidá ho ke každému řádku logu (`classCode`).
-2. Dotazník na `/ucitel`. Odpovědi se ukládají přes `/api/log` jako `teacher_survey`; e-mail jako
-   neveřejný `contact`, jak to kniha dělá už dnes.
-3. Palec u hodnocení bosse (`boss_fair`).
-4. Skript `pilot-report`: souhrn za třídy i celek, spárovaný s dotazníky.
-5. Texty pozvánky, připomínky a informace pro rodiče.
+1. **Kód třídy.** `/ucitel` vytvoří náhodný kód (6 znaků) a učitel může mít víc tříd s poznámkou,
+   která zůstává jen v prohlížeči na stránce pro učitele. Kód je ve všech odkazech a QR kódech (`?trida=…`). Zařízení
+   žáka si ho uloží (stejný kód používá galerie třídy) a engine ho přidá ke každému řádku logu
+   (`classCode`). Poslední odkaz vyhrává, takže sdílený školní tablet patří třídě, která ho právě používá.
+2. **Dotazník po hodině** na `/ucitel#dotaznik`: šest otázek, volitelně škola a e-mail.
+3. **Palec u hodnocení bosse** (mise i skupinové úkoly): `boss_fair` s misí, kolem a verdiktem.
+4. **Skript na zprávu** `scripts/pilot-report.mjs`. Kritéria úspěchu, tabulka po třídách (zařízení,
+   návraty, přečtená, ověřená, obhájená a udržená jádra, bossové, mise, skupinové úkoly, palce, volání
+   modelu) a dotazníky. Zařízení učitele se mezi žáky nepočítá.
+   ```
+   SUPABASE_URL=… SUPABASE_KEY=… node scripts/pilot-report.mjs --supabase --od 2027-01-01 --do 2027-03-31 --cena 0.15 > zprava.md
+   node scripts/pilot-report.mjs --supabase --jen k7m2qx   # souhrn pro jednu třídu
+   ```
+5. **Texty** pozvánky a připomínky: [PILOT-TEXTY.md](PILOT-TEXTY.md). Informace pro rodiče je na `/ucitel#rodice`.
+
+Při stavbě se opravily dvě chyby v logu. Nové zařízení při druhém načtení stránky posílalo celou
+první návštěvu znovu, takže se počítala dvakrát (opraveno v 7.9.0, skript starší duplicity vynechá).
+`session_start` zapisoval u odkazu od učitele vstup „view“ místo „mission“.
 
 **Předpoklad:** pilot běží až na doméně AI dětem. Postup žáka je v prohlížeči vázaný na adresu,
 takže přepnutí v průběhu pilotu by data rozdělilo.

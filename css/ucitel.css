@@ -92,3 +92,28 @@ body.uc { background: var(--bg); color: var(--text); font-family: var(--font-ui)
 }
 .uc-label .uc-chips { margin-top: .3em; }
 .uc-chip:disabled { opacity: .35; cursor: default; }
+
+/* kód třídy, dotazník po hodině, informace pro rodiče (pilot ve školách) */
+.uc-class-code { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2em .7em; margin-bottom: .7em; }
+.uc-class-code > span { font-size: .8rem; font-weight: 700; color: var(--text-2); }
+.uc-class-code b { font-family: var(--font-mono); font-size: 1.7rem; letter-spacing: .08em; color: var(--accent); }
+.uc-class-code small { flex-basis: 100%; }
+.uc-own { margin-top: .8em; }
+.uc-block { display: block; }
+.uc-form fieldset { border: 0; border-top: 1px solid var(--border-light); padding: .8em 0 .6em; margin: 0; }
+.uc-form fieldset:first-child { border-top: 0; padding-top: 0; }
+.uc-form legend { font-weight: 700; font-size: .95rem; padding: 0; margin-bottom: .45em; }
+.uc-form .uc-label { margin-top: .6em; }
+.uc-form textarea.uc-input { resize: vertical; }
+.uc-opts { display: flex; flex-wrap: wrap; gap: .1em 1.1em; }
+.uc-check input[type=radio] { accent-color: var(--accent); }
+.uc-num { max-width: 7em; }
+.uc-scale { display: flex; gap: .4em; }
+.uc-scale label { flex: 1; max-width: 3.4em; }
+.uc-scale input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.uc-scale span { display: block; text-align: center; font-weight: 700; padding: .45em 0; border-radius: var(--radius-sm); border: 1.5px solid var(--border); background: var(--bg); cursor: pointer; }
+.uc-scale input:checked + span { border-color: var(--accent); background: var(--accent); color: #fff; }
+.uc-scale input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.uc-scale-ends { display: flex; justify-content: space-between; max-width: 18.6em; font-size: .74rem; color: var(--text-3); margin-top: .25em; gap: 1em; }
+.uc-msg { font-weight: 600; color: var(--accent); min-height: 1.2em; margin-top: .4em; }
+.uc-letter { font-size: .84rem; line-height: 1.5; white-space: pre-wrap; resize: vertical; }

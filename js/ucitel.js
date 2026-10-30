@@ -2,6 +2,8 @@
 // s kódem třídy a certifikát. Všechno jsou odkazy do knihy, které engine už umí (#mission-…,
 // #mise-…, #tym-…, #autor-…, #trida-…); žádné účty, postup zůstává v zařízení žáka. Stránka mluví jazykem
 // knihy (?lang=, jinak poslední volba čtenáře) a v tom jazyce se kniha žákům i otevře.
+// Každý odkaz nese náhodný kód třídy (&trida=…): engine ho uloží v zařízení žáka a přidá ke každému
+// řádku logu, takže pilot ve školách jde vyhodnotit po třídách (docs/TACR-A-PILOT.md §4).
 // Data skládá scripts/build-ucitel.mjs do content/ucitel.json.
 import { CONFIG } from './config.js';
 import { LANG, LANGS, setLang } from './i18n.js';
@@ -173,17 +175,13 @@ const S = {
     cs: 'Kód musí mít 4–16 znaků a jen malá písmena bez diakritiky, číslice a pomlčky.', en: 'The code needs 4–16 characters: only lowercase letters, digits and dashes.',
     sk: 'Kód musí mať 4–16 znakov a iba malé písmená bez diakritiky, číslice a pomlčky.', hu: 'A kód 4–16 karakterből állhat: csak ékezet nélküli kisbetű, számjegy és kötőjel.',
   },
-  codeFirst: {
-    cs: 'Zadejte kód třídy a odkaz na galerii se objeví tady.', en: 'Enter a class code and the gallery link appears here.',
-    sk: 'Zadajte kód triedy a odkaz na galériu sa objaví tu.', hu: 'Adja meg az osztálykódot, és itt megjelenik a galéria linkje.',
-  },
   tvPupils: { cs: 'Odkaz pro žáky: napsat vlastní podání', en: 'Link for pupils: write your own telling', sk: 'Odkaz pre žiakov: napísať vlastné podanie', hu: 'Link a diákoknak: saját változat írása' },
   tvGallery: { cs: 'Galerie třídy: pro vás, na projektor', en: 'Class gallery: for you, on the projector', sk: 'Galéria triedy: pre vás, na projektor', hu: 'Osztálygaléria: Önnek, a kivetítőre' },
   tvNote: {
-    cs: 'Kód třídy zadají žáci při sdílení podání a kniha si ho zapamatuje. Podání sdílená s kódem vidí jen vaše třída. V galerii je promítnete tlačítkem ▶ Prezentovat, třída hlasuje ❤️ a vy nejlepší doporučíte ⭐ redakci do společné knihy.',
-    en: 'Pupils enter the class code when they share their telling, and the book remembers it. Tellings shared with the code are visible to your class only. In the gallery you show them with ▶ Present, the class votes ❤️, and you recommend the best one ⭐ to the editors for the shared book.',
-    sk: 'Kód triedy zadajú žiaci pri zdieľaní podania a kniha si ho zapamätá. Podania zdieľané s kódom vidí iba vaša trieda. V galérii ich premietnete tlačidlom ▶ Prezentovať, trieda hlasuje ❤️ a vy najlepšie odporučíte ⭐ redakcii do spoločnej knihy.',
-    hu: 'Az osztálykódot a diákok a változat megosztásakor adják meg, és a könyv megjegyzi. A kóddal megosztott változatokat csak az Ön osztálya látja. A galériában a ▶ Bemutatás gombbal vetíti ki őket, az osztály ❤️-tel szavaz, Ön pedig a legjobbat ⭐-gal ajánlja a szerkesztőknek a közös könyvbe.',
+    cs: 'Kód třídy si kniha vezme z vašeho odkazu a při sdílení podání ho žákům sama předvyplní. Podání sdílená s kódem vidí jen vaše třída. V galerii je promítnete tlačítkem ▶ Prezentovat, třída hlasuje ❤️ a vy nejlepší doporučíte ⭐ redakci do společné knihy.',
+    en: 'The book takes the class code from your link and fills it in for pupils when they share a telling. Tellings shared with the code are visible to your class only. In the gallery you show them with ▶ Present, the class votes ❤️, and you recommend the best one ⭐ to the editors for the shared book.',
+    sk: 'Kód triedy si kniha vezme z vášho odkazu a pri zdieľaní podania ho žiakom sama predvyplní. Podania zdieľané s kódom vidí iba vaša trieda. V galérii ich premietnete tlačidlom ▶ Prezentovať, trieda hlasuje ❤️ a vy najlepšie odporučíte ⭐ redakcii do spoločnej knihy.',
+    hu: 'A könyv a linkjéből veszi az osztálykódot, és megosztáskor kitölti a diákoknak. A kóddal megosztott változatokat csak az Ön osztálya látja. A galériában a ▶ Bemutatás gombbal vetíti ki őket, az osztály ❤️-tel szavaz, Ön pedig a legjobbat ⭐-gal ajánlja a szerkesztőknek a közös könyvbe.',
   },
 
   certIntro: {
@@ -267,6 +265,147 @@ const S = {
     sk: 'Otázky pre AI asistentov aj odpoveď pre draka posiela kniha na vyhodnotenie poskytovateľovi AI modelu, rovnako ako pri misiách. Upozornite deti, nech do nich nepíšu mená ani osobné údaje.',
     hu: 'A küldetésekhez hasonlóan a könyv az AI-asszisztenseknek szóló kérdéseket és a sárkánynak szóló választ is elküldi az AI-modell szolgáltatójának. Figyelmeztesse a gyerekeket, hogy ne írjanak bele neveket vagy személyes adatokat.',
   },
+  // ---------- kód třídy, dotazník po hodině, informace pro rodiče (pilot ve školách) ----------
+  trIntro: {
+    cs: 'Odkazy a QR kódy na této stránce nesou kód vaší třídy. Kniha si ho v zařízení žáka zapamatuje: v galerii třídy pak uvidíte práce své třídy a záznamy o práci s knihou (bez jmen) půjde vyhodnotit po třídách. Pro každou třídu použijte jiný kód.',
+    en: 'The links and QR codes on this page carry your class code. The book remembers it on each pupil’s device: the class gallery then shows your class’s work, and the records of work with the book (no names) can be evaluated class by class. Use a different code for each class.',
+    sk: 'Odkazy a QR kódy na tejto stránke nesú kód vašej triedy. Kniha si ho v zariadení žiaka zapamätá: v galérii triedy potom uvidíte práce svojej triedy a záznamy o práci s knihou (bez mien) bude možné vyhodnotiť po triedach. Pre každú triedu použite iný kód.',
+    hu: 'Az oldal linkjei és QR-kódjai tartalmazzák az osztály kódját. A könyv megjegyzi a diák eszközén: az osztálygalériában így az Ön osztályának munkái jelennek meg, a könyvvel végzett munka adatai (nevek nélkül) pedig osztályonként értékelhetők. Minden osztálynak más kódot használjon.',
+  },
+  trWhich: { cs: 'Třída', en: 'Class', sk: 'Trieda', hu: 'Osztály' },
+  trNote: { cs: 'Poznámka jen pro vás', en: 'A note just for you', sk: 'Poznámka len pre vás', hu: 'Megjegyzés csak Önnek' },
+  trNotePh: { cs: 'např. 7.B, úterý', en: 'e.g. 7B, Tuesdays', sk: 'napr. 7.B, utorok', hu: 'pl. 7.B, kedd' },
+  trNoteHint: {
+    cs: 'Zůstane jen v tomto prohlížeči, nikam se neposílá.', en: 'Stays in this browser only and is never sent anywhere.',
+    sk: 'Zostane len v tomto prehliadači, nikam sa neposiela.', hu: 'Csak ebben a böngészőben marad, sehová nem küldjük el.',
+  },
+  trRandom: {
+    cs: 'Kód je náhodný a neprozrazuje školu ani žáky.', en: 'The code is random and reveals neither the school nor the pupils.',
+    sk: 'Kód je náhodný a neprezrádza školu ani žiakov.', hu: 'A kód véletlenszerű, sem az iskolát, sem a diákokat nem árulja el.',
+  },
+  trNew: { cs: '+ Další třída', en: '+ Another class', sk: '+ Ďalšia trieda', hu: '+ Újabb osztály' },
+  trHave: { cs: 'Mám kód z jiného počítače', en: 'I have a code from another computer', sk: 'Mám kód z iného počítača', hu: 'Van kódom egy másik gépről' },
+  trUse: { cs: 'Použít', en: 'Use', sk: 'Použiť', hu: 'Használat' },
+
+  navDot: { cs: 'Dotazník po hodině', en: 'After-lesson survey', sk: 'Dotazník po hodine', hu: 'Kérdőív az óra után' },
+  dotIntro: {
+    cs: 'Po hodině s knihou prosíme o šest odpovědí, zaberou asi 3 minuty. Podle kódu třídy {0} se odpověď spáruje se záznamy z hodiny. Pomůže nám knihu vylepšit a doložit, jak funguje ve školách.',
+    en: 'After a lesson with the book, please answer six questions; it takes about 3 minutes. The class code {0} pairs your answer with the records from the lesson. It helps us improve the book and show how it works in schools.',
+    sk: 'Po hodine s knihou prosíme o šesť odpovedí, zaberú asi 3 minúty. Podľa kódu triedy {0} sa odpoveď spáruje so záznamami z hodiny. Pomôže nám knihu vylepšiť a doložiť, ako funguje v školách.',
+    hu: 'A könyvvel tartott óra után kérjük, válaszoljon hat kérdésre, kb. 3 percet vesz igénybe. Az osztálykód ({0}) alapján a válaszát összekapcsoljuk az óra adataival. Ez segít jobbá tenni a könyvet, és megmutatni, hogyan működik az iskolákban.',
+  },
+  dotOther: {
+    cs: 'Dotazník je za třídu vybranou nahoře v části Kód třídy.', en: 'The survey is for the class selected above under Class code.',
+    sk: 'Dotazník je za triedu vybranú hore v časti Kód triedy.', hu: 'A kérdőív a fent, az Osztálykód résznél kiválasztott osztályra vonatkozik.',
+  },
+  q1: { cs: '1. Jak třída s knihou pracovala?', en: '1. How did the class work with the book?', sk: '1. Ako trieda s knihou pracovala?', hu: '1. Hogyan dolgozott az osztály a könyvvel?' },
+  q1class: { cs: 'v hodině celá třída', en: 'the whole class in a lesson', sk: 'v hodine celá trieda', hu: 'az egész osztály órán' },
+  q1groups: { cs: 'skupinové úkoly', en: 'group tasks', sk: 'skupinové úlohy', hu: 'csoportos feladatok' },
+  q1home: { cs: 'doma', en: 'at home', sk: 'doma', hu: 'otthon' },
+  q1other: { cs: 'jinak:', en: 'other:', sk: 'inak:', hu: 'másképp:' },
+  q1n: { cs: 'Počet vyučovacích hodin s knihou', en: 'Number of lessons with the book', sk: 'Počet vyučovacích hodín s knihou', hu: 'A könyvvel tartott tanórák száma' },
+  q2: { cs: '2. Jak snadné bylo knihu v hodině použít?', en: '2. How easy was it to use the book in a lesson?', sk: '2. Aké ľahké bolo použiť knihu v hodine?', hu: '2. Mennyire volt könnyű órán használni a könyvet?' },
+  q2lo: { cs: 'velmi obtížné', en: 'very hard', sk: 'veľmi ťažké', hu: 'nagyon nehéz' },
+  q2hi: { cs: 'velmi snadné', en: 'very easy', sk: 'veľmi ľahké', hu: 'nagyon könnyű' },
+  q3: { cs: '3. Byla hodnocení bosse férová?', en: '3. Were the boss’s assessments fair?', sk: '3. Boli hodnotenia bossa férové?', hu: '3. Igazságosak voltak a főellenség értékelései?' },
+  q3lo: { cs: 'vůbec ne', en: 'not at all', sk: 'vôbec nie', hu: 'egyáltalán nem' },
+  q3hi: { cs: 'úplně', en: 'completely', sk: 'úplne', hu: 'teljesen' },
+  q3ex: { cs: 'Příklad, kdy férové nebylo (nepovinné)', en: 'An example of when it was not fair (optional)', sk: 'Príklad, kedy férové nebolo (nepovinné)', hu: 'Példa, amikor nem volt igazságos (nem kötelező)' },
+  q4: { cs: '4. Co žáky bavilo a co nefungovalo?', en: '4. What did pupils enjoy, and what did not work?', sk: '4. Čo žiakov bavilo a čo nefungovalo?', hu: '4. Mit élveztek a diákok, és mi nem működött?' },
+  q5: { cs: '5. Použijete knihu znovu?', en: '5. Will you use the book again?', sk: '5. Použijete knihu znova?', hu: '5. Használni fogja újra a könyvet?' },
+  aYes: { cs: 'ano', en: 'yes', sk: 'áno', hu: 'igen' },
+  aRYes: { cs: 'spíš ano', en: 'probably yes', sk: 'skôr áno', hu: 'inkább igen' },
+  aRNo: { cs: 'spíš ne', en: 'probably not', sk: 'skôr nie', hu: 'inkább nem' },
+  aNo: { cs: 'ne', en: 'no', sk: 'nie', hu: 'nem' },
+  q6: { cs: '6. Smíme vaši odpověď citovat ve zprávě pro TAČR?', en: '6. May we quote your answer in our report to the funder (TAČR)?', sk: '6. Smieme vašu odpoveď citovať v správe pre TAČR?', hu: '6. Idézhetjük a válaszát a támogatónak (TAČR) szóló jelentésben?' },
+  q6no: { cs: 'ne', en: 'no', sk: 'nie', hu: 'nem' },
+  q6anon: { cs: 'anonymně', en: 'anonymously', sk: 'anonymne', hu: 'névtelenül' },
+  q6school: { cs: 'se jménem školy', en: 'with the school’s name', sk: 's menom školy', hu: 'az iskola nevével' },
+  qSchool: { cs: 'Škola (nepovinné)', en: 'School (optional)', sk: 'Škola (nepovinné)', hu: 'Iskola (nem kötelező)' },
+  qSchoolHint: {
+    cs: 'Pomůže spočítat, z kolika škol odpovědi jsou. Zveřejníme ji jen se souhlasem v otázce 6.', en: 'Helps us count how many schools the answers come from. We publish it only with your consent in question 6.',
+    sk: 'Pomôže spočítať, z koľkých škôl odpovede sú. Zverejníme ju len so súhlasom v otázke 6.', hu: 'Segít megszámolni, hány iskolából érkeznek a válaszok. Csak a 6. kérdésben adott hozzájárulással tesszük közzé.',
+  },
+  qMail: { cs: 'E-mail pro další kontakt (nepovinné)', en: 'E-mail for further contact (optional)', sk: 'E-mail pre ďalší kontakt (nepovinné)', hu: 'E-mail a további kapcsolattartáshoz (nem kötelező)' },
+  qMailHint: {
+    cs: 'Uloží se zvlášť a neveřejně. Použijeme ho jen k domluvě o knize.', en: 'Stored separately and privately. We use it only to talk with you about the book.',
+    sk: 'Uloží sa zvlášť a neverejne. Použijeme ho len na dohodu o knihe.', hu: 'Külön és nem nyilvánosan tároljuk. Csak a könyvvel kapcsolatos egyeztetésre használjuk.',
+  },
+  send: { cs: 'Odeslat', en: 'Send', sk: 'Odoslať', hu: 'Küldés' },
+  sending: { cs: 'Odesílá se…', en: 'Sending…', sk: 'Odosiela sa…', hu: 'Küldés…' },
+  dotOk: { cs: 'Děkujeme! Odpověď je odeslaná.', en: 'Thank you! Your answer has been sent.', sk: 'Ďakujeme! Odpoveď je odoslaná.', hu: 'Köszönjük! A válaszát elküldtük.' },
+  dotErr: {
+    cs: 'Odeslání se nepovedlo. Zkontrolujte připojení a zkuste to znovu.', en: 'Sending failed. Check your connection and try again.',
+    sk: 'Odoslanie sa nepodarilo. Skontrolujte pripojenie a skúste to znova.', hu: 'A küldés nem sikerült. Ellenőrizze a kapcsolatot, és próbálja újra.',
+  },
+  dotNeed: { cs: 'Vyplňte prosím aspoň otázky 2, 3 a 5.', en: 'Please answer at least questions 2, 3 and 5.', sk: 'Vyplňte, prosím, aspoň otázky 2, 3 a 5.', hu: 'Kérjük, legalább a 2., 3. és 5. kérdésre válaszoljon.' },
+  dotSent: {
+    cs: 'Za třídu {0} je dotazník odeslaný ({1}). Po další hodině můžete poslat další.', en: 'The survey for class {0} has been sent ({1}). You can send another one after the next lesson.',
+    sk: 'Za triedu {0} je dotazník odoslaný ({1}). Po ďalšej hodine môžete poslať ďalší.', hu: 'A(z) {0} osztály kérdőíve elküldve ({1}). A következő óra után újat is küldhet.',
+  },
+
+  navRodice: { cs: 'Pro rodiče', en: 'For parents', sk: 'Pre rodičov', hu: 'Szülőknek' },
+  rodIntro: {
+    cs: 'Krátká informace o knize a o datech, kterou můžete poslat rodičům nebo vložit do školního systému. Doplňte podpis.',
+    en: 'A short note about the book and the data that you can send to parents or post in the school system. Add your signature.',
+    sk: 'Krátka informácia o knihe a o údajoch, ktorú môžete poslať rodičom alebo vložiť do školského systému. Doplňte podpis.',
+    hu: 'Rövid tájékoztató a könyvről és az adatokról, amelyet elküldhet a szülőknek, vagy feltehet az iskolai rendszerbe. Egészítse ki az aláírásával.',
+  },
+  rodText: {
+    cs: `Vážení rodiče,
+
+ve výuce používáme interaktivní knihu „{0}“ od AI dětem: {1}
+
+Kniha běží v prohlížeči a nepotřebuje účet, jméno ani e-mail. Postup se ukládá jen v zařízení, na kterém dítě pracuje.
+
+Kniha posílá záznamy o práci bez jmen: které části byly otevřené a jak dopadly kontrolní otázky a hodnocení na konci mise. Záznamy nesou náhodné číslo zařízení a náhodný kód třídy, aby šly výsledky vyhodnotit po třídách. Školu ani osobní údaje neobsahují. AI dětem podle nich knihu zlepšuje a ověřuje, jak funguje ve školách.
+
+Odpovědi, které dítě napíše AI zkoušejícímu, kniha neukládá. Kvůli hodnocení je ale posílá poskytovateli jazykového modelu (OpenAI). Děti proto do odpovědí nepíšou jména ani jiné osobní údaje. Text kniha uloží, jen když ho dítě výslovně pošle autorům (zpětná vazba, sdílené vlastní podání).
+
+S dotazy se můžete obrátit na mě nebo na AI dětem (aidetem.cz).
+
+[podpis]`,
+    en: `Dear parents,
+
+In class we use the interactive book “{0}” by AI dětem: {1}
+
+The book runs in the browser and needs no account, name or e-mail address. Progress is saved only on the device the child works on.
+
+The book sends records of work without names: which parts were opened and how the check questions and the end-of-mission assessments turned out. The records carry a random device number and a random class code, so that results can be evaluated class by class. They contain no school and no personal data. AI dětem uses them to improve the book and to check how it works in schools.
+
+The book does not store the answers a child writes to the AI examiner. To assess them, however, it sends them to the language model provider (OpenAI). Children therefore do not write names or other personal details in their answers. The book stores a text only when the child explicitly sends it to the authors (feedback, a shared telling of their own).
+
+If you have any questions, please contact me or AI dětem (aidetem.cz).
+
+[signature]`,
+    sk: `Vážení rodičia,
+
+vo výučbe používame interaktívnu knihu „{0}“ od AI dětem: {1}
+
+Kniha beží v prehliadači a nepotrebuje účet, meno ani e-mail. Postup sa ukladá len v zariadení, na ktorom dieťa pracuje.
+
+Kniha posiela záznamy o práci bez mien: ktoré časti boli otvorené a ako dopadli kontrolné otázky a hodnotenie na konci misie. Záznamy nesú náhodné číslo zariadenia a náhodný kód triedy, aby sa výsledky dali vyhodnotiť po triedach. Školu ani osobné údaje neobsahujú. AI dětem podľa nich knihu zlepšuje a overuje, ako funguje v školách.
+
+Odpovede, ktoré dieťa napíše AI skúšajúcemu, kniha neukladá. Kvôli hodnoteniu ich však posiela poskytovateľovi jazykového modelu (OpenAI). Deti preto do odpovedí nepíšu mená ani iné osobné údaje. Text kniha uloží, len keď ho dieťa výslovne pošle autorom (spätná väzba, zdieľané vlastné podanie).
+
+S otázkami sa môžete obrátiť na mňa alebo na AI dětem (aidetem.cz).
+
+[podpis]`,
+    hu: `Kedves Szülők!
+
+Az órákon a(z) AI dětem „{0}” című interaktív könyvét használjuk: {1}
+
+A könyv böngészőben fut, és nem kell hozzá fiók, név vagy e-mail-cím. A haladás csak azon az eszközön tárolódik, amelyen a gyerek dolgozik.
+
+A könyv név nélküli adatokat küld a munkáról: mely részek voltak megnyitva, és hogyan sikerültek az ellenőrző kérdések és a küldetések végi értékelések. Az adatokhoz egy véletlenszerű eszközazonosító és egy véletlenszerű osztálykód tartozik, hogy az eredményeket osztályonként lehessen értékelni. Iskolát és személyes adatot nem tartalmaznak. Az AI dětem ezek alapján fejleszti a könyvet, és vizsgálja, hogyan működik az iskolákban.
+
+A könyv nem tárolja azokat a válaszokat, amelyeket a gyerek az MI-vizsgáztatónak ír. Az értékeléshez azonban elküldi őket a nyelvi modell szolgáltatójának (OpenAI). A gyerekek ezért nem írnak a válaszaikba neveket vagy más személyes adatot. A könyv csak akkor tárol szöveget, ha a gyerek kifejezetten elküldi a szerzőknek (visszajelzés, megosztott saját változat).
+
+Kérdéseivel forduljon hozzám vagy az AI dětem szervezethez (aidetem.cz).
+
+[aláírás]`,
+  },
+
   credits: { cs: 'Knihu i certifikát vydává <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a>.' },
   loadErr: {
     cs: 'Data pro učitele se nepodařilo načíst. Zkuste stránku obnovit.', en: 'Could not load the teacher data. Try reloading the page.',
@@ -277,7 +416,7 @@ const S = {
 const t = (k, ...a) => a.reduce((s, x, i) => s.replaceAll(`{${i}}`, x), S[k]?.[L] ?? S[k]?.cs ?? k);
 const loc = v => (v && typeof v === 'object' ? v[L] ?? v[CONFIG.book.lang] ?? Object.values(v)[0] : v || '');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const odkaz = hash => `${location.origin}/?lang=${L}#${hash}`;
+const odkaz = hash => `${location.origin}/?lang=${L}${KOD.test(stav.kod || '') ? '&trida=' + stav.kod : ''}#${hash}`;
 // stejné kódování, jaké čte engine v loadCustomMission (base64url z UTF-8)
 const b64u = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const vejdeSeDoQR = url => { try { qrSvg(url); return true; } catch (e) { return false; } };
@@ -288,6 +427,27 @@ const KOD = /^[a-z0-9-]{4,16}$/;
 let stav = {};
 try { stav = JSON.parse(localStorage.getItem('pbook-ucitel') || '{}') || {}; } catch (e) {}
 const uloz = () => { try { localStorage.setItem('pbook-ucitel', JSON.stringify(stav)); } catch (e) {} };
+
+// Třídy učitele: náhodný kód (bez 0/o, 1/l/i, ať jde opsat z tabule) a poznámka, která zůstává jen
+// v tomto prohlížeči. Starší ručně zadaný kód (tvůrčí úkol) se stane první třídou.
+const ZNAKY = 'abcdefghjkmnpqrstuvwxyz23456789';
+const nahodne = n => { const b = new Uint8Array(n); crypto.getRandomValues(b); return [...b].map(x => ZNAKY[x % ZNAKY.length]).join(''); };
+function tridy() {
+  stav.tridy = (Array.isArray(stav.tridy) ? stav.tridy : []).filter(x => x && KOD.test(x.kod));
+  if (KOD.test(stav.kod || '') && !stav.tridy.some(x => x.kod === stav.kod)) stav.tridy.unshift({ kod: stav.kod, pozn: '' });
+  if (!stav.tridy.length) stav.tridy.push({ kod: nahodne(6), pozn: '' });
+  if (!stav.tridy.some(x => x.kod === stav.kod)) stav.kod = stav.tridy[0].kod;
+  uloz();
+  return stav.tridy;
+}
+const trida = () => stav.tridy.find(x => x.kod === stav.kod);
+const popisTridy = x => `${x.kod}${x.pozn ? ' · ' + x.pozn : ''}`;
+// kdo dotazník posílá: id čtenáře z tohoto prohlížeče (report ho pak nepočítá jako zařízení žáka)
+const ucitelId = () => {
+  try { const u = localStorage.getItem('pbook-uid'); if (u) return u; } catch (e) {}
+  if (!stav.uid) { stav.uid = 'teacher-' + nahodne(12); uloz(); }
+  return stav.uid;
+};
 
 function odkazBox(url, nazev, popisek = t('linkFor')) {
   const qr = vejdeSeDoQR(url);
@@ -355,6 +515,7 @@ function kapitoly(D) {
 }
 
 // ---------- mikromise ----------
+let obnovMini = null;   // nový kód třídy jen přepíše odkaz, výběr jader zůstane
 function mikromise(D) {
   const el = document.getElementById('ucMini');
   const vybrane = new Set((stav.mise || []).filter(id => D.chapters.some(k => k.cores.some(c => c.id === id))));
@@ -377,6 +538,7 @@ function mikromise(D) {
   };
   el.addEventListener('change', obnov);
   el.querySelector('#ucMiniName').addEventListener('input', obnov);
+  obnovMini = obnov;
   obnov();
 }
 
@@ -489,26 +651,146 @@ function tvorba(D) {
   const el = document.getElementById('ucTvorba');
   const jadra = D.chapters.flatMap(k => k.cores);
   const jadro = jadra.find(c => c.id === stav.tvorbaJadro) || jadra[0];
-  el.innerHTML = `<div class="uc-row">
-      <label class="uc-label">${t('core')}<select class="uc-input" id="ucTvJadro">${D.chapters.map(k => `<optgroup label="${k.n}. ${esc(loc(k.title))}">
+  el.innerHTML = `<label class="uc-label">${t('core')}<select class="uc-input" id="ucTvJadro">${D.chapters.map(k => `<optgroup label="${k.n}. ${esc(loc(k.title))}">
         ${k.cores.map(c => `<option value="${esc(c.id)}"${c === jadro ? ' selected' : ''}>${esc(loc(c.title))}</option>`).join('')}</optgroup>`).join('')}</select></label>
-      <label class="uc-label">${t('code')}<input class="uc-input" id="ucTvKod" maxlength="16" autocomplete="off" spellcheck="false" placeholder="8b-2026" value="${esc(stav.kod || '')}" aria-describedby="ucTvKodHint">
-        <small class="uc-muted" id="ucTvKodHint">${t('codeHint')}</small></label>
-    </div>
     <div id="ucTvOut"></div>
     <p class="uc-note">${t('tvNote')}</p>`;
   const obnov = () => {
     const id = el.querySelector('#ucTvJadro').value;
-    const kod = el.querySelector('#ucTvKod').value.trim().toLowerCase();
-    stav.tvorbaJadro = id; stav.kod = kod; uloz();
+    stav.tvorbaJadro = id; uloz();
     const c = jadra.find(x => x.id === id);
     el.querySelector('#ucTvOut').innerHTML = odkazBox(odkaz('autor-' + id), loc(c.title), t('tvPupils'))
-      + (KOD.test(kod) ? odkazBox(odkaz('trida-' + kod), `${t('code')}: ${kod}`, t('tvGallery'))
-        : `<p class="uc-muted">${kod ? t('codeBad') : t('codeFirst')}</p>`);
+      + odkazBox(odkaz('trida-' + stav.kod), `${t('code')}: ${stav.kod}`, t('tvGallery'));
   };
   el.querySelector('#ucTvJadro').addEventListener('change', obnov);
-  el.querySelector('#ucTvKod').addEventListener('input', obnov);
   obnov();
+}
+
+// ---------- kód třídy ----------
+function kodTridy(prekresli) {
+  const el = document.getElementById('ucTrida');
+  const vsechny = tridy(), ta = trida();
+  el.innerHTML = `<div class="uc-card uc-class">
+      <div class="uc-class-code"><span>${t('code')}</span><b>${esc(ta.kod)}</b><small class="uc-muted">${t('trRandom')}</small></div>
+      <div class="uc-row">
+        <label class="uc-label">${t('trWhich')}<select class="uc-input" id="ucTrSel">${vsechny.map(x =>
+          `<option value="${esc(x.kod)}"${x === ta ? ' selected' : ''}>${esc(popisTridy(x))}</option>`).join('')}</select></label>
+        <label class="uc-label">${t('trNote')}<input class="uc-input" id="ucTrPozn" maxlength="40" autocomplete="off" placeholder="${esc(t('trNotePh'))}" value="${esc(ta.pozn || '')}" aria-describedby="ucTrPoznHint">
+          <small class="uc-muted" id="ucTrPoznHint">${t('trNoteHint')}</small></label>
+      </div>
+      <div class="uc-btns">
+        <button type="button" class="uc-btn sec" id="ucTrNova">${t('trNew')}</button>
+        <button type="button" class="uc-btn sec" id="ucTrMam" aria-expanded="false" aria-controls="ucTrVlastni">${t('trHave')}</button>
+      </div>
+      <div id="ucTrVlastni" class="uc-own" hidden>
+        <label class="uc-label">${t('code')}<input class="uc-input" id="ucTrKod" maxlength="16" autocomplete="off" spellcheck="false" placeholder="k7m2qx" aria-describedby="ucTrKodHint">
+          <small class="uc-muted" id="ucTrKodHint">${t('codeHint')}</small></label>
+        <div class="uc-btns"><button type="button" class="uc-btn" id="ucTrPouzij">${t('trUse')}</button></div>
+        <p class="uc-muted" id="ucTrChyba" role="alert"></p>
+      </div>
+    </div>`;
+  const prepni = kod => { stav.kod = kod; uloz(); kodTridy(prekresli); prekresli(); };
+  el.querySelector('#ucTrSel').onchange = e => prepni(e.target.value);
+  el.querySelector('#ucTrPozn').oninput = e => {
+    ta.pozn = e.target.value.slice(0, 40); uloz();
+    const o = el.querySelector('#ucTrSel').selectedOptions[0];
+    if (o) o.textContent = popisTridy(ta);
+    dotaznikTrida();
+  };
+  el.querySelector('#ucTrNova').onclick = () => {
+    const kod = nahodne(6);
+    stav.tridy.push({ kod, pozn: '' });
+    prepni(kod);
+    document.getElementById('ucTrPozn')?.focus();
+  };
+  el.querySelector('#ucTrMam').onclick = e => {
+    const v = el.querySelector('#ucTrVlastni');
+    v.hidden = !v.hidden;
+    e.currentTarget.setAttribute('aria-expanded', String(!v.hidden));
+    if (!v.hidden) el.querySelector('#ucTrKod').focus();
+  };
+  const pouzij = () => {
+    const kod = el.querySelector('#ucTrKod').value.trim().toLowerCase();
+    if (!KOD.test(kod)) { el.querySelector('#ucTrChyba').textContent = t('codeBad'); return; }
+    if (!stav.tridy.some(x => x.kod === kod)) stav.tridy.push({ kod, pozn: '' });
+    prepni(kod);
+  };
+  el.querySelector('#ucTrPouzij').onclick = pouzij;
+  el.querySelector('#ucTrKod').onkeydown = e => { if (e.key === 'Enter') pouzij(); };
+}
+
+// ---------- dotazník po hodině ----------
+// Odpovědi jdou do /api/log jako 'teacher_survey' (neveřejný řádek, api/log.js ho ořeže na pevná pole),
+// e-mail zvlášť jako neveřejný 'contact'. scripts/pilot-report.mjs je spáruje s logem podle kódu třídy.
+function dotaznikTrida() {
+  const el = document.getElementById('ucDotIntro');
+  if (!el) return;
+  const ta = trida(), kdy = stav.dotaznik?.[ta.kod];
+  el.innerHTML = `${t('dotIntro', `<b>${esc(popisTridy(ta))}</b>`)} <span class="uc-muted">${t('dotOther')}</span>`
+    + (kdy ? `<span class="uc-note uc-block">${t('dotSent', esc(ta.kod), esc(new Date(kdy).toLocaleDateString(L)))}</span>` : '');
+}
+function dotaznik() {
+  const el = document.getElementById('ucDot');
+  const volba = (typ, jmeno, hodnota, popis) => `<label class="uc-check"><input type="${typ}" name="${jmeno}" value="${hodnota}"> ${popis}</label>`;
+  const skala = (jmeno, lo, hi) => `<div class="uc-scale">${[1, 2, 3, 4, 5].map(n =>
+      `<label><input type="radio" name="${jmeno}" value="${n}"><span>${n}</span></label>`).join('')}</div>
+    <div class="uc-scale-ends"><span>1 = ${lo}</span><span>5 = ${hi}</span></div>`;
+  el.innerHTML = `<form class="uc-card uc-form" id="ucDotForm" novalidate>
+    <fieldset><legend>${t('q1')}</legend>
+      <div class="uc-opts">${['class', 'groups', 'home', 'other'].map(v => volba('checkbox', 'how', v, t('q1' + v))).join('')}</div>
+      <input class="uc-input" name="howOther" maxlength="200" aria-label="${esc(t('q1other'))}">
+      <label class="uc-label">${t('q1n')}<input class="uc-input uc-num" type="number" name="lessons" min="0" max="40" inputmode="numeric"></label>
+    </fieldset>
+    <fieldset><legend>${t('q2')}</legend>${skala('ease', t('q2lo'), t('q2hi'))}</fieldset>
+    <fieldset><legend>${t('q3')}</legend>${skala('fair', t('q3lo'), t('q3hi'))}
+      <label class="uc-label">${t('q3ex')}<textarea class="uc-input" name="unfairExample" rows="2" maxlength="1000"></textarea></label>
+    </fieldset>
+    <fieldset><legend>${t('q4')}</legend><textarea class="uc-input" name="liked" rows="3" maxlength="1500" aria-label="${esc(t('q4'))}"></textarea></fieldset>
+    <fieldset><legend>${t('q5')}</legend>
+      <div class="uc-opts">${[['yes', 'aYes'], ['rather-yes', 'aRYes'], ['rather-no', 'aRNo'], ['no', 'aNo']].map(([v, k]) => volba('radio', 'again', v, t(k))).join('')}</div>
+    </fieldset>
+    <fieldset><legend>${t('q6')}</legend>
+      <div class="uc-opts">${[['no', 'q6no'], ['anon', 'q6anon'], ['school', 'q6school']].map(([v, k]) => volba('radio', 'quote', v, t(k))).join('')}</div>
+      <label class="uc-label">${t('qSchool')}<input class="uc-input" name="school" maxlength="120" autocomplete="organization" aria-describedby="ucDotSchoolHint">
+        <small class="uc-muted" id="ucDotSchoolHint">${t('qSchoolHint')}</small></label>
+      <label class="uc-label">${t('qMail')}<input class="uc-input" type="email" name="email" maxlength="160" autocomplete="email" aria-describedby="ucDotMailHint">
+        <small class="uc-muted" id="ucDotMailHint">${t('qMailHint')}</small></label>
+    </fieldset>
+    <p class="uc-msg" id="ucDotMsg" role="status" aria-live="polite"></p>
+    <div class="uc-btns"><button class="uc-btn" type="submit" id="ucDotSend">${t('send')}</button></div>
+  </form>`;
+  const form = el.querySelector('form'), msg = el.querySelector('#ucDotMsg'), btn = el.querySelector('#ucDotSend');
+  form.onsubmit = async e => {
+    e.preventDefault();
+    const f = new FormData(form);
+    if (!f.get('ease') || !f.get('fair') || !f.get('again')) { msg.textContent = t('dotNeed'); return; }
+    const kod = stav.kod, kdo = ucitelId();
+    const poslat = telo => fetch('/api/log', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(telo) });
+    btn.disabled = true; btn.textContent = t('sending'); msg.textContent = '';
+    try {
+      const res = await poslat({ type: 'teacher_survey', userId: kdo, book: CONFIG.book?.slug, data: {
+        classCode: kod, lang: L, how: f.getAll('how'), howOther: f.get('howOther') || '', lessons: f.get('lessons') || 0,
+        ease: f.get('ease'), fair: f.get('fair'), unfairExample: f.get('unfairExample') || '', liked: f.get('liked') || '',
+        again: f.get('again'), quote: f.get('quote') || 'no', school: f.get('school') || '' } });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const mail = String(f.get('email') || '').trim();
+      if (mail) await poslat({ type: 'contact', userId: kdo, data: { contact: mail, topic: 'pilot', page: '/ucitel', lang: L,
+        message: `Pilot ve školách: souhlas s dalším kontaktem (kód třídy ${kod}).` } }).catch(() => {});
+      stav.dotaznik = { ...(stav.dotaznik || {}), [kod]: new Date().toISOString().slice(0, 10) }; uloz();
+      form.reset();
+      msg.textContent = t('dotOk');
+      dotaznikTrida();
+    } catch (err) { msg.textContent = t('dotErr'); }
+    finally { btn.disabled = false; btn.textContent = t('send'); }
+  };
+  dotaznikTrida();
+}
+
+// ---------- informace pro rodiče ----------
+function rodice() {
+  const text = t('rodText', loc(CONFIG.book.title), location.origin + '/');
+  document.getElementById('ucRod').innerHTML = `<textarea class="uc-input uc-letter" readonly rows="16" aria-label="${esc(t('navRodice'))}">${esc(text)}</textarea>
+    <div class="uc-btns"><button class="uc-btn" type="button" data-copy="${esc(text)}">${t('copy')}</button></div>`;
 }
 
 // ---------- certifikát ----------
@@ -544,15 +826,22 @@ async function start() {
   const resitel = loc(CONFIG.certificate?.tiers?.practitioner?.title) || 'Řešitel';
   main.innerHTML = `<h1>${t('h1')}</h1>
     <p class="uc-lede">${t('lede')}</p>
-    <nav class="uc-nav"><a href="#kapitola">${t('navKap')}</a><a href="#mikromise">${t('navMini')}</a><a href="#svety">${t('navSvet')}</a>${D.teams?.length ? `<a href="#skupiny">${t('navTym')}</a>` : ''}${D.gifted ? `<a href="#nadani">${t('navNadani')}</a>` : ''}<a href="#tvorba">${t('navTvorba')}</a><a href="#certifikat">${t('navCert')}</a></nav>
+    <nav class="uc-nav"><a href="#trida">${t('code')}</a><a href="#kapitola">${t('navKap')}</a><a href="#mikromise">${t('navMini')}</a><a href="#svety">${t('navSvet')}</a>${D.teams?.length ? `<a href="#skupiny">${t('navTym')}</a>` : ''}${D.gifted ? `<a href="#nadani">${t('navNadani')}</a>` : ''}<a href="#tvorba">${t('navTvorba')}</a><a href="#certifikat">${t('navCert')}</a><a href="#dotaznik">${t('navDot')}</a><a href="#rodice">${t('navRodice')}</a></nav>
+    <section id="trida"><h2>${t('code')}</h2><p>${t('trIntro')}</p><div id="ucTrida"></div></section>
     <section id="kapitola"><h2>${t('navKap')}</h2><p>${t('kapIntro')}</p><div id="ucKap"></div></section>
     <section id="mikromise"><h2>${t('miniH')}</h2><p>${t('miniIntro')}</p><div id="ucMini"></div></section>
     <section id="svety"><h2>${t('navSvet')}</h2><p>${t('svetIntro', esc(resitel))}</p><div id="ucSvet"></div></section>
     ${D.teams?.length ? `<section id="skupiny"><h2>${t('tymH')}</h2><p>${t('tymIntro')}</p><div id="ucTym"></div></section>` : ''}
     ${D.gifted ? `<section id="nadani"><h2>${t('nadH')}</h2><p>${t('nadIntro', D.gifted.challenges, D.gifted.games)}</p><div id="ucNadani"></div></section>` : ''}
     <section id="tvorba"><h2>${t('tvH')}</h2><p>${t('tvIntro')}</p><div id="ucTvorba"></div></section>
-    <section id="certifikat"><h2>${t('navCert')}</h2><p>${t('certIntro')}</p><div id="ucCert"></div></section>`;
+    <section id="certifikat"><h2>${t('navCert')}</h2><p>${t('certIntro')}</p><div id="ucCert"></div></section>
+    <section id="dotaznik"><h2>${t('navDot')}</h2><p id="ucDotIntro"></p><div id="ucDot"></div></section>
+    <section id="rodice"><h2>${t('navRodice')}</h2><p>${t('rodIntro')}</p><div id="ucRod"></div></section>`;
+  // nový kód třídy přepíše všechny odkazy a QR; vyplněný dotazník zůstane
+  const odkazy = () => { kapitoly(D); obnovMini?.(); svety(D); if (D.teams?.length) skupiny(D); if (D.gifted) nadani(D); tvorba(D); dotaznikTrida(); };
+  kodTridy(odkazy);
   kapitoly(D); mikromise(D); svety(D); if (D.teams?.length) skupiny(D); if (D.gifted) nadani(D); tvorba(D); certifikat(D);
+  dotaznik(); rodice();
 
   // kopírování a QR pro všechny odkazy na stránce
   main.addEventListener('click', async e => {
