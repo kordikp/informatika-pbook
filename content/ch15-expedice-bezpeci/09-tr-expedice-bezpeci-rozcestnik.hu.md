@@ -31,76 +31,88 @@ Valódi eszközök, közösségek, versenyek és projektek, ahol tovább lehet h
 
 #### [CyberChef](https://gchq.github.io/CyberChef/)
 
-„Svájci bicska” kódoláshoz, rejtjelekhez és lenyomatokhoz a brit GCHQ-tól. Teljesen a böngészőben fut, a műveleteket egérhúzással rakod össze recept formájában. A CTF-játékosok alapeszköze. Jó a rétegek megfejtésére (hex, Base64, ROT13) és saját feladatok építésére is. Fiók és telepítés nélkül.
+„Svájci bicska” kódoláshoz, rejtjelekhez és lenyomatokhoz a brit GCHQ-tól. Teljesen a böngészőben fut, a műveleteket egérhúzással rakod össze recept formájában.
+
+:::reveal Hogyan kezdj hozzá
+A CTF-játékosok alapeszköze. Jó a rétegek megfejtésére (hex, Base64, ROT13) és saját feladatok építésére is. Fiók és telepítés nélkül.
 
 *ingyenes, nyílt forráskódú · korhatár nélkül (nem kell hozzá fiók) · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. Nyisd meg az oldalt, balra keresd meg a From Hex műveletet, és húzd a receptbe.
 2. Illessz szöveget a bemenetbe, és figyeld a kimenetet. Add hozzá a ROT13-at, és változtasd az eltolást (Amount).
 3. Próbáld ki a Magic műveletet, amely magától kitalálja a kódolást.
 4. Soha ne illeszd be az eszközbe a valódi jelszavaidat, csak gyakorló jelszavakkal kísérletezz.
+:::
 
 #### [A CyLab Security Academy feladattára (korábban picoGym)](https://cylabacademy.org/learners.html)
 
-Egész évben nyitva tartó gyakorló feladattár a picoCTF korábbi évadainak feladataival. A picoCTF a legnagyobb online CTF iskolásoknak, a Carnegie Mellon Universitytől; ma CyLab Security Academy a neve. A feladatok a teljesen kezdőtől a nehézig fokozatosak, és kategóriákba vannak sorolva (kriptográfia, igazságügyi elemzés, web). Bármikor lehet edzeni, nem csak a verseny alatt.
+Egész évben nyitva tartó gyakorló feladattár a picoCTF korábbi évadainak feladataival. A picoCTF a legnagyobb online CTF iskolásoknak, a Carnegie Mellon Universitytől; ma CyLab Security Academy a neve.
+
+:::reveal Hogyan kezdj hozzá
+A feladatok a teljesen kezdőtől a nehézig fokozatosak, és kategóriákba vannak sorolva (kriptográfia, igazságügyi elemzés, web). Bármikor lehet edzeni, nem csak a verseny alatt.
 
 *ingyenes · fiók 13 éves kortól, 18 éves korig szülői beleegyezéssel; a fiatalabbak a szülővel, az ő fiókján keresztül vagy a szakkörrel játszanak · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. A szüleiddel együtt hozz létre fiókot (becenévvel, név és évszám nélkül).
 2. A feladattárban szűrd ki a General Skills kategória legkönnyebb feladatait.
 3. Minden feladatnál írd fel, milyen elv volt benne.
+:::
 
 #### [OverTheWire: Bandit](https://overthewire.org/wargames/bandit/)
 
-„Wargame” teljesen kezdőknek. Minden szinten terminálon (SSH) keresztül csatlakozol egy szerverhez, és a következő szint jelszavát keresed. Megtanít bánni a Linuxszal és a terminállal, ez minden további biztonsági munka alapja. A szervereket arra építették, hogy „támadják” őket, így ez legális.
+„Wargame” teljesen kezdőknek. Minden szinten terminálon (SSH) keresztül csatlakozol egy szerverhez, és a következő szint jelszavát keresed.
+
+:::reveal Hogyan kezdj hozzá
+Megtanít bánni a Linuxszal és a terminállal, ez minden további biztonsági munka alapja. A szervereket arra építették, hogy „támadják” őket, így ez legális.
 
 *ingyenes (önkéntes támogatás) · korhatár nincs megadva; fiatalabbaknak felnőttel ajánlott (terminálos munka) · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. Az oldalon nyisd meg a Level 0-t.
 2. Windowson nyisd meg a PowerShellt, Macen vagy Linuxon a Terminált, és csatlakozz az ssh paranccsal az útmutató szerint.
 3. Minden megszerzett jelszót a füzetedbe írj, ne valamelyik weboldalra.
+:::
 
 #### [CryptoHack](https://cryptohack.org/faq/)
 
-Kriptográfiai platform feladatok formájában: a kódolástól és a XOR-tól az RSA-ig és az elliptikus görbékig. Azoknak, akiket a biztonságban leginkább a matematika vonz. A feladatokat rövid Python-programokkal oldod meg, így összekapcsolódik a biztonság és a programozás.
+Kriptográfiai platform feladatok formájában: a kódolástól és a XOR-tól az RSA-ig és az elliptikus görbékig.
+
+:::reveal Hogyan kezdj hozzá
+Azoknak, akiket a biztonságban leginkább a matematika vonz. A feladatokat rövid Python-programokkal oldod meg, így összekapcsolódik a biztonság és a programozás.
 
 *ingyenes (önkéntes támogatás a Patreonon) · korhatár nincs megadva; fiók és Discord csak szülővel · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. Végezd el az Introduction to CryptoHack kurzust.
 2. Telepítsd a Python 3-at és a PyCryptodome könyvtárat (a GYIK szerint).
 3. Az első feladatokat papíron oldd meg, és csak utána írd át őket kódba.
+:::
 
 #### [TryHackMe](https://tryhackme.com/about)
 
-Online kiberbiztonsági kurzusok virtuális gépekkel a böngészőben: védekezés, támadás, igazságügyi elemzés. A legkidolgozottabb út a kezdetektől a szakmáig. Idősebbeknek és haladóknak való, akik már túl vannak a CyLab feladattárán vagy a Banditon.
+Online kiberbiztonsági kurzusok virtuális gépekkel a böngészőben: védekezés, támadás, igazságügyi elemzés.
+
+:::reveal Hogyan kezdj hozzá
+A legkidolgozottabb út a kezdetektől a szakmáig. Idősebbeknek és haladóknak való, akik már túl vannak a CyLab feladattárán vagy a Banditon.
 
 *az alaprész ingyenes, a prémium tartalom fizetős (olcsóbb alternatíva: a CyLab feladattára és az OverTheWire ingyen) · 13 éves kortól (felhasználási szabályzat, 2.0-s verzió, 2026. 08. 28.); a fiatalabbak csak olvasnak a szülővel · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. A fiókot a szülővel hozd létre, valódi név nélkül.
 2. Kezdd az ingyenes bevezető szobákkal (rooms).
 3. Fizetős előfizetést ne vegyél a szüleiddel való megbeszélés nélkül.
+:::
 
 #### [Bitwarden](https://bitwarden.com/terms/)
 
-Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hosszú, egyedi jelszavakat, a számítógépen és a mobilon is. Közvetlenül teljesíti a „Fiók és jelszó” alapfogalom célját (jelszókezelő). Az ingyenes verzió nem korlátozza a jelszavak és az eszközök számát.
+Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hosszú, egyedi jelszavakat, a számítógépen és a mobilon is.
+
+:::reveal Hogyan kezdj hozzá
+Közvetlenül teljesíti a „Fiók és jelszó” alapfogalom célját (jelszókezelő). Az ingyenes verzió nem korlátozza a jelszavak és az eszközök számát.
 
 *ingyenes; a Premium kb. évi 10 USD · a feltételek szerint 13 éves kortól (az adatvédelmi szabályzat 16 évet vagy a helyi minimumot említi); Csehországban ezért szülővel hozd létre, ideális esetben a családi széf részeként · angolul (weboldal és feltételek)*
-
-**Hogyan kezdj hozzá:**
 
 1. A szüleiddel válassz egy hosszú mesterjelszót 5 véletlen szóból.
 2. Kapcsold be a széfen a kétlépcsős azonosítást.
 3. Fokozatosan cseréld le a szolgáltatások jelszavait véletlenszerűekre, amelyeket a széf generál.
+:::
 
 ### 👥 Közösségek
 
@@ -108,13 +120,13 @@ Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hoss
 
 *CTF-verseny iskolásoknak (online, legfeljebb 5 fős csapatok) · ingyenes · angolul*
 
+:::reveal Hogyan csatlakozhatsz
 **Életkor:** 13 éves kortól; díjak csak az USA-beli iskolák tanulóinak
-
-**Hogyan csatlakozhatsz:**
 
 1. Alakíts csapatot az osztálytársaiddal vagy a szakkörrel.
 2. A 13 évesnél fiatalabbak csak egy felnőtt (tanár, szülő) fiókján és az ő felügyeletével játszanak.
 3. Két verseny között edz a CyLab feladattárában.
+:::
 
 > **Biztonságosan:** Fiók 18 éves korig szülői beleegyezéssel; a csapatcsetben semmi személyes adat; a feladatok fájljait csak a CyberChefben vagy a böngészőben nyisd meg, ne futtasd őket.
 
@@ -122,13 +134,13 @@ Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hoss
 
 *online közösség (Discord) a kriptográfiai feladatokhoz · ingyenes · angolul*
 
+:::reveal Hogyan csatlakozhatsz
 **Életkor:** a CryptoHack nem ad meg korhatárt, a Discord 13 éves kortól használható; a fiatalabbak csak olvasnak a szülővel
-
-**Hogyan csatlakozhatsz:**
 
 1. Először csevegés nélkül végezd el a bevezető kurzust.
 2. A Discordhoz csak a szülőddel és a szülő saját fiókjával csatlakozz, vagy csak olvass.
 3. Az elvekről kérdezz, ne kész megoldásokat kérj.
+:::
 
 > **Biztonságosan:** Ne válts privát üzeneteket idegenekkel; ne oszd meg a neved, az iskolád és a fotóidat; aki fájlért vagy jelszóért cserébe megoldást kínál, az csaló.
 
@@ -136,13 +148,13 @@ Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hoss
 
 *a wargame-játékosok közösségi csetje · ingyenes · angolul*
 
+:::reveal Hogyan csatlakozhatsz
 **Életkor:** korhatár nincs megadva; gyerekeknek csak felnőttel
-
-**Hogyan csatlakozhatsz:**
 
 1. Először egyedül teljesíts néhány Bandit-szintet.
 2. A csetet egy felnőttel nyisd meg, és csak olvasd, hogyan kérdeznek a többiek.
 3. A szintek jelszavait soha ne írd a csetbe.
+:::
 
 > **Biztonságosan:** Ne oszd meg a szintek jelszavait és a személyes adataidat; ne kattints idegenek linkjeire; semmit ne futtass, amit valaki küld neked.
 
@@ -150,16 +162,16 @@ Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hoss
 
 #### [CyLab Security Academy, korábban picoCTF (Carnegie Mellon)](https://cylabacademy.org/)
 
-*kiberbiztonsági verseny és gyakorlóoldal · ingyenes · angol*
-
 Etikus hackelés biztonságos környezetben. Játékos formában tanít Linuxot, kriptográfiát és webbiztonságot.
+
+:::reveal Hogyan csatlakozhatsz
+*kiberbiztonsági verseny és gyakorlóoldal · ingyenes · angol*
 
 **Mikor:** A nagy verseny évente egyszer van, a feladattár (korábban picoGym) egész évben nyitva áll. A 2027-es időpontot ellenőrizd a weboldalon **Életkor:** 13 éves kortól; 13–17 év között a szülő e-mail-címével, vagy a fiókot a tanár hozza létre
 
-**Hogyan csatlakozhatsz:**
-
 1. regisztráció a cylabacademy.org oldalon a szülő e-mail-címével
 2. vagy osztályfiók a tanártól
+:::
 
 ### 🧪 Projektek ötletnek
 

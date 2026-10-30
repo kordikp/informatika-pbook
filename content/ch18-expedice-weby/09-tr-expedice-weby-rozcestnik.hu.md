@@ -4,7 +4,7 @@ translationOf: expedice-weby-rozcestnik
 lang: hu
 type: spine
 title: "Útmutató: A weboldalak világa"
-readingTime: 6
+readingTime: 7
 standalone: true
 teaser: "Valódi eszközök, közösségek, versenyek és projektek, ahol tovább lehet haladni."
 voice: universal
@@ -31,51 +31,59 @@ Valódi eszközök, közösségek, versenyek és projektek, ahol tovább lehet h
 
 #### [Neocities](https://neocities.org)
 
-Ingyenes tárhely statikus weboldalaknak, közvetlenül a böngészőben működő szerkesztővel és személyes weboldalak közösségével. Telepítés nélkül feltöltöd az index.html-t, és pár perc múlva van címed. Ez a legrövidebb út a fájltól egy olyan weboldalig, amelyet bárki megnyithat.
+Ingyenes tárhely statikus weboldalaknak, közvetlenül a böngészőben működő szerkesztővel és személyes weboldalak közösségével.
+
+:::reveal Hogyan kezdj hozzá
+Telepítés nélkül feltöltöd az index.html-t, és pár perc múlva van címed. Ez a legrövidebb út a fájltól egy olyan weboldalig, amelyet bárki megnyithat.
 
 *az alap weboldal ingyenes, a fizetős tagság önkéntes · A szolgáltatás feltételei kifejezetten nem adnak meg alsó korhatárt. 13 éves korig szülővel hozz létre fiókot, az ő e-mail-címével · angol nyelvű felület*
-
-**Hogyan kezdj hozzá:**
 
 1. A szülőddel hozz létre fiókot, és válassz becenevet, ne a saját nevedet.
 2. A weboldal szerkesztőjében nyisd meg az index.html-t, és írj bele egy címet és egy bekezdést.
 3. Mentsd el, és nyisd meg a přezdivka.neocities.org címet a mobilodon, mobiladattal.
+:::
 
 #### [GitHub Pages](https://pages.github.com)
 
-Ingyenes weboldal-tárhely közvetlenül egy GitHub-repóból, https-sel. Ugyanezt az eszközt használják a profik is. Közben megtanulod a verziókat és a változások történetét (Git).
+Ingyenes weboldal-tárhely közvetlenül egy GitHub-repóból, https-sel.
+
+:::reveal Hogyan kezdj hozzá
+Ugyanezt az eszközt használják a profik is. Közben megtanulod a verziókat és a változások történetét (Git).
 
 *ingyenes · GitHub 13 éves kortól. A fiatalabbak csak a szülő fiókján keresztül, vagy maradj a Neocitiesnél a szülőddel · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. Hozd létre a přezdivka.github.io repót.
 2. Töltsd fel bele az index.html-t az Add file gombbal.
 3. A Settings → Pages alatt ellenőrizd a címet, és egy perc múlva nyisd meg.
+:::
 
 #### [Code.org Web Lab](https://code.org/tools/web-lab)
 
-Böngészős környezet egyszerű HTML- és CSS-weboldalak építéséhez. Az új verzió JavaScriptet is tud. A kódot és az eredményt egymás mellett látod, és semmit sem kell telepíteni vagy feltölteni. Jó kísérletezésre, mielőtt saját tárhelyet választasz.
+Böngészős környezet egyszerű HTML- és CSS-weboldalak építéséhez. Az új verzió JavaScriptet is tud.
+
+:::reveal Hogyan kezdj hozzá
+A kódot és az eredményt egymás mellett látod, és semmit sem kell telepíteni vagy feltölteni. Jó kísérletezésre, mielőtt saját tárhelyet választasz.
 
 *ingyenes (a nonprofit Code.org) · az eszköz oldala szerint 13 éves kortól; a fiatalabbak az iskolában, a tanár osztályán keresztül · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. Nyisd meg a studio.code.org/projects oldalt, és kattints a Web Lab csempére.
 2. Módosítsd a mintaoldalt, és figyeld az előnézetet.
 3. Próbálj hozzáadni egy szkriptes gombot az új, JavaScriptes verzióban.
+:::
 
 #### [Flexbox Froggy és Grid Garden (Codepip)](https://flexboxfroggy.com)
 
-Böngészős játékok, amelyekben CSS flexboxszal (békák a tavirózsákra) és CSS griddel (répák locsolása) rendezed el az oldalt. Az elrendezés az, amit a világ alapfogalmai kihagynak. Itt játékkal gyakorolhatod, magyar nyelvű feladatokkal.
+Böngészős játékok, amelyekben CSS flexboxszal (békák a tavirózsákra) és CSS griddel (répák locsolása) rendezed el az oldalt.
+
+:::reveal Hogyan kezdj hozzá
+Az elrendezés az, amit a világ alapfogalmai kihagynak. Itt játékkal gyakorolhatod, magyar nyelvű feladatokkal.
 
 *a böngészős játék ingyenes · fiók nélkül, korhatár nélkül · csehül, szlovákul, magyarul, angolul és még sok más nyelven*
-
-**Hogyan kezdj hozzá:**
 
 1. A nyelvek menüjében válaszd a Magyar nyelvet.
 2. Játszd végig a Flexbox Froggyt az utolsó szintig.
 3. Folytasd a Grid Gardennel, a link a játék oldalán van.
+:::
 
 ### 👥 Közösségek
 
@@ -83,13 +91,13 @@ Böngészős játékok, amelyekben CSS flexboxszal (békák a tavirózsákra) é
 
 *közösség és projektprogramok tinédzsereknek, klubok az egész világon · ingyenes · angolul*
 
+:::reveal Hogyan csatlakozhatsz
 **Életkor:** 13–18 év
-
-**Hogyan csatlakozhatsz:**
 
 1. 13 éves kortól, a szülő tudtával: a szülők a hackclub.com/parents oldalon találnak információt.
 2. Válassz egy programot, amely a befejezett projektet jutalmazza, például egy weboldalt.
 3. A fiatalabbak csak olvassák az oldalt, és fiók nélkül merítenek ihletet a projektekből.
+:::
 
 > **Biztonságosan:** Becenév a neved helyett, se iskola, se lakcím. Senkinek ne küldj jelszót vagy SMS-kódot, és ne fizess semmit. Ha valaki privátban valami furcsát ír neked, ne válaszolj, mutasd meg a szülődnek, és tiltsd le.
 
@@ -97,13 +105,13 @@ Böngészős játékok, amelyekben CSS flexboxszal (békák a tavirózsákra) é
 
 *online verseny: 13 kB alatti webes játék az elején kihirdetett témára, minden évben augusztustól szeptemberig · ingyenes · angolul*
 
+:::reveal Hogyan csatlakozhatsz
 **Életkor:** kiskorúak a szülővel töltsék ki a jelentkezést (a korhatár-szabályokat ellenőrizzétek a verseny oldalán)
-
-**Hogyan csatlakozhatsz:**
 
 1. Olvasd el a szabályokat és az évad témáját.
 2. Építsd meg a játékot tiszta HTML-ben, CSS-ben és JavaScriptben, és figyelj a tömörített fájl méretére.
 3. A jelentkezést és a közzétételt a szülőddel intézd.
+:::
 
 > **Biztonságosan:** A játék oldalára becenevet írj, ne a neved, és ne tegyél fel fotót. A kódot oszd meg, a jelszót soha. A játékhoz írt hozzászólásokat olvasd, de ne folytass privát beszélgetést idegenekkel.
 
@@ -111,13 +119,13 @@ Böngészős játékok, amelyekben CSS flexboxszal (békák a tavirózsákra) é
 
 *webes játékok game jamje az itch.io-n (a 2026-os évad április 13–26. között zajlott) · ingyenes · angolul*
 
+:::reveal Hogyan csatlakozhatsz
 **Életkor:** az itch.io-fiókot a szolgáltatás feltételei szerint a szülőddel intézd; a fiatalabbak a szülő fiókján keresztül
-
-**Hogyan csatlakozhatsz:**
 
 1. Kövesd a jam oldalát a következő évad miatt.
 2. Előbb nézd át a tavalyi játékokat, és próbáld ki őket a böngészőben.
 3. A játékot olyan fiókról töltsd fel, amelyet a szülőd ismer.
+:::
 
 > **Biztonságosan:** Semmi személyes adat a profilban vagy a játékban. Ne fizess semmit, és ne kattints idegenektől kapott linkekre. A furcsa üzeneteket mutasd meg egy felnőttnek, és jelentsd őket.
 
@@ -125,66 +133,66 @@ Böngészős játékok, amelyekben CSS flexboxszal (békák a tavirózsákra) é
 
 #### [Logiscool – programozási kurzusok és táborok](https://www.logiscool.com/)
 
-*szakkörök és táborok · fizetős, ellenőrizd a weboldalon · magyar (a hálózat külföldön is működik)*
-
 Fokozatos átmenet a blokkos kódtól a vegyes módon át a Pythonig. Játék-, web-, robotika- és MI-kurzusokat kínál.
+
+:::reveal Hogyan csatlakozhatsz
+*szakkörök és táborok · fizetős, ellenőrizd a weboldalon · magyar (a hálózat külföldön is működik)*
 
 **Mikor:** féléves kurzusok és nyári táborok, az időpontokat ellenőrizd a weboldalon **Életkor:** 6–18 év
 
-**Hogyan csatlakozhatsz:**
-
 1. jelentkezés egy telephelyen, Magyarországon közel 50 van belőlük
+:::
 
 #### [CoderDojo klubok](https://coderdojo.com/)
 
-*klub · Ingyenes (a CoderDojo mozgalom alapszabálya) · cseh*
-
 Önkéntes klubok, ahol a gyerek saját projektet választ (Scratch, weboldal, játékok), és egy mentor segít neki. Önálló, kíváncsi alkotóknak való.
 
-**Mikor:** Rendszeres találkozók az egyes klubokban; a klubok aktuális listáját és az időpontokat ellenőrizd a weboldalon (a forrás 2019-es) **Életkor:** 7–17 év
+:::reveal Hogyan csatlakozhatsz
+*klub · Ingyenes (a CoderDojo mozgalom alapszabálya) · cseh*
 
-**Hogyan csatlakozhatsz:**
+**Mikor:** Rendszeres találkozók az egyes klubokban; a klubok aktuális listáját és az időpontokat ellenőrizd a weboldalon (a forrás 2019-es) **Életkor:** 7–17 év
 
 1. Keresd meg a legközelebbi klubot (könyvtár, cég, iskola) a CoderDojo ČR weboldalán.
 2. Foglalj helyet a találkozóra; a kisebb gyerekek szülővel jönnek.
 3. Hozz laptopot, ha van.
+:::
 
 #### [CS50x (Harvard, edX)](https://cs50.harvard.edu/x/)
 
-*online kurzus · a kurzus ingyenes, a hitelesített tanúsítvány fizetős · angol (feliratok sok nyelven)*
-
 Egyetemi bevezetés az informatikába a C-től a Pythonon és az SQL-en át a webig. A motivált 14–15 éveseknek nagy kihívás.
+
+:::reveal Hogyan csatlakozhatsz
+*online kurzus · a kurzus ingyenes, a hitelesített tanúsítvány fizetős · angol (feliratok sok nyelven)*
 
 **Mikor:** Az új CS50x 2026 változat 2026. január 1-je óta fut, a kurzus bármikor elkezdhető **Életkor:** az edX 13 éves kortól; a tartalom inkább 14+ éveseknek való
 
-**Hogyan csatlakozhatsz:**
-
 1. szabadon elérhető anyagok a cs50.harvard.edu oldalon
 2. feladatok az edX-en vagy a GitHubon keresztül (figyelj a fiók korhatárára)
+:::
 
 #### [Code Club (Raspberry Pi Foundation)](https://codeclub.org/)
 
-*szakkörhálózat · ingyenes · projektek sok nyelven*
-
 Lépésről lépésre haladó projektek (Scratch, Python, web, fizikai eszközök), amelyeket önkéntesek vezetnek.
+
+:::reveal Hogyan csatlakozhatsz
+*szakkörhálózat · ingyenes · projektek sok nyelven*
 
 **Mikor:** a tanév során, az adott klubtól függően **Életkor:** kb. 9–13 év
 
-**Hogyan csatlakozhatsz:**
-
 1. klub keresése a codeclub.org oldalon, vagy klubalapítás az iskolában
+:::
 
 #### [Khan Academy – Computing](https://www.khanacademy.org/computing)
 
-*online kurzusok · ingyenes · angol, a tartalom egy része le van fordítva*
-
 Interaktív kurzusok JavaScriptről, kóddal rajzolásról és SQL-ről, a saját tempódban.
+
+:::reveal Hogyan csatlakozhatsz
+*online kurzusok · ingyenes · angol, a tartalom egy része le van fordítva*
 
 **Mikor:** egész évben **Életkor:** 13 év alatt szülői vagy tanári fiókon keresztül
 
-**Hogyan csatlakozhatsz:**
-
 1. a szülő gyerekfiókot hoz létre, vagy a tanár osztályt
+:::
 
 ### 🧪 Projektek ötletnek
 

@@ -29,75 +29,87 @@ Skutečné nástroje, komunity, soutěže a projekty, kde se dá pokračovat. V�
 
 #### [Microsoft MakeCode pro micro:bit](https://makecode.microbit.org)
 
-Bloky, JavaScript a Python pro micro:bit se simulátorem destičky v prohlížeči. Kniha ho už používá. Pro talentované děti: rozšíření pro motory a stavebnice, graf dat ze sériové linky a přepínání z bloků na text.
+Bloky, JavaScript a Python pro micro:bit se simulátorem destičky v prohlížeči.
+
+:::reveal Jak začít
+Kniha ho už používá. Pro talentované děti: rozšíření pro motory a stavebnice, graf dat ze sériové linky a přepínání z bloků na text.
 
 *zdarma · od 8 let, bez účtu · cs, sk, hu, en a další*
-
-**Jak začít:**
 
 1. Nový projekt, bez přihlášení; ukládá se v prohlížeči
 2. V simulátoru klikáním na piny a posuvníkem světla zkoušíš senzory
 3. Bloky pro stavebnice přidáš přes Rozšíření
+:::
 
 #### [micro:bit Python Editor](https://microbit.org/code/)
 
-Oficiální editor pro textový Python (MicroPython) se simulátorem a ukázkami kódu. Přirozený další krok po blocích: stejné senzory, skutečný programovací jazyk.
+Oficiální editor pro textový Python (MicroPython) se simulátorem a ukázkami kódu.
+
+:::reveal Jak začít
+Přirozený další krok po blocích: stejné senzory, skutečný programovací jazyk.
 
 *zdarma · zhruba od 11 let, bez účtu · anglicky a několik dalších jazyků; čeština neověřena*
-
-**Jak začít:**
 
 1. Na microbit.org/code otevři Python editor
 2. Přetáhni ukázku z panelu Reference do kódu
 3. Spusť ji v simulátoru, pak ji stáhni do destičky
+:::
 
 #### [micro:bit CreateAI](https://createai.microbit.org)
 
-Trénink modelu gest z akcelerometru. Model se exportuje do MakeCode jako bloky. Natrénovaný model se v gadgetu spojí s pravidly a výstupy. Vstupem pak není číslo ze senzoru, ale rozpoznané gesto.
+Trénink modelu gest z akcelerometru. Model se exportuje do MakeCode jako bloky.
+
+:::reveal Jak začít
+Natrénovaný model se v gadgetu spojí s pravidly a výstupy. Vstupem pak není číslo ze senzoru, ale rozpoznané gesto.
 
 *zdarma · pro žáky; v prohlížeči nebo v aplikaci pro iPad a Android · anglicky (další jazyky neověřeny)*
-
-**Jak začít:**
 
 1. Otevři v Chrome nebo Edge a připoj micro:bit
 2. Nahraj 2 až 3 gesta, každé aspoň 10×
 3. Otestuj model a exportuj ho do MakeCode
+:::
 
 #### [Open Roberta Lab](https://calliope.cc/en/coding/editors/open-roberta)
 
-Webové prostředí s bloky NEPO pro micro:bit, Calliope, LEGO a další roboty. Ukáže, jak se bloky přeloží do Pythonu nebo C++. Má simulátor robota na kolech. Bez hardwaru vyzkoušíš vozítko v simulátoru a uvidíš text, který z tvých bloků vznikne.
+Webové prostředí s bloky NEPO pro micro:bit, Calliope, LEGO a další roboty. Ukáže, jak se bloky přeloží do Pythonu nebo C++. Má simulátor robota na kolech.
+
+:::reveal Jak začít
+Bez hardwaru vyzkoušíš vozítko v simulátoru a uvidíš text, který z tvých bloků vznikne.
 
 *zdarma · zhruba od 10 let · německy, anglicky a další; čeština neověřena*
-
-**Jak začít:**
 
 1. Otevři Open Roberta Lab a vyber robota
 2. Slož program z bloků NEPO
 3. Spusť ho v simulátoru nebo stáhni do destičky
+:::
 
 #### [Wokwi](https://wokwi.com)
 
-Simulátor elektroniky v prohlížeči: Arduino Uno, Mega, Nano, ESP32, STM32 a Raspberry Pi Pico se součástkami. Robotika mimo micro:bit bez kupování a pájení součástek. Program v C++ (Arduino) nebo v MicroPythonu.
+Simulátor elektroniky v prohlížeči: Arduino Uno, Mega, Nano, ESP32, STM32 a Raspberry Pi Pico se součástkami.
+
+:::reveal Jak začít
+Robotika mimo micro:bit bez kupování a pájení součástek. Program v C++ (Arduino) nebo v MicroPythonu.
 
 *osobní použití zdarma, pokročilé funkce placené · pro ukládání projektů je potřeba účet; zakládej ho s rodičem · anglicky*
-
-**Jak začít:**
 
 1. Vyber Arduino Uno a nový projekt
 2. Přidej LED a rozblikej ji na pinu 13
 3. Přidej tlačítko a senzor světla
+:::
 
 #### [Pybricks](https://pybricks.com)
 
-Otevřený MicroPython pro LEGO kostky (SPIKE, Mindstorms, Technic, BOOST), programuje se z prohlížeče. Skutečný Python na stavebnicích, které se používají na Robosoutěži a ve FIRST LEGO League.
+Otevřený MicroPython pro LEGO kostky (SPIKE, Mindstorms, Technic, BOOST), programuje se z prohlížeče.
+
+:::reveal Jak začít
+Skutečný Python na stavebnicích, které se používají na Robosoutěži a ve FIRST LEGO League.
 
 *Python zdarma, bloky za příspěvek · zhruba od 11 let, s dospělým (mění firmware kostky) · anglicky*
-
-**Jak začít:**
 
 1. Domluv se s majitelem kostky (škola, kroužek)
 2. Na code.pybricks.com nahraj firmware
 3. Spusť ukázkový program a přepiš do něj svá pravidla
+:::
 
 ### 👥 Komunity
 
@@ -105,13 +117,13 @@ Otevřený MicroPython pro LEGO kostky (SPIKE, Mindstorms, Technic, BOOST), prog
 
 *týmová soutěž s LEGO roboty na FEL ČVUT v Praze (jarní kola, finále) · poplatek na webu neuveden; stavebnici půjčí pořadatelé, zkušenosti nejsou potřeba · cs*
 
+:::reveal Jak se přidat
 **Věk:** 2. stupeň ZŠ a odpovídající ročníky víceletých gymnázií; pro SŠ je zvláštní kolo
-
-**Jak se přidat:**
 
 1. Dej dohromady tým kamarádů a jednoho dospělého (učitel nebo rodič, pomoc je volitelná)
 2. Sleduj web kvůli termínům jarních kol (v roce 2026 v dubnu)
 3. Přihlášku a kontaktní údaje vyřizuje dospělý
+:::
 
 > **Bezpečně:** Prezenční akce na univerzitě. Na soutěž jezdíš s dospělým z týmu. Osobní údaje řeší dospělý, fotky s tvářemi jen se souhlasem.
 
@@ -119,13 +131,13 @@ Otevřený MicroPython pro LEGO kostky (SPIKE, Mindstorms, Technic, BOOST), prog
 
 *mezinárodní liga týmů: robot na soutěžní ploše a výzkumný projekt · registrace týmu a sada jsou placené, obvykle je hradí škola nebo kroužek · anglicky, regionální turnaje v jazyce země; český pořadatel neověřen*
 
+:::reveal Jak se přidat
 **Věk:** FIRST LEGO League Challenge zhruba 9 až 16 let, Explore pro mladší
-
-**Jak se přidat:**
 
 1. Zeptej se učitele nebo DDM, jestli tým máte nebo ho založí
 2. Turnaje sezóny BIOGLOW běží od listopadu 2026 do dubna 2027
 3. Je to poslední sezóna partnerství FIRST a LEGO Education; od srpna 2027 přichází nástupce LEGO League
+:::
 
 > **Bezpečně:** Tým vede dospělý kouč a komunikuje s pořadatelem za tým. Na turnaje jezdíte spolu. Ty nikde nezadáváš osobní údaje.
 
@@ -133,13 +145,13 @@ Otevřený MicroPython pro LEGO kostky (SPIKE, Mindstorms, Technic, BOOST), prog
 
 *mezinárodní robotická soutěž (Rescue Line, Soccer, OnStage) s regionálními koly · startovné podle akce; vlastní robot · pravidla anglicky; regionální kola v Česku česky (např. Opavský ROBOCUP v květnu)*
 
+:::reveal Jak se přidat
 **Věk:** do 19 let podle obecných pravidel
-
-**Jak se přidat:**
 
 1. Přečti pravidla disciplíny Rescue Line: je to vozítko na čáru jako v expedici
 2. Začni regionální soutěží s učitelem nebo kroužkem
 3. Evropské mistrovství 2026 proběhlo ve Vídni, mistrovství světa v Koreji
+:::
 
 > **Bezpečně:** Přihlašuje tým dospělý vedoucí. Pravidla a fóra jen čti; účty a komunikaci s pořadateli vede dospělý. Na akce jezdíš s týmem.
 
@@ -147,42 +159,42 @@ Otevřený MicroPython pro LEGO kostky (SPIKE, Mindstorms, Technic, BOOST), prog
 
 #### [FLL Slovensko – národné finále a festival](https://touchit.sk/narodne-finale-a-festival-first-lego-league-urcilo-reprezentantov-sr/490953/)
 
-*robotická liga · Ověř u FLL Slovensko o.z · slovenčina*
-
 Slovenská větev FLL s postupem na mezinárodní finále. Hodí se pro roboticky zaměřené týmy ze škol a centrů volného času.
+
+:::reveal Jak se přidat
+*robotická liga · Ověř u FLL Slovensko o.z · slovenčina*
 
 **Kdy:** Termín ověř na webu **Věk:** Tímy žiakov ZŠ a SŠ
 
-**Jak se přidat:**
-
 1. Kontaktuj FLL Slovensko o.z.
 2. Zaregistruj tým a zúčastni se regionálního turnaje.
+:::
 
 #### [FIRST LEGO League – sezóna BIOGLOW 2026/27](https://www.first-lego-league.org/en/2026-27-season/bioglow)
 
-*robotická liga · Registrační poplatek týmu a stavebnice (ověř u národního organizátora) · čeština/slovenština, materiály i anglicky*
-
 Spojuje programování robota, týmovou práci a výzkumný projekt. Je to skvělé pro děti, které chtějí, aby se jejich kód skutečně hýbal.
 
-**Kdy:** Mezinárodní registrace od 19. 5. 2026, kickoff 4. 8. 2026. Podle oficiálního webu je BIOGLOW poslední sezónou FLL; od 2027/28 navazuje nový formát s LEGO Education. České a slovenské termíny turnajů ověř na webu. **Věk:** Týmy dětí (Challenge zhruba 9–16 let, ověř u národního partnera)
+:::reveal Jak se přidat
+*robotická liga · Registrační poplatek týmu a stavebnice (ověř u národního organizátora) · čeština/slovenština, materiály i anglicky*
 
-**Jak se přidat:**
+**Kdy:** Mezinárodní registrace od 19. 5. 2026, kickoff 4. 8. 2026. Podle oficiálního webu je BIOGLOW poslední sezónou FLL; od 2027/28 navazuje nový formát s LEGO Education. České a slovenské termíny turnajů ověř na webu. **Věk:** Týmy dětí (Challenge zhruba 9–16 let, ověř u národního partnera)
 
 1. Najdi trenéra (učitele, rodiče, DDM) a sestav tým.
 2. Zaregistruj tým u národního organizátora (na Slovensku FLL Slovensko o.z.).
 3. Postav a naprogramuj robota, připrav výzkumný projekt a jeď na regionální turnaj.
+:::
 
 #### [Code Club (Raspberry Pi Foundation)](https://codeclub.org/)
 
-*síť kroužků · zdarma · projekty v řadě jazyků*
-
 Projekty krok za krokem (Scratch, Python, web, fyzické zařízení), které vedou dobrovolníci.
+
+:::reveal Jak se přidat
+*síť kroužků · zdarma · projekty v řadě jazyků*
 
 **Kdy:** během školního roku, podle konkrétního klubu **Věk:** cca 9–13 let
 
-**Jak se přidat:**
-
 1. najít klub na codeclub.org nebo založit klub ve škole
+:::
 
 ### 🧪 Projekty pro inspiraci
 

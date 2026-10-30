@@ -31,75 +31,87 @@ Real tools, communities, competitions and projects where you can keep going. Thi
 
 #### [InVID-WeVerify verification plugin (“Fake news debunker”)](https://chrome.google.com/webstore/detail/fake-news-debunker-by-inv/mhccpoafgdgbhnjfhkcmgknndkeenfhe)
 
-An extension for Chrome and Firefox from AFP Medialab for journalists: it chops a video into keyframes, runs them through reverse search (Google, Bing, Yandex, TinEye and others), and has a magnifier and a photo metadata reader. Exactly the tool professional fact-checkers use to find out whether a viral video is old or from somewhere else. It is still being developed (in May 2026 Bellingcat lists it at version 0.90).
+An extension for Chrome and Firefox from AFP Medialab for journalists: it chops a video into keyframes, runs them through reverse search (Google, Bing, Yandex, TinEye and others), and has a magnifier and a photo metadata reader.
+
+:::reveal How to start
+Exactly the tool professional fact-checkers use to find out whether a viral video is old or from somewhere else. It is still being developed (in May 2026 Bellingcat lists it at version 0.90).
 
 *free · no account, no age limit; install the extension with a parent · in English (the interface is also in other languages, Czech not checked)*
-
-**How to start:**
 
 1. With a parent, install the extension from the browser’s official store.
 2. Open the Keyframes tab and paste a link to a public YouTube video.
 3. For one keyframe, click reverse search and find the earliest appearance.
+:::
 
 #### [Shotcut](https://en.wikipedia.org/wiki/Shotcut)
 
-A free and open video editing program for Windows, macOS and Linux. In 2026 new versions come out roughly every two months (26.6 brought plugins and HDR). Instead of editing in a social media app, which uploads your video straight to itself, you edit on your own computer and know what you are sharing. The simplest way into real video editing.
+A free and open video editing program for Windows, macOS and Linux. In 2026 new versions come out roughly every two months (26.6 brought plugins and HDR).
+
+:::reveal How to start
+Instead of editing in a social media app, which uploads your video straight to itself, you edit on your own computer and know what you are sharing. The simplest way into real video editing.
 
 *free, open source · no account, no age limit · cs/sk/hu/en (the interface is translated into many languages)*
-
-**How to start:**
 
 1. Film three short clips on your phone and move them to the computer.
 2. Drag them onto the timeline and trim the beginnings and ends.
 3. Add a title and export the video with the web settings.
+:::
 
 #### [Kdenlive](https://www.kdenlive.org/)
 
-A free and open video editing program from the KDE community for Linux, Windows and macOS: more tracks, proxy editing for slower computers, effects and sound. The next level after Shotcut: longer videos, more tracks, working like in a studio. Good for the project “explain the feed in 60 seconds”.
+A free and open video editing program from the KDE community for Linux, Windows and macOS: more tracks, proxy editing for slower computers, effects and sound.
+
+:::reveal How to start
+The next level after Shotcut: longer videos, more tracks, working like in a studio. Good for the project “explain the feed in 60 seconds”.
 
 *free, open source · no account, no age limit · cs/sk/hu/en*
-
-**How to start:**
 
 1. Create a project and import your clips into the bin.
 2. Put the video and the music on two tracks and sync them.
 3. Export and play back the result before you send it to anyone.
+:::
 
 #### [SkyFeed (your own feeds on Bluesky)](https://docs.bsky.app/blog/feature-skyfeed)
 
-A visual builder for your own feeds on Bluesky: you put together filters (keywords, authors, likes) and sorting without programming. The only place where you don’t just look at a feed, you build one: you choose the signals, weights and sorting and see what it does.
+A visual builder for your own feeds on Bluesky: you put together filters (keywords, authors, likes) and sorting without programming.
+
+:::reveal How to start
+The only place where you don’t just look at a feed, you build one: you choose the signals, weights and sorting and see what it does.
 
 *free · Bluesky account from age 13 (older in some countries); younger kids only with a parent through the parent’s account · in English*
-
-**How to start:**
 
 1. With a parent, open SkyFeed through their Bluesky account.
 2. Build a feed from one keyword (for example “astronomy”).
 3. Add sorting by time, then by likes, and compare how the feed changes.
+:::
 
 #### [Bluesky feed-generator (starter kit)](https://github.com/bluesky-social/feed-generator)
 
-Official TypeScript code that a programmer can use to build their own feed algorithm. The example feed “whats-alf” picks posts about the alien ALF. A real feed algorithm in a few dozen lines: the whole thing fits on one screen and you can read it.
+Official TypeScript code that a programmer can use to build their own feed algorithm. The example feed “whats-alf” picks posts about the alien ALF.
+
+:::reveal How to start
+A real feed algorithm in a few dozen lines: the whole thing fits on one screen and you can read it.
 
 *free, open source · GitHub from age 13; younger kids read the code without an account · in English*
-
-**How to start:**
 
 1. Open the src/algos folder and find the file with the whats-alf feed.
 2. Find the line that decides whether a post belongs in the feed.
 3. Write on paper how to change it to “posts about your hobby”, and compare with the rest of the code.
+:::
 
 #### [Bad News](https://www.getbadnews.com)
 
-A browser game from Cambridge in which you play a spreader of disinformation and learn six tricks: impersonation, emotion, polarisation, conspiracy, discrediting and trolling. So-called “vaccination”: if you try out the tricks, you will recognise them in your feed later. Studies have confirmed that it works.
+A browser game from Cambridge in which you play a spreader of disinformation and learn six tricks: impersonation, emotion, polarisation, conspiracy, discrediting and trolling.
+
+:::reveal How to start
+So-called “vaccination”: if you try out the tricks, you will recognise them in your feed later. Studies have confirmed that it works.
 
 *free · no account; the researchers aim it at teenagers and adults · in English (check other language versions in the game menu)*
-
-**How to start:**
 
 1. Play the whole game (about 15 minutes).
 2. For each badge, write down the trick and one example from your feed.
 3. Compare your list with a friend’s.
+:::
 
 ### 👥 Communities
 
@@ -107,13 +119,13 @@ A browser game from Cambridge in which you play a spreader of disinformation and
 
 *worldwide photo competition (photos of monuments for Wikipedia, September to October) · free · en, national pages in local languages*
 
+:::reveal How to join
 **Age:** uploading to Wikimedia Commons has no age limit; younger kids with a parent
-
-**How to join:**
 
 1. On the competition page, check whether Czechia, Slovakia or Hungary is taking part this year.
 2. Photograph a monument near where you live.
 3. With a parent, upload the photo with a licence and a caption.
+:::
 
 > **Stay safe:** No recognisable strangers or your own house may be in the photos. Remove the location from photos that aren’t just of the monument. Don’t put personal details in your profile.
 
@@ -121,30 +133,30 @@ A browser game from Cambridge in which you play a spreader of disinformation and
 
 #### [CoderDojo clubs](https://coderdojo.com/)
 
-*club · Free (a basic rule of the CoderDojo movement) · Czech*
-
 Volunteer clubs where a child picks their own project (Scratch, web, games) and a mentor helps them. Great for independent, curious makers.
 
-**When:** Regular meetings in each club; check the current list of clubs and dates on the website (the source is from 2019) **Age:** 7–17 years
+:::reveal How to join
+*club · Free (a basic rule of the CoderDojo movement) · Czech*
 
-**How to join:**
+**When:** Regular meetings in each club; check the current list of clubs and dates on the website (the source is from 2019) **Age:** 7–17 years
 
 1. Find your nearest club (library, company, school) on the CoderDojo ČR website.
 2. Book a place at a meeting; younger children come with a parent.
 3. Bring a laptop if you have one.
+:::
 
 #### [Scratch (MIT)](https://scratch.mit.edu/)
 
-*creative community · free · dozens of languages including Hungarian*
-
 A moderated community where kids share games and animations and get feedback. It follows on from the Hungarian Kovács Mihály/Logo competition.
+
+:::reveal How to join
+*creative community · free · dozens of languages including Hungarian*
 
 **When:** all year **Age:** recommended 8–16 years, no fixed limit
 
-**How to join:**
-
 1. an account on scratch.mit.edu (younger kids with a parent’s consent)
 2. a class account from a teacher
+:::
 
 ### 🧪 Projects for inspiration
 

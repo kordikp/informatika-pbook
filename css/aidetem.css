@@ -48,6 +48,7 @@
 /* horní lišta: robot AI dětem místo „p-book“ */
 .topbar-title { display: inline-flex; align-items: center; gap: .4em; color: var(--text); font-family: var(--font-head); font-size: .95rem; }
 .topbar-title img { width: 26px; height: 26px; }
+.topbar-left { display: flex; align-items: center; }   /* logo na střed lišty, ne na účaří textu */
 
 /* úvodní stránka: červený pruh s logem a názvem (manuál s. 1), pod ním obsah knihy */
 .aid-band { background: var(--brand-band); color: #fff; border-radius: 16px; padding: 1em 1.2em 1.25em; margin: 0 0 .9em; text-align: left; }

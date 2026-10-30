@@ -31,75 +31,87 @@ Real tools, communities, competitions and projects where you can keep going. Thi
 
 #### [Microsoft MakeCode for micro:bit](https://makecode.microbit.org)
 
-Blocks, JavaScript and Python for the micro:bit, with a simulator of the board in the browser. The book already uses it. For talented kids: extensions for motors and kits, a graph of data from the serial line and switching from blocks to text.
+Blocks, JavaScript and Python for the micro:bit, with a simulator of the board in the browser.
+
+:::reveal How to start
+The book already uses it. For talented kids: extensions for motors and kits, a graph of data from the serial line and switching from blocks to text.
 
 *free · from age 8, no account · cs, sk, hu, en and more*
-
-**How to start:**
 
 1. New project, no sign-in; it’s saved in the browser
 2. In the simulator you test the sensors by clicking on the pins and with the light slider
 3. You add blocks for kits through Extensions
+:::
 
 #### [micro:bit Python Editor](https://microbit.org/code/)
 
-The official editor for text-based Python (MicroPython), with a simulator and code examples. The natural next step after blocks: the same sensors, a real programming language.
+The official editor for text-based Python (MicroPython), with a simulator and code examples.
+
+:::reveal How to start
+The natural next step after blocks: the same sensors, a real programming language.
 
 *free · from about age 11, no account · English and several other languages; Czech not checked*
-
-**How to start:**
 
 1. Open the Python editor at microbit.org/code
 2. Drag an example from the Reference panel into your code
 3. Run it in the simulator, then download it to the board
+:::
 
 #### [micro:bit CreateAI](https://createai.microbit.org)
 
-Training a model of gestures from the accelerometer. The model is exported to MakeCode as blocks. In a gadget, the trained model is combined with rules and outputs. The input is then not a number from a sensor, but a recognised gesture.
+Training a model of gestures from the accelerometer. The model is exported to MakeCode as blocks.
+
+:::reveal How to start
+In a gadget, the trained model is combined with rules and outputs. The input is then not a number from a sensor, but a recognised gesture.
 
 *free · for pupils; in the browser or in the app for iPad and Android · English (other languages not checked)*
-
-**How to start:**
 
 1. Open it in Chrome or Edge and connect the micro:bit
 2. Record 2 or 3 gestures, each at least 10×
 3. Test the model and export it to MakeCode
+:::
 
 #### [Open Roberta Lab](https://calliope.cc/en/coding/editors/open-roberta)
 
-A web environment with NEPO blocks for the micro:bit, Calliope, LEGO and other robots. It shows how the blocks translate into Python or C++. It has a simulator of a robot on wheels. Without hardware, you can try out the rover in the simulator and see the text your blocks turn into.
+A web environment with NEPO blocks for the micro:bit, Calliope, LEGO and other robots. It shows how the blocks translate into Python or C++. It has a simulator of a robot on wheels.
+
+:::reveal How to start
+Without hardware, you can try out the rover in the simulator and see the text your blocks turn into.
 
 *free · from about age 10 · German, English and more; Czech not checked*
-
-**How to start:**
 
 1. Open Open Roberta Lab and choose a robot
 2. Put together a program from NEPO blocks
 3. Run it in the simulator or download it to the board
+:::
 
 #### [Wokwi](https://wokwi.com)
 
-An electronics simulator in the browser: Arduino Uno, Mega, Nano, ESP32, STM32 and Raspberry Pi Pico with components. Robotics beyond the micro:bit without buying and soldering components. Programs in C++ (Arduino) or in MicroPython.
+An electronics simulator in the browser: Arduino Uno, Mega, Nano, ESP32, STM32 and Raspberry Pi Pico with components.
+
+:::reveal How to start
+Robotics beyond the micro:bit without buying and soldering components. Programs in C++ (Arduino) or in MicroPython.
 
 *free for personal use, advanced features paid · you need an account to save projects; set it up with a parent · English*
-
-**How to start:**
 
 1. Choose Arduino Uno and a new project
 2. Add an LED and make it blink on pin 13
 3. Add a button and a light sensor
+:::
 
 #### [Pybricks](https://pybricks.com)
 
-Open MicroPython for LEGO hubs (SPIKE, Mindstorms, Technic, BOOST), programmed from the browser. Real Python on the kits used at Robosoutěž and in FIRST LEGO League.
+Open MicroPython for LEGO hubs (SPIKE, Mindstorms, Technic, BOOST), programmed from the browser.
+
+:::reveal How to start
+Real Python on the kits used at Robosoutěž and in FIRST LEGO League.
 
 *Python free, blocks for a donation · from about age 11, with an adult (it changes the hub’s firmware) · English*
-
-**How to start:**
 
 1. Agree it with the owner of the hub (school, club)
 2. Install the firmware at code.pybricks.com
 3. Run an example program and rewrite your rules into it
+:::
 
 ### 👥 Communities
 
@@ -107,13 +119,13 @@ Open MicroPython for LEGO hubs (SPIKE, Mindstorms, Technic, BOOST), programmed f
 
 *an international league of teams: a robot on the competition field and a research project · team registration and the set cost money; usually the school or club pays · English, regional tournaments in the country’s language; Czech organiser not checked*
 
+:::reveal How to join
 **Age:** FIRST LEGO League Challenge about 9 to 16, Explore for younger kids
-
-**How to join:**
 
 1. Ask your teacher or a youth centre (DDM) whether you have a team or whether they’ll start one
 2. Tournaments of the BIOGLOW season run from November 2026 to April 2027
 3. It’s the last season of the FIRST and LEGO Education partnership; a successor to LEGO League arrives from August 2027
+:::
 
 > **Stay safe:** The team is led by an adult coach, who talks to the organiser for the team. You go to tournaments together. You don’t enter personal details anywhere.
 
@@ -121,13 +133,13 @@ Open MicroPython for LEGO hubs (SPIKE, Mindstorms, Technic, BOOST), programmed f
 
 *an international robotics competition (Rescue Line, Soccer, OnStage) with regional rounds · entry fee depends on the event; your own robot · rules in English; regional rounds in the Czech Republic in Czech (e.g. Opavský ROBOCUP in May)*
 
+:::reveal How to join
 **Age:** up to age 19 under the general rules
-
-**How to join:**
 
 1. Read the rules of the Rescue Line event: it’s a line-following rover like the one in the expedition
 2. Start with a regional competition, with a teacher or a club
 3. The 2026 European Championship took place in Vienna, the World Championship in Korea
+:::
 
 > **Stay safe:** An adult leader enters the team. Only read the rules and forums; an adult runs the accounts and the contact with the organisers. You go to events with your team.
 
@@ -135,15 +147,15 @@ Open MicroPython for LEGO hubs (SPIKE, Mindstorms, Technic, BOOST), programmed f
 
 #### [Code Club (Raspberry Pi Foundation)](https://codeclub.org/)
 
-*network of clubs · free · projects in many languages*
-
 Step-by-step projects (Scratch, Python, web, physical devices) run by volunteers.
+
+:::reveal How to join
+*network of clubs · free · projects in many languages*
 
 **When:** during the school year, depending on the club **Age:** about 9–13 years
 
-**How to join:**
-
 1. find a club on codeclub.org or start a club at your school
+:::
 
 ### 🧪 Projects for inspiration
 

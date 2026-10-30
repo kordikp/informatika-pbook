@@ -31,63 +31,73 @@ Valódi eszközök, közösségek, versenyek és projektek, ahol tovább lehet h
 
 #### [Filius II (és Filius Classic)](https://filius-ii.net)
 
-Számítógépes hálózat szimulátora iskoláknak: számítógépeket, switcheket, routereket, DNS- és webszervert kötsz össze kábelekkel, és figyeled, merre mennek a csomagok. A legjobb híd a `sit` példától a valódi hálózatig. Saját internetet építhetsz anélkül, hogy bármit elrontanál.
+Számítógépes hálózat szimulátora iskoláknak: számítógépeket, switcheket, routereket, DNS- és webszervert kötsz össze kábelekkel, és figyeled, merre mennek a csomagok.
+
+:::reveal Hogyan kezdj hozzá
+A legjobb híd a `sit` példától a valódi hálózatig. Saját internetet építhetsz anélkül, hogy bármit elrontanál.
 
 *ingyenes, nyílt forráskódú (GPL v3) · 11 éves kortól (iskolai szoftver, fiók nélkül) · német vagy angol felület; cseh fordítás nincs ellenőrizve*
-
-**Hogyan kezdj hozzá:**
 
 1. Nyisd meg a Filius II-t a böngészőben (béta), vagy töltsd le a Filius Classicot a https://www.lernsoftware-filius.de oldalról Windowsra, Macre és Linuxra.
 2. Tegyél le két számítógépet és egy switchet, kösd össze őket kábelekkel, és állítsd be a 192.168.0.10 és 192.168.0.11 címeket.
 3. Válts szimulációra, telepítsd a parancssort az első gépre, és írd be: ping 192.168.0.11.
+:::
 
 #### [Cisco Packet Tracer](https://www.netacad.com/cisco-packet-tracer)
 
-A Cisco cég profi hálózatszimulátora. A routereket ugyanazokkal a parancsokkal állítod be benne, mint egy igazi cégnél. Arra az időre, amikor a Filius már nem elég. A Packet Traceren a leendő hálózati szakemberek tanulnak, így ez tényleg egy extra szint felfelé.
+A Cisco cég profi hálózatszimulátora. A routereket ugyanazokkal a parancsokkal állítod be benne, mint egy igazi cégnél.
+
+:::reveal Hogyan kezdj hozzá
+Arra az időre, amikor a Filius már nem elég. A Packet Traceren a leendő hálózati szakemberek tanulnak, így ez tényleg egy extra szint felfelé.
 
 *ingyenes, de csak Cisco Networking Academy fiókkal · idősebbeknek és haladóknak (13+); a fiók korhatára nincs ellenőrizve, ezért a fiókot szülővel vagy tanáron keresztül hozd létre · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. Szülővel vagy tanárral hozz létre fiókot a netacad.com oldalon, és iratkozz fel a „Getting Started with Cisco Packet Tracer” bevezető tanfolyamra.
 2. A Packet Tracert csak a hivatalos oldalról töltsd le, mert idegen oldalak módosított változatokat kínálnak.
 3. Ismételd meg a Filiusban épített hálózatot: két számítógép, switch, ping.
+:::
 
 #### [v86: Linux a böngészőben](https://copy.sh/v86/)
 
-Egy teljes számítógép emulátora, amely a böngésző egyik lapján fut. Linuxot, régi DOS-t vagy más rendszereket bootolhatsz benne. Belülről tapogathatod ki az operációs rendszert: folyamatok, memória, fájlok. És otthon semmit sem rontasz el, elég bezárni a lapot.
+Egy teljes számítógép emulátora, amely a böngésző egyik lapján fut. Linuxot, régi DOS-t vagy más rendszereket bootolhatsz benne.
+
+:::reveal Hogyan kezdj hozzá
+Belülről tapogathatod ki az operációs rendszert: folyamatok, memória, fájlok. És otthon semmit sem rontasz el, elég bezárni a lapot.
 
 *ingyenes, nyílt forráskódú · 11 éves kortól, fiók nélkül · angolul (a Linux parancsai angol rövidítések)*
-
-**Hogyan kezdj hozzá:**
 
 1. Nyisd meg a copy.sh/v86 oldalt, és válassz egy kis Linuxot (például Alpine vagy Buildroot).
 2. Várd meg, amíg betölt a parancssor, és írd be: ls, aztán free és ps.
 3. Hozz létre egy fájlt az echo ahoj > pokus.txt paranccsal, és zárd be a lapot. Eltűnik a fájl az újraindítás után? Miért?
+:::
 
 #### [NandGame](https://nandgame.com/)
 
-Fejtörő a böngészőben: egyetlen NAND kapuból lépésről lépésre megépíted az összeadót, a memóriát, a processzort és végül az egész számítógépet. Megválaszolja azt a kérdést, amelyet a konyhai hasonlat nyitva hagy: hogyan számol valójában a processzor.
+Fejtörő a böngészőben: egyetlen NAND kapuból lépésről lépésre megépíted az összeadót, a memóriát, a processzort és végül az egész számítógépet.
+
+:::reveal Hogyan kezdj hozzá
+Megválaszolja azt a kérdést, amelyet a konyhai hasonlat nyitva hagy: hogyan számol valójában a processzor.
 
 *ingyenes · 12 éves kortól, fiók nélkül · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. Nyisd meg a nandgame.com oldalt, és járd végig az első pályákat a kapukkal.
 2. Ha megépítetted a félösszeadót (half adder), hasonlítsd össze a „Hogyan számol a szakács” extra játékkal.
 3. Cél az első hétre: megépíteni a négybites számok összeadóját.
+:::
 
 #### [Turing Complete](https://steamcommunity.com/app/1444480/discussions/0/3081016748994069893)
 
-Játék a Steamen, amelyben a NAND kaputól egészen a saját processzorodig és az assembly nyelvig (assemblerig) jutsz el. Azoknak, akiket a NandGame magával ragadott. Hosszabb, van története, és vannak benne kihívások a legkisebb áramkörért.
+Játék a Steamen, amelyben a NAND kaputól egészen a saját processzorodig és az assembly nyelvig (assemblerig) jutsz el.
+
+:::reveal Hogyan kezdj hozzá
+Azoknak, akiket a NandGame magával ragadott. Hosszabb, van története, és vannak benne kihívások a legkisebb áramkörért.
 
 *fizetős játék (az árat nézd meg a Steamen); hasonlót ingyen is kipróbálhatsz a NandGame-ben · a Steam 13 éves kortól ad fiókot; a fiatalabbak szülői fiókon át játszanak · angolul*
-
-**Hogyan kezdj hozzá:**
 
 1. Beszéld meg a szüleiddel, megveszik-e a játékot a saját fiókjukra.
 2. Játszd végig az első fejezetet a kapukkal.
 3. Hasonlítsd össze az összeadódat a NandGame-es megoldással. Melyikben van kevesebb kapu?
+:::
 
 ### 👥 Közösségek
 
@@ -95,13 +105,13 @@ Játék a Steamen, amelyben a NAND kaputól egészen a saját processzorodig és
 
 *az ESA és a Raspberry Pi Foundation versenye · ingyenes · angolul (Pythonban kell programozni); más nyelvi változatokat nézd meg a weboldalon*
 
+:::reveal Hogyan csatlakozhatsz
 **Életkor:** 19 éves korig; a Mission Zero átlagos résztvevője 12 éves
-
-**Hogyan csatlakozhatsz:**
 
 1. Beszélj meg egy tanárral, szakkörvezetővel vagy szülővel, hogy ő legyen a mentorod.
 2. Írj egy rövid Python-programot a Mission Zero online szerkesztőjében.
 3. Ha átmegy az ellenőrzésen, a programod az ISS egyik számítógépén fut majd, és tanúsítványt kapsz.
+:::
 
 > **Biztonságosan:** A jelentkezést felnőtt mentor intézi. A programba és az üzenetbe ne írd bele a teljes nevedet, a címedet és az iskoládat. Csak a verseny hivatalos oldalán keresztül kommunikálj.
 
@@ -109,13 +119,13 @@ Játék a Steamen, amelyben a NAND kaputól egészen a saját processzorodig és
 
 *fiatal alkotók projektjeinek nemzetközi online bemutatója · ingyenes · angolul*
 
+:::reveal Hogyan csatlakozhatsz
 **Életkor:** 18 éves korig
-
-**Hogyan csatlakozhatsz:**
 
 1. Válassz egy kész projektet, például a Filiusban épített hálózatot vagy a Linux-parancsokat.
 2. Forgass egy rövid videót arcok és személyes adatok nélkül.
 3. A jelentkezést szülővel vagy tanárral küldd be (2026-ban a határidő május 27. volt).
+:::
 
 > **Biztonságosan:** A videóban ne mutasd mások arcát a beleegyezésük nélkül. Ne add meg a címedet és az iskoládat. A jelentkezést és a szervezőkkel való kapcsolattartást bízd egy felnőttre.
 
@@ -123,13 +133,13 @@ Játék a Steamen, amelyben a NAND kaputól egészen a saját processzorodig és
 
 *a Raspberry Pi Foundation iskolán kívüli programozószakköreinek hálózata · ingyenes · angolul; a helyi klubok országonként*
 
+:::reveal Hogyan csatlakozhatsz
 **Életkor:** 9–13 éveseknek
-
-**Hogyan csatlakozhatsz:**
 
 1. Kérdezd meg az iskolában vagy a könyvtárban, működik-e a közelben Code Club vagy hasonló szakkör.
 2. Ha nem, mutasd meg az oldalt az informatikatanárodnak. Klubot felnőtt alapíthat.
 3. A szakkörön javasolj egy projektet az expedícióból, például a Mission Zerót.
+:::
 
 > **Biztonságosan:** A szakkört ellenőrzött felnőtt vezeti. Online fiókot csak szülővel hozz létre. Személyes adataidat az interneten a többi taggal se oszd meg.
 
@@ -137,29 +147,29 @@ Játék a Steamen, amelyben a NAND kaputól egészen a saját processzorodig és
 
 #### [FIRST LEGO League Magyarország (Explore / Challenge)](https://www.firstlegoleague.hu/)
 
-*robotikaverseny · csapatdíj, ellenőrizd a weboldalon · magyar (a feladat nemzetközi, angol nyelvű)*
-
 Összeköti a robotikát, a kutatási projektet és a csapatmunkát. A magyar csapatok rendszeresen bejutnak a nemzetközi döntőkbe.
+
+:::reveal Hogyan csatlakozhatsz
+*robotikaverseny · csapatdíj, ellenőrizd a weboldalon · magyar (a feladat nemzetközi, angol nyelvű)*
 
 **Mikor:** A 2025/26-os szezonban a regionális forduló 2026. január 16-án volt Debrecenben, az országos döntő 2026. február 28-án Budapesten. A 2026/27-es szezont ellenőrizd a weboldalon **Életkor:** Challenge kb. 9–16 év, Explore a fiatalabbaknak
 
-**Hogyan csatlakozhatsz:**
-
 1. csapat összeállítása edzővel (iskola vagy szakkör)
 2. regisztráció az országos szervezőnél (HelloWorld Education)
+:::
 
 #### [CyLab Security Academy, korábban picoCTF (Carnegie Mellon)](https://cylabacademy.org/)
 
-*kiberbiztonsági verseny és gyakorlóoldal · ingyenes · angol*
-
 Etikus hackelés biztonságos környezetben. Játékos formában tanít Linuxot, kriptográfiát és webbiztonságot.
+
+:::reveal Hogyan csatlakozhatsz
+*kiberbiztonsági verseny és gyakorlóoldal · ingyenes · angol*
 
 **Mikor:** A nagy verseny évente egyszer van, a feladattár (korábban picoGym) egész évben nyitva áll. A 2027-es időpontot ellenőrizd a weboldalon **Életkor:** 13 éves kortól; 13–17 év között a szülő e-mail-címével, vagy a fiókot a tanár hozza létre
 
-**Hogyan csatlakozhatsz:**
-
 1. regisztráció a cylabacademy.org oldalon a szülő e-mail-címével
 2. vagy osztályfiók a tanártól
+:::
 
 ### 🧪 Projektek ötletnek
 
