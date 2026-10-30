@@ -27,7 +27,7 @@ carriers: prose
 
 **👀 Side trip** · [The weekend a game was made](#expedice-hry-en)
 
-A **fantasy console** is an imaginary computer with strict limits. [TIC-80](https://en.wikipedia.org/wiki/TIC-80) has a 240 × 136 pixel screen, a small colour palette and an editor for code, sprites, maps and music in one window. It is free and works without an account. The paid [PICO-8](https://lexaloffle.itch.io/pico-8) costs at least 15 USD and a parent handles the purchase.
+A **fantasy console** is an imaginary computer with strict limits. [TIC-80](https://tic80.com/) has a 240 × 136 pixel screen, a small colour palette and an editor for code, sprites, maps and music in one window. It is free and works without an account. The paid [PICO-8](https://lexaloffle.itch.io/pico-8) costs at least 15 USD and a parent handles the purchase.
 
 In TIC-80 the function `TIC()` is called 60× per second, and that is the whole game loop. The limits make you build small, finished games. The first version of Celeste was made on PICO-8.
 

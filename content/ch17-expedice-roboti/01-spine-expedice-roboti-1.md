@@ -32,7 +32,7 @@ Otevři [MakeCode](https://makecode.microbit.org), dej *Nový projekt* a pojmenu
 3. **Rozhodnutí (10 minut).** Čtyři podmínky *když… tak…* pro kombinace levého a pravého senzoru. Místo motorů zatím ukazuj na displeji šipku: nahoru znamená rovně, šipka doleva nebo doprava zatáčku a křížek stop.
 4. **Testy (10 minut).** Proklikej všechny čtyři kombinace pinů a zapiš si, jestli šipka odpovídá tomu, co čekáš.
 
-Teď máš celý mozek vozítka bez jediného motoru. Až motory dorazí, šipky nahradíš bloky motorů. Bloky pro stavebnice, třeba Kitronik :MOVE mini, se přidávají přes *Rozšíření*. Kdo radši píše text, najde stejný simulátor v [Python editoru](https://microbit.org/code/).
+Teď máš celý mozek vozítka bez jediného motoru. Až motory dorazí, šipky nahradíš bloky motorů. Bloky pro stavebnice, třeba Kitronik :MOVE mini, se přidávají přes *Rozšíření*. Kdo radši píše text, najde stejný simulátor v [Python editoru](https://python.microbit.org/).
 
 Tip: rozhodování dej do vlastní funkce *rozhodni*. Až budeš vozítko vylepšovat, změníš jen ji.
 

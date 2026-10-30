@@ -43,7 +43,7 @@ Kifejezetten iskolásoknak készült. Azt csinálja, amit a táblázatkezelő, d
 3. Húzd egy oszlop nevét a grafikon tengelyére, és figyeld, hogyan csoportosulnak a pontok.
 :::
 
-#### [Datawrapper](https://www.datawrapper.de/pricing)
+#### [Datawrapper](https://www.datawrapper.de/)
 
 Újságírók eszköze letisztult grafikonokhoz, térképekhez és táblázatokhoz beillesztett adatokból. Az ingyenes csomaggal lehet közzétenni és PNG-t letölteni.
 
@@ -57,7 +57,7 @@ Becsületes grafikonokra tanít: tengely, feliratok, adatforrás. Jól jön a v�
 3. Add meg az adatforrást és a tengelyfeliratokat, aztán töltsd le PNG-ként.
 :::
 
-#### [Gapminder Tools](https://www.gapminder.org/teaching/materials/)
+#### [Gapminder Tools](https://www.gapminder.org/tools/)
 
 Hans Rosling buborékgrafikonja és további eszközök (Bubbles, Maps, Ranks, Trends, Dollar Street) a világ összes országának adataival.
 
@@ -232,7 +232,7 @@ Interaktív kurzusok JavaScriptről, kóddal rajzolásról és SQL-ről, a sajá
 ### 📚 Hol tanulhatsz tovább
 
 - **[SQL Murder Mystery: útmutató kezdőknek](https://mystery.knightlab.com/walkthrough.html)**: Lépésről lépésre az első táblázattól a SELECT, WHERE lekérdezésekig és a táblázatok összekapcsolásáig. Jól jön maga a krimi előtt. *(angol)*
-- **[CODAP: útmutató az első indításhoz (PDF)](https://codap-server.concord.org/wp-content/uploads/codap-start-up-guide.pdf)**: Rövid útmutató arról, hogyan nyiss meg adatokat, készíts grafikont és csoportosítsd a pontokat. *(angol)*
+- **[CODAP: súgó és útmutatók](https://codap.concord.org/help/)**: Lépésről lépésre útmutatók arról, hogyan nyiss meg adatokat, készíts grafikont és csoportosítsd a pontokat, és egy fórum válaszokkal. *(angol)*
 - **[Gapminder: oktatási anyagok](https://www.gapminder.org/teaching/materials/)**: Kvízek és feladatok, amelyek megmutatják, mennyire tévedünk a világról szóló becsléseinkben, és hogyan javíthatjuk ezt adatokkal. *(angol és más nyelvek)*
 
 **Vissza az expedícióra:** [A késő busz esete](#expedice-data-hu)

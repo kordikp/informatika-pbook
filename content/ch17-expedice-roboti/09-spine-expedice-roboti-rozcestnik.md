@@ -41,7 +41,7 @@ Kniha ho už používá. Pro talentované děti: rozšíření pro motory a stav
 3. Bloky pro stavebnice přidáš přes Rozšíření
 :::
 
-#### [micro:bit Python Editor](https://microbit.org/code/)
+#### [micro:bit Python Editor](https://python.microbit.org/)
 
 Oficiální editor pro textový Python (MicroPython) se simulátorem a ukázkami kódu.
 
@@ -69,7 +69,7 @@ Natrénovaný model se v gadgetu spojí s pravidly a výstupy. Vstupem pak není
 3. Otestuj model a exportuj ho do MakeCode
 :::
 
-#### [Open Roberta Lab](https://calliope.cc/en/coding/editors/open-roberta)
+#### [Open Roberta Lab](https://lab.open-roberta.org/)
 
 Webové prostředí s bloky NEPO pro micro:bit, Calliope, LEGO a další roboty. Ukáže, jak se bloky přeloží do Pythonu nebo C++. Má simulátor robota na kolech.
 
@@ -141,7 +141,7 @@ Skutečný Python na stavebnicích, které se používají na Robosoutěži a ve
 
 > **Bezpečně:** Tým vede dospělý kouč a komunikuje s pořadatelem za tým. Na turnaje jezdíte spolu. Ty nikde nezadáváš osobní údaje.
 
-#### [RoboCup Junior](https://junior.robocup.org/robocupjunior-general-rules/)
+#### [RoboCup Junior](https://junior.robocup.org/)
 
 *mezinárodní robotická soutěž (Rescue Line, Soccer, OnStage) s regionálními koly · startovné podle akce; vlastní robot · pravidla anglicky; regionální kola v Česku česky (např. Opavský ROBOCUP v květnu)*
 
@@ -157,7 +157,7 @@ Skutečný Python na stavebnicích, které se používají na Robosoutěži a ve
 
 ### 🏆 Soutěže a akce
 
-#### [FLL Slovensko – národné finále a festival](https://touchit.sk/narodne-finale-a-festival-first-lego-league-urcilo-reprezentantov-sr/490953/)
+#### [FLL Slovensko – národné finále a festival](https://www.fll.sk/)
 
 Slovenská větev FLL s postupem na mezinárodní finále. Hodí se pro roboticky zaměřené týmy ze škol a centrů volného času.
 

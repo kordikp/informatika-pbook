@@ -41,7 +41,7 @@ Přesně ten nástroj, kterým profesionální ověřovatelé zjišťují, jestl
 3. U jednoho klíčového snímku klikni na zpětné vyhledávání a najdi nejstarší výskyt.
 :::
 
-#### [Shotcut](https://en.wikipedia.org/wiki/Shotcut)
+#### [Shotcut](https://shotcut.org/)
 
 Svobodný střihový program pro Windows, macOS a Linux. V roce 2026 vychází nové verze zhruba každé dva měsíce (26.6 přinesla pluginy a HDR).
 
@@ -69,7 +69,7 @@ Další stupeň po Shotcutu: delší videa, víc stop, práce jako ve studiu. Do
 3. Exportuj a přehraj si výsledek dřív, než ho komukoli pošleš.
 :::
 
-#### [SkyFeed (vlastní feedy na Bluesky)](https://docs.bsky.app/blog/feature-skyfeed)
+#### [SkyFeed (vlastní feedy na Bluesky)](https://skyfeed.app/)
 
 Vizuální stavebnice vlastních feedů pro síť Bluesky: skládáš filtry (klíčová slova, autoři, lajky) a řazení bez programování.
 
@@ -185,7 +185,7 @@ Takzvané „očkování“: kdo si triky vyzkouší, pozná je pak ve feedu. Ú
 
 ### 🏆 Soutěže a akce
 
-#### [FLL Slovensko – národné finále a festival](https://touchit.sk/narodne-finale-a-festival-first-lego-league-urcilo-reprezentantov-sr/490953/)
+#### [FLL Slovensko – národné finále a festival](https://www.fll.sk/)
 
 Slovenská větev FLL s postupem na mezinárodní finále. Hodí se pro roboticky zaměřené týmy ze škol a centrů volného času.
 
@@ -257,15 +257,15 @@ Moderovaná komunita, kde dítě sdílí hry a animace a dostává zpětnou vazb
 
 - **[Zveřejněný algoritmus X/Twitteru (twitter/the-algorithm)](https://sourcegraph.com/blog/open-sourcing-twitters-algorithm)**: V roce 2023 Twitter zveřejnil kód doporučování pro „Pro tebe“: výběr kandidátů, řazení neuronovou sítí a filtry. Odkaz vede na průvodce, který kód živě procházel. *Naučíš se:* Jak vypadá feed ve velkém: kandidáti, odhad pravděpodobností reakcí, váhy a filtry. A taky co v zveřejněném kódu chybí (trénovací data), takže „otevřený algoritmus“ neříká všechno.
 - **[Bluesky feed-generator](https://github.com/bluesky-social/feed-generator)**: Startovací sada pro vlastní feed na Bluesky: indexace příspěvků v src/subscription.ts a algoritmy v src/algos. *Naučíš se:* Opak obřího algoritmu X: feed na pár řádků. Porovnáním obou pochopíš, že feed je vždycky něčí rozhodnutí, co je důležité.
-- **[Harmony Square](https://www.cam.ac.uk/research/news/game-combats-political-misinformation-by-letting-players-undermine-democracy)**: Desetiminutová hra z Cambridge, ve které rozvrátíš poklidné náměstí lží o kandidátovi. Hráči pak dezinformace hodnotili jako méně důvěryhodné a méně je sdíleli. *Naučíš se:* Jak se z výzkumu stane hra: každá scéna učí jeden trik a měří se, jestli hra opravdu funguje. Inspirace pro vlastní hru v autorském studiu.
+- **[Harmony Square](https://harmonysquare.game/)**: Desetiminutová hra z Cambridge, ve které rozvrátíš poklidné náměstí lží o kandidátovi. Hráči pak dezinformace hodnotili jako méně důvěryhodné a méně je sdíleli. *Naučíš se:* Jak se z výzkumu stane hra: každá scéna učí jeden trik a měří se, jestli hra opravdu funguje. Inspirace pro vlastní hru v autorském studiu.
 - **[The Wisdom and/or Madness of Crowds (Nicky Case)](https://ncase.me/crowds/)**: Interaktivní vysvětlení síťové vědy na 30 minut: jak se šíří nápady, iluze většiny, skupinové myšlení a mosty mezi skupinami. Kód je otevřený. *Naučíš se:* Proč ti připadá, že „to dělají všichni“, i když ne. A jak vypadá dobrá interaktivní ukázka, kterou můžeš rozebrat a napodobit.
 
 ### 📚 Kde se učit dál
 
 - **[Fakescape: bezplatné materiály](https://fakescape.cz/en/materials/)**: Pracovní listy, lekce a návody o dezinformacích a kritickém myšlení od brněnského spolku. *(cs, en)*
-- **[Bellingcat Online Investigations Toolkit: InVID](https://bellingcat.gitbook.io/toolkit/more/all-tools/invid.md)**: Popis pluginu InVID od týmu Bellingcat, který proslul ověřováním fotek a videí z otevřených zdrojů. Celý toolkit je mapa nástrojů ověřovatelů. *(anglicky)*
+- **[Bellingcat Online Investigations Toolkit: InVID](https://bellingcat.gitbook.io/toolkit/more/all-tools/invid)**: Popis pluginu InVID od týmu Bellingcat, který proslul ověřováním fotek a videí z otevřených zdrojů. Celý toolkit je mapa nástrojů ověřovatelů. *(anglicky)*
 - **[What can we learn from Twitter’s open source algorithm (NYU CSMaP)](https://csmapnyu.org/impact/news/what-can-we-learn-from-twitters-open-source-algorithm)**: Výzkumníci vysvětlují, co zveřejněný algoritmus o feedu prozradil a co ne. Dobrá příprava na krok „rozbor“. *(anglicky)*
 - **[The Wisdom and/or Madness of Crowds](https://ncase.me/crowds/)**: Hratelné vysvětlení, jak se v sítích šíří nápady a proč vznikají ozvěnové komnaty, na 30 minut. *(anglicky)*
-- **[Bluesky: SkyFeed](https://docs.bsky.app/blog/feature-skyfeed)**: Oficiální blog Bluesky o tom, jak si vizuálně postavit vlastní feed. *(anglicky)*
+- **[Bluesky: SkyFeed](https://bsky.social/about/blog/7-27-2023-custom-feeds)**: Oficiální blog Bluesky o tom, jak si vizuálně postavit vlastní feed. *(anglicky)*
 
 **Zpátky na expedici:** [Ověřovací tým](#expedice-socialni)

@@ -27,7 +27,7 @@ carriers: prose
 
 **👀 Odbočka** · [Víkend, keď vznikla hra](#expedice-hry-sk)
 
-**Fantasy konzola** je vymyslený počítač s prísnymi obmedzeniami. [TIC-80](https://en.wikipedia.org/wiki/TIC-80) má obrazovku 240 × 136 pixelov, malú paletu farieb a editor kódu, spritov, máp a hudby v jednom okne. Je zadarmo a funguje bez účtu. Platená [PICO-8](https://lexaloffle.itch.io/pico-8) stojí najmenej 15 USD a nákup rieši rodič.
+**Fantasy konzola** je vymyslený počítač s prísnymi obmedzeniami. [TIC-80](https://tic80.com/) má obrazovku 240 × 136 pixelov, malú paletu farieb a editor kódu, spritov, máp a hudby v jednom okne. Je zadarmo a funguje bez účtu. Platená [PICO-8](https://lexaloffle.itch.io/pico-8) stojí najmenej 15 USD a nákup rieši rodič.
 
 V TIC-80 sa funkcia `TIC()` volá 60× za sekundu, a to je celá herná slučka. Obmedzenia nútia robiť malé a hotové hry. Na PICO-8 vznikla prvá verzia Celeste.
 

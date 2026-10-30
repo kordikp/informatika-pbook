@@ -31,7 +31,7 @@ Postav vlastný okruh a urob z vozidielka spoľahlivý stroj.
 
 **Trať.** Na baliaci papier alebo niekoľko zlepených listov A3 nalep čiernu izolačnú pásku širokú 15 až 20 mm. Pridaj rovinku, miernu zákrutu, ostrú zákrutu (90° a viac) a križovatku.
 
-**Bez hardvéru.** Rovnakú logiku vyskúšaj v [Open Roberta Lab](https://calliope.cc/en/coding/editors/open-roberta), kde jazdí virtuálny robot na kolesách. Alebo v MakeCode preklikávaj piny podľa vopred napísanej rady hodnôt senzorov.
+**Bez hardvéru.** Rovnakú logiku vyskúšaj v [Open Roberta Lab](https://lab.open-roberta.org/), kde jazdí virtuálny robot na kolesách. Alebo v MakeCode preklikávaj piny podľa vopred napísanej rady hodnôt senzorov.
 
 **Denník verzií.** Ku každej zmene zapíš tri riadky: *verzia, čo meníš, čo sa stalo*. Meň vždy len jednu vec: rýchlosť, alebo pravidlo, alebo pauzu. Inak nespoznáš, čo pomohlo.
 

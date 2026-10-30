@@ -35,7 +35,7 @@ carriers: prose
 
 **4. Elemzés (CODAP).** Csoportosítsd az adatokat, hasonlítsd össze az átlagot és a mediánt, keress kiugró értékeket és harmadik dolgokat.
 
-**5. Grafikon (Datawrapper).** A [Datawrapperen](https://www.datawrapper.de/pricing) regisztráció nélkül is lehet grafikont készíteni. Illeszd be az adatokat, válaszd ki a kérdéshez illő grafikontípust (változás = vonal, összehasonlítás = oszlopok), add meg a tengelyfeliratokat és az adatforrást, és töltsd le PNG-ként.
+**5. Grafikon (Datawrapper).** A [Datawrapperen](https://www.datawrapper.de/) regisztráció nélkül is lehet grafikont készíteni. Illeszd be az adatokat, válaszd ki a kérdéshez illő grafikontípust (változás = vonal, összehasonlítás = oszlopok), add meg a tengelyfeliratokat és az adatforrást, és töltsd le PNG-ként.
 
 **6. Értelmezés.** Három mondat: mit mutatnak az adatok, mit nem mutatnak, és mi torzíthatná az eredményt.
 

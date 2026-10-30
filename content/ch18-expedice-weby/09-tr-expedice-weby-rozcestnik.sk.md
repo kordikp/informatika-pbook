@@ -198,7 +198,7 @@ Interaktívne kurzy JavaScriptu, kreslenia kódom a SQL vlastným tempom.
 
 ### 🧪 Projekty pre inšpiráciu
 
-- **[neal.fun a jeho Internet Artifacts](https://waxy.org/2023/10/neal-funs-internet-artifacts-an-online-museum-of-artifacts-from-the-early-internet/)**: Web Neala Agarwala s jednostránkovými hračkami a múzeom raného internetu, kde fungujú aj staré weby. *Naučíš sa:* Ako jeden nápad unesie celú stránku. V F12 zisti, koľko súborov a kilobajtov jedna hračka potrebuje. Po anglicky.
+- **[neal.fun a jeho Internet Artifacts](https://neal.fun/internet-artifacts/)**: Web Neala Agarwala s jednostránkovými hračkami a múzeom raného internetu, kde fungujú aj staré weby. *Naučíš sa:* Ako jeden nápad unesie celú stránku. V F12 zisti, koľko súborov a kilobajtov jedna hračka potrebuje. Po anglicky.
 - **[Víťazi js13kGames 2025](https://dev.to/js13kgames/js13kgames-2025-winners-announced-20nl)**: Ocenené webové hry, z ktorých sa každá zmestí do 13 kilobajtov. *Naučíš sa:* Ako vyzerá extrémny rozpočet veľkosti a čím sa šetrí: kreslenie kódom namiesto obrázkov, zvuk generovaný skriptom. Po anglicky.
 - **[Flexbox Froggy ako web](https://flexboxfroggy.com)**: Výuková hra, ktorá je sama obyčajnou webovou stránkou v HTML, CSS a JavaScripte, a to v desiatkach jazykov. *Naučíš sa:* Otvor F12 a nájdi, ako hra kontroluje tvoje CSS a ako prepína jazyky. Rozbor webu, ktorý zvláda mnoho jazykov naraz.
 - **[Článok na Wikipédii (napríklad Hack Club)](https://en.wikipedia.org/wiki/Hack_Club)**: Jeden z najnavštevovanejších webov sveta, rýchly a prístupný. *Naučíš sa:* Študuj osnovu nadpisov, popisky obrázkov a počet cudzích domén. Porovnaj so spravodajským webom.

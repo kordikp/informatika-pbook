@@ -73,7 +73,7 @@ Music from your own notes without AI. The track is saved in the link, so you don
 4. Copy the page address; that is your saved track. Export → WAV.
 :::
 
-#### [Chrome Music Lab: Song Maker](https://blog.google/outreach-initiatives/education/simple-music-making-everyone)
+#### [Chrome Music Lab: Song Maker](https://musiclab.chromeexperiments.com/Song-Maker/)
 
 The simplest way to compose a melody by clicking into a colourful grid (the link to the tool is in a Google article).
 
@@ -174,7 +174,7 @@ Good for a “human versus machine” comparison and for thinking about who the 
 
 > **Stay safe:** No Discord under 13; reading the website is enough. Don’t open private messages from strangers and don’t move anywhere else with them. If someone wants a photo or contact details, tell an adult.
 
-#### [Tinkercad Classroom](https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement/childrens-privacy-statement)
+#### [Tinkercad Classroom](https://www.tinkercad.com/teachers)
 
 *a moderated class for 3D modelling, set up by a teacher · Free · in English, the interface also in other languages*
 

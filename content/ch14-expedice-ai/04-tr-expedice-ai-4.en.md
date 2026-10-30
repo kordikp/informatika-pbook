@@ -31,7 +31,7 @@ A model gets better fastest with people who break it. Options by age:
 
 - **Under 13:** a club or your class is best. Show your teacher the [Day of AI](https://dayofai.org/) programme from MIT (free, in English). The teacher registers, you don’t create any account. You’ll find lessons with the micro:bit in the [curriculum for ages 11–14](https://microbit.org/teach/lessons/developing-ai-literacy-with-the-microbit/).
 - **13 and over:** the online competition [Global AI Techathon by Teens in AI](https://www.teensinai.com/) for ages 13–18, in English. Teams solve a real problem using AI and don’t need any previous experience.
-- **Looking ahead to secondary school:** the [International Olympiad in AI](https://mbzuai.ac.ae/news/international-olympiad-in-ai-launches-to-nurture-the-next-generation-of-ai-talent) (IOAI). Ask your computing teacher about national selection.
+- **Looking ahead to secondary school:** the [International Olympiad in AI](https://ioai-official.org/) (IOAI). Ask your computing teacher about national selection.
 
 **Three rules for joining in safely:**
 1. **You fill in the application with a parent.** Age limits are not to be dodged. If you’re younger than the competition requires, read the tasks and get ready.

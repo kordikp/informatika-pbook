@@ -85,7 +85,7 @@ It answers the question the kitchen metaphor leaves open: how a processor actual
 3. Goal for the first week: build an adder for four-bit numbers.
 :::
 
-#### [Turing Complete](https://steamcommunity.com/app/1444480/discussions/0/3081016748994069893)
+#### [Turing Complete](https://store.steampowered.com/app/1444480/Turing_Complete/)
 
 A game on Steam in which you go from a NAND gate all the way to your own processor and assembly language (assembler).
 
@@ -129,7 +129,7 @@ For those who got hooked on NandGame. It’s longer, with a story and with chall
 
 > **Stay safe:** Don’t show other people’s faces in the video without their consent. Don’t give your address or school. Leave the entry and communication with the organisers to an adult.
 
-#### [Code Club](https://blog.codeclub.org/author/georgiafowlerf5d463d921/)
+#### [Code Club](https://codeclub.org/)
 
 *network of after-school coding clubs by the Raspberry Pi Foundation · free · in English; local clubs depending on the country*
 

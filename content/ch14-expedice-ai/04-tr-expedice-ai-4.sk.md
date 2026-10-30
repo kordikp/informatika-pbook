@@ -31,7 +31,7 @@ Model sa najlepšie vylepšuje s ľuďmi, ktorí ho pokazia. Možnosti podľa ve
 
 - **Do 13 rokov:** najlepšie krúžok alebo trieda. Ukáž učiteľovi program [Day of AI](https://dayofai.org/) od MIT (zadarmo, anglicky). Registruje sa učiteľ, ty si žiadny účet nezakladáš. Lekcie s micro:bitom nájdeš v [osnove pre 11–14 rokov](https://microbit.org/teach/lessons/developing-ai-literacy-with-the-microbit/).
 - **Od 13 rokov:** online súťaž [Global AI Techathon od Teens in AI](https://www.teensinai.com/) pre 13–18 rokov, anglicky. Tímy riešia skutočný problém pomocou AI a nepotrebujú predchádzajúce skúsenosti.
-- **Výhľad na strednú školu:** [Medzinárodná olympiáda v AI](https://mbzuai.ac.ae/news/international-olympiad-in-ai-launches-to-nurture-the-next-generation-of-ai-talent) (IOAI). Na národný výber sa spýtaj učiteľa informatiky.
+- **Výhľad na strednú školu:** [Medzinárodná olympiáda v AI](https://ioai-official.org/) (IOAI). Na národný výber sa spýtaj učiteľa informatiky.
 
 **Tri pravidlá bezpečného zapojenia:**
 1. **Prihlášku vypĺňaš s rodičom.** Vekový limit sa neobchádza. Keď máš menej rokov, ako súťaž chce, čítaj zadania a pripravuj sa.

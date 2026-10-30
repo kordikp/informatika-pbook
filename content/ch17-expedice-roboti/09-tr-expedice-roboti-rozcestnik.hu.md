@@ -43,7 +43,7 @@ A könyv már használja. Tehetséges gyerekeknek: bővítmények motorokhoz és
 3. Az építőkészletek blokkjait a Bővítményekben adod hozzá
 :::
 
-#### [micro:bit Python Editor](https://microbit.org/code/)
+#### [micro:bit Python Editor](https://python.microbit.org/)
 
 Hivatalos szerkesztő szöveges Pythonhoz (MicroPython), szimulátorral és kódpéldákkal.
 
@@ -71,7 +71,7 @@ A betanított modell a kütyüben összekapcsolódik a szabályokkal és a kimen
 3. Teszteld a modellt, és exportáld a MakeCode-ba
 :::
 
-#### [Open Roberta Lab](https://calliope.cc/en/coding/editors/open-roberta)
+#### [Open Roberta Lab](https://lab.open-roberta.org/)
 
 Webes környezet NEPO blokkokkal micro:bithez, Calliopéhoz, LEGO-hoz és más robotokhoz. Megmutatja, hogyan fordulnak le a blokkok Pythonra vagy C++-ra. Van benne kerekes robot szimulátor.
 
@@ -129,7 +129,7 @@ Valódi Python olyan építőkészleteken, amelyeket a Robosoutěžen és a FIRS
 
 > **Biztonságosan:** A csapatot felnőtt edző vezeti, és ő tartja a kapcsolatot a szervezővel a csapat nevében. A tornákra együtt mentek. Te sehol nem adsz meg személyes adatokat.
 
-#### [RoboCup Junior](https://junior.robocup.org/robocupjunior-general-rules/)
+#### [RoboCup Junior](https://junior.robocup.org/)
 
 *nemzetközi robotikai verseny (Rescue Line, Soccer, OnStage) regionális fordulókkal · nevezési díj a rendezvénytől függően; saját robot · a szabályok angolul; a csehországi regionális fordulók csehül (pl. Opavský ROBOCUP májusban)*
 

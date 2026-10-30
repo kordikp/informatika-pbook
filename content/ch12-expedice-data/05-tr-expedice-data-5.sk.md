@@ -35,7 +35,7 @@ carriers: prose
 
 **4. Analýza (CODAP).** Zoskup dáta, porovnaj priemer a medián, hľadaj odľahlé hodnoty a tretie veci.
 
-**5. Graf (Datawrapper).** Na [Datawrapperi](https://www.datawrapper.de/pricing) sa dá graf vytvoriť bez registrácie. Vlož dáta, vyber typ grafu podľa otázky (vývoj = čiara, porovnanie = stĺpce), doplň popisy osí a zdroj dát a stiahni PNG.
+**5. Graf (Datawrapper).** Na [Datawrapperi](https://www.datawrapper.de/) sa dá graf vytvoriť bez registrácie. Vlož dáta, vyber typ grafu podľa otázky (vývoj = čiara, porovnanie = stĺpce), doplň popisy osí a zdroj dát a stiahni PNG.
 
 **6. Výklad.** Tri vety: čo dáta ukazujú, čo neukazujú a čo by mohlo výsledok skresliť.
 

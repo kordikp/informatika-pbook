@@ -43,7 +43,7 @@ The book already uses it. For talented kids: extensions for motors and kits, a g
 3. You add blocks for kits through Extensions
 :::
 
-#### [micro:bit Python Editor](https://microbit.org/code/)
+#### [micro:bit Python Editor](https://python.microbit.org/)
 
 The official editor for text-based Python (MicroPython), with a simulator and code examples.
 
@@ -71,7 +71,7 @@ In a gadget, the trained model is combined with rules and outputs. The input is 
 3. Test the model and export it to MakeCode
 :::
 
-#### [Open Roberta Lab](https://calliope.cc/en/coding/editors/open-roberta)
+#### [Open Roberta Lab](https://lab.open-roberta.org/)
 
 A web environment with NEPO blocks for the micro:bit, Calliope, LEGO and other robots. It shows how the blocks translate into Python or C++. It has a simulator of a robot on wheels.
 
@@ -129,7 +129,7 @@ Real Python on the kits used at Robosoutěž and in FIRST LEGO League.
 
 > **Stay safe:** The team is led by an adult coach, who talks to the organiser for the team. You go to tournaments together. You don’t enter personal details anywhere.
 
-#### [RoboCup Junior](https://junior.robocup.org/robocupjunior-general-rules/)
+#### [RoboCup Junior](https://junior.robocup.org/)
 
 *an international robotics competition (Rescue Line, Soccer, OnStage) with regional rounds · entry fee depends on the event; your own robot · rules in English; regional rounds in the Czech Republic in Czech (e.g. Opavský ROBOCUP in May)*
 

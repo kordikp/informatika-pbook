@@ -35,7 +35,7 @@ carriers: prose
 
 **4. Analysis (CODAP).** Group the data, compare the mean and the median, look for outliers and third things.
 
-**5. Graph (Datawrapper).** On [Datawrapper](https://www.datawrapper.de/pricing) you can create a graph without registering. Paste in the data, choose the type of graph to fit the question (change over time = line, comparison = bars), add axis labels and the data source, and download a PNG.
+**5. Graph (Datawrapper).** On [Datawrapper](https://www.datawrapper.de/) you can create a graph without registering. Paste in the data, choose the type of graph to fit the question (change over time = line, comparison = bars), add axis labels and the data source, and download a PNG.
 
 **6. Explanation.** Three sentences: what the data show, what they don’t show and what could distort the result.
 

@@ -24,7 +24,7 @@ dokumentaci programu a ve smlouvě projektu: číslo projektu, příjemce, vlast
 
 | Co | Doklad |
 |---|---|
-| Veřejná verze | https://informatika-pbook.vercel.app, engine 7.8.0, SW v90 (2026-10-30) |
+| Veřejná verze | https://informatika-pbook.vercel.app, engine 7.8.0, SW v91 (2026-10-30) |
 | Obsah | 6 kapitol a 24 jader, 6 světů, projekt Tvůrce, 12 expedic, 25 misí s bossem, 6 skupinových úkolů s AI asistenty, 42 výzev a 36 her navíc (`scripts/build-ucitel.mjs`) |
 | Jazyky | čeština, angličtina, slovenština, maďarština; v každém jazyce otestováno i offline |
 | Pro učitele | https://informatika-pbook.vercel.app/ucitel (plán hodiny, odkazy, QR) |

@@ -43,7 +43,7 @@ It is made for school pupils. It does what a spreadsheet does, but makes you thi
 3. Drag a column name onto a graph axis and watch how the points group together.
 :::
 
-#### [Datawrapper](https://www.datawrapper.de/pricing)
+#### [Datawrapper](https://www.datawrapper.de/)
 
 A journalists’ tool for clean graphs, maps and tables from data you paste in. The free plan can publish and download PNGs.
 
@@ -57,7 +57,7 @@ It teaches honest graphs: axis, labels, data source. Good for a final poster or 
 3. Add the data source and axis labels, then download a PNG.
 :::
 
-#### [Gapminder Tools](https://www.gapminder.org/teaching/materials/)
+#### [Gapminder Tools](https://www.gapminder.org/tools/)
 
 Hans Rosling’s bubble chart and other tools (Bubbles, Maps, Ranks, Trends, Dollar Street) using data about every country in the world.
 
@@ -206,7 +206,7 @@ Interactive courses in JavaScript, drawing with code and SQL at your own pace.
 ### 📚 Where to keep learning
 
 - **[SQL Murder Mystery: walkthrough for beginners](https://mystery.knightlab.com/walkthrough.html)**: Step by step from the first table to SELECT and WHERE queries and joining tables. Good to do before the detective story itself. *(English)*
-- **[CODAP: getting started guide (PDF)](https://codap-server.concord.org/wp-content/uploads/codap-start-up-guide.pdf)**: A short guide to opening data, making a graph and grouping points. *(English)*
+- **[CODAP: help and how-to guides](https://codap.concord.org/help/)**: Step-by-step guides to opening data, making a graph and grouping points, plus a forum with answers. *(English)*
 - **[Gapminder: teaching materials](https://www.gapminder.org/teaching/materials/)**: Quizzes and tasks that show how wrong our guesses about the world are, and how to fix them with data. *(English and other languages)*
 
 **Back to the expedition:** [The case of the late bus](#expedice-data-en)

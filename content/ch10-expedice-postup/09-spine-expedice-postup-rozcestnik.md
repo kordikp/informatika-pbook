@@ -240,7 +240,7 @@ Matematický seminář pro ZŠ, který rozvíjí stejné myšlení jako algoritm
 2. Řeš sérii a posílej řešení do termínu.
 :::
 
-#### [iBobor](https://uniba.sk/en/news-detail/browse/57/back_to_page/aktuality-1/article/sutaz-ibobor-ako-naucit-ziakov-zakladnych-a-strednych-skol-ze-pocitace-nie-su-len)
+#### [iBobor](https://ibobor.sk/)
 
 Slovenská verze mezinárodní soutěže Bebras s krátkými úlohami na algoritmické a logické myšlení. Je to nenáročný první krok pro celou třídu.
 

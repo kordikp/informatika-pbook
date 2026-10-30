@@ -57,7 +57,7 @@ Nejhladší most z bloků do textového kódu: stejný program vidíš v obou po
 4. Ulož výdaje v Data Mode a zkus, že přežijí obnovení stránky.
 :::
 
-#### [Thunkable](https://thunkable.com/pricing)
+#### [Thunkable](https://thunkable.com/)
 
 Appky pro Android i iPhone tažením prvků a bloky, hezčí výchozí vzhled než App Inventor.
 

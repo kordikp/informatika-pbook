@@ -73,7 +73,7 @@ Hudba z tvojich nôt bez AI. Skladba sa ukladá do odkazu, takže nepotrebuješ 
 4. Skopíruj adresu stránky, to je uložená skladba. Export → WAV.
 :::
 
-#### [Chrome Music Lab: Song Maker](https://blog.google/outreach-initiatives/education/simple-music-making-everyone)
+#### [Chrome Music Lab: Song Maker](https://musiclab.chromeexperiments.com/Song-Maker/)
 
 Najjednoduchšie skladanie melódie klikaním do farebnej mriežky (odkaz na nástroj je v článku Googlu).
 
@@ -202,7 +202,7 @@ Dobré na porovnanie „človek proti stroju“ a na rozbor, kto je autor. Hudbu
 
 > **Bezpečne:** Na Discord pod 13 rokov nie, stačí čítanie webu. Súkromné správy od cudzích neotváraj a nikam neprechádzaj. Keď niekto chce fotku alebo kontakt, povedz to dospelému.
 
-#### [Tinkercad Classroom](https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement/childrens-privacy-statement)
+#### [Tinkercad Classroom](https://www.tinkercad.com/teachers)
 
 *moderovaná trieda na 3D modelovanie, ktorú zakladá učiteľ · Zadarmo · anglicky, rozhranie aj v ďalších jazykoch*
 

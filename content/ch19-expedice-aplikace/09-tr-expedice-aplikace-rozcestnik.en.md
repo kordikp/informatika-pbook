@@ -59,7 +59,7 @@ The smoothest bridge from blocks to text code: you see the same program in both 
 4. Save expenses in Data Mode and check that they survive a page refresh.
 :::
 
-#### [Thunkable](https://thunkable.com/pricing)
+#### [Thunkable](https://thunkable.com/)
 
 Apps for Android and iPhone by dragging elements and blocks; a nicer default look than App Inventor.
 

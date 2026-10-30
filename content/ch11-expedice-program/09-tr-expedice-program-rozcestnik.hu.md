@@ -129,7 +129,7 @@ Azoknak, akiknek a Scratch már kevés, de a szöveges kódhoz még nincs kedvü
 
 > **Biztonságosan:** Semmi személyes adat a profilban vagy a játékban. Discordon és más hálózatokon csak szülővel kommunikálj. Mások játékainak kódját olvasd, de ne másold a szerző feltüntetése nélkül.
 
-#### [Coolest Projects online](https://www.raspberrypi.org/blog/coolest-projects-2026-opens-for-entries-in-january/)
+#### [Coolest Projects online](https://coolestprojects.org/)
 
 *a Raspberry Pi Foundation világméretű bemutatója fiatal alkotók projektjeiből, rangsor és stressz nélkül; a 2027-es fordulóra 2027 januárjában nyílik a jelentkezés · ingyenes · angolul*
 

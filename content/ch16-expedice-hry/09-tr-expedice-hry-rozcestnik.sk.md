@@ -44,7 +44,7 @@ Najkratší most zo Scratchu: rovnaké bloky, ale navyše sprity, dlaždicové m
 4. Pridaj udalosť „overlaps“, skóre a životy. Hru zdieľaš tlačidlom Share bez osobných údajov v názve.
 :::
 
-#### [GDevelop](https://gdevelop.io/game-makers)
+#### [GDevelop](https://gdevelop.io/)
 
 Otvorený engine pre 2D aj 3D hry bez písania kódu: logika sa skladá z udalostí „ak… potom…“, beží v prehliadači aj ako aplikácia.
 
@@ -74,7 +74,7 @@ Profesionálny otvorený herný engine pre 2D aj 3D, aktuálne verzia 4.7.2, vla
 4. V `_physics_process(delta)` pohybuj hráčom rýchlosťou × delta.
 :::
 
-#### [TIC-80](https://en.wikipedia.org/wiki/TIC-80)
+#### [TIC-80](https://tic80.com/)
 
 Otvorená „fantasy konzola“: malý vymyslený počítač s rozlíšením 240 × 136, editorom kódu, spritov, máp a hudby v jednom okne.
 
@@ -178,7 +178,7 @@ Obrovská komunita a tisíce hier, ktorých kód si môžeš otvoriť a čítať
 
 ### 🏆 Súťaže a podujatia
 
-#### [iBobor](https://uniba.sk/en/news-detail/browse/57/back_to_page/aktuality-1/article/sutaz-ibobor-ako-naucit-ziakov-zakladnych-a-strednych-skol-ze-pocitace-nie-su-len)
+#### [iBobor](https://ibobor.sk/)
 
 Slovenská verzia medzinárodnej súťaže Bebras s krátkymi úlohami na algoritmické a logické myslenie. Je to nenáročný prvý krok pre celú triedu.
 

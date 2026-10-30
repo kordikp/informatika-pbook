@@ -72,7 +72,7 @@ Megtanít bánni a Linuxszal és a terminállal, ez minden további biztonsági 
 3. Minden megszerzett jelszót a füzetedbe írj, ne valamelyik weboldalra.
 :::
 
-#### [CryptoHack](https://cryptohack.org/faq/)
+#### [CryptoHack](https://cryptohack.org/)
 
 Kriptográfiai platform feladatok formájában: a kódolástól és a XOR-tól az RSA-ig és az elliptikus görbékig.
 
@@ -100,7 +100,7 @@ A legkidolgozottabb út a kezdetektől a szakmáig. Idősebbeknek és haladókna
 3. Fizetős előfizetést ne vegyél a szüleiddel való megbeszélés nélkül.
 :::
 
-#### [Bitwarden](https://bitwarden.com/terms/)
+#### [Bitwarden](https://bitwarden.com/)
 
 Nyílt forráskódú jelszókezelő: egy széf, amely helyetted megjegyzi a hosszú, egyedi jelszavakat, a számítógépen és a mobilon is.
 

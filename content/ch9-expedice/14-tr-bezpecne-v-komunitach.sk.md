@@ -56,7 +56,7 @@ Každá služba má navyše vlastný vekový limit vo svojich podmienkach. Tie n
 
 - **GitHub:** 13, alebo vyšší vek digitálneho súhlasu danej krajiny. *Súhlas rodiča:* Pod 13 rokov nie. Klauzula o veku digitálneho súhlasu môže v Maďarsku znamenať 16 rokov (výklad over). ([podmienky](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service))
 - **Discord:** 13, alebo vyšší miestny limit. *Súhlas rodiča:* Pod limit nie. ([podmienky](https://discord.com/terms))
-- **Scratch:** bez pevného limitu (odporúčané 8 – 16). *Súhlas rodiča:* Áno, za mladšie dieťa zodpovedá rodič. ([podmienky](https://scratch.mit.edu/))
+- **Scratch:** bez pevného limitu (odporúčané 8 – 16). *Súhlas rodiča:* Áno, za mladšie dieťa zodpovedá rodič. ([podmienky](https://scratch.mit.edu/parents/))
 - **Kaggle:** pod 16 len so súhlasom rodiča. *Súhlas rodiča:* Áno, rodič vyplní súhlasný formulár. ([podmienky](https://www.kaggle.com/learn))
 - **Hugging Face:** 13. *Súhlas rodiča:* Pod 13 nie. ([podmienky](https://www.esafety.gov.au/key-topics/esafety-guide/hugging-face))
 - **itch.io:** 13 (používatelia). *Súhlas rodiča:* Publikovať obsah sa dá od 18, alebo skôr so súhlasom rodiča. ([podmienky](https://itch.io/docs/legal/terms))

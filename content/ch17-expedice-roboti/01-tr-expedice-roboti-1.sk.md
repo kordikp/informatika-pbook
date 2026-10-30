@@ -34,7 +34,7 @@ Otvor [MakeCode](https://makecode.microbit.org), daj *Nový projekt* a pomenuj h
 3. **Rozhodnutie (10 minút).** Štyri podmienky *keď… tak…* pre kombinácie ľavého a pravého senzora. Namiesto motorov zatiaľ ukazuj na displeji šípku: hore znamená rovno, šípka doľava alebo doprava zákrutu a krížik stop.
 4. **Testy (10 minút).** Preklikaj všetky štyri kombinácie pinov a zapíš si, či šípka zodpovedá tomu, čo čakáš.
 
-Teraz máš celý mozog vozidielka bez jediného motora. Keď motory prídu, šípky nahradíš blokmi motorov. Bloky pre stavebnice, napríklad Kitronik :MOVE mini, sa pridávajú cez *Rozšírenia*. Kto radšej píše text, nájde rovnaký simulátor v [Python editore](https://microbit.org/code/).
+Teraz máš celý mozog vozidielka bez jediného motora. Keď motory prídu, šípky nahradíš blokmi motorov. Bloky pre stavebnice, napríklad Kitronik :MOVE mini, sa pridávajú cez *Rozšírenia*. Kto radšej píše text, nájde rovnaký simulátor v [Python editore](https://python.microbit.org/).
 
 Tip: rozhodovanie daj do vlastnej funkcie *rozhodni*. Keď budeš vozidielko vylepšovať, zmeníš len ju.
 

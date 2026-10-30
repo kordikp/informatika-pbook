@@ -173,7 +173,7 @@ Triediaca sieť na podlahe ukáže paralelný algoritmus telom. Hodí sa pre kr�
 
 ### 🏆 Súťaže a podujatia
 
-#### [iBobor](https://uniba.sk/en/news-detail/browse/57/back_to_page/aktuality-1/article/sutaz-ibobor-ako-naucit-ziakov-zakladnych-a-strednych-skol-ze-pocitace-nie-su-len)
+#### [iBobor](https://ibobor.sk/)
 
 Slovenská verzia medzinárodnej súťaže Bebras s krátkymi úlohami na algoritmické a logické myslenie. Je to nenáročný prvý krok pre celú triedu.
 

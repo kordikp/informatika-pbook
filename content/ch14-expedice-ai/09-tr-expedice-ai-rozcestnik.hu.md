@@ -115,7 +115,7 @@ Az „Egy chatbot belsejében” kirándulás folytatása: valódi modell, nem k
 
 > **Biztonságosan:** Online videóhívás mentorokkal csak szülői beleegyezéssel. Ne oszd meg a címedet és a telefonszámodat, és a csapatchatbe ne tegyél fel fotókat beleegyezés nélkül.
 
-#### [International Olympiad in Artificial Intelligence (IOAI)](https://mbzuai.ac.ae/news/international-olympiad-in-ai-launches-to-nurture-the-next-generation-of-ai-talent)
+#### [International Olympiad in Artificial Intelligence (IOAI)](https://ioai-official.org/)
 
 *nemzetközi MI-diákolimpia · részvétel a nemzeti csapaton keresztül · angolul*
 

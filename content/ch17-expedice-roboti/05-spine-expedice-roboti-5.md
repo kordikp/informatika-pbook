@@ -29,7 +29,7 @@ Postav vlastní okruh a udělej z vozítka spolehlivý stroj.
 
 **Trať.** Na balicí papír nebo několik slepených listů A3 nalep černou izolační pásku širokou 15 až 20 mm. Přidej rovinku, mírnou zatáčku, ostrou zatáčku (90° a víc) a křižovatku.
 
-**Bez hardwaru.** Stejnou logiku vyzkoušej v [Open Roberta Lab](https://calliope.cc/en/coding/editors/open-roberta), kde jezdí virtuální robot na kolech. Nebo v MakeCode proklikávej piny podle předem napsané řady hodnot senzorů.
+**Bez hardwaru.** Stejnou logiku vyzkoušej v [Open Roberta Lab](https://lab.open-roberta.org/), kde jezdí virtuální robot na kolech. Nebo v MakeCode proklikávej piny podle předem napsané řady hodnot senzorů.
 
 **Deník verzí.** Ke každé změně zapiš tři řádky: *verze, co měníš, co se stalo*. Měň vždy jen jednu věc: rychlost, nebo pravidlo, nebo pauzu. Jinak nepoznáš, co pomohlo.
 

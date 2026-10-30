@@ -27,7 +27,7 @@ carriers: prose
 
 **👀 Kitérő** · [A hétvége, amikor megszületett egy játék](#expedice-hry-hu)
 
-A **fantasy konzol** egy kitalált számítógép szigorú korlátokkal. A [TIC-80](https://en.wikipedia.org/wiki/TIC-80) képernyője 240 × 136 pixeles, kicsi a színpalettája, és egyetlen ablakban van kód-, sprite-, térkép- és zeneszerkesztője. Ingyenes, és fiók nélkül működik. A fizetős [PICO-8](https://lexaloffle.itch.io/pico-8) legalább 15 USD-be kerül, a vásárlást a szülő intézi.
+A **fantasy konzol** egy kitalált számítógép szigorú korlátokkal. A [TIC-80](https://tic80.com/) képernyője 240 × 136 pixeles, kicsi a színpalettája, és egyetlen ablakban van kód-, sprite-, térkép- és zeneszerkesztője. Ingyenes, és fiók nélkül működik. A fizetős [PICO-8](https://lexaloffle.itch.io/pico-8) legalább 15 USD-be kerül, a vásárlást a szülő intézi.
 
 A TIC-80-ban a `TIC()` függvény másodpercenként 60-szor hívódik meg, és ez az egész játékciklus. A korlátok arra kényszerítenek, hogy kicsi és befejezett játékokat készíts. A PICO-8-on készült a Celeste első változata.
 

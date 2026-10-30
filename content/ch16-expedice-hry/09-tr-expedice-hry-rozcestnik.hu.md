@@ -44,7 +44,7 @@ A legrövidebb híd a Scratchből: ugyanazok a blokkok, de ráadásul sprite-ok,
 4. Adj hozzá „overlaps” eseményt, pontszámot és életeket. A játékot a Share gombbal osztod meg, a nevében személyes adatok nélkül.
 :::
 
-#### [GDevelop](https://gdevelop.io/game-makers)
+#### [GDevelop](https://gdevelop.io/)
 
 Nyílt motor 2D és 3D játékokhoz kódírás nélkül: a logika „ha… akkor…” eseményekből áll, böngészőben és alkalmazásként is fut.
 
@@ -74,7 +74,7 @@ A következő szint a blokkok után: jelenetek, csomópontok, jelek és a `_proc
 4. A `_physics_process(delta)` függvényben mozgasd a játékost sebesség × delta értékkel.
 :::
 
-#### [TIC-80](https://en.wikipedia.org/wiki/TIC-80)
+#### [TIC-80](https://tic80.com/)
 
 Nyílt „fantasy konzol”: kicsi kitalált számítógép 240 × 136-os felbontással, kód-, sprite-, térkép- és zeneszerkesztővel egyetlen ablakban.
 

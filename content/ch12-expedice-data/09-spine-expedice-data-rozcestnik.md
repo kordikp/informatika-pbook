@@ -69,7 +69,7 @@ Je přímo pro školáky. Dělá to, co tabulkový procesor, ale nutí přemýš
 3. Přetáhni název sloupce na osu grafu a sleduj, jak se body seskupí.
 :::
 
-#### [Datawrapper](https://www.datawrapper.de/pricing)
+#### [Datawrapper](https://www.datawrapper.de/)
 
 Nástroj novinářů na čisté grafy, mapy a tabulky z vložených dat. Bezplatný plán umí publikovat a stáhnout PNG.
 
@@ -83,7 +83,7 @@ Učí poctivé grafy: osa, popisky, zdroj dat. Hodí se na finální plakát neb
 3. Doplň zdroj dat a popisky os, pak stáhni PNG.
 :::
 
-#### [Gapminder Tools](https://www.gapminder.org/teaching/materials/)
+#### [Gapminder Tools](https://www.gapminder.org/tools/)
 
 Bublinový graf Hanse Roslinga a další nástroje (Bubbles, Maps, Ranks, Trends, Dollar Street) nad daty o všech zemích světa.
 
@@ -227,7 +227,7 @@ Jediná velká česká soutěž v kyberbezpečnosti už od 9 let, s postupem až
 3. Nejlepší postupují do dalších kol a do finále.
 :::
 
-#### [iBobor](https://uniba.sk/en/news-detail/browse/57/back_to_page/aktuality-1/article/sutaz-ibobor-ako-naucit-ziakov-zakladnych-a-strednych-skol-ze-pocitace-nie-su-len)
+#### [iBobor](https://ibobor.sk/)
 
 Slovenská verze mezinárodní soutěže Bebras s krátkými úlohami na algoritmické a logické myšlení. Je to nenáročný první krok pro celou třídu.
 
@@ -315,7 +315,7 @@ Interaktivní kurzy JavaScriptu, kreslení kódem a SQL vlastním tempem.
 
 - **[ČSÚ: otevřená data](https://csu.gov.cz/otevrena_data)**: Přehled datových sad Českého statistického úřadu ke stažení, s odkazy do Národního katalogu otevřených dat. *(čeština)*
 - **[SQL Murder Mystery: návod pro začátečníky](https://mystery.knightlab.com/walkthrough.html)**: Krok za krokem od první tabulky k dotazům SELECT, WHERE a spojování tabulek. Hodí se před samotnou detektivkou. *(angličtina)*
-- **[CODAP: průvodce prvním spuštěním (PDF)](https://codap-server.concord.org/wp-content/uploads/codap-start-up-guide.pdf)**: Krátký návod, jak otevřít data, udělat graf a seskupit body. *(angličtina)*
+- **[CODAP: nápověda a návody](https://codap.concord.org/help/)**: Návody krok za krokem, jak otevřít data, udělat graf a seskupit body, a fórum s odpověďmi. *(angličtina)*
 - **[Gapminder: výukové materiály](https://www.gapminder.org/teaching/materials/)**: Kvízy a úlohy, které ukazují, jak moc se pleteme v odhadech o světě, a jak to opravit daty. *(angličtina a další jazyky)*
 
 **Zpátky na expedici:** [Případ zpožděného autobusu](#expedice-data)

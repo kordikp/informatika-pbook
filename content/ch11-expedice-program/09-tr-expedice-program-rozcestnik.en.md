@@ -129,7 +129,7 @@ For those for whom Scratch isn’t enough but who don’t want to move to text y
 
 > **Stay safe:** No personal details in your profile or in the game. Talk on Discord and other networks only with a parent. Read other people’s game code, but don’t copy it without crediting the author.
 
-#### [Coolest Projects online](https://www.raspberrypi.org/blog/coolest-projects-2026-opens-for-entries-in-january/)
+#### [Coolest Projects online](https://coolestprojects.org/)
 
 *a worldwide showcase of young makers’ projects from the Raspberry Pi Foundation, with no rankings and no stress; entries for the 2027 edition open in January 2027 · free · in English*
 

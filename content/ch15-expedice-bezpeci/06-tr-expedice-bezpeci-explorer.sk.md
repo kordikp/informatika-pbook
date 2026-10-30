@@ -35,7 +35,7 @@ carriers: prose
 2. **Pri každom zisti:** má predvolené heslo z výroby? Dostáva aktualizácie? Kedy naposledy?
 3. **Účty:** má hlavný e-mail rodiny dvojfázové overenie? Cez e-mail sa totiž obnovujú heslá ku všetkému ostatnému.
 4. **Zálohy:** kde sú rodinné fotky? Spĺňajú pravidlo 3-2-1 (3 kópie, 2 druhy médií, 1 mimo domova)?
-5. **Heslá:** navrhni rodičom správcu hesiel, napríklad bezplatný [Bitwarden](https://bitwarden.com/terms/) (účet od 13 rokov, mladší ako súčasť rodinného trezoru rodičov).
+5. **Heslá:** navrhni rodičom správcu hesiel, napríklad bezplatný [Bitwarden](https://bitwarden.com/) (účet od 13 rokov, mladší ako súčasť rodinného trezoru rodičov).
 
 **Výstup:** tabuľka „zariadenie, riziko, opatrenie, kto to urobí“ a tri najdôležitejšie kroky zoradené podľa toho, koľko ochrany prinesú za koľko práce. Presne takto pracujú bezpečnostné tímy vo firmách: najprv mapa, potom priority.
 

@@ -31,7 +31,7 @@ Build your own circuit and turn the rover into a reliable machine.
 
 **The track.** On wrapping paper or several A3 sheets taped together, stick black insulating tape 15 to 20 mm wide. Add a straight, a gentle bend, a sharp bend (90° or more) and a crossroads.
 
-**Without hardware.** Try the same logic in [Open Roberta Lab](https://calliope.cc/en/coding/editors/open-roberta), where a virtual robot on wheels drives around. Or in MakeCode, click through the pins following a series of sensor values you wrote down in advance.
+**Without hardware.** Try the same logic in [Open Roberta Lab](https://lab.open-roberta.org/), where a virtual robot on wheels drives around. Or in MakeCode, click through the pins following a series of sensor values you wrote down in advance.
 
 **Version log.** For every change, write three lines: *version, what you’re changing, what happened*. Always change just one thing: the speed, or a rule, or the pause. Otherwise you won’t know what helped.
 

@@ -72,7 +72,7 @@ It teaches you to control Linux and the terminal, which is the basis of all furt
 3. Write down every password you get in your notebook, not on any website.
 :::
 
-#### [CryptoHack](https://cryptohack.org/faq/)
+#### [CryptoHack](https://cryptohack.org/)
 
 A platform for cryptography in the form of tasks: from encodings and XOR to RSA and elliptic curves.
 
@@ -100,7 +100,7 @@ The most thorough path from the basics to a career. Suits older and advanced lea
 3. Don’t take a paid subscription without agreeing it with your parents.
 :::
 
-#### [Bitwarden](https://bitwarden.com/terms/)
+#### [Bitwarden](https://bitwarden.com/)
 
 An open-source password manager: a vault that remembers long, unique passwords for you, on your computer and on your phone.
 

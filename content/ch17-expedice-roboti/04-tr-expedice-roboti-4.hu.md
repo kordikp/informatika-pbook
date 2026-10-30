@@ -31,7 +31,7 @@ A robotika csapatsport. Csehországban és a környéken ezek a versenyek várna
 
 - **[Robosoutěž ČVUT](https://robosoutez.fel.cvut.cz)** az alapiskola felső tagozatosainak és a gimnáziumok megfelelő évfolyamainak. Egy baráti csapat LEGO-készletből épít és programoz robotot egy kiírt feladatra. Az építőkészletet a szervezők kölcsönzik, előzetes tapasztalat nem kell. A tavaszi fordulókat a prágai FEL ČVUT-on tartják. 2026-ban a robotok „Tetris Puzzle”-t raktak ki.
 - **[FIRST LEGO League](https://www.first-lego-league.org/en/2026-27-season/bioglow)**: nemzetközi csapatbajnokság. A 2026/27-es szezon témája a BIOGLOW (ökoszisztémák), és a robot mellett a csapat kutatási projektet is készít. A tornák novembertől áprilisig tartanak. A csapatot általában az iskola vagy a szakkör nevezi, és a regisztráció fizetős.
-- **[RoboCup Junior](https://junior.robocup.org/robocupjunior-general-rules/)**: nemzetközi verseny olyan versenyszámokkal, mint a vonalkövető mentés vagy a robotfoci. A szabályok angolul vannak. Csehországban regionális versenyeket is rendeznek, például az Opavský ROBOCUP-ot.
+- **[RoboCup Junior](https://junior.robocup.org/)**: nemzetközi verseny olyan versenyszámokkal, mint a vonalkövető mentés vagy a robotfoci. A szabályok angolul vannak. Csehországban regionális versenyeket is rendeznek, például az Opavský ROBOCUP-ot.
 
 **Hogyan kezdj hozzá:** keress 2–3 barátot és egy felnőttet: informatikatanárt, szakkörvezetőt vagy szülőt. Mutasd meg neki a kisautót és a tesztek táblázatát. Ennél jobb bizonyíték arra, hogy komolyan gondolod, nem létezik.
 

@@ -29,7 +29,7 @@ Robotika je týmový sport. V Česku a okolí na tebe čekají tyhle soutěže:
 
 - **[Robosoutěž ČVUT](https://robosoutez.fel.cvut.cz)** pro 2. stupeň ZŠ a odpovídající ročníky gymnázií. Tým kamarádů postaví a naprogramuje robota z LEGO stavebnice na zadaný úkol. Stavebnici půjčí pořadatelé a předchozí zkušenosti nejsou potřeba. Jarní kola probíhají na FEL ČVUT v Praze. V roce 2026 roboti skládali „Tetris Puzzle“.
 - **[FIRST LEGO League](https://www.first-lego-league.org/en/2026-27-season/bioglow)**: mezinárodní liga týmů. Sezóna 2026/27 má téma BIOGLOW (ekosystémy) a kromě robota tým zpracuje i výzkumný projekt. Turnaje běží od listopadu do dubna. Tým obvykle přihlašuje škola nebo kroužek a registrace je placená.
-- **[RoboCup Junior](https://junior.robocup.org/robocupjunior-general-rules/)**: mezinárodní soutěž s disciplínami jako záchrana po čáře nebo robotický fotbal. Pravidla jsou anglicky. V Česku se konají regionální soutěže, například Opavský ROBOCUP.
+- **[RoboCup Junior](https://junior.robocup.org/)**: mezinárodní soutěž s disciplínami jako záchrana po čáře nebo robotický fotbal. Pravidla jsou anglicky. V Česku se konají regionální soutěže, například Opavský ROBOCUP.
 
 **Jak začít:** najdi 2 až 3 kamarády a jednoho dospělého: učitele informatiky, vedoucího kroužku nebo rodiče. Ukaž mu vozítko a tabulku testů. Lepší důkaz, že to myslíš vážně, neexistuje.
 

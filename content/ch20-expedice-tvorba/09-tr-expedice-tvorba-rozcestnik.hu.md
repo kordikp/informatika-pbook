@@ -73,7 +73,7 @@ Zene a saját hangjegyeidből, MI nélkül. A szerzemény a linkbe mentődik, í
 4. Másold ki az oldal címét, ez a mentett szerzemény. Export → WAV.
 :::
 
-#### [Chrome Music Lab: Song Maker](https://blog.google/outreach-initiatives/education/simple-music-making-everyone)
+#### [Chrome Music Lab: Song Maker](https://musiclab.chromeexperiments.com/Song-Maker/)
 
 A legegyszerűbb dallamszerzés egy színes rácsba kattintva (az eszköz linkje a Google cikkében van).
 
@@ -174,7 +174,7 @@ Jó az „ember a gép ellen” összehasonlításhoz és annak elemzéséhez, k
 
 > **Biztonságosan:** 13 éves kor alatt ne lépj be a Discordra, elég a honlapot olvasni. Idegenek privát üzeneteit ne nyisd meg, és ne menj át sehova. Ha valaki fotót vagy elérhetőséget kér, szólj egy felnőttnek.
 
-#### [Tinkercad Classroom](https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement/childrens-privacy-statement)
+#### [Tinkercad Classroom](https://www.tinkercad.com/teachers)
 
 *moderált osztály 3D modellezéshez, amelyet a tanár hoz létre · Ingyenes · angolul, a felület más nyelveken is elérhető*
 

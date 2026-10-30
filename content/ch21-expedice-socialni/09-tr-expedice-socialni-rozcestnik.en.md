@@ -43,7 +43,7 @@ Exactly the tool professional fact-checkers use to find out whether a viral vide
 3. For one keyframe, click reverse search and find the earliest appearance.
 :::
 
-#### [Shotcut](https://en.wikipedia.org/wiki/Shotcut)
+#### [Shotcut](https://shotcut.org/)
 
 A free and open video editing program for Windows, macOS and Linux. In 2026 new versions come out roughly every two months (26.6 brought plugins and HDR).
 
@@ -71,7 +71,7 @@ The next level after Shotcut: longer videos, more tracks, working like in a stud
 3. Export and play back the result before you send it to anyone.
 :::
 
-#### [SkyFeed (your own feeds on Bluesky)](https://docs.bsky.app/blog/feature-skyfeed)
+#### [SkyFeed (your own feeds on Bluesky)](https://skyfeed.app/)
 
 A visual builder for your own feeds on Bluesky: you put together filters (keywords, authors, likes) and sorting without programming.
 
@@ -162,14 +162,14 @@ A moderated community where kids share games and animations and get feedback. It
 
 - **[The published X/Twitter algorithm (twitter/the-algorithm)](https://sourcegraph.com/blog/open-sourcing-twitters-algorithm)**: In 2023, Twitter published the recommendation code for “For You”: picking candidates, ranking with a neural network, and filters. The link leads to a guide that went through the code live. *You will learn:* What a feed looks like at large scale: candidates, estimated probabilities of reactions, weights and filters. And also what is missing from the published code (the training data), so an “open algorithm” doesn’t tell you everything.
 - **[Bluesky feed-generator](https://github.com/bluesky-social/feed-generator)**: A starter kit for your own feed on Bluesky: indexing posts in src/subscription.ts and algorithms in src/algos. *You will learn:* The opposite of X’s giant algorithm: a feed in a few lines. Comparing the two, you will understand that a feed is always someone’s decision about what is important.
-- **[Harmony Square](https://www.cam.ac.uk/research/news/game-combats-political-misinformation-by-letting-players-undermine-democracy)**: A ten-minute game from Cambridge in which you stir up trouble in a peaceful town square with lies about a candidate. Afterwards, players rated disinformation as less trustworthy and shared it less. *You will learn:* How research turns into a game: each scene teaches one trick, and they measure whether the game really works. Inspiration for your own game in the author studio.
+- **[Harmony Square](https://harmonysquare.game/)**: A ten-minute game from Cambridge in which you stir up trouble in a peaceful town square with lies about a candidate. Afterwards, players rated disinformation as less trustworthy and shared it less. *You will learn:* How research turns into a game: each scene teaches one trick, and they measure whether the game really works. Inspiration for your own game in the author studio.
 - **[The Wisdom and/or Madness of Crowds (Nicky Case)](https://ncase.me/crowds/)**: A 30-minute interactive explanation of network science: how ideas spread, the majority illusion, groupthink and bridges between groups. The code is open. *You will learn:* Why it feels like “everyone is doing it” even when they aren’t. And what a good interactive demo looks like, one you can take apart and copy.
 
 ### 📚 Where to keep learning
 
-- **[Bellingcat Online Investigations Toolkit: InVID](https://bellingcat.gitbook.io/toolkit/more/all-tools/invid.md)**: A description of the InVID plugin by the Bellingcat team, famous for checking photos and videos from open sources. The whole toolkit is a map of fact-checkers’ tools. *(in English)*
+- **[Bellingcat Online Investigations Toolkit: InVID](https://bellingcat.gitbook.io/toolkit/more/all-tools/invid)**: A description of the InVID plugin by the Bellingcat team, famous for checking photos and videos from open sources. The whole toolkit is a map of fact-checkers’ tools. *(in English)*
 - **[What can we learn from Twitter’s open source algorithm (NYU CSMaP)](https://csmapnyu.org/impact/news/what-can-we-learn-from-twitters-open-source-algorithm)**: Researchers explain what the published algorithm revealed about the feed and what it didn’t. Good preparation for the “analysis” step. *(in English)*
 - **[The Wisdom and/or Madness of Crowds](https://ncase.me/crowds/)**: A 30-minute playable explanation of how ideas spread in networks and why echo chambers form. *(in English)*
-- **[Bluesky: SkyFeed](https://docs.bsky.app/blog/feature-skyfeed)**: The official Bluesky blog on how to build your own feed visually. *(in English)*
+- **[Bluesky: SkyFeed](https://bsky.social/about/blog/7-27-2023-custom-feeds)**: The official Bluesky blog on how to build your own feed visually. *(in English)*
 
 **Back to the expedition:** [The fact-checking team](#expedice-socialni-en)

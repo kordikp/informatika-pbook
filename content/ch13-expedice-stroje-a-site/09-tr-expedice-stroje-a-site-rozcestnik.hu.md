@@ -85,7 +85,7 @@ Megválaszolja azt a kérdést, amelyet a konyhai hasonlat nyitva hagy: hogyan s
 3. Cél az első hétre: megépíteni a négybites számok összeadóját.
 :::
 
-#### [Turing Complete](https://steamcommunity.com/app/1444480/discussions/0/3081016748994069893)
+#### [Turing Complete](https://store.steampowered.com/app/1444480/Turing_Complete/)
 
 Játék a Steamen, amelyben a NAND kaputól egészen a saját processzorodig és az assembly nyelvig (assemblerig) jutsz el.
 
@@ -129,7 +129,7 @@ Azoknak, akiket a NandGame magával ragadott. Hosszabb, van története, és van
 
 > **Biztonságosan:** A videóban ne mutasd mások arcát a beleegyezésük nélkül. Ne add meg a címedet és az iskoládat. A jelentkezést és a szervezőkkel való kapcsolattartást bízd egy felnőttre.
 
-#### [Code Club](https://blog.codeclub.org/author/georgiafowlerf5d463d921/)
+#### [Code Club](https://codeclub.org/)
 
 *a Raspberry Pi Foundation iskolán kívüli programozószakköreinek hálózata · ingyenes · angolul; a helyi klubok országonként*
 

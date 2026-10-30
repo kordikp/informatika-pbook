@@ -56,7 +56,7 @@ Ezen felül minden szolgáltatásnak saját korhatára van a feltételeiben. A l
 
 - **GitHub:** 13, vagy az adott ország magasabb digitális beleegyezési korhatára. *Szülői beleegyezés:* 13 év alatt nem. A digitális beleegyezési korhatárról szóló kikötés Magyarországon 16 évet jelenthet (az értelmezést ellenőrizd). ([feltételek](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service))
 - **Discord:** 13, vagy a magasabb helyi korhatár. *Szülői beleegyezés:* A korhatár alatt nem. ([feltételek](https://discord.com/terms))
-- **Scratch:** nincs szigorú korhatár (ajánlott 8–16). *Szülői beleegyezés:* Igen, a fiatalabb gyerekért a szülő felel. ([feltételek](https://scratch.mit.edu/))
+- **Scratch:** nincs szigorú korhatár (ajánlott 8–16). *Szülői beleegyezés:* Igen, a fiatalabb gyerekért a szülő felel. ([feltételek](https://scratch.mit.edu/parents/))
 - **Kaggle:** 16 alatt csak szülői beleegyezéssel. *Szülői beleegyezés:* Igen, a szülő kitölti a beleegyezési űrlapot. ([feltételek](https://www.kaggle.com/learn))
 - **Hugging Face:** 13. *Szülői beleegyezés:* 13 alatt nem. ([feltételek](https://www.esafety.gov.au/key-topics/esafety-guide/hugging-face))
 - **itch.io:** 13 (felhasználók). *Szülői beleegyezés:* Tartalmat 18 évtől lehet közzétenni, vagy korábban szülői beleegyezéssel. ([feltételek](https://itch.io/docs/legal/terms))

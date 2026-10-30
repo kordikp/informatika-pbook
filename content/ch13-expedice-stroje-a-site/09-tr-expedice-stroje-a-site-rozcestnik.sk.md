@@ -85,7 +85,7 @@ Odpovedá na otázku, ktorú kuchynská metafora nechá otvorenú: ako procesor 
 3. Cieľ na prvý týždeň: postaviť sčítačku štvorbitových čísel.
 :::
 
-#### [Turing Complete](https://steamcommunity.com/app/1444480/discussions/0/3081016748994069893)
+#### [Turing Complete](https://store.steampowered.com/app/1444480/Turing_Complete/)
 
 Hra na Steame, v ktorej sa od hradla NAND dostaneš až k vlastnému procesoru a jazyku symbolických adries (assembleru).
 
@@ -129,7 +129,7 @@ Pre tých, koho NandGame chytila. Je dlhšia, s príbehom a s výzvami na najmen
 
 > **Bezpečne:** Vo videu neukazuj tváre ostatných bez ich súhlasu. Neuvádzaj adresu ani školu. Prihlášku a komunikáciu s organizátormi nechaj na dospelom.
 
-#### [Code Club](https://blog.codeclub.org/author/georgiafowlerf5d463d921/)
+#### [Code Club](https://codeclub.org/)
 
 *sieť mimoškolských programátorských krúžkov Raspberry Pi Foundation · zadarmo · po anglicky; miestne kluby podľa krajiny*
 

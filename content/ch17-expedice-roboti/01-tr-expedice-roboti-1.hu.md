@@ -34,7 +34,7 @@ Nyisd meg a [MakeCode](https://makecode.microbit.org)-ot, válaszd az *Új proje
 3. **Döntés (10 perc).** Négy *ha… akkor…* feltétel a bal és a jobb érzékelő kombinációira. Motorok helyett egyelőre nyilat mutass a kijelzőn: a felfelé nyíl egyenest jelent, a balra vagy jobbra mutató nyíl kanyart, az X pedig megállást.
 4. **Tesztek (10 perc).** Kattintsd végig a pinek mind a négy kombinációját, és írd fel, hogy a nyíl megfelel-e annak, amit vársz.
 
-Most megvan a kisautó teljes agya egyetlen motor nélkül. Ha megérkeznek a motorok, a nyilakat motorblokkokra cseréled. Az építőkészletek blokkjait, például a Kitronik :MOVE mini blokkjait, a *Bővítmények* menüben adhatod hozzá. Aki inkább szöveget ír, ugyanezt a szimulátort megtalálja a [Python szerkesztőben](https://microbit.org/code/).
+Most megvan a kisautó teljes agya egyetlen motor nélkül. Ha megérkeznek a motorok, a nyilakat motorblokkokra cseréled. Az építőkészletek blokkjait, például a Kitronik :MOVE mini blokkjait, a *Bővítmények* menüben adhatod hozzá. Aki inkább szöveget ír, ugyanezt a szimulátort megtalálja a [Python szerkesztőben](https://python.microbit.org/).
 
 Tipp: a döntést tedd egy saját *dönts* függvénybe. Amikor a kisautót fejleszted, csak azt kell módosítanod.
 

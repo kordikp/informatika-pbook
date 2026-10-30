@@ -44,7 +44,7 @@ The shortest bridge from Scratch: the same blocks, but with sprites, tile maps, 
 4. Add an “overlaps” event, a score and lives. Share the game with the Share button, with no personal details in the title.
 :::
 
-#### [GDevelop](https://gdevelop.io/game-makers)
+#### [GDevelop](https://gdevelop.io/)
 
 An open engine for 2D and 3D games without writing code: the logic is built from “if… then…” events, and it runs in the browser and as an app.
 
@@ -74,7 +74,7 @@ The next level after blocks: scenes, nodes, signals and the functions `_process(
 4. In `_physics_process(delta)`, move the player by speed × delta.
 :::
 
-#### [TIC-80](https://en.wikipedia.org/wiki/TIC-80)
+#### [TIC-80](https://tic80.com/)
 
 An open “fantasy console”: a small imaginary computer with a resolution of 240 × 136 and an editor for code, sprites, maps and music in one window.
 

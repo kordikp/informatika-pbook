@@ -72,7 +72,7 @@ Naučí ovládať Linux a terminál, čo je základ každej ďalšej bezpečnost
 3. Každé získané heslo si zapisuj do zošita, nie na žiadny web.
 :::
 
-#### [CryptoHack](https://cryptohack.org/faq/)
+#### [CryptoHack](https://cryptohack.org/)
 
 Platforma na kryptografiu formou úloh: od kódovania a XORu po RSA a eliptické krivky.
 
@@ -100,7 +100,7 @@ Najprepracovanejšia cesta od začiatkov k profesii. Hodí sa pre starších a p
 3. Platené predplatné neber bez dohody s rodičmi.
 :::
 
-#### [Bitwarden](https://bitwarden.com/terms/)
+#### [Bitwarden](https://bitwarden.com/)
 
 Open-source správca hesiel: trezor, ktorý si pamätá dlhé jedinečné heslá za teba, v počítači aj v mobile.
 

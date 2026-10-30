@@ -34,7 +34,7 @@ Open [MakeCode](https://makecode.microbit.org), click *New Project* and call it 
 3. **Decision (10 minutes).** Four *if… then…* conditions for the combinations of the left and right sensor. Instead of motors, show an arrow on the display for now: up means straight, an arrow left or right means a turn, and a cross means stop.
 4. **Tests (10 minutes).** Click through all four pin combinations and write down whether the arrow matches what you expect.
 
-Now you have the whole brain of the rover without a single motor. When the motors arrive, you’ll replace the arrows with motor blocks. Blocks for kits, such as the Kitronik :MOVE mini, are added through *Extensions*. If you’d rather type text, you’ll find the same simulator in the [Python editor](https://microbit.org/code/).
+Now you have the whole brain of the rover without a single motor. When the motors arrive, you’ll replace the arrows with motor blocks. Blocks for kits, such as the Kitronik :MOVE mini, are added through *Extensions*. If you’d rather type text, you’ll find the same simulator in the [Python editor](https://python.microbit.org/).
 
 Tip: put the decision-making in a function of its own called *decide*. When you improve the rover later, you’ll only change that.
 

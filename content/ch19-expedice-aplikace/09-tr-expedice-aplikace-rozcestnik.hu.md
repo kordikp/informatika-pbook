@@ -59,7 +59,7 @@ A legsimább híd a blokkoktól a szöveges kódig: ugyanazt a programot mindké
 4. Mentsd a kiadásokat Data Mode-ban, és próbáld ki, hogy túlélik-e az oldal frissítését.
 :::
 
-#### [Thunkable](https://thunkable.com/pricing)
+#### [Thunkable](https://thunkable.com/)
 
 Appok Androidra és iPhone-ra elemek behúzásával és blokkokkal, szebb alapértelmezett kinézettel, mint az App Inventor.
 

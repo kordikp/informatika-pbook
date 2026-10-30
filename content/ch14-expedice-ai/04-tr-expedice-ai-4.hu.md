@@ -31,7 +31,7 @@ Egy modellt azokkal lehet a legjobban fejleszteni, akik elrontják. Lehetősége
 
 - **13 éves korig:** a legjobb a szakkör vagy az osztály. Mutasd meg a tanárodnak az MIT [Day of AI](https://dayofai.org/) programját (ingyenes, angolul). A tanár regisztrál, te nem hozol létre fiókot. A micro:bites leckéket a [11–14 éveseknek szóló tananyagban](https://microbit.org/teach/lessons/developing-ai-literacy-with-the-microbit/) találod.
 - **13 éves kortól:** a [Teens in AI Global AI Techathon](https://www.teensinai.com/) online verseny 13–18 éveseknek, angolul. A csapatok MI segítségével egy valódi problémát oldanak meg, és nem kell előzetes tapasztalat.
-- **Kitekintés a középiskolára:** [Nemzetközi MI-diákolimpia](https://mbzuai.ac.ae/news/international-olympiad-in-ai-launches-to-nurture-the-next-generation-of-ai-talent) (IOAI). A nemzeti válogatóról kérdezd az informatikatanárodat.
+- **Kitekintés a középiskolára:** [Nemzetközi MI-diákolimpia](https://ioai-official.org/) (IOAI). A nemzeti válogatóról kérdezd az informatikatanárodat.
 
 **A biztonságos részvétel három szabálya:**
 1. **A jelentkezést szülővel töltöd ki.** A korhatárt nem játsszuk ki. Ha fiatalabb vagy, mint amit a verseny kér, olvasd a feladatokat, és készülj.

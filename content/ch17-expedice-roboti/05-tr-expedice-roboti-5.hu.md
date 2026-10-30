@@ -31,7 +31,7 @@ carriers: prose
 
 **Pálya.** Csomagolópapírra vagy néhány összeragasztott A3-as lapra ragassz 15–20 mm széles fekete szigetelőszalagot. Legyen rajta egyenes, enyhe kanyar, éles kanyar (90° vagy több) és kereszteződés.
 
-**Hardver nélkül.** Ugyanezt a logikát kipróbálhatod az [Open Roberta Lab](https://calliope.cc/en/coding/editors/open-roberta)-ban, ahol egy virtuális kerekes robot jár. Vagy MakeCode-ban kattintgasd a pineket az érzékelőértékek előre megírt sora szerint.
+**Hardver nélkül.** Ugyanezt a logikát kipróbálhatod az [Open Roberta Lab](https://lab.open-roberta.org/)-ban, ahol egy virtuális kerekes robot jár. Vagy MakeCode-ban kattintgasd a pineket az érzékelőértékek előre megírt sora szerint.
 
 **Verziónapló.** Minden változtatáshoz írj három sort: *verzió, mit változtatsz, mi történt*. Mindig csak egy dolgot változtass: a sebességet, vagy egy szabályt, vagy a szünetet. Különben nem tudod meg, mi segített.
 

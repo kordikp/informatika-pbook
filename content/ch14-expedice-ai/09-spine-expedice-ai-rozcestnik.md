@@ -113,7 +113,7 @@ Pokračování výletu „Uvnitř chatbota“: skutečný model, ne vymyšlená 
 
 > **Bezpečně:** Online videohovory s mentory jen se souhlasem rodiče. Nesdílej adresu ani telefon, do týmového chatu nedávej fotky bez souhlasu.
 
-#### [International Olympiad in Artificial Intelligence (IOAI)](https://mbzuai.ac.ae/news/international-olympiad-in-ai-launches-to-nurture-the-next-generation-of-ai-talent)
+#### [International Olympiad in Artificial Intelligence (IOAI)](https://ioai-official.org/)
 
 *mezinárodní olympiáda v AI · účast přes národní tým · anglicky*
 

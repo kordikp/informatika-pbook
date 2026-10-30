@@ -129,7 +129,7 @@ Pre tých, ktorým Scratch nestačí a do textu sa im ešte nechce. Ľudia v ňo
 
 > **Bezpečne:** Žiadne osobné údaje v profile ani v hre. Komunikáciu na Discorde a ďalších sieťach len s rodičom. Kód cudzích hier čítaj, ale nekopíruj bez uvedenia autora.
 
-#### [Coolest Projects online](https://www.raspberrypi.org/blog/coolest-projects-2026-opens-for-entries-in-january/)
+#### [Coolest Projects online](https://coolestprojects.org/)
 
 *celosvetová prehliadka projektov mladých tvorcov od Raspberry Pi Foundation, bez poradia a bez stresu; prihlášky na ročník 2027 sa otvoria v januári 2027 · zadarmo · po anglicky*
 
@@ -159,7 +159,7 @@ Pre tých, ktorým Scratch nestačí a do textu sa im ešte nechce. Ľudia v ňo
 
 ### 🏆 Súťaže a podujatia
 
-#### [iBobor](https://uniba.sk/en/news-detail/browse/57/back_to_page/aktuality-1/article/sutaz-ibobor-ako-naucit-ziakov-zakladnych-a-strednych-skol-ze-pocitace-nie-su-len)
+#### [iBobor](https://ibobor.sk/)
 
 Slovenská verzia medzinárodnej súťaže Bebras s krátkymi úlohami na algoritmické a logické myslenie. Je to nenáročný prvý krok pre celú triedu.
 
@@ -172,7 +172,7 @@ Slovenská verzia medzinárodnej súťaže Bebras s krátkymi úlohami na algori
 2. Žiaci súťažia online v škole v určený deň.
 :::
 
-#### [FLL Slovensko – národné finále a festival](https://touchit.sk/narodne-finale-a-festival-first-lego-league-urcilo-reprezentantov-sr/490953/)
+#### [FLL Slovensko – národné finále a festival](https://www.fll.sk/)
 
 Slovenská vetva FLL s postupom na medzinárodné finále. Hodí sa pre roboticky zamerané tímy zo škôl a centier voľného času.
 

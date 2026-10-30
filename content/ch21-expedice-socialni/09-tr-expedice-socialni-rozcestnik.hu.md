@@ -43,7 +43,7 @@ Pontosan ez az az eszköz, amellyel a profi tényellenőrök kiderítik, nem ré
 3. Egy kulcsképkockánál kattints a fordított képkeresésre, és keresd meg a legkorábbi előfordulást.
 :::
 
-#### [Shotcut](https://en.wikipedia.org/wiki/Shotcut)
+#### [Shotcut](https://shotcut.org/)
 
 Szabad videóvágó program Windowsra, macOS-re és Linuxra. 2026-ban nagyjából kéthavonta jelenik meg új verzió (a 26.6 bővítményeket és HDR-t hozott).
 
@@ -71,7 +71,7 @@ A következő lépcső a Shotcut után: hosszabb videók, több sáv, munka, min
 3. Exportáld, és játszd le az eredményt, mielőtt bárkinek elküldenéd.
 :::
 
-#### [SkyFeed (saját hírfolyamok a Blueskyon)](https://docs.bsky.app/blog/feature-skyfeed)
+#### [SkyFeed (saját hírfolyamok a Blueskyon)](https://skyfeed.app/)
 
 Saját hírfolyamok vizuális építőkészlete a Bluesky közösségi oldalhoz: szűrőket (kulcsszavak, szerzők, lájkok) és rendezést raksz össze programozás nélkül.
 
@@ -175,14 +175,14 @@ Moderált közösség, ahol a gyerek megoszthatja a játékait és animációit,
 
 - **[Az X/Twitter nyilvánosságra hozott algoritmusa (twitter/the-algorithm)](https://sourcegraph.com/blog/open-sourcing-twitters-algorithm)**: A Twitter 2023-ban nyilvánosságra hozta a „Neked” hírfolyam ajánlókódját: jelöltek kiválasztása, rangsorolás neurális hálóval és szűrők. A link egy útmutatóra mutat, amely élőben végigment a kódon. *Mit tanulsz meg:* Hogyan néz ki egy hírfolyam nagyban: jelöltek, a reakciók valószínűségének becslése, súlyok és szűrők. És az is, mi hiányzik a nyilvánosságra hozott kódból (a tanítóadatok), vagyis a „nyílt algoritmus” sem mond el mindent.
 - **[Bluesky feed-generator](https://github.com/bluesky-social/feed-generator)**: Kezdőcsomag saját Bluesky-hírfolyamhoz: a bejegyzések indexelése az src/subscription.ts fájlban, az algoritmusok az src/algos mappában. *Mit tanulsz meg:* Az X óriási algoritmusának ellentéte: hírfolyam néhány sorban. A kettő összevetéséből megérted, hogy a hírfolyam mindig valakinek a döntése arról, mi fontos.
-- **[Harmony Square](https://www.cam.ac.uk/research/news/game-combats-political-misinformation-by-letting-players-undermine-democracy)**: Tízperces játék Cambridge-ből, amelyben egy jelöltről terjesztett hazugságokkal felforgatsz egy békés teret. A játékosok utána kevésbé hitelesnek ítélték a dezinformációt, és kevésbé osztották meg. *Mit tanulsz meg:* Hogyan lesz a kutatásból játék: minden jelenet egy trükköt tanít, és mérik, hogy a játék tényleg működik-e. Ihlet a saját játékodhoz a szerzői stúdióban.
+- **[Harmony Square](https://harmonysquare.game/)**: Tízperces játék Cambridge-ből, amelyben egy jelöltről terjesztett hazugságokkal felforgatsz egy békés teret. A játékosok utána kevésbé hitelesnek ítélték a dezinformációt, és kevésbé osztották meg. *Mit tanulsz meg:* Hogyan lesz a kutatásból játék: minden jelenet egy trükköt tanít, és mérik, hogy a játék tényleg működik-e. Ihlet a saját játékodhoz a szerzői stúdióban.
 - **[The Wisdom and/or Madness of Crowds (Nicky Case)](https://ncase.me/crowds/)**: A hálózattudomány interaktív magyarázata 30 percben: hogyan terjednek az ötletek, a többség illúziója, a csoportgondolkodás és a csoportok közötti hidak. A kódja nyílt. *Mit tanulsz meg:* Miért érzed úgy, hogy „mindenki ezt csinálja”, pedig nem. És hogyan néz ki egy jó interaktív bemutató, amelyet szétszedhetsz és utánozhatsz.
 
 ### 📚 Hol tanulhatsz tovább
 
-- **[Bellingcat Online Investigations Toolkit: InVID](https://bellingcat.gitbook.io/toolkit/more/all-tools/invid.md)**: Az InVID bővítmény leírása a Bellingcat csapatától, amely a nyílt forrásokból származó fotók és videók ellenőrzésével vált híressé. Az egész toolkit a tényellenőrök eszközeinek térképe. *(angolul)*
+- **[Bellingcat Online Investigations Toolkit: InVID](https://bellingcat.gitbook.io/toolkit/more/all-tools/invid)**: Az InVID bővítmény leírása a Bellingcat csapatától, amely a nyílt forrásokból származó fotók és videók ellenőrzésével vált híressé. Az egész toolkit a tényellenőrök eszközeinek térképe. *(angolul)*
 - **[What can we learn from Twitter’s open source algorithm (NYU CSMaP)](https://csmapnyu.org/impact/news/what-can-we-learn-from-twitters-open-source-algorithm)**: Kutatók magyarázzák el, mit árult el a nyilvánosságra hozott algoritmus a hírfolyamról, és mit nem. Jó felkészülés az „elemzés” lépésre. *(angolul)*
 - **[The Wisdom and/or Madness of Crowds](https://ncase.me/crowds/)**: Játszható magyarázat arról, hogyan terjednek az ötletek a hálózatokban, és miért alakulnak ki visszhangkamrák, 30 percben. *(angolul)*
-- **[Bluesky: SkyFeed](https://docs.bsky.app/blog/feature-skyfeed)**: A Bluesky hivatalos blogja arról, hogyan építhetsz vizuálisan saját hírfolyamot. *(angolul)*
+- **[Bluesky: SkyFeed](https://bsky.social/about/blog/7-27-2023-custom-feeds)**: A Bluesky hivatalos blogja arról, hogyan építhetsz vizuálisan saját hírfolyamot. *(angolul)*
 
 **Vissza az expedícióra:** [Ellenőrző csapat](#expedice-socialni-hu)

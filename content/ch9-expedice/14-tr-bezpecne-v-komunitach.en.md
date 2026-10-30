@@ -56,7 +56,7 @@ On top of that, every service has its own age limit in its terms. The most commo
 
 - **GitHub:** 13, or the country’s higher age of digital consent. *Parental consent:* Not under 13. The digital consent clause may mean 16 in Hungary (check how it is interpreted). ([terms](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service))
 - **Discord:** 13, or a higher local limit. *Parental consent:* Not under the limit. ([terms](https://discord.com/terms))
-- **Scratch:** no fixed limit (recommended 8–16). *Parental consent:* Yes, a parent is responsible for a younger child. ([terms](https://scratch.mit.edu/))
+- **Scratch:** no fixed limit (recommended 8–16). *Parental consent:* Yes, a parent is responsible for a younger child. ([terms](https://scratch.mit.edu/parents/))
 - **Kaggle:** under 16 only with a parent’s consent. *Parental consent:* Yes, a parent fills in the consent form. ([terms](https://www.kaggle.com/learn))
 - **Hugging Face:** 13. *Parental consent:* Not under 13. ([terms](https://www.esafety.gov.au/key-topics/esafety-guide/hugging-face))
 - **itch.io:** 13 (users). *Parental consent:* You can publish content from 18, or earlier with a parent’s consent. ([terms](https://itch.io/docs/legal/terms))

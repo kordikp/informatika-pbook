@@ -27,6 +27,6 @@ carriers: prose
 
 **🔬 Kitérő** · [Modell a madáretetőnél](#expedice-ai-hu)
 
-Vedd elő a három mondatból álló modelledet a generatív modelles kihívásból, és hasonlítsd össze egy valódival. A [Transformer Explainer](https://github.com/poloclub/transformer-explainer) oldalon (angolul, a demó a projekt leírásában) írj be egy angol mondatkezdetet, például: „The capital of Austria is”. Keresd meg, milyen tokeneket kínál a modell, és milyen valószínűséggel. Aztán próbálj egy olyan mondatot, amelyet a modell nem ismerhet, például a Mlýnka patakról. Magabiztos választ ad? Írj fel három mondatot: egyet, ahol a modellnek igaza van, egyet, ahol hallucinál, és egyet, ahol bizonytalan (a valószínűségek közel vannak egymáshoz). Magyarázd el, miben különbözik ez a három helyzet.
+Vedd elő a három mondatból álló modelledet a generatív modelles kihívásból, és hasonlítsd össze egy valódival. A [Transformer Explainer](https://poloclub.github.io/transformer-explainer/) oldalon (angolul) írj be egy angol mondatkezdetet, például: „The capital of Austria is”. Keresd meg, milyen tokeneket kínál a modell, és milyen valószínűséggel. Aztán próbálj egy olyan mondatot, amelyet a modell nem ismerhet, például a Mlýnka patakról. Magabiztos választ ad? Írj fel három mondatot: egyet, ahol a modellnek igaza van, egyet, ahol hallucinál, és egyet, ahol bizonytalan (a valószínűségek közel vannak egymáshoz). Magyarázd el, miben különbözik ez a három helyzet.
 
 **Vissza az expedícióra:** [Modell a madáretetőnél](#mission-expedice-ai)

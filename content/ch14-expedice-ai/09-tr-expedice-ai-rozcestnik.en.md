@@ -115,7 +115,7 @@ A follow-on from the trip “Inside a chatbot”: a real model, not made-up numb
 
 > **Stay safe:** Online video calls with mentors only with a parent’s consent. Don’t share your address or phone number, and don’t post photos in the team chat without consent.
 
-#### [International Olympiad in Artificial Intelligence (IOAI)](https://mbzuai.ac.ae/news/international-olympiad-in-ai-launches-to-nurture-the-next-generation-of-ai-talent)
+#### [International Olympiad in Artificial Intelligence (IOAI)](https://ioai-official.org/)
 
 *international olympiad in AI · taking part through a national team · English*
 
