@@ -24,9 +24,10 @@ dokumentaci programu a ve smlouvě projektu: číslo projektu, příjemce, vlast
 
 | Co | Doklad |
 |---|---|
-| Veřejná verze | https://informatika-pbook.vercel.app, engine 7.9.0, SW v93 (2026-10-30) |
+| Veřejná verze | https://informatika-pbook.vercel.app, engine 7.10.0, SW v94 (2026-10-30) |
 | Obsah | 6 kapitol a 24 jader, 6 světů, projekt Tvůrce, 12 expedic, 25 misí s bossem, 6 skupinových úkolů s AI asistenty, 42 výzev a 36 her navíc (`scripts/build-ucitel.mjs`) |
 | Jazyky | čeština, angličtina, slovenština, maďarština; v každém jazyce otestováno i offline |
+| Přístupnost | režimy zdarma v Nastavení: vysoký kontrast (světlý i tmavý; automatický audit kontrastu axe: 0 chyb v 6 pohledech), větší text a tlačítka, písmo Atkinson Hyperlegible Next pro slabozraké, barvy pro barvoslepé (správně modrá ✓, chyba oranžová ✗) |
 | Pro učitele | https://informatika-pbook.vercel.app/ucitel (plán hodiny, odkazy, QR) |
 | Provoz | `/api/log?stats=1` k 2026-10-30: 164 čtenářů celkem, 101 za 30 dní, 53 za 7 dní |
 | Kvalita AI zkoušejícího | sada 37 dětských odpovědí (31 česky, po 2 en/sk/hu; férovost, žádné slovíčkaření, bez rodu) a 5 sokratovských dialogů; vše prošlo s modelem `gpt-5.6-terra` |

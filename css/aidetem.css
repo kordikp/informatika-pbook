@@ -26,7 +26,7 @@
   --brand-band: #B84846;
   --accent: #E06663;
   --accent-hover: #E5706B;
-  --accent-bg: #3A1F1E;
+  --accent-bg: #331B1A;        /* akcent na něm 4,8 : 1 */
   --sidebar-color: #9CC3D1;
   --sidebar-bg: #1B2B31;
   --text: #F5F5F4;
@@ -72,3 +72,8 @@
 .door-start.btn-primary:hover { background: var(--accent); }
 [data-theme="dark"] .door-start.btn-primary { background: var(--brand-band); }
 .door-start.btn-large { font-size: 1.2rem; }   /* bílé na #DC5B5B (3,7 : 1) jen jako velký tučný text */
+
+/* vysoký kontrast (css/a11y.css): tmavší značková červená, bílý text na pruhu i na tlačítku Začni má 8,3 : 1 */
+[data-a11y~="contrast"] { --brand: #8F2A28; --brand-band: #8F2A28; }
+[data-a11y~="contrast"] .door-start.btn-primary { color: #fff; }
+[data-a11y~="contrast"] .door-start.btn-primary:hover { color: var(--on-accent); }
