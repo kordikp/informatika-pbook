@@ -160,8 +160,13 @@ export const CONFIG = {
     doneForToday: 4,     // po 4 nových jádrech v jednom sezení karta „Na dnes dobré místo na pauzu“
   },
 
+  // Úvodní stránka: obsah knihy (šest kapitol jádra), každá kapitola jedním ťuknutím.
+  door: { toc: ['ch1-postup', 'ch2-program', 'ch3-data', 'ch4-stroje-a-site', 'ch5-ai', 'ch6-bezpeci'] },
+
   // Certifikát vydává AI dětem. Co který stupeň chce, říká requirements (engine to počítá a ukazuje).
   certificate: {
+    // barvy AI dětem: Jahodová zmrzka, Nekonečné nebe
+    palette: { main: '#B8403F', bg1: '#FFFFFF', bg2: '#E3F1F6', line: '#B3CDD6', ink: '#1D1D1B' },
     tiers: {
       foundations: { title: { cs: 'Průzkumník', en: 'Explorer', sk: 'Prieskumník', hu: 'Felfedező' },
                      subtitle: { cs: 'Všech 24 jader informatiky a 6 kapitol s poraženým bossem', en: 'All 24 core concepts of computing and 6 chapter bosses beaten', sk: 'Všetkých 24 jadier informatiky a 6 kapitol s porazeným bossom', hu: 'Az informatika mind a 24 alapfogalma és 6 legyőzött fejezet-főellenség' } },

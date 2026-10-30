@@ -1259,47 +1259,29 @@
    ],
    "boss": {
     "q": {
-     "cs": "Popiš hru, kterou postavíš. Z jakých částí se skládá a v jakém pořadí je postavíš? Co dělá její herní smyčka, jaké podmínky a proměnné hra má? Jak otestuješ kolize, včetně okrajových případů? A na co si dáš pozor, až ji budeš sdílet?",
-     "en": "Describe the game you will build. What parts is it made of and in what order will you build them? What does its game loop do, and what conditions and variables does the game have? How will you test the collisions, including edge cases? And what will you watch out for when you share it?",
-     "sk": "Opíš hru, ktorú postavíš. Z akých častí sa skladá a v akom poradí ich postavíš? Čo robí jej herná slučka, aké podmienky a premenné hra má? Ako otestuješ kolízie vrátane okrajových prípadov? A na čo si dáš pozor, keď ju budeš zdieľať?",
-     "hu": "Írd le a játékot, amelyet megépítesz. Milyen részekből áll, és milyen sorrendben építed meg őket? Mit csinál a játékciklusa, milyen feltételek és változók vannak a játékban? Hogyan teszteled az ütközéseket, a szélső eseteket is beleértve? És mire figyelsz majd, amikor megosztod?"
+     "cs": "Popiš ve třech až pěti větách hru, kterou postavíš: co v ní hráč dělá a co hra pořád dokola kontroluje a počítá.",
+     "en": "Describe in three to five sentences the game you will build: what the player does in it and what the game keeps checking and counting over and over.",
+     "sk": "Opíš v troch až piatich vetách hru, ktorú postavíš: čo v nej hráč robí a čo hra stále dookola kontroluje a počíta.",
+     "hu": "Írd le három-öt mondatban a játékot, amelyet megépítesz: mit csinál benne a játékos, és mit ellenőriz és számol a játék újra meg újra."
     },
     "hints": [
      {
-      "cs": "rozklad na části",
-      "en": "breaking into parts",
-      "sk": "rozklad na časti",
-      "hu": "részekre bontás"
+      "cs": "hra je rozložená na části (pohyb, padání, chycení, skóre)",
+      "en": "the game is broken into parts (movement, falling, catching, score)",
+      "sk": "hra je rozložená na časti (pohyb, padanie, chytanie, skóre)",
+      "hu": "a játék részekre van bontva (mozgás, esés, elkapás, pontszám)"
      },
      {
-      "cs": "herní smyčka",
-      "en": "game loop",
-      "sk": "herná slučka",
-      "hu": "játékciklus"
+      "cs": "herní smyčka: hra pořád dokola posouvá věci a kontroluje kolize",
+      "en": "game loop: the game keeps moving things and checking collisions over and over",
+      "sk": "herná slučka: hra stále dookola posúva veci a kontroluje kolízie",
+      "hu": "játékciklus: a játék újra meg újra mozgatja a dolgokat és ellenőrzi az ütközéseket"
      },
      {
-      "cs": "podmínka",
-      "en": "condition",
-      "sk": "podmienka",
-      "hu": "feltétel"
-     },
-     {
-      "cs": "proměnná",
-      "en": "variable",
-      "sk": "premenná",
-      "hu": "változó"
-     },
-     {
-      "cs": "test okrajového případu",
-      "en": "edge case test",
-      "sk": "test okrajového prípadu",
-      "hu": "szélső eset tesztje"
-     },
-     {
-      "cs": "bezpečné sdílení",
-      "en": "sharing safely",
-      "sk": "bezpečné zdieľanie",
-      "hu": "biztonságos megosztás"
+      "cs": "podmínka a proměnná: když nastane kolize, změní se skóre nebo životy",
+      "en": "condition and variable: when a collision happens, the score or the lives change",
+      "sk": "podmienka a premenná: keď nastane kolízia, zmení sa skóre alebo životy",
+      "hu": "feltétel és változó: ha ütközés történik, megváltozik a pontszám vagy az életek száma"
      }
     ]
    },
@@ -1550,47 +1532,29 @@
    ],
    "boss": {
     "q": {
-     "cs": "Popiš svůj gadget. Jaké senzory a aktuátory použije? Jakou smyčku a jaké podmínky jeho program má a co si pamatuje v proměnných? Jak ho otestuješ, včetně okrajových případů? A co by se mohl naučit z příkladů a proč by se u jiných lidí mohl plést?",
-     "en": "Describe your gadget. Which sensors and actuators will it use? What loop and what conditions does its program have, and what does it remember in variables? How will you test it, including edge cases? And what could it learn from examples, and why might it get confused with other people?",
-     "sk": "Opíš svoj gadget. Aké senzory a aktuátory použije? Akú slučku a aké podmienky má jeho program a čo si pamätá v premenných? Ako ho otestuješ vrátane okrajových prípadov? A čo by sa mohol naučiť z príkladov a prečo by sa pri iných ľuďoch mohol mýliť?",
-     "hu": "Írd le a kütyüdet. Milyen érzékelőket és aktuátorokat használ? Milyen ciklus és milyen feltételek vannak a programjában, és mit tárol változókban? Hogyan teszteled, a szélső eseteket is beleértve? És mit tanulhatna meg példákból, és miért tévedhetne más embereknél?"
+     "cs": "Popiš ve třech až pěti větách gadget s micro:bitem, který postavíš: co měří, co potom udělá a podle jakého pravidla se rozhoduje.",
+     "en": "Describe in three to five sentences the micro:bit gadget you will build: what it measures, what it does next and what rule it uses to decide.",
+     "sk": "Opíš v troch až piatich vetách gadget s micro:bitom, ktorý postavíš: čo meria, čo potom urobí a podľa akého pravidla sa rozhoduje.",
+     "hu": "Írd le három-öt mondatban a micro:bites kütyüt, amelyet megépítesz: mit mér, mit csinál utána, és milyen szabály szerint dönt."
     },
     "hints": [
      {
-      "cs": "senzor a aktuátor",
-      "en": "sensor and actuator",
-      "sk": "senzor a aktuátor",
-      "hu": "érzékelő és aktuátor"
+      "cs": "senzor něco měří a aktuátor (displej, bzučák, motor) na to reaguje",
+      "en": "a sensor measures something and an actuator (display, buzzer, motor) responds",
+      "sk": "senzor niečo meria a aktuátor (displej, bzučiak, motor) na to reaguje",
+      "hu": "egy érzékelő mér valamit, és egy aktuátor (kijelző, zümmögő, motor) reagál rá"
      },
      {
-      "cs": "smyčka",
-      "en": "loop",
-      "sk": "slučka",
-      "hu": "ciklus"
+      "cs": "program měří pořád dokola ve smyčce",
+      "en": "the program measures over and over in a loop",
+      "sk": "program meria stále dookola v slučke",
+      "hu": "a program ciklusban újra meg újra mér"
      },
      {
-      "cs": "podmínka",
-      "en": "condition",
-      "sk": "podmienka",
-      "hu": "feltétel"
-     },
-     {
-      "cs": "proměnná",
-      "en": "variable",
-      "sk": "premenná",
-      "hu": "változó"
-     },
-     {
-      "cs": "okrajový případ",
-      "en": "edge case",
-      "sk": "okrajový prípad",
-      "hu": "szélső eset"
-     },
-     {
-      "cs": "trénovací data",
-      "en": "training data",
-      "sk": "trénovacie dáta",
-      "hu": "tanítóadatok"
+      "cs": "podmínka s prahem: když hodnota přesáhne mez, něco se stane",
+      "en": "a condition with a threshold: when the value goes past the limit, something happens",
+      "sk": "podmienka s prahom: keď hodnota prekročí hranicu, niečo sa stane",
+      "hu": "feltétel küszöbértékkel: ha az érték átlépi a határt, történik valami"
      }
     ]
    },
@@ -1832,47 +1796,29 @@
    ],
    "boss": {
     "q": {
-     "cs": "Popiš web, který postavíš. Jak vypadá jeho náčrt a mapa stránek? Co bude v HTML, co v CSS a co udělá JavaScript? Jak zařídíš, aby se rychle načítal? Kde bude bydlet, co se stane, když návštěvník napíše jeho adresu, a proč potřebuje https? A co uděláš pro to, aby web nesbíral ani neprozradil víc, než musí?",
-     "en": "Describe the website you will build. What do its sketch and site map look like? What goes into the HTML, what into the CSS, and what will JavaScript do? How will you make it load fast? Where will it live, what happens when a visitor types in its address, and why does it need https? And what will you do so that the site neither collects nor gives away more than it has to?",
-     "sk": "Opíš web, ktorý postavíš. Ako vyzerá jeho náčrt a mapa stránok? Čo bude v HTML, čo v CSS a čo urobí JavaScript? Ako zariadiš, aby sa rýchlo načítal? Kde bude bývať, čo sa stane, keď návštevník napíše jeho adresu, a prečo potrebuje https? A čo urobíš pre to, aby web nezbieral ani neprezradil viac, než musí?",
-     "hu": "Írd le a weboldalt, amelyet megépítesz. Hogyan néz ki a vázlata és az oldaltérképe? Mi kerül a HTML-be, mi a CSS-be, és mit csinál a JavaScript? Hogyan éred el, hogy gyorsan betöltődjön? Hol fog lakni, mi történik, amikor egy látogató beírja a címét, és miért kell neki https? És mit teszel azért, hogy az oldal ne gyűjtsön és ne áruljon el többet, mint muszáj?"
+     "cs": "Popiš ve třech až pěti větách web, který postavíš: co na něm bude a co z toho zařídí HTML, co CSS a co JavaScript.",
+     "en": "Describe in three to five sentences the website you will build: what will be on it, and which part HTML takes care of, which CSS and which JavaScript.",
+     "sk": "Opíš v troch až piatich vetách web, ktorý postavíš: čo na ňom bude a čo z toho zariadi HTML, čo CSS a čo JavaScript.",
+     "hu": "Írd le három-öt mondatban a weboldalt, amelyet megépítesz: mi lesz rajta, és ebből mit intéz a HTML, mit a CSS és mit a JavaScript."
     },
     "hints": [
      {
-      "cs": "náčrt a mapa webu",
-      "en": "sketch and site map",
-      "sk": "náčrt a mapa webu",
-      "hu": "vázlat és oldaltérkép"
+      "cs": "HTML nese obsah a strukturu stránky",
+      "en": "HTML carries the content and structure of the page",
+      "sk": "HTML nesie obsah a štruktúru stránky",
+      "hu": "a HTML hordozza az oldal tartalmát és szerkezetét"
      },
      {
-      "cs": "HTML, CSS a JavaScript",
-      "en": "HTML, CSS and JavaScript",
-      "sk": "HTML, CSS a JavaScript",
-      "hu": "HTML, CSS és JavaScript"
+      "cs": "CSS určuje vzhled: barvy, písmo, rozložení",
+      "en": "CSS sets the look: colours, fonts, layout",
+      "sk": "CSS určuje vzhľad: farby, písmo, rozloženie",
+      "hu": "a CSS határozza meg a kinézetet: színek, betűtípus, elrendezés"
      },
      {
-      "cs": "velikost obrázků",
-      "en": "size of the pictures",
-      "sk": "veľkosť obrázkov",
-      "hu": "a képek mérete"
-     },
-     {
-      "cs": "požadavek a odpověď",
-      "en": "request and response",
-      "sk": "požiadavka a odpoveď",
-      "hu": "kérés és válasz"
-     },
-     {
-      "cs": "hosting a https",
-      "en": "hosting and https",
-      "sk": "hosting a https",
-      "hu": "tárhely és https"
-     },
-     {
-      "cs": "cookies a soukromí",
-      "en": "cookies and privacy",
-      "sk": "cookies a súkromie",
-      "hu": "sütik és magánszféra"
+      "cs": "JavaScript přidá chování, třeba tlačítko, které něco rozbalí",
+      "en": "JavaScript adds behaviour, such as a button that opens something up",
+      "sk": "JavaScript pridá správanie, napríklad tlačidlo, ktoré niečo rozbalí",
+      "hu": "a JavaScript viselkedést ad hozzá, például egy gombot, amely kinyit valamit"
      }
     ]
    },
@@ -2099,47 +2045,29 @@
    ],
    "boss": {
     "q": {
-     "cs": "Popiš appku pro třídu. Jak přesně spočítá, kdo komu kolik dluží? Na jaké obrazovky ji rozložíš a co postavíš jako první? Jaké stavy má a jak otestuješ, že se nezasekne? Jaká data bude držet a kdo z třídy smí co vidět a měnit? Co poběží v mobilu a co na serveru? A když ti kód napíše AI, jak ověříš, že dělá jen to, co má?",
-     "en": "Describe the app for your class. How exactly will it work out who owes whom how much? Which screens will you break it into, and what will you build first? What states does it have, and how will you test that it doesn’t get stuck? What data will it keep, and who in the class may see and change what? What will run on the phone and what on the server? And if AI writes the code for you, how will you check that it does only what it should?",
-     "sk": "Opíš apku pre triedu. Ako presne vypočíta, kto komu koľko dlhuje? Na aké obrazovky ju rozložíš a čo postavíš ako prvé? Aké stavy má a ako otestuješ, že sa nezasekne? Aké dáta bude držať a kto z triedy smie čo vidieť a meniť? Čo pobeží v mobile a čo na serveri? A keď ti kód napíše AI, ako overíš, že robí len to, čo má?",
-     "hu": "Írd le az osztály appját. Pontosan hogyan számolja ki, ki kinek mennyivel tartozik? Milyen képernyőkre bontod, és mit építesz meg elsőként? Milyen állapotai vannak, és hogyan teszteled, hogy nem akad el? Milyen adatokat tárol, és az osztályból ki mit láthat és módosíthat? Mi fut a mobilon, és mi a szerveren? És ha az MI írja meg neked a kódot, hogyan ellenőrzöd, hogy csak azt csinálja, amit kell?"
+     "cs": "Popiš ve třech až pěti větách appku pro třídu, která hlídá, kdo komu kolik dluží: jak to přesně spočítá a jaké obrazovky bude mít.",
+     "en": "Describe in three to five sentences a class app that keeps track of who owes whom how much: exactly how it works it out and what screens it will have.",
+     "sk": "Opíš v troch až piatich vetách apku pre triedu, ktorá stráži, kto komu koľko dlhuje: ako to presne vypočíta a aké obrazovky bude mať.",
+     "hu": "Írd le három-öt mondatban az osztály appját, amely nyilvántartja, ki kinek mennyivel tartozik: pontosan hogyan számolja ki, és milyen képernyői lesznek."
     },
     "hints": [
      {
-      "cs": "přesný postup",
-      "en": "an exact method",
-      "sk": "presný postup",
-      "hu": "pontos eljárás"
+      "cs": "přesný postup výpočtu: sečíst platby, rozdělit na podíly a porovnat, kdo dal víc a kdo míň",
+      "en": "an exact calculation: add up the payments, split them into shares and compare who paid more and who paid less",
+      "sk": "presný postup výpočtu: sčítať platby, rozdeliť na podiely a porovnať, kto dal viac a kto menej",
+      "hu": "pontos számítás: összeadni a befizetéseket, részekre osztani, és összevetni, ki fizetett többet és ki kevesebbet"
      },
      {
-      "cs": "rozklad na obrazovky",
-      "en": "breaking it into screens",
-      "sk": "rozklad na obrazovky",
-      "hu": "képernyőkre bontás"
+      "cs": "appka je rozložená na obrazovky a jako první vznikne ta nejdůležitější",
+      "en": "the app is broken into screens, and the most important one is built first",
+      "sk": "apka je rozložená na obrazovky a ako prvá vznikne tá najdôležitejšia",
+      "hu": "az app képernyőkre van bontva, és először a legfontosabb készül el"
      },
      {
-      "cs": "stavy a testy",
-      "en": "states and tests",
-      "sk": "stavy a testy",
-      "hu": "állapotok és tesztek"
-     },
-     {
-      "cs": "tabulka a role",
-      "en": "spreadsheet and roles",
-      "sk": "tabuľka a roly",
-      "hu": "táblázat és szerepek"
-     },
-     {
-      "cs": "frontend a backend",
-      "en": "frontend and backend",
-      "sk": "frontend a backend",
-      "hu": "frontend és backend"
-     },
-     {
-      "cs": "ověření kódu od AI",
-      "en": "checking code from AI",
-      "sk": "overenie kódu od AI",
-      "hu": "az MI kódjának ellenőrzése"
+      "cs": "appka si drží data jako seznam plateb",
+      "en": "the app keeps its data as a list of payments",
+      "sk": "apka si drží dáta ako zoznam platieb",
+      "hu": "az app az adatait befizetések listájaként tárolja"
      }
     ]
    },
@@ -2381,47 +2309,29 @@
    ],
    "boss": {
     "q": {
-     "cs": "Popiš video, které vytvoříš. Jaký vizuální jazyk zvolíš a co vynecháš? Jak napíšeš prompt na úvodní obrázek a jak výsledek zkontroluješ? Jaká klišé od generátoru čekáš a proč? Kam poletí tvoje prompty a fotky spolužáků? V jakém rozlišení video uložíš a kdo ho podle algoritmu uvidí? A jak přiznáš, co udělala AI?",
-     "en": "Describe the video you will make. What visual language will you choose, and what will you leave out? How will you write the prompt for the opening picture, and how will you check the result? What clichés do you expect from the generator, and why? Where will your prompts and your classmates’ photos go? At what resolution will you save the video, and who will the algorithm show it to? And how will you disclose what the AI did?",
-     "sk": "Opíš video, ktoré vytvoríš. Aký vizuálny jazyk zvolíš a čo vynecháš? Ako napíšeš prompt na úvodný obrázok a ako výsledok skontroluješ? Aké klišé od generátora čakáš a prečo? Kam poletia tvoje prompty a fotky spolužiakov? V akom rozlíšení video uložíš a kto ho podľa algoritmu uvidí? A ako priznáš, čo urobila AI?",
-     "hu": "Írd le a videót, amelyet elkészítesz. Milyen vizuális nyelvet választasz, és mit hagysz ki? Hogyan írod meg a promptot a nyitóképhez, és hogyan ellenőrzöd az eredményt? Milyen kliséket vársz a generátortól, és miért? Hová kerülnek a promptjaid és az osztálytársaid fotói? Milyen felbontásban mented el a videót, és kinek mutatja meg az algoritmus? És hogyan vallod be, mit csinált az MI?"
+     "cs": "Popiš ve třech až pěti větách krátké video, které vytvoříš s pomocí AI: jak napíšeš prompt a jak zkontroluješ a přiznáš, co udělala AI.",
+     "en": "Describe in three to five sentences a short video you will make with the help of AI: how you will write the prompt, and how you will check and disclose what the AI did.",
+     "sk": "Opíš v troch až piatich vetách krátke video, ktoré vytvoríš s pomocou AI: ako napíšeš prompt a ako skontroluješ a priznáš, čo urobila AI.",
+     "hu": "Írd le három-öt mondatban a rövid videót, amelyet az MI segítségével készítesz: hogyan írod meg a promptot, és hogyan ellenőrzöd és jelzed, mit csinált az MI."
     },
     "hints": [
      {
-      "cs": "vizuální jazyk",
-      "en": "visual language",
-      "sk": "vizuálny jazyk",
-      "hu": "vizuális nyelv"
+      "cs": "prompt popisuje obsah i styl",
+      "en": "the prompt describes both content and style",
+      "sk": "prompt opisuje obsah aj štýl",
+      "hu": "a prompt a tartalmat és a stílust is leírja"
      },
      {
-      "cs": "prompt a kontrola",
-      "en": "prompt and checking",
-      "sk": "prompt a kontrola",
-      "hu": "prompt és ellenőrzés"
+      "cs": "výstup se kontroluje: chyby, klišé a stereotypy",
+      "en": "the output gets checked: mistakes, clichés and stereotypes",
+      "sk": "výstup sa kontroluje: chyby, klišé a stereotypy",
+      "hu": "a kimenetet ellenőrizni kell: hibák, klisék és sztereotípiák"
      },
      {
-      "cs": "trénovací data a klišé",
-      "en": "training data and clichés",
-      "sk": "trénovacie dáta a klišé",
-      "hu": "tanítóadatok és klisék"
-     },
-     {
-      "cs": "cloud a data",
-      "en": "cloud and data",
-      "sk": "cloud a dáta",
-      "hu": "felhő és adatok"
-     },
-     {
-      "cs": "rozlišení a komprese",
-      "en": "resolution and compression",
-      "sk": "rozlíšenie a kompresia",
-      "hu": "felbontás és tömörítés"
-     },
-     {
-      "cs": "přiznání AI",
-      "en": "disclosing AI",
-      "sk": "priznanie AI",
-      "hu": "az MI bevallása"
+      "cs": "přiznat, co udělala AI",
+      "en": "disclose what the AI did",
+      "sk": "priznať, čo urobila AI",
+      "hu": "jelezni, mit csinált az MI"
      }
     ]
    },
@@ -2641,47 +2551,29 @@
    ],
    "boss": {
     "q": {
-     "cs": "Napiš sestřenici průvodce. Proč jí feed ukazuje to, co ukazuje, a proč nikdy neskončí? Co o ní síť eviduje a jak se to dozví? Jak si nastaví, kdo vidí její příspěvky, a kdo může číst její zprávy? Jak ochrání účet a jak pozná falešnou soutěž nebo deepfake? A co by na fotku nikdy nedávala?",
-     "en": "Write your cousin a guide. Why does the feed show her what it shows, and why does it never end? What does the network keep on record about her, and how does it find it out? How will she set who sees her posts, and who can read her messages? How will she protect her account, and how will she spot a fake competition or a deepfake? And what would she never put in a photo?",
-     "sk": "Napíš sesternici sprievodcu. Prečo jej feed ukazuje to, čo ukazuje, a prečo nikdy neskončí? Čo o nej sieť eviduje a ako sa to dozvie? Ako si nastaví, kto vidí jej príspevky, a kto môže čítať jej správy? Ako ochráni účet a ako spozná falošnú súťaž alebo deepfake? A čo by na fotku nikdy nedávala?",
-     "hu": "Írj kalauzt az unokatestvérednek. Miért azt mutatja neki a hírfolyam, amit mutat, és miért nem ér soha véget? Mit tart róla nyilván az oldal, és honnan tudja meg? Hogyan állítja be, ki látja a bejegyzéseit, és ki olvashatja az üzeneteit? Hogyan védi meg a fiókját, és hogyan ismeri fel a hamis nyereményjátékot vagy a deepfake-et? És mit nem tenne soha egy fotóra?"
+     "cs": "Napiš sestřenici ve třech až pěti větách krátkého průvodce: proč jí feed ukazuje právě to, co ukazuje, a jak si ochrání účet a soukromí.",
+     "en": "Write your cousin a short guide in three to five sentences: why the feed shows her exactly what it shows, and how she can protect her account and her privacy.",
+     "sk": "Napíš sesternici v troch až piatich vetách krátkeho sprievodcu: prečo jej feed ukazuje práve to, čo ukazuje, a ako si ochráni účet a súkromie.",
+     "hu": "Írj három-öt mondatban rövid kalauzt az unokatestvérednek: miért éppen azt mutatja neki a hírfolyam, amit mutat, és hogyan védheti meg a fiókját és a magánszféráját."
     },
     "hints": [
      {
-      "cs": "signály a bublina",
-      "en": "signals and the bubble",
-      "sk": "signály a bublina",
-      "hu": "jelek és buborék"
+      "cs": "feed vybírá podle signálů (co sleduje, co lajkuje, jak dlouho se dívá) a nekonečný scroll drží pozornost",
+      "en": "the feed picks by signals (what she follows, what she likes, how long she watches), and infinite scroll holds attention",
+      "sk": "feed vyberá podľa signálov (čo sleduje, čo lajkuje, ako dlho sa pozerá) a nekonečný scroll drží pozornosť",
+      "hu": "a hírfolyam jelek alapján válogat (kit követ, mit lájkol, mennyi ideig nézi), a végtelen görgetés pedig fogva tartja a figyelmet"
      },
      {
-      "cs": "nekonečný scroll",
-      "en": "infinite scroll",
-      "sk": "nekonečný scroll",
-      "hu": "végtelen görgetés"
+      "cs": "nastavit, kdo vidí příspěvky (soukromý účet)",
+      "en": "set who sees the posts (a private account)",
+      "sk": "nastaviť, kto vidí príspevky (súkromný účet)",
+      "hu": "beállítani, ki látja a bejegyzéseket (privát fiók)"
      },
      {
-      "cs": "kdo vidí příspěvek",
-      "en": "who sees a post",
-      "sk": "kto vidí príspevok",
-      "hu": "ki látja a bejegyzést"
-     },
-     {
-      "cs": "heslo a 2FA",
-      "en": "password and 2FA",
-      "sk": "heslo a 2FA",
-      "hu": "jelszó és 2FA"
-     },
-     {
-      "cs": "podvod a deepfake",
-      "en": "scams and deepfakes",
-      "sk": "podvod a deepfake",
-      "hu": "csalás és deepfake"
-     },
-     {
-      "cs": "digitální stopa",
-      "en": "digital footprint",
-      "sk": "digitálna stopa",
-      "hu": "digitális nyom"
+      "cs": "silné heslo, dvoufázové ověření a pozor na falešné soutěže",
+      "en": "a strong password, two-factor authentication and watching out for fake competitions",
+      "sk": "silné heslo, dvojfázové overenie a pozor na falošné súťaže",
+      "hu": "erős jelszó, kétlépcsős azonosítás és óvatosság a hamis nyereményjátékokkal"
      }
     ]
    },
@@ -2980,42 +2872,29 @@
    },
    "boss": {
     "q": {
-     "cs": "Popiš cestu školního webu od nápadu k publikované stránce: jak vypadá jeho náčrt, co tvoří HTML a co CSS, s čím pomůže AI a jak její výstup ověříš, odkud budou obrázky a co o nich uvedeš. Zmiň i to, jak se stránka dostane na internet.",
-     "en": "Describe the journey of a school website from the idea to a published page: what its sketch looks like, what HTML does and what CSS does, what AI helps with and how you check its output, where the pictures come from and what you say about them. Also mention how the page gets onto the internet.",
-     "sk": "Opíš cestu školského webu od nápadu k zverejnenej stránke: ako vyzerá jeho náčrt, čo tvorí HTML a čo CSS, s čím pomôže AI a ako jej výstup overíš, odkiaľ budú obrázky a čo o nich uvedieš. Spomeň aj to, ako sa stránka dostane na internet.",
-     "hu": "Írd le egy iskolai weboldal útját az ötlettől a közzétett oldalig: hogyan néz ki a vázlata, mit csinál a HTML és mit a CSS, miben segít az MI és hogyan ellenőrzöd a kimenetét, honnan lesznek a képek és mit írsz róluk. Azt is említsd meg, hogyan kerül fel az oldal az internetre."
+     "cs": "Popiš ve třech až pěti větách, jak vznikne školní web od nápadu po zveřejnění: co uděláš vlastní rukou, s čím pomůže AI a jak její práci ověříš.",
+     "en": "Describe in three to five sentences how a school website comes to life, from the idea to publishing it: what you will do with your own hands, what AI will help with and how you will check its work.",
+     "sk": "Opíš v troch až piatich vetách, ako vznikne školský web od nápadu po zverejnenie: čo urobíš vlastnou rukou, s čím pomôže AI a ako jej prácu overíš.",
+     "hu": "Írd le három-öt mondatban, hogyan születik meg egy iskolai weboldal az ötlettől a közzétételig: mit csinálsz saját kezűleg, miben segít az MI, és hogyan ellenőrzöd a munkáját."
     },
     "hints": [
      {
-      "cs": "náčrt",
-      "en": "sketch",
-      "sk": "náčrt",
-      "hu": "vázlat"
+      "cs": "náčrt, HTML pro obsah a CSS pro vzhled",
+      "en": "a sketch, HTML for the content and CSS for the look",
+      "sk": "náčrt, HTML pre obsah a CSS pre vzhľad",
+      "hu": "vázlat, HTML a tartalomhoz és CSS a kinézethez"
      },
      {
-      "cs": "struktura a styl",
-      "en": "structure and style",
-      "sk": "štruktúra a štýl",
-      "hu": "szerkezet és stílus"
-     },
-     "prompt",
-     {
-      "cs": "kontrola výstupu",
-      "en": "checking the output",
-      "sk": "kontrola výstupu",
-      "hu": "a kimenet ellenőrzése"
+      "cs": "AI pomůže s kódem nebo textem a její výstup se kontroluje",
+      "en": "AI helps with code or text, and its output gets checked",
+      "sk": "AI pomôže s kódom alebo textom a jej výstup sa kontroluje",
+      "hu": "az MI segít a kóddal vagy a szöveggel, a kimenetét pedig ellenőrizni kell"
      },
      {
-      "cs": "hosting",
-      "en": "hosting",
-      "sk": "hosting",
-      "hu": "tárhely"
-     },
-     {
-      "cs": "přiznání AI",
-      "en": "saying you used AI",
-      "sk": "priznanie AI",
-      "hu": "az MI használatának jelzése"
+      "cs": "stránka se zveřejní na hostingu a uvede se, s čím pomohla AI",
+      "en": "the page is published on a hosting service, saying what AI helped with",
+      "sk": "stránka sa zverejní na hostingu a uvedie sa, s čím pomohla AI",
+      "hu": "az oldal tárhelyre kerül, és jelezve van, miben segített az MI"
      }
     ]
    },
@@ -3200,10 +3079,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Navrhni plán vlastního algoritmického projektu na příští měsíc. Může to být sbírka hádanek pro kroužek, hra, ve které hráč skládá algoritmus, nebo program, který řeší skutečný problém z tvého života (rozvrh tréninků, nejkratší cesta, los turnaje). Popiš: jaký problém řešíš (vstup, výstup, omezení), aspoň dva různé postupy řešení a který bude rychlejší a proč, jak projekt rozložíš na části a v jakém pořadí na sebe navazují, co tvůj model situace vynechá, jaké testy připravíš předem včetně okrajových případů a podle čeho poznáš, že je projekt hotový.",
-     "en": "Design a plan for your own algorithmic project for next month. It can be a collection of puzzles for the club, a game in which the player builds an algorithm, or a program that solves a real problem from your life (a training timetable, the shortest route, a tournament draw). Describe: what problem you are solving (input, output, limits), at least two different methods of solving it and which will be faster and why, how you will break the project into parts and in what order they follow on from each other, what your model of the situation leaves out, what tests you will prepare in advance, including edge cases, and how you will know the project is finished.",
-     "sk": "Navrhni plán vlastného algoritmického projektu na budúci mesiac. Môže to byť zbierka hádaniek pre krúžok, hra, v ktorej hráč skladá algoritmus, alebo program, ktorý rieši skutočný problém z tvojho života (rozvrh tréningov, najkratšia cesta, žreb turnaja). Opíš: aký problém riešiš (vstup, výstup, obmedzenia), aspoň dva rôzne postupy riešenia a ktorý bude rýchlejší a prečo, ako projekt rozložíš na časti a v akom poradí na seba nadväzujú, čo tvoj model situácie vynechá, aké testy pripravíš vopred vrátane okrajových prípadov a podľa čoho spoznáš, že je projekt hotový.",
-     "hu": "Tervezd meg a saját algoritmikus projektedet a jövő hónapra. Lehet ez fejtörő-gyűjtemény a szakkörnek, játék, amelyben a játékos algoritmust rak össze, vagy program, amely egy valódi problémát old meg az életedből (edzésbeosztás, legrövidebb út, bajnoksági sorsolás). Írd le: milyen problémát oldasz meg (bemenet, kimenet, korlátok), legalább két különböző megoldási eljárást, és melyik lesz gyorsabb és miért, hogyan bontod részekre a projektet, és milyen sorrendben épülnek egymásra, mit hagy ki a helyzetről alkotott modelled, milyen teszteket készítesz elő előre a szélsőséges esetekkel együtt, és miről ismered fel, hogy a projekt kész."
+     "cs": "Navrhni vlastní algoritmický projekt, třeba los turnaje nebo nejkratší cestu do školy: jaký problém řešíš, jaké dva postupy porovnáš (a který bude rychlejší) a jak projekt otestuješ. Stačí krátký plán na pět až osm vět.",
+     "en": "Design your own algorithm project, such as a tournament draw or the shortest way to school: what problem you are solving, which two methods you will compare (and which will be faster), and how you will test the project. A short plan of five to eight sentences is enough.",
+     "sk": "Navrhni vlastný algoritmický projekt, napríklad žrebovanie turnaja alebo najkratšiu cestu do školy: aký problém riešiš, aké dva postupy porovnáš (a ktorý bude rýchlejší) a ako projekt otestuješ. Stačí krátky plán na päť až osem viet.",
+     "hu": "Tervezz saját algoritmikus projektet, például egy bajnokság sorsolását vagy a legrövidebb utat az iskolába: milyen problémát oldasz meg, melyik két módszert hasonlítod össze (és melyik lesz gyorsabb), és hogyan teszteled a projektet. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -3219,28 +3098,10 @@
       "hu": "A terv legalább két eljárást hasonlít össze, és elmagyarázza, miért nő az egyik lassabban a bemenet méretével, mint a másik (például felezés kontra minden végignézése)."
      },
      {
-      "cs": "Projekt je rozložený na části se závislostmi: je vidět, co musí být hotové dřív a co jde dělat souběžně.",
-      "en": "The project is broken into parts with dependencies: you can see what must be done first and what can be done at the same time.",
-      "sk": "Projekt je rozložený na časti so závislosťami: je vidieť, čo musí byť hotové skôr a čo sa dá robiť súbežne.",
-      "hu": "A projekt függőségekkel összekötött részekre van bontva: látszik, minek kell előbb elkészülnie, és mi végezhető párhuzamosan."
-     },
-     {
-      "cs": "Model situace je vědomá volba: plán říká, co se vynechá a proč to pro účel nevadí.",
-      "en": "The model of the situation is a deliberate choice: the plan says what is left out and why that doesn’t matter for the purpose.",
-      "sk": "Model situácie je vedomá voľba: plán hovorí, čo sa vynechá a prečo to pre účel nevadí.",
-      "hu": "A helyzet modellje tudatos választás: a terv megmondja, mit hagy ki, és miért nem baj ez a cél szempontjából."
-     },
-     {
       "cs": "Testy vznikají předem, jako vstup a očekávaný výstup, a zahrnují okrajové případy (prázdno, jeden prvek, maximum).",
       "en": "The tests are made in advance, as input and expected output, and include edge cases (empty, one item, the maximum).",
       "sk": "Testy vznikajú vopred, ako vstup a očakávaný výstup, a zahŕňajú okrajové prípady (prázdno, jeden prvok, maximum).",
       "hu": "A tesztek előre készülnek, bemenetként és elvárt kimenetként, és tartalmazzák a szélsőséges eseteket (üres, egy elem, maximum)."
-     },
-     {
-      "cs": "Kritérium hotovosti je ověřitelné: kdo projekt vyzkouší a co musí projít.",
-      "en": "The “finished” criterion can be checked: who will try the project and what must pass.",
-      "sk": "Kritérium hotovosti je overiteľné: kto projekt vyskúša a čo musí prejsť.",
-      "hu": "A „kész” feltétele ellenőrizhető: ki próbálja ki a projektet, és minek kell átmennie."
      }
     ]
    },
@@ -3418,10 +3279,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Naplánuj vlastní program v Pythonu, který vyřeší skutečný problém z tvého života: třeba počítá body ve hře s kamarády, hlídá kapesné, nebo vyhodnocuje měření z teploměru. Popiš, co bude vstup a co výstup, jaké kroky proběhnou mezi tím, kde použiješ cyklus, podmínku a proměnné, jak program otestuješ (aspoň tři testy včetně hraničního případu) a jak budeš ukládat a popisovat verze.",
-     "en": "Plan your own Python program that solves a real problem from your life: for example, it counts points in a game with friends, keeps track of pocket money, or analyses thermometer readings. Describe what the input and output will be, what steps happen in between, where you’ll use a loop, a condition and variables, how you’ll test the program (at least three tests, including a boundary case) and how you’ll save and describe versions.",
-     "sk": "Naplánuj vlastný program v Pythone, ktorý vyrieši skutočný problém z tvojho života: napríklad počíta body v hre s kamarátmi, stráži vreckové alebo vyhodnocuje merania z teplomera. Opíš, čo bude vstup a čo výstup, aké kroky prebehnú medzi tým, kde použiješ cyklus, podmienku a premenné, ako program otestuješ (aspoň tri testy vrátane hraničného prípadu) a ako budeš ukladať a opisovať verzie.",
-     "hu": "Tervezz meg egy saját Python-programot, amely egy valódi problémát old meg az életedből: például pontokat számol egy játékban a barátaiddal, figyeli a zsebpénzedet, vagy kiértékeli a hőmérő méréseit. Írd le, mi lesz a bemenet és mi a kimenet, milyen lépések történnek közben, hol használsz ciklust, feltételt és változókat, hogyan teszteled a programot (legalább három teszt, köztük egy határeset), és hogyan mented és írod le a változatokat."
+     "cs": "Naplánuj program v Pythonu, který vyřeší skutečný problém z tvého života, třeba hlídá kapesné: co do něj vstoupí a co vypíše, kde použiješ cyklus a podmínku a jak ho otestuješ. Stačí krátký plán na pět až osm vět.",
+     "en": "Plan a Python program that solves a real problem from your life, such as keeping track of pocket money: what goes in and what it prints, where you will use a loop and a condition, and how you will test it. A short plan of five to eight sentences is enough.",
+     "sk": "Naplánuj program v Pythone, ktorý vyrieši skutočný problém z tvojho života, napríklad stráži vreckové: čo doň vstúpi a čo vypíše, kde použiješ cyklus a podmienku a ako ho otestuješ. Stačí krátky plán na päť až osem viet.",
+     "hu": "Tervezz Python-programot, amely megold egy valódi problémát az életedből, például nyilvántartja a zsebpénzt: mi megy be és mit ír ki, hol használsz ciklust és feltételt, és hogyan teszteled. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -3443,22 +3304,10 @@
       "hu": "A feltételek minden esetet lefednek, a határokat is (pontosan 0, pontosan a határérték), és a sorrendjüknek van értelme."
      },
      {
-      "cs": "Proměnné mají výstižná jména a je jasné, čím začínají a jak se mění.",
-      "en": "The variables have fitting names, and it’s clear what they start with and how they change.",
-      "sk": "Premenné majú výstižné mená a je jasné, čím začínajú a ako sa menia.",
-      "hu": "A változóknak kifejező nevük van, és világos, mivel kezdődnek és hogyan változnak."
-     },
-     {
       "cs": "Testy jsou dané předem jako vstup a očekávaný výstup, včetně okrajového případu.",
       "en": "The tests are set in advance as input and expected output, including an edge case.",
       "sk": "Testy sú dané vopred ako vstup a očakávaný výstup, vrátane okrajového prípadu.",
       "hu": "A tesztek előre meg vannak adva bemenetként és elvárt kimenetként, a szélső esettel együtt."
-     },
-     {
-      "cs": "Plán počítá s chybami: jak se bude ladit a jak se ukládají verze se zprávou pro lidi.",
-      "en": "The plan expects bugs: how debugging will work and how versions are saved with a message for people.",
-      "sk": "Plán počíta s chybami: ako sa bude ladiť a ako sa ukladajú verzie so správou pre ľudí.",
-      "hu": "A terv számol a hibákkal: hogyan lesz a hibakeresés, és hogyan mentődnek a változatok az embereknek szóló üzenettel."
      }
     ]
    },
@@ -3641,10 +3490,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Napiš plán vlastního datového projektu, který zvládneš za dva až čtyři týdny. Uveď: otázku, na kterou odpovídáš; odkud data vezmeš a kolik jich bude; jak bude vypadat tabulka a jaká pravidla zápisu platí; jak data vyčistíš; jaký graf zvolíš a proč; a hlavně, co by mohlo výsledek zkreslit a jak to ohlídáš.",
-     "en": "Write a plan for your own data project that you can manage in two to four weeks. Include: the question you are answering; where you will get the data and how much there will be; what the table will look like and which rules for writing it apply; how you will clean the data; which graph you will choose and why; and above all, what could distort the result and how you will keep an eye on it.",
-     "sk": "Napíš plán vlastného dátového projektu, ktorý zvládneš za dva až štyri týždne. Uveď: otázku, na ktorú odpovedáš; odkiaľ dáta vezmeš a koľko ich bude; ako bude vyzerať tabuľka a aké pravidlá zápisu platia; ako dáta vyčistíš; aký graf zvolíš a prečo; a hlavne, čo by mohlo výsledok skresliť a ako to ustrážiš.",
-     "hu": "Írd meg egy saját adatprojekt tervét, amit két–négy hét alatt meg tudsz csinálni. Add meg: a kérdést, amire válaszolsz; honnan veszed az adatokat, és mennyi lesz belőlük; hogyan fog kinézni a táblázat, és milyen beírási szabályok érvényesek; hogyan tisztítod meg az adatokat; milyen grafikont választasz és miért; és főleg, mi torzíthatná az eredményt, és hogyan figyelsz erre."
+     "cs": "Napiš plán datového projektu na pár týdnů: na jakou otázku odpovídáš, odkud vezmeš data a co by mohlo výsledek zkreslit. Stačí krátký plán na pět až osm vět.",
+     "en": "Write a plan for a data project of a few weeks: what question you are answering, where you will get the data, and what could distort the result. A short plan of five to eight sentences is enough.",
+     "sk": "Napíš plán dátového projektu na pár týždňov: na akú otázku odpovedáš, odkiaľ vezmeš dáta a čo by mohlo výsledok skresliť. Stačí krátky plán na päť až osem viet.",
+     "hu": "Írd meg egy néhány hetes adatprojekt tervét: milyen kérdésre válaszolsz, honnan szerzed az adatokat, és mi torzíthatja az eredményt. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -3660,28 +3509,10 @@
       "hu": "Az adatok forrása és mennyisége át van gondolva: hány rekord elég, honnan származnak, és mi hiányzik belőlük (ki maradt ki a kérdőívből, mely napok hiányoznak)."
      },
      {
-      "cs": "Tabulka má jasné záznamy, vlastnosti, jednotný formát a klíč; čištění dat je plánovaný krok, ne náhoda.",
-      "en": "The table has clear records, properties, one consistent format and a key; cleaning the data is a planned step, not an accident.",
-      "sk": "Tabuľka má jasné záznamy, vlastnosti, jednotný formát a kľúč; čistenie dát je plánovaný krok, nie náhoda.",
-      "hu": "A táblázatban egyértelmű rekordok, tulajdonságok, egységes formátum és kulcs van; az adattisztítás tervezett lépés, nem véletlen."
-     },
-     {
-      "cs": "Typ grafu odpovídá otázce (vývoj, porovnání, podíl) a graf je poctivý: osy, zdroj, celé měřítko.",
-      "en": "The type of graph fits the question (change over time, comparison, share) and the graph is honest: axes, source, full scale.",
-      "sk": "Typ grafu zodpovedá otázke (vývoj, porovnanie, podiel) a graf je poctivý: osi, zdroj, celá mierka.",
-      "hu": "A grafikon típusa illik a kérdéshez (változás, összehasonlítás, arány), és a grafikon becsületes: tengelyek, forrás, teljes skála."
-     },
-     {
       "cs": "Výklad rozlišuje souvislost a příčinu a počítá s třetí věcí, odlehlými hodnotami a malým vzorkem (průměr vs. medián).",
       "en": "The explanation tells a link apart from a cause and allows for a third thing, outliers and a small sample (mean vs. median).",
       "sk": "Výklad rozlišuje súvislosť a príčinu a počíta s treťou vecou, odľahlými hodnotami a malou vzorkou (priemer vs. medián).",
       "hu": "Az értelmezés megkülönbözteti az összefüggést és az okot, és számol a harmadik dologgal, a kiugró értékekkel és a kis mintával (átlag kontra medián)."
-     },
-     {
-      "cs": "Osobní údaje jsou chráněné: anonymní sběr, souhlas lidí, nic osobního na plakátu.",
-      "en": "Personal data are protected: anonymous collection, people’s consent, nothing personal on the poster.",
-      "sk": "Osobné údaje sú chránené: anonymný zber, súhlas ľudí, nič osobné na plagáte.",
-      "hu": "A személyes adatok védettek: névtelen gyűjtés, az emberek beleegyezése, semmi személyes a plakáton."
      }
     ]
    },
@@ -3864,10 +3695,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Naplánuj vlastní síťový projekt: síť pro LAN party, pro kroužek, nebo pro chytrou domácnost. Napiš, jaká zařízení v ní budou a jaké dostanou adresy a podsítě, kde poběží server a proč právě tam, co se stane, když vypadne jeden prvek, která data zůstanou lokálně a která půjdou do cloudu i jak je zálohuješ, co a jak zašifruješ a jak celý projekt otestuješ.",
-     "en": "Plan your own network project: a network for a LAN party, for a club, or for a smart home. Write down which devices will be in it and what addresses and subnets they’ll get, where the server will run and why exactly there, what happens when one part fails, which data stays local and which goes to the cloud and how you back it up, what you’ll encrypt and how, and how you’ll test the whole project.",
-     "sk": "Naplánuj vlastný sieťový projekt: sieť pre LAN party, pre krúžok alebo pre múdru domácnosť. Napíš, aké zariadenia v nej budú a aké dostanú adresy a podsiete, kde pobeží server a prečo práve tam, čo sa stane, keď vypadne jeden prvok, ktoré dáta zostanú lokálne a ktoré pôjdu do cloudu a ako ich zálohuješ, čo a ako zašifruješ a ako celý projekt otestuješ.",
-     "hu": "Tervezz saját hálózati projektet: hálózatot egy LAN-partihoz, a szakkörnek vagy egy okosotthonhoz. Írd le, milyen eszközök lesznek benne, és milyen címeket és alhálózatokat kapnak, hol fut majd a szerver és miért éppen ott, mi történik, ha kiesik egy elem, mely adatok maradnak helyben és melyek kerülnek a felhőbe, és hogyan menteted őket, mit és hogyan titkosítasz, és hogyan teszteled az egész projektet."
+     "cs": "Naplánuj síť pro LAN party, kroužek nebo chytrou domácnost: jaká zařízení v ní budou a jak se propojí, co se stane, když jedno z nich vypadne, a jak ochráníš data. Stačí krátký plán na pět až osm vět.",
+     "en": "Plan a network for a LAN party, a club or a smart home: which devices it will have and how they connect, what happens when one of them fails, and how you will protect the data. A short plan of five to eight sentences is enough.",
+     "sk": "Naplánuj sieť pre LAN party, krúžok alebo múdru domácnosť: aké zariadenia v nej budú a ako sa prepoja, čo sa stane, keď jedno z nich vypadne, a ako ochrániš dáta. Stačí krátky plán na päť až osem viet.",
+     "hu": "Tervezz hálózatot egy LAN-partihoz, a szakkörnek vagy egy okosotthonhoz: milyen eszközök lesznek benne és hogyan kapcsolódnak, mi történik, ha az egyik kiesik, és hogyan véded meg az adatokat. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -3883,12 +3714,6 @@
       "hu": "A terv számol a kieséssel: megtalálja az egyetlen hibapontot, és kerülőutat vagy pótlást javasol."
      },
      {
-      "cs": "Server stojí blízko těch, kdo ho používají, protože zpoždění určuje vzdálenost a rychlost světla, ne rychlost tarifu.",
-      "en": "The server is close to the people who use it, because delay is set by distance and the speed of light, not by the speed of your plan.",
-      "sk": "Server stojí blízko tých, ktorí ho používajú, pretože oneskorenie určuje vzdialenosť a rýchlosť svetla, nie rýchlosť tarifu.",
-      "hu": "A szerver azok közelében áll, akik használják, mert a késleltetést a távolság és a fénysebesség határozza meg, nem az előfizetés sebessége."
-     },
-     {
       "cs": "Rozhodnutí lokálně, nebo v cloudu je zdůvodněné (dostupnost, závislost, soukromí) a záloha dodržuje 3-2-1, tedy aspoň jednu kopii jinde.",
       "en": "The choice between local and cloud has reasons (availability, dependence, privacy), and the backup follows 3-2-1, so at least one copy is somewhere else.",
       "sk": "Rozhodnutie lokálne, alebo v cloude je zdôvodnené (dostupnosť, závislosť, súkromie) a záloha dodržiava 3-2-1, teda aspoň jednu kópiu inde.",
@@ -3899,12 +3724,6 @@
       "en": "The route is encrypted (https, encrypted Wi-Fi), and the plan knows what the padlock doesn’t guarantee.",
       "sk": "Šifruje sa cesta (https, šifrovaná Wi-Fi) a plán vie, čo zámok nezaručí.",
       "hu": "Az utat titkosítja (https, titkosított Wi-Fi), és a terv tudja, mit nem garantál a lakat."
-     },
-     {
-      "cs": "Testy mají předem napsaný očekávaný výsledek, třeba ping projde, stránka se otevře podle jména, bez DNS jen podle adresy.",
-      "en": "The tests have their expected result written down beforehand, for example the ping gets through, the page opens by name, and without DNS only by address.",
-      "sk": "Testy majú vopred napísaný očakávaný výsledok, napríklad ping prejde, stránka sa otvorí podľa mena, bez DNS len podľa adresy.",
-      "hu": "A teszteknek előre le van írva a várt eredménye, például: a ping átmegy, az oldal név alapján megnyílik, DNS nélkül csak cím alapján."
      }
     ]
    },
@@ -4087,10 +3906,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Navrhni vlastní projekt s modelem strojového učení, který by ti nebo někomu kolem tebe opravdu pomohl. Popiš: co přesně má model poznávat nebo předpovídat; jaká data potřebuješ, kolik a odkud je vezmeš (a kdo musí dát souhlas); jak data rozdělíš na trénovací a testovací; jak změříš úspěch a jaká přesnost ti bude stačit; u koho nebo v jaké situaci může model selhat a jak to otestuješ; a co napíšeš do karty modelu o tom, k čemu ho nepoužívat a s čím ti pomohla AI.",
-     "en": "Design your own project with a machine learning model that would really help you or someone around you. Describe: what exactly the model should recognise or predict; what data you need, how much and where you will get it (and who has to give consent); how you will split the data into training and test data; how you will measure success and what accuracy will be enough for you; for whom or in what situation the model might fail and how you will test that; and what you will write in the model card about what not to use it for and what AI helped you with.",
-     "sk": "Navrhni vlastný projekt s modelom strojového učenia, ktorý by tebe alebo niekomu okolo teba naozaj pomohol. Opíš: čo presne má model rozpoznávať alebo predpovedať; aké dáta potrebuješ, koľko a odkiaľ ich vezmeš (a kto musí dať súhlas); ako dáta rozdelíš na trénovacie a testovacie; ako zmeriaš úspech a aká presnosť ti bude stačiť; pri kom alebo v akej situácii môže model zlyhať a ako to otestuješ; a čo napíšeš do karty modelu o tom, na čo ho nepoužívať a s čím ti pomohla AI.",
-     "hu": "Tervezz egy saját projektet gépi tanulási modellel, amely tényleg segítene neked vagy valakinek a környezetedben. Írd le: pontosan mit kell a modellnek felismernie vagy előrejeleznie; milyen adatokra van szükséged, mennyire és honnan szerzed őket (és kinek kell beleegyeznie); hogyan osztod fel az adatokat tanító és teszt részre; hogyan méred a sikert, és milyen pontosság lesz elég; kinél vagy milyen helyzetben hibázhat a modell, és hogyan teszteled ezt; és mit írsz a modellkártyára arról, mire ne használják, és miben segített neked az MI."
+     "cs": "Navrhni projekt se strojovým učením, který by někomu kolem tebe pomohl: z jakých dat se model naučí, jak ho otestuješ a co napíšeš do jeho karty o tom, kdy mu nevěřit. Stačí krátký plán na pět až osm vět.",
+     "en": "Design a machine learning project that would help someone around you: what data the model will learn from, how you will test it, and what you will write on its model card about when not to trust it. A short plan of five to eight sentences is enough.",
+     "sk": "Navrhni projekt so strojovým učením, ktorý by niekomu okolo teba pomohol: z akých dát sa model naučí, ako ho otestuješ a čo napíšeš do jeho karty modelu o tom, kedy mu neveriť. Stačí krátky plán na päť až osem viet.",
+     "hu": "Tervezz gépi tanulási projektet, amely segítene valakinek a környezetedben: milyen adatokból tanul a modell, hogyan teszteled, és mit írsz a modellkártyájára arról, mikor nem szabad megbízni benne. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -4104,18 +3923,6 @@
       "en": "Success is measured on data the model didn’t see during training, and not just overall, but for each class or group separately.",
       "sk": "Úspech sa meria na dátach, ktoré model pri tréningu nevidel, a nielen celkovo, ale pre každú triedu alebo skupinu zvlášť.",
       "hu": "A sikert olyan adatokon mérjük, amelyeket a modell a tanítás során nem látott, és nemcsak összesítve, hanem minden osztályra vagy csoportra külön."
-     },
-     {
-      "cs": "Přesnost sama nestačí: u vzácných věcí a u rozhodování o lidech záleží, koho model mine a co se stane při chybě.",
-      "en": "Accuracy alone isn’t enough: for rare things and for decisions about people, it matters whom the model misses and what happens when it makes a mistake.",
-      "sk": "Presnosť sama nestačí: pri zriedkavých veciach a pri rozhodovaní o ľuďoch záleží na tom, koho model minie a čo sa stane pri chybe.",
-      "hu": "A pontosság önmagában nem elég: ritka dolgoknál és emberekről szóló döntéseknél számít, kit téveszt el a modell, és mi történik hiba esetén."
-     },
-     {
-      "cs": "Data od lidí, fotky a hlasy jen se souhlasem. Citlivé údaje do modelu nepatří.",
-      "en": "Data from people, photos and voices only with consent. Sensitive information doesn’t belong in a model.",
-      "sk": "Dáta od ľudí, fotky a hlasy len so súhlasom. Citlivé údaje do modelu nepatria.",
-      "hu": "Emberektől származó adatok, fotók és hangok csak beleegyezéssel. Érzékeny adatok nem valók a modellbe."
      },
      {
       "cs": "Karta modelu poctivě říká, kdy modelu nevěřit, a rozhodnutí i odpovědnost zůstávají u člověka.",
@@ -4304,10 +4111,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Napiš plán vlastní mini-CTF (nebo jiného bezpečnostního projektu) pro svou třídu nebo kroužek. Popiš, pro koho je, jakých pět úloh obsahuje a co se hráč v každé naučí. Jednu úlohu rozepiš celou od zadání po vlajku. Napiš, jak úlohy otestuješ a jaká pravidla zajistí, že je všechno bezpečné a legální.",
-     "en": "Write a plan for your own mini-CTF (or another security project) for your class or club. Describe who it’s for, which five tasks it contains and what the player learns in each one. Write out one task in full, from the brief to the flag. Write how you’ll test the tasks and which rules make sure everything is safe and legal.",
-     "sk": "Napíš plán vlastnej mini-CTF (alebo iného bezpečnostného projektu) pre svoju triedu alebo krúžok. Opíš, pre koho je, akých päť úloh obsahuje a čo sa hráč v každej naučí. Jednu úlohu rozpíš celú od zadania po vlajku. Napíš, ako úlohy otestuješ a aké pravidlá zabezpečia, že je všetko bezpečné a legálne.",
-     "hu": "Írd meg a saját mini-CTF-ed (vagy más biztonsági projekted) tervét az osztályodnak vagy a szakkörödnek. Írd le, kinek szól, milyen öt feladatot tartalmaz, és mit tanul meg a játékos mindegyikben. Egy feladatot írj le teljesen, a feladványtól a zászlóig. Írd le, hogyan teszteled a feladatokat, és milyen szabályok biztosítják, hogy minden biztonságos és legális legyen."
+     "cs": "Napiš plán mini-CTF pro svůj kroužek nebo třídu: jaké úlohy v ní budou, co se v nich hráči naučí a jaká pravidla zajistí, že je všechno bezpečné a legální. Stačí krátký plán na pět až osm vět.",
+     "en": "Write a plan for a mini-CTF for your club or class: what challenges it will have, what the players learn from them, and what rules make sure everything is safe and legal. A short plan of five to eight sentences is enough.",
+     "sk": "Napíš plán mini-CTF pre svoj krúžok alebo triedu: aké úlohy v nej budú, čo sa v nich hráči naučia a aké pravidlá zaistia, že je všetko bezpečné a legálne. Stačí krátky plán na päť až osem viet.",
+     "hu": "Írd meg egy mini-CTF tervét a szakkörödnek vagy az osztályodnak: milyen feladatok lesznek benne, mit tanulnak belőlük a játékosok, és milyen szabályok biztosítják, hogy minden biztonságos és legális legyen. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -4323,28 +4130,10 @@
       "hu": "A feladatnak egyértelmű megoldása van: a ZASZLO{…} alakú zászlóhoz logikus eljárás vezet, nem véletlen találgatás."
      },
      {
-      "cs": "Obtížnost roste postupně a ke každé úloze jsou nápovědy, aby se nikdo nezasekl nadobro.",
-      "en": "The difficulty grows step by step and each task has hints, so nobody gets stuck for good.",
-      "sk": "Obtiažnosť rastie postupne a ku každej úlohe sú nápovedy, aby sa nikto nezasekol nadobro.",
-      "hu": "A nehézség fokozatosan nő, és minden feladathoz vannak tippek, hogy senki ne akadjon el végleg."
-     },
-     {
       "cs": "Všechna data jsou smyšlená a útočí se jen na připravené úlohy, nikdy na skutečné účty, weby nebo lidi.",
       "en": "All the data are made up and only the prepared tasks are attacked, never real accounts, websites or people.",
       "sk": "Všetky dáta sú vymyslené a útočí sa len na pripravené úlohy, nikdy na skutočné účty, weby alebo ľudí.",
       "hu": "Minden adat kitalált, és csak az előkészített feladatokat támadják, soha nem valódi fiókokat, weboldalakat vagy embereket."
-     },
-     {
-      "cs": "Úlohy otestuje někdo, kdo je neviděl vznikat, a plán počítá s jejich úpravou podle výsledku.",
-      "en": "The tasks are tested by someone who didn’t see them being made, and the plan allows for changing them based on the result.",
-      "sk": "Úlohy otestuje niekto, kto nevidel, ako vznikali, a plán počíta s ich úpravou podľa výsledku.",
-      "hu": "A feladatokat olyasvalaki teszteli, aki nem látta, hogyan készültek, és a terv számol azzal, hogy az eredmény alapján módosítani kell őket."
-     },
-     {
-      "cs": "Projekt ukazuje hráčům další krok ve skutečném světě: CyberChef, knihovna úloh CyLab nebo Kybersoutěž.",
-      "en": "The project shows players the next step in the real world: CyberChef, the CyLab challenge library or Kybersoutěž.",
-      "sk": "Projekt ukazuje hráčom ďalší krok v skutočnom svete: CyberChef, knižnica úloh CyLab alebo Kybersoutěž.",
-      "hu": "A projekt megmutatja a játékosoknak a következő lépést a valódi világban: CyberChef, a CyLab feladattára vagy Kybersoutěž."
      }
     ]
    },
@@ -4527,10 +4316,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Navrhni plán vlastní hry, kterou postavíš za dva týdny. Jaká je jedna hlavní mechanika a proč bude bavit? V jakém nástroji hru postavíš a co bude hotové po prvních třech dnech? Jak bude fungovat herní smyčka a pohyb, aby hra běžela stejně na pomalém i rychlém počítači? Jaké stavy má postava nebo nepřítel a jak zkontroluješ, že žádná šipka nechybí? Jak otestuješ kolize, včetně nejrychlejšího objektu? Používá hra náhodu, a pokud ano, jak bude férová a jak chybu zopakuješ? Jak poznáš, že obtížnost sedí, a jak hru bezpečně zveřejníš?",
-     "en": "Design a plan for your own game that you will build in two weeks. What is the one main mechanic and why will it be fun? Which tool will you build the game in and what will be finished after the first three days? How will the game loop and movement work so that the game runs the same on a slow and a fast computer? What states does the character or enemy have and how will you check that no arrow is missing? How will you test collisions, including the fastest object? Does the game use randomness, and if so, how will it be fair and how will you reproduce a bug? How will you know the difficulty is right, and how will you publish the game safely?",
-     "sk": "Navrhni plán vlastnej hry, ktorú postavíš za dva týždne. Aká je jedna hlavná mechanika a prečo bude baviť? V akom nástroji hru postavíš a čo bude hotové po prvých troch dňoch? Ako bude fungovať herná slučka a pohyb, aby hra bežala rovnako na pomalom aj rýchlom počítači? Aké stavy má postava alebo nepriateľ a ako skontroluješ, že žiadna šípka nechýba? Ako otestuješ kolízie vrátane najrýchlejšieho objektu? Používa hra náhodu, a ak áno, ako bude férová a ako chybu zopakuješ? Ako spoznáš, že obtiažnosť sedí, a ako hru bezpečne zverejníš?",
-     "hu": "Tervezd meg a saját játékodat, amelyet két hét alatt építesz meg. Mi az az egy fő mechanika, és miért lesz szórakoztató? Milyen eszközben építed meg a játékot, és mi lesz kész az első három nap után? Hogyan működik majd a játékciklus és a mozgás, hogy a játék ugyanúgy fusson lassú és gyors számítógépen? Milyen állapotai vannak a figurának vagy az ellenségnek, és hogyan ellenőrzöd, hogy egyetlen nyíl sem hiányzik? Hogyan teszteled az ütközéseket, a leggyorsabb tárgyat is beleértve? Használ a játék véletlent, és ha igen, hogyan lesz tisztességes, és hogyan ismétled meg a hibát? Honnan tudod, hogy a nehézség rendben van, és hogyan teszed közzé biztonságosan a játékot?"
+     "cs": "Navrhni hru, kterou postavíš za dva týdny: jaká je její jedna hlavní mechanika, co bude hotové po prvních třech dnech a jak zajistíš, aby pohyb a kolize fungovaly stejně na pomalém i rychlém počítači. Stačí krátký plán na pět až osm vět.",
+     "en": "Design a game you will build in two weeks: what its one main mechanic is, what will be finished after the first three days, and how you will make movement and collisions work the same on a slow and a fast computer. A short plan of five to eight sentences is enough.",
+     "sk": "Navrhni hru, ktorú postavíš za dva týždne: aká je jej jedna hlavná mechanika, čo bude hotové po prvých troch dňoch a ako zaistíš, aby pohyb a kolízie fungovali rovnako na pomalom aj rýchlom počítači. Stačí krátky plán na päť až osem viet.",
+     "hu": "Tervezz játékot, amelyet két hét alatt megépítesz: mi az egyetlen fő mechanikája, mi lesz kész az első három nap után, és hogyan éred el, hogy a mozgás és az ütközések lassú és gyors gépen is ugyanúgy működjenek. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -4550,24 +4339,6 @@
       "en": "Collisions are tested in advance and deliberately at the edges: touching at the edge, both axes, and the speed at which an object could fly through.",
       "sk": "Kolízie sa testujú vopred a zámerne na okrajoch: dotyk hranou, obe osi a rýchlosť, pri ktorej by objekt mohol preletieť.",
       "hu": "Az ütközéseket előre és szándékosan a határeseteken teszteljük: széllel érintkezés, mindkét tengely és az a sebesség, amelynél a tárgy átrepülhetne."
-     },
-     {
-      "cs": "Chování postavy je stavový automat a každý stav má cestu ven pro každou událost.",
-      "en": "The character’s behaviour is a state machine, and every state has a way out for every event.",
-      "sk": "Správanie postavy je stavový automat a každý stav má cestu von pre každú udalosť.",
-      "hu": "A figura viselkedése állapotautomata, és minden állapotból minden eseményre van kivezető út."
-     },
-     {
-      "cs": "Náhoda se semínkem jde zopakovat a dá se omezit, aby nevyrobila nehratelnou úroveň.",
-      "en": "Randomness with a seed can be repeated and can be limited so that it doesn’t create an unplayable level.",
-      "sk": "Náhoda so semienkom sa dá zopakovať a dá sa obmedziť, aby nevyrobila nehrateľnú úroveň.",
-      "hu": "A maggal működő véletlen megismételhető, és korlátozható, hogy ne hozzon létre játszhatatlan pályát."
-     },
-     {
-      "cs": "Obtížnost se ladí podle hráčů, kteří hru neznají, a zveřejňuje se pod přezdívkou s vědomím rodiče.",
-      "en": "Difficulty is tuned with players who don’t know the game, and the game is published under a nickname with a parent’s knowledge.",
-      "sk": "Obtiažnosť sa ladí podľa hráčov, ktorí hru nepoznajú, a zverejňuje sa pod prezývkou s vedomím rodiča.",
-      "hu": "A nehézséget olyan játékosok alapján hangoljuk, akik nem ismerik a játékot, és becenév alatt, szülői tudtával tesszük közzé."
      }
     ]
    },
@@ -4750,10 +4521,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Naplánuj vlastního robota pro soutěž nebo pro svůj pokoj. Jaký má úkol a jaké senzory a motory použije? Napiš jeho rozhodovací tabulku nebo pravidla, včetně situace, kdy senzory nic nevidí. Co si musí pamatovat a proč? Jak rychle smí jet nebo jak často musí měřit? Jak ho otestuješ (aspoň pět testů, z toho dva záludné) a co uděláš, když test selže?",
-     "en": "Plan your own robot for a competition or for your room. What is its task, and which sensors and motors will it use? Write its decision table or rules, including the situation when the sensors see nothing. What does it have to remember, and why? How fast can it go, or how often does it have to measure? How will you test it (at least five tests, two of them tricky), and what will you do when a test fails?",
-     "sk": "Naplánuj vlastného robota pre súťaž alebo pre svoju izbu. Akú má úlohu a aké senzory a motory použije? Napíš jeho rozhodovaciu tabuľku alebo pravidlá, vrátane situácie, keď senzory nič nevidia. Čo si musí pamätať a prečo? Ako rýchlo smie ísť alebo ako často musí merať? Ako ho otestuješ (aspoň päť testov, z toho dva záludné) a čo urobíš, keď test zlyhá?",
-     "hu": "Tervezd meg a saját robotodat versenyre vagy a szobádba. Mi a feladata, és milyen érzékelőket és motorokat használ? Írd le a döntési táblázatát vagy a szabályait, azzal a helyzettel együtt, amikor az érzékelők semmit sem látnak. Mit kell megjegyeznie, és miért? Milyen gyorsan mehet, vagy milyen gyakran kell mérnie? Hogyan teszteled (legalább öt teszt, ebből kettő trükkös), és mit teszel, ha egy teszt nem sikerül?"
+     "cs": "Naplánuj robota pro soutěž nebo pro svůj pokoj: jaký má úkol, podle jakých pravidel se rozhoduje (i když senzory nic nevidí) a jak ho otestuješ. Stačí krátký plán na pět až osm vět.",
+     "en": "Plan a robot for a competition or for your room: what its task is, what rules it decides by (including when the sensors see nothing), and how you will test it. A short plan of five to eight sentences is enough.",
+     "sk": "Naplánuj robota pre súťaž alebo pre svoju izbu: akú má úlohu, podľa akých pravidiel sa rozhoduje (aj keď senzory nič nevidia) a ako ho otestuješ. Stačí krátky plán na päť až osem viet.",
+     "hu": "Tervezz robotot versenyre vagy a szobádba: mi a feladata, milyen szabályok szerint dönt (akkor is, amikor az érzékelők semmit sem látnak), és hogyan teszteled. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -4767,24 +4538,6 @@
       "en": "The decision table covers all combinations of the sensors, including the one when they see nothing.",
       "sk": "Rozhodovacia tabuľka pokrýva všetky kombinácie senzorov, aj tú, keď nevidia nič.",
       "hu": "A döntési táblázat lefedi az érzékelők összes kombinációját, azt is, amikor semmit sem látnak."
-     },
-     {
-      "cs": "Paměť (proměnná se stavem) řeší situace, kdy senzory samy nestačí: ztracená čára, poslední náraz, noha nahoře nebo dole.",
-      "en": "Memory (a variable holding a state) handles situations where the sensors alone aren’t enough: a lost line, the last bump, a foot up or down.",
-      "sk": "Pamäť (premenná so stavom) rieši situácie, keď senzory samy nestačia: stratená čiara, posledný náraz, noha hore alebo dole.",
-      "hu": "A memória (egy állapotot tároló változó) azokat a helyzeteket oldja meg, amikor az érzékelők önmagukban nem elegek: elveszett vonal, utolsó ütközés, láb fent vagy lent."
-     },
-     {
-      "cs": "Dva prahy s pásmem mezi nimi brání cukání a blikání na hraně.",
-      "en": "Two thresholds with a band between them stop jerking and flickering at the edge.",
-      "sk": "Dva prahy s pásmom medzi nimi bránia trhaniu a blikaniu na hrane.",
-      "hu": "Két küszöb a köztük lévő sávval megakadályozza a rángatást és a villogást a határon."
-     },
-     {
-      "cs": "Co se stane mezi dvěma měřeními, to robot nevidí: rychlost a frekvence měření spolu souvisí.",
-      "en": "Whatever happens between two measurements, the robot doesn’t see: speed and how often you measure are linked.",
-      "sk": "Čo sa stane medzi dvoma meraniami, to robot nevidí: rýchlosť a frekvencia merania spolu súvisia.",
-      "hu": "Ami két mérés között történik, azt a robot nem látja: a sebesség és a mérési gyakoriság összefügg."
      },
      {
       "cs": "Testy se píšou předem jako vstup a očekávané chování, včetně okrajových případů, a mění se vždy jen jedna věc.",
@@ -4973,10 +4726,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Popiš plán svého webu do 100 kB. Pro koho je a co na něm návštěvník najde? Jak vypadá osnova nadpisů a mapa stránek? Kolik kilobajtů a požadavků čekáš a čím ušetříš u obrázků, písma a JavaScriptu? Jak zajistíš, že web použije i člověk se čtečkou obrazovky nebo jen s klávesnicí? Kde bude bydlet, jak ho otestuješ s jiným člověkem a podle čeho poznáš, že je hotový?",
-     "en": "Describe the plan for your website under 100 kB. Who is it for and what will visitors find on it? What do the heading outline and the site map look like? How many kilobytes and requests do you expect, and how will you save on images, fonts and JavaScript? How will you make sure the website can be used by a person with a screen reader or with just a keyboard? Where will it live, how will you test it with another person and how will you know it’s finished?",
-     "sk": "Opíš plán svojho webu do 100 kB. Pre koho je a čo na ňom návštevník nájde? Ako vyzerá osnova nadpisov a mapa stránok? Koľko kilobajtov a požiadaviek čakáš a čím ušetríš pri obrázkoch, písme a JavaScripte? Ako zabezpečíš, že web použije aj človek s čítačkou obrazovky alebo len s klávesnicou? Kde bude bývať, ako ho otestuješ s iným človekom a podľa čoho spoznáš, že je hotový?",
-     "hu": "Írd le a 100 kB alatti weboldalad tervét. Kinek szól, és mit talál rajta a látogató? Hogy néz ki a címsorok vázlata és az oldaltérkép? Hány kilobájtra és kérésre számítasz, és mivel spórolsz a képeknél, a betűtípusnál és a JavaScriptnél? Hogyan biztosítod, hogy az oldalt képernyőolvasóval vagy csak billentyűzettel is lehessen használni? Hol lesz a tárhelye, hogyan teszteled egy másik emberrel, és miből tudod, hogy kész?"
+     "cs": "Popiš plán svého webu do 100 kB: pro koho je, čím ušetříš kilobajty a jak zajistíš, že ho zvládne i člověk se čtečkou obrazovky nebo jen s klávesnicí. Stačí krátký plán na pět až osm vět.",
+     "en": "Describe the plan for your website under 100 kB: who it is for, how you will save kilobytes, and how you will make sure that someone with a screen reader or only a keyboard can use it too. A short plan of five to eight sentences is enough.",
+     "sk": "Opíš plán svojho webu do 100 kB: pre koho je, čím ušetríš kilobajty a ako zaistíš, že ho zvládne aj človek s čítačkou obrazovky alebo len s klávesnicou. Stačí krátky plán na päť až osem viet.",
+     "hu": "Írd le a 100 kB alatti weboldalad tervét: kinek szól, mivel spórolsz kilobájtokat, és hogyan biztosítod, hogy képernyőolvasóval vagy csak billentyűzettel is használható legyen. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -4996,24 +4749,6 @@
       "en": "Accessibility starts with correct HTML: a heading outline, alt, label, button and a contrast of at least 4.5 : 1.",
       "sk": "Prístupnosť začína správnym HTML: osnova nadpisov, alt, label, button a kontrast aspoň 4,5 : 1.",
       "hu": "Az akadálymentesség helyes HTML-lel kezdődik: címsorvázlat, alt, label, button és legalább 4,5 : 1 kontraszt."
-     },
-     {
-      "cs": "Web bez cizích domén nesleduje návštěvníky a načítá se rychleji.",
-      "en": "A website without third-party domains doesn’t track visitors and loads faster.",
-      "sk": "Web bez cudzích domén nesleduje návštevníkov a načítava sa rýchlejšie.",
-      "hu": "Az idegen domainek nélküli oldal nem követi a látogatókat, és gyorsabban töltődik be."
-     },
-     {
-      "cs": "Hosting zdarma dává adresu i https, osobní údaje na web nepatří.",
-      "en": "Free hosting gives you an address and https, and personal details don’t belong on the website.",
-      "sk": "Hosting zadarmo dáva adresu aj https, osobné údaje na web nepatria.",
-      "hu": "Az ingyenes tárhely címet és https-t is ad, személyes adatok nem valók a weboldalra."
-     },
-     {
-      "cs": "Hotovo je, když to potvrdí měření v F12 a test s jiným člověkem, ne když se ti to líbí.",
-      "en": "It’s done when measurements in F12 and a test with another person confirm it, not when you like it.",
-      "sk": "Hotovo je, keď to potvrdí meranie v F12 a test s iným človekom, nie keď sa ti to páči.",
-      "hu": "Akkor van kész, amikor az F12-es mérés és a másik emberrel végzett teszt igazolja, nem akkor, amikor neked tetszik."
      }
     ]
    },
@@ -5196,10 +4931,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Navrhni vlastní appku pro skutečnou skupinu lidí ve svém okolí. Jaký problém řeší (jednou větou) a pro koho? Jaké budou tři hlavní obrazovky a co postavíš jako první? Jaká data bude ukládat a v jakém tvaru, aby vydržela výpadek signálu i dvojí odeslání? Jaké stavy má a jak otestuješ každý přechod? Kdo smí co vidět a měnit a jaká oprávnění appka nepotřebuje? Jak ji otestuješ s lidmi a podle jakého čísla poznáš, že je dost dobrá? A když ti část kódu napíše AI, jak ověříš, že funguje?",
-     "en": "Design your own app for a real group of people around you. What problem does it solve (in one sentence), and for whom? What will its three main screens be, and what will you build first? What data will it save, and in what form, so that it survives a lost signal and double sending? What states does it have, and how will you test each transition? Who is allowed to see and change what, and which permissions does the app not need? How will you test it with people, and which number will tell you it’s good enough? And if AI writes part of the code for you, how will you check that it works?",
-     "sk": "Navrhni vlastnú apku pre skutočnú skupinu ľudí vo svojom okolí. Aký problém rieši (jednou vetou) a pre koho? Aké budú tri hlavné obrazovky a čo postavíš ako prvé? Aké dáta bude ukladať a v akom tvare, aby vydržali výpadok signálu aj dvojité odoslanie? Aké stavy má a ako otestuješ každý prechod? Kto smie čo vidieť a meniť a aké oprávnenia apka nepotrebuje? Ako ju otestuješ s ľuďmi a podľa akého čísla spoznáš, že je dosť dobrá? A keď ti časť kódu napíše AI, ako overíš, že funguje?",
-     "hu": "Tervezz saját appot egy valódi csoportnak a környezetedben. Milyen problémát old meg (egy mondatban), és kinek? Mi lesz a három fő képernyő, és mit építesz meg elsőként? Milyen adatokat tárol és milyen formában, hogy kibírják a térerő-kiesést és a kétszeri küldést is? Milyen állapotai vannak, és hogyan teszteled az egyes átmeneteket? Ki mit láthat és módosíthat, és milyen engedélyekre nincs szüksége az appnak? Hogyan teszteled emberekkel, és melyik számból tudod meg, hogy elég jó? És ha a kód egy részét MI írja neked, hogyan ellenőrzöd, hogy működik?"
+     "cs": "Navrhni appku pro skutečnou skupinu lidí kolem sebe: jaký problém řeší, jaká data bude ukládat a kdo smí co vidět a měnit. Stačí krátký plán na pět až osm vět.",
+     "en": "Design an app for a real group of people around you: what problem it solves, what data it will store, and who may see and change what. A short plan of five to eight sentences is enough.",
+     "sk": "Navrhni apku pre skutočnú skupinu ľudí okolo seba: aký problém rieši, aké dáta bude ukladať a kto smie čo vidieť a meniť. Stačí krátky plán na päť až osem viet.",
+     "hu": "Tervezz appot egy valódi csoportnak a környezetedben: milyen problémát old meg, milyen adatokat tárol, és ki mit láthat és módosíthat. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -5215,28 +4950,10 @@
       "hu": "Az adatok eseménybejegyzések (kiadások, befizetések) egyedi ID-vel, amelyekből az állapot kiszámolható, nem felülírt összegek."
      },
      {
-      "cs": "Výslovně vyjmenované stavy appky včetně „bez internetu“ a test vstup a očekávaný výstup pro každý přechod.",
-      "en": "The app’s states listed explicitly, including “no internet”, and an input-and-expected-output test for every transition.",
-      "sk": "Výslovne vymenované stavy apky vrátane „bez internetu“ a test vstup a očakávaný výstup pre každý prechod.",
-      "hu": "Az app állapotai kifejezetten felsorolva, a „nincs internet” állapotot is beleértve, és minden átmenethez teszt bemenettel és elvárt kimenettel."
-     },
-     {
       "cs": "Role a nejmenší potřebná práva: kdo vidí a mění čí data, žádná oprávnění navíc a žádné zbytečné osobní údaje.",
       "en": "Roles and the least rights needed: who sees and changes whose data, no extra permissions and no unnecessary personal data.",
       "sk": "Roly a najmenšie potrebné práva: kto vidí a mení čie dáta, žiadne oprávnenia navyše a žiadne zbytočné osobné údaje.",
       "hu": "Szerepek és a legkisebb szükséges jogosultság: ki látja és módosítja kinek az adatait, semmi fölösleges engedély és semmi fölösleges személyes adat."
-     },
-     {
-      "cs": "Test použitelnosti v kolech po pěti lidech s měřitelným cílem: kolik lidí zvládne úkol bez pomoci a za jak dlouho.",
-      "en": "Usability testing in rounds of five people with a measurable goal: how many people manage the task without help, and how long it takes.",
-      "sk": "Test použiteľnosti v kolách po piatich ľuďoch s merateľným cieľom: koľko ľudí zvládne úlohu bez pomoci a za ako dlho.",
-      "hu": "Használhatósági teszt ötfős körökben, mérhető céllal: hány ember oldja meg a feladatot segítség nélkül, és mennyi idő alatt."
-     },
-     {
-      "cs": "Kód od AI jen s vysvětlením a vlastními testy okrajových případů; odpovědnost zůstává na tobě.",
-      "en": "Code from AI only with an explanation and your own tests of edge cases; the responsibility stays with you.",
-      "sk": "Kód od AI len s vysvetlením a vlastnými testami okrajových prípadov; zodpovednosť zostáva na tebe.",
-      "hu": "MI-től származó kód csak magyarázattal és saját, szélső esetekre írt tesztekkel; a felelősség a tiéd marad."
      }
     ]
    },
@@ -5419,17 +5136,17 @@
    },
    "boss": {
     "q": {
-     "cs": "Naplánuj vlastní tvůrčí projekt, třeba krátký klip, sadu pixelových postav, generativní plakát, 3D maskota nebo hudbu ke hře. Popiš, co vytvoříš a pro koho. Jaký vizuální jazyk zvolíš a co vědomě vynecháš? Které části uděláš vlastní rukou, které kódem a které s AI, a proč? V jakém formátu a jak velký bude výsledek (spočítej to)? Jaké cizí kousky použiješ, pod jakou licencí a jak je uvedeš? Jak zkontroluješ, že výstup AI neopakuje stereotyp? A kde a jak dílo bezpečně ukážeš?",
-     "en": "Plan your own creative project, for example a short clip, a set of pixel characters, a generative poster, a 3D mascot or music for a game. Describe what you will make and who it is for. What visual language will you choose and what will you leave out on purpose? Which parts will you do by hand, which with code and which with AI, and why? In what format and how big will the result be (work it out)? Which pieces by other people will you use, under what licence, and how will you credit them? How will you check that the AI output does not repeat a stereotype? And where and how will you show the work safely?",
-     "sk": "Naplánuj vlastný tvorivý projekt, napríklad krátky klip, sadu pixelových postáv, generatívny plagát, 3D maskota alebo hudbu k hre. Opíš, čo vytvoríš a pre koho. Aký vizuálny jazyk zvolíš a čo vedome vynecháš? Ktoré časti urobíš vlastnou rukou, ktoré kódom a ktoré s AI, a prečo? V akom formáte a aký veľký bude výsledok (vypočítaj to)? Aké cudzie kúsky použiješ, pod akou licenciou a ako ich uvedieš? Ako skontroluješ, že výstup AI neopakuje stereotyp? A kde a ako dielo bezpečne ukážeš?",
-     "hu": "Tervezd meg a saját alkotói projektedet, például egy rövid klipet, pixeles figurák sorozatát, generatív plakátot, 3D kabalát vagy zenét egy játékhoz. Írd le, mit készítesz és kinek. Milyen vizuális nyelvet választasz, és mit hagysz ki tudatosan? Mely részeket csinálod saját kézzel, melyeket kóddal és melyeket MI-vel, és miért? Milyen formátumú és mekkora lesz az eredmény (számold ki)? Milyen idegen darabokat használsz, milyen licenccel, és hogyan tünteted fel őket? Hogyan ellenőrzöd, hogy az MI eredménye nem ismétel sztereotípiát? És hol és hogyan mutatod meg biztonságosan az alkotást?"
+     "cs": "Naplánuj tvůrčí projekt, třeba klip, pixelové postavy nebo hudbu ke hře: co vytvoříš a pro koho, co uděláš vlastní rukou a co s AI a jak uvedeš cizí kousky a jejich licence. Stačí krátký plán na pět až osm vět.",
+     "en": "Plan a creative project, such as a clip, pixel characters or music for a game: what you will make and for whom, what you will do by hand and what with AI, and how you will credit other people's pieces and their licences. A short plan of five to eight sentences is enough.",
+     "sk": "Naplánuj tvorivý projekt, napríklad klip, pixelové postavy alebo hudbu k hre: čo vytvoríš a pre koho, čo urobíš vlastnou rukou a čo s AI a ako uvedieš cudzie kúsky a ich licencie. Stačí krátky plán na päť až osem viet.",
+     "hu": "Tervezz alkotói projektet, például klipet, pixeles figurákat vagy zenét egy játékhoz: mit készítesz és kinek, mit csinálsz saját kézzel és mit az MI-vel, és hogyan tünteted fel mások alkotásait és azok licencét. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
-      "cs": "Vizuální jazyk je výběr: dobré dílo vědomě vynechává (omezená paleta, jednoduché tvary) a ví proč.",
-      "en": "Visual language is a choice: good work leaves things out on purpose (a limited palette, simple shapes) and knows why.",
-      "sk": "Vizuálny jazyk je výber: dobré dielo vedome vynecháva (obmedzená paleta, jednoduché tvary) a vie prečo.",
-      "hu": "A vizuális nyelv választás: a jó alkotás tudatosan kihagy (korlátozott paletta, egyszerű formák), és tudja, miért."
+      "cs": "Dílo je konkrétní: je jasné, co vznikne a pro koho.",
+      "en": "The work is concrete: it is clear what will be made and for whom.",
+      "sk": "Dielo je konkrétne: je jasné, čo vznikne a pre koho.",
+      "hu": "A mű konkrét: világos, mi készül és kinek."
      },
      {
       "cs": "Dělba práce mezi ruku, kód a AI má důvod a v titulcích je poctivě přiznaná.",
@@ -5438,28 +5155,10 @@
       "hu": "A munka elosztásának a kéz, a kód és az MI között oka van, és a stáblistában becsületesen fel van tüntetve."
      },
      {
-      "cs": "Velikost souboru se dá spočítat předem z rozlišení, délky a datového toku (pozor na bity a bajty).",
-      "en": "The file size can be worked out in advance from the resolution, length and bitrate (watch out for bits and bytes).",
-      "sk": "Veľkosť súboru sa dá vypočítať vopred z rozlíšenia, dĺžky a dátového toku (pozor na bity a bajty).",
-      "hu": "A fájlméret előre kiszámolható a felbontásból, a hosszból és az adatsebességből (figyelj a bitekre és a bájtokra)."
-     },
-     {
       "cs": "Každý cizí kousek má licenci, podle které ho smíš použít, upravit, nebo nesmíš. Dílek SA se přenese i na tvůj výsledek.",
       "en": "Every piece by someone else has a licence that says whether you may use it, change it, or not. The SA part carries over to your result too.",
       "sk": "Každý cudzí kúsok má licenciu, podľa ktorej ho smieš použiť, upraviť, alebo nesmieš. Dielik SA sa prenesie aj na tvoj výsledok.",
       "hu": "Minden idegen darabnak van licence, amely szerint felhasználhatod, módosíthatod, vagy nem szabad. Az SA elem a te eredményedre is átszáll."
-     },
-     {
-      "cs": "Generátor stereotypy z dat zesiluje, proto se jeho výstup kontroluje na víc pokusech a opravuje.",
-      "en": "A generator amplifies stereotypes from its data, so its output is checked over several tries and corrected.",
-      "sk": "Generátor stereotypy z dát zosilňuje, preto sa jeho výstup kontroluje na viacerých pokusoch a opravuje.",
-      "hu": "A generátor felerősíti az adatokban lévő sztereotípiákat, ezért az eredményét több próbálkozáson ellenőrzik és javítják."
-     },
-     {
-      "cs": "Sdílení dodržuje věkové limity a chrání i spolužáky, kteří jsou na fotkách nebo v titulcích.",
-      "en": "Sharing respects age limits and also protects classmates who appear in photos or in the credits.",
-      "sk": "Zdieľanie dodržiava vekové limity a chráni aj spolužiakov, ktorí sú na fotkách alebo v titulkoch.",
-      "hu": "A megosztás betartja a korhatárokat, és védi azokat az osztálytársakat is, akik a fotókon vagy a stáblistában szerepelnek."
      }
     ]
    },
@@ -5642,10 +5341,10 @@
    },
    "boss": {
     "q": {
-     "cs": "Navrhni vlastní projekt, který lidem kolem tebe pomůže zacházet se sociálními sítěmi chytřeji. Může to být spravedlivý feed, ověřovací průvodce pro třídu, očkovací hra, video o tom, jak funguje bublina, nebo vylepšení článků na Wikipedii. Popiš: pro koho projekt je a jaký problém řeší, co přesně vytvoříš a v jakém nástroji, jaké kroky tě čekají, jak poznáš, že projekt opravdu funguje (co změříš nebo otestuješ), a jak ochráníš soukromí a bezpečí sebe i ostatních.",
-     "en": "Design your own project that helps people around you use social media more wisely. It could be a fair feed, a fact-checking guide for your class, a vaccine game, a video about how a bubble works, or improving articles on Wikipedia. Describe: who the project is for and what problem it solves, what exactly you will create and in which tool, what steps lie ahead of you, how you will know the project really works (what you will measure or test), and how you will protect your own privacy and safety and that of others.",
-     "sk": "Navrhni vlastný projekt, ktorý ľuďom okolo teba pomôže zaobchádzať so sociálnymi sieťami múdrejšie. Môže to byť spravodlivý feed, overovací sprievodca pre triedu, očkovacia hra, video o tom, ako funguje bublina, alebo vylepšenie článkov na Wikipédii. Opíš: pre koho projekt je a aký problém rieši, čo presne vytvoríš a v akom nástroji, aké kroky ťa čakajú, ako spoznáš, že projekt naozaj funguje (čo zmeriaš alebo otestuješ), a ako ochrániš súkromie a bezpečie seba aj ostatných.",
-     "hu": "Tervezz saját projektet, amely segít a körülötted élőknek okosabban bánni a közösségi médiával. Lehet ez igazságos hírfolyam, ellenőrzési útmutató az osztálynak, oltójáték, videó arról, hogyan működik a buborék, vagy Wikipédia-szócikkek feljavítása. Írd le: kinek szól a projekt és milyen problémát old meg, pontosan mit hozol létre és milyen eszközzel, milyen lépések várnak rád, honnan tudod meg, hogy a projekt tényleg működik (mit mérsz vagy tesztelsz), és hogyan véded a saját és mások magánszféráját és biztonságát."
+     "cs": "Navrhni projekt, který lidem kolem tebe pomůže zacházet se sociálními sítěmi chytřeji: pro koho je, co přesně vytvoříš a jak poznáš, že opravdu funguje. Stačí krátký plán na pět až osm vět.",
+     "en": "Design a project that helps people around you use social media more wisely: who it is for, what exactly you will make, and how you will know that it really works. A short plan of five to eight sentences is enough.",
+     "sk": "Navrhni projekt, ktorý ľuďom okolo teba pomôže narábať so sociálnymi sieťami múdrejšie: pre koho je, čo presne vytvoríš a ako spoznáš, že naozaj funguje. Stačí krátky plán na päť až osem viet.",
+     "hu": "Tervezz projektet, amely segít a környezetedben élőknek okosabban bánni a közösségi médiával: kinek szól, mit készítesz pontosan, és honnan tudod, hogy tényleg működik. Elég egy rövid, öt-nyolc mondatos terv."
     },
     "hints": [
      {
@@ -5665,24 +5364,6 @@
       "en": "A measurable success criterion and a test planned in advance: what exactly should change after the project, and how you will check it on a small sample.",
       "sk": "Merateľné kritérium úspechu a test vopred: čo presne sa má po projekte zmeniť a ako to overíš na malej vzorke.",
       "hu": "Mérhető sikerfeltétel és előzetes teszt: pontosan minek kell megváltoznia a projekt után, és hogyan ellenőrzöd ezt egy kis mintán."
-     },
-     {
-      "cs": "Myšlení v pravděpodobnostech a omylech: projekt počítá s tím, že se nástroj nebo člověk spletou, a má druhou nezávislou kontrolu.",
-      "en": "Thinking in probabilities and mistakes: the project counts on the tool or a person getting it wrong and has a second independent check.",
-      "sk": "Myslenie v pravdepodobnostiach a omyloch: projekt počíta s tým, že sa nástroj alebo človek pomýli, a má druhú nezávislú kontrolu.",
-      "hu": "Valószínűségekben és tévedésekben való gondolkodás: a projekt számol azzal, hogy az eszköz vagy az ember téved, és van egy második, független ellenőrzés."
-     },
-     {
-      "cs": "Bezpečí a soukromí: žádné osobní údaje, fotky ani zprávy jiných lidí bez souhlasu, práce v moderovaném prostředí nebo s dospělým.",
-      "en": "Safety and privacy: no personal details, photos or messages of other people without their consent, working in a moderated space or with an adult.",
-      "sk": "Bezpečie a súkromie: žiadne osobné údaje, fotky ani správy iných ľudí bez súhlasu, práca v moderovanom prostredí alebo s dospelým.",
-      "hu": "Biztonság és magánszféra: semmi személyes adat, más emberek fotói vagy üzenetei beleegyezés nélkül, munka moderált környezetben vagy felnőttel."
-     },
-     {
-      "cs": "Realistický plán: nástroj zdarma, kroky na pár týdnů a první malá verze, kterou můžeš rychle ukázat.",
-      "en": "A realistic plan: a free tool, steps for a few weeks and a small first version you can show quickly.",
-      "sk": "Realistický plán: nástroj zadarmo, kroky na pár týždňov a prvá malá verzia, ktorú môžeš rýchlo ukázať.",
-      "hu": "Reális terv: ingyenes eszköz, néhány hétre szóló lépések és egy első kis változat, amelyet gyorsan megmutathatsz."
      }
     ]
    },

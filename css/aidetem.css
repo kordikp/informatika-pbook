@@ -1,0 +1,73 @@
+/* Vizuál AI dětem (grafický manuálek 08/2025): barvy Jahodová zmrzka a Nekonečné nebe, nadpisy Space Grotesk.
+   Jen přebíjí proměnné a pár prvků úvodní stránky; style.css zůstává jako v enginu.
+   Červená #DC5B5B je na velké plochy (pruh, hlavní tlačítko); na malý text na bílé je tmavší #B8403F (5,5 : 1). */
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url(../fonts/space-grotesk/SpaceGrotesk-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 300 700; font-display: swap;
+  src: url(../fonts/space-grotesk/SpaceGrotesk-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+:root {
+  --brand: #DC5B5B;            /* Jahodová zmrzka */
+  --brand-band: #DC5B5B;
+  --sky: #B3CDD6;              /* Nekonečné nebe */
+  --sky-light: #E3F1F6;        /* Nekonečné nebe po úsvitu */
+  --accent: #B8403F;
+  --accent-hover: #9E3534;
+  --accent-bg: #FBEDEC;
+  --sidebar-color: #4E7684;
+  --sidebar-bg: #E3F1F6;
+  --text: #1D1D1B;
+  --font-head: "Space Grotesk", var(--font-ui);
+}
+[data-theme="dark"] {
+  --brand-band: #B84846;
+  --accent: #E06663;
+  --accent-hover: #E5706B;
+  --accent-bg: #3A1F1E;
+  --sidebar-color: #9CC3D1;
+  --sidebar-bg: #1B2B31;
+  --text: #F5F5F4;
+}
+
+/* Space Grotesk jen na nadpisy (stejné selektory jako ve style.css, který je jinak drží v --font-ui) */
+.onboarding-card h1, .home-title, .ch-head h2, .block-header h3, .map-title, .missions-head h2, .mission-detail-title,
+.boss-title, .cert-modal h2, .shelf-title { font-family: var(--font-head); letter-spacing: -.01em; }
+.door-teacher a { color: var(--accent); }
+
+/* ikony (sprite Lucide v index.html) */
+.ic { width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.2em; }
+.intro-voice .ic { width: 1.05rem; height: 1.05rem; color: var(--sidebar-color); }
+.intro-voice.selected .ic { color: var(--accent); }
+.tab-icon .ic { width: 1.35rem; height: 1.35rem; vertical-align: middle; }
+.tab.active .tab-icon .ic { stroke-width: 2.4; }
+.topbar-icon .ic, .topbar-search .ic { width: 1.1rem; height: 1.1rem; }
+
+/* horní lišta: robot AI dětem místo „p-book“ */
+.topbar-title { display: inline-flex; align-items: center; gap: .4em; color: var(--text); font-family: var(--font-head); font-size: .95rem; }
+.topbar-title img { width: 26px; height: 26px; }
+
+/* úvodní stránka: červený pruh s logem a názvem (manuál s. 1), pod ním obsah knihy */
+.aid-band { background: var(--brand-band); color: #fff; border-radius: 16px; padding: 1em 1.2em 1.25em; margin: 0 0 .9em; text-align: left; }
+.aid-logo { display: inline-flex; align-items: center; gap: .5em; color: #fff; text-decoration: none; font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; }
+.aid-logo img { width: 44px; height: 44px; }
+.aid-band .intro-title { color: #fff; margin: .45em 0 0; font-weight: 700; line-height: 1.1; }
+.intro-tagline { color: var(--text-2); font-size: .95rem; }
+
+.door-toc { display: grid; grid-template-columns: 1fr 1fr; gap: .45em; margin: .4em 0 .9em; text-align: left; }
+.door-toc-item { display: flex; gap: .6em; align-items: flex-start; padding: .55em .7em; border: 1.5px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); cursor: pointer; font: inherit; color: inherit; text-align: left; transition: border-color .15s; }
+.door-toc-item:hover, .door-toc-item:focus-visible { border-color: var(--accent); }
+.door-toc-n { flex: none; width: 1.7em; height: 1.7em; border-radius: 50%; background: var(--sky-light); color: #1D1D1B; display: grid; place-items: center; font-family: var(--font-head); font-weight: 700; font-size: .85rem; }
+[data-theme="dark"] .door-toc-n { background: var(--sky); }
+.door-toc-text { display: flex; flex-direction: column; gap: .1em; min-width: 0; }
+.door-toc-text b { font-family: var(--font-head); font-size: .92rem; }
+.door-toc-text small { font-size: .76rem; color: var(--text-2); line-height: 1.3; }
+/* telefon: jen čísla a názvy, ať je tlačítko Začni na první obrazovce */
+@media (max-width: 560px) { .door-toc { gap: .35em; } .door-toc-item { padding: .45em .55em; align-items: center; } .door-toc-text small { display: none; } }
+
+.door-start.btn-primary { background: var(--brand); }
+.door-start.btn-primary:hover { background: var(--accent); }
+[data-theme="dark"] .door-start.btn-primary { background: var(--brand-band); }
+.door-start.btn-large { font-size: 1.2rem; }   /* bílé na #DC5B5B (3,7 : 1) jen jako velký tučný text */

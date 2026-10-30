@@ -62,15 +62,19 @@
   try { s = localStorage.getItem('pbook-lang'); } catch (e) {}
   var lang = L.indexOf(q) >= 0 ? q : L.indexOf(s) >= 0 ? s : L[0];
   function add(rel, href, as) { var l = document.createElement('link'); l.rel = rel; l.href = href; if (as) { l.as = as; l.crossOrigin = 'anonymous'; } document.head.appendChild(l); }
-  var M = ['config.js', 'i18n.js', 'markdown.js?v=4', 'recombee.js?v=14', 'diagrams.js?v=9', 'tutor.js?v=2', 'games.js?v=4', 'games-lab.js?v=1', 'ux.js?v=4', 'completion.js?v=1', 'challenge.js?v=1'];
+  var M = ['config.js', 'i18n.js', 'markdown.js?v=4', 'recombee.js?v=14', 'diagrams.js?v=9', 'tutor.js?v=2', 'games.js?v=4', 'games-lab.js?v=1', 'ux.js?v=5', 'completion.js?v=1', 'challenge.js?v=1'];
   M.concat(lang === 'en' ? [] : ['i18n/' + lang + '.js']).forEach(function (m) { add('modulepreload', 'js/' + m); });
   ['book.json', 'bundle.' + lang + '.json'].forEach(function (f) { add('preload', 'content/' + f, 'fetch'); });
 })();</script>
 <link rel="stylesheet" href="css/style.css?v=7.0.1">
+<link rel="stylesheet" href="css/aidetem.css?v=1">
+<link rel="preload" href="fonts/space-grotesk/SpaceGrotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/space-grotesk/SpaceGrotesk-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <script>/* theme before first paint: saved choice, else the system preference (no white flash in dark mode) */
 try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}</script>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><!-- ikony: Lucide 0.460.0, licence ISC (https://lucide.dev/license) --><symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></symbol><symbol id="i-gamepad-2" viewBox="0 0 24 24"><line x1="6" x2="10" y1="11" y2="11" /><line x1="8" x2="8" y1="9" y2="13" /><line x1="15" x2="15.01" y1="12" y2="12" /><line x1="18" x2="18.01" y1="10" y2="10" /><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" /></symbol><symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></symbol><symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></symbol><symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></symbol><symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor" /><circle cx="17.5" cy="10.5" r=".5" fill="currentColor" /><circle cx="8.5" cy="7.5" r=".5" fill="currentColor" /><circle cx="6.5" cy="12.5" r=".5" fill="currentColor" /><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" /></symbol><symbol id="i-clapperboard" viewBox="0 0 24 24"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" /><path d="m6.2 5.3 3.1 3.9" /><path d="m12.4 3.4 3.1 4" /><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /></symbol><symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></symbol><symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></symbol><symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></symbol><symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></symbol><symbol id="i-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1" /><rect width="7" height="7" x="14" y="3" rx="1" /><rect width="7" height="7" x="14" y="14" rx="1" /><rect width="7" height="7" x="3" y="14" rx="1" /></symbol><symbol id="i-book-open" viewBox="0 0 24 24"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" /><path d="M15 5.764v15" /><path d="M9 3.236v15" /></symbol><symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></symbol><symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" /><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" /><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" /><path d="M17.599 6.5a3 3 0 0 0 .399-1.375" /><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" /><path d="M3.477 10.896a4 4 0 0 1 .585-.396" /><path d="M19.938 10.5a4 4 0 0 1 .585.396" /><path d="M6 18a4 4 0 0 1-1.967-.516" /><path d="M19.967 17.484A4 4 0 0 1 18 18" /></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></symbol><symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" /><circle cx="12" cy="12" r="3" /></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></symbol></svg>
 
 <!-- ONBOARDING (first visit only) -->
 <div class="overlay" id="onboarding">
@@ -78,28 +82,30 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
 
     <!-- Step 0: Welcome screen -->
     <div class="step active" data-step="0">
-      <h1 class="intro-title">Jak funguje digitální svět</h1>
+      <div class="aid-band">
+        <a class="aid-logo" href="https://aidetem.cz" target="_blank" rel="noopener"><img src="images/aidetem-robot-white.webp" alt="" width="44" height="44">AI dětem</a>
+        <h1 class="intro-title">Jak funguje digitální svět</h1>
+      </div>
       <p class="intro-tagline">Základy informatiky a umělé inteligence pro 2. stupeň: 24 klíčových konceptů v 6 kapitolách.</p>
-      <p class="intro-author-name" data-i18n="author-line"><a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a></p>
-      <img src="images/hero-digital.svg" data-i18n-src alt="" class="intro-hero door-hero">
+      <div class="door-toc" id="doorToc"></div>
 
       <div class="door-picks">
         <div class="door-label" id="doorLensLabel">Svět příkladů <span class="toggle-hint">nepovinné</span></div>
         <div class="intro-voices door-chips" id="introLens" role="group" aria-labelledby="doorLensLabel">
-          <button class="intro-voice selected" data-lens="generic" onclick="app.onboardPick('lens','generic',this)"><span aria-hidden="true">&#127760;</span> Odevšad</button>
-          <button class="intro-voice" data-lens="hry" onclick="app.onboardPick('lens','hry',this)"><span aria-hidden="true">&#128377;&#65039;</span> Hry</button>
-          <button class="intro-voice" data-lens="weby" onclick="app.onboardPick('lens','weby',this)"><span aria-hidden="true">&#128421;&#65039;</span> Weby</button>
-          <button class="intro-voice" data-lens="aplikace" onclick="app.onboardPick('lens','aplikace',this)"><span aria-hidden="true">&#128241;</span> Aplikace</button>
-          <button class="intro-voice" data-lens="roboti" onclick="app.onboardPick('lens','roboti',this)"><span aria-hidden="true">&#129302;</span> Roboti a micro:bit</button>
-          <button class="intro-voice" data-lens="tvorba" onclick="app.onboardPick('lens','tvorba',this)"><span aria-hidden="true">&#127912;</span> Tvorba s AI</button>
-          <button class="intro-voice" data-lens="socialni" onclick="app.onboardPick('lens','socialni',this)"><span aria-hidden="true">&#127916;</span> Sociální sítě a videa</button>
+          <button class="intro-voice selected" data-lens="generic" onclick="app.onboardPick('lens','generic',this)"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg> Odevšad</button>
+          <button class="intro-voice" data-lens="hry" onclick="app.onboardPick('lens','hry',this)"><svg class="ic" aria-hidden="true"><use href="#i-gamepad-2"/></svg> Hry</button>
+          <button class="intro-voice" data-lens="weby" onclick="app.onboardPick('lens','weby',this)"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg> Weby</button>
+          <button class="intro-voice" data-lens="aplikace" onclick="app.onboardPick('lens','aplikace',this)"><svg class="ic" aria-hidden="true"><use href="#i-smartphone"/></svg> Aplikace</button>
+          <button class="intro-voice" data-lens="roboti" onclick="app.onboardPick('lens','roboti',this)"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg> Roboti a micro:bit</button>
+          <button class="intro-voice" data-lens="tvorba" onclick="app.onboardPick('lens','tvorba',this)"><svg class="ic" aria-hidden="true"><use href="#i-palette"/></svg> Tvorba s AI</button>
+          <button class="intro-voice" data-lens="socialni" onclick="app.onboardPick('lens','socialni',this)"><svg class="ic" aria-hidden="true"><use href="#i-clapperboard"/></svg> Sociální sítě a videa</button>
         </div>
         <div class="door-label" id="doorGoalLabel">I want to</div>
         <div class="intro-voices door-chips" id="introGoal" role="group" aria-labelledby="doorGoalLabel">
-          <button class="intro-voice selected" data-goal="understand" onclick="app.onboardPick('goal','understand',this)"><span aria-hidden="true">&#128161;</span> Pochopit, jak to funguje</button>
-          <button class="intro-voice" data-goal="create" onclick="app.onboardPick('goal','create',this)"><span aria-hidden="true">&#128295;</span> Něco vytvořit</button>
-          <button class="intro-voice" data-goal="ai" onclick="app.onboardPick('goal','ai',this)"><span aria-hidden="true">&#129302;</span> Rozumět AI</button>
-          <button class="intro-voice" data-goal="protect" onclick="app.onboardPick('goal','protect',this)"><span aria-hidden="true">&#128737;&#65039;</span> Chránit se na netu</button>
+          <button class="intro-voice selected" data-goal="understand" onclick="app.onboardPick('goal','understand',this)"><svg class="ic" aria-hidden="true"><use href="#i-lightbulb"/></svg> Pochopit, jak to funguje</button>
+          <button class="intro-voice" data-goal="create" onclick="app.onboardPick('goal','create',this)"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg> Něco vytvořit</button>
+          <button class="intro-voice" data-goal="ai" onclick="app.onboardPick('goal','ai',this)"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg> Rozumět AI</button>
+          <button class="intro-voice" data-goal="protect" onclick="app.onboardPick('goal','protect',this)"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg> Chránit se na netu</button>
         </div>
         <p class="intro-onboard-hint" id="onboardHint" aria-live="polite">Příklady ze školy, z mobilu i z her &middot; nejdřív srozumitelné vysvětlení.</p>
       </div>
@@ -186,16 +192,16 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
 <!-- TOP BAR -->
 <header class="topbar" id="topbar">
   <div class="topbar-left">
-    <span class="topbar-title" onclick="app.showWelcome()">p-book</span>
+    <span class="topbar-title" onclick="app.showWelcome()"><img src="images/aidetem-robot.webp" alt="" width="26" height="26">AI dětem</span>
   </div>
   <div class="mission-bar-inline" id="missionBarInline" style="display:none"></div>
   <button class="topbar-search" onclick="app.openSearch()">
-    <span>&#128269;</span>
+    <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
     <span class="search-placeholder">Search...</span>
   </button>
   <div class="topbar-right">
     <button class="xp-badge" id="xpBadge" onclick="app.switchView('profile')"></button>
-    <button class="topbar-icon" id="settingsBtn" onclick="app.toggleSettings()" aria-label="Settings" title="Settings">&#9881;</button>
+    <button class="topbar-icon" id="settingsBtn" onclick="app.toggleSettings()" aria-label="Settings" title="Settings"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg></button>
   </div>
 </header>
 
@@ -274,27 +280,27 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
 <!-- BOTTOM TAB NAV -->
 <nav class="bottom-nav" id="bottomNav">
   <button class="tab active" data-view="home" onclick="app.switchView('home')">
-    <span class="tab-icon">&#127916;</span>
+    <span class="tab-icon"><svg class="ic" aria-hidden="true"><use href="#i-layout-grid"/></svg></span>
     <span class="tab-label">Browse</span>
   </button>
   <button class="tab" data-view="read" onclick="app.switchView('read')">
-    <span class="tab-icon">&#128214;</span>
+    <span class="tab-icon"><svg class="ic" aria-hidden="true"><use href="#i-book-open"/></svg></span>
     <span class="tab-label">Read</span>
   </button>
   <button class="tab" data-view="map" onclick="app.switchView('map')">
-    <span class="tab-icon">&#128506;</span>
+    <span class="tab-icon"><svg class="ic" aria-hidden="true"><use href="#i-map"/></svg></span>
     <span class="tab-label">Map</span>
   </button>
   <button class="tab" data-view="glossary" onclick="app.switchView('glossary')">
-    <span class="tab-icon">&#127919;</span>
+    <span class="tab-icon"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></span>
     <span class="tab-label">Missions</span>
   </button>
   <button class="tab" data-view="quiz" onclick="app.switchView('quiz')">
-    <span class="tab-icon">&#129504;</span>
+    <span class="tab-icon"><svg class="ic" aria-hidden="true"><use href="#i-brain"/></svg></span>
     <span class="tab-label">Quiz</span>
   </button>
   <button class="tab" data-view="profile" onclick="app.switchView('profile')">
-    <span class="tab-icon">&#128100;</span>
+    <span class="tab-icon"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span>
     <span class="tab-label">You</span>
   </button>
 </nav>
@@ -362,7 +368,7 @@ try { var t = localStorage.getItem('pbook-theme') || 'auto'; if (t === 'dark' ||
   </div>
 </div>
 
-<script type="module" src="js/app.js?v=7.7.1"></script>
+<script type="module" src="js/app.js?v=7.7.2"></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});</script>
 <!-- Vercel Web Analytics: visitors and page views, no cookies (project setting enabled 2026-10-05) -->
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
