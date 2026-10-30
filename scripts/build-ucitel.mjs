@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Data pro stránku Pro učitele (ucitel.html): kapitoly s jádry a misemi, světy a projekt,
+// Data pro stránku Pro učitele (ucitel.html): kapitoly s jádry a misemi, světy a projekt, skupinové úkoly,
 // ve všech jazycích knihy. Skládá se z vygenerovaného obsahu, stejně jako balíček
 // (vercel.json buildCommand po build-bundle.mjs). Výstup content/ucitel.json se necommituje.
 //
@@ -85,6 +85,10 @@ const kolik = f => poradi.filter(id => f(bloky[id][ORIG], id)).length;
 const nadani = expedice.length ? { expeditions: expedice, safety: blok('bezpecne-v-komunitach'), hub: blok('expedice'),
   challenges: kolik(o => o.type === 'challenge'), games: kolik((o, id) => o.type === 'game' && id.includes('expert-')) } : null;
 
-const out = { langs: LANGS, chapters: kapitoly, worlds: svety, project: projekt ? kratce(projekt) : null, gifted: nadani };
+// skupinové úkoly (skládačka): karty jen názvem, text karty patří dětem v knize
+const tymy = (json('missions.json').teams || []).map(t => ({ id: t.id, icon: t.icon, chapter: kapitoly.find(k => k.id === t.chapter)?.title || '',
+  title: t.title, story: t.story, cards: (t.cards || []).map(c => c.label), boss: t.boss?.q || '' }));
+
+const out = { langs: LANGS, chapters: kapitoly, worlds: svety, project: projekt ? kratce(projekt) : null, gifted: nadani, teams: tymy };
 fs.writeFileSync(path.join(C, 'ucitel.json'), JSON.stringify(out));
-console.log(`→ content/ucitel.json  ${kapitoly.length} kapitol, ${kapitoly.reduce((s, k) => s + k.cores.length, 0)} jader, ${svety.length} světů${projekt ? ', projekt ' + projekt.id : ''}${nadani ? `, ${expedice.length} expedic, ${nadani.challenges} výzev a ${nadani.games} her navíc` : ''}, ${(fs.statSync(path.join(C, 'ucitel.json')).size / 1024).toFixed(0)} kB`);
+console.log(`→ content/ucitel.json  ${kapitoly.length} kapitol, ${kapitoly.reduce((s, k) => s + k.cores.length, 0)} jader, ${svety.length} světů${projekt ? ', projekt ' + projekt.id : ''}${nadani ? `, ${expedice.length} expedic, ${nadani.challenges} výzev a ${nadani.games} her navíc` : ''}, ${tymy.length} skupinových úkolů, ${(fs.statSync(path.join(C, 'ucitel.json')).size / 1024).toFixed(0)} kB`);

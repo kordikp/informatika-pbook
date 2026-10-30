@@ -12,7 +12,10 @@ pro 11–15 let ve čtyřech jazycích. Běží v prohlížeči i bez sítě a n
 - Kniha přizpůsobuje podání jeho výsledkům.
 - Pochopení ověřuje AI zkoušející. Když odpověď ještě není úplná, položí jednu naváděcí otázku
   (sokratovsky) a odpověď neprozradí.
-- Učitel dostane plán hodiny, odkazy a QR kódy na mise.
+- Skupinové úkoly (skládačka): každé místo v týmu má jinou kartu a tým odpovídá drakovi společně.
+  Učitel nastaví počet dětí a AI asistentů. Asistent zná jen svou kartu a odpověď za děti nenapíše.
+- Profil ukazuje mapu všech 24 jader: přečteno, ověřeno, udrženo.
+- Učitel dostane plán hodiny, odkazy a QR kódy na mise a skupinové úkoly.
 
 Navrhovaný druh výsledku: **R – software** **[?]** (alternativa O – ostatní). Ověřit v zadávací
 dokumentaci programu a ve smlouvě projektu: číslo projektu, příjemce, vlastníka výsledku a licenci.
@@ -21,8 +24,8 @@ dokumentaci programu a ve smlouvě projektu: číslo projektu, příjemce, vlast
 
 | Co | Doklad |
 |---|---|
-| Veřejná verze | https://informatika-pbook.vercel.app, engine 7.7.2, SW v87 (2026-10-30) |
-| Obsah | 6 kapitol a 24 jader, 6 světů, projekt Tvůrce, 12 expedic, 25 misí s bossem, 42 výzev a 36 her navíc (`scripts/build-ucitel.mjs`) |
+| Veřejná verze | https://informatika-pbook.vercel.app, engine 7.8.0, SW v90 (2026-10-30) |
+| Obsah | 6 kapitol a 24 jader, 6 světů, projekt Tvůrce, 12 expedic, 25 misí s bossem, 6 skupinových úkolů s AI asistenty, 42 výzev a 36 her navíc (`scripts/build-ucitel.mjs`) |
 | Jazyky | čeština, angličtina, slovenština, maďarština; v každém jazyce otestováno i offline |
 | Pro učitele | https://informatika-pbook.vercel.app/ucitel (plán hodiny, odkazy, QR) |
 | Provoz | `/api/log?stats=1` k 2026-10-30: 164 čtenářů celkem, 101 za 30 dní, 53 za 7 dní |

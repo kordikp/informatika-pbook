@@ -90,3 +90,5 @@ body.uc { background: var(--bg); color: var(--text); font-family: var(--font-ui)
   .uc-plan > li { grid-template-columns: 1fr; gap: .2em; }
   .uc-worlds { grid-template-columns: 1fr 1fr; }
 }
+.uc-label .uc-chips { margin-top: .3em; }
+.uc-chip:disabled { opacity: .35; cursor: default; }

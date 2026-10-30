@@ -5404,5 +5404,625 @@
    },
    "group": "expedition"
   }
+ ],
+ "teams": [
+  {
+   "id": "tym-postup",
+   "chapter": "ch1-postup",
+   "icon": "🧭",
+   "title": {
+    "cs": "Návod pro záskok",
+    "en": "Instructions for the stand-in",
+    "sk": "Návod pre záskok",
+    "hu": "Útmutató a beugrónak"
+   },
+   "story": {
+    "cs": "Na školním jarmarku má vaše třída kavárnu. Zítra za vás bude u pultu spolužák, který tam ještě nebyl. Potřebuje návod, podle kterého zvládne obsloužit každého zákazníka. Každý z vás zná jen kousek toho, jak kavárna funguje.",
+    "en": "Your class runs a café at the school fair. Tomorrow a classmate who has never been there will stand in for you at the counter. They need instructions that let them serve every customer. Each of you knows only a piece of how the café works.",
+    "sk": "Na školskom jarmoku má vaša trieda kaviareň. Zajtra za vás bude za pultom spolužiak, ktorý tam ešte nebol. Potrebuje návod, podľa ktorého zvládne obslúžiť každého zákazníka. Každý z vás pozná len kúsok toho, ako kaviareň funguje.",
+    "hu": "Az iskolai vásáron az osztályotok kávézót üzemeltet. Holnap egy osztálytárs áll be helyettetek a pulthoz, aki még sosem volt ott. Útmutató kell neki, amellyel minden vendéget ki tud szolgálni. Mindegyikőtök csak egy darabját tudja annak, hogyan működik a kávézó."
+   },
+   "cards": [
+    {
+     "label": {
+      "cs": "Nabídka",
+      "en": "The menu",
+      "sk": "Ponuka",
+      "hu": "Kínálat"
+     },
+     "text": {
+      "cs": "Prodává se čaj za 15 Kč a koláč za 20 Kč. Když koláče dojdou, otočí se cedule a nabízí se jen čaj.",
+      "en": "Tea costs 15 crowns and a cake 20 crowns. When the cakes run out, the sign is turned over and only tea is offered.",
+      "sk": "Predáva sa čaj za 15 korún a koláč za 20 korún. Keď koláče dôjdu, otočí sa tabuľka a ponúka sa len čaj.",
+      "hu": "A tea 15 koronába, a sütemény 20 koronába kerül. Ha elfogy a sütemény, megfordítják a táblát, és már csak teát kínálnak."
+     }
+    },
+    {
+     "label": {
+      "cs": "Pokladna",
+      "en": "The till",
+      "sk": "Pokladňa",
+      "hu": "A kassza"
+     },
+     "text": {
+      "cs": "Drobné jsou v plechovce pod pultem. Nejdřív se spočítá, kolik vrátit, a až potom se vydá zboží. Bankovku větší než 200 Kč kavárna nebere.",
+      "en": "The change is in a tin under the counter. First you work out how much change to give, and only then hand over the order. The café does not take notes bigger than 200 crowns.",
+      "sk": "Drobné sú v plechovke pod pultom. Najprv sa spočíta, koľko vrátiť, a až potom sa vydá tovar. Bankovku väčšiu ako 200 korún kaviareň neberie.",
+      "hu": "Az aprópénz egy dobozban van a pult alatt. Először kiszámolod, mennyit kell visszaadni, és csak utána adod oda a rendelést. 200 koronánál nagyobb bankjegyet a kávézó nem fogad el."
+     }
+    },
+    {
+     "label": {
+      "cs": "Pravidla",
+      "en": "The rules",
+      "sk": "Pravidlá",
+      "hu": "A szabályok"
+     },
+     "text": {
+      "cs": "Čaj se nalévá až po zaplacení. Dětem do šesti let se čaj ředí studenou vodou, aby nepálil.",
+      "en": "Tea is poured only after paying. For children under six the tea is mixed with cold water so it does not burn.",
+      "sk": "Čaj sa nalieva až po zaplatení. Deťom do šiestich rokov sa čaj riedi studenou vodou, aby nepálil.",
+      "hu": "A teát csak fizetés után töltik ki. Hat év alatti gyerekeknek hideg vízzel hígítják, hogy ne legyen forró."
+     }
+    },
+    {
+     "label": {
+      "cs": "Zkouška",
+      "en": "The test",
+      "sk": "Skúška",
+      "hu": "A próba"
+     },
+     "text": {
+      "cs": "Loni návod selhal dvakrát, když přišel zákazník s pětistovkou a když někdo chtěl koláč, který už došel. Dobrý návod se předem vyzkouší na takových záludných případech.",
+      "en": "Last year the instructions failed twice, when a customer came with a 500-crown note and when someone wanted a cake that had already run out. Good instructions are tried out on tricky cases like these beforehand.",
+      "sk": "Vlani návod zlyhal dvakrát, keď prišiel zákazník s päťstovkou a keď niekto chcel koláč, ktorý už došiel. Dobrý návod sa vopred vyskúša na takýchto záludných prípadoch.",
+      "hu": "Tavaly kétszer is csődöt mondott az útmutató, amikor egy vendég ötszázassal jött, és amikor valaki olyan süteményt kért, ami már elfogyott. A jó útmutatót előre kipróbálják ilyen trükkös eseteken."
+     }
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Napište krátký návod pro záskok, krok za krokem, a řekněte, na jakém záludném případu ho vyzkoušíte.",
+     "en": "Write short step-by-step instructions for the stand-in and say which tricky case you will test them on.",
+     "sk": "Napíšte krátky návod pre záskok, krok za krokom, a povedzte, na akom záludnom prípade ho vyskúšate.",
+     "hu": "Írjatok rövid, lépésenkénti útmutatót a beugrónak, és mondjátok meg, melyik trükkös esetre próbáljátok ki."
+    },
+    "hints": [
+     {
+      "cs": "kroky jdou v rozumném pořadí, tedy objednávka, placení a vracení, vydání",
+      "en": "the steps come in a sensible order, i.e. order, paying and change, handing over",
+      "sk": "kroky idú v rozumnom poradí, teda objednávka, platenie a vracanie, vydanie",
+      "hu": "a lépések értelmes sorrendben jönnek, vagyis rendelés, fizetés és visszajáró, kiadás"
+     },
+     {
+      "cs": "návod myslí na situace z více karet, třeba došlý koláč, velkou bankovku nebo malé dítě",
+      "en": "the instructions cover situations from several cards, e.g. no cake left, a big note or a small child",
+      "sk": "návod myslí na situácie z viacerých kariet, napríklad došlý koláč, veľkú bankovku alebo malé dieťa",
+      "hu": "az útmutató több kártya helyzeteire is gondol, például elfogyott süteményre, nagy bankjegyre vagy kisgyerekre"
+     },
+     {
+      "cs": "tým navrhne vyzkoušet návod aspoň na jednom záludném případu",
+      "en": "the team suggests testing the instructions on at least one tricky case",
+      "sk": "tím navrhne vyskúšať návod aspoň na jednom záludnom prípade",
+      "hu": "a csapat javasolja, hogy legalább egy trükkös esetre kipróbálják az útmutatót"
+     }
+    ]
+   }
+  },
+  {
+   "id": "tym-program",
+   "chapter": "ch2-program",
+   "icon": "💻",
+   "title": {
+    "cs": "Počítadlo bodů na sportovním dni",
+    "en": "A score counter for sports day",
+    "sk": "Počítadlo bodov na športovom dni",
+    "hu": "Pontszámláló a sportnapra"
+   },
+   "story": {
+    "cs": "Na sportovním dni sčítáte body dvou družstev, modrých a červených, na micro:bitu. Program má po každém bodu přičíst a na konci ukázat vítěze. Každý z vás ví, jak má fungovat jedna jeho část.",
+    "en": "On sports day you count the points of two teams, blue and red, on a micro:bit. The program must add each point and show the winner at the end. Each of you knows how one part of it should work.",
+    "sk": "Na športovom dni sčítavate body dvoch družstiev, modrých a červených, na micro:bite. Program má po každom bode pripočítať a na konci ukázať víťaza. Každý z vás vie, ako má fungovať jedna jeho časť.",
+    "hu": "A sportnapon két csapat, a kékek és a pirosak pontjait számoljátok egy micro:biten. A programnak minden pontot hozzá kell adnia, a végén pedig ki kell jeleznie a győztest. Mindegyikőtök azt tudja, hogyan működjön a program egyik része."
+   },
+   "cards": [
+    {
+     "label": {
+      "cs": "Paměť",
+      "en": "Memory",
+      "sk": "Pamäť",
+      "hu": "Memória"
+     },
+     "text": {
+      "cs": "Body každého družstva si program pamatuje v proměnné, jedna je pro modré a druhá pro červené. Na začátku hry jsou obě nastavené na 0.",
+      "en": "The program keeps each team's points in a variable, one for blue and one for red. At the start of the game both are set to 0.",
+      "sk": "Body každého družstva si program pamätá v premennej, jedna je pre modrých a druhá pre červených. Na začiatku hry sú obe nastavené na 0.",
+      "hu": "A program minden csapat pontjait egy változóban tárolja, egyet a kékeknek, egyet a pirosaknak. A játék elején mindkettő 0."
+     }
+    },
+    {
+     "label": {
+      "cs": "Tlačítka",
+      "en": "The buttons",
+      "sk": "Tlačidlá",
+      "hu": "A gombok"
+     },
+     "text": {
+      "cs": "Tlačítko A znamená bod pro modré, tlačítko B bod pro červené. Zatřesení micro:bitem znamená konec hry.",
+      "en": "Button A means a point for blue, button B a point for red. Shaking the micro:bit means the game is over.",
+      "sk": "Tlačidlo A znamená bod pre modrých, tlačidlo B bod pre červených. Zatrasenie micro:bitom znamená koniec hry.",
+      "hu": "Az A gomb pont a kékeknek, a B gomb pont a pirosaknak. Ha megrázzák a micro:bitet, vége a játéknak."
+     }
+    },
+    {
+     "label": {
+      "cs": "Opakování",
+      "en": "Repeating",
+      "sk": "Opakovanie",
+      "hu": "Ismétlés"
+     },
+     "text": {
+      "cs": "Program musí pořád dokola čekat na tlačítka. Kdyby je zkontroloval jen jednou, započítal by jen první bod.",
+      "en": "The program has to keep waiting for the buttons over and over. If it checked them only once, it would count only the first point.",
+      "sk": "Program musí stále dokola čakať na tlačidlá. Keby ich skontroloval len raz, započítal by len prvý bod.",
+      "hu": "A programnak újra és újra figyelnie kell a gombokat. Ha csak egyszer nézné meg őket, csak az első pontot számolná."
+     }
+    },
+    {
+     "label": {
+      "cs": "Vyhlášení",
+      "en": "The result",
+      "sk": "Vyhlásenie",
+      "hu": "Eredményhirdetés"
+     },
+     "text": {
+      "cs": "Na konci program porovná body. Vyhraje družstvo s víc body a rozsvítí se jeho barva. Při shodě má program ukázat znak =.",
+      "en": "At the end the program compares the points. The team with more points wins and its colour lights up. If it is a tie, the program shows the = sign.",
+      "sk": "Na konci program porovná body. Vyhrá družstvo s viac bodmi a rozsvieti sa jeho farba. Pri zhode má program ukázať znak =.",
+      "hu": "A végén a program összehasonlítja a pontokat. A több pontot szerző csapat nyer, és felvillan a színe. Döntetlennél a program az = jelet mutatja."
+     }
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Popište v krocích, jak bude program fungovat od startu až po vyhlášení vítěze.",
+     "en": "Describe in steps how the program will work from the start to announcing the winner.",
+     "sk": "Opíšte v krokoch, ako bude program fungovať od štartu až po vyhlásenie víťaza.",
+     "hu": "Írjátok le lépésenként, hogyan működik majd a program az indítástól a győztes kihirdetéséig."
+    },
+    "hints": [
+     {
+      "cs": "body se pamatují ve dvou proměnných, které na začátku mají 0",
+      "en": "the points are kept in two variables that start at 0",
+      "sk": "body sa pamätajú v dvoch premenných, ktoré na začiatku majú 0",
+      "hu": "a pontokat két változó tárolja, amelyek 0-ról indulnak"
+     },
+     {
+      "cs": "program v opakování (cyklu) pořád čte tlačítka a přičítá bod správnému družstvu",
+      "en": "the program keeps reading the buttons in a loop and adds the point to the right team",
+      "sk": "program v opakovaní (cykle) stále číta tlačidlá a pripočítava bod správnemu družstvu",
+      "hu": "a program ismétlésben (ciklusban) folyamatosan figyeli a gombokat, és a megfelelő csapatnak ad pontot"
+     },
+     {
+      "cs": "na konci podmínka porovná body a pamatuje i na remízu",
+      "en": "at the end a condition compares the points and also handles a tie",
+      "sk": "na konci podmienka porovná body a pamätá aj na remízu",
+      "hu": "a végén egy feltétel összehasonlítja a pontokat, és a döntetlenre is gondol"
+     }
+    ]
+   }
+  },
+  {
+   "id": "tym-data",
+   "chapter": "ch3-data",
+   "icon": "📊",
+   "title": {
+    "cs": "Jezdí autobus opravdu pozdě?",
+    "en": "Is the bus really always late?",
+    "sk": "Chodí autobus naozaj neskoro?",
+    "hu": "Tényleg mindig késik a busz?"
+   },
+   "story": {
+    "cs": "Třída tvrdí, že autobus 152 „pořád jezdí pozdě“. Paní učitelka chce důkaz z dat, ne pocit. Každý z vás má jiný kousek dat nebo rady.",
+    "en": "The class says bus 152 is \"always late\". The teacher wants proof from data, not a feeling. Each of you has a different piece of data or advice.",
+    "sk": "Trieda tvrdí, že autobus 152 „stále chodí neskoro“. Pani učiteľka chce dôkaz z dát, nie pocit. Každý z vás má iný kúsok dát alebo rady.",
+    "hu": "Az osztály szerint a 152-es busz „mindig késik“. A tanárnő bizonyítékot kér adatokból, nem érzést. Mindegyikőtöknél más adat vagy tanács van."
+   },
+   "cards": [
+    {
+     "label": {
+      "cs": "Záznamy",
+      "en": "The records",
+      "sk": "Záznamy",
+      "hu": "A feljegyzések"
+     },
+     "text": {
+      "cs": "Týden jste zapisovali, kdy autobus přijel: Po 7.42, Út 7.41, St 7.55, Čt 7.43, Pá 7.56. Podle jízdního řádu má přijet v 7.40.",
+      "en": "For a week you noted when the bus arrived: Mon 7.42, Tue 7.41, Wed 7.55, Thu 7.43, Fri 7.56. The timetable says 7.40.",
+      "sk": "Týždeň ste zapisovali, kedy autobus prišiel: Po 7.42, Ut 7.41, St 7.55, Št 7.43, Pi 7.56. Podľa cestovného poriadku má prísť o 7.40.",
+      "hu": "Egy héten át feljegyeztétek, mikor érkezett a busz: H 7.42, K 7.41, Sze 7.55, Cs 7.43, P 7.56. A menetrend szerint 7.40-kor kellene jönnie."
+     }
+    },
+    {
+     "label": {
+      "cs": "Počasí",
+      "en": "The weather",
+      "sk": "Počasie",
+      "hu": "Az időjárás"
+     },
+     "text": {
+      "cs": "Ve středu a v pátek pršelo. Ostatní dny bylo sucho.",
+      "en": "It rained on Wednesday and Friday. The other days were dry.",
+      "sk": "V stredu a v piatok pršalo. Ostatné dni bolo sucho.",
+      "hu": "Szerdán és pénteken esett az eső. A többi nap száraz volt."
+     }
+    },
+    {
+     "label": {
+      "cs": "Tabulka",
+      "en": "The table",
+      "sk": "Tabuľka",
+      "hu": "A táblázat"
+     },
+     "text": {
+      "cs": "Data se nejlépe porovnají v tabulce. Jeden řádek je jeden den, sloupce jsou den, příjezd, zpoždění v minutách a počasí.",
+      "en": "Data are easiest to compare in a table. One row is one day, the columns are day, arrival, delay in minutes and weather.",
+      "sk": "Dáta sa najlepšie porovnajú v tabuľke. Jeden riadok je jeden deň, stĺpce sú deň, príchod, meškanie v minútach a počasie.",
+      "hu": "Az adatokat táblázatban a legkönnyebb összevetni. Egy sor egy nap, az oszlopok: nap, érkezés, késés percben és időjárás."
+     }
+    },
+    {
+     "label": {
+      "cs": "Opatrnost",
+      "en": "Caution",
+      "sk": "Opatrnosť",
+      "hu": "Óvatosság"
+     },
+     "text": {
+      "cs": "Dopravní podnik má tabulku zpoždění všech linek za celý rok. Vaše data jsou jen jedna linka a jeden týden. Z tak malého vzorku se dá něco tušit, ale ne dokázat.",
+      "en": "The transport company has a table of delays for every line over a whole year. Your data cover one line and one week. A sample this small can hint at something, but not prove it.",
+      "sk": "Dopravný podnik má tabuľku meškaní všetkých liniek za celý rok. Vaše dáta sú len jedna linka a jeden týždeň. Z takej malej vzorky sa dá niečo tušiť, ale nie dokázať.",
+      "hu": "A közlekedési vállalatnak megvan az összes járat egész éves késéstáblázata. A ti adataitok egy járatról és egy hétről szólnak. Ilyen kis mintából sejteni lehet valamit, de bizonyítani nem."
+     }
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Jaký závěr z dat uděláte a nakolik se na něj dá spolehnout? Popište i to, jak data uspořádáte.",
+     "en": "What conclusion do you draw from the data and how far can it be trusted? Also describe how you will organise the data.",
+     "sk": "Aký záver z dát urobíte a nakoľko sa naň dá spoľahnúť? Opíšte aj to, ako dáta usporiadate.",
+     "hu": "Milyen következtetést vontok le az adatokból, és mennyire lehet rá építeni? Írjátok le azt is, hogyan rendezitek az adatokat."
+    },
+    "hints": [
+     {
+      "cs": "data se uspořádají do tabulky a u každého dne se spočítá zpoždění v minutách",
+      "en": "the data go into a table with the delay in minutes worked out for each day",
+      "sk": "dáta sa usporiadajú do tabuľky a pri každom dni sa spočíta meškanie v minútach",
+      "hu": "az adatok táblázatba kerülnek, és minden napra kiszámolják a késést percben"
+     },
+     {
+      "cs": "závěr je, že velká zpoždění byla ve dnech, kdy pršelo, a ostatní dny jen pár minut",
+      "en": "the conclusion is that the big delays were on the rainy days and only a few minutes on the others",
+      "sk": "záver je, že veľké meškania boli v dňoch, keď pršalo, a ostatné dni len pár minút",
+      "hu": "a következtetés az, hogy a nagy késések az esős napokon voltak, a többi napon csak pár perc"
+     },
+     {
+      "cs": "jeden týden a jedna linka nestačí na jistotu, potvrdila by to data za delší dobu, třeba od dopravního podniku",
+      "en": "one week and one line are not enough to be sure; data over a longer time, e.g. from the transport company, would confirm it",
+      "sk": "jeden týždeň a jedna linka nestačia na istotu, potvrdili by to dáta za dlhší čas, napríklad od dopravného podniku",
+      "hu": "egy hét és egy járat nem elég a biztos következtetéshez, hosszabb időszak adatai, például a közlekedési vállalattól, megerősítenék"
+     }
+    ]
+   }
+  },
+  {
+   "id": "tym-stroje-a-site",
+   "chapter": "ch4-stroje-a-site",
+   "icon": "📡",
+   "title": {
+    "cs": "Fotka z chaty",
+    "en": "A photo from the cabin",
+    "sk": "Fotka z chaty",
+    "hu": "Fotó a hétvégi házból"
+   },
+   "story": {
+    "cs": "Ema je o víkendu na chatě se slabým signálem a posílá fotku do třídního chatu. Odesílá se dlouho, ale nakonec ji uvidí všichni, i když Ema mezitím vypne mobil. Každý z vás ví, co se s fotkou děje v jedné části cesty.",
+    "en": "Ema spends the weekend at a cabin with a weak signal and sends a photo to the class chat. It takes a long time to send, but in the end everyone sees it, even though Ema has switched her phone off by then. Each of you knows what happens to the photo on one part of its journey.",
+    "sk": "Ema je cez víkend na chate so slabým signálom a posiela fotku do triedneho chatu. Odosiela sa dlho, ale nakoniec ju uvidia všetci, aj keď Ema medzitým vypne mobil. Každý z vás vie, čo sa s fotkou deje v jednej časti cesty.",
+    "hu": "Ema a hétvégét egy gyenge térerejű hétvégi házban tölti, és fotót küld az osztálycsetbe. Sokáig tart az elküldés, de végül mindenki látja, pedig Ema közben kikapcsolja a telefonját. Mindegyikőtök tudja, mi történik a fotóval az út egyik szakaszán."
+   },
+   "cards": [
+    {
+     "label": {
+      "cs": "Telefon",
+      "en": "The phone",
+      "sk": "Telefón",
+      "hu": "A telefon"
+     },
+     "text": {
+      "cs": "Telefon fotku uloží do své paměti. Před odesláním ji zmenší (zkomprimuje), aby měla méně dat.",
+      "en": "The phone stores the photo in its memory. Before sending, it makes it smaller (compresses it) so there is less data.",
+      "sk": "Telefón fotku uloží do svojej pamäte. Pred odoslaním ju zmenší (skomprimuje), aby mala menej dát.",
+      "hu": "A telefon elmenti a fotót a memóriájába. Küldés előtt kisebbre veszi (tömöríti), hogy kevesebb adat legyen."
+     }
+    },
+    {
+     "label": {
+      "cs": "Cesta",
+      "en": "The journey",
+      "sk": "Cesta",
+      "hu": "Az út"
+     },
+     "text": {
+      "cs": "Fotka se rozdělí na malé balíčky. Každý jde přes vysílač a routery svou cestou a v cíli se složí. Ztracený balíček se pošle znovu. Při slabém signálu se balíčky ztrácejí častěji.",
+      "en": "The photo is split into small packets. Each one travels its own way through the mast and routers, and they are put back together at the end. A lost packet is sent again. With a weak signal, packets get lost more often.",
+      "sk": "Fotka sa rozdelí na malé balíčky. Každý ide cez vysielač a routery svojou cestou a v cieli sa poskladá. Stratený balíček sa pošle znova. Pri slabom signáli sa balíčky strácajú častejšie.",
+      "hu": "A fotó kis csomagokra bomlik. Mindegyik a saját útján megy át az adótornyon és a routereken, a célban pedig összeáll. Az elveszett csomagot újraküldik. Gyenge jelnél gyakrabban vesznek el csomagok."
+     }
+    },
+    {
+     "label": {
+      "cs": "Cloud",
+      "en": "The cloud",
+      "sk": "Cloud",
+      "hu": "A felhő"
+     },
+     "text": {
+      "cs": "Aplikace fotku uloží na svůj server v datovém centru. Odtud si ji stáhnou telefony spolužáků, i když je Emin mobil už vypnutý.",
+      "en": "The app stores the photo on its server in a data centre. Classmates' phones download it from there, even when Ema's phone is already off.",
+      "sk": "Aplikácia fotku uloží na svoj server v dátovom centre. Odtiaľ si ju stiahnu telefóny spolužiakov, aj keď je Emin mobil už vypnutý.",
+      "hu": "Az alkalmazás egy adatközpontban lévő szerverére menti a fotót. Az osztálytársak telefonjai onnan töltik le, akkor is, ha Ema telefonja már ki van kapcsolva."
+     }
+    },
+    {
+     "label": {
+      "cs": "Šifrování",
+      "en": "Encryption",
+      "sk": "Šifrovanie",
+      "hu": "Titkosítás"
+     },
+     "text": {
+      "cs": "Zprávy v aplikaci jsou šifrované. Cestou přes cizí zařízení je nikdo nepřečte, vypadají jako náhodné znaky.",
+      "en": "Messages in the app are encrypted. Nobody can read them on the way through other people's devices; they look like random characters.",
+      "sk": "Správy v aplikácii sú šifrované. Cestou cez cudzie zariadenia ich nikto neprečíta, vyzerajú ako náhodné znaky.",
+      "hu": "Az alkalmazás üzenetei titkosítottak. Útközben, idegen eszközökön senki sem tudja elolvasni őket, véletlen karaktereknek látszanak."
+     }
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Popište cestu fotky od Emina telefonu ke spolužákům. Proč odesílání z chaty trvá déle a proč fotku spolužáci uvidí i po vypnutí Emina mobilu?",
+     "en": "Describe the photo's journey from Ema's phone to the classmates. Why does sending from the cabin take longer, and why do the classmates see the photo even after Ema's phone is off?",
+     "sk": "Opíšte cestu fotky od Eminho telefónu k spolužiakom. Prečo odosielanie z chaty trvá dlhšie a prečo fotku spolužiaci uvidia aj po vypnutí Eminho mobilu?",
+     "hu": "Írjátok le a fotó útját Ema telefonjától az osztálytársakig. Miért tart tovább a küldés a hétvégi házból, és miért látják a többiek a fotót akkor is, ha Ema telefonja már ki van kapcsolva?"
+    },
+    "hints": [
+     {
+      "cs": "fotka se rozdělí na balíčky, které putují sítí přes vysílač a routery",
+      "en": "the photo is split into packets that travel through the network via the mast and routers",
+      "sk": "fotka sa rozdelí na balíčky, ktoré putujú sieťou cez vysielač a routery",
+      "hu": "a fotó csomagokra bomlik, amelyek az adótornyon és a routereken át haladnak a hálózatban"
+     },
+     {
+      "cs": "slabý signál znamená, že se balíčky ztrácejí a posílají znovu, proto to trvá",
+      "en": "a weak signal means packets get lost and are sent again, which is why it takes long",
+      "sk": "slabý signál znamená, že sa balíčky strácajú a posielajú znova, preto to trvá",
+      "hu": "a gyenge jel miatt csomagok vesznek el, és újra kell küldeni őket, ezért tart sokáig"
+     },
+     {
+      "cs": "fotka čeká na serveru aplikace (v cloudu), odkud si ji ostatní stáhnou i bez Emina mobilu",
+      "en": "the photo waits on the app's server (in the cloud), where the others download it without Ema's phone",
+      "sk": "fotka čaká na serveri aplikácie (v cloude), odkiaľ si ju ostatní stiahnu aj bez Eminho mobilu",
+      "hu": "a fotó az alkalmazás szerverén (a felhőben) várakozik, ahonnan a többiek Ema telefonja nélkül is letöltik"
+     }
+    ]
+   }
+  },
+  {
+   "id": "tym-ai",
+   "chapter": "ch5-ai",
+   "icon": "🤖",
+   "title": {
+    "cs": "Aplikace na houby",
+    "en": "The mushroom app",
+    "sk": "Aplikácia na huby",
+    "hu": "A gombafelismerő alkalmazás"
+   },
+   "story": {
+    "cs": "Jirka našel večer v lese houbu a vyfotil ji aplikací, která poznává houby. Aplikace napsala „jedlá, jistota 92 %“. Jirka se ptá třídy, jestli ji může dát do smaženice. Každý z vás ví něco jiného o tom, jak takové aplikace fungují.",
+    "en": "In the evening Jirka found a mushroom in the woods and photographed it with an app that recognises mushrooms. The app said \"edible, 92% confidence\". Jirka asks the class whether it can go into the scrambled eggs. Each of you knows something different about how apps like this work.",
+    "sk": "Jirka našiel večer v lese hubu a odfotil ju aplikáciou, ktorá rozpoznáva huby. Aplikácia napísala „jedlá, istota 92 %“. Jirka sa pýta triedy, či ju môže dať do praženice. Každý z vás vie niečo iné o tom, ako takéto aplikácie fungujú.",
+    "hu": "Jirka este gombát talált az erdőben, és lefényképezte egy gombafelismerő alkalmazással. Az alkalmazás azt írta: „ehető, 92%-os biztonsággal“. Jirka megkérdezi az osztályt, beleteheti-e a rántottába. Mindegyikőtök mást tud arról, hogyan működnek az ilyen alkalmazások."
+   },
+   "cards": [
+    {
+     "label": {
+      "cs": "Učení",
+      "en": "Learning",
+      "sk": "Učenie",
+      "hu": "Tanulás"
+     },
+     "text": {
+      "cs": "Aplikace se naučila poznávat houby z tisíců fotek s popiskem. Fotek pořízených za šera nebo v jiném ročním období mezi nimi bylo málo.",
+      "en": "The app learned to recognise mushrooms from thousands of labelled photos. Few of them were taken at dusk or in a different season.",
+      "sk": "Aplikácia sa naučila rozpoznávať huby z tisícov fotiek s popiskom. Fotiek odfotených za šera alebo v inom ročnom období medzi nimi bolo málo.",
+      "hu": "Az alkalmazás több ezer felcímkézett fotóból tanulta meg felismerni a gombákat. Ezek közül kevés készült szürkületben vagy más évszakban."
+     }
+    },
+    {
+     "label": {
+      "cs": "Jistota",
+      "en": "Confidence",
+      "sk": "Istota",
+      "hu": "Biztonság"
+     },
+     "text": {
+      "cs": "Číslo 92 % je odhad modelu, ne záruka. Zhruba jedna z dvanácti takových odpovědí může být špatně. U podobně vypadajících druhů se aplikace plete častěji.",
+      "en": "The 92% is the model's estimate, not a guarantee. Roughly one in twelve such answers can be wrong. With species that look alike, the app gets it wrong more often.",
+      "sk": "Číslo 92 % je odhad modelu, nie záruka. Zhruba jedna z dvanástich takých odpovedí môže byť zlá. Pri podobne vyzerajúcich druhoch sa aplikácia mýli častejšie.",
+      "hu": "A 92% a modell becslése, nem garancia. Nagyjából minden tizenkettedik ilyen válasz hibás lehet. Hasonló kinézetű fajoknál az alkalmazás gyakrabban téved."
+     }
+    },
+    {
+     "label": {
+      "cs": "Následky",
+      "en": "Consequences",
+      "sk": "Následky",
+      "hu": "Következmények"
+     },
+     "text": {
+      "cs": "Některé jedlé houby mají jedovaté dvojníky, které vypadají skoro stejně. Omyl tady může znamenat vážnou otravu.",
+      "en": "Some edible mushrooms have poisonous look-alikes that look almost the same. A mistake here can mean serious poisoning.",
+      "sk": "Niektoré jedlé huby majú jedovaté dvojníky, ktoré vyzerajú skoro rovnako. Omyl tu môže znamenať vážnu otravu.",
+      "hu": "Egyes ehető gombáknak szinte ugyanolyan kinézetű mérgező hasonmásuk van. Itt egy tévedés súlyos mérgezést jelenthet."
+     }
+    },
+    {
+     "label": {
+      "cs": "Rozhodnutí",
+      "en": "The decision",
+      "sk": "Rozhodnutie",
+      "hu": "A döntés"
+     },
+     "text": {
+      "cs": "Doporučení AI je podklad, ne rozhodnutí. Odpovědnost má člověk. Houbu, kterou neznáš jistě, ukaž před jídlem znalci nebo v houbařské poradně.",
+      "en": "An AI's recommendation is input, not a decision. A person is responsible. A mushroom you do not know for sure goes to an expert or a mushroom advice centre before anyone eats it.",
+      "sk": "Odporúčanie AI je podklad, nie rozhodnutie. Zodpovednosť má človek. Hubu, ktorú nepoznáš naisto, ukáž pred jedlom znalcovi alebo v hubárskej poradni.",
+      "hu": "Az MI javaslata kiindulópont, nem döntés. A felelősség az emberé. Azt a gombát, amelyet nem ismersz biztosan, evés előtt mutasd meg szakértőnek vagy gombavizsgáló helyen."
+     }
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Může Jirka houbu sníst, když aplikace říká „jedlá, 92 %“? Zdůvodněte to a poraďte mu, co má udělat.",
+     "en": "Can Jirka eat the mushroom when the app says \"edible, 92%\"? Explain why and advise what to do.",
+     "sk": "Môže Jirka hubu zjesť, keď aplikácia hovorí „jedlá, 92 %“? Zdôvodnite to a poraďte mu, čo má urobiť.",
+     "hu": "Megeheti Jirka a gombát, ha az alkalmazás szerint „ehető, 92%“? Indokoljátok meg, és tanácsoljátok meg neki, mit tegyen."
+    },
+    "hints": [
+     {
+      "cs": "92 % je odhad, ne jistota, a aplikace se může splést, hlavně u fotky za šera a u podobných druhů",
+      "en": "92% is an estimate, not certainty, and the app can be wrong, especially with a photo at dusk and look-alike species",
+      "sk": "92 % je odhad, nie istota, a aplikácia sa môže pomýliť, hlavne pri fotke za šera a pri podobných druhoch",
+      "hu": "a 92% becslés, nem bizonyosság, és az alkalmazás tévedhet, főleg szürkületi fotónál és hasonló fajoknál"
+     },
+     {
+      "cs": "omyl má vážné následky, protože existují jedovatí dvojníci",
+      "en": "a mistake has serious consequences because poisonous look-alikes exist",
+      "sk": "omyl má vážne následky, pretože existujú jedovatí dvojníci",
+      "hu": "a tévedésnek súlyos következményei vannak, mert léteznek mérgező hasonmások"
+     },
+     {
+      "cs": "rozhoduje člověk, takže houbu nejíst jen podle aplikace a ověřit ji u znalce nebo v poradně",
+      "en": "a person decides, so do not eat it just because of the app, and have it checked by an expert or an advice centre",
+      "sk": "rozhoduje človek, takže hubu nejesť len podľa aplikácie a overiť ju u znalca alebo v poradni",
+      "hu": "az ember dönt, ezért nem szabad pusztán az alkalmazás alapján megenni, hanem szakértővel vagy gombavizsgálóval kell ellenőriztetni"
+     }
+    ]
+   }
+  },
+  {
+   "id": "tym-bezpeci",
+   "chapter": "ch6-bezpeci",
+   "icon": "🛡️",
+   "title": {
+    "cs": "Podezřelá výhra",
+    "en": "A suspicious prize",
+    "sk": "Podozrivá výhra",
+    "hu": "Gyanús nyeremény"
+   },
+   "story": {
+    "cs": "Adamovi přišla zpráva: „Gratulujeme, vyhráváš 5 000 skinů! Přihlas se do 10 minut, jinak výhra propadne.“ Adam klikl na odkaz a zadal jméno a heslo do hry. Teď se bojí, co bude. Každý z vás ví něco jiného o tom, jak se bránit.",
+    "en": "Adam got a message: \"Congratulations, you are winning 5,000 skins! Log in within 10 minutes or the prize is gone.\" Adam clicked the link and typed in his game username and password. Now he is worried. Each of you knows something different about how to defend yourself.",
+    "sk": "Adamovi prišla správa: „Gratulujeme, vyhrávaš 5 000 skinov! Prihlás sa do 10 minút, inak výhra prepadne.“ Adam klikol na odkaz a zadal meno a heslo do hry. Teraz sa bojí, čo bude. Každý z vás vie niečo iné o tom, ako sa brániť.",
+    "hu": "Adam üzenetet kapott: „Gratulálunk, 5000 skint nyersz! Lépj be 10 percen belül, különben elveszik a nyeremény.“ Adam rákattintott a linkre, és beírta a játék felhasználónevét és jelszavát. Most aggódik, mi lesz. Mindegyikőtök mást tud arról, hogyan lehet védekezni."
+   },
+   "cards": [
+    {
+     "label": {
+      "cs": "Podvod",
+      "en": "The scam",
+      "sk": "Podvod",
+      "hu": "Az átverés"
+     },
+     "text": {
+      "cs": "Podvodné zprávy tlačí na čas a slibují výhru. Odkaz vede na falešnou stránku, která vypadá jako přihlášení do hry, a heslo posílá útočníkovi.",
+      "en": "Scam messages rush you and promise a prize. The link leads to a fake page that looks like the game's login and sends the password to the attacker.",
+      "sk": "Podvodné správy tlačia na čas a sľubujú výhru. Odkaz vedie na falošnú stránku, ktorá vyzerá ako prihlásenie do hry, a heslo posiela útočníkovi.",
+      "hu": "Az átverős üzenetek sürgetnek és nyereményt ígérnek. A link egy hamis oldalra visz, amely a játék bejelentkezésének látszik, és a jelszót a támadónak küldi el."
+     }
+    },
+    {
+     "label": {
+      "cs": "Heslo",
+      "en": "The password",
+      "sk": "Heslo",
+      "hu": "A jelszó"
+     },
+     "text": {
+      "cs": "Heslo je potřeba hned změnit. Kdo stejné heslo používá i jinde, musí ho změnit všude, nejdřív u e-mailu, protože přes e-mail jde obnovit ostatní účty.",
+      "en": "The password must be changed right away. Anyone who uses the same password elsewhere must change it everywhere, starting with e-mail, because e-mail can reset all the other accounts.",
+      "sk": "Heslo treba hneď zmeniť. Kto rovnaké heslo používa aj inde, musí ho zmeniť všade, najprv pri e-maile, pretože cez e-mail sa dajú obnoviť ostatné účty.",
+      "hu": "A jelszót azonnal meg kell változtatni. Aki ugyanazt a jelszót máshol is használja, mindenhol meg kell változtatnia, először az e-mailnél, mert az e-maillel a többi fiók visszaállítható."
+     }
+    },
+    {
+     "label": {
+      "cs": "Dvoufázové ověření",
+      "en": "Two-step verification",
+      "sk": "Dvojfázové overenie",
+      "hu": "Kétlépcsős azonosítás"
+     },
+     "text": {
+      "cs": "Dvoufázové ověření chce kromě hesla i kód z mobilu. Útočníkovi pak samotné ukradené heslo nestačí.",
+      "en": "Two-step verification asks for a code from the phone as well as the password. Then a stolen password alone is not enough for the attacker.",
+      "sk": "Dvojfázové overenie chce okrem hesla aj kód z mobilu. Útočníkovi potom samotné ukradnuté heslo nestačí.",
+      "hu": "A kétlépcsős azonosítás a jelszón kívül a telefonra érkező kódot is kéri. Így a támadónak nem elég az ellopott jelszó."
+     }
+    },
+    {
+     "label": {
+      "cs": "Stopa a pomoc",
+      "en": "Footprint and help",
+      "sk": "Stopa a pomoc",
+      "hu": "Lábnyom és segítség"
+     },
+     "text": {
+      "cs": "Adam na sítích často píše, jakou hru hraje, proto zpráva vypadala věrohodně. Útok se má nahlásit správci hry a říct o něm dospělému.",
+      "en": "Adam often posts about which game he plays, which is why the message looked believable. The attack should be reported to the game's support and told to an adult.",
+      "sk": "Adam na sieťach často píše, akú hru hrá, preto správa vyzerala vierohodne. Útok treba nahlásiť správcovi hry a povedať o ňom dospelému.",
+      "hu": "Adam a közösségi oldalakon gyakran ír arról, melyik játékkal játszik, ezért tűnt hihetőnek az üzenet. A támadást jelenteni kell a játék üzemeltetőjének, és el kell mondani egy felnőttnek."
+     }
+    }
+   ],
+   "boss": {
+    "q": {
+     "cs": "Poraďte Adamovi, co má udělat hned teď a jak příště podobný podvod pozná.",
+     "en": "Advise Adam what to do right now and how to spot a scam like this next time.",
+     "sk": "Poraďte Adamovi, čo má urobiť hneď teraz a ako nabudúce podobný podvod spozná.",
+     "hu": "Tanácsoljátok meg Adamnak, mit tegyen most azonnal, és hogyan ismeri fel legközelebb a hasonló átverést."
+    },
+    "hints": [
+     {
+      "cs": "hned změnit heslo, i všude, kde bylo stejné, a začít e-mailem",
+      "en": "change the password right away, also wherever it was the same, starting with e-mail",
+      "sk": "hneď zmeniť heslo, aj všade, kde bolo rovnaké, a začať e-mailom",
+      "hu": "azonnal jelszót cserélni, mindenhol, ahol ugyanaz volt, az e-maillel kezdve"
+     },
+     {
+      "cs": "zapnout dvoufázové ověření",
+      "en": "turn on two-step verification",
+      "sk": "zapnúť dvojfázové overenie",
+      "hu": "bekapcsolni a kétlépcsős azonosítást"
+     },
+     {
+      "cs": "poznat podvod podle spěchu, výhry a falešného odkazu, nahlásit ho správci a říct dospělému",
+      "en": "spot the scam by the rush, the prize and the fake link, report it to support and tell an adult",
+      "sk": "spoznať podvod podľa zhonu, výhry a falošného odkazu, nahlásiť ho správcovi a povedať dospelému",
+      "hu": "felismerni az átverést a sürgetésről, a nyereményről és a hamis linkről, jelenteni az üzemeltetőnek és szólni egy felnőttnek"
+     }
+    ]
+   }
+  }
  ]
 }

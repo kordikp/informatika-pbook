@@ -1,6 +1,6 @@
-// Stránka Pro učitele (ucitel.html): hodina z kapitoly, mikromise, projekt ve světě, tvůrčí úkol
+// Stránka Pro učitele (ucitel.html): hodina z kapitoly, mikromise, projekt ve světě, skupinový úkol, tvůrčí úkol
 // s kódem třídy a certifikát. Všechno jsou odkazy do knihy, které engine už umí (#mission-…,
-// #mise-…, #autor-…, #trida-…); žádné účty, postup zůstává v zařízení žáka. Stránka mluví jazykem
+// #mise-…, #tym-…, #autor-…, #trida-…); žádné účty, postup zůstává v zařízení žáka. Stránka mluví jazykem
 // knihy (?lang=, jinak poslední volba čtenáře) a v tom jazyce se kniha žákům i otevře.
 // Data skládá scripts/build-ucitel.mjs do content/ucitel.json.
 import { CONFIG } from './config.js';
@@ -210,6 +210,63 @@ const S = {
     sk: 'Navyše porazený boss záverečného projektu „{0}“ a všetky jadrá udržané: kartička na opakovanie zodpovedaná správne aj s odstupom aspoň dvoch dní.',
     hu: 'Ezen felül legyőzött főellenség a „{0}” záróprojektben, és minden alapfogalom megtartva: az ismétlőkártyára legalább kétnapos szünet után is helyes a válasz.',
   },
+  navTym: { cs: 'Skupinový úkol', en: 'Group task', sk: 'Skupinová úloha', hu: 'Csoportfeladat' },
+  tymH: { cs: 'Skupinové úkoly s AI asistenty', en: 'Group tasks with AI assistants', sk: 'Skupinové úlohy s AI asistentmi', hu: 'Csoportfeladatok AI-asszisztensekkel' },
+  tymIntro: {
+    cs: 'Skládačka: v týmu má každé místo kartu s jiným kouskem informací a tým je musí dát dohromady, aby odpověděl drakovi. Místa v týmu můžou obsadit AI asistenti. Každý zná jen svou kartu, na otázky dětí odpovídá a odpověď za ně nenapíše. Kód na konci započítá úkol všem v týmu.',
+    en: 'A jigsaw: each seat in the team holds a card with a different piece of information, and the team has to put the pieces together to answer the dragon. AI assistants can take seats. Each one knows only its own card, answers the children’s questions and never writes the answer for them. A code at the end counts the task for everyone in the team.',
+    sk: 'Skladačka: v tíme má každé miesto kartu s iným kúskom informácií a tím ich musí dať dokopy, aby odpovedal drakovi. Miesta v tíme môžu obsadiť AI asistenti. Každý pozná len svoju kartu, na otázky detí odpovedá a odpoveď za ne nenapíše. Kód na konci započíta úlohu všetkým v tíme.',
+    hu: 'Kirakós: a csapatban minden helyhez más információdarabot tartalmazó kártya tartozik, és a csapatnak össze kell raknia a darabokat, hogy válaszoljon a sárkánynak. A helyeket AI-asszisztensek is elfoglalhatják. Mindegyik csak a saját kártyáját ismeri, válaszol a gyerekek kérdéseire, de a választ nem írja meg helyettük. A végén kapott kód a csapat minden tagjának beszámítja a feladatot.',
+  },
+  tymKids: { cs: 'Dětí v týmu', en: 'Children per team', sk: 'Detí v tíme', hu: 'Gyerekek a csapatban' },
+  tymAi: { cs: 'AI asistentů', en: 'AI assistants', sk: 'AI asistentov', hu: 'AI-asszisztensek' },
+  tymSize: { cs: 'Tým má 2 až 4 členy.', en: 'A team has 2 to 4 members.', sk: 'Tím má 2 až 4 členov.', hu: 'Egy csapat 2–4 tagú.' },
+  tymWho: { cs: 'Kdo má jakou kartu', en: 'Who holds which card', sk: 'Kto má akú kartu', hu: 'Kinél melyik kártya van' },
+  tymChild: { cs: 'Dítě {0}', en: 'Child {0}', sk: 'Dieťa {0}', hu: '{0}. gyerek' },
+  tymBot: { cs: '🤖 AI asistent {0}', en: '🤖 AI assistant {0}', sk: '🤖 AI asistent {0}', hu: '🤖 {0}. AI-asszisztens' },
+  tymHow: { cs: 'Jak na to', en: 'How it works', sk: 'Ako na to', hu: 'Hogyan működik' },
+  tymHow1: {
+    cs: 'Rozdělte třídu do týmů po {0}. Každé dítě otevře odkaz nebo QR kód na svém zařízení.',
+    en: 'Split the class into teams of {0}. Each child opens the link or QR code on their own device.',
+    sk: 'Rozdeľte triedu do tímov po {0}. Každé dieťa otvorí odkaz alebo QR kód na svojom zariadení.',
+    hu: 'Ossza a osztályt {0} fős csapatokra. Minden gyerek a saját eszközén nyitja meg a linket vagy a QR-kódot.',
+  },
+  tymHow1solo: {
+    cs: 'Každé dítě pracuje samo se svými AI asistenty: otevře odkaz nebo QR kód na svém zařízení.',
+    en: 'Each child works alone with their AI assistants: they open the link or QR code on their own device.',
+    sk: 'Každé dieťa pracuje samo so svojimi AI asistentmi: otvorí odkaz alebo QR kód na svojom zariadení.',
+    hu: 'Minden gyerek egyedül dolgozik a saját AI-asszisztenseivel: a saját eszközén nyitja meg a linket vagy a QR-kódot.',
+  },
+  tymHow2: {
+    cs: 'Děti se v týmu domluví, kdo má jaké číslo. Kartu nikdo jen neukazuje: každé dítě ostatním vlastními slovy řekne, co na ní je.',
+    en: 'The children agree who is which number. Nobody just shows a card: each child tells the others in their own words what it says.',
+    sk: 'Deti sa v tíme dohodnú, kto má aké číslo. Kartu nikto len neukazuje: každé dieťa ostatným vlastnými slovami povie, čo na nej je.',
+    hu: 'A gyerekek megbeszélik, ki melyik szám. A kártyát senki nem csak megmutatja: mindenki a saját szavaival mondja el a többieknek, mi áll rajta.',
+  },
+  tymHow3: {
+    cs: 'AI asistentů se děti ptají přímo v knize. Asistent prozradí jen to, co má na kartě; bez připojení ukáže kartu celou.',
+    en: 'The children ask the AI assistants right in the book. An assistant tells only what is on its card; without a connection it shows its whole card.',
+    sk: 'AI asistentov sa deti pýtajú priamo v knihe. Asistent prezradí len to, čo má na karte; bez pripojenia ukáže kartu celú.',
+    hu: 'Az AI-asszisztenseket a gyerekek közvetlenül a könyvben kérdezik. Az asszisztens csak azt árulja el, ami a kártyáján áll; kapcsolat nélkül megmutatja a teljes kártyát.',
+  },
+  tymHow4: {
+    cs: 'Tým napíše jednu společnou odpověď a jedno dítě ji pošle drakovi. Když odpověď ještě není úplná, drak položí naváděcí otázku. Po úspěchu se ukáže kód, který ostatní zadají u sebe.',
+    en: 'The team writes one answer together and one child sends it to the dragon. If it is not complete yet, the dragon asks a guiding question. After a pass a code appears, and the others type it in on their devices.',
+    sk: 'Tím napíše jednu spoločnú odpoveď a jedno dieťa ju pošle drakovi. Keď odpoveď ešte nie je úplná, drak položí navádzajúcu otázku. Po úspechu sa ukáže kód, ktorý ostatní zadajú u seba.',
+    hu: 'A csapat egy közös választ ír, és egy gyerek elküldi a sárkánynak. Ha a válasz még nem teljes, a sárkány rávezető kérdést tesz fel. Siker után megjelenik egy kód, amelyet a többiek beírnak a saját eszközükön.',
+  },
+  tymHow4solo: {
+    cs: 'Dítě dá kousky dohromady a pošle odpověď drakovi. Když ještě není úplná, drak položí naváděcí otázku.',
+    en: 'The child puts the pieces together and sends the answer to the dragon. If it is not complete yet, the dragon asks a guiding question.',
+    sk: 'Dieťa dá kúsky dokopy a pošle odpoveď drakovi. Keď ešte nie je úplná, drak položí navádzajúcu otázku.',
+    hu: 'A gyerek összerakja a darabokat, és elküldi a választ a sárkánynak. Ha még nem teljes, a sárkány rávezető kérdést tesz fel.',
+  },
+  tymNote: {
+    cs: 'Otázky pro AI asistenty i odpověď pro draka posílá kniha k vyhodnocení poskytovateli AI modelu, stejně jako u misí. Upozorněte děti, ať do nich nepíšou jména ani osobní údaje.',
+    en: 'As with missions, the book sends the questions for the AI assistants and the answer for the dragon to the AI model provider. Remind the children not to write names or personal details in them.',
+    sk: 'Otázky pre AI asistentov aj odpoveď pre draka posiela kniha na vyhodnotenie poskytovateľovi AI modelu, rovnako ako pri misiách. Upozornite deti, nech do nich nepíšu mená ani osobné údaje.',
+    hu: 'A küldetésekhez hasonlóan a könyv az AI-asszisztenseknek szóló kérdéseket és a sárkánynak szóló választ is elküldi az AI-modell szolgáltatójának. Figyelmeztesse a gyerekeket, hogy ne írjanak bele neveket vagy személyes adatokat.',
+  },
   credits: { cs: 'Knihu i certifikát vydává <a href="https://aidetem.cz" target="_blank" rel="noopener">AI dětem</a>.' },
   loadErr: {
     cs: 'Data pro učitele se nepodařilo načíst. Zkuste stránku obnovit.', en: 'Could not load the teacher data. Try reloading the page.',
@@ -350,6 +407,52 @@ function svety(D) {
   el.querySelectorAll('[data-svet]').forEach(b => b.onclick = () => { stav.svet = b.dataset.svet; uloz(); svety(D); });
 }
 
+// ---------- skupinové úkoly: skládačka s AI asistenty ----------
+// Karta i patří členovi i % velikost týmu; děti jsou členové 1…k, asistenti za nimi (js/teams.js v knize).
+const VELIKOST = (k, a) => k >= 1 && k <= 4 && a >= 0 && a <= 3 && k + a >= 2 && k + a <= 4;
+function skupiny(D) {
+  const el = document.getElementById('ucTym');
+  const vyber = D.teams.find(x => x.id === stav.tym) || D.teams[0];
+  let k = +stav.tymK || 2, a = stav.tymA == null ? 1 : +stav.tymA;
+  if (!VELIKOST(k, a)) { k = 2; a = 1; }
+  const n = k + a, P = 'ABCD';
+  const karty = m => [0, 1, 2, 3].filter(i => i % n === m).map(i => `${P[i]} ${esc(loc(vyber.cards[i]))}`).join(', ');
+  const kdo = [...Array.from({ length: k }, (_, m) => `<li><b>${t('tymChild', m + 1)}</b>: ${karty(m)}</li>`),
+    ...Array.from({ length: a }, (_, j) => `<li><b>${t('tymBot', j + 1)}</b>: ${karty(k + j)}</li>`)].join('');
+  const cisla = (pole, co, hodnota, ok) => `<div class="uc-chips" role="group" aria-label="${t(co === 'k' ? 'tymKids' : 'tymAi')}">${pole.map(x =>
+    `<button type="button" class="uc-chip" data-${co}="${x}" aria-pressed="${x === hodnota}"${ok(x) ? '' : ' disabled'}>${x}</button>`).join('')}</div>`;
+  el.innerHTML = `<div class="uc-worlds" role="group" aria-label="${t('navTym')}">${D.teams.map(x =>
+      `<button type="button" class="uc-world" data-tym="${esc(x.id)}" aria-pressed="${x === vyber}">
+        <span class="uc-ico" aria-hidden="true">${x.icon}</span>
+        <span class="uc-world-name">${esc(loc(x.title))}</span>
+        <small>${esc(loc(x.chapter))}</small>
+      </button>`).join('')}</div>
+    <div class="uc-card">
+      <div class="uc-head"><span class="uc-ico" aria-hidden="true">${vyber.icon}</span><div>
+        <div class="uc-kicker">${esc(loc(vyber.chapter))}</div>
+        <h3>${esc(loc(vyber.title))}</h3>
+        <p>${esc(loc(vyber.story))}</p>
+      </div></div>
+      <p><b>${t('tymQ')}</b></p><blockquote>${esc(loc(vyber.boss))}</blockquote>
+      <div class="uc-row">
+        <div class="uc-label">${t('tymKids')}${cisla([1, 2, 3, 4], 'k', k, () => true)}</div>
+        <div class="uc-label">${t('tymAi')}${cisla([0, 1, 2, 3], 'a', a, x => VELIKOST(k, x))}</div>
+      </div>
+      <p class="uc-muted">${t('tymSize')}</p>
+      <p><b>${t('tymWho')}</b></p><ul class="uc-how">${kdo}</ul>
+      ${odkazBox(odkaz(`tym-${vyber.id}~${k}~${a}`), loc(vyber.title))}
+      <h3 class="uc-sub">${t('tymHow')}</h3>
+      <ol class="uc-how"><li>${k > 1 ? t('tymHow1', n) : t('tymHow1solo')}</li>${k > 1 ? `<li>${t('tymHow2')}</li>` : ''}${a ? `<li>${t('tymHow3')}</li>` : ''}<li>${k > 1 ? t('tymHow4') : t('tymHow4solo')}</li></ol>
+      <p class="uc-note">${t('tymNote')}</p>
+    </div>`;
+  el.querySelectorAll('[data-tym]').forEach(b => b.onclick = () => { stav.tym = b.dataset.tym; uloz(); skupiny(D); });
+  el.querySelectorAll('[data-k]').forEach(b => b.onclick = () => {
+    const nk = +b.dataset.k;
+    stav.tymK = nk; stav.tymA = VELIKOST(nk, a) ? a : nk === 1 ? 1 : Math.min(a, 4 - nk); uloz(); skupiny(D);
+  });
+  el.querySelectorAll('[data-a]').forEach(b => b.onclick = () => { stav.tymK = k; stav.tymA = +b.dataset.a; uloz(); skupiny(D); });
+}
+
 // ---------- pro nadané: výzvy, hry a expedice navíc ----------
 function nadani(D) {
   const N = D.gifted, el = document.getElementById('ucNadani');
@@ -441,14 +544,15 @@ async function start() {
   const resitel = loc(CONFIG.certificate?.tiers?.practitioner?.title) || 'Řešitel';
   main.innerHTML = `<h1>${t('h1')}</h1>
     <p class="uc-lede">${t('lede')}</p>
-    <nav class="uc-nav"><a href="#kapitola">${t('navKap')}</a><a href="#mikromise">${t('navMini')}</a><a href="#svety">${t('navSvet')}</a>${D.gifted ? `<a href="#nadani">${t('navNadani')}</a>` : ''}<a href="#tvorba">${t('navTvorba')}</a><a href="#certifikat">${t('navCert')}</a></nav>
+    <nav class="uc-nav"><a href="#kapitola">${t('navKap')}</a><a href="#mikromise">${t('navMini')}</a><a href="#svety">${t('navSvet')}</a>${D.teams?.length ? `<a href="#skupiny">${t('navTym')}</a>` : ''}${D.gifted ? `<a href="#nadani">${t('navNadani')}</a>` : ''}<a href="#tvorba">${t('navTvorba')}</a><a href="#certifikat">${t('navCert')}</a></nav>
     <section id="kapitola"><h2>${t('navKap')}</h2><p>${t('kapIntro')}</p><div id="ucKap"></div></section>
     <section id="mikromise"><h2>${t('miniH')}</h2><p>${t('miniIntro')}</p><div id="ucMini"></div></section>
     <section id="svety"><h2>${t('navSvet')}</h2><p>${t('svetIntro', esc(resitel))}</p><div id="ucSvet"></div></section>
+    ${D.teams?.length ? `<section id="skupiny"><h2>${t('tymH')}</h2><p>${t('tymIntro')}</p><div id="ucTym"></div></section>` : ''}
     ${D.gifted ? `<section id="nadani"><h2>${t('nadH')}</h2><p>${t('nadIntro', D.gifted.challenges, D.gifted.games)}</p><div id="ucNadani"></div></section>` : ''}
     <section id="tvorba"><h2>${t('tvH')}</h2><p>${t('tvIntro')}</p><div id="ucTvorba"></div></section>
     <section id="certifikat"><h2>${t('navCert')}</h2><p>${t('certIntro')}</p><div id="ucCert"></div></section>`;
-  kapitoly(D); mikromise(D); svety(D); if (D.gifted) nadani(D); tvorba(D); certifikat(D);
+  kapitoly(D); mikromise(D); svety(D); if (D.teams?.length) skupiny(D); if (D.gifted) nadani(D); tvorba(D); certifikat(D);
 
   // kopírování a QR pro všechny odkazy na stránce
   main.addEventListener('click', async e => {

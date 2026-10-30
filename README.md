@@ -7,8 +7,9 @@ Bezplatná interaktivní učebnice informatiky a umělé inteligence pro 2. stup
 - **6 kapitol, 24 jader** (Postup, Program, Data, Stroje a sítě, Umělá inteligence, Bezpečí a ty). Každé jádro má několik podání (článek, hra, komiks, řešený příklad…) a kniha vybírá podle toho, co čtenáře baví.
 - **Světy** (hry, roboti a micro:bit, weby, aplikace, tvorba s AI, sociální sítě) a **12 expedic** pro ty, kdo chtějí víc.
 - **Mise se závěrečným bossem.** Odpověď vlastními slovy hodnotí AI zkoušející. Když ještě není úplná, položí jednu naváděcí otázku (sokratovsky) a nic neprozradí.
+- **Skupinové úkoly (skládačka):** v týmu má každé místo kartu s jiným kouskem informací a tým odpovídá drakovi společně. Místa můžou obsadit AI asistenti, kteří znají jen svou kartu a odpověď za děti nenapíšou. Učitel nastaví počet dětí (1–4) a AI asistentů (0–3) a dostane odkaz s QR kódem.
 - **Autorské studio:** žáci píšou vlastní podání konceptů a sdílejí je se třídou.
-- **Pro učitele:** plán hodiny, odkazy a QR kódy na mise ([/ucitel](https://informatika-pbook.vercel.app/ucitel)).
+- **Pro učitele:** plán hodiny, odkazy a QR kódy na mise a skupinové úkoly ([/ucitel](https://informatika-pbook.vercel.app/ucitel)).
 
 Obsahová páteř: [Mapa informatických konceptů Glitch](https://knowledge-map-glitch.vercel.app/) organizace AI dětem, navázaná na revidované RVP Informatika (2024), CSTA, AI4K12 a UNESCO AI Competency Framework. Platforma: p-book engine ([kordikp/recsys-pbook](https://github.com/kordikp/recsys-pbook)) z FIT ČVUT.
 
