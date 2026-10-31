@@ -10,6 +10,9 @@ Bezplatná interaktivní učebnice informatiky a umělé inteligence pro 2. stup
 - **Skupinové úkoly (skládačka):** v týmu má každé místo kartu s jiným kouskem informací a tým odpovídá drakovi společně. Místa můžou obsadit AI asistenti, kteří znají jen svou kartu a odpověď za děti nenapíšou. Učitel nastaví počet dětí (1–4) a AI asistentů (0–3) a dostane odkaz s QR kódem.
 - **Autorské studio:** žáci píšou vlastní podání konceptů a sdílejí je se třídou.
 - **Pro učitele:** plán hodiny, odkazy a QR kódy na mise a skupinové úkoly ([/ucitel](https://informatika-pbook.vercel.app/ucitel)).
+- **Peněženka ⚡ na AI:** za práci s knihou se vydělávají kredity na AI, dají se darovat kamarádovi (kód nebo odkaz).
+- **Profil pro Tiny:** shrnutí pokroku (pojmy, mise, úroveň) bez jediného vlastního slova, připravené pro třídní platformu AI dětem; v Profilu je vidět a dá se stáhnout.
+- **Přístupnost:** světlý/tmavý režim ikonou v liště, vysoký kontrast, větší ovládání, čitelné písmo a režim pro barvoslepé.
 
 Obsahová páteř: [Mapa informatických konceptů Glitch](https://knowledge-map-glitch.vercel.app/) organizace AI dětem, navázaná na revidované RVP Informatika (2024), CSTA, AI4K12 a UNESCO AI Competency Framework. Platforma: p-book engine ([kordikp/recsys-pbook](https://github.com/kordikp/recsys-pbook)) z FIT ČVUT.
 
@@ -17,7 +20,8 @@ Obsahová páteř: [Mapa informatických konceptů Glitch](https://knowledge-map
 
 | Dokument | Co v něm je |
 |---|---|
-| [docs/DEPLOY.md](docs/DEPLOY.md) | Nasazení na Vercel, OpenAI token, účet Recombee, Supabase, aktualizace enginu |
+| [docs/DEPLOY.md](docs/DEPLOY.md) | Nasazení na Vercel, OpenAI token, účet Recombee, Supabase, aktualizace enginu, bezpečnost, data čtenářů a profil pro Tiny |
+| [SECURITY.md enginu](https://github.com/kordikp/recsys-pbook/blob/main/SECURITY.md) | Co které API dovolí komu, klíč editora, brána AI, nastavení Supabase |
 | [docs/tiny-integration/REQUIREMENTS.md](docs/tiny-integration/REQUIREMENTS.md) | Požadavky na propojení s Tiny: přihlášení účtem Tiny, boss, profil (DRAFT) |
 | [docs/TACR-A-PILOT.md](docs/TACR-A-PILOT.md) | Výstup TAČR (modul pro samovzdělávání) a plán pilotu ve školách |
 | [AGENTS.md](AGENTS.md) · [CONTRIBUTING.md](CONTRIBUTING.md) | Pravidla pro obsah a pro AI asistenty |

@@ -120,7 +120,7 @@ const zarizeni = (T, u) => {
 for (const r of radky.sort((a, b) => a.cas - b.cas)) {
   const T = trida(r.classCode);
   if (r.type === 'teacher_survey') { T.dotazniky.push(r); T.ucitele.add(r.userId); continue; }
-  if (r.type === 'contact') continue;
+  if (r.type === 'contact' || r.type === 'profile') continue;   // profile = souhrn pro Tiny, ne činnost
   const Z = zarizeni(T, r.userId || 'neznámé');
   if (r.cas) Z.dny.add(den(r.cas));
   const ev = r.type === 'event' ? r.event : r.type;

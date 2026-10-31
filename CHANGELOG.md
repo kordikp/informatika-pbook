@@ -1,5 +1,22 @@
 # Changelog
 
+## Engine 7.11.0, SW v95 — 2026-10-31
+
+- **Světlý/tmavý režim** je ikona v horní liště. Přístupnost (kontrast, větší ovládání, čitelné písmo, barvoslepost) zůstala v nastavení, bez nápisu „pro všechny, zdarma“.
+- **Řekni to jinak** je kompaktní: řádek „Jak to číst“ s podáními, rychlé volby (jednodušeji, hlouběji, víc obrázků, můj svět) a přesné zadání až na požádání. Na telefonu má panel 232 px místo 859 px.
+- **Autorské studio:** odstavec se upravuje přímo v textu (tučně, kurzíva, nadpis, seznamy, odkaz, posun, smazání; Enter rozdělí odstavec). V hlavičce je vidět, kolik ⚡ už studio vydělalo, a další milník.
+- **Darování ⚡:** dárek 5–50 ⚡ kamarádovi kódem nebo odkazem `?dar=KÓD`. Lze ho zrušit, dokud není vyzvednutý. Platí denní stropy na darování i na přijímání.
+- **Profil pro Tiny** (`js/tiny-profile.js`, REQUIREMENTS AC7–AC8): pevné schéma bez volného textu. Je v Profilu, ve „Stáhnout všechna data“ a na serveru (řádek `profile_summary`, data účtu). Mise si pamatují datum splnění a nejlepší skóre bosse. Přihlášení na druhém zařízení slučuje mise, výsledky i karty.
+- **Bezpečnost** (engine `SECURITY.md`):
+  - `/api/log` už nepřijme záznamy peněženky, galerií, návrhů ani přihlášení. Dřív si přes něj šlo připsat neomezeně ⚡.
+  - Veřejný výpis neukazuje kódy dárků, texty dětí ani profily.
+  - `/api/generate` nevěří podvrženému `sourceHost`.
+  - Anonymní zkoušky AI mají strop i na síť.
+  - Přihlášení se zabrzdí po 10 špatných heslech.
+  - Návrhy, přepočet statistik a synchronizace Recombee chtějí klíč editora.
+  - Chybové hlášky neprozrazují detaily.
+- **Dokumentace:** `docs/DEPLOY.md` §4–§8 (Supabase se service_role klíčem a bez politik, proměnné, bezpečnost, data čtenářů a export profilu). Nový soubor `setup-interactions-table.sql`.
+
 ## 0.5.0 — 2026-07-30
 
 - **Diverzita podání**: 33 konceptů má 2+ podání různých žánrů — 6 příběhů, 6 řešených příkladů, 4 kódové průchody (Python/JS/Scratch, ověřeno spuštěním), 8 tl;dr, 4 nové komiksy, 2 animovaná podání (SMIL), 3 otázkové bloky, 4 nové minihry. Kniha: 111 bloků, 12 her, 32 SVG.

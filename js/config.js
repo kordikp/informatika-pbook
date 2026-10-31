@@ -261,6 +261,10 @@ export const CONFIG = {
     },
   },
 
+  // Tiny, the AI dětem class platform (docs/tiny-integration): the profile shows the summary the
+  // book would hand over (js/tiny-profile.js). Sign-in with Tiny adds apiBase and firebase here.
+  tiny: { profile: true },
+
   aiEconomy: {
     enabled: true,
     freeTrials: 3,

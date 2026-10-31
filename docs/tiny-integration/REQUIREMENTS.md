@@ -78,8 +78,9 @@ Reading without an account stays exactly as it is.
 **pbook**
 
 - A static PWA on Vercel with serverless functions in `api/`.
-- Progress is kept in the browser (`js/recombee.js` → `save()`): read sections, completed missions,
-  XP, level, recall cards and facet preferences.
+- Progress is kept in the browser (`js/recombee.js` → `save()`): read sections, completed missions
+  (with pass date and best score since 7.11.0), XP, level, recall cards and facet preferences.
+  Every interaction is also logged to Supabase `interactions` under the reader's device id.
 - "Understood" is derived from that data: a recall card answered Hard or better, or a game scored
   70 % or more. "Kept" means a recall answered again two or more days later (`js/completion.js:11-13`).
 - `POST /api/boss` returns `{score, verdict: pass|almost|fail, feedback, followUp}`.
@@ -109,6 +110,25 @@ Reading without an account stays exactly as it is.
 | AC10 | A teacher in `course_teachers` of a course gets the results of that course's `course_pupils`. Anyone else gets 403, including other pupils and teachers of other courses. This is proven with real HTTP requests, like the other Tiny authorization specs. |
 | AC11 | `POST /users/:uid/anonymize` and account deletion also remove the pupil's pbook data. |
 | AC12 | Offline: a grading made without a connection is queued on the device and sent once, when the pupil is next online and signed in. |
+
+### Implementation status in pbook (2026-10-31, engine 7.11.0)
+
+- **AC7 and AC8 are done on the pbook side.**
+  - `js/tiny-profile.js` builds `metadata.pbook` v1 from a fixed schema. `scripts/check-tiny-profile.mjs`
+    proves it with hostile input: protected fields, free text, markup, prototype keys and huge books.
+  - The PATCH body is `{pbook: …}`.
+- The reader sees the summary in Profile → 📤 Profile for Tiny and can download it. "Download all
+  data" includes it.
+- Until R1 exists, the summary waits on the pbook server:
+  - as a `profile_summary` row under the reader's device or account id, sent on change (at most
+    once a minute, plus on page hide, as AC6 will);
+  - in a logged-in account's synced data.
+
+  `docs/DEPLOY.md` §8 has the export query.
+- Missions now keep `passedAt` and the best boss `score` (`missionResults`). Passes from before
+  7.11.0 have both as `null`.
+- AC3 groundwork: a login on a second device merges passed missions, mission results and recall
+  cards; earlier, only read sections, XP and badges were merged.
 
 ## 5. Proposed design  *Proposal*
 
