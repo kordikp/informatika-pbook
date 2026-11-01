@@ -83,7 +83,7 @@ adds collaborative filtering across readers.
 
    The sync reads the book from the deployment itself: `book.json` plus one content bundle. Rerun
    it after every content release. Instead of `SYNC_SECRET`, the editor key works too (header
-   `X-Pbook-Admin`; `/admin` → Sync Items sends it).
+   `X-Pbook-Admin`; `/admin` → 🗂 Data → Synchronizovat obsah sends it).
 5. Scenarios: the client sends the scenario names from `js/config.js` (`homepage-personal`,
    `next-read`, `context-related`, `search`, …). Tune them later in the Recombee admin.
 
@@ -115,7 +115,7 @@ Local test servers must never write to the production database:
 
 | Variable | Purpose |
 |---|---|
-| `PBOOK_ADMIN_KEY` | The editor key (header `X-Pbook-Admin`; `/admin` → 🔑 Editor key). Needed for: full log rows with readers' texts, contacts, recomputing reader statistics, changing proposals, promoting tellings in Recombee, and the catalogue sync |
+| `PBOOK_ADMIN_KEY` | The editor key (header `X-Pbook-Admin`; `/admin` asks for it at the start and checks it with `/api/log?check=1`). Needed for: the Classes, Messages and AI & credits tabs, the profile export for Tiny, full log rows with readers' texts, contacts, recomputing reader statistics, changing proposals, promoting tellings in Recombee, and the catalogue sync |
 | `PBOOK_GATEWAY_URL` | Gateway for deployments without a key (see §2) |
 | `PBOOK_GATEWAY_SECRET` | The same long random value on the gateway and on every book that forwards to it. A forwarded request skips the wallet only with this secret (engine `SECURITY.md`) |
 | `PBOOK_SOURCE_HOSTS` | On a gateway: extra book hosts it grades for under their own identity |

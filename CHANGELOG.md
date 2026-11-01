@@ -1,5 +1,18 @@
 # Changelog
 
+## Engine 7.12.0, SW v95 — 2026-11-01
+
+- **Nový `/admin`** pro editory a učitele pilotu, přepsaný podle toho, co kniha dnes umí. Vstupuje se klíčem editora (bez něj jen veřejné počty).
+  - 📊 Přehled: čtenáři po týdnech, posledních 7 dní, co je potřeba zkontrolovat, stav knihy (verze, AI, Recombee, Tiny), nejčtenější sekce.
+  - 📚 Obsah: koncepty po kapitolách s počtem podání, čtenářů, 👍 a hlášení; nahoře „Potřebuje pozornost“; pokrytí podání podle faset; náhled, předání do autorského studia, stažení `.md`. Čte jeden balík `content/bundle.cs.json` místo 1554 souborů.
+  - 🌱 Přání a návrhy: přání, cíle a „nenašel se text“ seskupené; návrhy konceptů jako krátký seřaditelný seznam (téma, hlasy, AI návrhy, rozbor mapy).
+  - 🤝 Příspěvky čtenářů, 🏫 Třídy (pilot podle kódu třídy: zařízení, vracející se, boss, mise, týmy, dotazníky), ✉️ Zprávy, ⚡ AI a kredity (vydělané a utracené ⚡, dárky, zkoušky, sítě na stropu).
+  - 🗂 Data: export profilů pro Tiny, export logu, Recombee, pozvánka pro editora, odkazy (/ucitel).
+  - Funguje na telefonu a v tmavém režimu.
+- **`/api/log`**: data z jiných knih ve sdílené tabulce se do adminu nepletou (`?book=`); nové dotazy `?check`, `?classes`, `?wallet`, `?profiles` jen s klíčem editora.
+- **`scripts/pilot-report.mjs`** přeskočí řádky s `classCode: false` (náhledové nasazení).
+- Service worker zůstává v95: admin není součástí aplikace pro čtenáře.
+
 ## Engine 7.11.0, SW v95 — 2026-10-31
 
 - **Světlý/tmavý režim** je ikona v horní liště. Přístupnost (kontrast, větší ovládání, čitelné písmo, barvoslepost) zůstala v nastavení, bez nápisu „pro všechny, zdarma“.

@@ -93,7 +93,7 @@ function normalizuj(r) {
 // stejný řádek má stejné zařízení, čas z prohlížeče (ts) i událost, takže se dá poznat a vynechat.
 const videno = new Set();
 const radky = (await nacti()).map(normalizuj).filter(r => {
-  if (!r.classCode || !/^[a-z0-9-]{4,16}$/.test(r.classCode) || BEZ.has(r.classCode) || (JEN && r.classCode !== JEN)) return false;
+  if (typeof r.classCode !== 'string' || !/^[a-z0-9-]{4,16}$/.test(r.classCode) || BEZ.has(r.classCode) || (JEN && r.classCode !== JEN)) return false;
   if ((r.book && r.book !== KNIHA) || !(r.cas >= OD && r.cas < DO)) return false;
   if (r.ts) {
     const klic = [r.userId, r.ts, r.type, r.event, r.itemId, r.missionId, r.teamId, r.blockId].join('|');
