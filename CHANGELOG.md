@@ -1,5 +1,14 @@
 # Changelog
 
+## Engine 7.13.0, SW v96 — 2026-11-01
+
+- **Recombee zapnuté jako A/B test.** Kniha má vlastní databázi `aidetem-informatika-pbook`. Polovina zařízení dostává doporučení a hledání z Recombee, druhá polovina lokální doporučování beze změny (kontrolní skupina). Interakce posílají obě. Skupina zůstává se zařízením, `?rc=1` / `?rc=0` ji připne.
+- **Nové police na Domů** (jen skupina Recombee): „Další pro tebe“ řazené podle Recombee (pojmy, po kterých jdou čtenáři s podobnou cestou), „Téma pro tebe: kapitola“ a „Zkus to ve světě …“ s odkazem na misi světa. V Hledat karta „💡 Pojem · kapitola N“ nad výsledky.
+- **Lepší signály:** jak velkou část sekce dítě vidělo, úspěch (zopakovaný koncept, vyřešená výzva, vyhraná hra), přiřazení kliku k polici, ze které byl.
+- **🔎 Insights v `/admin`** (klíč editora, 30 dní): srovnání skupin A/B, doporučovací místa (zobrazeno → kliknuto → dočteno), hledání (dotazy aspoň ze 2 zařízení, bez výsledku, bez kliknutí → návrh nebo synonymum), otázky bez odpovědi, synonyma, kapitoly a světy po týdnech, kde děti odpadají, která podání se dočítají. Třídy až od 5 zařízení. Veřejný výpis dotazy skrývá.
+- **Sync katalogu** po každém produkčním deployi (GitHub Actions `deployment_status`) a skládá plné texty ze všech jazykových balíků (překlady dřív přišly bez typu a názvu).
+- **Domů:** police z Recombee berou karty v pořadí stránky a vyhýbají se jen policím nad sebou.
+
 ## Engine 7.12.0, SW v95 — 2026-11-01
 
 - **Nový `/admin`** pro editory a učitele pilotu, přepsaný podle toho, co kniha dnes umí. Vstupuje se klíčem editora (bez něj jen veřejné počty).

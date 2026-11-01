@@ -1,23 +1,28 @@
 name: Sync Content to Recombee
 
+# After every successful production deploy, the deployment syncs its own catalog to Recombee
+# (api/sync-recombee.js reads content/book.json and the bundle from the site, so it imports
+# exactly what readers see). Needs the repository secret SYNC_SECRET (= SYNC_SECRET in Vercel env);
+# without it the job is skipped (e.g. in a mirror of this repo).
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'content/**'
+  deployment_status:
   workflow_dispatch: # manual trigger from GitHub UI
 
 jobs:
   sync:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       startsWith(github.event.deployment.environment, 'Production'))
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
       - name: Sync items to Recombee
         env:
-          RECOMBEE_DB: ${{ secrets.RECOMBEE_DB }}
-          RECOMBEE_TOKEN: ${{ secrets.RECOMBEE_TOKEN }}
-          RECOMBEE_REGION: ${{ secrets.RECOMBEE_REGION || 'rapi-eu-west' }}
-        run: node scripts/import-to-recombee.js
+          SYNC_SECRET: ${{ secrets.SYNC_SECRET }}
+          SITE: https://informatika-pbook.vercel.app
+        run: |
+          if [ -z "$SYNC_SECRET" ]; then echo "SYNC_SECRET not set, skipping"; exit 0; fi
+          jq -n --arg s "$SYNC_SECRET" '{secret: $s}' > body.json
+          curl -sS --fail-with-body --max-time 300 -X POST "$SITE/api/sync-recombee" \
+            -H 'Content-Type: application/json' --data @body.json | head -c 2000
+          rm -f body.json

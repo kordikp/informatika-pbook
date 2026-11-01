@@ -23,15 +23,25 @@ export const CONFIG = {
     bookIndex: 'content/book.json'
   },
 
+  // Recombee (engine 7.13): vlastní databáze knihy; token a region jsou jen ve Vercel env (api/recombee.js).
+  // A/B: polovina zařízení dostává doporučení a hledání z Recombee, druhá polovina lokální (kontrola);
+  // interakce posílají obě. Výsledky v /admin → Insights. ?rc=1 / ?rc=0 větev připne (testy, ukázky).
   recombee: {
-    enabled: false,             // pro tuto knihu není databáze: doporučování běží lokálně
-    database: '',
+    enabled: true,
+    database: 'aidetem-informatika-pbook',
+    abShare: 0.5,
     scenarios: {
       homepagePersonal: 'homepage-personal',
       homepageVoice: 'homepage-voice',
       nextRead: 'next-read',
       contextRelated: 'context-related',
       search: 'search',
+      nextConcept: 'next-concept',            // segmenty „concept“: další pojem pro čtenáře
+      conceptTellings: 'concept-tellings',    // podání toho pojmu
+      themeForYou: 'theme-for-you',           // composite „chapter“ → sekce: Téma pro tebe
+      worldForYou: 'world-for-you',           // segmenty „lens“: Jiný svět
+      worldTellings: 'world-tellings',        // sekce toho světa
+      searchConcepts: 'search-concepts',      // hledání pojmů v Hledat
     }
   },
 
@@ -42,7 +52,7 @@ export const CONFIG = {
     progressTracking: true,
     recommendations: true,
     gamification: true,       // XP, úrovně, odznaky, certifikát
-    personalization: true,    // lokální doporučování (bez Recombee)
+    personalization: true,    // doporučování (Recombee v A/B s lokálním)
     spaceRepetition: true,    // kartičky s rozloženým opakováním
     missions: true,           // mise kapitol s bossem
     games: true,              // minihry

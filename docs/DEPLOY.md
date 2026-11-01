@@ -81,11 +81,22 @@ adds collaborative filtering across readers.
    # {"ok":true,"imported":1554,"errors":0,"total":1554,...}
    ```
 
-   The sync reads the book from the deployment itself: `book.json` plus one content bundle. Rerun
-   it after every content release. Instead of `SYNC_SECRET`, the editor key works too (header
-   `X-Pbook-Admin`; `/admin` → 🗂 Data → Synchronizovat obsah sends it).
+   The sync reads the book from the deployment itself: `book.json` plus every
+   `content/bundle.<lang>.json`. It also creates the segmentations `concept`, `chapter` and `lens`.
+   GitHub Actions (`.github/workflows/sync-recombee.yml`) reruns it after every successful
+   production deploy when the repository has the secret `SYNC_SECRET`
+   (`gh secret set SYNC_SECRET -R <owner>/<repo>`). Instead of `SYNC_SECRET`, the editor key works
+   too (header `X-Pbook-Admin`; `/admin` → 🗂 Data → Synchronizovat obsah sends it).
 5. Scenarios: the client sends the scenario names from `js/config.js` (`homepage-personal`,
-   `next-read`, `context-related`, `search`, …). Tune them later in the Recombee admin.
+   `next-read`, `context-related`, `search`, and the segment scenarios `next-concept`,
+   `concept-tellings`, `theme-for-you`, `world-for-you`, `world-tellings`, `search-concepts`).
+   A scenario appears in the Recombee admin after its first call. **Each segment scenario needs its
+   segmentation chosen there** (the table is in
+   [recsys-pbook/SCENARIOS.md](https://github.com/kordikp/recsys-pbook/blob/main/SCENARIOS.md)).
+6. A/B: `recombee.abShare` in `js/config.js` is the share of devices Recombee serves (Informatika:
+   `0.5`). The rest keep the book's own recommender as the control group. `/admin` → 🔎 Insights
+   compares the two groups and every recommendation surface; `?rc=1` / `?rc=0` pins a device to a
+   group for testing.
 
 Field notes from earlier integrations (status codes, POST-only clusters, batching):
 [recsys-pbook/RECOMBEE.md](https://github.com/kordikp/recsys-pbook/blob/main/RECOMBEE.md).
@@ -154,7 +165,8 @@ what each endpoint trusts and what needs the editor key or a session. In short:
   `interactions` under the reader's device id (`reader-…`). The row also carries the book, the
   language and the class code when a teacher's link brought one. After a login, the id becomes
   the account's (`acct-…`). With Recombee enabled (§3), views, ratings and bookmarks are also sent
-  there. Informatika has Recombee off today (`recombee.enabled: false`), so Supabase is the record.
+  there, with view portions and successes (recall, challenges, games). Supabase stays the record:
+  the A/B and the insights are computed from it.
 - **The profile for Tiny** (`js/tiny-profile.js`, docs/tiny-integration AC7–AC8) is a summary in
   a fixed shape: core concepts read, understood or kept, missions passed with date and score,
   level, XP and interest worlds. It holds ids and numbers only, no free text, and stays under
