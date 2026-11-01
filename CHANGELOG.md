@@ -1,5 +1,10 @@
 # Changelog
 
+## Engine 7.13.1, SW v97 — 2026-11-01
+
+- **Sync do Recombee:** text se ořezává po celých znacích. Ořez uprostřed emoji rozbil celou dávku (Recombee odpověděl 502 a 200 sekcí chybělo); selhaná dávka se teď rozdělí a zopakuje. Katalog má všech 1554 položek.
+- Log dotazů a zprávy se ořezávají po celých znacích (emoji na hranici by zápis shodilo).
+
 ## Engine 7.13.0, SW v96 — 2026-11-01
 
 - **Recombee zapnuté jako A/B test.** Kniha má vlastní databázi `aidetem-informatika-pbook`. Polovina zařízení dostává doporučení a hledání z Recombee, druhá polovina lokální doporučování beze změny (kontrolní skupina). Interakce posílají obě. Skupina zůstává se zařízením, `?rc=1` / `?rc=0` ji připne.
